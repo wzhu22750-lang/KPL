@@ -144,6 +144,35 @@ B站没有免鉴权的开放接口，但站内搜索接口可以直接用，`jso
 - 搜索接口单次最多 20 条、没有游标，`json_list` 每轮全量重扫并按 `bvid` 判重；`order=pubdate` 下新视频进入窗口就会被发现。赛事密集期可以按不同关键词多加几个信源扩大窗口。
 - 社区向的信源建议配 `participation_mode: hot_signal`，只作热度证据、不进精选。
 
+### 虎扑
+
+虎扑 PC 站（`bbs.hupu.com`）已经是 React 单页应用，HTML 里没有帖子列表——**换成任何板块名返回的都是同一份「步行街」外壳**，所以 `web_list` 抓不到，RSSHub 用的老选择器（`.bbs-sl-web-post-layout`）也随改版失效了。数据在页面内联的 `window.$$data` 里，用 `json_list` 的 `html_window_var` 模式取。
+
+两个前提。一是板块编号：KPL 讨论在**王者荣耀版 `/kog`**（topicId 88），不是 `/kpl`（那个路由不存在，返回的就是上面说的外壳）。二是排序：`/kog` 默认「最新回复」，要用 `/kog-postdate`（「最新发布」）。
+
+```json
+{
+  "url": "https://bbs.hupu.com/kog-postdate",
+  "mode": "html_window_var",
+  "windowVar": "$$data",
+  "itemsPath": "topic.threads.list",
+  "titlePaths": ["title"],
+  "urlTemplate": "https://bbs.hupu.com{raw:url}",
+  "authorPaths": ["author.puname"],
+  "publishedAtPath": "createdAt",
+  "publishedAtUnit": "epoch_ms",
+  "externalIdPath": "tid",
+  "sortByPublishedAt": true
+}
+```
+
+- `$$data` 是 100 KB 左右的内联 JSON，`itemsPath` 写到 `topic.threads.list`，一次 50 条。`createdAt` 是毫秒时间戳；帖子链接是 `/642745716.html` 这样的相对路径，用 `{raw:url}` 拼成绝对地址。
+- **翻页无效**：`?page=2` 仍返回第一页（分页走 XHR），只有最新 50 条可达。
+- 这个版块很活跃，50 条大约只覆盖 2 小时。按产出自适应的间隔会把这类源收敛到 15 分钟，窗口足够；但间隔一旦被调到超过 2 小时就会开始漏内容。
+- 帖子自带的 `lights`／`replies`／`read` 互动量**不会保存**（`json_list` 的 `raw` 只留 `externalId`），目前也没有地方消费它们。
+- 版块是游戏综合讨论，夹杂推广垃圾（如「我在《合成康平路》拿到了…」），用 `ingestNoiseFilter.dropMarkersTitleOnly` 按标题丢弃即可。注意 `keepIfMatches` 的语义是「命中就不丢」，**不能当白名单**拿来只留 KPL 内容。
+- 社区讨论建议 `participation_mode: hot_signal`：只作为证据挂到已有事件上，不自己创建事件，也不进分析队列（不花模型钱）。
+
 ### 本地跑通 HTML/JSON 示例
 
 仓库提供两份虚构示例：[news.html](examples/sources/news.html) 和 [news.json](examples/sources/news.json)，各有两条新闻。它们用于核对选择器和字段映射，不是运营信源；示例文章链接不提供正文。

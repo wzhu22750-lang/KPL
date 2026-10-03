@@ -72,7 +72,7 @@ export async function getBoss(): Promise<PgBoss> {
   starting ??= (async () => {
     const b = new PgBoss({
       connectionString: bossConnectionString(config.databaseUrl, databaseSsl),
-      max: 4,
+      max: Number(process.env.PGBOSS_POOL_MAX || 2),
       schema: "pgboss",
       application_name: "aihot-jobs",
       // node-postgres reads the URL's sslmode=require as verify-full and fails on Supabase's

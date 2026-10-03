@@ -12,9 +12,11 @@ const numberType = (oid: number) => ({
 const url = new URL(config.databaseUrl);
 
 export const sql = postgres(config.databaseUrl, {
-  max: Number(process.env.DATABASE_POOL_MAX || 10),
+  // Hosted Postgres (Supabase free tier) limits session pool size to 15. Keep per-process default
+  // conservative (4 for api + 4 for worker + 2 for pg-boss = 10 total) so multiple processes coexist.
+  max: Number(process.env.DATABASE_POOL_MAX || 4),
   // Keep connections through quiet minutes: a reconnect costs a SCRAM exchange on the next request.
-  idle_timeout: 600,
+  idle_timeout: 120,
   connect_timeout: 10,
   onnotice: () => {},
   // Prepared statements keep PostgreSQL's plan cache: planning a detail read took longer than running
