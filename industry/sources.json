@@ -100,6 +100,36 @@
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false
+    },
+    {
+      "id": "hupu-kog",
+      "name": "虎扑 王者荣耀版（KPL 讨论）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://bbs.hupu.com/kog-postdate",
+        "mode": "html_window_var",
+        "windowVar": "$$data",
+        "itemsPath": "topic.threads.list",
+        "titlePaths": ["title"],
+        "urlTemplate": "https://bbs.hupu.com{raw:url}",
+        "authorPaths": ["author.puname"],
+        "publishedAtPath": "createdAt",
+        "publishedAtUnit": "epoch_ms",
+        "externalIdPath": "tid",
+        "sortByPublishedAt": true,
+        "ingestNoiseFilter": {
+          "dropMarkersTitleOnly": ["合成康平路"]
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 30,
+      "tags": [
+        "社区",
+        "虎扑"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
     }
   ]
 }

@@ -55,11 +55,23 @@ const QUEUE_OPTIONS: Record<QueueName, QueueOptions> = {
 
 const ensured = new Set<string>();
 
+/**
+ * node-postgres parses `sslmode=require` in connectionString as verify-full (system CA only),
+ * overriding the explicit `ssl.ca` option. Strip sslmode from the URL when explicit SSL is supplied.
+ */
+function bossConnectionString(rawUrl: string, hasSsl: string | null): string {
+  if (!hasSsl) return rawUrl;
+  const u = new URL(rawUrl);
+  u.searchParams.delete("sslmode");
+  u.searchParams.delete("ssl");
+  return u.toString();
+}
+
 export async function getBoss(): Promise<PgBoss> {
   if (boss) return boss;
   starting ??= (async () => {
     const b = new PgBoss({
-      connectionString: config.databaseUrl,
+      connectionString: bossConnectionString(config.databaseUrl, databaseSsl),
       max: 4,
       schema: "pgboss",
       application_name: "aihot-jobs",
