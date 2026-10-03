@@ -22,6 +22,9 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
   x_search: [...PUBLISHER, "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
   mp_account: [...PUBLISHER, "wxid", "ghid", "nickname"],
   external: [...PUBLISHER],
+  // Structured esports data: writes matches/games/BP, not articles. baseUrl exists for tests and
+  // mirror endpoints; the production default lives in sources/esports.ts.
+  esports_api: ["leagueId", "baseUrl", "battlesPerRun", "dataMode"],
 };
 
 // Objects with fixed keys (headers and bodyJson are request data, free-form).

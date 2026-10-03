@@ -32,8 +32,23 @@ function bool(name: string, fallback: boolean): boolean {
 
 export const isProduction = env.NODE_ENV === "production";
 
+/**
+ * Hosted Postgres (Supabase) rejects plaintext connections, and its direct-connection string carries
+ * no sslmode, so an off-host URL without one gets TLS added here; postgres.js, pg-boss's node-postgres
+ * and libpq (pg_dump) all read sslmode from the URL. Local Postgres, and private networks without
+ * TLS, opt out with sslmode=disable in the URL.
+ */
+function withSslMode(url: string): string {
+  const parsed = new URL(url);
+  if (parsed.searchParams.has("sslmode") || parsed.searchParams.has("ssl")) return url;
+  const host = parsed.hostname.replace(/^\[|\]$/g, "");
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1") return url;
+  parsed.searchParams.set("sslmode", "require");
+  return parsed.toString();
+}
+
 export const config = {
-  databaseUrl: str("DATABASE_URL", "postgres://127.0.0.1:5432/aihot"),
+  databaseUrl: withSslMode(str("DATABASE_URL", "postgres://127.0.0.1:5432/aihot")),
   apiPort: int("API_PORT", 3001),
   // Every generated absolute link uses this address, whatever Host a request arrives with.
   siteUrl: str("SITE_URL", SITE.defaultUrl).replace(/\/+$/, ""),

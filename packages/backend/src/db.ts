@@ -9,6 +9,8 @@ const numberType = (oid: number) => ({
   parse: (value: string) => Number(value),
 });
 
+const url = new URL(config.databaseUrl);
+
 export const sql = postgres(config.databaseUrl, {
   max: Number(process.env.DATABASE_POOL_MAX || 10),
   // Keep connections through quiet minutes: a reconnect costs a SCRAM exchange on the next request.
@@ -19,6 +21,9 @@ export const sql = postgres(config.databaseUrl, {
   // it. Searches plan every execution instead (withCustomPlans). JIT compilation costs more than
   // these short queries ever run.
   connection: { jit: "off" },
+  // Supavisor's transaction pooler (port 6543) hands each statement a random backend, so named
+  // prepared statements cannot survive there; direct, session-pooler and local connections keep them.
+  prepare: url.port !== "6543",
   types: {
     int8: numberType(20),
     numeric: numberType(1700),

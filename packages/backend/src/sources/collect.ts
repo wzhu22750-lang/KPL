@@ -10,6 +10,7 @@ import { fetchRss } from "./rss.ts";
 import { allowed, fetchDetail, fetchWebList, type DetailNeed } from "./web-list.ts";
 import { unsupportedConfig } from "./config-keys.ts";
 import { fetchJsonList } from "./json-list.ts";
+import { syncEsportsSource } from "./esports.ts";
 import { fetchXSearch, planXShards, readXSearch, shardHandle, shardQuery, selfThreadHandle, SHARDABLE_SQL, tweetToCandidate, type XBacklog } from "./x.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
 
@@ -120,6 +121,14 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
     // A config entry this kind does not implement fails the run, visibly, instead of being ignored.
     const unsupported = unsupportedConfig(source.kind, source.config);
     if (unsupported.length) throw new FetchError(`unsupported config: ${unsupported.join(", ")}`);
+    // Structured esports data never becomes articles: matches, games, BP and player stats go to the
+    // knowledge-base tables, then the run records health and cursor like every other source.
+    if (source.kind === "esports_api") {
+      const res = await syncEsportsSource(source);
+      const cursor = { ...(source.cursor ?? {}), ...res.cursor };
+      await sql.begin(async (tx) => recordFetch(tx, sourceId, run!.id, { found: res.found, created: res.created, detail: res.detail, cursor }));
+      return { sourceId, status: "ok", found: res.found, created: res.created, revised: res.revised };
+    }
     let candidates: Candidate[];
     let paidReceiptIds: number[] = [];
     let nextCursor: Record<string, unknown> = { ...(source.cursor ?? {}) };
@@ -331,7 +340,7 @@ async function scheduleXShards(): Promise<number> {
 export async function scheduleDueSources(): Promise<{ enqueued: number; shards: number }> {
   const rows = await sql<{ id: string }[]>`
     SELECT id FROM sources
-    WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search') AND (next_fetch_at IS NULL OR next_fetch_at <= now()) AND NOT (${sharded()})
+    WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search', 'esports_api') AND (next_fetch_at IS NULL OR next_fetch_at <= now()) AND NOT (${sharded()})
     ORDER BY next_fetch_at NULLS FIRST LIMIT 40`;
   let enqueued = 0;
   for (const r of rows) {
@@ -354,6 +363,8 @@ export async function adaptIntervals(): Promise<{ updated: number }> {
     SELECT s.id, s.participation_mode, s.kind, s.config, s.cursor, coalesce(s.config->>'url', '') LIKE 'https://r.jina.ai/%' AS paid_listing,
       (SELECT count(*) FROM articles a WHERE a.source_id = s.id AND a.discovered_at > now() - interval '7 days' AND NOT a.backfill) / 7.0 AS per_day
     FROM sources s WHERE s.enabled AND s.kind IN ('rss', 'web_list', 'json_list', 'x_search')`;
+  // esports_api sources keep their configured interval: they produce no articles, and match days
+  // want a tight pace (the operator tightens it for the season) that per-day adaptation cannot see.
   let updated = 0;
   for (const r of rows) {
     const perDay = Number(r.per_day);

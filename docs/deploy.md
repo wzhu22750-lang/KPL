@@ -2,7 +2,7 @@
 
 ## 用 Docker（推荐）
 
-需要一台装了 Docker（带 Compose）的机器。云服务器建议至少 2 核、4 GB 内存，构建镜像时要用到。
+需要一台装了 Docker（带 Compose）的机器。云服务器建议至少 2 核、4 GB 内存，构建镜像时要用到。数据库用 [Supabase](https://supabase.com)（免费档够用）。
 
 ```bash
 git clone https://github.com/KKKKhazix/AIHOT.git myhot
@@ -10,7 +10,19 @@ cd myhot
 node scripts/init-env.ts --llm-key <你的模型 API Key>
 ```
 
-`init-env.ts` 会生成 `.env`，填好随机密钥和管理员密码，并把密码打印一次。机器上没有 Node 的话，把 `.env.example` 复制成 `.env`，自己填 `ADMIN_PASSWORD`（至少 12 位）、`SESSION_SECRET`、`IMG_PROXY_SIGN_SECRET`、`POSTGRES_PASSWORD`（各用 `openssl rand -hex 32` 生成）和 `LLM_API_KEY`。
+`init-env.ts` 会生成 `.env`，填好随机密钥和管理员密码，并把密码打印一次。机器上没有 Node 的话，把 `.env.example` 复制成 `.env`，自己填 `ADMIN_PASSWORD`（至少 12 位）、`SESSION_SECRET`、`IMG_PROXY_SIGN_SECRET`（各用 `openssl rand -hex 32` 生成）和 `LLM_API_KEY`。
+
+### 配置数据库（Supabase）
+
+在 Supabase 建一个项目（区域选离服务器近的），然后在 `.env` 里填上 `DATABASE_URL`，用的是 Project Settings → Database 给出的连接串（库名固定是 `postgres`，串里带 `?sslmode=require`）：
+
+```dotenv
+DATABASE_URL=postgresql://postgres.<项目ref>:<密码>@aws-0-<区域>.pooler.supabase.com:5432/postgres
+```
+
+三种连接串的取舍：**Direct connection**（`db.<ref>.supabase.co:5432`）最直接，但需要服务器能出 IPv6；**Session pooler**（上面的写法，`:5432`）没有 IPv6 时用；**Transaction pooler**（`:6543`）每次语句都可能换后端，程序已自动适配，是最后的选择。程序对非本机地址默认走 TLS，本机无 TLS 的 PostgreSQL 要在串里写 `?sslmode=disable` 明确关闭。
+
+建表和种子数据在启动时由 `setup` 容器执行（迁移会创建 `pg_trgm` 和 `vector` 扩展，Supabase 都支持，不用手动开）。本机跑测试用的数据库不归 Supabase 管：测试要建库，Supabase 不允许，用 `docker compose --profile local-db up -d --wait db` 起一个本机的（见仓库根目录 `AGENTS.md`）。
 
 启动前检查 `.env` 的 `SITE_URL`：本机试用保留 `http://localhost:3000`；部署到服务器时改成读者实际访问的地址。例如通过服务器 IP 访问时（把示例 IP 换成自己的）：
 
@@ -28,7 +40,7 @@ docker compose up -d --build
 
 启动后打开 `http://服务器地址:3000`，后台在 `/admin`，用管理员密码登录。第一次启动会导入示范信源，一两分钟后开始出现内容；第一次导入的一百多条资料大约半小时处理完（每条都要预筛、评分、结构化、写标题摘要，再归组）。
 
-`docker compose` 会起五个容器：`db`（PostgreSQL 17）、`setup`（每次启动先跑数据库迁移和种子数据，然后退出）、`api`、`worker`（抓取、模型处理、定时任务）、`web`（网页）。
+`docker compose` 会起四个容器：`setup`（每次启动先跑数据库迁移和种子数据，然后退出）、`api`、`worker`（抓取、模型处理、定时任务）、`web`（网页）。数据库不在本机：它们直连 `.env` 里 `DATABASE_URL` 指向的 Supabase；本机测试库由 `--profile local-db` 按需另起。
 
 ### 在中国大陆的服务器上
 
@@ -71,6 +83,10 @@ docker compose run --rm setup && docker compose up -d
 
 迁移成功后再启动服务；迁移失败时先查看错误，不要继续启动。使用 HTTPS 配置的站点继续保留 `--profile https`。旧的 API 和 worker 要在迁移前停下：迁移可能删表删列，旧代码还在跑会出错；正常关闭 worker 会等进行中的付费调用收尾（最长三分多钟）。非 Docker 部署也按“备份、构建、停止 API/worker/web、迁移（`scripts/migrate.ts`）、种子数据（`scripts/seed.ts`）、启动”的顺序更新。
 
+#### 数据库改为 Supabase
+
+从这里版本起，数据库默认是 Supabase，不再随 compose 附带：`.env` 里要配 `DATABASE_URL`（见上文「配置数据库」），compose 的 `db` 服务移进了 `local-db` profile（只剩本机测试在用），`POSTGRES_PASSWORD` 不再使用。程序会对非本机地址默认启用 TLS（URL 里的 `sslmode` 优先），内网无 TLS 的自建 PostgreSQL 要写 `?sslmode=disable`。已有部署把数据库搬到 Supabase：先用下文的 `pg_dump` 导出，`pg_restore` 进 Supabase 的 `postgres` 库（扩展和迁移由 `setup` 重新执行，数据之外的对象不用手动建），再改 `DATABASE_URL` 重新启动。
+
 #### 升级到公开接口 3.0.0
 
 - **安全阀默认关**：`COLLECT_ENABLED`、`MODEL_CALLS_ENABLED` 只有写成 `true` 才打开，没写就是关。用 `scripts/init-env.ts` 生成的 `.env` 已经有这两行；自己写的 `.env` 没有的话要补上，否则升级后不再采集、不再调用模型。
@@ -101,15 +117,21 @@ docker compose run --rm setup && docker compose up -d
 
 在 `.env` 里配置 `DB_BACKUP_STORE_*`（任何 S3 兼容的对象存储），每天 04:10 自动备份到那里。一次完整备份包含同一时间戳的数据库 `.dump` 和文件 `aihot-files-*.tar.gz`：文件包保留 `uploads/` 以及仍存本地的 `feedback-screenshots/`，不包含图片缓存或本地备份目录。已经转发到飞书的图片只保留数据库中的外部引用，文件包不保存飞书上的图片。
 
-恢复时同时取回这一对文件：使用与数据库版本兼容的 `pg_restore` 将 `.dump` 恢复到空数据库，再把文件包解压到数据目录根目录（Docker 中为 `/data`，非 Docker 使用 `AIHOT_DATA_DIR`，默认 `.data`），保留包内的子目录结构，并确保运行进程可读取这些文件。只恢复数据库不能找回仍由 `local:` 引用的反馈截图；旧备份中没有包含的文件也无法凭数据库引用恢复。
+恢复时同时取回这一对文件：使用与数据库版本兼容的 `pg_restore` 将 `.dump` 恢复到空数据库（Supabase 就恢复到项目的 `postgres` 库；新库要先跑一遍 `scripts/migrate.ts` 建好表结构），再把文件包解压到数据目录根目录（Docker 中为 `/data`，非 Docker 使用 `AIHOT_DATA_DIR`，默认 `.data`），保留包内的子目录结构，并确保运行进程可读取这些文件。只恢复数据库不能找回仍由 `local:` 引用的反馈截图；旧备份中没有包含的文件也无法凭数据库引用恢复。
 
-下面的手动导出只包含数据库，不包含上述附件目录：
+下面的手动导出只包含数据库，不包含上述附件目录（用的是 setup 容器里的 `pg_dump`，连 `.env` 里的 `DATABASE_URL`）：
 
 ```bash
-docker compose exec -T db pg_dump -U aihot aihot | gzip > myhot-$(date +%F).sql.gz
+docker compose run --rm -v "$PWD:/backup" setup sh -c 'pg_dump --format=custom --compress=6 --no-owner --file "/backup/myhot-$(date +%F).dump" "$DATABASE_URL"'
 ```
 
-数据都在三个 Docker 卷里：`db`（数据库）、`data`（上传的图片、图片缓存、本地备份）、`caddy`（证书）。`docker compose down` 不会删除它们；`docker compose down -v` 会。
+恢复到别处时：
+
+```bash
+pg_restore --no-owner --dbname "<目标库的连接串>" myhot-<日期>.dump
+```
+
+数据都在两个 Docker 卷里：`data`（上传的图片、图片缓存、本地备份）、`caddy`（证书），数据库本体在 Supabase。`docker compose down` 不会删除卷；`docker compose down -v` 会（`db` 卷属于 `--profile local-db` 的本机测试库，删了重跑测试会自动重建）。
 
 ### 看日志
 
@@ -127,18 +149,16 @@ docker compose logs -f --tail 100 api worker web
 
 ## 不用 Docker
 
-需要 Node.js 24.11 以上和 PostgreSQL 16 或 17。
+需要 Node.js 24.11 以上。数据库同样用 Supabase（在 `.env` 里填 `DATABASE_URL`，见上文）；要用本机 PostgreSQL 16 或 17 也可以，先 `createdb myhot`，`DATABASE_URL` 写 `postgres://你的用户名@127.0.0.1:5432/myhot`。
 
 ```bash
 npm ci
 node scripts/init-env.ts --llm-key <你的模型 API Key>
-createdb myhot
 ```
 
-在 `.env` 里加上：
+在 `.env` 里补上：
 
 ```bash
-DATABASE_URL=postgres://你的用户名@127.0.0.1:5432/myhot
 API_BASE_URL=http://127.0.0.1:3001
 ```
 
@@ -147,6 +167,7 @@ API_BASE_URL=http://127.0.0.1:3001
 ```bash
 node --env-file=.env scripts/migrate.ts
 node --env-file=.env scripts/seed.ts
+node --env-file=.env scripts/seed-kpl.ts
 npm run build -w @aihot/web
 
 node --env-file=.env apps/api/src/main.ts          # 接口，3001 端口

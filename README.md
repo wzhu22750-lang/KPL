@@ -111,12 +111,13 @@
 
 想创建自己的独立站点，可以先点 [Use this template](https://github.com/KKKKhazix/AIHOT/generate)，再克隆你生成的仓库。想持续合并上游更新或贡献代码，建议先 Fork。下面的命令适合直接试用。
 
-需要 [Docker](https://docs.docker.com/get-docker/)，和一个 OpenAI 兼容的模型 API Key（DeepSeek、千问、智谱都可以）。
+需要 [Docker](https://docs.docker.com/get-docker/)、一个 [Supabase](https://supabase.com) 项目（免费档够用，作数据库），和一个 OpenAI 兼容的模型 API Key（DeepSeek、千问、智谱都可以）。
 
 ```bash
 git clone https://github.com/KKKKhazix/AIHOT.git myhot
 cd myhot
 node scripts/init-env.ts --llm-key <你的模型 API Key>
+# 把 Supabase 的连接串填进 .env 的 DATABASE_URL（Project Settings → Database，见 .env.example 的说明）
 docker compose up -d --build
 ```
 

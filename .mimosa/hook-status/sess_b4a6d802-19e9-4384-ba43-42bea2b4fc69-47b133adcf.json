@@ -1,14 +1,14 @@
 {
   "schemaVersion": "mimosa-hook-status/v1",
-  "recordedAt": "2026-10-03T16:17:04.612Z",
+  "recordedAt": "2026-10-03T17:17:14.228Z",
   "sessionId": "sess_b4a6d802-19e9-4384-ba43-42bea2b4fc69",
   "event": "PostToolUse",
   "toolName": "Edit",
-  "file": "tests/topic-chronicle.test.ts",
+  "file": "packages/backend/src/kb/upsert.ts",
   "outcome": "clear",
   "coverage": "complete",
   "findingCount": 0,
-  "durationMs": 5,
+  "durationMs": 78,
   "hostState": "hook_complete",
   "reportHint": ".mimosa/reports/"
 }
