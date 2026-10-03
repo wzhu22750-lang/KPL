@@ -1,0 +1,41 @@
+{
+  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖，之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型，Phase 3 启用）；新闻类信源按下面格式在后台逐个添加并先用“预览抓取”验证。字段说明见 docs/customize.md 与 docs/sources.md。",
+  "sources": [
+    {
+      "id": "mp-kpl-official",
+      "name": "KPL王者荣耀职业联赛（官方公众号）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_xxxxxxxxxxxxxxxx",
+        "nickname": "KPL王者荣耀职业联赛"
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": [
+        "官方"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "mp-hok-official",
+      "name": "王者荣耀（官方公众号）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_xxxxxxxxxxxxxxxx",
+        "nickname": "王者荣耀"
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "官方"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    }
+  ]
+}
