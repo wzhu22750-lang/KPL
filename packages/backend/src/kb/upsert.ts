@@ -105,8 +105,9 @@ export async function ensurePlayer(db: Db, p: PlayerInput): Promise<string> {
     await db`UPDATE players SET is_active = true, updated_at = now(),
       current_team_id = COALESCE(${p.teamId}, current_team_id) WHERE id = ${id}`;
   } else {
+    // slug 首选拉丁昵称；中文昵称直接用昵称（URL 会转义但可读），冲突时后缀去重。
     const latin = nickname.toLowerCase().replace(/[^a-z0-9_-]+/g, "");
-    const base = latin.length >= 2 ? latin : "";
+    const base = latin.length >= 2 ? latin : nickname.trim();
     id = await freeSlug(db, base, "pending-player-" + Date.now());
     const rows = await db<{ id: string }[]>`
       INSERT INTO players (id, slug, nickname, current_team_id, is_active, portrait_url)

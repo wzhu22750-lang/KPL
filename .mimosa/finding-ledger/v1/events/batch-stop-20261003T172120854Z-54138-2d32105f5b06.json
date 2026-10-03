@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261003T172120854Z-54138-2d32105f5b06",
+  "runId": "20261003T172120854Z-54138-2d32105f5b06",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "33ccaac05cddab4bf63f50738f9e71bb48272ea7",
+  "diffHash": "095db6e835daa45fa3e9db1a74ca12f976ddc286113b0c630ed38eb4c17f7aa8",
+  "rulesVersion": "unavailable",
+  "sessionHash": "47b133adcf8fbca0d176fed8f9a6ed8f43e9e3f279a88f833c55e2ac8eba60b2",
+  "reportRef": ".mimosa/reports/task-review-sess_b4a6d802-19e9-4384-ba43-42bea2b4fc69-20261003T172120854Z-54138-2d32105f5b06.json",
+  "events": [
+    {
+      "eventId": "hook-6bd05acf2956cb76dc2c865d0b852bfc",
+      "findingId": "mimosa-86b0f2d5bc54352097da10bf",
+      "type": "finding_blocked",
+      "at": "2026-10-03T16:49:55.980Z",
+      "identity": {
+        "projectRelativeFile": "packages/backend/src/kb/upsert.ts",
+        "ruleId": "security",
+        "codeEvidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 138,
+      "endLine": 138,
+      "reasonCode": "deny",
+      "reportedToAgent": true,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c"
+      },
+      "sequence": 0
+    },
+    {
+      "eventId": "hook-ea37639e40c5681111cd272017da10f6",
+      "findingId": "mimosa-86b0f2d5bc54352097da10bf",
+      "type": "finding_blocked",
+      "at": "2026-10-03T16:51:15.522Z",
+      "identity": {
+        "projectRelativeFile": "packages/backend/src/kb/upsert.ts",
+        "ruleId": "security",
+        "codeEvidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 138,
+      "endLine": 138,
+      "reasonCode": "deny",
+      "reportedToAgent": true,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c"
+      },
+      "sequence": 1
+    },
+    {
+      "eventId": "hook-61db59f08c2aff9e859c677ef22738d6",
+      "findingId": "mimosa-86b0f2d5bc54352097da10bf",
+      "type": "static_fix_verified",
+      "at": "2026-10-03T16:53:25.146Z",
+      "identity": {
+        "projectRelativeFile": "packages/backend/src/kb/upsert.ts",
+        "ruleId": "security",
+        "codeEvidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 138,
+      "endLine": 138,
+      "reasonCode": "static_rescan_passed",
+      "reportedToAgent": false,
+      "evidence": {
+        "kind": "static_scan",
+        "boundary": "observed",
+        "producer": "deterministic",
+        "evidenceHash": "b4719d806430ee6a9ddf3d40b08ea21ae3fe133890d0bb78c9b75ff52964fa7c"
+      },
+      "sequence": 2
+    }
+  ],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "packages/backend/src/sources/types.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/sources/config-keys.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/kb/upsert.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/sources/esports.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/sources/collect.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "tests/esports-sync.test.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "scripts/import-kpl-history.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "scripts/init-env.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/config.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "packages/backend/src/db.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-10-03T17:21:21.139Z"
+}
