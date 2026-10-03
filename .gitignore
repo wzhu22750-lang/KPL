@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Tooling
+.mimosa/
+
+# Nested git repositories (AIHOT has its own repo/GitHub remote;
+# reference-projects are external clones; kpl-intelligence is its own repo)
+/AIHOT/
+/reference-projects/
+/kpl-intelligence/
