@@ -47,10 +47,11 @@ function withSslMode(url: string): string {
   return parsed.toString();
 }
 
+const databaseUrl = withSslMode(str("DATABASE_URL", "postgres://127.0.0.1:5432/aihot"));
+
 export const config = {
-  databaseUrl: withSslMode(str("DATABASE_URL", "postgres://127.0.0.1:5432/aihot")),
-  apiPort: int("API_PORT", 3001),
-  // Every generated absolute link uses this address, whatever Host a request arrives with.
+  databaseUrl,
+  apiPort: int("API_PORT", 3001),  // Every generated absolute link uses this address, whatever Host a request arrives with.
   siteUrl: str("SITE_URL", SITE.defaultUrl).replace(/\/+$/, ""),
   egressProxyUrl: env.EGRESS_PROXY_URL || null,
   allowPrivateNetworkFetch: bool("ALLOW_PRIVATE_NETWORK_FETCH", false),
@@ -72,6 +73,22 @@ export const config = {
   adminUnionIds: (env.ADMIN_FEISHU_UNION_IDS || "").split(",").map((v) => v.trim()).filter(Boolean),
   adminEmails: (env.ADMIN_EMAILS || "").split(",").map((v) => v.trim().toLowerCase()).filter(Boolean),
 };
+
+/**
+ * The sslmode the database connection runs with ("require", ...) or null for plaintext. Consumers
+ * that cannot read it from the URL need it separately: node-postgres (pg-boss) treats
+ * sslmode=require as verify-full, whose CA check fails on hosted Postgres, while libpq and
+ * postgres.js only encrypt.
+ */
+export const databaseSsl = new URL(databaseUrl).searchParams.get("sslmode");
+
+// Supabase terminates TLS with a chain rooted at its own CA, so system-CA verification fails on its
+// hosts. The root ("Supabase Root 2021 CA", published by Supabase) is bundled; connections to
+// Supabase hosts verify against it. Other private-CA platforms need NODE_EXTRA_CA_CERTS.
+const SUPABASE_DB_HOST = /\.supabase\.(co|com)$/;
+export const databaseSslCa = databaseSsl && SUPABASE_DB_HOST.test(new URL(databaseUrl).hostname)
+  ? readFileSync(path.join(REPO_ROOT, "deploy/supabase-ca.pem"), "utf8")
+  : null;
 
 export type CredentialGroup = "models" | "collectors" | "integrations" | "auth";
 

@@ -2,7 +2,7 @@
 // retry policy: business code enqueues by name, the worker registers one handler per queue (jobs/*.ts),
 // and both sides are checked against JobData, so a payload cannot drift between producer and consumer.
 import { PgBoss, type SendOptions, type WorkOptions } from "pg-boss";
-import { config } from "../config.ts";
+import { config, databaseSsl, databaseSslCa } from "../config.ts";
 import { sql, type Db } from "../db.ts";
 import { shutdownSignal } from "../lib/shutdown.ts";
 export { shutdownSignal } from "../lib/shutdown.ts";
@@ -58,7 +58,15 @@ const ensured = new Set<string>();
 export async function getBoss(): Promise<PgBoss> {
   if (boss) return boss;
   starting ??= (async () => {
-    const b = new PgBoss({ connectionString: config.databaseUrl, max: 4, schema: "pgboss", application_name: "aihot-jobs" });
+    const b = new PgBoss({
+      connectionString: config.databaseUrl,
+      max: 4,
+      schema: "pgboss",
+      application_name: "aihot-jobs",
+      // node-postgres reads the URL's sslmode=require as verify-full and fails on Supabase's
+      // self-signed chain; verify the certificate against the bundled platform CA instead.
+      ...(databaseSsl ? { ssl: { rejectUnauthorized: true, ...(databaseSslCa ? { ca: databaseSslCa } : {}) } } : {}),
+    });
     b.on("error", (err) => console.error("[pg-boss]", err));
     try {
       await b.start();

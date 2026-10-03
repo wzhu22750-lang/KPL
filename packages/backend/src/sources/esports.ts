@@ -79,9 +79,9 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
   if (!/^\d{8}$/.test(leagueId)) throw new Error("esports_api 需要 config.leagueId（8 位数字，如 20260001）");
   const battlesPerRun = Number(source.config.battlesPerRun ?? 12);
 
-  const seasonId = await ensureSeason(sql, leagueId);
   const payload = (await getJson(`${baseUrl}/leaguesite/matches/open?league_id=${leagueId}`)) as { results?: LeagueMatch[] } | null;
   const rows = payload?.results ?? [];
+  const seasonId = await ensureSeason(sql, leagueId, rows[0]?.cc_match_id ?? null);
   let created = 0;
   let revised = 0;
   const teamOf = new Map<string, string>();

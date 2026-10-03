@@ -11,7 +11,8 @@ const from = Number(opt("from") ?? 2019);
 const to = Number(opt("to") ?? 2026);
 const LEAGUE_IDS = opt("leagues")
   ? opt("leagues")!.split(",").filter(Boolean)
-  : Array.from({ length: to - from + 1 }, (_, i) => String(from + i)).flatMap((y) => [`${y}0001`, `${y}0002`]);
+  // 每年枚举 0001-0004：2026 年起 0002 是 KCC 杯赛、0003 是夏季赛、0004 是年度总决赛；不存在的序号自动跳过。
+  : Array.from({ length: to - from + 1 }, (_, i) => String(from + i)).flatMap((y) => ["0001", "0002", "0003", "0004"].map((n) => y + n));
 
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36";
 
@@ -45,7 +46,7 @@ async function importLeague(leagueId: string): Promise<void> {
     console.log(`league ${leagueId}: 无数据，跳过`);
     return;
   }
-  const seasonId = await ensureSeason(sql, leagueId);
+  const seasonId = await ensureSeason(sql, leagueId, rows[0]?.cc_match_id ?? null);
   const teams = new Map<string, string>();
   let created = 0;
   let revised = 0;

@@ -5,20 +5,38 @@ import type { Db } from "../db.ts";
 
 export const SMOBA_BASE = "https://prod.comp.smoba.qq.com";
 
-const SPLIT_OF_SEQ: Record<string, { split: string; label: string }> = {
+const SPLIT_BY_SEQ: Record<string, { split: string; label: string }> = {
   "0001": { split: "spring", label: "春季赛" },
   "0002": { split: "summer", label: "夏季赛" },
 };
 
-/** 赛季行：external_id（league_id）为准，id 由年份与分季生成。 */
-export async function ensureSeason(db: Db, leagueId: string): Promise<string> {
+/**
+ * 赛季命名优先看官方 cc_match_id 前缀（KPL2026S1/S2/S3、KCC），序号只是回退：
+ * 2026 年起 0002 是 KCC 杯赛、0003 是夏季赛、0004 起是年度总决赛，与早期年份的“0002=夏季”不同。
+ */
+export function seasonMeta(leagueId: string, ccHint?: string | null): { split: string; label: string } {
+  const cc = (ccHint ?? "").toUpperCase();
+  if (cc.startsWith("KCC")) return { split: "challenger", label: "挑战者杯" };
+  if (cc.startsWith("KPL")) {
+    // 形如 KPL2026S1M1W1D1：S 后一位是赛季序。
+    const at = cc.indexOf("S", 3);
+    const n = at >= 0 ? cc.charAt(at + 1) : "";
+    if (n === "1") return { split: "spring", label: "春季赛" };
+    if (n === "2") return { split: "summer", label: "夏季赛" };
+    if (n === "3") return { split: "annual", label: "年度总决赛" };
+  }
+  return SPLIT_BY_SEQ[leagueId.slice(4)] ?? { split: "annual", label: "年度总决赛" };
+}
+
+/** 赛季行：external_id（league_id）为准；id 由年份与分季（经 cc 前缀判定）生成。 */
+export async function ensureSeason(db: Db, leagueId: string, ccHint?: string | null): Promise<string> {
+  const meta = seasonMeta(leagueId, ccHint);
   const year = leagueId.slice(0, 4);
-  const split = SPLIT_OF_SEQ[leagueId.slice(4)] ?? { split: "annual", label: "年度赛事" };
-  const id = ["kpl", year, split.split].join("-");
-  const name = [year + "年KPL", split.label].join("");
+  const id = "kpl-" + year + "-" + meta.split;
+  const name = year + "年KPL" + meta.label;
   await db`
     INSERT INTO seasons (id, name, year, split, external_id)
-    VALUES (${id}, ${name}, ${Number(year)}, ${split.split}, ${leagueId})
+    VALUES (${id}, ${name}, ${Number(year)}, ${meta.split}, ${leagueId})
     ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, external_id = EXCLUDED.external_id`;
   const [row] = await db<{ id: string }[]>`SELECT id FROM seasons WHERE external_id = ${leagueId} ORDER BY id LIMIT 1`;
   return row!.id;

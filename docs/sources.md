@@ -113,6 +113,37 @@
 - 日期建议返回带时区的 ISO 字符串；数字时间戳分别设 `publishedAtUnit: "epoch_s"`（秒）或 `"epoch_ms"`（毫秒），`20261001` 这类日期设 `"yyyymmdd"`。
 - 缺少标题或无法生成链接的条目会跳过。非空数组全部映射失败时，会报 `no items mapped (check title/url paths)`；路径不是数组时，会报 `items path did not resolve to an array`。
 
+### B站（哔哩哔哩）
+
+B站没有免鉴权的开放接口，但站内搜索接口可以直接用，`json_list` 就能接。关键是 `order=pubdate`：不写它返回的是相关度排序，新视频挤不进前 20 条这个窗口，信源会看起来一直没更新。
+
+**跟官方账号的投稿用账号名当关键词**（下面示例的 `keyword=哔哩哔哩王者荣耀赛事`）。搜索会匹配作者名，20 条基本全部来自该账号；比用赛事名当关键词干净——后者混入大量二路解说，而且标题里会留下搜索高亮插桩的空格（`《 KPL 赛事锐评》`）。UP 主投稿接口（`x/space/wbi/arc/search`）要 wbi 签名且过风控，不要走那条路。
+
+```json
+{
+  "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=哔哩哔哩王者荣耀赛事&order=pubdate&page=1",
+  "mode": "json_api",
+  "headers": { "Referer": "https://www.bilibili.com/" },
+  "itemsPath": "data.result",
+  "titlePaths": ["title"],
+  "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+  "summaryPaths": ["description", "tag"],
+  "summaryIsBody": true,
+  "authorPaths": ["author"],
+  "publishedAtPath": "pubdate",
+  "publishedAtUnit": "epoch_s",
+  "externalIdPath": "bvid",
+  "publisherRole": "organization",
+  "sortByPublishedAt": true
+}
+```
+
+- `summaryPaths` 按顺序取第一个非空：优先视频简介，简介为空时退回标签（标签含战队与赛事名，对实体关联有用），`tag` 几乎不会为空。
+- **`summaryIsBody: true` 应当保留**。视频简介就是这条内容能拿到的全部文本；不设它，条目会带着 `pending` 的正文状态进入正文抓取，对每个视频先直连抓一次、失败再退回 Jina（需要 `JINA_API_KEY`，且视频页的发布时间常与 `pubdate` 不一致）。设了它正文状态直接是 `ok`，不产生付费调用。
+- 代价是正文约等于标题（官方赛事视频的简介通常就是标题），分析只能依据标题。要更完整的正文，配好 `JINA_API_KEY` 后再去掉 `summaryIsBody`。
+- 搜索接口单次最多 20 条、没有游标，`json_list` 每轮全量重扫并按 `bvid` 判重；`order=pubdate` 下新视频进入窗口就会被发现。赛事密集期可以按不同关键词多加几个信源扩大窗口。
+- 社区向的信源建议配 `participation_mode: hot_signal`，只作热度证据、不进精选。
+
 ### 本地跑通 HTML/JSON 示例
 
 仓库提供两份虚构示例：[news.html](examples/sources/news.html) 和 [news.json](examples/sources/news.json)，各有两条新闻。它们用于核对选择器和字段映射，不是运营信源；示例文章链接不提供正文。

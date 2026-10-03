@@ -35,12 +35,13 @@ const MATCH_SELECT = sql`
   JOIN teams tb ON tb.id = m.team_b_id
   JOIN seasons s ON s.id = m.season_id`;
 
-/** 最新一个有比赛的赛季（页面默认展示它）。 */
+/** 最新一个有比赛的赛季（按最近比赛日期，而非 id 字母序）：页面默认展示它。 */
 export async function latestSeason(): Promise<{ id: string; name: string } | null> {
   const [row] = await sql<{ id: string; name: string }[]>`
     SELECT s.id, s.name FROM seasons s
     WHERE EXISTS (SELECT 1 FROM matches m WHERE m.season_id = s.id)
-    ORDER BY s.year DESC, s.id DESC LIMIT 1`;
+    ORDER BY (SELECT max(coalesce(m.played_at, m.scheduled_at)) FROM matches m WHERE m.season_id = s.id) DESC
+    LIMIT 1`;
   return row ?? null;
 }
 

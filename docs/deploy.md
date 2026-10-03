@@ -20,7 +20,7 @@ node scripts/init-env.ts --llm-key <你的模型 API Key>
 DATABASE_URL=postgresql://postgres.<项目ref>:<密码>@aws-0-<区域>.pooler.supabase.com:5432/postgres
 ```
 
-三种连接串的取舍：**Direct connection**（`db.<ref>.supabase.co:5432`）最直接，但需要服务器能出 IPv6；**Session pooler**（上面的写法，`:5432`）没有 IPv6 时用；**Transaction pooler**（`:6543`）每次语句都可能换后端，程序已自动适配，是最后的选择。程序对非本机地址默认走 TLS，本机无 TLS 的 PostgreSQL 要在串里写 `?sslmode=disable` 明确关闭。
+三种连接串的取舍：**Direct connection**（`db.<ref>.supabase.co:5432`）最直接，但需要服务器能出 IPv6；**Session pooler**（上面的写法，`:5432`）没有 IPv6 时用；**Transaction pooler**（`:6543`）每次语句都可能换后端，程序已自动适配，是最后的选择。程序对非本机地址默认走 TLS，本机无 TLS 的 PostgreSQL 要在串里写 `?sslmode=disable` 明确关闭。对 Supabase 的连接会用仓库内置的官方根证书（`deploy/supabase-ca.pem`）做完整的证书校验；其它用自签私有 CA 的 PostgreSQL，用 `NODE_EXTRA_CA_CERTS` 提供根证书。
 
 建表和种子数据在启动时由 `setup` 容器执行（迁移会创建 `pg_trgm` 和 `vector` 扩展，Supabase 都支持，不用手动开）。本机跑测试用的数据库不归 Supabase 管：测试要建库，Supabase 不允许，用 `docker compose --profile local-db up -d --wait db` 起一个本机的（见仓库根目录 `AGENTS.md`）。
 

@@ -36,6 +36,70 @@
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false
+    },
+    {
+      "id": "bili-kpl-official",
+      "name": "哔哩哔哩王者荣耀赛事（B站官方账号）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=哔哩哔哩王者荣耀赛事&order=pubdate&page=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://www.bilibili.com/"
+        },
+        "itemsPath": "data.result",
+        "titlePaths": ["title"],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": ["description", "tag"],
+        "summaryIsBody": true,
+        "authorPaths": ["author"],
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "publisherRole": "organization",
+        "sortByPublishedAt": true
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": [
+        "官方",
+        "B站"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "bili-kpl-community",
+      "name": "B站 KPL 社区讨论（关键词）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=KPL&order=pubdate&page=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://www.bilibili.com/"
+        },
+        "itemsPath": "data.result",
+        "titlePaths": ["title"],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": ["description", "tag"],
+        "summaryIsBody": true,
+        "authorPaths": ["author"],
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "sortByPublishedAt": true
+      },
+      "tier": "T2",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 60,
+      "tags": [
+        "社区",
+        "B站"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
     }
   ]
 }
