@@ -133,7 +133,7 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
       const detail = (await getJson(`${baseUrl}/leaguesite/battle/open?battle_id=${battle.battle_id}`)) as { data?: BattleData } | null;
       const data = detail?.data;
       if (!data) continue;
-      await upsertGame(sql, {
+      await upsertGame({
         matchId: match.id,
         bo: match.bo,
         battleId: data.battle_id,

@@ -1,7 +1,8 @@
 // KPL 知识库的结构化写入：官方赛事数据（战队、英雄、选手、比赛、对局、BP、单局数据）的幂等入库。
 // 所有写入 ON CONFLICT：官方字段以最新抓取为准，人工在后台维护的 style_notes、别名等不被覆盖。
 // 读取器（sources/esports.ts）与历史回灌脚本（scripts/import-kpl-history.ts）共用这一层。
-import type { Db } from "../db.ts";
+import type { Db, Tx } from "../db.ts";
+import { sql as rootSql } from "../db.ts";
 
 export const SMOBA_BASE = "https://prod.comp.smoba.qq.com";
 
@@ -253,9 +254,19 @@ const laneOf = (desc: string | null | undefined) => {
  * 一局完整数据：games 行 + 20 步 BP + 每名选手的单局数据。
  * camp 1/2 按 match 行的 camp1/camp2 队伍对齐（官方不暴露蓝红颜色，camp1 记为蓝方是站内稳定约定）；
  * 巅峰对决（决胜局之后的盲选局）不产生 ban 记录，选取进 pinnacle_picks。
+ *
+ * 单事务 + 按对局 ID 的 advisory lock：worker 的自动同步与回灌脚本可能同时补同一局，
+ * 先清后写的顺序必须在锁内完成，否则两边交错会撞主键（bp_actions_pkey）。
  */
-export async function upsertGame(db: Db, g: GameInput): Promise<{ id: string }> {
+export async function upsertGame(g: GameInput): Promise<{ id: string }> {
   const id = g.matchId + "-g" + g.battleSeq;
+  return rootSql.begin(async (tx) => {
+    await tx`SELECT pg_advisory_xact_lock(hashtext(${id}))`;
+    return upsertGameTx(tx, g, id);
+  });
+}
+
+async function upsertGameTx(db: Tx, g: GameInput, id: string): Promise<{ id: string }> {
   const finished = g.status === 2;
   const winnerId = finished && g.winCamp ? g.campTeams[g.winCamp as 1 | 2] ?? null : null;
   const mode = g.bo !== null && g.bo !== undefined && g.battleSeq > g.bo ? "pinnacle" : "standard";
@@ -304,7 +315,10 @@ export async function upsertGame(db: Db, g: GameInput): Promise<{ id: string }> 
       await db`
         INSERT INTO bp_actions (game_id, step_index, action_type, side, hero_id, player_id, position, raw_order)
         VALUES (${id}, ${index + 1}, ${entry.is_ban_or_pick === 1 ? "pick" : "ban"}, ${sideOf(entry.camp)},
-                ${heroId}, ${playerId}, ${laneOf(p_desc(entry))}, ${index})`;
+                ${heroId}, ${playerId}, ${laneOf(p_desc(entry))}, ${index})
+        ON CONFLICT (game_id, step_index) DO UPDATE SET
+          action_type = EXCLUDED.action_type, side = EXCLUDED.side, hero_id = EXCLUDED.hero_id,
+          player_id = EXCLUDED.player_id, position = EXCLUDED.position, raw_order = EXCLUDED.raw_order`;
     }
   }
 

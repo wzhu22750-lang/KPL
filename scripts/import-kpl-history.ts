@@ -95,7 +95,7 @@ async function importLeague(leagueId: string): Promise<void> {
       }
       const detail = (await getJson<{ data?: BattleData }>(`${SMOBA_BASE}/leaguesite/battle/open?battle_id=${battle.battle_id}`))?.data;
       if (!detail) continue;
-      await upsertGame(sql, {
+      await upsertGame({
         matchId, bo: row.bo ?? null, battleId: detail.battle_id, battleSeq: detail.battle_seq ?? battle.battle_seq,
         status: detail.status ?? battle.status, winCamp: detail.win_camp ?? battle.win_camp,
         durationMs: detail.game_duration ?? battle.game_duration, teamAId: matchRow.team_a_id, teamBId: matchRow.team_b_id,
