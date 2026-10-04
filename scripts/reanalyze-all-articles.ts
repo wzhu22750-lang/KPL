@@ -14,9 +14,9 @@ async function main() {
   console.log("🚀 开始 KPL 文章数据清洗治理与 LLM 智能评分重写流水线");
   console.log("============================================================\n");
 
-  // 1. 释放之前中断留下的 pending receipts，避免 Receipt is in flight 报错
+  // 1. 释放之前中断留下的 pending/unknown receipts
   const released = await sql`
-    UPDATE receipts SET status = 'failed', error = 'interrupted' WHERE status = 'pending' RETURNING id;
+    UPDATE receipts SET status = 'failed', error = 'interrupted' WHERE status IN ('pending', 'unknown') RETURNING id;
   `;
   if (released.length > 0) {
     console.log(`🧹 释放了 ${released.length} 个中断未结的调用收据 (receipts)`);
@@ -33,11 +33,13 @@ async function main() {
     DELETE FROM analyses WHERE model = 'kpl-processor' RETURNING id;
   `;
   const updatedArticles = await sql`
-    UPDATE articles SET processing_state = 'new' WHERE processing_state = 'analyzed' RETURNING id;
+    UPDATE articles SET processing_state = 'new' WHERE processing_state = 'analyzed' AND id NOT IN (
+      SELECT article_id FROM analyses WHERE model != 'kpl-processor'
+    ) RETURNING id;
   `;
   console.log(`   - 清理假精选 publications: ${deletedPubs.length} 条`);
   console.log(`   - 清理假分析 analyses: ${deletedAnalyses.length} 条`);
-  console.log(`   - 重置文章状态为 new: ${updatedArticles.length} 条\n`);
+  console.log(`   - 重置待处理文章状态: ${updatedArticles.length} 条\n`);
 
   // 3. 拦截过滤无意义灌水垃圾（如标题 <= 4 字符且无正文的纯水帖）
   const blockedSpam = await sql`
@@ -50,7 +52,14 @@ async function main() {
     console.log(`🚫 自动拦截纯水帖/乱码帖: ${blockedSpam.length} 篇\n`);
   }
 
-  // 4. 查询所有需要处理的有效文章（优先处理官方一手源 T1 -> 俱乐部源 T1.5 -> 优质社区源 T2）
+  // 4. 将微信公众号历史未确认正文标记为 unconfirmed，允许模型依据标题与摘要进行评估
+  await sql`
+    UPDATE articles 
+    SET body_status = 'unconfirmed' 
+    WHERE body_status = 'pending' AND (url LIKE '%weixin.sogou.com%' OR source_id LIKE 'mp-%');
+  `;
+
+  // 5. 查询所有需要处理的有效文章（优先处理官方一手源 T1 -> 俱乐部源 T1.5 -> 优质社区源 T2）
   const articles = await sql<{
     id: string;
     title: string;
@@ -59,9 +68,8 @@ async function main() {
     tier: string;
     published_at: Date | null;
     discovered_at: Date;
-    body_text: string | null;
   }[]>`
-    SELECT a.id, a.title, a.source_id, s.name as source_name, s.tier, a.published_at, a.discovered_at, a.body_text
+    SELECT a.id, a.title, a.source_id, s.name as source_name, s.tier, a.published_at, a.discovered_at
     FROM articles a
     JOIN sources s ON s.id = a.source_id
     WHERE s.participation_mode = 'editorial'
@@ -69,7 +77,7 @@ async function main() {
     ORDER BY CASE s.tier WHEN 'T1' THEN 1 WHEN 'T1_5' THEN 2 ELSE 3 END, a.created_at DESC
   `;
 
-  console.log(`📋 共找到 ${articles.length} 篇待分析文章（官方公众号、俱乐部官微、B站官方与优质社区）\n`);
+  console.log(`📋 共找到 ${articles.length} 篇需同步与分析的文章\n`);
 
   let countPass = 0;
   let countBlock = 0;
@@ -77,7 +85,6 @@ async function main() {
   let countDiscarded = 0;
   let countFail = 0;
 
-  // 使用受控并发度（并发 2，严格控制在 Supabase 连接池上限内）
   const CONCURRENCY = 2;
   let cursor = 0;
 
@@ -104,18 +111,13 @@ async function main() {
         if (existing) {
           if (existing.relevance === "block") {
             countBlock++;
-            console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 🚫 已有分析：预筛拦截 (block)`);
           } else {
             countPass++;
             if (existing.selected) {
               countSelected++;
-              console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 🌟 已有分析：精选入选! 得分:${existing.score}分`);
-              if (existing.reason_zh) {
-                console.log(`      💡 理由: ${existing.reason_zh}`);
-              }
+              console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 🌟 精选入选! 得分:${existing.score}分`);
             } else {
               countDiscarded++;
-              console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 📉 已有分析：淘汰未入选 (得分:${existing.score ?? "无"})`);
             }
           }
           await publishArticle(art.id, {
@@ -140,7 +142,7 @@ async function main() {
           countPass++;
           if (out.selected) {
             countSelected++;
-            console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 🌟 精选入选! 得分:${out.score}分 (门槛:${out.threshold})`);
+            console.log(`${prefix} [${art.source_name}] "${titleSnippet}" -> 🌟 新分析精选入选! 得分:${out.score}分 (门槛:${out.threshold})`);
             if (out.reasonZh) {
               console.log(`      💡 理由: ${out.reasonZh}`);
             }
