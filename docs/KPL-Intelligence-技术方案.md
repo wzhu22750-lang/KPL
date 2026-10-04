@@ -588,13 +588,29 @@ CREATE TABLE qa_rate (
 
 ## 10. 开发计划
 
-### Phase 2 —— 设计落地（约 1 周）
+> **实施进度（2026-10-04）**：Phase 1、Phase 2 已完成（项目仓库 `kpl-intelligence/`，Phase 2 提交 ee38417）。
+> - ✅ `industry/` 行业包全部重写：KPL 站点身份、六分类（赛果/阵容/版本/联盟/战术/观点）、18 支现役战队实体+身份词典（以官方 API team_id 为准）、29 个主题、27 个提示词 KPL 化、编年史规则（赛果/阵容/俱乐部三类节点）
+> - ✅ 迁移 0053–0056 全部落地并验证：实体表（seasons/teams/players/heroes/荣誉/别名/履历）、比赛域（matches/games/bp_actions 20 步时序/pinnacle_picks）、检索与问答层（entity_mentions/chunks pgvector HNSW/qa_queries/qa_rate）、esports_api 信源类型
+> - ✅ 种子数据：`scripts/fetch-kpl-seeds.ts` 从官方 API 生成（2023–2026 共 8 赛季、38 支队伍、133 英雄，官方 team_id/队徽/英雄 id 对齐）；`scripts/seed-kpl.ts` 幂等入库；setup 容器自动执行
+> - ✅ docker-compose 数据库镜像换为 `pgvector/pgvector:pg17`；typecheck 全绿；主题大事记测试重写为 KPL 等价 8/8 通过
+> - ⏳ 遗留到 Phase 3：33 个 AI 时代的测试文件待随功能改造逐步迁移（框架层测试大多与领域无关）；esports_api 读取器、kb/qa 模块、实体页与问答页
+
+### Phase 2 —— 设计落地（约 1 周）✅ 已完成
 1. `industry/` 重写：site.ts（KPL Intelligence 身份）、taxonomy（赛果/转会/版本/赛制/观点/攻略 六类）、prompts 全套 KPL 化、selection 门槛初值、topics.json、features 双关；
 2. 迁移 0053–0055（实体/比赛/检索层）+ contracts 扩展（kpl.ts、qa.ts）；
 3. 种子数据整理：16 支 KPL 战队 + 主要选手 + 英雄库（人工确认 JSON）；
 4. Dockerfile 换 pgvector 基础镜像，验证迁移链。
 
 ### Phase 3 —— 实现（约 3 周）
+
+> **3a 进度（2026-10-04）**：数据采集层已落地——
+> - `packages/backend/src/kb/upsert.ts`：战队/赛季/英雄/选手/比赛/对局/BP/选手单局数据的幂等入库层（官方字段覆盖、人工字段保留、别名只增不删）
+> - `packages/backend/src/sources/esports.ts`：esports_api 读取器（league→match→battle 三级；每轮赛程对齐 + 预算内回灌缺局，`matches.games_expected` 精确断点续抓），已接入 collect 调度与健康治理（esports 源不受频率自适应影响，赛期由运营收紧间隔）
+> - 迁移 0057（player_games 选手单局表）、0058（matches.games_expected）
+> - `scripts/import-kpl-history.ts`：历史全量回灌脚本（幂等、断点续跑、--from/--to/--leagues 参数）
+> - `tests/esports-sync.test.ts`：假服务测试（预算断点续抓、幂等、BP 20 步、选手归一、MVP 解析）✅
+> - ⏳ 进行中：真实数据验证（2026 春季赛全量回灌）
+
 - **3a 数据采集（1 周）**：`esports_api` reader + 1 个落地适配器（以可得性最高的源优先）；历史数据回灌脚本；`kb.sync-match` / `kb.link-mentions` / `kb.reindex-chunks` job；
 - **3b 页面（1 周，与 3a 并行）**：teams/players/matches 三类详情页 + 首页改造 + site API；
 - **3c AI 问答（1 周）**：chunks + pgvector 索引；三通道混合检索 + RRF；qa/ 模块 + SSE 端点 + 护栏 + 缓存限流；AI 复盘 job。
