@@ -29,6 +29,8 @@ from typing import Any
 import httpx
 from bs4 import BeautifulSoup
 
+from kpl_scraper import format_timestamp
+
 # 大家拉标准接口基地址 (dajiala.com / jzl.com)
 DAJIALA_BASE_URL = "https://www.dajiala.com/fbmain"
 
@@ -145,6 +147,142 @@ def sanitize_title(text: str, max_len: int = 40) -> str:
     return clean[:max_len] if clean else "微博动态"
 
 
+# ========================================================
+# 微信公众号文章元信息导出（打通 curator.py 的 discovered_urls.json 断层）
+# ========================================================
+
+# KPL 官方公众号（ghid 来自 kpl-intelligence/industry/sources.json 已验证配置）
+KPL_WECHAT_ACCOUNTS = {
+    "KPL官方": {"name": "KPL王者荣耀职业联赛", "ghid": "gh_49991182cd21"},
+}
+
+# dajiala post_history 响应条目为微信后台 appmsg 风格字段（见 docs/交接文档.md §7），
+# 不同接口版本字段名有差异，这里做防御式多候选匹配
+_URL_KEYS = ("url", "link")
+_AUTHOR_KEYS = ("author", "nickname", "account_name")
+_TIME_KEYS = ("post_time", "create_time", "publish_time", "sendtime")
+
+
+def extract_items(data: dict) -> list:
+    """从 dajiala 接口响应中取出条目列表（兼容 {data:{list}} 与 {list} 两种包裹）"""
+    if not isinstance(data, dict):
+        return []
+    inner = data.get("data")
+    if isinstance(inner, dict) and isinstance(inner.get("list"), list):
+        return inner["list"]
+    if isinstance(data.get("list"), list):
+        return data["list"]
+    return []
+
+
+def _first_field(item: dict, keys: tuple) -> str:
+    for key in keys:
+        value = item.get(key)
+        if value:
+            return str(value)
+    return ""
+
+
+def _format_publish_time(raw: str) -> str:
+    """unix 时间戳（int 或数字字符串）转北京时间；其余原样返回"""
+    if not raw:
+        return ""
+    try:
+        return format_timestamp(int(raw))
+    except ValueError:
+        return raw
+
+
+def collect_wechat_metas(data: dict, default_author: str = "") -> list[dict]:
+    """从 post_history 响应提取文章元信息（url/title/author/publish_time），按 url 去重保序"""
+    metas: list[dict] = []
+    seen: set[str] = set()
+    for item in extract_items(data):
+        if not isinstance(item, dict):
+            continue
+        url = _first_field(item, _URL_KEYS).strip()
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        metas.append(
+            {
+                "url": url,
+                "title": _first_field(item, ("title",)) or "未命名",
+                "author": _first_field(item, _AUTHOR_KEYS) or default_author,
+                "publish_time": _format_publish_time(_first_field(item, _TIME_KEYS)),
+            }
+        )
+    return metas
+
+
+def export_discovered_json(metas_by_account: dict[str, list[dict]], path: Path) -> None:
+    """按 curator.py 可消费的结构落盘：{账号名: [{url, title, author, publish_time}, ...]}"""
+    payload = {name: metas for name, metas in metas_by_account.items() if metas}
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def parse_export_args(argv: list[str]) -> tuple[Path, list[str], int]:
+    """解析 --export-json 模式参数：输出路径（默认 discovered_urls.json）、--biz 逗号分隔、--pages"""
+    out_path = Path("discovered_urls.json")
+    biz_values: list[str] = []
+    pages = 1
+    i = 0
+    while i < len(argv):
+        token = argv[i]
+        if token == "--export-json" and i + 1 < len(argv) and not argv[i + 1].startswith("-"):
+            out_path = Path(argv[i + 1])
+            i += 1
+        elif token == "--biz" and i + 1 < len(argv):
+            biz_values.extend(v.strip() for v in argv[i + 1].split(",") if v.strip())
+            i += 1
+        elif token == "--pages" and i + 1 < len(argv):
+            pages = max(1, int(argv[i + 1]))
+            i += 1
+        i += 1
+    return out_path, biz_values, pages
+
+
+def run_export(argv: list[str]) -> None:
+    """拉取公众号历史文章列表并导出元信息 JSON（供 curator.py 质检消费）"""
+    out_path, biz_values, pages = parse_export_args(argv)
+
+    # ghid -> 账号名；未指定 --biz 时默认用内置账号表
+    targets: dict[str, str] = {}
+    for ghid in biz_values:
+        known = next((v["name"] for v in KPL_WECHAT_ACCOUNTS.values() if v["ghid"] == ghid), ghid)
+        targets[ghid] = known
+    if not targets:
+        targets = {v["ghid"]: v["name"] for v in KPL_WECHAT_ACCOUNTS.values()}
+
+    client = DajialaClient()
+    if not client.is_configured():
+        print("❌ 未检测到大家拉 API 密钥（DAJIALA_API_KEY），无法拉取公众号文章列表。")
+        print("   请先在环境变量或项目根目录 .env 文件中配置该密钥，再重新运行本命令。")
+        return
+
+    print(f"📤 开始导出公众号文章元信息（{len(targets)} 个号 × 最多 {pages} 页）→ {out_path}")
+    metas_by_account: dict[str, list[dict]] = {}
+    total = 0
+    for ghid, name in targets.items():
+        collected: list[dict] = []
+        for page in range(1, pages + 1):
+            try:
+                resp = client.get_wechat_history(biz=ghid, page=page)
+            except Exception as e:  # 单页失败不中断整体导出
+                print(f"  ❌ [{name}] 第 {page} 页拉取失败: {e}")
+                break
+            collected.extend(collect_wechat_metas(resp, default_author=name))
+            # 原始条目不足一页（page_size=10）说明已到末页，停止翻页以省计费调用
+            if len(extract_items(resp)) < 10:
+                break
+        metas_by_account[name] = collected
+        total += len(collected)
+        print(f"  ✅ [{name}] 收集 {len(collected)} 篇")
+
+    export_discovered_json(metas_by_account, out_path)
+    print(f"🎉 共导出 {total} 篇文章元信息至 {out_path}（结构兼容 curator.py 直接消费）")
+
+
 def archive_weibo_post(
     post_item: dict[str, Any], account_key: str, account_info: dict[str, str], output_base: Path = Path("./kpl_vault")
 ) -> Path:
@@ -240,6 +378,11 @@ def archive_weibo_post(
 
 
 def main():
+    argv = sys.argv[1:]
+    if "--export-json" in argv:
+        run_export(argv)
+        return
+
     print("=" * 65)
     print(" 🚀 大家拉 (dajiala.com) 官方微博纯文本抓取调度工具")
     print("=" * 65)

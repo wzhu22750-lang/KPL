@@ -4,7 +4,7 @@
 字数门槛是 `len(clean_text) < 800`（恰好 800 字能过字数门，但会被相关度规则拦）。
 """
 
-from curator import evaluate_article_quality
+from curator import evaluate_article_quality, extract_candidate_urls
 
 NEUTRAL_FILLER = "这段文字只是普通的内容填充，用于凑足篇幅门槛。"
 STRONG_CORE = "KPL 王者荣耀职业联赛。成都AG超玩会对阵重庆狼队。一诺与Fly再次交手。"
@@ -80,10 +80,24 @@ class TestCoreEntities:
 
     def test_strong_kpl_article_passes(self):
         # 与实测探针完全一致的输入：标题含 KPL + 核心战队/选手多次命中 + 超 800 字
-        ok, reason, category, tag = evaluate_article_quality(
-            "KPL夏季赛总决赛战报", "KPL联盟", STRONG_CORE * 30
-        )
+        ok, reason, category, tag = evaluate_article_quality("KPL夏季赛总决赛战报", "KPL联盟", STRONG_CORE * 30)
         assert ok is True
         assert "审核通过" in reason
         assert category == "成都AG超玩会"
         assert tag == "官方决战与赛程"
+
+
+class TestExtractCandidateUrls:
+    def test_mixed_string_and_dict_items(self):
+        data = {
+            "KPL官方": [{"url": "https://mp.weixin.qq.com/s/a", "title": "T"}],
+            "手动补充": ["https://mp.weixin.qq.com/s/b"],
+            "脏数据": [{"url": ""}, "   ", 123, None, {"title": "没有url"}],
+        }
+        assert extract_candidate_urls(data) == [
+            "https://mp.weixin.qq.com/s/a",
+            "https://mp.weixin.qq.com/s/b",
+        ]
+
+    def test_non_list_values_ignored(self):
+        assert extract_candidate_urls({"meta": "not-a-list", "count": 3}) == []

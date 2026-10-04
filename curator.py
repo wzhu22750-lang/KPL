@@ -161,6 +161,28 @@ def evaluate_article_quality(title: str, author: str, text: str) -> tuple[bool, 
     return True, "审核通过 (高契合度、结构完整)", category, tag
 
 
+def extract_candidate_urls(data: dict) -> list[str]:
+    """从 discovered_urls.json 的结构中取出候选 URL。
+
+    兼容两种条目形态：纯 URL 字符串（旧格式），或含 url 字段的元信息 dict
+    （dajiala_client.py --export-json 的产物）。空值与非列表值直接忽略。
+    """
+    urls: list[str] = []
+    for items in data.values():
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if isinstance(item, str):
+                url = item.strip()
+            elif isinstance(item, dict):
+                url = str(item.get("url") or "").strip()
+            else:
+                continue
+            if url:
+                urls.append(url)
+    return urls
+
+
 async def run_quality_curation():
     print("=" * 65)
     print(" 🛡️  KPL 微信公众号数据资产：AI 深度质检初筛与入库流程启动")
@@ -174,9 +196,7 @@ async def run_quality_curation():
     candidates = []
     if SOURCE_JSON.exists():
         with open(SOURCE_JSON, encoding="utf-8") as f:
-            data = json.load(f)
-            for urls in data.values():
-                candidates.extend(urls)
+            candidates.extend(extract_candidate_urls(json.load(f)))
 
     # 加上之前已抓取到的所有 URL
     for p in Path("kpl_articles").rglob("metadata.json"):
