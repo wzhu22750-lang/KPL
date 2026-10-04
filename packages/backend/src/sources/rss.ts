@@ -39,10 +39,30 @@ function arr<T>(v: T | T[] | undefined | null): T[] {
 
 function parseDate(v: string): Date | null {
   if (!v) return null;
-  const t = Date.parse(v);
+  const str = v.trim();
+  // 1. Unix timestamp 字符串
+  if (/^\d{10}$/.test(str)) {
+    return new Date(parseInt(str, 10) * 1000);
+  }
+  if (/^\d{13}$/.test(str)) {
+    return new Date(parseInt(str, 10));
+  }
+  // 2. 原生标准解析
+  const t = Date.parse(str);
   if (Number.isFinite(t)) return new Date(t);
-  // RFC 822 variants with Chinese weekday or odd zones
-  const cleaned = v.replace(/星期[一二三四五六日天]/, "").replace(/\s+/g, " ").trim();
+  // 3. 中文日期格式 YYYY年MM月DD日
+  const cnMatch = str.match(/(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日(?:\s*(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if (cnMatch && cnMatch[1] && cnMatch[2] && cnMatch[3]) {
+    const year = parseInt(cnMatch[1], 10);
+    const month = parseInt(cnMatch[2], 10) - 1;
+    const day = parseInt(cnMatch[3], 10);
+    const hours = cnMatch[4] ? parseInt(cnMatch[4], 10) : 0;
+    const minutes = cnMatch[5] ? parseInt(cnMatch[5], 10) : 0;
+    const seconds = cnMatch[6] ? parseInt(cnMatch[6], 10) : 0;
+    return new Date(year, month, day, hours, minutes, seconds);
+  }
+  // 4. RFC 822 variants with Chinese weekday or odd zones
+  const cleaned = str.replace(/星期[一二三四五六日天]/, "").replace(/\s+/g, " ").trim();
   const t2 = Date.parse(cleaned);
   return Number.isFinite(t2) ? new Date(t2) : null;
 }

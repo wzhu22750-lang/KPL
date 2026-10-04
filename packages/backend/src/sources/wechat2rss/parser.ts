@@ -143,13 +143,35 @@ export function parseWechatDate(raw: unknown): Date {
     return new Date(Date.now() - parseInt(dayMatch[1], 10) * 86400_000);
   }
   if (str.includes("昨天")) {
-    return new Date(Date.now() - 86400_000);
+    const timeInYesterday = str.match(/昨天\s*(\d{1,2}):(\d{1,2})/);
+    const d = new Date(Date.now() - 86400_000);
+    if (timeInYesterday && timeInYesterday[1] && timeInYesterday[2]) {
+      d.setHours(parseInt(timeInYesterday[1], 10), parseInt(timeInYesterday[2], 10), 0, 0);
+    }
+    return d;
   }
   if (str.includes("前天")) {
-    return new Date(Date.now() - 172800_000);
+    const timeInBeforeYesterday = str.match(/前天\s*(\d{1,2}):(\d{1,2})/);
+    const d = new Date(Date.now() - 172800_000);
+    if (timeInBeforeYesterday && timeInBeforeYesterday[1] && timeInBeforeYesterday[2]) {
+      d.setHours(parseInt(timeInBeforeYesterday[1], 10), parseInt(timeInBeforeYesterday[2], 10), 0, 0);
+    }
+    return d;
   }
 
-  // 5. 标准日期字符串（YYYY-MM-DD 或 YYYY/MM/DD 等）
+  // 5. 中文日期格式：YYYY年MM月DD日 [HH:mm[:ss]]
+  const cnDateMatch = str.match(/(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日(?:\s*(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if (cnDateMatch && cnDateMatch[1] && cnDateMatch[2] && cnDateMatch[3]) {
+    const year = parseInt(cnDateMatch[1], 10);
+    const month = parseInt(cnDateMatch[2], 10) - 1;
+    const day = parseInt(cnDateMatch[3], 10);
+    const hours = cnDateMatch[4] ? parseInt(cnDateMatch[4], 10) : 0;
+    const minutes = cnDateMatch[5] ? parseInt(cnDateMatch[5], 10) : 0;
+    const seconds = cnDateMatch[6] ? parseInt(cnDateMatch[6], 10) : 0;
+    return new Date(year, month, day, hours, minutes, seconds);
+  }
+
+  // 6. 标准日期字符串（YYYY-MM-DD 或 YYYY/MM/DD 等）
   const parsed = Date.parse(str);
   if (!isNaN(parsed)) {
     return new Date(parsed);
@@ -190,17 +212,31 @@ export function extractWechatArticleFromHtml(pageHtml: string, pageUrl: string):
     $('meta[name="twitter:image"]').attr("content")?.trim() ||
     null;
 
-  // 5. 发布时间提取
+  // 5. 发布时间提取（多源探测，避免回退到爬取时间）
   let publishedAt: Date = new Date();
   const scriptContent = $("script").text();
   const timeMatch =
+    scriptContent.match(/create_time\s*:\s*JsDecode\('([^']+)'\)/) ||
+    pageHtml.match(/create_time\s*:\s*JsDecode\('([^']+)'\)/) ||
     scriptContent.match(/var\s+createTime\s*=\s*'(\d+)'/) ||
     scriptContent.match(/var\s+ct\s*=\s*'(\d+)'/) ||
-    scriptContent.match(/create_time\s*=\s*"?(\d+)"?/) ||
-    pageHtml.match(/publish_time\s*=\s*"?(\d+)"?/);
+    scriptContent.match(/["']?create_time["']?\s*[:=]\s*["']?(\d+)["']?/) ||
+    scriptContent.match(/ori_create_time\s*[:=]\s*["']?(\d+)["']?/) ||
+    pageHtml.match(/ori_create_time\s*[:=]\s*["']?(\d+)["']?/) ||
+    scriptContent.match(/["']?publish_time["']?\s*[:=]\s*["']?([^'";]+)["']?/) ||
+    pageHtml.match(/publish_time\s*[:=]\s*["']?([^'";]+)["']?/);
+
+  const domTime =
+    $("#publish_time").text().trim() ||
+    $("em#publish_time").text().trim() ||
+    $(".rich_media_meta#publish_time").text().trim() ||
+    $('meta[property="article:published_time"]').attr("content")?.trim() ||
+    $('meta[name="publishdate"]').attr("content")?.trim();
 
   if (timeMatch && timeMatch[1]) {
     publishedAt = parseWechatDate(timeMatch[1]);
+  } else if (domTime) {
+    publishedAt = parseWechatDate(domTime);
   }
 
   // 6. 清洗正文

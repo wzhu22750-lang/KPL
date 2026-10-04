@@ -2,7 +2,7 @@
 import { lookup } from "node:dns/promises";
 import net from "node:net";
 
-const TRACKING_PARAMS = /^(utm_[a-z]+|spm|from|ref|ref_src|ref_url|source|share_source|share_token|fbclid|gclid|igshid|mc_cid|mc_eid|_hsenc|_hsmi|scene|chksm|sessionid|srcid|clicktime|enterid|mkt_tok)$/i;
+const TRACKING_PARAMS = /^(utm_[a-z]+|spm|from|ref|ref_src|ref_url|source|share_source|share_token|fbclid|gclid|igshid|mc_cid|mc_eid|_hsenc|_hsmi|scene|chksm|sessionid|srcid|clicktime|enterid|mkt_tok|token|s_from|_sug_|_sug_type_)$/i;
 
 /** Canonical form used for identity: lower-case host, no fragment, no tracking params, no trailing slash. */
 export function normalizeUrl(input: string): string | null {
@@ -26,6 +26,13 @@ export function normalizeUrl(input: string): string | null {
       if (v) params.set(k, v);
     }
     u.search = params.toString();
+  } else if (u.hostname === "weixin.sogou.com") {
+    u.searchParams.delete("token");
+    u.searchParams.delete("from");
+    u.searchParams.delete("s_from");
+    u.searchParams.delete("_sug_");
+    u.searchParams.delete("_sug_type_");
+    u.searchParams.sort();
   } else {
     for (const key of [...u.searchParams.keys()]) if (TRACKING_PARAMS.test(key)) u.searchParams.delete(key);
     u.searchParams.sort();

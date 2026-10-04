@@ -82,7 +82,8 @@ export function decideTimeline(claimed: Date | null | undefined, discoveredAt: D
   if (explicitBackfill) backfillReason = explicitBackfill;
   else if (publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
   const backfill = backfillReason !== null;
-  const timelineAt = backfill && publishedAt ? publishedAt : discoveredAt;
+  // 领域优化：优先使用文章真实发布时间 publishedAt 作为时间线时间，无发布时间时才使用发现时间 discoveredAt
+  const timelineAt = publishedAt ? publishedAt : discoveredAt;
   return { publishedAt, timelineAt, backfill, backfillReason };
 }
 
@@ -118,6 +119,10 @@ function sameBarringLoss(a: string | null | undefined, b: string | null | undefi
 export function identityKeyFor(m: MaterialInput): string {
   if (m.identityKey) return m.identityKey;
   if (m.xPost?.tweetId) return `x:${m.xPost.tweetId}`;
+  // 针对搜狗等搜索引擎临时带随机 token 的防盗链链接，使用信源+标题语义生成稳定身份键
+  if (m.url && m.url.includes("weixin.sogou.com") && m.title) {
+    return `sogou:${m.sourceId}:${sha256(collapseWhitespace(m.title)).slice(0, 32)}`;
+  }
   const fromUrl = identityKeyForUrl(m.url);
   if (fromUrl) return fromUrl;
   return `src:${m.sourceId}:${sha256(m.url + "\u0001" + m.title).slice(0, 32)}`;
