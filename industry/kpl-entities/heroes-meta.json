@@ -1,0 +1,2186 @@
+{
+ "东皇太一": {
+  "positions": [
+   "对抗路",
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   7,
+   8,
+   12,
+   16
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 5,
+  "notes": "大招强压制,前期野区入侵强，前中后期均有价值的核心坦克",
+  "last_updated": "2026-04-19"
+ },
+ "盾山": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   9,
+   12,
+   17,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 10,
+  "notes": "对线压制能力强，团战保护能力强，控制能力强，功能性强，搭配曹操艾琳体系。",
+  "last_updated": "2026-04-19"
+ },
+ "苏烈": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   8,
+   9,
+   12,
+   15
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 9,
+  "notes": "强力坦克开团位,强团控，拆火开团能力强",
+  "last_updated": "2026-04-19"
+ },
+ "铠": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   2,
+   7,
+   8,
+   9,
+   12,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 8,
+  "notes": "开大顶在前面的大前排，开大能吸收成吨伤害，顶在团队前面，同时对敌方后排有威胁",
+  "last_updated": "2026-05-04"
+ },
+ "吕布": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   10,
+   12,
+   18,
+   19
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 6,
+  "notes": "大招团控，有真伤，一般应对多前排阵容补伤害",
+  "last_updated": "2026-04-19"
+ },
+ "廉颇": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   8,
+   9
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid",
+  "version_strength": 6,
+  "notes": "霸体团控大招，但是控制不够稳定，好站视野",
+  "last_updated": "2026-04-19"
+ },
+ "白起": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   8,
+   12,
+   20
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 6,
+  "notes": "吃发育，前期弱，有开团能力，大前排",
+  "last_updated": "2026-04-19"
+ },
+ "亚瑟": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   2
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 2,
+  "notes": "有点控沉默，应对灵活的技能型英雄",
+  "last_updated": "2026-04-19"
+ },
+ "程咬金": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   6,
+   8,
+   9,
+   12,
+   20
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "大招强回复，带线边",
+  "last_updated": "2026-04-19"
+ },
+ "猪八戒": {
+  "positions": [
+   "对抗路",
+   "打野"
+  ],
+  "function_tags": [
+   5,
+   8,
+   9,
+   12,
+   15,
+   19,
+   20,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early, mid",
+  "version_strength": 5,
+  "notes": "团战搅屎棍，拆火能力强，有承伤能力，有回复能力，大招创建地形",
+  "last_updated": "2026-04-19"
+ },
+ "哪吒": {
+  "positions": [
+   "对抗路",
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   8,
+   10,
+   14,
+   17,
+   18
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "大招全图视野，单点爆发，强进场，有承伤能力，三技能半图支援，锁定进场切C收割",
+  "last_updated": "2026-04-19"
+ },
+ "孙策": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   6
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early, mid",
+  "version_strength": 5,
+  "notes": "控制多，开团能力强，大招可携带队友全图支援",
+  "last_updated": "2026-04-19"
+ },
+ "典韦": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   10
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 3,
+  "notes": "近战高爆发战士",
+  "last_updated": "2026-04-19"
+ },
+ "花木兰": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   10
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early,mid",
+  "version_strength": 3,
+  "notes": "双形态战士,轻剑突进沉默，重剑控制伤害",
+  "last_updated": "2026-04-19"
+ },
+ "夏侯惇": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   5,
+   9,
+   12,
+   17,
+   20
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "能扛能打，小六边形战坦，坦野",
+  "last_updated": "2026-04-19"
+ },
+ "芈月": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   6,
+   7,
+   11
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 3,
+  "notes": "对线较强，单挑能力强，可单带，有无法选中",
+  "last_updated": "2026-04-19"
+ },
+ "关羽": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   4,
+   5,
+   6,
+   10,
+   12,
+   13,
+   14,
+   15,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "all",
+  "version_strength": 10,
+  "notes": "团控，强开团，可单带，绕后位，打乱敌方阵型",
+  "last_updated": "2026-04-19"
+ },
+ "项羽": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   3,
+   5,
+   9,
+   12,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 6,
+  "notes": "开团坦克战士,大招霸体控制，一技能团控拆火，被动承伤强",
+  "last_updated": "2026-04-19"
+ },
+ "宫本武藏": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   2,
+   4,
+   14
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "一技能挡飞行物，克制一切法师射手，大招禁疗克制高回复（杨戬，夏侯惇）",
+  "last_updated": "2026-04-19"
+ },
+ "雅典娜": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [],
+  "primary_pos": "打野",
+  "power_period": "all",
+  "version_strength": 7,
+  "notes": "被KPL官方禁用",
+  "last_updated": "2026-04-19"
+ },
+ "达摩": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   8,
+   9,
+   12
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early",
+  "version_strength": 6,
+  "notes": "一般当半个辅助玩，大招提供控制，不吃钱站视野",
+  "last_updated": "2026-04-19"
+ },
+ "老夫子": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   2,
+   6,
+   9,
+   12,
+   19,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "高免伤，大招捆绑配合闪现稳定开人或限制灵活英雄",
+  "last_updated": "2026-04-19"
+ },
+ "马超": {
+  "positions": [
+   "对抗路",
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   6,
+   10,
+   13,
+   14
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 9,
+  "notes": "快速突进战士,带线猛，刷经济快，团战可进可退，收割能力极强",
+  "last_updated": "2026-04-19"
+ },
+ "刘备": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   17
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "很少出场，没什么用",
+  "last_updated": "2026-04-19"
+ },
+ "镜": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   2,
+   4,
+   6,
+   7,
+   8,
+   10,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 9,
+  "notes": "野核代表，高机动，高爆发，高收割，高生存，一般出半肉用大招锁C位打控制或击杀",
+  "last_updated": "2026-04-19"
+ },
+ "曹操": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   0,
+   6,
+   20
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "全能战边，高爆发，长手，好切法师射手，高回复，能当半个前排",
+  "last_updated": "2026-04-19"
+ },
+ "杨戬": {
+  "positions": [
+   "对抗路",
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   5,
+   9,
+   12,
+   14,
+   20,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "韧性机制，法天象地当前排，一般配合朵莉亚，高回复高伤害，打团很猛， 后期较为乏力",
+  "last_updated": "2026-04-19"
+ },
+ "钟无艳": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 0,
+  "notes": "缺点太明显，没啥用",
+  "last_updated": "2026-04-19"
+ },
+ "盘古": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   5,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 1,
+  "notes": "缴械机制克制普攻型英雄",
+  "last_updated": "2026-04-19"
+ },
+ "狂铁": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   8,
+   9,
+   11,
+   12,
+   17,
+   20,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early, mid",
+  "version_strength": 9,
+  "notes": "前中期强度高，能扛能打，有一定开团手段，中后期用三级大招吸对面移速不断拉扯承伤",
+  "last_updated": "2026-04-19"
+ },
+ "蒙恬": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   0,
+   3,
+   5,
+   7,
+   8,
+   9,
+   11,
+   19,
+   20,
+   21
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early, mid",
+  "version_strength": 9,
+  "notes": "前中期超高强度，大前排，能扛能打，一般配合强势中野辅打野区节奏",
+  "last_updated": "2026-04-19"
+ },
+ "孙悟空": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 2,
+  "notes": "比赛上极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "李信": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   5,
+   11
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "娜可露露": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   10,
+   13,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "跑图能力强，爆发高，坦克杀手，标准刺客",
+  "last_updated": "2026-04-19"
+ },
+ "兰陵王": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   11,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "上官婉儿": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   4,
+   0,
+   5,
+   6
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "云中君": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   5
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 7,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "夏洛特": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   1,
+   4,
+   6,
+   11,
+   13,
+   14,
+   20
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 10,
+  "notes": "能扛能打，追击能力强，对后排有威胁",
+  "last_updated": "2026-04-19"
+ },
+ "赵云": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   10,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 8,
+  "notes": "高机动战士刺客,龙胆突入配合速进速出",
+  "last_updated": "2026-04-19"
+ },
+ "阿轲": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   11,
+   4
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "元歌": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   4,
+   7,
+   14,
+   1
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "early",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "橘右京": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   2,
+   4,
+   6,
+   7,
+   10,
+   13,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 8,
+  "notes": "前期强度高，爆发高，刷野快，手长技能型刺客，跑图快",
+  "last_updated": "2026-04-19"
+ },
+ "百里玄策": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   11
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "露娜": {
+  "positions": [
+   "打野",
+   "对抗路"
+  ],
+  "function_tags": [
+   4,
+   0,
+   11,
+   5
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "裴擒虎": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   1,
+   4,
+   6,
+   7,
+   10,
+   13,
+   14,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 9,
+  "notes": "双形态节奏型打野，跑图快，人形态消耗，虎形态收割，刷钱快，打野区节奏",
+  "last_updated": "2026-04-19"
+ },
+ "梦奇": {
+  "positions": [
+   "打野",
+   "对抗路"
+  ],
+  "function_tags": [
+   7,
+   9,
+   12,
+   17
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 5,
+  "notes": "前中期强度高，高额双抗，蓝领打野，或者边惩控资源",
+  "last_updated": "2026-04-19"
+ },
+ "司空震": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   6,
+   10,
+   11,
+   14,
+   17
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid",
+  "version_strength": 8,
+  "notes": "对线强，团战强，带线强，能扛能打，好打大多数对抗路，并且具备切C能力",
+  "last_updated": "2026-04-19"
+ },
+ "钟馗": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   5,
+   15
+  ],
+  "primary_pos": "游走",
+  "power_period": "early, mid",
+  "version_strength": 6,
+  "notes": "面对软辅有奇效，钩子配合队友高爆发能实现快速打掉点，打软辅时能抢河道",
+  "last_updated": "2026-04-19"
+ },
+ "韩信": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   11,
+   5
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "李白": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   11,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "云缨": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   1,
+   4,
+   5,
+   6,
+   7,
+   12,
+   14,
+   17,
+   20
+  ],
+  "primary_pos": "打野",
+  "power_period": "all",
+  "version_strength": 9,
+  "notes": "六边形战士，能扛能打能收割，大招霸体加控制很好拼惩",
+  "last_updated": "2026-04-19"
+ },
+ "暃": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   10,
+   13,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 7,
+  "notes": "高机动刺客,技能连段爆发高,节奏把控强，转线强，很好打呆法呆射",
+  "last_updated": "2026-04-19"
+ },
+ "貂蝉": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   5
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "干将莫邪": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   10
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 5,
+  "notes": "长手，好打呆射呆法，伤害高",
+  "last_updated": "2026-04-19"
+ },
+ "不知火舞": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   2,
+   4,
+   5,
+   6,
+   7,
+   8,
+   12,
+   13,
+   14,
+   15
+  ],
+  "primary_pos": "中路",
+  "power_period": "late",
+  "version_strength": 8,
+  "notes": "高机动，瞬发团控，开团法师，爆发高，对后排威胁也大",
+  "last_updated": "2026-04-19"
+ },
+ "武则天": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   5,
+   8,
+   11,
+   12
+  ],
+  "primary_pos": "中路",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "多段控制法师,配合能力强,大招获得视野并全图拆火，打张良王昭君体系用",
+  "last_updated": "2026-04-19"
+ },
+ "弈星": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   3,
+   5,
+   8,
+   12,
+   19,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 4,
+  "notes": "中轴能力强，拆火能力强，好打呆射呆法，阵地法师，大招创建地形固定战场",
+  "last_updated": "2026-04-19"
+ },
+ "高渐离": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   5
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "小乔": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   2,
+   10,
+   11
+  ],
+  "primary_pos": "中路",
+  "power_period": "early, late",
+  "version_strength": 7,
+  "notes": "范围爆发型法师,手长，二技能长手控制，大招锁头打满伤害，找机会能力强",
+  "last_updated": "2026-04-19"
+ },
+ "王昭君": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   3,
+   5,
+   8,
+   12,
+   19,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 6,
+  "notes": "大范围冰冻控制,线上消耗和团战控制均强，但控制不稳定，一般搭配鲁班大师和张良",
+  "last_updated": "2026-04-19"
+ },
+ "安琪拉": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   2
+  ],
+  "primary_pos": "中路",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "高爆发团战法师,打前排快，先手打掉点能力强，有自保",
+  "last_updated": "2026-04-19"
+ },
+ "扁鹊": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   10,
+   11,
+   20,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 4,
+  "notes": "一般用来对位对方打肉能力较差的阵容，高回复配合一个大前排",
+  "last_updated": "2026-04-19"
+ },
+ "诸葛亮": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   11,
+   6,
+   1
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "周瑜": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   5
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "甄姬": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   5,
+   12,
+   19
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "控制法师,连续控制手段多且流畅，面对短手无位移阵容有奇效，越后期越强",
+  "last_updated": "2026-04-19"
+ },
+ "西施": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   2
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 6,
+  "notes": "找机会打掉点的工具人法师",
+  "last_updated": "2026-04-19"
+ },
+ "女娲": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   3,
+   5,
+   8,
+   10,
+   12,
+   13,
+   14,
+   15,
+   19,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 10,
+  "notes": "手长，有拆火，创造地形，全图支援，有视野，控制足，很好打没位移的英雄",
+  "last_updated": "2026-04-19"
+ },
+ "张良": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   13,
+   16
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 6,
+  "notes": "一般配合王昭君打体系，强抓掉点能力强，限制对方突进能力强",
+  "last_updated": "2026-04-19"
+ },
+ "鬼谷子": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   5,
+   3,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "姜子牙": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   2,
+   12,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 5,
+  "notes": "一技能减速减抗，二技能小团控，骚扰型法师，一般面对多前排阵容，大招远程poke",
+  "last_updated": "2026-04-19"
+ },
+ "司马懿": {
+  "positions": [
+   "中路",
+   "打野"
+  ],
+  "function_tags": [
+   1,
+   6,
+   11,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "嬴政": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 6,
+  "notes": "超远射程法师,poke和清线均强，大招一般打前置伤害，消耗能力强",
+  "last_updated": "2026-04-19"
+ },
+ "鲁班七号": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   8,
+   10,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, late",
+  "version_strength": 6,
+  "notes": "一般配合鲁班大师，盾山，张飞，高爆发射手，打多前排阵容",
+  "last_updated": "2026-04-19"
+ },
+ "海月": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   2,
+   7,
+   12,
+   17
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "抢线快，大招拆火、拉打野从而己方好拿龙、克制对方强突进，固定战场",
+  "last_updated": "2026-04-19"
+ },
+ "妲己": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   6,
+   5
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "嫦娥": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   2,
+   9,
+   20
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 7,
+  "notes": "抢线快，好打高爆发突进消耗阵容，发育成型很克制战士刺客",
+  "last_updated": "2026-04-19"
+ },
+ "杨玉环": {
+  "positions": [
+   "中路",
+   "游走"
+  ],
+  "function_tags": [
+   9,
+   11,
+   13,
+   20
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 7,
+  "notes": "节奏型游走，一般用来给线上与野区提速，大招用来前压给视野骗技能",
+  "last_updated": "2026-04-19"
+ },
+ "墨子": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   1,
+   2,
+   3,
+   5,
+   11,
+   12
+  ],
+  "primary_pos": "游走",
+  "power_period": "early, mid",
+  "version_strength": 6,
+  "notes": "超远距离小团控，小团战能力强",
+  "last_updated": "2026-04-19"
+ },
+ "金蝉": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   2,
+   12,
+   15,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 5,
+  "notes": "一般用来限制对面灵活的英雄",
+  "last_updated": "2026-04-19"
+ },
+ "海诺": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   1,
+   8,
+   11,
+   19,
+   20
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid, late",
+  "version_strength": 4,
+  "notes": "一般用来提升抢中轴能力，野区骚扰能力强，消耗能力强，有自保，一般前压给视野",
+  "last_updated": "2026-04-19"
+ },
+ "公孙离": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   4,
+   6,
+   10,
+   14
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 9,
+  "notes": "超高机动性射手,跳跃输出,自由人找机会能力强",
+  "last_updated": "2026-04-19"
+ },
+ "马可波罗": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   5
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "后羿": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   2
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "大招全图开团",
+  "last_updated": "2026-04-19"
+ },
+ "伽罗": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   10,
+   19
+  ],
+  "primary_pos": "发育路",
+  "power_period": "late",
+  "version_strength": 3,
+  "notes": "强团战输出持续型长手射手",
+  "last_updated": "2026-04-19"
+ },
+ "百里守约": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   8,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "late",
+  "version_strength": 5,
+  "notes": "超远射程狙击型,线上消耗能力超强，抗压射，一技能给大范围视野",
+  "last_updated": "2026-04-19"
+ },
+ "虞姬": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   10,
+   11
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "对线强，自保强，抗压射",
+  "last_updated": "2026-04-19"
+ },
+ "孙尚香": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   10,
+   11,
+   13,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, mid",
+  "version_strength": 6,
+  "notes": "前中期强势，一般搭配盾山打体系，如果前期顺风就好平推",
+  "last_updated": "2026-04-19"
+ },
+ "蒙犽": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   21,
+   6,
+   5
+  ],
+  "primary_pos": "发育路",
+  "power_period": "late",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "狄仁杰": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   11,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "高攻速持续输出型射手,普攻强化消耗稳定,黄牌提供减抗增益，二技能解控自保强",
+  "last_updated": "2026-04-19"
+ },
+ "黄忠": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   6
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "米莱狄": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   5
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "苍": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   8,
+   10,
+   11
+  ],
+  "primary_pos": "发育路",
+  "power_period": "all",
+  "version_strength": 7,
+  "notes": "骑射型射手,移动中攻击poke消耗能力强,二技能狼魂提供视野",
+  "last_updated": "2026-04-19"
+ },
+ "沈梦溪": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   7,
+   8,
+   21
+  ],
+  "primary_pos": "中路",
+  "power_period": "all",
+  "version_strength": 9,
+  "notes": "消耗型炮台法师，前中期转线快有线权有视野，二技能能提供强力作战能力",
+  "last_updated": "2026-04-19"
+ },
+ "艾琳": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   11,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, mid",
+  "version_strength": 8,
+  "notes": "混伤射手，吃到物抗加强红利，前中期强势打平推，一般配合盾山打体系",
+  "last_updated": "2026-04-19"
+ },
+ "李元芳": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   4
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "敖隐": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   2,
+   5,
+   6,
+   10,
+   11,
+   12,
+   15,
+   18,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "all",
+  "version_strength": 10,
+  "notes": "最强射手，非BAN必选，大招无敌，机制全面，打肉稍微乏力",
+  "last_updated": "2026-04-19"
+ },
+ "莱西奥": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   10,
+   11,
+   21
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, mid",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "戈娅": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   4,
+   5,
+   10,
+   11,
+   12,
+   13,
+   14,
+   19
+  ],
+  "primary_pos": "发育路",
+  "power_period": "early, mid",
+  "version_strength": 9,
+  "notes": "前中期强势，灵活游射，移动普攻，大范围团控，有开团手段",
+  "last_updated": "2026-04-19"
+ },
+ "蔡文姬": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   3,
+   5,
+   11,
+   12,
+   20,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 4,
+  "notes": "持续回血游走,团战保护核心队友能力强",
+  "last_updated": "2026-04-19"
+ },
+ "明世隐": {
+  "positions": [
+   "游走",
+   "对抗路"
+  ],
+  "function_tags": [
+   3,
+   5,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "庄周": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   8
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 8,
+  "notes": "群体解控，对策牌，很少用",
+  "last_updated": "2026-04-19"
+ },
+ "张飞": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   3,
+   5,
+   8,
+   9,
+   12,
+   15
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 8,
+  "notes": "前期偏弱，大招龙团强势，能开团能拆火，万金油",
+  "last_updated": "2026-04-19"
+ },
+ "孙膑": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   5,
+   13,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid, late",
+  "version_strength": 6,
+  "notes": "大招群体沉默拆火，前中期极弱，转线快，给队伍提速拉扯",
+  "last_updated": "2026-04-19"
+ },
+ "瑶": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "牛魔": {
+  "positions": [
+   "游走",
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   3,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "太乙真人": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   3,
+   4,
+   5,
+   7,
+   8,
+   9,
+   11,
+   12,
+   13
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 9,
+  "notes": "对线强势，拆火开团猛，被动刷钱，大招复活提供容错",
+  "last_updated": "2026-04-19"
+ },
+ "澜": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   3,
+   5,
+   5
+  ],
+  "primary_pos": "打野",
+  "power_period": "all",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "刘邦": {
+  "positions": [
+   "游走",
+   "对抗路"
+  ],
+  "function_tags": [
+   5,
+   3,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "大乔": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   8,
+   13,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid, late",
+  "version_strength": 6,
+  "notes": "一三小控制恶心人，二技能大招传送机制，目前主要搭配老夫子，不是主流辅助",
+  "last_updated": "2026-04-19"
+ },
+ "桑启": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "少司缘": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   4,
+   7,
+   10,
+   11,
+   13,
+   20
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 9,
+  "notes": "一技能大招瞬间回血，二技能定身超模，抓机会能力极强的节奏辅",
+  "last_updated": "2026-04-19"
+ },
+ "朵莉亚": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   1,
+   20
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid,late",
+  "version_strength": 5,
+  "notes": "一般搭配杨戬或者夏侯惇，刷大招英雄",
+  "last_updated": "2026-04-19"
+ },
+ "阿古朵": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   1,
+   4,
+   5,
+   6,
+   7,
+   8,
+   10,
+   13,
+   19,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 8,
+  "notes": "前中期很强的节奏野，推进能力极强，",
+  "last_updated": "2026-04-19"
+ },
+ "大禹": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   5,
+   8,
+   11,
+   12,
+   13,
+   20,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 8,
+  "notes": "开团拆火强，鼎提供回复以及视野，自带传送机制",
+  "last_updated": "2026-04-19"
+ },
+ "孙权": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   4,
+   8,
+   10,
+   14
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "战士类射手，12级后开始强势，灵活高伤害",
+  "last_updated": "2026-04-19"
+ },
+ "曜": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   4,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "刘禅": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   20,
+   5
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "姬小满": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   3,
+   20,
+   5
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "all",
+  "version_strength": 2,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "大司命": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   1,
+   6,
+   7,
+   9,
+   14,
+   20
+  ],
+  "primary_pos": "打野",
+  "power_period": "all",
+  "version_strength": 8,
+  "notes": "手长，灵活，刷野快，自带混伤与斩杀机制，一身肉也能扛能打，团战能打出很多输出",
+  "last_updated": "2026-04-19"
+ },
+ "空空儿": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   4,
+   5,
+   8,
+   9,
+   12
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid",
+  "version_strength": 4,
+  "notes": "无成本探视野以及瞬发开团，削弱后强度暴跌",
+  "last_updated": "2026-04-19"
+ },
+ "影": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   0,
+   4,
+   6,
+   7,
+   14
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "mid, late",
+  "version_strength": 7,
+  "notes": "两条命以及长手突进爆发加速的机制能对后排造成不小的威胁，同时好打多数短手战士",
+  "last_updated": "2026-04-19"
+ },
+ "赵怀真": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   2,
+   3,
+   5,
+   8,
+   9,
+   12
+  ],
+  "primary_pos": "游走",
+  "power_period": "early, mid",
+  "version_strength": 7,
+  "notes": "一身霸体的同时还有很多小控制，大招能吸收飞行物，整体起到拆火和冲散阵型的作用",
+  "last_updated": "2026-04-19"
+ },
+ "亚连": {
+  "positions": [
+   "对抗路"
+  ],
+  "function_tags": [
+   3,
+   5,
+   20
+  ],
+  "primary_pos": "对抗路",
+  "power_period": "all",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "蚩奼": {
+  "positions": [
+   "对抗路",
+   "发育路"
+  ],
+  "function_tags": [
+   0,
+   1,
+   2,
+   4,
+   6,
+   10,
+   11,
+   14
+  ],
+  "primary_pos": "发育路",
+  "power_period": "mid, late",
+  "version_strength": 9,
+  "notes": "有自保伤害高的超模射手类战士",
+  "last_updated": "2026-04-19"
+ },
+ "鲁班大师": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   12,
+   13,
+   15,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "all",
+  "version_strength": 10,
+  "notes": "非ban必选，能搭配大多数英雄形成强势组合，能提速能开团能反手能保护",
+  "last_updated": "2026-04-19"
+ },
+ "元流之子(刺客)": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   4,
+   0,
+   14
+  ],
+  "primary_pos": "打野",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ },
+ "元流之子(辅助)": {
+  "positions": [
+   "游走"
+  ],
+  "function_tags": [
+   3,
+   8,
+   11,
+   17,
+   19,
+   20,
+   21
+  ],
+  "primary_pos": "游走",
+  "power_period": "mid, late",
+  "version_strength": 8,
+  "notes": "一般搭配平推阵容，需要大前排，功能性极强",
+  "last_updated": "2026-04-19"
+ },
+ "元流之子(射手)": {
+  "positions": [
+   "发育路"
+  ],
+  "function_tags": [
+   1,
+   10,
+   11
+  ],
+  "primary_pos": "发育路",
+  "power_period": "all",
+  "version_strength": 7,
+  "notes": "较为全面的射手，无明显短板",
+  "last_updated": "2026-04-19"
+ },
+ "元流之子(坦克)": {
+  "positions": [
+   "打野"
+  ],
+  "function_tags": [
+   0,
+   3,
+   4,
+   5,
+   7,
+   8,
+   9,
+   12,
+   17,
+   21
+  ],
+  "primary_pos": "打野",
+  "power_period": "early, mid",
+  "version_strength": 9,
+  "notes": "体系最肉坦野，拆火能力以及开团能力极强，一般搭配鲁班大师，单出也很强",
+  "last_updated": "2026-04-19"
+ },
+ "元流之子(法师)": {
+  "positions": [
+   "中路"
+  ],
+  "function_tags": [
+   0,
+   5,
+   6
+  ],
+  "primary_pos": "中路",
+  "power_period": "mid",
+  "version_strength": 1,
+  "notes": "比赛极少出现",
+  "last_updated": "2026-04-19"
+ }
+}

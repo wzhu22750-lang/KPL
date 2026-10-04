@@ -15,7 +15,7 @@ interface TeamSeed { id: string; name: string; short_name: string | null; extern
 interface HeroSeed {
   id: string; slug: string; name: string; title: string | null; roles: string[]; positions: string[];
   primary_pos: string | null; power_period: string | null; function_tags: string[];
-  version_strength: number | null; notes: string | null; portrait_url: string;
+  version_strength: string | null; notes: string | null; portrait_url: string;
 }
 
 const seasons = JSON.parse(readFileSync(path.join(DIR, "seasons.json"), "utf8")) as SeasonSeed[];
