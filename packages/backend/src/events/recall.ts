@@ -6,6 +6,7 @@
 import { sql } from "../db.ts";
 import { beijingDate } from "@aihot/contracts/time";
 import { sha256 } from "../lib/ids.ts";
+import { areSameKplOccurrence } from "../lib/kpl-dedup.ts";
 import { embeddingsAvailable, ensureEmbeddings } from "../providers/embeddings.ts";
 import { lexicalSimilarity, reportText, type CandidateView, type ReportView, type ReadingContext } from "./relate.ts";
 import { latestCompositeCondition, ownFactEvidenceCondition, selectedCondition } from "../publication/scope.ts";
@@ -165,7 +166,10 @@ export async function recallFacts(queryId: string, queryText: string, minScore: 
     if (!prev || score > prev.score) best.set(r.fact_id, { factId: r.fact_id, storyId: r.story_id, factTitle: r.fact_title, score });
   };
   for (const r of pool) {
-    const score = scores.get(r.article_id);
+    let score = scores.get(r.article_id);
+    if (score === undefined && areSameKplOccurrence(queryText, r.fact_title)) {
+      score = 0.95;
+    }
     if (score !== undefined) consider(r, score);
   }
   for (const r of boost) consider(r, 1);

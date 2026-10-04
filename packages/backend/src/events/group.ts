@@ -29,6 +29,7 @@ import { latestCompositeCondition } from "../publication/scope.ts";
 import { consolidate, liveStory, type Consolidation } from "./consolidate.ts";
 import { mergeStoryInto } from "./merge.ts";
 import { candidateViews, cosine32, recallFacts, recallSelectedBackground, relatedPosts, vectorsFor } from "./recall.ts";
+import { areSameKplOccurrence } from "../lib/kpl-dedup.ts";
 import {
   BATCH_SYSTEM, BATCH_PROMPT_VERSION, BatchSchema, PAIR_SYSTEM, PairSchema, RELATE_PROMPT_VERSION, SIGNAL_SYSTEM, SignalSchema, TIE_MIN_CONFIDENCE,
   batchUser, completeDecisions, firmlyTied, pairUser, reportText, sameOccurrence, signalTarget, storyForDevelopment, verdictsByFact,
@@ -390,20 +391,33 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
     storyId = sameUrl.story_id;
   } else {
     if (cands.length) {
-      for (const pick of sameOccurrence(cands, verdicts)) {
-        if (pick.score >= CONFIRM_BELOW_COSINE) {
-          factId = pick.factId;
+      // 优先：KPL 比赛事件指纹精确识别同一场对决
+      for (const c of cands) {
+        if (areSameKplOccurrence(title, c.report.title, observedAt, c.report.at) || areSameKplOccurrence(title, c.factTitle, observedAt, c.report.at)) {
+          factId = c.factId;
+          storyId = c.storyId;
+          verdict = "same-fact";
+          verdicts.set(c.factId, { relation: "SAME_OCCURRENCE", confidence: 1, note: "KPL赛事指纹匹配同一比赛对决事件" });
           break;
         }
-        const review = await confirmMerge(articleId, query, pick);
-        receipts.push(review.receiptId);
-        if (review.relation === "SAME_OCCURRENCE") {
-          factId = pick.factId;
-          break;
-        }
-        if (review.relation === "SAME_STORY" && pick.storyRoot) {
-          storyId = pick.storyId;
-          break;
+      }
+
+      if (!factId) {
+        for (const pick of sameOccurrence(cands, verdicts)) {
+          if (pick.score >= CONFIRM_BELOW_COSINE) {
+            factId = pick.factId;
+            break;
+          }
+          const review = await confirmMerge(articleId, query, pick);
+          receipts.push(review.receiptId);
+          if (review.relation === "SAME_OCCURRENCE") {
+            factId = pick.factId;
+            break;
+          }
+          if (review.relation === "SAME_STORY" && pick.storyRoot) {
+            storyId = pick.storyId;
+            break;
+          }
         }
       }
       if (factId) {
