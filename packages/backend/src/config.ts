@@ -80,7 +80,8 @@ export const config = {
  * sslmode=require as verify-full, whose CA check fails on hosted Postgres, while libpq and
  * postgres.js only encrypt.
  */
-export const databaseSsl = new URL(databaseUrl).searchParams.get("sslmode");
+const rawSsl = new URL(databaseUrl).searchParams.get("sslmode");
+export const databaseSsl = rawSsl && rawSsl !== "disable" ? rawSsl : null;
 
 // Supabase terminates TLS with a chain rooted at its own CA, so system-CA verification fails on its
 // hosts. The root ("Supabase Root 2021 CA", published by Supabase) is bundled; connections to
