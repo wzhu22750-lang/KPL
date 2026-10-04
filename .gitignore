@@ -9,3 +9,17 @@
 /AIHOT/
 /reference-projects/
 /kpl-intelligence/
+
+# Python
+__pycache__/
+*.pyc
+
+# 环境变量与密钥
+.env
+.env.*
+!.env.example
+
+# 采集中间产物
+discovered_urls.json
+*.log
+
