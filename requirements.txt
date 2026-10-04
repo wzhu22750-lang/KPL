@@ -1,0 +1,5 @@
+# 运行时依赖（版本为当前环境实测锁定，见 OPTIMIZATION_PROMPT.md 阶段 2）
+curl_cffi==0.16.0
+beautifulsoup4==4.15.0
+markdownify==1.2.2
+httpx==0.28.1

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 大家拉 (dajiala.com / 极致了数据) 官方商业 API 客户端
 =====================================================
@@ -18,14 +17,15 @@
     DAJIALA_API_KEY="你的大家拉API密钥"
 """
 
+import json
 import os
 import re
 import sys
-import json
 import time
-from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Any, Optional
+from pathlib import Path
+from typing import Any
+
 import httpx
 from bs4 import BeautifulSoup
 
@@ -34,41 +34,17 @@ DAJIALA_BASE_URL = "https://www.dajiala.com/fbmain"
 
 # 官方微博核心账号 UID 映射表
 KPL_WEIBO_ACCOUNTS = {
-    "KPL官方": {
-        "name": "KPL王者荣耀职业联赛",
-        "uid": "6074356560",
-        "url": "https://weibo.com/u/6074356560"
-    },
-    "成都AG超玩会": {
-        "name": "AG电子竞技俱乐部",
-        "uid": "5235556956",
-        "url": "https://weibo.com/allgamers"
-    },
-    "重庆狼队": {
-        "name": "重庆狼队王者荣耀分部",
-        "uid": "6180100850",
-        "url": "https://weibo.com/qghappy"
-    },
-    "武汉eStarPro": {
-        "name": "武汉eStarPro",
-        "uid": "6083372421",
-        "url": "https://weibo.com/estarpro"
-    },
-    "广州TTG": {
-        "name": "广州TTG",
-        "uid": "6383293935",
-        "url": "https://weibo.com/xqesports"
-    },
-    "北京WB": {
-        "name": "北京WB王者荣耀分部",
-        "uid": "6528198786",
-        "url": "https://weibo.com/tsgaming"
-    }
+    "KPL官方": {"name": "KPL王者荣耀职业联赛", "uid": "6074356560", "url": "https://weibo.com/u/6074356560"},
+    "成都AG超玩会": {"name": "AG电子竞技俱乐部", "uid": "5235556956", "url": "https://weibo.com/allgamers"},
+    "重庆狼队": {"name": "重庆狼队王者荣耀分部", "uid": "6180100850", "url": "https://weibo.com/qghappy"},
+    "武汉eStarPro": {"name": "武汉eStarPro", "uid": "6083372421", "url": "https://weibo.com/estarpro"},
+    "广州TTG": {"name": "广州TTG", "uid": "6383293935", "url": "https://weibo.com/xqesports"},
+    "北京WB": {"name": "北京WB王者荣耀分部", "uid": "6528198786", "url": "https://weibo.com/tsgaming"},
 }
 
 
 class DajialaClient:
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: str | None = None):
         self.api_key = api_key or os.getenv("DAJIALA_API_KEY", "")
         # 尝试从 .env 读取
         if not self.api_key and Path(".env").exists():
@@ -84,12 +60,7 @@ class DajialaClient:
     # 微博数据接口
     # ========================================================
 
-    def get_weibo_timeline(
-        self,
-        uid: str,
-        page: int = 1,
-        page_size: int = 20
-    ) -> Dict[str, Any]:
+    def get_weibo_timeline(self, uid: str, page: int = 1, page_size: int = 20) -> dict[str, Any]:
         """
         调用大家拉获取微博用户历史博文列表
         :param uid: 微博用户数字 UID (如 KPL 官博 6074356560)
@@ -104,12 +75,7 @@ class DajialaClient:
             )
 
         url = f"{DAJIALA_BASE_URL}/weibo/v1/user_timeline"
-        payload = {
-            "key": self.api_key,
-            "uid": uid,
-            "page": page,
-            "size": page_size
-        }
+        payload = {"key": self.api_key, "uid": uid, "page": page, "size": page_size}
 
         resp = self.client.post(url, json=payload)
         resp.raise_for_status()
@@ -119,12 +85,7 @@ class DajialaClient:
     # 微信公众号数据接口
     # ========================================================
 
-    def get_wechat_history(
-        self,
-        biz: str,
-        page: int = 1,
-        page_size: int = 10
-    ) -> Dict[str, Any]:
+    def get_wechat_history(self, biz: str, page: int = 1, page_size: int = 10) -> dict[str, Any]:
         """
         调用大家拉获取公众号历史文章列表
         """
@@ -185,10 +146,7 @@ def sanitize_title(text: str, max_len: int = 40) -> str:
 
 
 def archive_weibo_post(
-    post_item: Dict[str, Any],
-    account_key: str,
-    account_info: Dict[str, str],
-    output_base: Path = Path("./kpl_vault")
+    post_item: dict[str, Any], account_key: str, account_info: dict[str, str], output_base: Path = Path("./kpl_vault")
 ) -> Path:
     """
     将单条微博纯文本化归档至 kpl_vault
@@ -198,10 +156,10 @@ def archive_weibo_post(
 
     created_at = post_item.get("created_at", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     date_prefix = created_at[:10] if len(created_at) >= 10 else datetime.now().strftime("%Y-%m-%d")
-    
+
     title_summary = sanitize_title(pure_text)
     folder_name = f"{date_prefix}_{title_summary}"
-    
+
     cat_dir = output_base / f"微博_{account_key}"
     post_dir = cat_dir / folder_name
     post_dir.mkdir(parents=True, exist_ok=True)
@@ -214,10 +172,10 @@ def archive_weibo_post(
     attitudes = post_item.get("attitudes_count", 0)
 
     # 1. 纯文本 Markdown
-    md_content = f"""# {account_info['name']}：{title_summary}
+    md_content = f"""# {account_info["name"]}：{title_summary}
 
 > **平台**: 新浪微博官方认证号  
-> **博主**: {account_info['name']} (UID: {account_info['uid']})  
+> **博主**: {account_info["name"]} (UID: {account_info["uid"]})  
 > **发布时间**: {created_at}  
 > **微博原文**: [{weibo_url}]({weibo_url})  
 > **互动数据**: 转发 {reposts} | 评论 {comments} | 点赞 {attitudes}  
@@ -237,13 +195,9 @@ def archive_weibo_post(
         "created_at": created_at,
         "source_url": weibo_url,
         "has_images": False,
-        "stats": {
-            "reposts": reposts,
-            "comments": comments,
-            "attitudes": attitudes
-        },
+        "stats": {"reposts": reposts, "comments": comments, "attitudes": attitudes},
         "word_count": len(pure_text),
-        "archived_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "archived_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     (post_dir / "metadata.json").write_text(json.dumps(meta_info, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -252,17 +206,31 @@ def archive_weibo_post(
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{account_info['name']} - {title_summary}</title>
+    <title>{account_info["name"]} - {title_summary}</title>
     <style>
-        body {{ max-width: 680px; margin: 40px auto; padding: 0 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #222; }}
+        body {{
+            max-width: 680px;
+            margin: 40px auto;
+            padding: 0 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: #222;
+        }}
         h1 {{ font-size: 20px; }}
-        .meta {{ color: #777; font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 12px; margin-bottom: 20px; }}
+        .meta {{
+            color: #777;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }}
         .text {{ white-space: pre-wrap; font-size: 16px; }}
     </style>
 </head>
 <body>
-    <h1>{account_info['name']}</h1>
-    <div class="meta">发布时间: {created_at} | 转发: {reposts} 评论: {comments} 点赞: {attitudes} | <a href="{weibo_url}" target="_blank">查看微博原文</a></div>
+    <h1>{account_info["name"]}</h1>
+    <div class="meta">发布时间: {created_at} | 转发: {reposts} 评论: {comments} 点赞: {attitudes} |
+        <a href="{weibo_url}" target="_blank">查看微博原文</a></div>
     <div class="text">{pure_text}</div>
 </body>
 </html>"""
@@ -284,8 +252,8 @@ def main():
         print("\n🔑 启用步骤：")
         print("1. 访问大家拉官网 (www.dajiala.com 或 www.jzl.com) 注册获取 API Key")
         print("2. 在当前目录下创建 .env 文件写入:")
-        print("   DAJIALA_API_KEY=\"你的大家拉API密钥\"")
-        print("   或执行终端命令: export DAJIALA_API_KEY=\"你的密钥\"")
+        print('   DAJIALA_API_KEY="你的大家拉API密钥"')
+        print('   或执行终端命令: export DAJIALA_API_KEY="你的密钥"')
         print("\n📋 系统已内置配置好的 KPL 官方及核心俱乐部微博账号池：")
         for k, v in KPL_WEIBO_ACCOUNTS.items():
             print(f"  • {k:<12} => 博主: {v['name']:<18} (UID: {v['uid']})")
@@ -300,7 +268,7 @@ def main():
 
     info = KPL_WEIBO_ACCOUNTS[target]
     print(f"🎯 正在调用大家拉接口获取【{target}】({info['name']}, UID: {info['uid']}) 官方微博...")
-    
+
     try:
         data = client.get_weibo_timeline(uid=info["uid"], page=1, page_size=20)
         items = data.get("data", {}).get("list", []) or data.get("list", [])

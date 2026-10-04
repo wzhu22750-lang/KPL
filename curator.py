@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 KPL 官方及俱乐部文章高质量初筛与入库质检系统 (Quality Gatekeeper)
 ================================================================
@@ -10,48 +9,96 @@ KPL 官方及俱乐部文章高质量初筛与入库质检系统 (Quality Gateke
    - 严禁字数低于 800 字的非深度水文
 2. 【正向准入】
    - 必须紧密围绕 KPL 职业联赛、总决赛、银龙杯、年度总决赛、世冠杯、挑战者杯
-   - 必须聚焦核心战队（成都AG超玩会、重庆狼队、武汉eStarPro、广州TTG、北京WB、南京Hero久竞等）或核心选手（一诺、Fly、小胖、花海、清融、钎城等）
+   - 必须聚焦核心战队（成都AG超玩会、重庆狼队、武汉eStarPro、广州TTG、北京WB、南京Hero久竞等）
+     或核心选手（一诺、Fly、小胖、花海、清融、钎城等）
    - 包含完整的结构化排版、原作者元数据及 100% 完整下载的高清图片
 3. 【精细归档】
    - 归档至 clean 的 ./kpl_vault/ 目录，按战队细分
    - 生成AUDIT_REPORT.md（质检审计报告）与INDEX.md（总目录）
 """
 
-import os
-import re
-import sys
 import json
 import shutil
-from pathlib import Path
 from datetime import datetime
-from typing import Dict, Any, List
+from pathlib import Path
+from typing import Any
 
-from curl_cffi import requests
 from bs4 import BeautifulSoup
+from curl_cffi import requests
 
-from kpl_scraper import scrape_article, sanitize_filename
+from kpl_scraper import scrape_article
 
 SOURCE_JSON = Path("discovered_urls.json")
 VAULT_DIR = Path("./kpl_vault")
 
 # 明确的非KPL干扰项黑名单关键词
 STRICT_EXCLUDE_KEYWORDS = [
-    "穿越火线", "CFS", "CFML", "CFPL", "穿越火线手游",
-    "英雄联盟", "LPL", "LCK", "MSI", "DK夺冠", "EDG力克DK",
-    "无畏契约", "VALORANT", "大师赛",
-    "皇室战争", "CRL", "Team Queso",
-    "QQ飞车", "S联赛",
-    "台球锦标赛", "星际争霸", "游戏王", "卡普空", "格斗分部",
-    "高校联赛", "雷神杯", "苏超"
+    "穿越火线",
+    "CFS",
+    "CFML",
+    "CFPL",
+    "穿越火线手游",
+    "英雄联盟",
+    "LPL",
+    "LCK",
+    "MSI",
+    "DK夺冠",
+    "EDG力克DK",
+    "无畏契约",
+    "VALORANT",
+    "大师赛",
+    "皇室战争",
+    "CRL",
+    "Team Queso",
+    "QQ飞车",
+    "S联赛",
+    "台球锦标赛",
+    "星际争霸",
+    "游戏王",
+    "卡普空",
+    "格斗分部",
+    "高校联赛",
+    "雷神杯",
+    "苏超",
 ]
 
 # KPL 核心正向特征
 KPL_CORE_ENTITIES = [
-    "KPL", "王者荣耀职业联赛", "银龙杯", "KIC", "王者荣耀世界冠军杯", "挑战者杯",
-    "成都AG", "AG超玩会", "重庆狼队", "QGhappy", "武汉eStar", "eStarPro",
-    "广州TTG", "北京WB", "南京Hero", "Hero久竞", "苏州KSG", "佛山DRG", "深圳DYG",
-    "一诺", "徐必成", "小胖", "李达亨", "Fly", "彭云飞", "花海", "罗思源",
-    "清融", "黄垚钦", "钎城", "周诣涛", "钟意", "陈家豪", "大帅", "孟家俊"
+    "KPL",
+    "王者荣耀职业联赛",
+    "银龙杯",
+    "KIC",
+    "王者荣耀世界冠军杯",
+    "挑战者杯",
+    "成都AG",
+    "AG超玩会",
+    "重庆狼队",
+    "QGhappy",
+    "武汉eStar",
+    "eStarPro",
+    "广州TTG",
+    "北京WB",
+    "南京Hero",
+    "Hero久竞",
+    "苏州KSG",
+    "佛山DRG",
+    "深圳DYG",
+    "一诺",
+    "徐必成",
+    "小胖",
+    "李达亨",
+    "Fly",
+    "彭云飞",
+    "花海",
+    "罗思源",
+    "清融",
+    "黄垚钦",
+    "钎城",
+    "周诣涛",
+    "钟意",
+    "陈家豪",
+    "大帅",
+    "孟家俊",
 ]
 
 
@@ -61,7 +108,7 @@ def evaluate_article_quality(title: str, author: str, text: str) -> tuple[bool, 
     返回: (是否通过, 审核意见, 战队归类, 内容标签)
     """
     clean_text = text.strip()
-    
+
     # 1. 检查篇幅质量
     if len(clean_text) < 800:
         return False, f"正文篇幅不足 ({len(clean_text)} 字，低于 800 字深度标准)", "未分类", "短讯"
@@ -126,11 +173,11 @@ async def run_quality_curation():
     # 汇总待审查的候选 URL
     candidates = []
     if SOURCE_JSON.exists():
-        with open(SOURCE_JSON, "r", encoding="utf-8") as f:
+        with open(SOURCE_JSON, encoding="utf-8") as f:
             data = json.load(f)
             for urls in data.values():
                 candidates.extend(urls)
-    
+
     # 加上之前已抓取到的所有 URL
     for p in Path("kpl_articles").rglob("metadata.json"):
         try:
@@ -153,16 +200,18 @@ async def run_quality_curation():
                 url,
                 headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"},
                 impersonate="chrome124",
-                timeout=12
+                timeout=12,
             )
             if resp.status_code != 200 or "#js_content" not in resp.text:
-                rejected_list.append({
-                    "url": url,
-                    "title": "页面异常/已删除",
-                    "author": "-",
-                    "reason": f"HTTP {resp.status_code} 或未能获取到正文"
-                })
-                print(f"  ❌ 淘汰: 页面异常/已删除\n")
+                rejected_list.append(
+                    {
+                        "url": url,
+                        "title": "页面异常/已删除",
+                        "author": "-",
+                        "reason": f"HTTP {resp.status_code} 或未能获取到正文",
+                    }
+                )
+                print("  ❌ 淘汰: 页面异常/已删除\n")
                 continue
 
             soup = BeautifulSoup(resp.text, "html.parser")
@@ -178,12 +227,7 @@ async def run_quality_curation():
             is_pass, reason, category, tag = evaluate_article_quality(title, author, text)
 
             if not is_pass:
-                rejected_list.append({
-                    "url": url,
-                    "title": title,
-                    "author": author,
-                    "reason": reason
-                })
+                rejected_list.append({"url": url, "title": title, "author": author, "reason": reason})
                 print(f"  ❌ 淘汰: {title[:28]}... ({reason})\n")
             else:
                 print(f"  ✅ 准入: 【{category}】 《{title[:28]}...》 ({tag})")
@@ -199,12 +243,7 @@ async def run_quality_curation():
                 print()
 
         except Exception as e:
-            rejected_list.append({
-                "url": url,
-                "title": "抓取解析失败",
-                "author": "-",
-                "reason": str(e)
-            })
+            rejected_list.append({"url": url, "title": "抓取解析失败", "author": "-", "reason": str(e)})
             print(f"  ❌ 异常: {e}\n")
 
     print("\n" + "=" * 65)
@@ -215,25 +254,25 @@ async def run_quality_curation():
     generate_audit_and_index(passed_list, rejected_list)
 
 
-def generate_audit_and_index(passed: List[Dict[str, Any]], rejected: List[Dict[str, Any]]):
+def generate_audit_and_index(passed: list[dict[str, Any]], rejected: list[dict[str, Any]]):
     """生成正式入库大纲与质检审计报告"""
     # 1. 生成 INDEX.md
     index_lines = [
         "# 🏆 KPL 官方及各大俱乐部微信文章·精选高质量知识库 (KPL Vault)",
         "",
         f"> **质检完成时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  ",
-        f"> **质检状态**: AI 逐篇初筛审核完毕（严格剔除非 KPL 赛事、低质水文与广告）  ",
+        "> **质检状态**: AI 逐篇初筛审核完毕（严格剔除非 KPL 赛事、低质水文与广告）  ",
         f"> **入库文章数**: **{len(passed)}** 篇精选深度文章  ",
         f"> **淘汰文章数**: **{len(rejected)}** 篇无关/劣质候选  ",
         "",
         "---",
         "",
         "## 📚 精选文章总目录",
-        ""
+        "",
     ]
 
     # 按分类聚合
-    cat_dict: Dict[str, List[Dict[str, Any]]] = {}
+    cat_dict: dict[str, list[dict[str, Any]]] = {}
     for p in passed:
         c = p.get("curated_category", "其他")
         cat_dict.setdefault(c, []).append(p)
@@ -253,14 +292,16 @@ def generate_audit_and_index(passed: List[Dict[str, Any]], rejected: List[Dict[s
             words = meta.get("word_count", 0)
             imgs = meta.get("downloaded_images", 0)
             src_url = meta.get("source_url", "")
-            
+
             folder = Path(it["path"]).name
             md_name = meta.get("markdown_file", "")
             md_link = f"[{title}](./{cat}/{folder}/{md_name})"
             offline_link = f"[离线HTML](./{cat}/{folder}/offline.html)"
             src_link = f"[原文]({src_url})" if src_url else "-"
 
-            index_lines.append(f"| {pub} | `{tag}` | {md_link} | {author} | {words}字 | {imgs}张 | {offline_link} | {src_link} |")
+            index_lines.append(
+                f"| {pub} | `{tag}` | {md_link} | {author} | {words}字 | {imgs}张 | {offline_link} | {src_link} |"
+            )
         index_lines.append("")
 
     (VAULT_DIR / "INDEX.md").write_text("\n".join(index_lines), encoding="utf-8")
@@ -278,11 +319,14 @@ def generate_audit_and_index(passed: List[Dict[str, Any]], rejected: List[Dict[s
         f"本次审查共过滤拦截 **{len(rejected)}** 篇不符合标准的候选文章：",
         "",
         "| 序号 | 标题 | 公众号 | 淘汰原因 | 原文链接 |",
-        "| :---: | :--- | :--- | :--- | :--- |"
+        "| :---: | :--- | :--- | :--- | :--- |",
     ]
 
     for i, r in enumerate(rejected, 1):
-        audit_lines.append(f"| {i} | {r.get('title', '未知')[:30]} | {r.get('author', '-')} | `{r.get('reason', '-')}` | [链接]({r.get('url', '')}) |")
+        audit_lines.append(
+            f"| {i} | {r.get('title', '未知')[:30]} | {r.get('author', '-')} "
+            f"| `{r.get('reason', '-')}` | [链接]({r.get('url', '')}) |"
+        )
 
     (VAULT_DIR / "AUDIT_REPORT.md").write_text("\n".join(audit_lines), encoding="utf-8")
     print(f"📄 审计报告已写入: {VAULT_DIR / 'AUDIT_REPORT.md'}")
@@ -291,4 +335,5 @@ def generate_audit_and_index(passed: List[Dict[str, Any]], rejected: List[Dict[s
 
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(run_quality_curation())

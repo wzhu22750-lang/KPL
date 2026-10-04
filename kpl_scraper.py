@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 KPL 微信公众号文章高保真纯文本抓取与归档工具（无图纯净版）
 - 采用 curl-cffi 模拟浏览器真实 TLS 指纹 (JA3/JA4)，秒级直通免封控
@@ -12,19 +11,17 @@ KPL 微信公众号文章高保真纯文本抓取与归档工具（无图纯净�
     3. 结构化元数据 (metadata.json)
 """
 
-import os
+import asyncio
+import json
 import re
 import sys
-import json
-import asyncio
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from datetime import datetime, timezone, timedelta
-from typing import Dict, Any, List
+from typing import Any
 
 import markdownify
 from bs4 import BeautifulSoup
 from curl_cffi import requests as curl_requests
-
 
 # ============================================================
 # 基础配置
@@ -48,6 +45,7 @@ FIXED_HEADERS = {
 # ============================================================
 # 工具函数
 # ============================================================
+
 
 def format_timestamp(ts: int) -> str:
     """Unix 时间戳转标准格式 YYYY-MM-DD HH:mm:ss (北京时间)"""
@@ -88,7 +86,8 @@ def sanitize_filename(name: str, max_len: int = 60) -> str:
 # 正文清洗与格式转换（无图纯净版）
 # ============================================================
 
-def process_wechat_html(raw_html: str) -> Dict[str, Any]:
+
+def process_wechat_html(raw_html: str) -> dict[str, Any]:
     """解析并结构化微信文章纯文本内容（彻底剥离所有图片）"""
     soup = BeautifulSoup(raw_html, "html.parser")
 
@@ -129,8 +128,14 @@ def process_wechat_html(raw_html: str) -> Dict[str, Any]:
 
     # 4. 移除噪声元素
     for sel in (
-        "script", "style", ".qr_code_pc", ".reward_area", ".share_media",
-        "#js_sponsor_ad_area", ".rich_media_tool", ".rich_media_area_extra"
+        "script",
+        "style",
+        ".qr_code_pc",
+        ".reward_area",
+        ".share_media",
+        "#js_sponsor_ad_area",
+        ".rich_media_tool",
+        ".rich_media_area_extra",
     ):
         for tag in content_el.select(sel):
             tag.decompose()
@@ -142,10 +147,30 @@ def process_wechat_html(raw_html: str) -> Dict[str, Any]:
         heading_style="ATX",
         bullets="-",
         convert=[
-            "p", "h1", "h2", "h3", "h4", "h5", "h6",
-            "strong", "em", "a", "ul", "ol", "li",
-            "blockquote", "br", "hr", "table", "thead",
-            "tbody", "tr", "th", "td", "pre", "code"
+            "p",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "strong",
+            "em",
+            "a",
+            "ul",
+            "ol",
+            "li",
+            "blockquote",
+            "br",
+            "hr",
+            "table",
+            "thead",
+            "tbody",
+            "tr",
+            "th",
+            "td",
+            "pre",
+            "code",
         ],
     )
 
@@ -174,14 +199,11 @@ def process_wechat_html(raw_html: str) -> Dict[str, Any]:
 # 核心抓取入口
 # ============================================================
 
-async def scrape_article(
-    url: str,
-    output_base: Path = DEFAULT_OUTPUT_DIR,
-    max_retries: int = 3
-) -> Dict[str, Any]:
+
+async def scrape_article(url: str, output_base: Path = DEFAULT_OUTPUT_DIR, max_retries: int = 3) -> dict[str, Any]:
     """抓取单篇微信公众号文章并纯文本归档"""
     print(f"\n🚀 正在拉取文章 (无图纯净版): {url}")
-    
+
     last_err = ""
     resp = None
     for attempt in range(1, max_retries + 1):
@@ -202,7 +224,7 @@ async def scrape_article(
                 last_err = "页面未渲染出正文，可能遭遇限流"
         except Exception as e:
             last_err = str(e)
-        
+
         if attempt < max_retries:
             wait_time = attempt * 2
             print(f"  ⚠ 第 {attempt} 次请求未获完整页面 ({last_err})，{wait_time} 秒后重试...")
@@ -257,9 +279,22 @@ async def scrape_article(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <style>
-        body {{ max-width: 760px; margin: 40px auto; padding: 0 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #222; }}
+        body {{
+            max-width: 760px;
+            margin: 40px auto;
+            padding: 0 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: #222;
+        }}
         h1 {{ font-size: 24px; line-height: 1.4; }}
-        .meta {{ color: #777; font-size: 14px; margin-bottom: 24px; border-bottom: 1px solid #eee; padding-bottom: 12px; }}
+        .meta {{
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }}
         blockquote {{ border-left: 4px solid #ddd; margin: 1.5em 0; padding-left: 16px; color: #555; }}
         p {{ margin: 1em 0; }}
     </style>
@@ -289,7 +324,7 @@ async def scrape_article(
     return {"status": "ok", "title": title, "path": str(article_dir), "meta": meta_info}
 
 
-async def batch_scrape(urls: List[str], output_dir: Path = DEFAULT_OUTPUT_DIR):
+async def batch_scrape(urls: list[str], output_dir: Path = DEFAULT_OUTPUT_DIR):
     """批量抓取多篇文章（无图版）"""
     output_dir.mkdir(parents=True, exist_ok=True)
     results = []
@@ -300,6 +335,7 @@ async def batch_scrape(urls: List[str], output_dir: Path = DEFAULT_OUTPUT_DIR):
         results.append(res)
         if idx < len(urls):
             import random
+
             delay = round(random.uniform(1.0, 2.0), 2)
             await asyncio.sleep(delay)
 
@@ -324,7 +360,11 @@ def main():
         if not filepath.exists():
             print(f"❌ 文件不存在: {filepath}")
             sys.exit(1)
-        urls = [line.strip() for line in filepath.read_text(encoding="utf-8").splitlines() if line.strip().startswith("http")]
+        urls = [
+            line.strip()
+            for line in filepath.read_text(encoding="utf-8").splitlines()
+            if line.strip().startswith("http")
+        ]
     else:
         urls = [u for u in sys.argv[1:] if u.startswith("http")]
 
