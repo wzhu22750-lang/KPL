@@ -74,7 +74,7 @@ export function pageFetchable(url: string, sourceKind: string): boolean {
   if (sourceKind === "x_search" || sourceKind === "mp_account") return false;
   try {
     const u = new URL(url);
-    return /^https?:$/.test(u.protocol) && !/(^|\.)(x\.com|twitter\.com|mp\.weixin\.qq\.com)$/i.test(u.hostname);
+    return /^https?:$/.test(u.protocol) && !/(^|\.)(x\.com|twitter\.com|mp\.weixin\.qq\.com|weixin\.sogou\.com)$/i.test(u.hostname);
   } catch {
     return false;
   }

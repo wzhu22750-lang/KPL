@@ -4,6 +4,7 @@ import { guardedFetch } from "../lib/http-fetch.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
+import { wechatBridge } from "./wechat2rss/index.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
 
 const parser = new XMLParser({
@@ -118,29 +119,49 @@ export interface RssRead {
 export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}): Promise<RssRead> {
   const url = String(source.config.feedUrl ?? "");
   if (!url) throw new FetchError("feedUrl missing");
+
   // Config changes can alter parsing/filtering even when the upstream bytes did not change.
   const configHash = sha256(stableJson(source.config));
   const previous = !opts.force && source.cursor?.rss?.configHash === configHash ? source.cursor.rss as RssValidator : null;
-  const headers: Record<string, string> = { accept: "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8" };
-  if (previous?.etag) headers["if-none-match"] = previous.etag;
-  if (previous?.lastModified) headers["if-modified-since"] = previous.lastModified;
-  let res = await guardedFetch(url, { headers, timeoutMs: 25_000 });
-  // A redirect may have changed destinations, whose ETag namespace is unrelated to the old one.
-  if (res.status === 304 && previous && res.url !== previous.responseUrl) {
-    res = await guardedFetch(url, { headers: { accept: headers.accept! }, timeoutMs: 25_000 });
+
+  let rawXmlText: string;
+  let responseUrl = url;
+  let etag: string | null = null;
+  let lastModified: string | null = null;
+
+  // 支持 wechat:// 协议直连 WeChat2RSS 桥，免 HTTP 开销
+  if (url.startsWith("wechat://") || url.startsWith("wechat:")) {
+    const accountName = url.replace(/^wechat:\/\//i, "").replace(/^wechat:/i, "").trim();
+    rawXmlText = await wechatBridge.getRssXml(accountName, { force: opts.force });
+    responseUrl = url;
+  } else {
+    const headers: Record<string, string> = { accept: "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8" };
+    if (previous?.etag) headers["if-none-match"] = previous.etag;
+    if (previous?.lastModified) headers["if-modified-since"] = previous.lastModified;
+    let res = await guardedFetch(url, { headers, timeoutMs: 25_000 });
+    // A redirect may have changed destinations, whose ETag namespace is unrelated to the old one.
+    if (res.status === 304 && previous && res.url !== previous.responseUrl) {
+      res = await guardedFetch(url, { headers: { accept: headers.accept! }, timeoutMs: 25_000 });
+    }
+    responseUrl = res.url;
+    etag = res.headers.get("etag") ?? (res.status === 304 ? previous?.etag ?? null : null);
+    lastModified = res.headers.get("last-modified") ?? (res.status === 304 ? previous?.lastModified ?? null : null);
+
+    if (res.status === 304 && previous && (previous.etag || previous.lastModified) && res.url === previous.responseUrl) {
+      const validator: RssValidator = { configHash, responseUrl, etag, lastModified };
+      return { candidates: [], validator, notModified: true };
+    }
+    if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
+    rawXmlText = res.text();
   }
+
   const validator: RssValidator = {
-    configHash, responseUrl: res.url,
-    etag: res.headers.get("etag") ?? (res.status === 304 ? previous?.etag ?? null : null),
-    lastModified: res.headers.get("last-modified") ?? (res.status === 304 ? previous?.lastModified ?? null : null),
+    configHash, responseUrl, etag, lastModified,
   };
-  if (res.status === 304 && previous && (previous.etag || previous.lastModified) && res.url === previous.responseUrl) {
-    return { candidates: [], validator, notModified: true };
-  }
-  if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
+
   let doc: Record<string, any>;
   try {
-    doc = parser.parse(res.text());
+    doc = parser.parse(rawXmlText);
   } catch (e) {
     throw new FetchError(`feed parse error: ${String(e).slice(0, 200)}`);
   }
@@ -180,7 +201,7 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
   const feed = doc.feed;
   if (feed) {
     // XML Base is inherited; redirects determine the document's base, not the configured URL.
-    const feedBase = new URL(feed["@xml:base"] ?? "", res.url).toString();
+    const feedBase = new URL(feed["@xml:base"] ?? "", responseUrl).toString();
     for (const e of arr(feed.entry)) {
       const entryBase = new URL(e["@xml:base"] ?? "", feedBase).toString();
       const entryUrl = atomLink(e.link, entryBase);

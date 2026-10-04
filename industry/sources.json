@@ -82,6 +82,26 @@
       "syndicate_fulltext": false
     },
     {
+      "id": "esports-annual-2026",
+      "name": "KPL 2026 年度总决赛（官方赛事数据）",
+      "kind": "esports_api",
+      "config": {
+        "leagueId": "20260004",
+        "battlesPerRun": 12
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "官方",
+        "赛事数据"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
       "id": "bili-kpl-community",
       "name": "B站 KPL 社区讨论（关键词）",
       "kind": "json_list",
@@ -107,17 +127,26 @@
         "publishedAtPath": "pubdate",
         "publishedAtUnit": "epoch_s",
         "externalIdPath": "bvid",
-        "sortByPublishedAt": true
+        "sortByPublishedAt": true,
+        "ingestNoiseFilter": {
+          "keepIfMatches": [
+            "复盘", "深度", "战术", "赛后", "分析", "bp", "评分", "打法", "教学", "转会", "大名单", "纪录片", "专访", "体系"
+          ],
+          "dropMarkersTitleOnly": [
+            "红包", "抽奖", "福利", "领奖", "门票", "cos", "配音", "日常", "集锦", "搞笑", "整活", "饭圈"
+          ]
+        }
       },
       "tier": "T2",
-      "participation_mode": "hot_signal",
+      "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
         "社区",
         "B站"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": true
     },
     {
       "id": "mp-ag",
@@ -139,7 +168,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-wolves",
@@ -161,7 +190,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-estar",
@@ -183,7 +212,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-wb",
@@ -205,7 +234,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-hero",
@@ -227,7 +256,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-ttg",
@@ -249,7 +278,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-ksg",
@@ -271,7 +300,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "mp-drg",
@@ -293,7 +322,7 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "hupu-kog",
@@ -322,14 +351,15 @@
         }
       },
       "tier": "T2",
-      "participation_mode": "hot_signal",
+      "participation_mode": "editorial",
       "interval_minutes": 30,
       "tags": [
         "社区",
         "虎扑"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": true
     }
   ]
 }
