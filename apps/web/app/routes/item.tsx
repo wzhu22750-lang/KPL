@@ -524,6 +524,30 @@ function ItemView({ item }: { item: SiteItemDetail }) {
 
           {summaryOnly && <p className="mt-7 rounded-control bg-bg-sunk px-4 py-3 text-[13.5px] leading-relaxed text-ink-3">应来源方要求，这里只提供摘要与原文入口。完整内容请阅读原文。</p>}
 
+          {(!bodyHtml && !summaryOnly) && (
+            <section className="mt-9 border-t border-line pt-6 xl:mt-10">
+              <div className="rounded-card border border-line-soft bg-surface p-5 text-center shadow-sm">
+                <div className="mx-auto mb-1.5 text-[15px] font-semibold text-ink">
+                  已收录核心导读 · 支持直达原出处阅读完整图文
+                </div>
+                <p className="mx-auto max-w-md text-[13px] leading-relaxed text-ink-3">
+                  本篇内容已由 AI 深度提炼核心赛况与焦点。如需查看原始高清排版、图集及深度长文，可前往官方源阅读。
+                </p>
+                <div className="mt-4 flex justify-center">
+                  <a
+                    href={item.links.original}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-full bg-accent px-5 text-[13px] font-medium text-white shadow-sm transition hover:bg-accent/90 active:scale-[0.98]"
+                  >
+                    <span>{originalLabel}</span>
+                    <IconExternal size={14} />
+                  </a>
+                </div>
+              </div>
+            </section>
+          )}
+
           {item.body && bodyHtml && (
             <section className="mt-9 border-t border-line pt-4 xl:mt-10">
               <div className="mb-6 flex items-center justify-between gap-3">

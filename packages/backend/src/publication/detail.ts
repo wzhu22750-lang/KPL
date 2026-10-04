@@ -124,6 +124,10 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     const chinese = isChineseBody(row);
     const zh = chinese ? { html: row.body_html, kind: "original" as const } : row.tr_html ? { html: row.tr_html, kind: "translation" as const } : null;
     reading = readingBody(language, zh, chinese ? null : row.body_html, chinese ? true : row.tr_complete ?? false, (html) => withOutline(proxyBodyImages(html)));
+  } else if (row.body_html || row.body_text) {
+    // 宽容正文展示：若文章存有正文或 HTML，即使信源标签为 summary 模式，在详情页仍可阅读全文
+    const html = row.body_html || textToHtml(row.body_text!);
+    reading = readingBody(language, { html, kind: "original" }, null, true, (h) => withOutline(proxyBodyImages(h)));
   }
 
   let group: SiteItemDetail["group"] = null;

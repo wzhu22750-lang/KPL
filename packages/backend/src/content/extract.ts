@@ -9,6 +9,7 @@ import { jinaRead } from "../providers/jina.ts";
 import { BudgetExceededError } from "../providers/receipts.ts";
 import { getArticle } from "../providers/socialdata.ts";
 import { onlyXArticleLink, xArticleText } from "../sources/x.ts";
+import { cleanWechatHtml } from "../sources/wechat2rss/parser.ts";
 import { sanitizeBody, trimTrailingChrome } from "./sanitize.ts";
 import { contentHash, reviseMaterial } from "./materials.ts";
 import { markdownBody } from "./markdown.ts";
@@ -47,6 +48,35 @@ export function readable(html: string, url: string): ExtractedBody | null {
 }
 
 export async function extractFromUrl(url: string, subject: string): Promise<ExtractedBody | null> {
+  // 微信公众号文章专用快速高保真抽取通道
+  if (/mp\.weixin\.qq\.com/i.test(url)) {
+    try {
+      const res = await guardedFetch(url, {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.48 NetType/WIFI Language/zh_CN",
+          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "zh-CN,zh;q=0.9",
+        },
+        timeoutMs: 20_000,
+        maxBytes: 6 * 1024 * 1024,
+      });
+      if (res.status === 200) {
+        const { html, text, images } = cleanWechatHtml(res.text());
+        if (text.length >= 80) {
+          return {
+            html,
+            text,
+            images: images.slice(0, 12).map((imgUrl) => ({ kind: "image" as const, url: imgUrl, width: null, height: null })),
+            via: "readability",
+          };
+        }
+      }
+    } catch {
+      // 失败后继续向下尝试普通抽取与 Jina
+    }
+  }
+
   try {
     const res = await guardedFetch(url, { timeoutMs: 20_000, maxBytes: 6 * 1024 * 1024 });
     const type = res.headers.get("content-type") ?? "";
@@ -69,12 +99,12 @@ export async function extractFromUrl(url: string, subject: string): Promise<Extr
   }
 }
 
-/** Pages extraction can fetch: ordinary web pages (X posts and WeChat articles arrive whole or not at all). */
+/** Pages extraction can fetch: ordinary web pages (X posts arrive whole or not at all). */
 export function pageFetchable(url: string, sourceKind: string): boolean {
-  if (sourceKind === "x_search" || sourceKind === "mp_account") return false;
+  if (sourceKind === "x_search") return false;
   try {
     const u = new URL(url);
-    return /^https?:$/.test(u.protocol) && !/(^|\.)(x\.com|twitter\.com|mp\.weixin\.qq\.com|weixin\.sogou\.com)$/i.test(u.hostname);
+    return /^https?:$/.test(u.protocol) && !/(^|\.)(x\.com|twitter\.com)$/i.test(u.hostname);
   } catch {
     return false;
   }

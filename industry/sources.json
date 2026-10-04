@@ -78,7 +78,7 @@
         "官方",
         "B站"
       ],
-      "site_fulltext": false,
+      "site_fulltext": true,
       "syndicate_fulltext": false
     },
     {
@@ -144,7 +144,7 @@
         "社区",
         "B站"
       ],
-      "site_fulltext": false,
+      "site_fulltext": true,
       "syndicate_fulltext": false,
       "enabled": true
     },
@@ -357,7 +357,7 @@
         "社区",
         "虎扑"
       ],
-      "site_fulltext": false,
+      "site_fulltext": true,
       "syndicate_fulltext": false,
       "enabled": true
     }
