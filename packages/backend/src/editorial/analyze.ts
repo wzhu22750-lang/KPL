@@ -12,6 +12,7 @@ import { CATEGORY_KEYS } from "@aihot/contracts/taxonomy";
 import { CATEGORIES } from "@aihot/industry/taxonomy";
 import { SELECTION } from "@aihot/industry/selection";
 import { sql } from "../db.ts";
+import { recordArticleEntityMentions } from "../kb/entity-mentions.ts";
 import { chatJson, MODELS, ModelOutputError, type ContentPart } from "../providers/llm.ts";
 import { completeReceipt, ProviderRejectedError, ReceiptUnknownError } from "../providers/receipts.ts";
 import { collapseWhitespace } from "../lib/text.ts";
@@ -448,6 +449,12 @@ export function normalizeAnalysis(run: AnalysisRun) {
     const display = ENTITIES[s]?.displayTag;
     if (display && !tags.includes(display)) tags.push(display);
   }
+  let reasonZh = run.writing?.reasonZh ?? null;
+  if (selected && (!reasonZh || !reasonZh.trim())) {
+    const cat = CATEGORIES.find((c) => c.key === run.structure?.category);
+    const catName = cat ? cat.label : "赛事动态";
+    reasonZh = `KPL${catName}速递：${titleZh || "关键赛事与战队动态"}`;
+  }
   return {
     relevance,
     selected,
@@ -461,7 +468,7 @@ export function normalizeAnalysis(run: AnalysisRun) {
     subjects,
     titleZh,
     summaryZh,
-    reasonZh: run.writing?.reasonZh ?? null,
+    reasonZh,
     scope: run.structure?.scope ?? "unknown",
     fact: run.structure?.fact ?? null,
   };
@@ -516,5 +523,17 @@ export async function analyzeArticle(articleId: string, opts: StepOpts = {}): Pr
     return { analysisId: row!.id, stale };
   });
   const reused = run.prefilter.reused && (run.scores?.reused ?? true) && (w?.reused ?? true) && (run.structure?.reused ?? true);
+  // 新闻↔实体桥：分析完成后把标题/摘要/正文里提到的战队、选手、英雄写入 entity_mentions。
+  // 抽取是纯数据库匹配，失败只影响“相关新闻”展示，不影响已提交的分析结果。
+  try {
+    const mentionText = [
+      input.title, out.titleZh, out.summaryZh,
+      input.bodyText ?? input.excerpt ?? "",
+      input.xPost ? String(input.xPost.text ?? "") : "",
+    ].filter(Boolean).join("\n");
+    await recordArticleEntityMentions(articleId, mentionText);
+  } catch (error) {
+    console.warn(`entity mention extraction failed for ${articleId}:`, error);
+  }
   return { analysisId: committed.analysisId, stale: committed.stale, output: out, receiptIds, reused };
 }

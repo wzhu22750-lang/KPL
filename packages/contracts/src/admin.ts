@@ -428,3 +428,27 @@ export interface AdminSelectBenchCases {
   rows: Array<{ case_id: string; title: string; stratum: string | null; gold: "select" | "reject" | "either"; by_model: Record<string, AdminSelectBenchDecision> }>;
   strata: Array<{ stratum: string | null; n: number }>;
 }
+
+export interface AdminSourceHealth {
+  id: string;
+  name: string;
+  tier: string;
+  kind: string;
+  enabled: boolean;
+  intervalMinutes: number;
+  lastFetchAt: string | null;
+  failCount: number;
+  lastError: string | null;
+  totalArticles: number;
+  recentArticles: number;
+}
+
+export interface AdminFunnelDashboard {
+  funnel: {
+    totalArticles: number;
+    blockedGarbage: number;
+    lowQualityDiscarded: number;
+    curatedPublished: number;
+  };
+  sourcesHealth: AdminSourceHealth[];
+}

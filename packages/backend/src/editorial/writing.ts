@@ -34,10 +34,18 @@ export function isShortTweet(text: string): boolean {
   return text.length < (cjk > text.length * 0.3 ? 100 : 500);
 }
 
+export function stripLayoutNoise(s: string): string {
+  if (!s) return "";
+  return s
+    .replace(/(?:左右滑动|点击查看|点击展开|长按识别二维码|扫码关注|点个在看|文末有福利|本鲨自带预言家属性)[^\n。！]*[，。！\n]?/g, "")
+    .replace(/(?:点击图片|上滑查看|进入小程序)[^\n。！]*[，。！\n]?/g, "")
+    .trim();
+}
+
 /** HTML, URLs (whose /2025/ paths models took for years) and entities out of article text. */
 export function cleanArticleTextForLLM(s: string): string {
   if (!s) return "";
-  return s
+  const cleaned = s
     .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/https?:\/\/\S+/gi, " ")
@@ -51,6 +59,7 @@ export function cleanArticleTextForLLM(s: string): string {
     .replace(/[ \t]*\n[ \t]*/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
+  return stripLayoutNoise(cleaned);
 }
 
 function chineseDensity(s: string): number {
@@ -266,9 +275,10 @@ export const isShortTweetInput = (input: TranslateInput) => input.sourceKind ===
 
 /** The length rule (compacted without another call) and the identity guard, for any writing model. */
 export function finalizeCopy(input: TranslateInput, copy: { titleZh: string; summaryZh: string }) {
-  let summaryZh = copy.summaryZh;
+  let titleZh = stripLayoutNoise(copy.titleZh);
+  let summaryZh = stripLayoutNoise(copy.summaryZh);
   if (!isShortTweetInput(input) && summaryZh && !answerFirstSummaryLengthOk(summaryZh, input)) summaryZh = compactAnswerFirstSummary(summaryZh);
-  return enforceIdentity(input, { titleZh: copy.titleZh, summaryZh });
+  return enforceIdentity(input, { titleZh, summaryZh });
 }
 
 // Title/summary prompts for items the content understanding does not write

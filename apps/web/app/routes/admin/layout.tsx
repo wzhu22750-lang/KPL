@@ -21,10 +21,11 @@ export const meta: Route.MetaFunction = () => [{ title: `${SITE.name} 后台` },
 
 export const headers: Route.HeadersFunction = () => ({ "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" });
 
-const NAV: Array<{ group: string; items: Array<{ to: string; label: string; count?: keyof AdminNavCounts; tone?: "bad" | "accent" }> }> = [
+const NAV: Array<{ group: string; items: Array<{ to: string; label: string; count?: keyof AdminNavCounts; tone?: "bad" | "accent"; end?: boolean }> }> = [
   {
     group: "内容",
     items: [
+      { to: "/admin", label: "采集漏斗看板", end: true },
       { to: "/admin/content", label: "内容诊断" },
       { to: "/admin/sources", label: "信源", count: "sources", tone: "bad" },
       ...(FEATURES.codexResetMonitor ? [{ to: "/admin/monitor", label: "Codex 重置", count: "monitor" as const, tone: "accent" as const }] : []),
@@ -43,9 +44,9 @@ const NAV: Array<{ group: string; items: Array<{ to: string; label: string; coun
   },
 ];
 
-function NavItem({ to, label, count, tone }: { to: string; label: string; count?: number; tone?: "bad" | "accent" }) {
+function NavItem({ to, label, count, tone, end }: { to: string; label: string; count?: number; tone?: "bad" | "accent"; end?: boolean }) {
   return (
-    <NavLink to={to} prefetch="intent" className="group relative block">
+    <NavLink to={to} end={end} prefetch="intent" className="group relative block">
       {({ isActive }) => (
         <span className={`relative flex items-center justify-between rounded-control px-3 py-[7px] text-[13.5px] transition-colors ${isActive ? "font-medium text-ink" : "text-ink-3 hover:text-ink"}`}>
           {isActive && <motion.span layoutId="admin-nav" className="absolute inset-0 rounded-control bg-surface shadow-sm ring-1 ring-line" transition={{ type: "spring", stiffness: 520, damping: 38 }} />}
@@ -78,7 +79,7 @@ export default function AdminLayout({ loaderData }: Route.ComponentProps) {
               <div className="mb-1 px-3 text-[11.5px] font-medium tracking-wide text-ink-4">{g.group}</div>
               <div className="space-y-0.5">
                 {g.items.map((i) => (
-                  <NavItem key={i.to} to={i.to} label={i.label} count={i.count ? counts[i.count] : undefined} tone={i.tone} />
+                  <NavItem key={i.to} to={i.to} label={i.label} count={i.count ? counts[i.count] : undefined} tone={i.tone} end={i.end} />
                 ))}
               </div>
             </div>

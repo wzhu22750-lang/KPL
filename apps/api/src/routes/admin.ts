@@ -17,6 +17,7 @@ import { resolveDelivery } from "@aihot/backend/notify/deliver";
 import { releaseReceipt } from "@aihot/backend/operations/recover";
 import { replaceContactQr, setTargetEnabled, settingsOverview, updateBudget } from "@aihot/backend/admin/settings";
 import { createSource, fetchNow, listSources, previewSource, previewStoredSource, sourceDetail, updateSource } from "@aihot/backend/admin/sources";
+import { loadAdminFunnel } from "@aihot/backend/admin/dashboard";
 import { sendProblem } from "../http/respond.ts";
 import { adminHandler } from "./admin-auth.ts";
 
@@ -35,6 +36,9 @@ function decodeImage(dataUrl: unknown): Buffer {
 }
 
 export function registerAdmin(app: FastifyInstance) {
+  // Funnel & Monitoring Dashboard
+  app.get("/api/admin/funnel", adminHandler(async () => loadAdminFunnel()));
+
   // Sources
   app.get("/api/admin/sources", adminHandler(async (req) => {
     const f = q(req);

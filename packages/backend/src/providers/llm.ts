@@ -152,8 +152,10 @@ export function escapeControlCharsInStrings(json: string): string {
 }
 
 function isConnectFailure(error: unknown): boolean {
+  const msg = String((error as Error)?.message || "");
   const code = (error as { cause?: { code?: string } })?.cause?.code ?? (error as { code?: string })?.code;
-  return ["ECONNREFUSED", "ENOTFOUND", "EAI_AGAIN", "UND_ERR_CONNECT_TIMEOUT", "CERT_HAS_EXPIRED"].includes(code ?? "");
+  if (msg.includes("fetch failed") || msg.includes("ECONNRESET") || msg.includes("socket")) return true;
+  return ["ECONNREFUSED", "ENOTFOUND", "EAI_AGAIN", "UND_ERR_CONNECT_TIMEOUT", "CERT_HAS_EXPIRED", "ECONNRESET"].includes(code ?? "");
 }
 
 export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): Promise<ChatJsonResult<z.infer<S>>> {
@@ -193,18 +195,29 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
     },
     async () => {
       const started = Date.now();
-      let res: Response;
-      try {
-        res = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
-          method: "POST",
-          headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
-          body: JSON.stringify(body),
-          signal: AbortSignal.timeout(opts.timeoutMs ?? 120_000),
-        });
-      } catch (error) {
-        if (isConnectFailure(error)) throw new ProviderRejectedError(`connect failed: ${String(error)}`, null, true);
-        throw error;
+      const endpoint = `${baseUrl.replace(/\/$/, "")}/chat/completions`;
+      let res: Response | null = null;
+      let lastErr: unknown = null;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
+            body: JSON.stringify(body),
+            signal: AbortSignal.timeout(opts.timeoutMs ?? 120_000),
+          });
+          break;
+        } catch (error) {
+          lastErr = error;
+          if (attempt < 2 && isConnectFailure(error)) {
+            await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+            continue;
+          }
+          if (isConnectFailure(error)) throw new ProviderRejectedError(`connect failed: ${String(error)}`, null, true);
+          throw error;
+        }
       }
+      if (!res) throw lastErr;
       const text = await res.text();
       assertAccepted(spec.service, res.status, text);
       let json: Record<string, unknown>;
