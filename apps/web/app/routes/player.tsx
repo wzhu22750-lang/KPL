@@ -15,15 +15,20 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
 export function meta({ loaderData, params }: Route.MetaArgs) {
   const name = loaderData?.player.nickname ?? params.slug;
-  return pageMeta({ title: `${name}：职业履历与数据`, description: `${name}的转会履历、赛季数据变化、英雄池与 MVP 记录。`, path: `/players/${params.slug}` });
+  return pageMeta({ title: `${name}：职业履历、荣誉与数据`, description: `${name}的真实姓名、个人荣誉、转会履历、赛季数据变化、英雄池与相关赛事动态。`, path: `/players/${params.slug}` });
 }
 
 export function headers() {
   return edgeTtl(60);
 }
 
+const HONOR_LABEL: Record<string, string> = { fmvp: "总决赛FMVP", regular_mvp: "常规赛MVP", annual_mvp: "年度最佳选手", best_lineup: "最佳阵容一阵", champion: "冠军成员", finals_mvp: "总决赛FMVP" };
+const HONOR_MEDAL: Record<string, string> = { fmvp: "🏅", regular_mvp: "⭐", annual_mvp: "🌟", best_lineup: "🎖️", champion: "🏆", finals_mvp: "🏅" };
+
+const fmtDate = (d: string | null) => (d ? d.slice(0, 7).replace("-", ".") : "?");
+
 export default function PlayerPage() {
-  const { player, stints, seasons, heroes } = useLoaderData<typeof loader>();
+  const { player, stints, seasons, heroes, honors, news } = useLoaderData<typeof loader>();
   const totals = seasons.reduce((acc, s) => ({ games: acc.games + s.games, mvps: acc.mvps + s.mvps, wins: acc.wins + s.wins }), { games: 0, mvps: 0, wins: 0 });
   return (
     <div className="pb-10">
@@ -31,8 +36,11 @@ export default function PlayerPage() {
       <header className="pt-3 lg:pt-1">
         <div className="flex items-center gap-4">
           {player.portrait && <img src={player.portrait} alt="" width={64} height={64} className="h-16 w-16 rounded-full object-cover" />}
-          <div>
-            <h1 data-page-title="" className="text-[24px] font-semibold leading-[1.3] text-ink">{player.nickname}</h1>
+          <div className="min-w-0">
+            <h1 data-page-title="" className="text-[24px] font-semibold leading-[1.3] text-ink">
+              {player.nickname}
+              {player.realName && <span className="ml-2 text-[15px] font-medium text-ink-3">{player.realName}</span>}
+            </h1>
             <p className="mt-1 text-[13px] text-ink-3">
               {player.position ?? "—"}
               {player.team && (
@@ -61,19 +69,44 @@ export default function PlayerPage() {
         </div>
       </header>
 
-      {stints.length > 0 && (
+      {player.bio && (
+        <p className="mt-3 rounded-card border border-line bg-surface px-4 py-3 text-[13px] leading-relaxed text-ink-2">{player.bio}</p>
+      )}
+
+      {honors.length > 0 && (
         <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">职业履历</h2>
-          <ul className="mt-3 space-y-1.5">
-            {stints.map((s, i) => (
-              <li key={i} className="flex items-baseline gap-2 text-[13.5px]">
-                <span className="font-semibold text-ink">{s.team ?? "未知战队"}</span>
-                <span className="text-[12px] text-ink-4">
-                  {s.joinedAt ? s.joinedAt.slice(0, 10) : "?"} 起{s.leftAt ? `，${s.leftAt.slice(0, 10)} 止` : "，效力至今"}
-                </span>
+          <h2 className="text-[15px] font-bold text-ink">个人荣誉</h2>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {honors.map((h, i) => (
+              <li key={i} className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12.5px] ${h.kind === "fmvp" || h.kind === "finals_mvp" ? "border-amber/40 bg-amber/10" : "border-line bg-surface"}`}>
+                <span aria-hidden>{HONOR_MEDAL[h.kind] ?? "🎖️"}</span>
+                <span className={`font-semibold ${h.kind === "fmvp" || h.kind === "finals_mvp" ? "text-ink" : "text-ink-2"}`}>{h.title ?? h.season ?? HONOR_LABEL[h.kind]}</span>
+                <span className="text-ink-4">{HONOR_LABEL[h.kind] ?? h.kind}{h.note ? ` · ${h.note}` : ""}</span>
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {stints.length > 0 && (
+        <section className="pt-7">
+          <h2 className="text-[15px] font-bold text-ink">职业转会履历</h2>
+          <ol className="mt-4">
+            {[...stints].reverse().map((s, i) => (
+              <li key={i} className="relative flex gap-3 pb-5 last:pb-0">
+                {i < stints.length - 1 && <span aria-hidden className="absolute left-[5px] top-4 h-[calc(100%-16px)] w-px bg-line" />}
+                <span aria-hidden className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${s.leftAt ? "bg-line" : "bg-accent"}`} />
+                <span className="min-w-0">
+                  <span className="block text-[13.5px] font-semibold text-ink">
+                    {s.teamSlug ? <IntentLink to={`/teams/${s.teamSlug}`} className="hover:text-accent">{s.team ?? "未知战队"}</IntentLink> : s.team ?? "未知战队"}
+                  </span>
+                  <span className="num block text-[12px] text-ink-4">
+                    {fmtDate(s.joinedAt)} – {s.leftAt ? fmtDate(s.leftAt) : "至今"}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </section>
       )}
 
@@ -117,6 +150,25 @@ export default function PlayerPage() {
                 <span className="font-medium text-ink">{h.hero}</span>
                 <span className="num text-ink-4">{h.games} 场</span>
                 <span className="num font-semibold text-accent">{h.games > 0 ? Math.round((h.wins / h.games) * 100) : 0}%</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {news.length > 0 && (
+        <section className="pt-7">
+          <h2 className="text-[15px] font-bold text-ink">相关赛事动态</h2>
+          <ul className="mt-3 divide-y divide-line-soft overflow-hidden rounded-card border border-line bg-surface">
+            {news.map((n) => (
+              <li key={n.id}>
+                <IntentLink to={`/items/${n.id}`} className="block px-4 py-3 transition-colors hover:text-accent">
+                  <span className="flex items-baseline gap-2">
+                    <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{n.title}</span>
+                    {n.selected && <span className="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-[10.5px] font-semibold text-accent">精选</span>}
+                  </span>
+                  {n.summary && <span className="mt-1 line-clamp-2 block text-[12.5px] leading-relaxed text-ink-3">{n.summary}</span>}
+                </IntentLink>
               </li>
             ))}
           </ul>

@@ -24,6 +24,7 @@ import { takePreview } from "../features/item/preview";
 import { IconArrowLeft, IconCopy, IconDownload, IconExternal, IconImage, IconMenu, IconMore, IconShare } from "../components/icons";
 import { BarButton, PhoneBar } from "../components/shell/PhoneBar";
 import { isPhone, type Screen } from "../components/shell/screens";
+import { resolveEntityTag } from "../lib/entity-links";
 
 export const handle: Screen = { home: "featured", toolbar: true };
 
@@ -289,6 +290,8 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     if (window.history.state?.idx > 0) navigate(-1);
     else navigate(item.selected ? "/" : "/all");
   };
+  const entityTags = item.tags.map(resolveEntityTag).filter((e) => e.type === "team" || e.type === "player");
+
   const backButton = (
     <button type="button" onClick={back} className="-ml-1.5 inline-flex h-8 items-center gap-1.5 rounded-full px-1.5 text-[13px] text-ink-3 transition-colors hover:text-ink">
       <IconArrowLeft size={16} /> 返回
@@ -448,7 +451,9 @@ function ItemView({ item }: { item: SiteItemDetail }) {
         <div className="sticky top-0 z-20 -mx-2 hidden bg-bg/95 px-2 py-1.5 backdrop-blur lg:block 2xl:hidden">{backButton}</div>
         <article className="pb-6 pt-3 lg:pt-2 2xl:pt-1">
           <div className={`flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-ink-3 2xl:hidden ${isX ? "" : "mb-3"}`}>
-            <span className="font-semibold text-ink-2">{isX ? item.x!.authorName : item.source.name}</span>
+            <span className="inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-semibold text-ink-2 border border-line-soft">
+              {isX ? item.x!.authorName : item.source.name}
+            </span>
             {isX && <span>· @{item.x!.handle} · X</span>}
             {item.author && !isX && <span>· {item.author}</span>}
             <span>·</span>
@@ -476,10 +481,29 @@ function ItemView({ item }: { item: SiteItemDetail }) {
           )}
 
           {item.reason && !summaryOnly && (
-            <section className="mt-6 border-t border-line pt-4 lg:hidden">
-              <div className="mb-1 text-[12px] font-semibold text-ink-3">推荐理由</div>
-              <p className="text-[15px] leading-[1.75] text-ink-2">{item.reason}</p>
-            </section>
+            <div className="mt-4 rounded-md bg-accent-soft/35 px-3.5 py-2 text-[13px] leading-relaxed text-ink-2 border border-accent/15">
+              <span className="font-semibold text-accent mr-1.5">入选理由:</span>
+              <span>{item.reason}</span>
+            </div>
+          )}
+
+          {entityTags.length > 0 && (
+            <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
+              {entityTags.map((et, i) => (
+                <Link
+                  key={`${et.label}-${i}`}
+                  to={et.to}
+                  className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11.5px] font-medium transition ${
+                    et.type === "team"
+                      ? "bg-amber/10 text-amber hover:bg-amber/20"
+                      : "bg-accent/10 text-accent hover:bg-accent/20"
+                  }`}
+                >
+                  <span>{et.type === "team" ? "🛡️" : "👤"}</span>
+                  <span>{et.label}</span>
+                </Link>
+              ))}
+            </div>
           )}
 
           {item.sameEvent && (

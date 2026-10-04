@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { subjectAfter, withSubject } from "@aihot/industry/site";
 import { FEATURES } from "@aihot/industry/features";
 import {
-  IconBolt, IconBookmark, IconChart, IconDoc, IconFlame, IconGrid, IconHeart, IconHistory, IconList, IconMessage, IconPlug, IconUser,
+  IconBolt, IconBookmark, IconChart, IconDoc, IconFlame, IconGrid, IconHeart, IconHistory, IconList, IconMessage, IconPlug, IconSword, IconTrophy, IconUser, IconVs,
 } from "../icons";
 
 export interface NavItem {
@@ -22,6 +22,9 @@ export const SIDEBAR: Array<{ title: string; items: NavItem[] }> = [
     items: [
       { to: "/", label: "精选", icon: IconBolt, end: true },
       { to: "/all", label: subjectAfter("全部", "动态"), icon: IconList },
+      { to: "/heroes", label: "英雄榜", icon: IconSword },
+      { to: "/standings", label: "积分榜", icon: IconTrophy },
+      { to: "/h2h", label: "战队对决", icon: IconVs },
       { to: "/matches", label: "赛程赛果", icon: IconChart },
       { to: "/teams", label: "战队", icon: IconUser },
       { to: "/hot", label: "热点榜", icon: IconFlame },

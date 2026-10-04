@@ -6,6 +6,7 @@ import { pageMeta } from "../lib/seo";
 import { PhoneBar } from "../components/shell/PhoneBar";
 import { IntentLink } from "../components/ui/IntentLink";
 import type { Screen } from "../components/shell/screens";
+import { IconVs } from "../components/icons";
 
 export const handle: Screen = { name: "战队" };
 
@@ -22,10 +23,12 @@ export function headers() {
   return edgeTtl(60);
 }
 
-const HONOR_LABEL: Record<string, string> = { champion: "总冠军", runner_up: "亚军", third: "季军", fmvp: "总决赛FMVP", regular_champion: "常规赛第一", regular_mvp: "常规赛MVP" };
+const HONOR_LABEL: Record<string, string> = { champion: "冠军", runner_up: "亚军", third: "季军", fmvp: "总决赛FMVP", regular_champion: "常规赛第一", regular_mvp: "常规赛MVP" };
+const HONOR_MEDAL: Record<string, string> = { champion: "🏆", runner_up: "🥈", third: "🥉", fmvp: "🏅", regular_champion: "⭐", regular_mvp: "⭐" };
 
 export default function TeamPage() {
-  const { team, record, roster, honors, recentMatches } = useLoaderData<typeof loader>();
+  const { team, record, roster, honors, recentMatches, news } = useLoaderData<typeof loader>();
+  const champions = honors.filter((h) => h.kind === "champion").length;
   return (
     <div className="pb-10">
       <PhoneBar back={{ to: "/teams", label: "战队" }} title={team.name} />
@@ -41,8 +44,35 @@ export default function TeamPage() {
             </p>
           </div>
         </div>
+        <div className="mt-3 flex items-center gap-2">
+          <IntentLink
+            to={`/h2h?teamA=${team.slug}&teamB=${team.slug === 'wolves' ? 'ag' : 'wolves'}`}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-[12.5px] font-semibold text-ink-2 hover:border-accent hover:text-accent transition-colors"
+          >
+            <IconVs size={14} />
+            <span>与宿敌交手历史 (H2H)</span>
+          </IntentLink>
+        </div>
         {team.styleNotes && <p className="mt-3 rounded-card border border-line bg-surface px-4 py-3 text-[13px] leading-relaxed text-ink-2">{team.styleNotes}</p>}
       </header>
+
+      {honors.length > 0 && (
+        <section className="pt-7">
+          <h2 className="text-[15px] font-bold text-ink">
+            荣誉陈列室
+            {champions > 0 && <span className="ml-2 text-[12.5px] font-semibold text-amber">队史 {champions} 冠</span>}
+          </h2>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {honors.map((h, i) => (
+              <li key={i} className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12.5px] ${h.kind === "champion" ? "border-amber/40 bg-amber/10" : "border-line bg-surface"}`}>
+                <span aria-hidden>{HONOR_MEDAL[h.kind] ?? "🎖️"}</span>
+                <span className={`font-semibold ${h.kind === "champion" ? "text-ink" : "text-ink-2"}`}>{h.title ?? h.season ?? HONOR_LABEL[h.kind]}</span>
+                <span className="text-ink-4">{h.kind === "fmvp" ? (h.note ?? HONOR_LABEL[h.kind]) : HONOR_LABEL[h.kind]}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="pt-7">
         <h2 className="text-[15px] font-bold text-ink">现役阵容</h2>
@@ -88,14 +118,19 @@ export default function TeamPage() {
         </ul>
       </section>
 
-      {honors.length > 0 && (
+      {news.length > 0 && (
         <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">荣誉</h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {honors.map((h, i) => (
-              <li key={i} className="rounded-full border border-line bg-surface px-3 py-1.5 text-[12.5px] text-ink-2">
-                <span className="font-semibold text-ink">{HONOR_LABEL[h.kind] ?? h.kind}</span>
-                {h.season && <span className="text-ink-4"> · {h.season}</span>}
+          <h2 className="text-[15px] font-bold text-ink">战队相关动态</h2>
+          <ul className="mt-3 divide-y divide-line-soft overflow-hidden rounded-card border border-line bg-surface">
+            {news.map((n) => (
+              <li key={n.id}>
+                <IntentLink to={`/items/${n.id}`} className="block px-4 py-3 transition-colors hover:text-accent">
+                  <span className="flex items-baseline gap-2">
+                    <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{n.title}</span>
+                    {n.selected && <span className="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-[10.5px] font-semibold text-accent">精选</span>}
+                  </span>
+                  {n.summary && <span className="mt-1 line-clamp-2 block text-[12.5px] leading-relaxed text-ink-3">{n.summary}</span>}
+                </IntentLink>
               </li>
             ))}
           </ul>

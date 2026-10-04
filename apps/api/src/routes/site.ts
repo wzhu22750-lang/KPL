@@ -16,7 +16,7 @@ import { loadContact, loadMakerAvatar } from "@aihot/backend/site/contact";
 import { loadSiteStats } from "@aihot/backend/site/stats";
 import { itemAvailability } from "@aihot/backend/publication/availability";
 import { listTopicSummaries, loadTopicPage } from "@aihot/backend/publication/topics";
-import { listTeams, loadKbHome, loadMatchDetail, loadPlayerDetail, loadSchedule, loadTeamDetail } from "@aihot/backend/kb/read";
+import { listTeams, loadHeroDetail, loadHeroesList, loadH2H, loadKbHome, loadMatchDetail, loadPlayerDetail, loadSchedule, loadStandings, loadTeamDetail } from "@aihot/backend/kb/read";
 import { registerFeedback } from "./feedback.ts";
 import { loadHot, loadStoryDetail, resolveStory } from "@aihot/backend/publication/stories";
 import { listReports, loadReport, reportNavigation, loadReportNavigation, loadReportMonth, type ReportKind } from "@aihot/backend/publication/reports";
@@ -168,7 +168,7 @@ export function registerSite(app: FastifyInstance) {
 
   app.get("/api/site/kb/schedule", siteHandler(async (req, reply) => {
     const q = looseQuery(req);
-    const data = await loadSchedule({ season: q.season ?? null, team: q.team ?? null, upcoming: q.upcoming === "1", limit: Number(q.limit) || 40 });
+    const data = await loadSchedule({ season: q.season ?? null, team: q.team ?? null, upcoming: q.upcoming === "1", limit: Number(q.limit) || 150 });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-schedule", cacheControl: "public, max-age=30, s-maxage=30" });
   }));
 
@@ -182,6 +182,39 @@ export function registerSite(app: FastifyInstance) {
     const data = await loadPlayerDetail((req.params as { slug: string }).slug);
     if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "player not found", cacheControl: "public, max-age=60" });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-player", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  app.get("/api/site/kb/heroes", siteHandler(async (req, reply) => {
+    const q = looseQuery(req);
+    const data = await loadHeroesList({ season: q.season, pos: q.pos, sort: q.sort });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-heroes", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  app.get("/api/site/kb/heroes/:slug", siteHandler(async (req, reply) => {
+    const slug = (req.params as { slug: string }).slug;
+    const q = looseQuery(req);
+    const data = await loadHeroDetail(slug, { season: q.season });
+    if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "hero not found", cacheControl: "public, max-age=60" });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-hero", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  app.get("/api/site/kb/h2h", siteHandler(async (req, reply) => {
+    const q = looseQuery(req);
+    const teamA = q.teamA ?? q.team_a;
+    const teamB = q.teamB ?? q.team_b;
+    if (!teamA || !teamB) {
+      return sendProblem(req, reply, { status: 400, code: "invalid_request", detail: "teamA and teamB are required" });
+    }
+    const data = await loadH2H(teamA, teamB, q.season);
+    if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "teams not found", cacheControl: "public, max-age=60" });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-h2h", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  app.get("/api/site/kb/standings", siteHandler(async (req, reply) => {
+    const q = looseQuery(req);
+    const data = await loadStandings({ season: q.season, stage: q.stage });
+    if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "standings not found", cacheControl: "public, max-age=60" });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-standings", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
 
   registerFeedback(app);

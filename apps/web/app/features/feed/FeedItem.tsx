@@ -13,6 +13,7 @@ import { MediaThumbs, SourceLine, StarButton } from "./parts";
 import { GroupButton, GroupSources } from "./ReadingGroup";
 import { QuotedLine } from "../item/QuotedPost";
 import { rememberPreview } from "../item/preview";
+import { resolveEntityTag } from "../../lib/entity-links";
 
 export interface FeedItemProps {
   item: FeedItemSummary;
@@ -34,11 +35,14 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
   };
   const showSources = !!group && (group.additionalSourceCount > 0 || group.reportCount > 1);
   const tags = showTags ? item.tags.slice(0, 3) : [];
+  const entityTags = item.tags.map(resolveEntityTag).filter((e) => e.type === "team" || e.type === "player");
 
   return (
     <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
       <header className="flex min-h-[22px] items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
-        <SourceLine item={item} className="text-ink-4" />
+        <span className="inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
+          <SourceLine item={item} className="text-ink-2 font-medium" />
+        </span>
         {at && (
           <time dateTime={at} className="mono shrink-0 text-[12px] lg:hidden">
             · {beijingTime(at)}
@@ -112,8 +116,29 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
       )}
 
       {item.reason && (
-        <div className="mt-1 lg:mt-3 lg:border-t lg:border-line-soft lg:pt-3">
-          <p className="line-clamp-1 text-[13px] leading-[1.65] text-note lg:line-clamp-none lg:leading-[1.75]">推荐理由：{item.reason}</p>
+        <div className="relative z-10 mt-2.5 rounded-md bg-accent-soft/35 px-3 py-1.5 text-[12.5px] leading-relaxed text-ink-2 border border-accent/15">
+          <span className="font-semibold text-accent mr-1.5">入选理由:</span>
+          <span>{item.reason}</span>
+        </div>
+      )}
+
+      {/* 关联战队与选手实体标签 */}
+      {entityTags.length > 0 && (
+        <div className="relative z-10 mt-2 flex flex-wrap items-center gap-1.5">
+          {entityTags.map((et, i) => (
+            <Link
+              key={`${et.label}-${i}`}
+              to={et.to}
+              className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-medium transition ${
+                et.type === "team"
+                  ? "bg-amber/10 text-amber hover:bg-amber/20"
+                  : "bg-accent/10 text-accent hover:bg-accent/20"
+              }`}
+            >
+              <span>{et.type === "team" ? "🛡️" : "👤"}</span>
+              <span>{et.label}</span>
+            </Link>
+          ))}
         </div>
       )}
 

@@ -36,15 +36,17 @@ function BpLane({ game }: { game: MatchDetailResponse["games"][number] }) {
         <>
           <div className="flex flex-wrap gap-1">
             {side(s).filter((b) => b.type === "ban").map((b) => (
-              <span key={b.step} title={`${b.side === "blue" ? "蓝" : "红"}方禁用 · 第${b.step}步`} className="rounded-md bg-bg-sunk px-1.5 py-0.5 text-[11px] text-ink-4 line-through">{b.hero.name}</span>
+              <IntentLink key={b.step} to={`/heroes/${b.hero.id || encodeURIComponent(b.hero.name)}`} title={`${b.side === "blue" ? "蓝" : "红"}方禁用 · 第${b.step}步`} className="rounded-md bg-bg-sunk px-1.5 py-0.5 text-[11px] text-ink-4 line-through hover:text-ink">
+                {b.hero.name}
+              </IntentLink>
             ))}
           </div>
           <div className="mt-1.5 flex flex-wrap gap-1">
             {side(s).filter((b) => b.type === "pick").map((b) => (
-              <span key={b.step} title={`${b.side === "blue" ? "蓝" : "红"}方选用${b.player ? ` · ${b.player}` : ""} · 第${b.step}步`} className="rounded-md border border-line-soft bg-surface px-1.5 py-0.5 text-[11.5px] font-medium text-ink">
+              <IntentLink key={b.step} to={`/heroes/${b.hero.id || encodeURIComponent(b.hero.name)}`} title={`${b.side === "blue" ? "蓝" : "红"}方选用${b.player ? ` · ${b.player}` : ""} · 第${b.step}步`} className="rounded-md border border-line-soft bg-surface px-1.5 py-0.5 text-[11.5px] font-medium text-ink hover:border-accent hover:text-accent">
                 {b.hero.name}
                 {b.player && <span className="ml-1 text-[10px] font-normal text-ink-4">{b.player}</span>}
-              </span>
+              </IntentLink>
             ))}
           </div>
         </>
@@ -82,7 +84,27 @@ function PlayersTable({ game }: { game: MatchDetailResponse["games"][number] }) 
                 {p.nickname}
                 {p.mvp && <span className="ml-1 rounded bg-amber/15 px-1 text-[10px] font-bold text-amber">MVP</span>}
               </td>
-              <td className="py-1.5 pr-2 text-ink-3">{p.hero ?? "—"}</td>
+              <td className="py-1.5 pr-2 text-ink-3">
+                {p.hero ? (
+                  <IntentLink
+                    to={`/heroes/${encodeURIComponent(p.hero)}`}
+                    className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+                  >
+                    {p.heroIcon && (
+                      <img
+                        src={p.heroIcon}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="size-5 rounded object-cover"
+                      />
+                    )}
+                    <span>{p.hero}</span>
+                  </IntentLink>
+                ) : (
+                  "—"
+                )}
+              </td>
               <td className="py-1.5 pr-2 text-right tabular-nums text-ink-2">{p.kills ?? "-"}/{p.deaths ?? "-"}/{p.assists ?? "-"}</td>
               <td className="py-1.5 pr-2 text-right tabular-nums text-ink-3">{fmtGold(p.gold)}</td>
               <td className="py-1.5 pr-2 text-right tabular-nums text-ink-3">{p.damage != null ? fmtGold(p.damage) : "—"}</td>
@@ -96,7 +118,7 @@ function PlayersTable({ game }: { game: MatchDetailResponse["games"][number] }) 
 }
 
 export default function MatchPage() {
-  const { match, blue, red, games } = useLoaderData<typeof loader>();
+  const { match, blue, red, games, videos = [] } = useLoaderData<typeof loader>();
   return (
     <div className="pb-10">
       <PhoneBar back={{ to: "/matches", label: "赛程" }} title={`${match.home.name} vs ${match.away.name}`} />
@@ -115,6 +137,44 @@ export default function MatchPage() {
         </div>
         {match.winner && <p className="mt-2 text-center text-[12.5px] text-ink-3">{(match.winner === blue.slug ? blue : red).name} 获胜</p>}
       </header>
+
+      {/* 官方高清回放 */}
+      {videos.length > 0 && (
+        <section className="mt-6 rounded-card border border-line bg-surface p-4 shadow-sm">
+          <div className="flex items-center justify-between border-b border-line-soft pb-2.5">
+            <div className="flex items-center gap-2">
+              <span className="flex size-6 items-center justify-center rounded-full bg-accent/15 text-accent text-[12px] font-bold">
+                ▶
+              </span>
+              <h2 className="text-[14.5px] font-bold text-ink">官方高清比赛回放</h2>
+            </div>
+            <span className="text-[12px] text-ink-4">共 {videos.length} 局视频</span>
+          </div>
+          <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {videos.map((v, idx) => (
+              <a
+                key={`${v.url}-${idx}`}
+                href={v.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-control border border-line-soft bg-bg-sunk/60 px-3.5 py-2.5 transition hover:border-accent hover:bg-surface"
+              >
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded bg-accent/10 text-[12px] font-bold text-accent">
+                    G{v.battleSeq}
+                  </span>
+                  <span className="truncate text-[13px] font-medium text-ink group-hover:text-accent">
+                    {v.title || `第 ${v.battleSeq} 局官方回放`}
+                  </span>
+                </div>
+                <span className="shrink-0 text-[11.5px] font-medium text-ink-4 group-hover:text-accent">
+                  直达 ↗
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="pt-7">
         <h2 className="text-[15px] font-bold text-ink">每局详情</h2>
