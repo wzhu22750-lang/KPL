@@ -23,3 +23,8 @@ __pycache__/
 discovered_urls.json
 *.log
 
+# Agent & Teamwork artifacts
+.agents/
+ORIGINAL_REQUEST.md
+PROJECT.md
+
