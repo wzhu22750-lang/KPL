@@ -11,6 +11,7 @@ export default [
   route("heroes/:slug", "routes/hero.tsx", { id: "hero" }),
   route("h2h", "routes/h2h.tsx"),
   route("standings", "routes/standings.tsx"),
+  route("ask", "routes/ask.tsx"),
   route("matches", "routes/matches.tsx"),
   route("matches/:id", "routes/match.tsx", { id: "match" }),
   route("players/:slug", "routes/player.tsx"),

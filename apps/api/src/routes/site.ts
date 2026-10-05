@@ -23,6 +23,7 @@ import { listReports, loadReport, reportNavigation, loadReportNavigation, loadRe
 import { loadSiteCodexResetPage, loadSiteCodexResetDay } from "@aihot/backend/publication/monitor";
 import { codexResetVersion } from "@aihot/backend/monitor/read";
 import { cached } from "@aihot/backend/lib/cache";
+import { qaStreamEvents } from "@aihot/backend/qa/stream";
 import { looseQuery, sendJsonWithEtag, sendProblem } from "../http/respond.ts";
 
 type Handler = (req: FastifyRequest, reply: FastifyReply) => Promise<unknown>;
@@ -66,6 +67,25 @@ export function registerSite(app: FastifyInstance) {
   app.get("/api/site/meta", siteHandler(async (req, reply) => {
     return sendJsonWithEtag(req, reply, siteMeta(), { etagPrefix: "meta", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
+
+  // AI 问答（阶段 4.5）：SSE 流式输出。事件序列 meta → delta* → citation → done；限流/校验失败以 error 开始。
+  app.post("/api/site/qa/stream", async (req, reply) => {
+    const body = (req.body ?? {}) as { question?: unknown };
+    const question = typeof body.question === "string" ? body.question : "";
+    const events = await qaStreamEvents(question, req.ip);
+    const first = events[0];
+    reply.hijack();
+    reply.raw.writeHead(first?.status ?? 200, {
+      "content-type": "text/event-stream; charset=utf-8",
+      "cache-control": "no-cache",
+      connection: "keep-alive",
+      "x-accel-buffering": "no",
+    });
+    for (const e of events) {
+      reply.raw.write("event: " + e.event + "\ndata: " + JSON.stringify(e.data ?? {}) + "\n\n");
+    }
+    reply.raw.end();
+  });
 
   if (FEATURES.codexResetMonitor) registerCodexReset(app);
 

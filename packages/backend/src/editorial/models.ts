@@ -27,6 +27,8 @@ export const CAPABILITIES = {
   report: { label: "周报、月报的总述与主题（日报由规则算出，不用模型）", env: "REPORT_MODEL", default: "default", purposes: ["report_weekly", "report_monthly", "report_lead", "report_daily"] },
   translate: { label: "精选全文翻译（含引用帖）", env: "TRANSLATE_MODEL", default: "default", purposes: ["translate_body", "translate_quoted"] },
   monitor: { label: "Codex 重置公告识别", env: "MONITOR_MODEL", default: "default", purposes: ["monitor.recognize", "monitor.context"] },
+  qaUnderstand: { label: "AI 问答意图理解（问题 → 结构化检索意图）", env: "QA_UNDERSTAND_MODEL", default: "default", purposes: ["qa_understand"] },
+  qaAnswer: { label: "AI 问答生成（依据检索材料作答，含数据卡片）", env: "QA_ANSWER_MODEL", default: "default", purposes: ["qa_answer"] },
 } satisfies Record<string, Capability>;
 
 export type CapabilityKey = keyof typeof CAPABILITIES;
