@@ -1,0 +1,99 @@
+# 数据库在 .env 的 DATABASE_URL 里配置（Supabase 或其他 PostgreSQL，见 .env.example）。
+# docker compose up -d --build     → http://localhost:3000   (the admin is at /admin)
+# docker compose --profile https up -d --build   → HTTPS for SITE_DOMAIN through Caddy
+# 本机跑测试用的数据库（tests 要建库，Supabase 不允许）：docker compose --profile local-db up -d --wait db
+name: kpl-intelligence
+
+x-app: &app
+  build: .
+  image: kpl-intelligence-app
+  env_file: .env
+  restart: unless-stopped
+  environment: &app-env
+    NODE_ENV: production
+    AIHOT_DATA_DIR: /data
+    API_BASE_URL: http://api:3001
+    LOCAL_ROUTER_URL: http://web:3000
+  volumes:
+    - data:/data
+
+services:
+  # Applies the database migrations and seeds the sources + KPL entity seeds, then exits.
+  setup:
+    <<: *app
+    restart: "no"
+    command: ["sh", "-c", "node scripts/migrate.ts && node scripts/seed.ts && node scripts/seed-kpl.ts"]
+
+  api:
+    <<: *app
+    command: ["node", "apps/api/src/main.ts"]
+    environment:
+      <<: *app-env
+      API_HOST: 0.0.0.0
+      API_PORT: "3001"
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+
+  worker:
+    <<: *app
+    command: ["node", "apps/worker/src/main.ts"]
+    # On stop the worker lets a paid call in flight finish (STOP_TIMEOUT_MS, 195 s); Docker's default
+    # 10 s would kill it mid-call and leave "outcome unknown" receipts that are paid for again.
+    stop_grace_period: 210s
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+
+  web:
+    <<: *app
+    command: ["node", "apps/web/server.ts"]
+    environment:
+      <<: *app-env
+      WEB_HOST: 0.0.0.0
+      WEB_PORT: "3000"
+    ports:
+      - "${PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_started
+
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["https"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:-localhost}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy:/data
+    depends_on:
+      - web
+
+  # Local PostgreSQL 17 with pgvector for the test suite (KPL 检索块用 HNSW 向量索引，见迁移 0055)，
+  # listening on the loopback interface only and open to any user (trust) so the test commands in
+  # AGENTS.md work without a password.
+  db:
+    profiles: ["local-db"]
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    ports:
+      # 本机 5432 被占时换一个：LOCAL_DB_PORT=15432 docker compose --profile local-db up -d db
+      - "${LOCAL_DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  db: {}
+  data: {}
+  caddy: {}

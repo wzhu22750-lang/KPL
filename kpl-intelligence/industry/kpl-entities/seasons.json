@@ -1,0 +1,58 @@
+[
+  {
+    "id": "kpl-2026-spring",
+    "name": "2026年KPL春季赛",
+    "year": 2026,
+    "split": "spring",
+    "external_id": "20260001"
+  },
+  {
+    "id": "kpl-2026-summer",
+    "name": "2026年KPL夏季赛",
+    "year": 2026,
+    "split": "summer",
+    "external_id": "20260002"
+  },
+  {
+    "id": "kpl-2025-spring",
+    "name": "2025年KPL春季赛",
+    "year": 2025,
+    "split": "spring",
+    "external_id": "20250001"
+  },
+  {
+    "id": "kpl-2025-summer",
+    "name": "2025年KPL夏季赛",
+    "year": 2025,
+    "split": "summer",
+    "external_id": "20250002"
+  },
+  {
+    "id": "kpl-2024-spring",
+    "name": "2024年KPL春季赛",
+    "year": 2024,
+    "split": "spring",
+    "external_id": "20240001"
+  },
+  {
+    "id": "kpl-2024-summer",
+    "name": "2024年KPL夏季赛",
+    "year": 2024,
+    "split": "summer",
+    "external_id": "20240002"
+  },
+  {
+    "id": "kpl-2023-spring",
+    "name": "2023年KPL春季赛",
+    "year": 2023,
+    "split": "spring",
+    "external_id": "20230001"
+  },
+  {
+    "id": "kpl-2023-summer",
+    "name": "2023年KPL夏季赛",
+    "year": 2023,
+    "split": "summer",
+    "external_id": "20230002"
+  }
+]

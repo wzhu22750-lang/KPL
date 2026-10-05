@@ -1,0 +1,399 @@
+{
+  "groups": [
+    {
+      "key": "company",
+      "name": "战队与联盟",
+      "blurb": "按战队与联盟追踪赛果、阵容与俱乐部动态"
+    },
+    {
+      "key": "field",
+      "name": "赛事与领域",
+      "blurb": "按赛事阶段与领域深挖：世冠、季后赛、版本环境……"
+    },
+    {
+      "key": "genre",
+      "name": "内容形态",
+      "blurb": "按内容类型浏览：赛果、转会、版本、战术、观点……"
+    }
+  ],
+  "topics": [
+    {
+      "slug": "kpl",
+      "name": "KPL 联盟",
+      "group": "company",
+      "entityId": "kpl",
+      "orgNames": [
+        "KPL联盟",
+        "王者荣耀职业联赛"
+      ],
+      "aliases": [
+        "KPL",
+        "王者荣耀职业联赛"
+      ],
+      "definition": "KPL 联盟与王者荣耀职业联赛的整体动态：赛制与赛程安排、联盟公告、版权与商务合作、赛事体系演变。"
+    },
+    {
+      "slug": "ag",
+      "name": "成都AG超玩会",
+      "group": "company",
+      "entityId": "ag",
+      "orgNames": [
+        "成都AG超玩会"
+      ],
+      "definition": "成都AG超玩会的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "AG超玩会",
+        "成都AG"
+      ]
+    },
+    {
+      "slug": "wolves",
+      "name": "重庆狼队",
+      "group": "company",
+      "entityId": "wolves",
+      "orgNames": [
+        "重庆狼队"
+      ],
+      "definition": "重庆狼队的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "重庆狼队",
+        "QGhappy"
+      ]
+    },
+    {
+      "slug": "estar",
+      "name": "武汉eStarPro",
+      "group": "company",
+      "entityId": "estar",
+      "orgNames": [
+        "武汉eStarPro"
+      ],
+      "definition": "武汉eStarPro 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "eStarPro",
+        "武汉eStar"
+      ]
+    },
+    {
+      "slug": "wb",
+      "name": "北京WB",
+      "group": "company",
+      "entityId": "wb",
+      "orgNames": [
+        "北京WB"
+      ],
+      "definition": "北京WB 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "WB战队"
+      ]
+    },
+    {
+      "slug": "dyg",
+      "name": "深圳DYG",
+      "group": "company",
+      "entityId": "dyg",
+      "orgNames": [
+        "深圳DYG"
+      ],
+      "definition": "深圳DYG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "DYG战队"
+      ]
+    },
+    {
+      "slug": "jdg",
+      "name": "北京JDG",
+      "group": "company",
+      "entityId": "jdg",
+      "orgNames": [
+        "北京JDG"
+      ],
+      "definition": "北京JDG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "JDG王者荣耀"
+      ]
+    },
+    {
+      "slug": "tes-a",
+      "name": "长沙TES.A",
+      "group": "company",
+      "entityId": "tes-a",
+      "orgNames": [
+        "长沙TES.A"
+      ],
+      "definition": "长沙TES.A 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "TES.A",
+        "滔搏"
+      ]
+    },
+    {
+      "slug": "ttg",
+      "name": "广州TTG",
+      "group": "company",
+      "entityId": "ttg",
+      "orgNames": [
+        "广州TTG"
+      ],
+      "definition": "广州TTG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "TTG战队"
+      ]
+    },
+    {
+      "slug": "drg",
+      "name": "佛山DRG",
+      "group": "company",
+      "entityId": "drg",
+      "orgNames": [
+        "佛山DRG"
+      ],
+      "definition": "佛山DRG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "DRG.GK"
+      ]
+    },
+    {
+      "slug": "hero",
+      "name": "南通Hero久竞",
+      "group": "company",
+      "entityId": "hero",
+      "orgNames": [
+        "南通Hero久竞"
+      ],
+      "definition": "南通Hero久竞 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "Hero久竞"
+      ]
+    },
+    {
+      "slug": "rw",
+      "name": "济南RW侠",
+      "group": "company",
+      "entityId": "rw",
+      "orgNames": [
+        "济南RW侠"
+      ],
+      "definition": "济南RW侠 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "RW侠"
+      ]
+    },
+    {
+      "slug": "we",
+      "name": "西安WE",
+      "group": "company",
+      "entityId": "we",
+      "orgNames": [
+        "西安WE"
+      ],
+      "definition": "西安WE 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "WE战队"
+      ]
+    },
+    {
+      "slug": "edgm",
+      "name": "上海EDG.M",
+      "group": "company",
+      "entityId": "edgm",
+      "orgNames": [
+        "上海EDG.M"
+      ],
+      "definition": "上海EDG.M 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "EDG.M"
+      ]
+    },
+    {
+      "slug": "rngm",
+      "name": "上海RNG.M",
+      "group": "company",
+      "entityId": "rngm",
+      "orgNames": [
+        "上海RNG.M"
+      ],
+      "definition": "上海RNG.M 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "RNG.M"
+      ]
+    },
+    {
+      "slug": "lgd-nbw",
+      "name": "杭州LGD.NBW",
+      "group": "company",
+      "entityId": "lgd-nbw",
+      "orgNames": [
+        "杭州LGD.NBW"
+      ],
+      "definition": "杭州LGD.NBW 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "LGD.NBW"
+      ]
+    },
+    {
+      "slug": "ksg",
+      "name": "苏州KSG",
+      "group": "company",
+      "entityId": "ksg",
+      "orgNames": [
+        "苏州KSG"
+      ],
+      "definition": "苏州KSG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "KSG战队"
+      ]
+    },
+    {
+      "slug": "qingjiu",
+      "name": "桐乡情久",
+      "group": "company",
+      "entityId": "qingjiu",
+      "orgNames": [
+        "桐乡情久"
+      ],
+      "definition": "桐乡情久的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。",
+      "aliases": [
+        "情久"
+      ]
+    },
+    {
+      "slug": "tcg",
+      "name": "无锡TCG",
+      "group": "company",
+      "entityId": "tcg",
+      "orgNames": [
+        "无锡TCG"
+      ],
+      "definition": "无锡TCG 的全部动态：赛果战绩、阵容变化、选手表现与俱乐部动态的持续追踪。"
+    },
+    {
+      "slug": "world-champion-cup",
+      "name": "世界冠军杯",
+      "group": "field",
+      "tags": [
+        "世界冠军杯"
+      ],
+      "chronicleTerms": [
+        "世界冠军杯",
+        "世冠",
+        "KCC",
+        "世冠杯"
+      ],
+      "definition": "王者荣耀世界冠军杯（KCC）：国际赛区对抗、选拔与正赛进程、中国战队在外战中的表现。"
+    },
+    {
+      "slug": "challenger-cup",
+      "name": "挑战者杯",
+      "group": "field",
+      "tags": [
+        "挑战者杯"
+      ],
+      "chronicleTerms": [
+        "挑战者杯",
+        "KGL",
+        "次级联赛",
+        "升降级"
+      ],
+      "definition": "KPL 挑战者杯与次级联赛体系：升降级、挑战者队伍的表现与 KPL 席位的流动。"
+    },
+    {
+      "slug": "playoffs",
+      "name": "季后赛与总决赛",
+      "group": "field",
+      "tags": [
+        "季后赛"
+      ],
+      "chronicleTerms": [
+        "季后赛",
+        "总决赛",
+        "决赛",
+        "胜者组",
+        "败者组",
+        "巅峰对决"
+      ],
+      "definition": "季后赛与总决赛的席位争夺、对阵形势、晋级前景与冠军归属。"
+    },
+    {
+      "slug": "meta",
+      "name": "版本环境",
+      "group": "field",
+      "tags": [
+        "版本环境"
+      ],
+      "chronicleTerms": [
+        "版本",
+        "强度",
+        "梯度",
+        "削弱",
+        "增强",
+        "重做",
+        "环境"
+      ],
+      "definition": "赛场版本环境：英雄强度变化、BP 梯队演变、版本答案与战术适应。"
+    },
+    {
+      "slug": "youth",
+      "name": "青训体系",
+      "group": "field",
+      "tags": [
+        "青训"
+      ],
+      "chronicleTerms": [
+        "青训",
+        "青训营",
+        "新人",
+        "选秀",
+        "梯队"
+      ],
+      "definition": "KPL 青训与人才梯队：青训营、新秀选手的成长路径与俱乐部梯队建设。"
+    },
+    {
+      "slug": "results",
+      "name": "赛果与战报",
+      "group": "genre",
+      "tags": [
+        "赛果战报"
+      ],
+      "definition": "每一场比赛的结果与战报：比分、关键对局、赛后数据与当日赛程汇总。"
+    },
+    {
+      "slug": "transfers",
+      "name": "阵容与转会",
+      "group": "genre",
+      "tags": [
+        "阵容转会"
+      ],
+      "definition": "选手转会、大名单、教练组变动与退役复出的全部动态。"
+    },
+    {
+      "slug": "patches",
+      "name": "版本更新",
+      "group": "genre",
+      "tags": [
+        "版本更新"
+      ],
+      "definition": "游戏版本改动：英雄调整、装备与机制变化，以及它们对赛场的影响。"
+    },
+    {
+      "slug": "tactics",
+      "name": "战术复盘",
+      "group": "genre",
+      "tags": [
+        "战术复盘",
+        "攻略教学"
+      ],
+      "definition": "以对局为素材的战术分析：BP 解读、体系拆解、英雄克制与运营复盘。"
+    },
+    {
+      "slug": "views",
+      "name": "观点与访谈",
+      "group": "genre",
+      "tags": [
+        "观点评论",
+        "采访人物"
+      ],
+      "definition": "解说、选手、教练与评论员的判断、预测和访谈观点。"
+    }
+  ]
+}

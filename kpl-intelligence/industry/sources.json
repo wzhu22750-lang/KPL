@@ -1,0 +1,365 @@
+{
+  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖，之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型，Phase 3 启用）；新闻类信源按下面格式在后台逐个添加并先用“预览抓取”验证。字段说明见 docs/customize.md 与 docs/sources.md。",
+  "sources": [
+    {
+      "id": "mp-kpl-official",
+      "name": "KPL王者荣耀职业联赛（官方公众号）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_49991182cd21",
+        "nickname": "KPL王者荣耀职业联赛"
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": [
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-hok-official",
+      "name": "王者荣耀（官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://王者荣耀",
+        "summaryIsBody": false
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "bili-kpl-official",
+      "name": "哔哩哔哩王者荣耀赛事（B站官方账号）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=哔哩哔哩王者荣耀赛事&order=pubdate&page=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://www.bilibili.com/"
+        },
+        "itemsPath": "data.result",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description",
+          "tag"
+        ],
+        "summaryIsBody": true,
+        "authorPaths": [
+          "author"
+        ],
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "publisherRole": "organization",
+        "sortByPublishedAt": true
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": [
+        "官方",
+        "B站"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "esports-annual-2026",
+      "name": "KPL 2026 年度总决赛（官方赛事数据）",
+      "kind": "esports_api",
+      "config": {
+        "leagueId": "20260004",
+        "battlesPerRun": 12
+      },
+      "tier": "T1",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "官方",
+        "赛事数据"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "bili-kpl-community",
+      "name": "B站 KPL 社区讨论（关键词）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=KPL&order=pubdate&page=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://www.bilibili.com/"
+        },
+        "itemsPath": "data.result",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description",
+          "tag"
+        ],
+        "summaryIsBody": true,
+        "authorPaths": [
+          "author"
+        ],
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "sortByPublishedAt": true,
+        "ingestNoiseFilter": {
+          "keepIfMatches": [
+            "复盘", "深度", "战术", "赛后", "分析", "bp", "评分", "打法", "教学", "转会", "大名单", "纪录片", "专访", "体系"
+          ],
+          "dropMarkersTitleOnly": [
+            "红包", "抽奖", "福利", "领奖", "门票", "cos", "配音", "日常", "集锦", "搞笑", "整活", "饭圈"
+          ]
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": [
+        "社区",
+        "B站"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-ag",
+      "name": "成都AG超玩会（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://成都AG超玩会",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "ag",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "AG",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-wolves",
+      "name": "重庆狼队（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://重庆狼队",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "wolves",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "狼队",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-estar",
+      "name": "武汉eStarPro（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://武汉eStarPro",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "estar",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "eStar",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-wb",
+      "name": "北京WB（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://北京WB王者荣耀分部",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "wb",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "WB",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-hero",
+      "name": "南京Hero久竞（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://南京Hero久竞俱乐部",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "hero",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "Hero",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-ttg",
+      "name": "广州TTG（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://广州TTG",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "ttg",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "TTG",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-ksg",
+      "name": "苏州KSG（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://苏州KSG",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "ksg",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "KSG",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-drg",
+      "name": "佛山DRG（俱乐部官方公众号）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://佛山DRG电子竞技俱乐部",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "drg",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "DRG",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "hupu-kog",
+      "name": "虎扑 王者荣耀版（KPL 讨论）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://bbs.hupu.com/kog-postdate",
+        "mode": "html_window_var",
+        "windowVar": "$$data",
+        "itemsPath": "topic.threads.list",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://bbs.hupu.com{raw:url}",
+        "authorPaths": [
+          "author.puname"
+        ],
+        "publishedAtPath": "createdAt",
+        "publishedAtUnit": "epoch_ms",
+        "externalIdPath": "tid",
+        "sortByPublishedAt": true,
+        "ingestNoiseFilter": {
+          "dropMarkersTitleOnly": [
+            "合成康平路"
+          ]
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "社区",
+        "虎扑"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    }
+  ]
+}

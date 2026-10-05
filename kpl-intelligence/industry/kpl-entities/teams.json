@@ -1,0 +1,344 @@
+[
+  {
+    "id": "estar",
+    "name": "武汉eStarPro",
+    "short_name": "ES",
+    "external_id": "10006",
+    "logo_url": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "jdg",
+    "name": "北京JDG",
+    "short_name": "JDG",
+    "external_id": "10020",
+    "logo_url": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "dyg",
+    "name": "深圳DYG",
+    "short_name": "DYG",
+    "external_id": "10008",
+    "logo_url": "https://smhtv-pic.tga.qq.com/221a9ffe2de016e02e146465ed57ce73.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "wolves",
+    "name": "重庆狼队",
+    "short_name": "狼队",
+    "external_id": "10001",
+    "logo_url": "https://smhtv-pic.tga.qq.com/a85f1428dd1ef3eaeeb5e203f17b9b25.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "wb",
+    "name": "北京WB",
+    "short_name": "WB",
+    "external_id": "10003",
+    "logo_url": "https://smhtv-pic.tga.qq.com/75b41b2357febfa17764f8bc1f423d2c.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "ag",
+    "name": "成都AG超玩会",
+    "short_name": "AG",
+    "external_id": "10027",
+    "logo_url": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "qingjiu",
+    "name": "桐乡情久",
+    "short_name": "情久",
+    "external_id": "10903",
+    "logo_url": "https://smhtv-pic.tga.qq.com/f4fc888e840157eaa4bc7b261f71e835.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "tes-a",
+    "name": "长沙TES.A",
+    "short_name": "TES.A",
+    "external_id": "10028",
+    "logo_url": "https://smhtv-pic.tga.qq.com/48f18204fa257197ec49bb6345d14a33.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "hero",
+    "name": "南通Hero久竞",
+    "short_name": "Hero",
+    "external_id": "10007",
+    "logo_url": "https://smhtv-pic.tga.qq.com/85b4fe06e4a722bd5435676bd9ff1384.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "ttg",
+    "name": "广州TTG",
+    "short_name": "TTG",
+    "external_id": "10017",
+    "logo_url": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "drg",
+    "name": "佛山DRG",
+    "short_name": "DRG",
+    "external_id": "10016",
+    "logo_url": "https://smhtv-pic.tga.qq.com/ce1bd06e864b727f98676ef12a956e9f.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "ksg",
+    "name": "KSG",
+    "short_name": "KSG",
+    "external_id": "10005",
+    "logo_url": "https://smobatv-pic.tga.qq.com/e7f3ca48aa29a89c5cf7e04d7f83534f.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "rw",
+    "name": "济南RW侠",
+    "short_name": "RW侠",
+    "external_id": "10018",
+    "logo_url": "https://smobatv-pic.tga.qq.com/11ba263f0d5d6fd422c4efb14df3ad62.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "we",
+    "name": "西安WE",
+    "short_name": "WE",
+    "external_id": "10010",
+    "logo_url": "https://smhtv-pic.tga.qq.com/e4fa78585a052b912d092287814c779b.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "rngm",
+    "name": "上海RNG.M",
+    "short_name": "RNG.M",
+    "external_id": "10009",
+    "logo_url": "https://smhtv-pic.tga.qq.com/c2dfe93f6e1cabb13512d3fb42d94051.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "lgd-nbw",
+    "name": "杭州LGD.NBW",
+    "short_name": "LGD",
+    "external_id": "10031",
+    "logo_url": "https://smhtv-pic.tga.qq.com/a29bcb1a579369888cc9a87637274822.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "tcg",
+    "name": "无锡TCG",
+    "short_name": "TCG",
+    "external_id": "10601",
+    "logo_url": "https://smhtv-pic.tga.qq.com/b271c7d4e606561873604b2f58bcac7d.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "edgm",
+    "name": "上海EDG.M",
+    "short_name": "EDG.M",
+    "external_id": "10002",
+    "logo_url": "https://smhtv-pic.tga.qq.com/7209fb2509e991052852dd872981c8f3.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12401",
+    "name": "青训潜渊",
+    "short_name": "青训潜渊",
+    "external_id": "12401",
+    "logo_url": "https://smobatv-pic.tga.qq.com/ec90dbb1920060e848bbc745a39e8647.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12402",
+    "name": "重庆科技大学",
+    "short_name": "重庆科技大学",
+    "external_id": "12402",
+    "logo_url": "https://smobatv-pic.tga.qq.com/bc8e1e29f9fdf24468d9f8a87fd7047f.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t10910",
+    "name": "WST",
+    "short_name": "WST",
+    "external_id": "10910",
+    "logo_url": "https://smobatv-pic.tga.qq.com/819cba4c185dbb7dd75a1827058043bb.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12403",
+    "name": "阿里巴巴PKQ",
+    "short_name": "阿里巴巴PKQ",
+    "external_id": "12403",
+    "logo_url": "https://smobatv-pic.tga.qq.com/bae16422b3e9148dc176bb857cf7de03.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12202",
+    "name": "SYG",
+    "short_name": "SYG",
+    "external_id": "12202",
+    "logo_url": "https://smhtv-pic.tga.qq.com/753411b495321ea83711fe63cfc8d347.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12404",
+    "name": "ZDC",
+    "short_name": "ZDC",
+    "external_id": "12404",
+    "logo_url": "https://smobatv-pic.tga.qq.com/9ae79e891ce036c058a746e6b1067619.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12405",
+    "name": "GKE",
+    "short_name": "GKE",
+    "external_id": "12405",
+    "logo_url": "https://smobatv-pic.tga.qq.com/ead9f779314e86fd655016e26745085a.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t10905",
+    "name": "LTG",
+    "short_name": "LTG",
+    "external_id": "10905",
+    "logo_url": "https://smobatv-pic.tga.qq.com/9382249350922f6c8424079d4bf46071.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12408",
+    "name": "BTR",
+    "short_name": "BTR",
+    "external_id": "12408",
+    "logo_url": "https://smobatv-pic.tga.qq.com/8b1986ae9789a75bb1fec25b23f807ff.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12410",
+    "name": "好厚米",
+    "short_name": "好厚米",
+    "external_id": "12410",
+    "logo_url": "https://smobatv-pic.tga.qq.com/514be0f3714547d1ab67b341bc259fda.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12406",
+    "name": "ZJQ",
+    "short_name": "ZJQ",
+    "external_id": "12406",
+    "logo_url": "https://smobatv-pic.tga.qq.com/8e755c6d8da069e0f70232d739ba7031.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12407",
+    "name": "BOOM",
+    "short_name": "BOOM",
+    "external_id": "12407",
+    "logo_url": "https://smobatv-pic.tga.qq.com/6ab31e86bb8d8db904518bd05d942f8d.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12409",
+    "name": "吵一吵",
+    "short_name": "吵一吵",
+    "external_id": "12409",
+    "logo_url": "https://smobatv-pic.tga.qq.com/d5959e2de10277b88612d4b2f1677b0a.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t12411",
+    "name": "WG",
+    "short_name": "WG",
+    "external_id": "12411",
+    "logo_url": "https://smobatv-pic.tga.qq.com/a4bb4c6a8d9d0c700e690499e99cfe28.png",
+    "is_active": true,
+    "sort_weight": 100
+  },
+  {
+    "id": "t10901",
+    "name": "深圳KLG",
+    "short_name": "深圳KLG",
+    "external_id": "10901",
+    "logo_url": "https://smobatv-pic.tga.qq.com/dba16aac0294d0dd20ac9009286b8b18.png",
+    "is_active": false,
+    "sort_weight": 0
+  },
+  {
+    "id": "t10101",
+    "name": "常山UUG",
+    "short_name": "",
+    "external_id": "10101",
+    "logo_url": "https://smhtv-pic.tga.qq.com/8760d206af825634b6c443afd4f86a4d.png",
+    "is_active": false,
+    "sort_weight": 0
+  },
+  {
+    "id": "t10036",
+    "name": "XYG",
+    "short_name": "XYG",
+    "external_id": "10036",
+    "logo_url": "https://smobatv-pic.tga.qq.com/aef5e7f12fe208ca436a1b8ca67b69e5.png",
+    "is_active": false,
+    "sort_weight": 0
+  },
+  {
+    "id": "t10302",
+    "name": "BOA",
+    "short_name": "BOA",
+    "external_id": "10302",
+    "logo_url": "https://smobatv-pic.tga.qq.com/461214af0a55ddb1a3e54745f0707364.png",
+    "is_active": false,
+    "sort_weight": 0
+  },
+  {
+    "id": "t10602",
+    "name": "九江TKL",
+    "short_name": "九江TKL",
+    "external_id": "10602",
+    "logo_url": "https://smhtv-pic.tga.qq.com/b4c549dbc8e40f0c400009a2756a2b2a.png",
+    "is_active": false,
+    "sort_weight": 0
+  },
+  {
+    "id": "t10032",
+    "name": "郑州MTG",
+    "short_name": "MTG",
+    "external_id": "10032",
+    "logo_url": "https://smobatv-pic.tga.qq.com/0c39e26b47211f4998fde453f9ba553c.png",
+    "is_active": false,
+    "sort_weight": 0
+  }
+]
