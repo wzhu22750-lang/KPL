@@ -2,7 +2,10 @@
 // through carry-forward; a missing public category replaces a complete run; CSV blanks become zero.
 import './setup.ts';
 import assert from 'node:assert/strict';
-import { after, beforeEach, test } from 'node:test';
+import { after, beforeEach, test as baseTest } from 'node:test';
+import { FEATURES } from '@aihot/industry/features';
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { MockAgent, getGlobalDispatcher, setGlobalDispatcher } from 'undici';
 import { sql, closeDb } from '@aihot/backend/db';
 import { config } from '@aihot/backend/config';

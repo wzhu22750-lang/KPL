@@ -12,16 +12,16 @@ const sourceId = `analysis-consistency-${tag()}`;
 let hold: { entered: ReturnType<typeof gate<void>>; release: ReturnType<typeof gate<void>> } | null = null;
 const provider = await stub(async (_hit, request) => {
   const system = String(JSON.parse(request.body).messages[0]?.content ?? "");
-  const prefilter = system.includes("宽召回的AI相关性预筛");
+  const prefilter = system.includes("宽召回");
   if (prefilter && hold) {
     const waiting = hold;
     waiting.entered.open();
     await waiting.release.promise;
   }
   const content = prefilter ? { label: "PASS", reason: "local fixture" }
-    : system.includes("事件注意力评分器") ? { attentionScore: 80 }
-    : system.includes("资料结构化助手") ? { category: "ai-models", tags: [], subjects: [], scope: "single", fact: null }
-    : { itemType: "model_release", authorRole: "principal", tags: ["模型发布"], editorialJudgment: "模型能力提升", titleZh: "实验室发布新模型", summaryZh: "实验室发布新模型，并公布了评测结果与价格。" };
+    : system.includes("评分器") ? { attentionScore: 80 }
+    : system.includes("资料结构化助手") ? { category: "match-result", tags: [], subjects: [], scope: "single", fact: null }
+    : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: "战队拿下比赛", summaryZh: "战队在决赛中表现出色，顺利拿下比赛胜利。" };
   return { choices: [{ message: { content: JSON.stringify(content) } }] };
 });
 for (const name of ["DASHSCOPE_BASE_URL", "ZHIPU_BASE_URL", "DEEPSEEK_BASE_URL"]) process.env[name] = `${provider.url}/v1`;

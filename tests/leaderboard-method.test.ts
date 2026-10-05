@@ -1,7 +1,10 @@
 // Failure contracts written before the v16 implementation: changing cohorts, tiny margins, changing
 // units, unknown errors and disconnected comparisons must not invent certainty.
 import assert from "node:assert/strict";
-import { test } from "node:test";
+import { test as baseTest } from "node:test";
+import { FEATURES } from "@aihot/industry/features";
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import {
   ANCHORS, BUDGETS, SCORING_SOURCES, assignEvidenceWeights, buildCalibration, computeBoard, netMatrix, validCalibration,
   type BoardInput, type Calibration, type RegistryEntry, type ScoringSource, type SignalRow,

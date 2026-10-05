@@ -2,7 +2,10 @@
 // exception inherits an audited default; a new harness/version reuses old approval; direct/tool
 // composites lose their parts; publication time or attempts become run time/N.
 import assert from "node:assert/strict";
-import { test } from "node:test";
+import { test as baseTest } from "node:test";
+import { FEATURES } from "@aihot/industry/features";
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { admissionOf, annotateEvaluation } from "@aihot/backend/leaderboard/fetch/admission";
 import { configurationOf, scaffolded } from "@aihot/backend/leaderboard/fetch/configuration";
 import type { FetchResult, ParsedRow } from "@aihot/backend/leaderboard/fetch/types";

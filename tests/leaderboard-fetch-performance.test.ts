@@ -1,6 +1,9 @@
 import { gate, tag } from './setup.ts';
 import assert from 'node:assert/strict';
-import { after, test } from 'node:test';
+import { after, test as baseTest } from 'node:test';
+import { FEATURES } from '@aihot/industry/features';
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { sql, closeDb } from '@aihot/backend/db';
 import { FETCHERS } from '@aihot/backend/leaderboard/fetch/index';
 import { fetchSources } from '@aihot/backend/leaderboard/fetch/refresh';

@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
-import { test } from "node:test";
+import { test as baseTest } from "node:test";
+import { FEATURES } from "@aihot/industry/features";
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { computeBoardsInWorker } from "@aihot/backend/leaderboard/method/compute";
 import type { BoardInput } from "@aihot/backend/leaderboard/method/consensus";
 

@@ -1,7 +1,10 @@
 // The public rules exclude anonymous test identities: a cloaked name never becomes a model's
 // representative row, while its score stays stored for audit.
 import assert from "node:assert/strict";
-import { test } from "node:test";
+import { test as baseTest } from "node:test";
+import { FEATURES } from "@aihot/industry/features";
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { configurationOf } from "@aihot/backend/leaderboard/fetch/configuration";
 import { cloakedModel } from "@aihot/backend/leaderboard/fetch/identity";
 import { selectRepresentatives } from "@aihot/backend/leaderboard/fetch/store";

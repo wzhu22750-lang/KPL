@@ -8,6 +8,7 @@ import { Reply, stub } from "./setup.ts";
 import assert from "node:assert/strict";
 import { after, beforeEach, test } from "node:test";
 import { config } from "@aihot/backend/config";
+import { FEATURES } from "@aihot/industry/features";
 import { closeDb, sql } from "@aihot/backend/db";
 import { stopBoss } from "@aihot/backend/jobs/queue";
 import { collectPosts } from "@aihot/backend/monitor/scan";
@@ -118,7 +119,8 @@ test("reply context reuses stored posts and one paid parent across different rep
   assert.ok(posts.every((p) => p.context[0].originalText === `post ${p.context[0].id}`));
 });
 
-test("full archive keeps its contract and advertises the polling alternative on 200 and 304", async () => {
+const testMonitor = FEATURES.codexResetMonitor ? test : test.skip;
+testMonitor("full archive keeps its contract and advertises the polling alternative on 200 and 304", async () => {
   const response = await app.inject({ url: "/api/v1/codex-resets" });
   assert.equal(response.statusCode, 200);
   assert.ok(Array.isArray(response.json().events));

@@ -2,7 +2,10 @@
 // listing date otherwise stays forever), and another source never overwrites them.
 import { tag } from './setup.ts';
 import assert from 'node:assert/strict';
-import { after, test } from 'node:test';
+import { after, test as baseTest } from 'node:test';
+import { FEATURES } from '@aihot/industry/features';
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { sql, closeDb } from '@aihot/backend/db';
 import { IdentityResolver } from '@aihot/backend/leaderboard/fetch/identity';
 

@@ -170,11 +170,6 @@ export function areSameKplOccurrence(
   dateB?: Date | null
 ): boolean {
   if (!titleA || !titleB) return false;
-  if (titleA.trim() === titleB.trim()) return true;
-
-  const normA = normalizeKplTitle(titleA);
-  const normB = normalizeKplTitle(titleB);
-  if (normA && normA === normB) return true;
 
   // 1. 比赛事件指纹匹配（例如 KSG 迎战 RW侠，零封/年总开门红）
   const fpA = extractMatchFingerprint(titleA, dateA);
@@ -204,6 +199,8 @@ export function areSameKplOccurrence(
   }
 
   // 2. 语义相似度门槛（经过规范化后相似度极高且均包含战队特征）
+  const normA = normalizeKplTitle(titleA);
+  const normB = normalizeKplTitle(titleB);
   if (normA && normB && normA.length >= 6 && normB.length >= 6) {
     const teamsA = extractTeamsFromText(titleA);
     const teamsB = extractTeamsFromText(titleB);

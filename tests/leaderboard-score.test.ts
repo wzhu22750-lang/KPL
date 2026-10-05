@@ -2,7 +2,10 @@
 // ties, treating absent edges as zero results, moving the baseline with entrants, invalid or
 // disconnected evidence, and an unsuccessful solver must never produce publishable ratings.
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { test as baseTest } from 'node:test';
+import { FEATURES } from '@aihot/industry/features';
+// leaderboard 功能已关闭（industry/features.ts），相关测试整批跳过
+const test = FEATURES.leaderboard ? baseTest : baseTest.skip;
 import { fitScores } from '@aihot/backend/leaderboard/method/score';
 
 function matrix(values: number[], edges?: Array<[number,number]>, weight = 1) {

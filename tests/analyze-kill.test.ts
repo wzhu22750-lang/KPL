@@ -20,18 +20,18 @@ let holdPrefilter: { asked: ReturnType<typeof gate<void>>; answer: ReturnType<ty
 const provider = await stub(async (_hit, request) => {
   const body = JSON.parse(request.body);
   const system = String(body.messages[0]?.content ?? "");
-  const step: Step = system.includes("宽召回的AI相关性预筛") ? "prefilter"
-    : system.includes("事件注意力评分器") ? "score" : system.includes("资料结构化助手") ? "structure" : "understand";
+  const step: Step = system.includes("宽召回") ? "prefilter"
+    : system.includes("评分器") ? "score" : system.includes("资料结构化助手") ? "structure" : "understand";
   calls.push(step);
   if (step === "prefilter" && holdPrefilter) {
     const held = holdPrefilter;
     held.asked.open();
     await held.answer.promise;
   }
-  const content = step === "prefilter" ? { label: "PASS", reason: "AI model release" }
+  const content = step === "prefilter" ? { label: "PASS", reason: "KPL match result" }
     : step === "score" ? { attentionScore: 80 }
-      : step === "structure" ? { category: "ai-models", tags: ["模型发布"], subjects: [], fact: { title: "新模型发布" } }
-        : { itemType: "model_release", authorRole: "principal", tags: ["模型发布"], editorialJudgment: "模型有明确的能力提升", titleZh: `新模型发布 ${T}`, summaryZh: "模型发布并提供了评测和价格。" };
+      : step === "structure" ? { category: "match-result", tags: ["赛果战报"], subjects: [], fact: { title: "比赛赛果" } }
+        : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: `比赛赛果 ${T}`, summaryZh: "比赛顺利结束，比分已经出炉。" };
   return { id: `stub-${calls.length}`, choices: [{ message: { content: JSON.stringify(content) } }], usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 } };
 });
 

@@ -24,63 +24,65 @@ before(async () => {
   await sql`INSERT INTO sources (id, name, kind, tier, participation_mode, next_fetch_at) VALUES (${SOURCE}, 'Media', 'rss', 'T2', 'editorial', '2100-01-01')`;
   older = await report(1, 3);
   newer = await report(2, 1);
-  corrected = await report(3, 2, "qwen");
+  corrected = await report(3, 2, "ag");
   // All scenarios share this one cold index, then exercise the cache without waiting a minute.
-  await loadTopicPage("minimax", 1);
+  await loadTopicPage("wolves", 1);
 });
 after(async () => {
   await stopBoss();
   await closeDb();
 });
 
-async function report(n: number, hoursAgo: number, subject = "minimax"): Promise<string> {
+async function report(n: number, hoursAgo: number, subject = "wolves"): Promise<string> {
   const at = new Date(Date.now() - hoursAgo * 3600_000);
+  const teamName = subject === "wolves" ? "重庆狼队" : "成都AG超玩会";
+  const title = `${teamName} 3 比 1 战胜对手 ${n} ${T}`;
   const { articleId } = await upsertMaterial({
-    sourceId: SOURCE, url: `https://example.com/withdrawal-${T}-${n}`, title: `MiniMax report ${n}`, bodyText: "body", bodyHtml: "<p>body</p>", bodyStatus: "ok", via: "fetch", publishedAt: at,
+    sourceId: SOURCE, url: `https://example.com/withdrawal-${T}-${n}`, title, bodyText: "body", bodyHtml: "<p>body</p>", bodyStatus: "ok", via: "fetch", publishedAt: at,
   });
   await sql`UPDATE articles SET discovered_at = ${at}, timeline_at = ${at}, grouped_at = now() WHERE id = ${articleId}`;
   await sql`INSERT INTO analyses (article_id, input_revision, origin, relevance, category, title_zh, summary_zh, score, selected, subjects, tags)
-            VALUES (${articleId}, 1, 'rule', 'pass', 'ai-models', ${`${subject} 消息 ${n}`}, '摘要', 80, true, ${[subject]}, ${['模型发布']})`;
+            VALUES (${articleId}, 1, 'rule', 'pass', 'match-result', ${title}, '摘要', 80, true, ${[subject]}, ${['赛果战报']})`;
   await publishArticle(articleId, { releasedAt: new Date(at.getTime() + 60_000) });
   return articleId;
 }
 
 test("a withdrawn report leaves the chronicle band and the index while the topic index is still cached", async () => {
   // Both are read into the cached index.
-  const before = await loadTopicPage("minimax", 1);
+  const before = await loadTopicPage("wolves", 1);
   assert.ok(before?.milestones.some((m) => m.href === `/items/${newer}`));
-  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "minimax")?.latest?.title, `minimax 消息 2`);
+  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "wolves")?.latest?.title, `重庆狼队 3 比 1 战胜对手 2 ${T}`);
 
   await sql`UPDATE publications SET visibility = 'withdrawn' WHERE article_id = ${newer}`;
-  const page = await loadTopicPage("minimax", 1);
+  const page = await loadTopicPage("wolves", 1);
   assert.deepEqual(page?.milestones.map((m) => m.href), [`/items/${older}`], "the chronicle band");
   assert.ok(!page?.highlights.some((e) => e.id === newer), "the search snippet's events");
-  assert.notEqual(page?.topic.latest?.title, `minimax 消息 2`, "the page's last update");
-  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "minimax")?.latest?.title, `minimax 消息 1`, "the index page's headline");
+  assert.notEqual(page?.topic.latest?.title, `重庆狼队 3 比 1 战胜对手 2 ${T}`, "the page's last update");
+  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "wolves")?.latest?.title, `重庆狼队 3 比 1 战胜对手 1 ${T}`, "the index page's headline");
   assert.deepEqual(page?.items.map((i) => i.id), [older], "the list (rows were always checked again)");
 });
 
 test("a correction refreshes named content and its topic membership before the index expires", async () => {
-  const title = `Qwen 更正后的模型消息 ${T}`;
+  const title = `成都AG超玩会 3 比 0 击败对手 ${T}`;
   await overrideFields(corrected, { fields: { title }, version: 0, reason: "更正标题" }, "test-topics");
-  const retitled = await loadTopicPage("qwen", 1);
+  const retitled = await loadTopicPage("ag", 1);
   assert.equal(retitled?.items[0]?.title, title, "the list");
   assert.equal(retitled?.topic.latest?.title, title, "the page headline");
   assert.equal(retitled?.milestones[0]?.headline, title, "the chronicle band");
-  assert.equal(retitled?.milestones[0]?.title, `更正后的模型消息 ${T}`, "named from the corrected headline");
+  assert.equal(retitled?.milestones[0]?.title, title, "named from the corrected headline");
   assert.equal(retitled?.highlights[0]?.title, title, "the search snippet");
-  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "qwen")?.latest?.title, title, "the directory headline");
+  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "ag")?.latest?.title, title, "the directory headline");
 
-  await overrideFields(corrected, { fields: { category: "tip" }, version: 1, reason: "实际是教程" }, "test-topics");
-  const reclassified = await loadTopicPage("qwen", 1);
+  await overrideFields(corrected, { fields: { category: "opinion" }, version: 1, reason: "实际是观点" }, "test-topics");
+  const reclassified = await loadTopicPage("ag", 1);
   assert.deepEqual(reclassified?.milestones, [], "the corrected tutorial is no company milestone");
   assert.equal(reclassified?.items[0]?.id, corrected, "it remains a selected report");
 
-  await overrideFields(corrected, { fields: { tags: ["教程/实践", "entity:kimi"] }, version: 2, reason: "更正主体公司" }, "test-topics");
-  const moved = await loadTopicPage("qwen", 1);
+  await overrideFields(corrected, { fields: { tags: ["观点评论", "entity:estar"] }, version: 2, reason: "更正主体战队" }, "test-topics");
+  const moved = await loadTopicPage("ag", 1);
   assert.deepEqual(moved?.items, [], "the old topic list drops it");
   assert.equal(moved?.topic.latest, null, "the old topic headline drops it");
   assert.deepEqual(moved?.highlights, [], "the old topic search snippet drops it");
-  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "qwen")?.latest, null, "the directory drops the old membership");
-  assert.equal((await loadTopicPage("kimi", 1, new Date()))?.items[0]?.id, corrected, "the corrected membership is retained");
+  assert.equal((await listTopicSummaries()).topics.find((t) => t.slug === "ag")?.latest, null, "the directory drops the old membership");
+  assert.equal((await loadTopicPage("estar", 1, new Date()))?.items[0]?.id, corrected, "the corrected membership is retained");
 });
