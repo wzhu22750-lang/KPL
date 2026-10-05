@@ -82,7 +82,7 @@ export async function qaStreamEvents(question: string, ip: string): Promise<QaSt
   const started = Date.now();
   const intentResult = await understandQuestion(trimmed);
   const material = await retrieveMaterial(trimmed, intentResult);
-  const answer = await generateAnswer(trimmed, material);
+  const answer = await generateAnswer(trimmed, material, intentResult.intent);
 
   const events: QaStreamEvent[] = [
     {

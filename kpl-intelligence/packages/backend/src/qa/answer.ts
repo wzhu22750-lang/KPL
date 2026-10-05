@@ -61,9 +61,17 @@ function buildUser(question: string, blocks: SourceBlock[], retryHint: string): 
 
 /** 回答里出现、但材料 corpus 里没有的数字（比分/整数），即为编造信号。 */
 export function fabricatedNumbers(answer: string, corpus: string): string[] {
-  const mentioned = answer.match(/\d+/g) ?? [];
+  // 排除 [来源N] 引用角标，避免将来源编号误判为事实数字
+  const stripped = answer.replace(/\[来源\d+\]/g, "");
+  const mentioned = stripped.match(/\d+/g) ?? [];
   const unique = [...new Set(mentioned)];
   return unique.filter((n) => !corpus.includes(n));
+}
+
+/** 判断是否为战术类问题（为什么/选/ban/克制/体系/阵容/打法等，或意图为 tactics） */
+export function isTacticalQuestion(question: string, intent?: string): boolean {
+  if (intent === "tactics") return true;
+  return /为什么|选|ban|禁|克制|体系|阵容|打法|首抢|以选代ban|摇摆/i.test(question);
 }
 
 /** 张冠李戴校验：回答里命中的战队身份（IDENTITY_LEXICON）必须是材料里也命中的子集。
@@ -90,9 +98,13 @@ function degradedAnswer(material: QaMaterialInput, reason: string): QaAnswer {
   return { answer, citations: [], degraded: true, reason, model: null, receiptId: null };
 }
 
-export async function generateAnswer(question: string, material: QaMaterialInput): Promise<QaAnswer> {
+export async function generateAnswer(question: string, material: QaMaterialInput, intent?: string): Promise<QaAnswer> {
   const { blocks, corpus } = assembleSources(material);
   if (!blocks.length) return degradedAnswer(material, "检索无结果");
+
+  const tactical = isTacticalQuestion(question, intent);
+  const promptName = tactical ? "kpl-answer-tactics" : "kpl-answer";
+  const promptVer = tactical ? "kpl-answer-tactics-v1" : "kpl-answer-v1";
 
   let lastReceipt: number | null = null;
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -105,8 +117,8 @@ export async function generateAnswer(question: string, material: QaMaterialInput
         model,
         purpose: "qa_answer",
         subject: "qa:" + attempt + ":" + question.slice(0, 40),
-        promptVersion: "kpl-answer-v1",
-        system: promptText("kpl-answer"),
+        promptVersion: promptVer,
+        system: promptText(promptName),
         user: buildUser(question, blocks, hint),
         schema: AnswerSchema,
         temperature: 0.2,

@@ -8,7 +8,7 @@ import { promptText } from "../editorial/prompts.ts";
 import { chatJson } from "../providers/llm.ts";
 
 export const UnderstandSchema = z.object({
-  intent: z.enum(["match-result", "compare", "h2h", "roster", "open"]),
+  intent: z.enum(["match-result", "compare", "h2h", "roster", "open", "tactics"]).catch("open"),
   entities: z
     .array(z.object({ kind: z.enum(["team", "player", "hero"]), name: z.string().min(1).max(40) }))
     .max(8)
