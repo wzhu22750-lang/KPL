@@ -14,6 +14,7 @@ import { markdownBody } from "../packages/backend/src/content/markdown.ts";
 import { recordArticleEntityMentions } from "../packages/backend/src/kb/entity-mentions.ts";
 import { publishArticle } from "../packages/backend/src/publication/publish.ts";
 import { cleanWechatHtml } from "../packages/backend/src/sources/wechat2rss/parser.ts";
+import { pruneHtmlNoise, pruneTextNoise } from "../packages/backend/src/content/clean-noise.ts";
 
 interface Metadata {
   title: string;
@@ -80,11 +81,12 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
           continue;
         }
 
-        // 读取 Markdown 正文
+        // 读取 Markdown 正文并自动剔除末尾无关广告与招聘
         const mdPath = path.join(artPath, meta.markdown_file);
         let mdText = "";
         try {
-          mdText = await fs.readFile(mdPath, "utf-8");
+          const rawMd = await fs.readFile(mdPath, "utf-8");
+          mdText = pruneTextNoise(rawMd);
         } catch {
           result.failed++;
           result.errors.push({ path: artPath, error: `未找到对应 markdown 文件: ${meta.markdown_file}` });
@@ -98,14 +100,14 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
           const rawHtml = await fs.readFile(offlineHtmlPath, "utf-8");
           const cleaned = cleanWechatHtml(rawHtml);
           if (cleaned.html && cleaned.html.length > 100) {
-            htmlBody = cleaned.html;
+            htmlBody = pruneHtmlNoise(cleaned.html);
           }
         } catch {
           // offline.html 不存在时用 markdown 生成
         }
 
         if (!htmlBody) {
-          htmlBody = markdownBody(mdText, meta.source_url);
+          htmlBody = pruneHtmlNoise(markdownBody(mdText, meta.source_url));
         }
 
         // 判定关联信源

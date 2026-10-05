@@ -78,6 +78,23 @@ test("WeChat2RSS Generator - 生成标准 RSS 2.0 XML", () => {
 });
 
 test("WeChat2RSS Bridge 与 fetchRss 采集集成测试", async () => {
+  // 注入测试存根，避免测试阶段触碰真实外部服务（铁律 4）
+  const originalFetch = wechatBridge.fetchAccountArticles.bind(wechatBridge);
+  wechatBridge.fetchAccountArticles = async () => ({
+    account: { id: "test-kpl", name: "KPL王者荣耀职业联赛", url: "https://mp.weixin.qq.com" },
+    articles: [
+      {
+        id: "mock-1",
+        title: "2026KPL年度总决赛正式开幕",
+        url: "https://mp.weixin.qq.com/s/mock_kpl_1",
+        author: "KPL官方",
+        contentHtml: "<p>2026年KPL年度总决赛盛大开幕！</p>",
+        contentText: "2026年KPL年度总决赛盛大开幕！",
+        publishedAt: new Date(),
+      },
+    ],
+  });
+
   const source: SourceRow = {
     id: "mp-kpl-official",
     name: "KPL王者荣耀职业联赛（官方公众号）",

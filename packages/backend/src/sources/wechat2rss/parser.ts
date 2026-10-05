@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import { collapseWhitespace, stripTags } from "../../lib/text.ts";
+import { pruneHtmlNoise, pruneTextNoise } from "../../content/clean-noise.ts";
 import type { WechatArticle } from "./types.ts";
 
 export interface CleanHtmlResult {
@@ -78,10 +79,12 @@ export function cleanWechatHtml(rawHtml: string): CleanHtmlResult {
     $content = $("body");
   }
 
-  const cleanedHtml = $content.html()?.trim() || "";
-  const cleanedText = collapseWhitespace(stripTags(cleanedHtml.replace(/<\/p>|<br\s*\/?>/gi, "\n")))
+  const rawContentHtml = $content.html()?.trim() || "";
+  const cleanedHtml = pruneHtmlNoise(rawContentHtml);
+  const rawText = collapseWhitespace(stripTags(cleanedHtml.replace(/<\/p>|<br\s*\/?>/gi, "\n")))
     .replace(/\n{3,}/g, "\n\n")
     .trim();
+  const cleanedText = pruneTextNoise(rawText);
 
   return {
     html: cleanedHtml,

@@ -203,14 +203,19 @@ export function areSameKplOccurrence(
     }
   }
 
-  // 2. 语义相似度门槛（经过规范化后相似度极高）
-  const sim = charBigramSimilarity(normA, normB);
-  if (sim >= 0.72) {
-    // 若时间已知，时间差在 4 天以内
-    if (dateA && dateB && Math.abs(dateA.getTime() - dateB.getTime()) > 4 * 86400_000) {
-      return false;
+  // 2. 语义相似度门槛（经过规范化后相似度极高且均包含战队特征）
+  if (normA && normB && normA.length >= 6 && normB.length >= 6) {
+    const teamsA = extractTeamsFromText(titleA);
+    const teamsB = extractTeamsFromText(titleB);
+    if (teamsA.length > 0 && teamsB.length > 0 && teamsA.some(t => teamsB.includes(t))) {
+      const sim = charBigramSimilarity(normA, normB);
+      if (sim >= 0.72) {
+        if (dateA && dateB && Math.abs(dateA.getTime() - dateB.getTime()) > 4 * 86400_000) {
+          return false;
+        }
+        return true;
+      }
     }
-    return true;
   }
 
   return false;

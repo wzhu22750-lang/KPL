@@ -3,6 +3,7 @@
 import * as cheerio from "cheerio";
 import sanitizeHtml from "sanitize-html";
 import { isTrackingImage } from "../lib/image-url.ts";
+import { pruneHtmlNoise } from "./clean-noise.ts";
 
 const ALLOWED_TAGS = [
   "p", "br", "hr", "h2", "h3", "h4", "h5", "ul", "ol", "li", "blockquote", "pre", "code", "table", "thead", "tbody",
@@ -133,7 +134,9 @@ const TRAILING_CHROME = [
 ];
 
 export function trimTrailingChrome(html: string): string {
-  const $ = cheerio.load(html, null, false);
+  // 先应用专用的中文文章尾部广告与招聘噪音剥离
+  const preCleaned = pruneHtmlNoise(html);
+  const $ = cheerio.load(preCleaned, null, false);
   let blocks = $.root().children().toArray();
   let removed = false;
   while (blocks.length > 1) {
@@ -144,7 +147,7 @@ export function trimTrailingChrome(html: string): string {
     blocks = blocks.slice(0, -1);
     removed = true;
   }
-  return removed ? $.html() : html;
+  return removed ? $.html() : preCleaned;
 }
 
 const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
