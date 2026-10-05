@@ -6,13 +6,29 @@ KPL（王者荣耀职业联赛）内容采集与数据平台：双通道采集�
 
 | 目录/文件 | 说明 |
 | --- | --- |
-| `kpl-intelligence/` | 主站（独立 git 仓库，TypeScript monorepo：web / api / backend / contracts） |
+| `kpl-intelligence/` | 主站核心系统（TypeScript monorepo：web / api / worker / backend / contracts / database / industry） |
 | `kpl_vault/` | 精选文章知识库（质检准入后的 Markdown + 离线 HTML + metadata.json + 索引/审计报告） |
 | `reference-projects/` | 只读参考项目 |
 | `AIHOT/` | 上游原版项目（只读） |
 | `curator.py` | AI 质检与初筛门禁：非 KPL 内容剔除、800 字深度门槛、战队精细归档 |
 | `dajiala_client.py` | 主通道：大家拉（dajiala.com）商业 API 适配器（微信公众号历史文章 / 官方微博） |
 | `kpl_scraper.py` | 辅助通道：curl-cffi 轻量微信文章抓取器（TLS 指纹伪装，无图纯净版） |
+
+## 主站运行方法（TypeScript Monorepo）
+
+```bash
+cd kpl-intelligence
+
+# 1. 安装依赖
+npm install
+
+# 2. 类型检查与测试
+npm run typecheck
+
+# 3. 启动开发服务
+# 需要本地 Docker pgvector 或 Supabase 配置（参考 .env.example）
+npm run dev
+```
 
 ## Python 采集流水线用法
 
