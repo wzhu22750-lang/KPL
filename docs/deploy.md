@@ -1,5 +1,8 @@
 # 部署
 
+> ⚠️ **上线前必做**：Supabase Dashboard → Settings → API → 关闭 Data API（PostgREST），
+> 或给所有表加 deny-all RLS。本项目的数据库表没有 RLS 设计，anon key 暴露即全库泄露。
+
 ## 用 Docker（推荐）
 
 需要一台装了 Docker（带 Compose）的机器。云服务器建议至少 2 核、4 GB 内存，构建镜像时要用到。数据库用 [Supabase](https://supabase.com)（免费档够用）。

@@ -1,5 +1,7 @@
 # 把它改成你的行业
 
+> ⚠️ 本节起描述 AIHOT 上游框架的行业定制机制。KPL 版沿用 industry/ 定制思路，但以下内容已替换/关闭，以 KPL 现状为准：AI 行业分类与「新模型」发布识别已替换为 KPL 六分类（match-result / roster / patch / league / tactics / opinion）；「模型榜」（FEATURES.leaderboard）与「Codex 重置监控」（FEATURES.codexResetMonitor）两项功能已关闭，相关导航、定时任务与页面不再使用。
+
 这份仓库默认是一个“AI 行业”的示例站：示范信源是一批公开的 AI 资讯源，精选口味是 AIHOT 在 AI 领域调了很久的那一套。要把它变成“法律热点”“HR 热点”“黄金热点”，要改的东西几乎都在 [`industry/`](../industry/) 这一个文件夹里，代码基本不用动。
 
 如果你用 Claude Code、Codex 这类 Agent，可以把下面这段直接发给它，然后回答它的问题：

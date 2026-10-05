@@ -45,3 +45,4 @@ docker exec -i kpl-pg psql "$REMOTE_URL" -c "
          (SELECT count(*) FROM games) games, (SELECT count(*) FROM bp_actions) bp,
          (SELECT count(*) FROM player_games) player_games;"
 echo "完成。worker 下一轮会自动把最新赛事补齐（已重新启用 esports 源）。"
+echo "⚠️ 上线前必做：Supabase Dashboard → Settings → API → 关闭 Data API（PostgREST），或给所有表加 deny-all RLS（anon key 暴露即全库泄露）。"
