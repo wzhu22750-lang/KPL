@@ -58,8 +58,8 @@ export abstract class BaseSourceAdapter<TRaw = unknown> implements SourceAdapter
     const ownerType = (source as any).owner_type || source.config?.owner_type;
 
     if (ownerId && ownerType) {
-      if (ownerType === "club") {
-        hints.push({ entityType: "team", entityId: String(ownerId), confidence: 1.0 });
+      if (ownerType === "club" || ownerType === "community") {
+        hints.push({ entityType: "team", entityId: String(ownerId), confidence: ownerType === "club" ? 1.0 : 0.85 });
       } else if (ownerType === "player") {
         hints.push({ entityType: "player", entityId: String(ownerId), confidence: 1.0 });
       }

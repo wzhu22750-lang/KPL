@@ -18,17 +18,30 @@ class ApiError extends Error {
 }
 
 export async function apiGet<T>(path: string, init?: { signal?: AbortSignal; headers?: Record<string, string>; responseHeaders?: Headers }): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${path}`, {
-    headers: { accept: "application/json", "x-aihot-ssr": "1", ...init?.headers },
-    redirect: "manual",
-    signal: init?.signal ? AbortSignal.any([init.signal, AbortSignal.timeout(15_000)]) : AbortSignal.timeout(15_000),
-  });
-  if (!res.ok) {
-    const body = (await res.json().catch(() => null)) as { mergedInto?: string } | null;
-    throw new ApiError(res.status, res.status === 308 ? (body?.mergedInto ?? null) : null);
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(`${API_BASE_URL}${path}`, {
+        headers: { accept: "application/json", "x-aihot-ssr": "1", ...init?.headers },
+        redirect: "manual",
+        signal: init?.signal ? AbortSignal.any([init.signal, AbortSignal.timeout(15_000)]) : AbortSignal.timeout(15_000),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { mergedInto?: string } | null;
+        throw new ApiError(res.status, res.status === 308 ? (body?.mergedInto ?? null) : null);
+      }
+      res.headers.forEach((value, name) => init?.responseHeaders?.set(name, value));
+      return (await res.json()) as T;
+    } catch (err) {
+      lastError = err;
+      if (err instanceof ApiError) throw err; // HTTP 错误不重试，直接抛出
+      // 网络连接失败 (如 API 正在冷启动)，等待后重试
+      if (attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+    }
   }
-  res.headers.forEach((value, name) => init?.responseHeaders?.set(name, value));
-  return (await res.json()) as T;
+  throw lastError;
 }
 
 /**

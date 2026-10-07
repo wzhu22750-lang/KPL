@@ -94,3 +94,4 @@ console.log(`当前微博与战队/选手实体关联数: ${mentionStats?.count 
 console.log("==================================================\n");
 
 await closeDb();
+process.exit(0);
