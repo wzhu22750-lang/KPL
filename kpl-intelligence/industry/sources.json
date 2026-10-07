@@ -13,7 +13,7 @@
       "owner_type": "league",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
-      "interval_minutes": 60,
+      "interval_minutes": 120,
       "tags": [
         "官方",
         "微信公众号"
@@ -591,7 +591,7 @@
       "tier": "T2",
       "owner_type": "community",
       "participation_mode": "hot_signal",
-      "interval_minutes": 30,
+      "interval_minutes": 60,
       "tags": [
         "社区",
         "虎扑"

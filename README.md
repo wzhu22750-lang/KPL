@@ -14,7 +14,24 @@ KPL（王者荣耀职业联赛）内容采集与数据平台：双通道采集�
 | `dajiala_client.py` | 主通道：大家拉（dajiala.com）商业 API 适配器（微信公众号历史文章 / 官方微博） |
 | `kpl_scraper.py` | 辅助通道：curl-cffi 轻量微信文章抓取器（TLS 指纹伪装，无图纯净版） |
 
-## 主站运行方法（TypeScript Monorepo）
+## 生产环境部署与运维
+
+详见完整部署手册：[`kpl-intelligence/docs/DEPLOYMENT_GUIDE.md`](./kpl-intelligence/docs/DEPLOYMENT_GUIDE.md)。
+
+```bash
+cd kpl-intelligence
+
+# 1. 复制生产配置模板并填入密钥
+cp .env.production.example .env
+
+# 2. 运行生产环境预检（验证数据库连通性、TLS、连接池与迁移状态）
+npm run preflight:production
+
+# 3. 一键构建、迁移、拉起容器并完成健康检查（带 HTTPS 自动证书）
+./scripts/deploy-production.sh --profile https
+```
+
+## 主站运行方法（TypeScript Monorepo 开发环境）
 
 ```bash
 cd kpl-intelligence

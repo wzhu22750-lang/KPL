@@ -31,6 +31,15 @@ services:
       <<: *app-env
       API_HOST: 0.0.0.0
       API_PORT: "3001"
+    # API 仅在容器网络内互通；若需宿主机直接调试可绑定 127.0.0.1，严禁暴露到公网 0.0.0.0
+    ports:
+      - "127.0.0.1:${API_PORT:-3001}:3001"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
     depends_on:
       setup:
         condition: service_completed_successfully
@@ -44,6 +53,8 @@ services:
     depends_on:
       setup:
         condition: service_completed_successfully
+      api:
+        condition: service_healthy
 
   web:
     <<: *app
@@ -52,11 +63,20 @@ services:
       <<: *app-env
       WEB_HOST: 0.0.0.0
       WEB_PORT: "3000"
+    # 仅绑定宿主机本地回路 127.0.0.1，公网流量统一由 Caddy (80/443) 反向代理并处理 TLS
     ports:
-      - "${PORT:-3000}:3000"
+      - "127.0.0.1:${PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.status < 500 ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
     depends_on:
+      setup:
+        condition: service_completed_successfully
       api:
-        condition: service_started
+        condition: service_healthy
 
   caddy:
     image: caddy:2-alpine
@@ -71,7 +91,8 @@ services:
       - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy:/data
     depends_on:
-      - web
+      web:
+        condition: service_healthy
 
   # Local PostgreSQL 17 with pgvector for the test suite (KPL 检索块用 HNSW 向量索引，见迁移 0055)，
   # listening on the loopback interface only and open to any user (trust) so the test commands in
