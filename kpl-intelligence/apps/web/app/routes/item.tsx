@@ -25,7 +25,6 @@ import { takePreview } from "../features/item/preview";
 import { IconArrowLeft, IconCopy, IconDownload, IconExternal, IconImage, IconMenu, IconMore, IconShare } from "../components/icons";
 import { BarButton, PhoneBar } from "../components/shell/PhoneBar";
 import { isPhone, type Screen } from "../components/shell/screens";
-import { resolveEntityTag } from "../lib/entity-links";
 
 export const handle: Screen = { home: "featured", toolbar: true };
 
@@ -300,7 +299,6 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     if (window.history.state?.idx > 0) navigate(-1);
     else navigate(item.selected ? "/" : "/all");
   };
-  const entityTags = item.tags.map(resolveEntityTag).filter((e) => e.type === "team" || e.type === "player");
 
   const backButton = (
     <button type="button" onClick={back} className="-ml-1.5 inline-flex h-8 items-center gap-1.5 rounded-full px-1.5 text-[13px] text-ink-3 transition-colors hover:text-ink">
@@ -497,24 +495,6 @@ function ItemView({ item }: { item: SiteItemDetail }) {
             </div>
           )}
 
-          {entityTags.length > 0 && (
-            <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
-              {entityTags.map((et, i) => (
-                <Link
-                  key={`${et.label}-${i}`}
-                  to={et.to}
-                  className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11.5px] font-medium transition ${
-                    et.type === "team"
-                      ? "bg-amber/10 text-amber hover:bg-amber/20"
-                      : "bg-accent/10 text-accent hover:bg-accent/20"
-                  }`}
-                >
-                  <span>{et.type === "team" ? "🛡️" : "👤"}</span>
-                  <span>{et.label}</span>
-                </Link>
-              ))}
-            </div>
-          )}
 
           {item.sameEvent && (
             <p className="mt-5 text-[13px] leading-relaxed text-ink-4">

@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useLoaderData, useSearchParams } from "react-router";
+import { useLoaderData, useSearchParams, type ShouldRevalidateFunction } from "react-router";
 import type { Route } from "./+types/heroes";
 import type { HeroListResponse } from "@aihot/contracts/kpl";
 import { edgeTtl, loadOr404 } from "../lib/api.server";
@@ -11,15 +11,12 @@ import { IconSearch, IconSword } from "../components/icons";
 
 export const handle: Screen = { name: "英雄榜" };
 
+export const shouldRevalidate: ShouldRevalidateFunction = ({ currentUrl, nextUrl }) => {
+  return currentUrl.pathname !== nextUrl.pathname;
+};
+
 export async function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url);
-  const pos = url.searchParams.get("pos") ?? "";
-  const sort = url.searchParams.get("sort") ?? "";
-  const query = new URLSearchParams();
-  if (pos && pos !== "全部") query.set("pos", pos);
-  if (sort) query.set("sort", sort);
-  const qs = query.toString();
-  return loadOr404<HeroListResponse>(`/api/site/kb/heroes${qs ? `?${qs}` : ""}`, { signal: request.signal });
+  return loadOr404<HeroListResponse>("/api/site/kb/heroes", { signal: request.signal });
 }
 
 export function meta() {
@@ -103,6 +100,24 @@ export default function HeroesPage() {
 
   const filteredHeroes = useMemo(() => {
     let list = heroes;
+    if (selectedPos && selectedPos !== "全部") {
+      list = list.filter((h) => h.primaryPos === selectedPos || h.positions.includes(selectedPos));
+    }
+    if (selectedSort === "winRate") {
+      list = [...list].sort((a, b) => {
+        const aQual = a.picks >= 10 ? 1 : 0;
+        const bQual = b.picks >= 10 ? 1 : 0;
+        if (aQual !== bQual) return bQual - aQual;
+        return b.winRate - a.winRate || b.picks - a.picks;
+      });
+    } else if (selectedSort === "picks") {
+      list = [...list].sort((a, b) => b.picks - a.picks || b.bpRate - a.bpRate);
+    } else if (selectedSort === "tier") {
+      const tierWeight: Record<string, number> = { T0: 5, "T0.5": 4, T1: 3, T2: 2, T3: 1 };
+      list = [...list].sort((a, b) => (tierWeight[b.versionStrength] ?? 0) - (tierWeight[a.versionStrength] ?? 0) || b.bpRate - a.bpRate);
+    } else {
+      list = [...list].sort((a, b) => b.bpRate - a.bpRate || b.picks - a.picks);
+    }
     if (searchKeyword.trim()) {
       const q = searchKeyword.trim().toLowerCase();
       list = list.filter(
@@ -114,7 +129,7 @@ export default function HeroesPage() {
       );
     }
     return list;
-  }, [heroes, searchKeyword]);
+  }, [heroes, selectedPos, selectedSort, searchKeyword]);
 
   return (
     <div className="pb-14">

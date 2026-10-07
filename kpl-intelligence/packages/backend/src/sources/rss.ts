@@ -159,6 +159,8 @@ export interface RssRead {
   candidates: Candidate[];
   validator: RssValidator;
   notModified: boolean;
+  /** 仅 wechat:// 桥：上游结果的性质与真实获取时间（采集入口据此识别降级）。 */
+  bridge?: { status: "ok" | "empty" | "stale"; fetchedAt: number; droppedUnverified: number };
 }
 
 export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}): Promise<RssRead> {
@@ -173,11 +175,14 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
   let responseUrl = url;
   let etag: string | null = null;
   let lastModified: string | null = null;
+  let bridge: RssRead["bridge"];
 
   // 支持 wechat:// 协议直连 WeChat2RSS 桥，免 HTTP 开销
   if (url.startsWith("wechat://") || url.startsWith("wechat:")) {
     const accountName = url.replace(/^wechat:\/\//i, "").replace(/^wechat:/i, "").trim();
-    rawXmlText = await wechatBridge.getRssXml(accountName, { force: opts.force });
+    const feed = await wechatBridge.getFeed(accountName, { force: opts.force });
+    rawXmlText = feed.xml;
+    bridge = { status: feed.status, fetchedAt: feed.fetchedAt, droppedUnverified: feed.droppedUnverified };
     responseUrl = url;
   } else {
     const headers: Record<string, string> = { accept: "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8" };
@@ -242,7 +247,7 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
       candidate.canonical = feedCanonical(candidate, source);
       out.push(candidate);
     }
-    return { candidates: out, validator, notModified: false };
+    return { candidates: out, validator, notModified: false, bridge };
   }
 
   const feed = doc.feed;
@@ -271,7 +276,7 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
       entry.canonical = feedCanonical(entry, source);
       out.push(entry);
     }
-    return { candidates: out, validator, notModified: false };
+    return { candidates: out, validator, notModified: false, bridge };
   }
   throw new FetchError("not an RSS/Atom document");
 }

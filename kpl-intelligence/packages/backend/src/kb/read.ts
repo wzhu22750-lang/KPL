@@ -22,7 +22,7 @@ import type {
   StandingsResponse,
   TeamSummary,
 } from "@aihot/contracts/kpl";
-import { cachedByKey } from "../lib/cache.ts";
+import { cached, cachedByKey } from "../lib/cache.ts";
 
 interface MatchRowRaw {
   id: string; season_id: string; season_name: string; stage: string | null; bo: number | null; status: string;
@@ -97,7 +97,7 @@ export async function latestSeason(): Promise<{ id: string; name: string } | nul
 }
 
 /** 所有有比赛的赛季列表（按最近比赛日期倒序排序） */
-export async function listAvailableSeasons(): Promise<AvailableSeason[]> {
+const cachedAvailableSeasons = cached(async () => {
   const rows = await sql<{ id: string; name: string; year: number; external_id: string }[]>`
     SELECT s.id, s.name, s.year, s.external_id
     FROM seasons s
@@ -111,9 +111,13 @@ export async function listAvailableSeasons(): Promise<AvailableSeason[]> {
     externalId: r.external_id,
     isCurrent: r.id === latestId,
   }));
+}, { freshMs: 30 * 60_000, maxStaleMs: 120 * 60_000 });
+
+export async function listAvailableSeasons(): Promise<AvailableSeason[]> {
+  return cachedAvailableSeasons.get();
 }
 
-export async function loadSchedule(opts: { season?: string | null; team?: string | null; upcoming?: boolean; limit?: number }): Promise<ScheduleResponse> {
+async function fetchScheduleRaw(opts: { season?: string | null; team?: string | null; upcoming?: boolean; limit?: number }): Promise<ScheduleResponse> {
   const limit = Math.min(Math.max(opts.limit ?? 60, 1), 300);
   const availableSeasons = await listAvailableSeasons();
   const currentSeason = availableSeasons[0] ?? null;
@@ -144,6 +148,24 @@ export async function loadSchedule(opts: { season?: string | null; team?: string
   return { season, availableSeasons, matches: rows.map(toScheduleMatch) };
 }
 
+const cachedSchedule = cachedByKey<string, ScheduleResponse>(
+  (key) => key,
+  (key) => {
+    const [season, team, upcoming, limit] = key.split("::");
+    return fetchScheduleRaw({
+      season: season || undefined,
+      team: team || undefined,
+      upcoming: upcoming === "1",
+      limit: limit ? Number(limit) : undefined,
+    });
+  },
+  { freshMs: 2 * 60_000, maxStaleMs: 15 * 60_000, maxKeys: 40 }
+);
+
+export async function loadSchedule(opts: { season?: string | null; team?: string | null; upcoming?: boolean; limit?: number }): Promise<ScheduleResponse> {
+  return cachedSchedule(`${opts.season ?? ""}::${opts.team ?? ""}::${opts.upcoming ? "1" : "0"}::${opts.limit ?? 60}`);
+}
+
 /** 首页的“今日赛事”：有临近赛程时显示未来的比赛；休赛期回退到最近已赛的比赛。 */
 export async function loadUpcomingAndRecent(limit = 8): Promise<ScheduleMatch[]> {
   const upcoming = await sql<MatchRowRaw[]>`
@@ -164,56 +186,79 @@ export async function loadKbHome(limit = 6) {
   return { matches, teams: teams.filter((t) => t.isActive).slice(0, 10) };
 }
 
-export async function listTeams(): Promise<Array<{ slug: string; name: string; shortName: string | null; logo: string | null; city: string | null; isActive: boolean; champions: number }>> {
+const cachedTeams = cached(async () => {
   const rows = await sql<{ slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null; is_active: boolean; champions: number }[]>`
     SELECT t.slug, t.name, t.short_name, t.logo_url, t.city, t.is_active,
       (SELECT count(*) FROM team_honors h WHERE h.team_id = t.id AND h.kind = 'champion') AS champions
     FROM teams t ORDER BY t.sort_weight DESC, t.is_active DESC, t.name`;
   return rows.map((r) => ({ slug: r.slug, name: r.name, shortName: r.short_name, logo: r.logo_url, city: r.city, isActive: r.is_active, champions: Number(r.champions) }));
+}, { freshMs: 30 * 60_000, maxStaleMs: 120 * 60_000 });
+
+export async function listTeams(): Promise<Array<{ slug: string; name: string; shortName: string | null; logo: string | null; city: string | null; isActive: boolean; champions: number }>> {
+  return cachedTeams.get();
 }
 
 /** 实体详情页的“相关动态”：entity_mentions 桥联出来的最近新闻（有分析结果的）。 */
 export async function loadEntityNews(entityType: "team" | "player" | "hero", entityId: string, limit = 10) {
-  const rows = await sql<{ id: string; title: string; summary: string | null; published_at: Date | null; selected: boolean | null }[]>`
+  const rows = await sql<{ id: string; title: string; summary: string | null; published_at: Date | null; selected: boolean | null; content_kind: string | null }[]>`
     SELECT a.id,
       coalesce(nullif(an.title_zh, ''), a.title) AS title,
       coalesce(nullif(an.summary_zh, ''), a.excerpt) AS summary,
-      a.published_at, an.selected
+      a.published_at, an.selected, a.content_kind
     FROM entity_mentions em
     JOIN articles a ON a.id = em.article_id
-    JOIN analyses an ON an.article_id = a.id AND an.id = (SELECT max(id) FROM analyses WHERE article_id = a.id)
+    LEFT JOIN analyses an ON an.article_id = a.id AND an.id = (SELECT max(id) FROM analyses WHERE article_id = a.id)
     WHERE em.entity_type = ${entityType} AND em.entity_id = ${entityId}
-      AND an.relevance <> 'block'
+      AND (an.relevance IS NULL OR an.relevance <> 'block')
     ORDER BY coalesce(a.published_at, a.discovered_at) DESC NULLS LAST
     LIMIT ${limit}`;
-  return rows.map((r) => ({ id: r.id, title: r.title, summary: r.summary, publishedAt: r.published_at?.toISOString() ?? null, selected: r.selected ?? false }));
+  return rows.map((r) => ({
+    id: r.id,
+    title: r.title,
+    summary: r.summary,
+    publishedAt: r.published_at?.toISOString() ?? null,
+    selected: r.selected ?? false,
+    kind: r.content_kind ?? null,
+  }));
 }
 
-export async function loadTeamDetail(slug: string) {
+async function fetchTeamDetailRaw(slug: string) {
   const [team] = await sql<{ id: string; slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null; founded_at: string | null; history_names: string[] | null; style_notes: string | null; is_active: boolean }[]>`
     SELECT id, slug, name, short_name, logo_url, city, founded_at::text, history_names, style_notes, is_active FROM teams WHERE slug = ${slug}`;
   if (!team) return null;
-  const [record] = await sql<{ wins: number; losses: number }[]>`
-    SELECT count(*) FILTER (WHERE m.winner_id = ${team.id}) AS wins,
-           count(*) FILTER (WHERE m.status = 'finished' AND m.winner_id IS NOT NULL AND m.winner_id <> ${team.id} AND (m.team_a_id = ${team.id} OR m.team_b_id = ${team.id})) AS losses
-    FROM matches m WHERE (m.team_a_id = ${team.id} OR m.team_b_id = ${team.id}) AND m.status = 'finished'`;
-  const roster = await sql<{ slug: string; nickname: string; position: string | null; portrait: string | null }[]>`
-    SELECT p.slug, p.nickname, p.position, p.portrait_url AS portrait
-    FROM players p WHERE p.current_team_id = ${team.id} AND p.is_active
-    ORDER BY CASE p.position WHEN '对抗路' THEN 1 WHEN '打野' THEN 2 WHEN '中路' THEN 3 WHEN '发育路' THEN 4 WHEN '游走' THEN 5 ELSE 6 END, p.nickname`;
-  const honors = await sql<{ season: string | null; kind: string; note: string | null; year: number | null; title: string | null }[]>`
-    SELECT s.name AS season, h.kind, h.note, h.year, h.title FROM team_honors h LEFT JOIN seasons s ON s.id = h.season_id
-    WHERE h.team_id = ${team.id} ORDER BY h.year DESC NULLS LAST, s.year DESC NULLS LAST`;
-  const recent = await sql<MatchRowRaw[]>`
-    ${MATCH_SELECT}
-    WHERE m.team_a_id = ${team.id} OR m.team_b_id = ${team.id}
-    ORDER BY coalesce(m.played_at, m.scheduled_at) DESC NULLS LAST LIMIT 10`;
-  const news = await loadEntityNews("team", team.id);
+  const [[record], roster, honors, recent, news] = await Promise.all([
+    sql<{ wins: number; losses: number }[]>`
+      SELECT count(*) FILTER (WHERE m.winner_id = ${team.id}) AS wins,
+             count(*) FILTER (WHERE m.status = 'finished' AND m.winner_id IS NOT NULL AND m.winner_id <> ${team.id} AND (m.team_a_id = ${team.id} OR m.team_b_id = ${team.id})) AS losses
+      FROM matches m WHERE (m.team_a_id = ${team.id} OR m.team_b_id = ${team.id}) AND m.status = 'finished'`,
+    sql<{ slug: string; nickname: string; position: string | null; portrait: string | null }[]>`
+      SELECT p.slug, p.nickname, p.position, p.portrait_url AS portrait
+      FROM players p WHERE p.current_team_id = ${team.id} AND p.is_active
+      ORDER BY CASE p.position WHEN '对抗路' THEN 1 WHEN '打野' THEN 2 WHEN '中路' THEN 3 WHEN '发育路' THEN 4 WHEN '游走' THEN 5 ELSE 6 END, p.nickname`,
+    sql<{ season: string | null; kind: string; note: string | null; year: number | null; title: string | null }[]>`
+      SELECT s.name AS season, h.kind, h.note, h.year, h.title FROM team_honors h LEFT JOIN seasons s ON s.id = h.season_id
+      WHERE h.team_id = ${team.id} ORDER BY h.year DESC NULLS LAST, s.year DESC NULLS LAST`,
+    sql<MatchRowRaw[]>`
+      ${MATCH_SELECT}
+      WHERE m.team_a_id = ${team.id} OR m.team_b_id = ${team.id}
+      ORDER BY coalesce(m.played_at, m.scheduled_at) DESC NULLS LAST LIMIT 10`,
+    loadEntityNews("team", team.id),
+  ]);
   return {
     team: { slug: team.slug, name: team.name, shortName: team.short_name, logo: team.logo_url, city: team.city, isActive: team.is_active, foundedAt: team.founded_at, historyNames: team.history_names ?? [], styleNotes: team.style_notes },
     record: { wins: Number(record?.wins ?? 0), losses: Number(record?.losses ?? 0) },
     roster, honors, recentMatches: recent.map(toScheduleMatch), news,
   };
+}
+
+const cachedTeamDetail = cachedByKey<string, any>(
+  (slug) => slug,
+  (slug) => fetchTeamDetailRaw(slug),
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 40 }
+);
+
+export async function loadTeamDetail(slug: string) {
+  return cachedTeamDetail(slug);
 }
 
 export async function loadMatchDetail(id: string): Promise<MatchDetailResponse | null> {
@@ -309,7 +354,7 @@ export async function loadMatchDetail(id: string): Promise<MatchDetailResponse |
   };
 }
 
-export async function loadPlayerDetail(slug: string) {
+async function fetchPlayerDetailRaw(slug: string) {
   // slug 按大小写不敏感解析：历史同步可能给同一选手留下大小写两个档（'Fly'/'fly'），
   // 优先取有对局数据的现役行，空壳行不参与展示。
   const [player] = await sql<{ id: string; slug: string; nickname: string; real_name: string | null; bio: string | null; position: string | null; portrait_url: string | null; debut_at: string | null; team: string | null; team_slug: string | null }[]>`
@@ -320,37 +365,40 @@ export async function loadPlayerDetail(slug: string) {
     ORDER BY p.is_active DESC, (SELECT count(*) FROM player_games pg WHERE pg.player_id = p.id) DESC
     LIMIT 1`;
   if (!player) return null;
-  const stints = await sql<{ team: string | null; team_slug: string | null; joined_at: string | null; left_at: string | null }[]>`
-    SELECT t.name AS team, t.slug AS team_slug, ps.joined_at::text, ps.left_at::text
-    FROM player_stints ps LEFT JOIN teams t ON t.id = ps.team_id
-    WHERE ps.player_id = ${player.id} ORDER BY ps.joined_at DESC NULLS FIRST`;  const seasons = await sql<{ season_id: string; season_name: string; games: number; wins: number; mvps: number; avg_kills: number | null; avg_deaths: number | null; avg_assists: number | null }[]>`
-    SELECT m.season_id, s.name AS season_name, count(DISTINCT pg.game_id) AS games,
-      count(DISTINCT pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
-      sum(pg.mvp::int) AS mvps,
-      round(avg(pg.kills), 1) AS avg_kills, round(avg(pg.deaths), 1) AS avg_deaths, round(avg(pg.assists), 1) AS avg_assists
-    FROM player_games pg
-    JOIN games g ON g.id = pg.game_id
-    JOIN matches m ON m.id = g.match_id
-    JOIN seasons s ON s.id = m.season_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg.player_id = ${player.id}
-    GROUP BY m.season_id, s.name ORDER BY s.name DESC`;
-  const heroes = await sql<{ hero: string; hero_icon: string | null; games: number; wins: number }[]>`
-    SELECT h.name AS hero, h.portrait_url AS hero_icon, count(*) AS games,
-      count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
-    FROM player_games pg
-    JOIN games g ON g.id = pg.game_id
-    LEFT JOIN heroes h ON h.id = pg.hero_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg.player_id = ${player.id}
-    GROUP BY h.name, h.portrait_url ORDER BY games DESC LIMIT 8`;
-  const honors = await sql<{ season: string | null; kind: string; title: string | null; year: number | null; note: string | null }[]>`
-    SELECT s.name AS season, h.kind, h.title, h.year, h.note
-    FROM player_honors h LEFT JOIN seasons s ON s.id = h.season_id
-    WHERE h.player_id = ${player.id}
-    ORDER BY h.year DESC NULLS LAST,
-      CASE h.kind WHEN 'fmvp' THEN 0 WHEN 'regular_mvp' THEN 1 WHEN 'annual_mvp' THEN 2 WHEN 'best_lineup' THEN 3 WHEN 'champion' THEN 4 ELSE 5 END`;
-  const news = await loadEntityNews("player", player.id);
+  const [stints, seasons, heroes, honors, news] = await Promise.all([
+    sql<{ team: string | null; team_slug: string | null; joined_at: string | null; left_at: string | null }[]>`
+      SELECT t.name AS team, t.slug AS team_slug, ps.joined_at::text, ps.left_at::text
+      FROM player_stints ps LEFT JOIN teams t ON t.id = ps.team_id
+      WHERE ps.player_id = ${player.id} ORDER BY ps.joined_at DESC NULLS FIRST`,
+    sql<{ season_id: string; season_name: string; games: number; wins: number; mvps: number; avg_kills: number | null; avg_deaths: number | null; avg_assists: number | null }[]>`
+      SELECT m.season_id, s.name AS season_name, count(DISTINCT pg.game_id) AS games,
+        count(DISTINCT pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
+        sum(pg.mvp::int) AS mvps,
+        round(avg(pg.kills), 1) AS avg_kills, round(avg(pg.deaths), 1) AS avg_deaths, round(avg(pg.assists), 1) AS avg_assists
+      FROM player_games pg
+      JOIN games g ON g.id = pg.game_id
+      JOIN matches m ON m.id = g.match_id
+      JOIN seasons s ON s.id = m.season_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg.player_id = ${player.id}
+      GROUP BY m.season_id, s.name ORDER BY s.name DESC`,
+    sql<{ hero: string; hero_icon: string | null; games: number; wins: number }[]>`
+      SELECT h.name AS hero, h.portrait_url AS hero_icon, count(*) AS games,
+        count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
+      FROM player_games pg
+      JOIN games g ON g.id = pg.game_id
+      LEFT JOIN heroes h ON h.id = pg.hero_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg.player_id = ${player.id}
+      GROUP BY h.name, h.portrait_url ORDER BY games DESC LIMIT 8`,
+    sql<{ season: string | null; kind: string; title: string | null; year: number | null; note: string | null }[]>`
+      SELECT s.name AS season, h.kind, h.title, h.year, h.note
+      FROM player_honors h LEFT JOIN seasons s ON s.id = h.season_id
+      WHERE h.player_id = ${player.id}
+      ORDER BY h.year DESC NULLS LAST,
+        CASE h.kind WHEN 'fmvp' THEN 0 WHEN 'regular_mvp' THEN 1 WHEN 'annual_mvp' THEN 2 WHEN 'best_lineup' THEN 3 WHEN 'champion' THEN 4 ELSE 5 END`,
+    loadEntityNews("player", player.id),
+  ]);
   return {
     player: { slug: player.slug, nickname: player.nickname, realName: player.real_name, bio: player.bio, position: player.position, portrait: player.portrait_url, debutAt: player.debut_at, team: player.team, teamSlug: player.team_slug },
     stints: stints.map((s) => ({ team: s.team, teamSlug: s.team_slug, joinedAt: s.joined_at, leftAt: s.left_at })),
@@ -359,6 +407,16 @@ export async function loadPlayerDetail(slug: string) {
     honors: honors.map((h) => ({ kind: h.kind, season: h.season, title: h.title, year: h.year == null ? null : Number(h.year), note: h.note })),
     news,
   };
+}
+
+const cachedPlayerDetail = cachedByKey<string, any>(
+  (slug) => slug.toLowerCase(),
+  (slug) => fetchPlayerDetailRaw(slug),
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 100 }
+);
+
+export async function loadPlayerDetail(slug: string) {
+  return cachedPlayerDetail(slug);
 }
 
 function calculateVersionStrength(bpRate: number, dbStrength?: string | number | null): string {
@@ -417,87 +475,88 @@ function checkFmvpSkin(playerSlug: string, playerNickname: string, heroName: str
   return null;
 }
 
-export async function loadHeroesList(opts?: { season?: string; pos?: string; sort?: string }): Promise<HeroListResponse> {
-  const season = opts?.season;
-  const pos = opts?.pos;
-  const sort = opts?.sort ?? "bpRate";
+async function fetchBaseHeroesList(season?: string): Promise<{ heroes: HeroListItem[]; totalGames: number; season?: string }> {
+  const [totalGamesRow, picksAndWins, bansData, topPlayersData, heroesRows] = await Promise.all([
+    season
+      ? sql<{ count: string }[]>`
+          SELECT count(DISTINCT g.id) AS count
+          FROM games g JOIN matches m ON m.id = g.match_id
+          WHERE m.season_id = ${season}`
+      : sql<{ count: string }[]>`SELECT count(*) AS count FROM games`,
+    season
+      ? sql<{ hero_id: string; picks: string; wins: string }[]>`
+          SELECT pg.hero_id, count(*) AS picks,
+                 count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
+          FROM player_games pg
+          JOIN games g ON g.id = pg.game_id
+          JOIN matches m ON m.id = g.match_id
+          LEFT JOIN teams tw ON tw.id = g.winner_id
+          WHERE m.season_id = ${season}
+          GROUP BY pg.hero_id`
+      : sql<{ hero_id: string; picks: string; wins: string }[]>`
+          SELECT pg.hero_id, count(*) AS picks,
+                 count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
+          FROM player_games pg
+          JOIN games g ON g.id = pg.game_id
+          LEFT JOIN teams tw ON tw.id = g.winner_id
+          GROUP BY pg.hero_id`,
+    season
+      ? sql<{ hero_id: string; bans: string }[]>`
+          SELECT b.hero_id, count(*) AS bans
+          FROM bp_actions b
+          JOIN games g ON g.id = b.game_id
+          JOIN matches m ON m.id = g.match_id
+          WHERE b.action_type = 'ban' AND m.season_id = ${season}
+          GROUP BY b.hero_id`
+      : sql<{ hero_id: string; bans: string }[]>`
+          SELECT b.hero_id, count(*) AS bans
+          FROM bp_actions b
+          WHERE b.action_type = 'ban'
+          GROUP BY b.hero_id`,
+    sql<{
+      hero_id: string; hero_name: string; slug: string; nickname: string;
+      games: string; wins: string; playoff_wins: string; win_rate: string;
+      kda: string | null; mvps: string;
+    }[]>`
+      SELECT pg.hero_id, h.name AS hero_name, p.slug, p.nickname,
+             count(pg.game_id) AS games,
+             count(pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
+             count(pg.game_id) FILTER (WHERE tw.id = pg.team_id AND (m.bo >= 7 OR m.stage LIKE '%季后赛%' OR m.stage LIKE '%决赛%')) AS playoff_wins,
+             round(count(pg.game_id) FILTER (WHERE tw.id = pg.team_id)::numeric / count(pg.game_id), 4) AS win_rate,
+             round(avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END), 2) AS kda,
+             sum(pg.mvp::int) AS mvps
+      FROM player_games pg
+      JOIN heroes h ON h.id = pg.hero_id
+      JOIN players p ON p.id = pg.player_id
+      JOIN games g ON g.id = pg.game_id
+      JOIN matches m ON m.id = g.match_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE p.nickname <> '' AND p.id <> 'player'
+      GROUP BY pg.hero_id, h.name, p.slug, p.nickname
+      HAVING count(pg.game_id) >= 3`,
+    sql<{
+      id: string; slug: string; name: string; primary_pos: string | null;
+      positions: string[] | null; function_tags: string[] | null;
+      version_strength: string | number | null; portrait_url: string | null;
+    }[]>`
+      SELECT id, slug, name, primary_pos, positions, function_tags, version_strength, portrait_url
+      FROM heroes
+      WHERE name <> '' AND id <> '0'
+      ORDER BY id`,
+  ]);
 
-  let totalGames = 0;
-  if (season) {
-    const [row] = await sql<{ count: string }[]>`
-      SELECT count(DISTINCT g.id) AS count
-      FROM games g JOIN matches m ON m.id = g.match_id
-      WHERE m.season_id = ${season}`;
-    totalGames = Number(row?.count ?? 0);
-  } else {
-    const [row] = await sql<{ count: string }[]>`SELECT count(*) AS count FROM games`;
-    totalGames = Number(row?.count ?? 0);
-  }
+  let totalGames = Number(totalGamesRow[0]?.count ?? 0);
   if (totalGames === 0) totalGames = 1;
-
-  const picksAndWins = season
-    ? await sql<{ hero_id: string; picks: string; wins: string }[]>`
-        SELECT pg.hero_id, count(*) AS picks,
-               count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
-        FROM player_games pg
-        JOIN games g ON g.id = pg.game_id
-        JOIN matches m ON m.id = g.match_id
-        LEFT JOIN teams tw ON tw.id = g.winner_id
-        WHERE m.season_id = ${season}
-        GROUP BY pg.hero_id`
-    : await sql<{ hero_id: string; picks: string; wins: string }[]>`
-        SELECT pg.hero_id, count(*) AS picks,
-               count(*) FILTER (WHERE tw.id = pg.team_id) AS wins
-        FROM player_games pg
-        JOIN games g ON g.id = pg.game_id
-        LEFT JOIN teams tw ON tw.id = g.winner_id
-        GROUP BY pg.hero_id`;
 
   const picksMap = new Map<string, { picks: number; wins: number }>();
   for (const r of picksAndWins) {
     picksMap.set(r.hero_id, { picks: Number(r.picks), wins: Number(r.wins) });
   }
 
-  const bansData = season
-    ? await sql<{ hero_id: string; bans: string }[]>`
-        SELECT b.hero_id, count(*) AS bans
-        FROM bp_actions b
-        JOIN games g ON g.id = b.game_id
-        JOIN matches m ON m.id = g.match_id
-        WHERE b.action_type = 'ban' AND m.season_id = ${season}
-        GROUP BY b.hero_id`
-    : await sql<{ hero_id: string; bans: string }[]>`
-        SELECT b.hero_id, count(*) AS bans
-        FROM bp_actions b
-        WHERE b.action_type = 'ban'
-        GROUP BY b.hero_id`;
-
   const bansMap = new Map<string, number>();
   for (const r of bansData) {
     bansMap.set(r.hero_id, Number(r.bans));
   }
-
-  const topPlayersData = await sql<{
-    hero_id: string; hero_name: string; slug: string; nickname: string;
-    games: string; wins: string; playoff_wins: string; win_rate: string;
-    kda: string | null; mvps: string;
-  }[]>`
-    SELECT pg.hero_id, h.name AS hero_name, p.slug, p.nickname,
-           count(pg.game_id) AS games,
-           count(pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
-           count(pg.game_id) FILTER (WHERE tw.id = pg.team_id AND (m.bo >= 7 OR m.stage LIKE '%季后赛%' OR m.stage LIKE '%决赛%')) AS playoff_wins,
-           round(count(pg.game_id) FILTER (WHERE tw.id = pg.team_id)::numeric / count(pg.game_id), 4) AS win_rate,
-           round(avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END), 2) AS kda,
-           sum(pg.mvp::int) AS mvps
-    FROM player_games pg
-    JOIN heroes h ON h.id = pg.hero_id
-    JOIN players p ON p.id = pg.player_id
-    JOIN games g ON g.id = pg.game_id
-    JOIN matches m ON m.id = g.match_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE p.nickname <> '' AND p.id <> 'player'
-    GROUP BY pg.hero_id, h.name, p.slug, p.nickname
-    HAVING count(pg.game_id) >= 3`;
 
   const topPlayerMap = new Map<
     string,
@@ -546,16 +605,6 @@ export async function loadHeroesList(opts?: { season?: string; pos?: string; sor
     }
   }
 
-  const heroesRows = await sql<{
-    id: string; slug: string; name: string; primary_pos: string | null;
-    positions: string[] | null; function_tags: string[] | null;
-    version_strength: string | number | null; portrait_url: string | null;
-  }[]>`
-    SELECT id, slug, name, primary_pos, positions, function_tags, version_strength, portrait_url
-    FROM heroes
-    WHERE name <> '' AND id <> '0'
-    ORDER BY id`;
-
   const heroes: HeroListItem[] = heroesRows.map((h) => {
     const pw = picksMap.get(h.id) ?? { picks: 0, wins: 0 };
     const bans = bansMap.get(h.id) ?? 0;
@@ -585,7 +634,23 @@ export async function loadHeroesList(opts?: { season?: string; pos?: string; sor
     };
   });
 
-  let filtered = heroes;
+  return { heroes, totalGames, season };
+}
+
+const cachedBaseHeroesList = cachedByKey<string, { heroes: HeroListItem[]; totalGames: number; season?: string }>(
+  (seasonKey) => seasonKey,
+  (seasonKey) => fetchBaseHeroesList(seasonKey === "__all__" ? undefined : seasonKey),
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 10 }
+);
+
+export async function loadHeroesList(opts?: { season?: string; pos?: string; sort?: string }): Promise<HeroListResponse> {
+  const season = opts?.season;
+  const pos = opts?.pos;
+  const sort = opts?.sort ?? "bpRate";
+
+  const base = await cachedBaseHeroesList(season ?? "__all__");
+  let filtered = [...base.heroes];
+
   if (pos && pos !== "全部") {
     filtered = filtered.filter((h) => h.primaryPos === pos || h.positions.includes(pos));
   }
@@ -608,12 +673,12 @@ export async function loadHeroesList(opts?: { season?: string; pos?: string; sor
 
   return {
     heroes: filtered,
-    totalGames,
-    season,
+    totalGames: base.totalGames,
+    season: base.season,
   };
 }
 
-export async function loadHeroDetail(slug: string, _opts?: { season?: string }): Promise<HeroDetailResponse | null> {
+async function fetchHeroDetailRaw(slug: string, _opts?: { season?: string }): Promise<HeroDetailResponse | null> {
   const [heroRow] = await sql<{
     id: string; slug: string; name: string; title: string | null;
     primary_pos: string | null; positions: string[] | null;
@@ -632,35 +697,102 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
   if (!heroRow) return null;
   const heroId = heroRow.id;
 
-  const [totalRow] = await sql<{ count: string }[]>`SELECT count(*) AS count FROM games`;
+  const [[totalRow], [picksRow], [bansRow], topPlayersRows, partnersRows, countersRows, recentRows] = await Promise.all([
+    sql<{ count: string }[]>`SELECT count(*) AS count FROM games`,
+    sql<{
+      picks: string;
+      wins: string;
+      blue_games: string;
+      blue_wins: string;
+      red_games: string;
+      red_wins: string;
+      avg_kda: string | null;
+      avg_dmg_share: string | null;
+    }[]>`
+      SELECT count(*) AS picks,
+             count(*) FILTER (WHERE tw.id = pg.team_id) AS wins,
+             count(*) FILTER (WHERE pg.side = 'blue') AS blue_games,
+             count(*) FILTER (WHERE pg.side = 'blue' AND tw.id = pg.team_id) AS blue_wins,
+             count(*) FILTER (WHERE pg.side = 'red') AS red_games,
+             count(*) FILTER (WHERE pg.side = 'red' AND tw.id = pg.team_id) AS red_wins,
+             avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END) AS avg_kda,
+             avg((pg.raw->>'hurt_to_hero_total_rate')::numeric) AS avg_dmg_share
+      FROM player_games pg
+      JOIN games g ON g.id = pg.game_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg.hero_id = ${heroId}`,
+    sql<{ bans: string }[]>`
+      SELECT count(*) AS bans FROM bp_actions WHERE hero_id = ${heroId} AND action_type = 'ban'`,
+    sql<{
+      slug: string; nickname: string; portrait: string | null; team_name: string | null;
+      games: string; wins: string; playoff_wins: string; win_rate: string; kda: string | null; mvps: string;
+    }[]>`
+      SELECT p.slug, p.nickname, p.portrait_url AS portrait, t.name AS team_name,
+             count(pg.game_id) AS games,
+             count(pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
+             count(pg.game_id) FILTER (WHERE tw.id = pg.team_id AND (m.bo >= 7 OR m.stage LIKE '%季后赛%' OR m.stage LIKE '%决赛%')) AS playoff_wins,
+             round(count(pg.game_id) FILTER (WHERE tw.id = pg.team_id)::numeric / count(pg.game_id), 4) AS win_rate,
+             round(avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END), 2) AS kda,
+             sum(pg.mvp::int) AS mvps
+      FROM player_games pg
+      JOIN players p ON p.id = pg.player_id
+      LEFT JOIN teams t ON t.id = p.current_team_id
+      JOIN games g ON g.id = pg.game_id
+      JOIN matches m ON m.id = g.match_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg.hero_id = ${heroId} AND p.nickname <> '' AND p.id <> 'player'
+      GROUP BY p.id, p.slug, p.nickname, p.portrait_url, t.name
+      HAVING count(pg.game_id) >= 3`,
+    sql<{
+      hero_id: string; name: string; avatar: string | null; games: string; win_rate: string;
+    }[]>`
+      SELECT h.id AS hero_id, h.name, h.portrait_url AS avatar,
+             count(*) AS games,
+             round(count(*) FILTER (WHERE tw.id = pg2.team_id)::numeric / count(*), 4) AS win_rate
+      FROM player_games pg1
+      JOIN player_games pg2 ON pg1.game_id = pg2.game_id 
+                           AND (pg1.team_id = pg2.team_id OR pg1.side = pg2.side)
+                           AND pg1.hero_id <> pg2.hero_id
+      JOIN heroes h ON h.id = pg2.hero_id
+      JOIN games g ON g.id = pg1.game_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg1.hero_id = ${heroId} AND h.name <> '' AND h.id <> '0'
+      GROUP BY h.id, h.name, h.portrait_url
+      HAVING count(*) >= 5
+      ORDER BY win_rate DESC, games DESC
+      LIMIT 5`,
+    sql<{
+      hero_id: string; name: string; avatar: string | null; games: string; win_rate: string;
+    }[]>`
+      SELECT h.id AS hero_id, h.name, h.portrait_url AS avatar,
+             count(*) AS games,
+             round(count(*) FILTER (WHERE tw.id = pg1.team_id)::numeric / count(*), 4) AS win_rate
+      FROM player_games pg1
+      JOIN player_games pg2 ON pg1.game_id = pg2.game_id 
+                           AND pg1.side <> pg2.side
+      JOIN heroes h ON h.id = pg2.hero_id
+      JOIN games g ON g.id = pg1.game_id
+      LEFT JOIN teams tw ON tw.id = g.winner_id
+      WHERE pg1.hero_id = ${heroId} AND h.name <> '' AND h.id <> '0'
+      GROUP BY h.id, h.name, h.portrait_url
+      HAVING count(*) >= 5
+      ORDER BY win_rate DESC, games DESC
+      LIMIT 5`,
+    sql<MatchRowRaw[]>`
+      ${MATCH_SELECT}
+      WHERE m.id IN (
+        SELECT g.match_id
+        FROM player_games pg
+        JOIN games g ON g.id = pg.game_id
+        WHERE pg.hero_id = ${heroId}
+        ORDER BY g.id DESC
+        LIMIT 10
+      )
+      ORDER BY coalesce(m.played_at, m.scheduled_at) DESC NULLS LAST
+      LIMIT 10`,
+  ]);
+
   const totalGames = Math.max(Number(totalRow?.count ?? 1), 1);
-
-  const [picksRow] = await sql<{
-    picks: string;
-    wins: string;
-    blue_games: string;
-    blue_wins: string;
-    red_games: string;
-    red_wins: string;
-    avg_kda: string | null;
-    avg_dmg_share: string | null;
-  }[]>`
-    SELECT count(*) AS picks,
-           count(*) FILTER (WHERE tw.id = pg.team_id) AS wins,
-           count(*) FILTER (WHERE pg.side = 'blue') AS blue_games,
-           count(*) FILTER (WHERE pg.side = 'blue' AND tw.id = pg.team_id) AS blue_wins,
-           count(*) FILTER (WHERE pg.side = 'red') AS red_games,
-           count(*) FILTER (WHERE pg.side = 'red' AND tw.id = pg.team_id) AS red_wins,
-           avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END) AS avg_kda,
-           avg((pg.raw->>'hurt_to_hero_total_rate')::numeric) AS avg_dmg_share
-    FROM player_games pg
-    JOIN games g ON g.id = pg.game_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg.hero_id = ${heroId}`;
-
-  const [bansRow] = await sql<{ bans: string }[]>`
-    SELECT count(*) AS bans FROM bp_actions WHERE hero_id = ${heroId} AND action_type = 'ban'`;
-
   const picks = Number(picksRow?.picks ?? 0);
   const bans = Number(bansRow?.bans ?? 0);
   const wins = Number(picksRow?.wins ?? 0);
@@ -680,40 +812,19 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
   const avgDamageShare = picksRow?.avg_dmg_share != null ? Math.round(Number(picksRow.avg_dmg_share) * 1000) / 1000 : 0.2;
   const avgGoldShare = 0.2;
 
-  const topPlayersRows = await sql<{
-    slug: string; nickname: string; portrait: string | null; team_name: string | null;
-    games: string; wins: string; playoff_wins: string; win_rate: string; kda: string | null; mvps: string;
-  }[]>`
-    SELECT p.slug, p.nickname, p.portrait_url AS portrait, t.name AS team_name,
-           count(pg.game_id) AS games,
-           count(pg.game_id) FILTER (WHERE tw.id = pg.team_id) AS wins,
-           count(pg.game_id) FILTER (WHERE tw.id = pg.team_id AND (m.bo >= 7 OR m.stage LIKE '%季后赛%' OR m.stage LIKE '%决赛%')) AS playoff_wins,
-           round(count(pg.game_id) FILTER (WHERE tw.id = pg.team_id)::numeric / count(pg.game_id), 4) AS win_rate,
-           round(avg(CASE WHEN pg.deaths = 0 THEN (pg.kills + pg.assists) ELSE (pg.kills + pg.assists)::numeric / pg.deaths END), 2) AS kda,
-           sum(pg.mvp::int) AS mvps
-    FROM player_games pg
-    JOIN players p ON p.id = pg.player_id
-    LEFT JOIN teams t ON t.id = p.current_team_id
-    JOIN games g ON g.id = pg.game_id
-    JOIN matches m ON m.id = g.match_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg.hero_id = ${heroId} AND p.nickname <> '' AND p.id <> 'player'
-    GROUP BY p.id, p.slug, p.nickname, p.portrait_url, t.name
-    HAVING count(pg.game_id) >= 3`;
-
   const scoredPlayers = topPlayersRows.map((r) => {
-    const wins = Number(r.wins);
+    const pWins = Number(r.wins);
     const playoffWins = Number(r.playoff_wins || 0);
-    const winRate = Number(r.win_rate);
+    const pWinRate = Number(r.win_rate);
     const mvps = Number(r.mvps || 0);
     const kda = r.kda != null ? Number(r.kda) : 0;
     const games = Number(r.games);
     const fmvpSkin = checkFmvpSkin(r.slug, r.nickname, heroRow.name);
 
-    const weightedWins = wins + playoffWins * 0.5;
-    const baseScore = weightedWins * (1 + winRate);
+    const weightedWins = pWins + playoffWins * 0.5;
+    const baseScore = weightedWins * (1 + pWinRate);
     const mvpScore = mvps * 2.2;
-    const mvpRate = wins > 0 ? mvps / wins : 0;
+    const mvpRate = pWins > 0 ? mvps / pWins : 0;
     const carryBonus = mvpRate >= 0.3 ? mvpRate * 15 : 0;
     const fmvpBonus = fmvpSkin ? 35 : 0;
     const kdaBonus = Math.min(kda, 10) * 0.8;
@@ -725,8 +836,8 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
       portrait: r.portrait || undefined,
       teamName: r.team_name || undefined,
       games,
-      wins,
-      winRate,
+      wins: pWins,
+      winRate: pWinRate,
       kda,
       mvpCount: mvps,
       mvpRate: Math.round(mvpRate * 1000) / 1000,
@@ -740,25 +851,6 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
   scoredPlayers.sort((a, b) => b.score - a.score || b.games - a.games);
   const topPlayers = scoredPlayers.slice(0, 5);
 
-  const partnersRows = await sql<{
-    hero_id: string; name: string; avatar: string | null; games: string; win_rate: string;
-  }[]>`
-    SELECT h.id AS hero_id, h.name, h.portrait_url AS avatar,
-           count(*) AS games,
-           round(count(*) FILTER (WHERE tw.id = pg2.team_id)::numeric / count(*), 4) AS win_rate
-    FROM player_games pg1
-    JOIN player_games pg2 ON pg1.game_id = pg2.game_id 
-                         AND (pg1.team_id = pg2.team_id OR pg1.side = pg2.side)
-                         AND pg1.hero_id <> pg2.hero_id
-    JOIN heroes h ON h.id = pg2.hero_id
-    JOIN games g ON g.id = pg1.game_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg1.hero_id = ${heroId} AND h.name <> '' AND h.id <> '0'
-    GROUP BY h.id, h.name, h.portrait_url
-    HAVING count(*) >= 5
-    ORDER BY win_rate DESC, games DESC
-    LIMIT 5`;
-
   const bestPartners = partnersRows.map((r) => ({
     heroId: Number(r.hero_id),
     name: r.name,
@@ -767,24 +859,6 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
     winRate: Number(r.win_rate),
   }));
 
-  const countersRows = await sql<{
-    hero_id: string; name: string; avatar: string | null; games: string; win_rate: string;
-  }[]>`
-    SELECT h.id AS hero_id, h.name, h.portrait_url AS avatar,
-           count(*) AS games,
-           round(count(*) FILTER (WHERE tw.id = pg1.team_id)::numeric / count(*), 4) AS win_rate
-    FROM player_games pg1
-    JOIN player_games pg2 ON pg1.game_id = pg2.game_id 
-                         AND pg1.side <> pg2.side
-    JOIN heroes h ON h.id = pg2.hero_id
-    JOIN games g ON g.id = pg1.game_id
-    LEFT JOIN teams tw ON tw.id = g.winner_id
-    WHERE pg1.hero_id = ${heroId} AND h.name <> '' AND h.id <> '0'
-    GROUP BY h.id, h.name, h.portrait_url
-    HAVING count(*) >= 5
-    ORDER BY win_rate DESC, games DESC
-    LIMIT 5`;
-
   const counters = countersRows.map((r) => ({
     heroId: Number(r.hero_id),
     name: r.name,
@@ -792,19 +866,6 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
     games: Number(r.games),
     winRate: Number(r.win_rate),
   }));
-
-  const recentRows = await sql<MatchRowRaw[]>`
-    ${MATCH_SELECT}
-    WHERE m.id IN (
-      SELECT g.match_id
-      FROM player_games pg
-      JOIN games g ON g.id = pg.game_id
-      WHERE pg.hero_id = ${heroId}
-      ORDER BY g.id DESC
-      LIMIT 10
-    )
-    ORDER BY coalesce(m.played_at, m.scheduled_at) DESC NULLS LAST
-    LIMIT 10`;
 
   const primaryPos = heroRow.primary_pos || (heroRow.positions?.[0] ?? "对抗路");
   const positions = heroRow.positions && heroRow.positions.length > 0 ? heroRow.positions : [primaryPos];
@@ -843,13 +904,28 @@ export async function loadHeroDetail(slug: string, _opts?: { season?: string }):
   };
 }
 
-export async function loadH2H(teamASlug: string, teamBSlug: string, season?: string): Promise<H2HResponse | null> {
-  const [teamA] = await sql<{ id: string; slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null }[]>`
-    SELECT id, slug, name, short_name, logo_url, city FROM teams
-    WHERE slug = ${teamASlug} OR id = ${teamASlug} LIMIT 1`;
-  const [teamB] = await sql<{ id: string; slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null }[]>`
-    SELECT id, slug, name, short_name, logo_url, city FROM teams
-    WHERE slug = ${teamBSlug} OR id = ${teamBSlug} LIMIT 1`;
+const cachedHeroDetail = cachedByKey<string, HeroDetailResponse | null>(
+  (key) => key,
+  (key) => {
+    const [slug, season] = key.split("::");
+    return fetchHeroDetailRaw(slug, season ? { season } : undefined);
+  },
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 150 }
+);
+
+export async function loadHeroDetail(slug: string, opts?: { season?: string }): Promise<HeroDetailResponse | null> {
+  return cachedHeroDetail(`${slug}::${opts?.season ?? ""}`);
+}
+
+async function fetchH2HRaw(teamASlug: string, teamBSlug: string, season?: string): Promise<H2HResponse | null> {
+  const [[teamA], [teamB]] = await Promise.all([
+    sql<{ id: string; slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null }[]>`
+      SELECT id, slug, name, short_name, logo_url, city FROM teams
+      WHERE slug = ${teamASlug} OR id = ${teamASlug} LIMIT 1`,
+    sql<{ id: string; slug: string; name: string; short_name: string | null; logo_url: string | null; city: string | null }[]>`
+      SELECT id, slug, name, short_name, logo_url, city FROM teams
+      WHERE slug = ${teamBSlug} OR id = ${teamBSlug} LIMIT 1`,
+  ]);
 
   if (!teamA || !teamB) return null;
 
@@ -918,7 +994,20 @@ export async function loadH2H(teamASlug: string, teamBSlug: string, season?: str
   };
 }
 
-export async function loadStandings(opts?: { season?: string; stage?: string }): Promise<StandingsResponse | null> {
+const cachedH2H = cachedByKey<string, H2HResponse | null>(
+  (key) => key,
+  (key) => {
+    const [teamASlug, teamBSlug, season] = key.split("::");
+    return fetchH2HRaw(teamASlug, teamBSlug, season || undefined);
+  },
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 150 }
+);
+
+export async function loadH2H(teamASlug: string, teamBSlug: string, season?: string): Promise<H2HResponse | null> {
+  return cachedH2H(`${teamASlug}::${teamBSlug}::${season ?? ""}`);
+}
+
+async function fetchStandingsRaw(opts?: { season?: string; stage?: string }): Promise<StandingsResponse | null> {
   const availableSeasons = await listAvailableSeasons();
   if (availableSeasons.length === 0) return null;
 
@@ -927,13 +1016,14 @@ export async function loadStandings(opts?: { season?: string; stage?: string }):
     const matched = availableSeasons.find((s) => s.id === opts.season || s.externalId === opts.season);
     if (matched) selectedSeason = matched;
   } else {
-    for (const s of availableSeasons) {
-      const [hasRegular] = await sql<{ count: string }[]>`
-        SELECT count(*) AS count FROM matches WHERE season_id = ${s.id} AND stage LIKE '%常规赛%'`;
-      if (Number(hasRegular?.count ?? 0) > 0) {
-        selectedSeason = s;
-        break;
-      }
+    const [regularRow] = await sql<{ season_id: string }[]>`
+      SELECT season_id FROM matches
+      WHERE stage LIKE '%常规赛%'
+      ORDER BY played_at DESC NULLS LAST
+      LIMIT 1`;
+    if (regularRow) {
+      const matched = availableSeasons.find((s) => s.id === regularRow.season_id);
+      if (matched) selectedSeason = matched;
     }
   }
 
@@ -1123,4 +1213,26 @@ export async function loadStandings(opts?: { season?: string; stage?: string }):
     standingsByGroup,
   };
 }
+
+const cachedStandings = cachedByKey<string, StandingsResponse | null>(
+  (key) => key,
+  (key) => {
+    const [season, stage] = key.split("::");
+    return fetchStandingsRaw({ season: season || undefined, stage: stage || undefined });
+  },
+  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 40 }
+);
+
+export async function loadStandings(opts?: { season?: string; stage?: string }): Promise<StandingsResponse | null> {
+  return cachedStandings(`${opts?.season ?? ""}::${opts?.stage ?? ""}`);
+}
+
+// 启动时在后台静默预热热门接口缓存，避免用户首次访问冷启动等待
+setTimeout(() => {
+  void listAvailableSeasons().catch(() => {});
+  void listTeams().catch(() => {});
+  void cachedBaseHeroesList("__all__").catch(() => {});
+  void loadH2H("wolves", "ag").catch(() => {});
+  void loadStandings().catch(() => {});
+}, 200);
 

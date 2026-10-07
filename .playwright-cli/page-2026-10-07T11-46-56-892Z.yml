@@ -1,0 +1,2010 @@
+- generic [ref=f21e2]:
+  - link "跳到正文" [ref=f21e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=f21e4]:
+    - link "KPL Intelligence 首页" [ref=f21e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=f21e6]:
+        - generic [aria-hidden] [ref=f21e8]: KPL Intelligence
+    - navigation "主导航" [ref=f21e9]:
+      - generic [ref=f21e10]:
+        - generic [ref=f21e11]: 内容
+        - generic [ref=f21e12]:
+          - link "精选" [ref=f21e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=f21e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=f21e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=f21e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=f21e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=f21e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=f21e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=f21e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=f21e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=f21e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=f21e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=f21e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=f21e94]:
+        - generic [ref=f21e95]: 更多
+        - generic [ref=f21e96]:
+          - link "Agent 接入" [ref=f21e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=f21e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志 有新的更新" [ref=f21e107] [cursor=pointer]:
+            - /url: /changelog
+            - generic [ref=f21e113]: 更新日志
+            - generic "有新的更新" [ref=f21e114]
+          - link "反馈" [ref=f21e115] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=f21e121]:
+      - radio "深色" [ref=f21e123] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=f21e127] [cursor=pointer]
+      - radio "浅色" [ref=f21e132] [cursor=pointer]
+  - main [ref=f21e137]:
+    - generic [ref=f21e139]:
+      - generic [ref=f21e140]:
+        - generic [ref=f21e141]:
+          - generic [ref=f21e142]:
+            - heading "赛程与赛果" [level=1] [ref=f21e143]
+            - paragraph [ref=f21e144]: 2026年KPL夏季赛 · 点开看每局的 BP 与选手数据
+          - generic [ref=f21e145]:
+            - generic [ref=f21e146]: 选择赛季
+            - combobox "选择赛季" [ref=f21e147] [cursor=pointer]:
+              - option "2026年KPL年度总决赛 ★最新"
+              - option "2026年KPL夏季赛" [selected]
+              - option "2026年KPL挑战者杯"
+              - option "2026年KPL春季赛"
+              - option "2025年KPL挑战者杯"
+              - option "2025年KPL年度总决赛"
+              - option "2025年KPL夏季赛"
+              - option "2025年KPL春季赛"
+              - option "2024年KPL挑战者杯"
+              - option "2024年KPL年度总决赛"
+              - option "2024年KPL夏季赛"
+              - option "2024年KPL春季赛"
+              - option "2023年KPL挑战者杯"
+              - option "2023年KPL夏季赛"
+              - option "2023年KPL春季赛"
+              - option "2022年KPL挑战者杯"
+              - option "2022年KPL夏季赛"
+              - option "2022年KPL春季赛"
+              - option "2021年KPL夏季赛"
+              - option "2021年KPL挑战者杯"
+              - option "2020年KPL年度总决赛"
+              - option "2020年KPL夏季赛"
+              - option "2020年KPL春季赛"
+              - option "2019年KPL年度总决赛"
+              - option "2019年KPL夏季赛"
+              - option "2019年KPL春季赛"
+        - generic [ref=f21e148]:
+          - button "KPL年度总决赛●" [ref=f21e699] [cursor=pointer]
+          - button "KPL夏季赛" [active] [pressed] [ref=f21e150] [cursor=pointer]
+          - button "KPL挑战者杯" [ref=f21e151] [cursor=pointer]
+          - button "KPL春季赛" [ref=f21e152] [cursor=pointer]
+          - button "KPL挑战者杯" [ref=f21e153] [cursor=pointer]
+          - button "KPL年度总决赛" [ref=f21e154] [cursor=pointer]
+      - generic [ref=f21e155]:
+        - generic [ref=f21e700]:
+          - generic [ref=f21e701]:
+            - heading "2026/09/12" [level=2] [ref=f21e702]
+            - generic [ref=f21e703]: 1 场比赛
+          - list [ref=f21e704]:
+            - listitem [ref=f21e705]:
+              - 'link "14:52 已完赛 重庆狼队 3 : 4 广州TTG 决赛 详情 ›" [ref=f21e706] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026091201
+                - generic [ref=f21e707]:
+                  - generic [ref=f21e708]: 14:52
+                  - generic [ref=f21e709]: 已完赛
+                - generic [ref=f21e710]: 重庆狼队
+                - generic [ref=f21e712]: "3 : 4"
+                - generic [ref=f21e713]: 广州TTG
+                - generic [ref=f21e715]:
+                  - generic [ref=f21e716]: 决赛
+                  - generic [ref=f21e717]: 详情 ›
+        - generic [ref=f21e718]:
+          - generic [ref=f21e719]:
+            - heading "2026/09/06" [level=2] [ref=f21e720]
+            - generic [ref=f21e721]: 1 场比赛
+          - list [ref=f21e722]:
+            - listitem [ref=f21e723]:
+              - 'link "14:02 已完赛 北京JDG 3 : 4 广州TTG 季后赛 详情 ›" [ref=f21e724] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090601
+                - generic [ref=f21e725]:
+                  - generic [ref=f21e726]: 14:02
+                  - generic [ref=f21e727]: 已完赛
+                - generic [ref=f21e728]: 北京JDG
+                - generic [ref=f21e730]: "3 : 4"
+                - generic [ref=f21e731]: 广州TTG
+                - generic [ref=f21e733]:
+                  - generic [ref=f21e734]: 季后赛
+                  - generic [ref=f21e735]: 详情 ›
+        - generic [ref=f21e736]:
+          - generic [ref=f21e737]:
+            - heading "2026/09/05" [level=2] [ref=f21e738]
+            - generic [ref=f21e739]: 1 场比赛
+          - list [ref=f21e740]:
+            - listitem [ref=f21e741]:
+              - 'link "13:20 已完赛 长沙TES.A 1 : 4 广州TTG 季后赛 详情 ›" [ref=f21e742] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090501
+                - generic [ref=f21e743]:
+                  - generic [ref=f21e744]: 13:20
+                  - generic [ref=f21e745]: 已完赛
+                - generic [ref=f21e746]: 长沙TES.A
+                - generic [ref=f21e748]: "1 : 4"
+                - generic [ref=f21e749]: 广州TTG
+                - generic [ref=f21e751]:
+                  - generic [ref=f21e752]: 季后赛
+                  - generic [ref=f21e753]: 详情 ›
+        - generic [ref=f21e754]:
+          - generic [ref=f21e755]:
+            - heading "2026/09/04" [level=2] [ref=f21e756]
+            - generic [ref=f21e757]: 1 场比赛
+          - list [ref=f21e758]:
+            - listitem [ref=f21e759]:
+              - 'link "13:31 已完赛 重庆狼队 4 : 1 北京JDG 季后赛 详情 ›" [ref=f21e760] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090401
+                - generic [ref=f21e761]:
+                  - generic [ref=f21e762]: 13:31
+                  - generic [ref=f21e763]: 已完赛
+                - generic [ref=f21e764]: 重庆狼队
+                - generic [ref=f21e766]: "4 : 1"
+                - generic [ref=f21e767]: 北京JDG
+                - generic [ref=f21e769]:
+                  - generic [ref=f21e770]: 季后赛
+                  - generic [ref=f21e771]: 详情 ›
+        - generic [ref=f21e772]:
+          - generic [ref=f21e773]:
+            - heading "2026/09/03" [level=2] [ref=f21e774]
+            - generic [ref=f21e775]: 1 场比赛
+          - list [ref=f21e776]:
+            - listitem [ref=f21e777]:
+              - 'link "14:14 已完赛 广州TTG 4 : 3 成都AG超玩会 季后赛 详情 ›" [ref=f21e778] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090301
+                - generic [ref=f21e779]:
+                  - generic [ref=f21e780]: 14:14
+                  - generic [ref=f21e781]: 已完赛
+                - generic [ref=f21e782]: 广州TTG
+                - generic [ref=f21e784]: "4 : 3"
+                - generic [ref=f21e785]: 成都AG超玩会
+                - generic [ref=f21e787]:
+                  - generic [ref=f21e788]: 季后赛
+                  - generic [ref=f21e789]: 详情 ›
+        - generic [ref=f21e790]:
+          - generic [ref=f21e791]:
+            - heading "2026/09/02" [level=2] [ref=f21e792]
+            - generic [ref=f21e793]: 1 场比赛
+          - list [ref=f21e794]:
+            - listitem [ref=f21e795]:
+              - 'link "13:36 已完赛 长沙TES.A 4 : 2 上海EDG.M 季后赛 详情 ›" [ref=f21e796] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090201
+                - generic [ref=f21e797]:
+                  - generic [ref=f21e798]: 13:36
+                  - generic [ref=f21e799]: 已完赛
+                - generic [ref=f21e800]: 长沙TES.A
+                - generic [ref=f21e802]: "4 : 2"
+                - generic [ref=f21e803]: 上海EDG.M
+                - generic [ref=f21e805]:
+                  - generic [ref=f21e806]: 季后赛
+                  - generic [ref=f21e807]: 详情 ›
+        - generic [ref=f21e808]:
+          - generic [ref=f21e809]:
+            - heading "2026/09/01" [level=2] [ref=f21e810]
+            - generic [ref=f21e811]: 1 场比赛
+          - list [ref=f21e812]:
+            - listitem [ref=f21e813]:
+              - 'link "13:04 已完赛 济南RW侠 1 : 4 成都AG超玩会 季后赛 详情 ›" [ref=f21e814] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026090101
+                - generic [ref=f21e815]:
+                  - generic [ref=f21e816]: 13:04
+                  - generic [ref=f21e817]: 已完赛
+                - generic [ref=f21e818]: 济南RW侠
+                - generic [ref=f21e820]: "1 : 4"
+                - generic [ref=f21e821]: 成都AG超玩会
+                - generic [ref=f21e823]:
+                  - generic [ref=f21e824]: 季后赛
+                  - generic [ref=f21e825]: 详情 ›
+        - generic [ref=f21e826]:
+          - generic [ref=f21e827]:
+            - heading "2026/08/31" [level=2] [ref=f21e828]
+            - generic [ref=f21e829]: 1 场比赛
+          - list [ref=f21e830]:
+            - listitem [ref=f21e831]:
+              - 'link "14:08 已完赛 上海EDG.M 4 : 3 北京WB 季后赛 详情 ›" [ref=f21e832] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026083101
+                - generic [ref=f21e833]:
+                  - generic [ref=f21e834]: 14:08
+                  - generic [ref=f21e835]: 已完赛
+                - generic [ref=f21e836]: 上海EDG.M
+                - generic [ref=f21e838]: "4 : 3"
+                - generic [ref=f21e839]: 北京WB
+                - generic [ref=f21e841]:
+                  - generic [ref=f21e842]: 季后赛
+                  - generic [ref=f21e843]: 详情 ›
+        - generic [ref=f21e844]:
+          - generic [ref=f21e845]:
+            - heading "2026/08/30" [level=2] [ref=f21e846]
+            - generic [ref=f21e847]: 1 场比赛
+          - list [ref=f21e848]:
+            - listitem [ref=f21e849]:
+              - 'link "13:52 已完赛 广州TTG 2 : 4 北京JDG 季后赛 详情 ›" [ref=f21e850] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026083001
+                - generic [ref=f21e851]:
+                  - generic [ref=f21e852]: 13:52
+                  - generic [ref=f21e853]: 已完赛
+                - generic [ref=f21e854]: 广州TTG
+                - generic [ref=f21e856]: "2 : 4"
+                - generic [ref=f21e857]: 北京JDG
+                - generic [ref=f21e859]:
+                  - generic [ref=f21e860]: 季后赛
+                  - generic [ref=f21e861]: 详情 ›
+        - generic [ref=f21e862]:
+          - generic [ref=f21e863]:
+            - heading "2026/08/29" [level=2] [ref=f21e864]
+            - generic [ref=f21e865]: 1 场比赛
+          - list [ref=f21e866]:
+            - listitem [ref=f21e867]:
+              - 'link "14:12 已完赛 重庆狼队 4 : 3 长沙TES.A 季后赛 详情 ›" [ref=f21e868] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082901
+                - generic [ref=f21e869]:
+                  - generic [ref=f21e870]: 14:12
+                  - generic [ref=f21e871]: 已完赛
+                - generic [ref=f21e872]: 重庆狼队
+                - generic [ref=f21e874]: "4 : 3"
+                - generic [ref=f21e875]: 长沙TES.A
+                - generic [ref=f21e877]:
+                  - generic [ref=f21e878]: 季后赛
+                  - generic [ref=f21e879]: 详情 ›
+        - generic [ref=f21e880]:
+          - generic [ref=f21e881]:
+            - heading "2026/08/28" [level=2] [ref=f21e882]
+            - generic [ref=f21e883]: 1 场比赛
+          - list [ref=f21e884]:
+            - listitem [ref=f21e885]:
+              - 'link "13:20 已完赛 南通Hero久竞 1 : 4 济南RW侠 季后赛 详情 ›" [ref=f21e886] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082801
+                - generic [ref=f21e887]:
+                  - generic [ref=f21e888]: 13:20
+                  - generic [ref=f21e889]: 已完赛
+                - generic [ref=f21e890]: 南通Hero久竞
+                - generic [ref=f21e892]: "1 : 4"
+                - generic [ref=f21e893]: 济南RW侠
+                - generic [ref=f21e895]:
+                  - generic [ref=f21e896]: 季后赛
+                  - generic [ref=f21e897]: 详情 ›
+        - generic [ref=f21e898]:
+          - generic [ref=f21e899]:
+            - heading "2026/08/27" [level=2] [ref=f21e900]
+            - generic [ref=f21e901]: 1 场比赛
+          - list [ref=f21e902]:
+            - listitem [ref=f21e903]:
+              - 'link "12:58 已完赛 上海EDG.M 4 : 1 杭州LGD.NBW 季后赛 详情 ›" [ref=f21e904] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082701
+                - generic [ref=f21e905]:
+                  - generic [ref=f21e906]: 12:58
+                  - generic [ref=f21e907]: 已完赛
+                - generic [ref=f21e908]: 上海EDG.M
+                - generic [ref=f21e910]: "4 : 1"
+                - generic [ref=f21e911]: 杭州LGD.NBW
+                - generic [ref=f21e913]:
+                  - generic [ref=f21e914]: 季后赛
+                  - generic [ref=f21e915]: 详情 ›
+        - generic [ref=f21e916]:
+          - generic [ref=f21e917]:
+            - heading "2026/08/23" [level=2] [ref=f21e918]
+            - generic [ref=f21e919]: 3 场比赛
+          - list [ref=f21e920]:
+            - listitem [ref=f21e921]:
+              - 'link "14:13 已完赛 重庆狼队 3 : 1 广州TTG 常规赛第三轮 详情 ›" [ref=f21e922] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082303
+                - generic [ref=f21e923]:
+                  - generic [ref=f21e924]: 14:13
+                  - generic [ref=f21e925]: 已完赛
+                - generic [ref=f21e926]: 重庆狼队
+                - generic [ref=f21e928]: "3 : 1"
+                - generic [ref=f21e929]: 广州TTG
+                - generic [ref=f21e931]:
+                  - generic [ref=f21e932]: 常规赛第三轮
+                  - generic [ref=f21e933]: 详情 ›
+            - listitem [ref=f21e934]:
+              - 'link "11:43 已完赛 成都AG超玩会 3 : 2 北京WB 常规赛第三轮 详情 ›" [ref=f21e935] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082302
+                - generic [ref=f21e936]:
+                  - generic [ref=f21e937]: 11:43
+                  - generic [ref=f21e938]: 已完赛
+                - generic [ref=f21e939]: 成都AG超玩会
+                - generic [ref=f21e941]: "3 : 2"
+                - generic [ref=f21e942]: 北京WB
+                - generic [ref=f21e944]:
+                  - generic [ref=f21e945]: 常规赛第三轮
+                  - generic [ref=f21e946]: 详情 ›
+            - listitem [ref=f21e947]:
+              - 'link "07:46 已完赛 杭州LGD.NBW 3 : 1 KSG 常规赛第三轮 详情 ›" [ref=f21e948] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082301
+                - generic [ref=f21e949]:
+                  - generic [ref=f21e950]: 07:46
+                  - generic [ref=f21e951]: 已完赛
+                - generic [ref=f21e952]: 杭州LGD.NBW
+                - generic [ref=f21e954]: "3 : 1"
+                - generic [ref=f21e955]: KSG
+                - generic [ref=f21e957]:
+                  - generic [ref=f21e958]: 常规赛第三轮
+                  - generic [ref=f21e959]: 详情 ›
+        - generic [ref=f21e960]:
+          - generic [ref=f21e961]:
+            - heading "2026/08/22" [level=2] [ref=f21e962]
+            - generic [ref=f21e963]: 3 场比赛
+          - list [ref=f21e964]:
+            - listitem [ref=f21e965]:
+              - 'link "14:31 已完赛 重庆狼队 3 : 2 北京JDG 常规赛第三轮 详情 ›" [ref=f21e966] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082203
+                - generic [ref=f21e967]:
+                  - generic [ref=f21e968]: 14:31
+                  - generic [ref=f21e969]: 已完赛
+                - generic [ref=f21e970]: 重庆狼队
+                - generic [ref=f21e972]: "3 : 2"
+                - generic [ref=f21e973]: 北京JDG
+                - generic [ref=f21e975]:
+                  - generic [ref=f21e976]: 常规赛第三轮
+                  - generic [ref=f21e977]: 详情 ›
+            - listitem [ref=f21e978]:
+              - 'link "10:54 已完赛 南通Hero久竞 1 : 3 济南RW侠 常规赛第三轮 详情 ›" [ref=f21e979] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082202
+                - generic [ref=f21e980]:
+                  - generic [ref=f21e981]: 10:54
+                  - generic [ref=f21e982]: 已完赛
+                - generic [ref=f21e983]: 南通Hero久竞
+                - generic [ref=f21e985]: "1 : 3"
+                - generic [ref=f21e986]: 济南RW侠
+                - generic [ref=f21e988]:
+                  - generic [ref=f21e989]: 常规赛第三轮
+                  - generic [ref=f21e990]: 详情 ›
+            - listitem [ref=f21e991]:
+              - 'link "08:01 已完赛 杭州LGD.NBW 1 : 3 上海EDG.M 常规赛第三轮 详情 ›" [ref=f21e992] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082201
+                - generic [ref=f21e993]:
+                  - generic [ref=f21e994]: 08:01
+                  - generic [ref=f21e995]: 已完赛
+                - generic [ref=f21e996]: 杭州LGD.NBW
+                - generic [ref=f21e998]: "1 : 3"
+                - generic [ref=f21e999]: 上海EDG.M
+                - generic [ref=f21e1001]:
+                  - generic [ref=f21e1002]: 常规赛第三轮
+                  - generic [ref=f21e1003]: 详情 ›
+        - generic [ref=f21e1004]:
+          - generic [ref=f21e1005]:
+            - heading "2026/08/21" [level=2] [ref=f21e1006]
+            - generic [ref=f21e1007]: 2 场比赛
+          - list [ref=f21e1008]:
+            - listitem [ref=f21e1009]:
+              - 'link "13:17 已完赛 成都AG超玩会 0 : 3 广州TTG 常规赛第三轮 详情 ›" [ref=f21e1010] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082102
+                - generic [ref=f21e1011]:
+                  - generic [ref=f21e1012]: 13:17
+                  - generic [ref=f21e1013]: 已完赛
+                - generic [ref=f21e1014]: 成都AG超玩会
+                - generic [ref=f21e1016]: "0 : 3"
+                - generic [ref=f21e1017]: 广州TTG
+                - generic [ref=f21e1019]:
+                  - generic [ref=f21e1020]: 常规赛第三轮
+                  - generic [ref=f21e1021]: 详情 ›
+            - listitem [ref=f21e1022]:
+              - 'link "10:51 已完赛 南通Hero久竞 3 : 1 KSG 常规赛第三轮 详情 ›" [ref=f21e1023] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082101
+                - generic [ref=f21e1024]:
+                  - generic [ref=f21e1025]: 10:51
+                  - generic [ref=f21e1026]: 已完赛
+                - generic [ref=f21e1027]: 南通Hero久竞
+                - generic [ref=f21e1029]: "3 : 1"
+                - generic [ref=f21e1030]: KSG
+                - generic [ref=f21e1032]:
+                  - generic [ref=f21e1033]: 常规赛第三轮
+                  - generic [ref=f21e1034]: 详情 ›
+        - generic [ref=f21e1035]:
+          - generic [ref=f21e1036]:
+            - heading "2026/08/20" [level=2] [ref=f21e1037]
+            - generic [ref=f21e1038]: 2 场比赛
+          - list [ref=f21e1039]:
+            - listitem [ref=f21e1040]:
+              - 'link "14:27 已完赛 北京WB 2 : 3 长沙TES.A 常规赛第三轮 详情 ›" [ref=f21e1041] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082002
+                - generic [ref=f21e1042]:
+                  - generic [ref=f21e1043]: 14:27
+                  - generic [ref=f21e1044]: 已完赛
+                - generic [ref=f21e1045]: 北京WB
+                - generic [ref=f21e1047]: "2 : 3"
+                - generic [ref=f21e1048]: 长沙TES.A
+                - generic [ref=f21e1050]:
+                  - generic [ref=f21e1051]: 常规赛第三轮
+                  - generic [ref=f21e1052]: 详情 ›
+            - listitem [ref=f21e1053]:
+              - 'link "11:17 已完赛 SYG 1 : 3 济南RW侠 常规赛第三轮 详情 ›" [ref=f21e1054] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026082001
+                - generic [ref=f21e1055]:
+                  - generic [ref=f21e1056]: 11:17
+                  - generic [ref=f21e1057]: 已完赛
+                - generic [ref=f21e1058]: SYG
+                - generic [ref=f21e1060]: "1 : 3"
+                - generic [ref=f21e1061]: 济南RW侠
+                - generic [ref=f21e1063]:
+                  - generic [ref=f21e1064]: 常规赛第三轮
+                  - generic [ref=f21e1065]: 详情 ›
+        - generic [ref=f21e1066]:
+          - generic [ref=f21e1067]:
+            - heading "2026/08/19" [level=2] [ref=f21e1068]
+            - generic [ref=f21e1069]: 2 场比赛
+          - list [ref=f21e1070]:
+            - listitem [ref=f21e1071]:
+              - 'link "13:43 已完赛 北京JDG 3 : 0 长沙TES.A 常规赛第三轮 详情 ›" [ref=f21e1072] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081902
+                - generic [ref=f21e1073]:
+                  - generic [ref=f21e1074]: 13:43
+                  - generic [ref=f21e1075]: 已完赛
+                - generic [ref=f21e1076]: 北京JDG
+                - generic [ref=f21e1078]: "3 : 0"
+                - generic [ref=f21e1079]: 长沙TES.A
+                - generic [ref=f21e1081]:
+                  - generic [ref=f21e1082]: 常规赛第三轮
+                  - generic [ref=f21e1083]: 详情 ›
+            - listitem [ref=f21e1084]:
+              - 'link "11:03 已完赛 上海EDG.M 3 : 1 SYG 常规赛第三轮 详情 ›" [ref=f21e1085] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081901
+                - generic [ref=f21e1086]:
+                  - generic [ref=f21e1087]: 11:03
+                  - generic [ref=f21e1088]: 已完赛
+                - generic [ref=f21e1089]: 上海EDG.M
+                - generic [ref=f21e1091]: "3 : 1"
+                - generic [ref=f21e1092]: SYG
+                - generic [ref=f21e1094]:
+                  - generic [ref=f21e1095]: 常规赛第三轮
+                  - generic [ref=f21e1096]: 详情 ›
+        - generic [ref=f21e1097]:
+          - generic [ref=f21e1098]:
+            - heading "2026/08/16" [level=2] [ref=f21e1099]
+            - generic [ref=f21e1100]: 3 场比赛
+          - list [ref=f21e1101]:
+            - listitem [ref=f21e1102]:
+              - 'link "13:23 已完赛 重庆狼队 3 : 0 成都AG超玩会 常规赛第三轮 详情 ›" [ref=f21e1103] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081603
+                - generic [ref=f21e1104]:
+                  - generic [ref=f21e1105]: 13:23
+                  - generic [ref=f21e1106]: 已完赛
+                - generic [ref=f21e1107]: 重庆狼队
+                - generic [ref=f21e1109]: "3 : 0"
+                - generic [ref=f21e1110]: 成都AG超玩会
+                - generic [ref=f21e1112]:
+                  - generic [ref=f21e1113]: 常规赛第三轮
+                  - generic [ref=f21e1114]: 详情 ›
+            - listitem [ref=f21e1115]:
+              - 'link "11:08 已完赛 北京WB 3 : 1 北京JDG 常规赛第三轮 详情 ›" [ref=f21e1116] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081602
+                - generic [ref=f21e1117]:
+                  - generic [ref=f21e1118]: 11:08
+                  - generic [ref=f21e1119]: 已完赛
+                - generic [ref=f21e1120]: 北京WB
+                - generic [ref=f21e1122]: "3 : 1"
+                - generic [ref=f21e1123]: 北京JDG
+                - generic [ref=f21e1125]:
+                  - generic [ref=f21e1126]: 常规赛第三轮
+                  - generic [ref=f21e1127]: 详情 ›
+            - listitem [ref=f21e1128]:
+              - 'link "08:03 已完赛 杭州LGD.NBW 1 : 3 南通Hero久竞 常规赛第三轮 详情 ›" [ref=f21e1129] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081601
+                - generic [ref=f21e1130]:
+                  - generic [ref=f21e1131]: 08:03
+                  - generic [ref=f21e1132]: 已完赛
+                - generic [ref=f21e1133]: 杭州LGD.NBW
+                - generic [ref=f21e1135]: "1 : 3"
+                - generic [ref=f21e1136]: 南通Hero久竞
+                - generic [ref=f21e1138]:
+                  - generic [ref=f21e1139]: 常规赛第三轮
+                  - generic [ref=f21e1140]: 详情 ›
+        - generic [ref=f21e1141]:
+          - generic [ref=f21e1142]:
+            - heading "2026/08/15" [level=2] [ref=f21e1143]
+            - generic [ref=f21e1144]: 3 场比赛
+          - list [ref=f21e1145]:
+            - listitem [ref=f21e1146]:
+              - 'link "13:44 已完赛 重庆狼队 3 : 0 长沙TES.A 常规赛第三轮 详情 ›" [ref=f21e1147] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081503
+                - generic [ref=f21e1148]:
+                  - generic [ref=f21e1149]: 13:44
+                  - generic [ref=f21e1150]: 已完赛
+                - generic [ref=f21e1151]: 重庆狼队
+                - generic [ref=f21e1153]: "3 : 0"
+                - generic [ref=f21e1154]: 长沙TES.A
+                - generic [ref=f21e1156]:
+                  - generic [ref=f21e1157]: 常规赛第三轮
+                  - generic [ref=f21e1158]: 详情 ›
+            - listitem [ref=f21e1159]:
+              - 'link "11:45 已完赛 北京JDG 3 : 2 广州TTG 常规赛第三轮 详情 ›" [ref=f21e1160] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081502
+                - generic [ref=f21e1161]:
+                  - generic [ref=f21e1162]: 11:45
+                  - generic [ref=f21e1163]: 已完赛
+                - generic [ref=f21e1164]: 北京JDG
+                - generic [ref=f21e1166]: "3 : 2"
+                - generic [ref=f21e1167]: 广州TTG
+                - generic [ref=f21e1169]:
+                  - generic [ref=f21e1170]: 常规赛第三轮
+                  - generic [ref=f21e1171]: 详情 ›
+            - listitem [ref=f21e1172]:
+              - 'link "07:58 已完赛 南通Hero久竞 1 : 3 上海EDG.M 常规赛第三轮 详情 ›" [ref=f21e1173] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081501
+                - generic [ref=f21e1174]:
+                  - generic [ref=f21e1175]: 07:58
+                  - generic [ref=f21e1176]: 已完赛
+                - generic [ref=f21e1177]: 南通Hero久竞
+                - generic [ref=f21e1179]: "1 : 3"
+                - generic [ref=f21e1180]: 上海EDG.M
+                - generic [ref=f21e1182]:
+                  - generic [ref=f21e1183]: 常规赛第三轮
+                  - generic [ref=f21e1184]: 详情 ›
+        - generic [ref=f21e1185]:
+          - generic [ref=f21e1186]:
+            - heading "2026/08/14" [level=2] [ref=f21e1187]
+            - generic [ref=f21e1188]: 2 场比赛
+          - list [ref=f21e1189]:
+            - listitem [ref=f21e1190]:
+              - 'link "13:40 已完赛 北京WB 0 : 3 广州TTG 常规赛第三轮 详情 ›" [ref=f21e1191] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081402
+                - generic [ref=f21e1192]:
+                  - generic [ref=f21e1193]: 13:40
+                  - generic [ref=f21e1194]: 已完赛
+                - generic [ref=f21e1195]: 北京WB
+                - generic [ref=f21e1197]: "0 : 3"
+                - generic [ref=f21e1198]: 广州TTG
+                - generic [ref=f21e1200]:
+                  - generic [ref=f21e1201]: 常规赛第三轮
+                  - generic [ref=f21e1202]: 详情 ›
+            - listitem [ref=f21e1203]:
+              - 'link "11:36 已完赛 杭州LGD.NBW 2 : 3 SYG 常规赛第三轮 详情 ›" [ref=f21e1204] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081401
+                - generic [ref=f21e1205]:
+                  - generic [ref=f21e1206]: 11:36
+                  - generic [ref=f21e1207]: 已完赛
+                - generic [ref=f21e1208]: 杭州LGD.NBW
+                - generic [ref=f21e1210]: "2 : 3"
+                - generic [ref=f21e1211]: SYG
+                - generic [ref=f21e1213]:
+                  - generic [ref=f21e1214]: 常规赛第三轮
+                  - generic [ref=f21e1215]: 详情 ›
+        - generic [ref=f21e1216]:
+          - generic [ref=f21e1217]:
+            - heading "2026/08/13" [level=2] [ref=f21e1218]
+            - generic [ref=f21e1219]: 2 场比赛
+          - list [ref=f21e1220]:
+            - listitem [ref=f21e1221]:
+              - 'link "13:30 已完赛 KSG 0 : 3 济南RW侠 常规赛第三轮 详情 ›" [ref=f21e1222] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081302
+                - generic [ref=f21e1223]:
+                  - generic [ref=f21e1224]: 13:30
+                  - generic [ref=f21e1225]: 已完赛
+                - generic [ref=f21e1226]: KSG
+                - generic [ref=f21e1228]: "0 : 3"
+                - generic [ref=f21e1229]: 济南RW侠
+                - generic [ref=f21e1231]:
+                  - generic [ref=f21e1232]: 常规赛第三轮
+                  - generic [ref=f21e1233]: 详情 ›
+            - listitem [ref=f21e1234]:
+              - 'link "10:27 已完赛 成都AG超玩会 0 : 3 长沙TES.A 常规赛第三轮 详情 ›" [ref=f21e1235] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081301
+                - generic [ref=f21e1236]:
+                  - generic [ref=f21e1237]: 10:27
+                  - generic [ref=f21e1238]: 已完赛
+                - generic [ref=f21e1239]: 成都AG超玩会
+                - generic [ref=f21e1241]: "0 : 3"
+                - generic [ref=f21e1242]: 长沙TES.A
+                - generic [ref=f21e1244]:
+                  - generic [ref=f21e1245]: 常规赛第三轮
+                  - generic [ref=f21e1246]: 详情 ›
+        - generic [ref=f21e1247]:
+          - generic [ref=f21e1248]:
+            - heading "2026/08/12" [level=2] [ref=f21e1249]
+            - generic [ref=f21e1250]: 2 场比赛
+          - list [ref=f21e1251]:
+            - listitem [ref=f21e1252]:
+              - 'link "13:22 已完赛 SYG 3 : 0 KSG 常规赛第三轮 详情 ›" [ref=f21e1253] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081202
+                - generic [ref=f21e1254]:
+                  - generic [ref=f21e1255]: 13:22
+                  - generic [ref=f21e1256]: 已完赛
+                - generic [ref=f21e1257]: SYG
+                - generic [ref=f21e1259]: "3 : 0"
+                - generic [ref=f21e1260]: KSG
+                - generic [ref=f21e1262]:
+                  - generic [ref=f21e1263]: 常规赛第三轮
+                  - generic [ref=f21e1264]: 详情 ›
+            - listitem [ref=f21e1265]:
+              - 'link "10:49 已完赛 济南RW侠 0 : 3 上海EDG.M 常规赛第三轮 详情 ›" [ref=f21e1266] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026081201
+                - generic [ref=f21e1267]:
+                  - generic [ref=f21e1268]: 10:49
+                  - generic [ref=f21e1269]: 已完赛
+                - generic [ref=f21e1270]: 济南RW侠
+                - generic [ref=f21e1272]: "0 : 3"
+                - generic [ref=f21e1273]: 上海EDG.M
+                - generic [ref=f21e1275]:
+                  - generic [ref=f21e1276]: 常规赛第三轮
+                  - generic [ref=f21e1277]: 详情 ›
+        - generic [ref=f21e1278]:
+          - generic [ref=f21e1279]:
+            - heading "2026/07/31" [level=2] [ref=f21e1280]
+            - generic [ref=f21e1281]: 3 场比赛
+          - list [ref=f21e1282]:
+            - listitem [ref=f21e1283]:
+              - 'link "14:27 已完赛 重庆狼队 3 : 1 北京WB 常规赛第三轮 详情 ›" [ref=f21e1284] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073103
+                - generic [ref=f21e1285]:
+                  - generic [ref=f21e1286]: 14:27
+                  - generic [ref=f21e1287]: 已完赛
+                - generic [ref=f21e1288]: 重庆狼队
+                - generic [ref=f21e1290]: "3 : 1"
+                - generic [ref=f21e1291]: 北京WB
+                - generic [ref=f21e1293]:
+                  - generic [ref=f21e1294]: 常规赛第三轮
+                  - generic [ref=f21e1295]: 详情 ›
+            - listitem [ref=f21e1296]:
+              - 'link "10:23 已完赛 长沙TES.A 0 : 3 广州TTG 常规赛第三轮 详情 ›" [ref=f21e1297] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073102
+                - generic [ref=f21e1298]:
+                  - generic [ref=f21e1299]: 10:23
+                  - generic [ref=f21e1300]: 已完赛
+                - generic [ref=f21e1301]: 长沙TES.A
+                - generic [ref=f21e1303]: "0 : 3"
+                - generic [ref=f21e1304]: 广州TTG
+                - generic [ref=f21e1306]:
+                  - generic [ref=f21e1307]: 常规赛第三轮
+                  - generic [ref=f21e1308]: 详情 ›
+            - listitem [ref=f21e1309]:
+              - 'link "07:31 已完赛 杭州LGD.NBW 3 : 0 济南RW侠 常规赛第三轮 详情 ›" [ref=f21e1310] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073101
+                - generic [ref=f21e1311]:
+                  - generic [ref=f21e1312]: 07:31
+                  - generic [ref=f21e1313]: 已完赛
+                - generic [ref=f21e1314]: 杭州LGD.NBW
+                - generic [ref=f21e1316]: "3 : 0"
+                - generic [ref=f21e1317]: 济南RW侠
+                - generic [ref=f21e1319]:
+                  - generic [ref=f21e1320]: 常规赛第三轮
+                  - generic [ref=f21e1321]: 详情 ›
+        - generic [ref=f21e1322]:
+          - generic [ref=f21e1323]:
+            - heading "2026/07/30" [level=2] [ref=f21e1324]
+            - generic [ref=f21e1325]: 3 场比赛
+          - list [ref=f21e1326]:
+            - listitem [ref=f21e1327]:
+              - 'link "14:44 已完赛 KSG 2 : 3 上海EDG.M 常规赛第三轮 详情 ›" [ref=f21e1328] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073003
+                - generic [ref=f21e1329]:
+                  - generic [ref=f21e1330]: 14:44
+                  - generic [ref=f21e1331]: 已完赛
+                - generic [ref=f21e1332]: KSG
+                - generic [ref=f21e1334]: "2 : 3"
+                - generic [ref=f21e1335]: 上海EDG.M
+                - generic [ref=f21e1337]:
+                  - generic [ref=f21e1338]: 常规赛第三轮
+                  - generic [ref=f21e1339]: 详情 ›
+            - listitem [ref=f21e1340]:
+              - 'link "11:03 已完赛 南通Hero久竞 3 : 0 SYG 常规赛第三轮 详情 ›" [ref=f21e1341] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073002
+                - generic [ref=f21e1342]:
+                  - generic [ref=f21e1343]: 11:03
+                  - generic [ref=f21e1344]: 已完赛
+                - generic [ref=f21e1345]: 南通Hero久竞
+                - generic [ref=f21e1347]: "3 : 0"
+                - generic [ref=f21e1348]: SYG
+                - generic [ref=f21e1350]:
+                  - generic [ref=f21e1351]: 常规赛第三轮
+                  - generic [ref=f21e1352]: 详情 ›
+            - listitem [ref=f21e1353]:
+              - 'link "08:22 已完赛 成都AG超玩会 2 : 3 北京JDG 常规赛第三轮 详情 ›" [ref=f21e1354] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026073001
+                - generic [ref=f21e1355]:
+                  - generic [ref=f21e1356]: 08:22
+                  - generic [ref=f21e1357]: 已完赛
+                - generic [ref=f21e1358]: 成都AG超玩会
+                - generic [ref=f21e1360]: "2 : 3"
+                - generic [ref=f21e1361]: 北京JDG
+                - generic [ref=f21e1363]:
+                  - generic [ref=f21e1364]: 常规赛第三轮
+                  - generic [ref=f21e1365]: 详情 ›
+        - generic [ref=f21e1366]:
+          - generic [ref=f21e1367]:
+            - heading "2026/07/28" [level=2] [ref=f21e1368]
+            - generic [ref=f21e1369]: 2 场比赛
+          - list [ref=f21e1370]:
+            - listitem [ref=f21e1371]:
+              - 'link "13:44 已完赛 KSG 1 : 4 重庆狼队 卡位赛 详情 ›" [ref=f21e1372] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072802
+                - generic [ref=f21e1373]:
+                  - generic [ref=f21e1374]: 13:44
+                  - generic [ref=f21e1375]: 已完赛
+                - generic [ref=f21e1376]: KSG
+                - generic [ref=f21e1378]: "1 : 4"
+                - generic [ref=f21e1379]: 重庆狼队
+                - generic [ref=f21e1381]:
+                  - generic [ref=f21e1382]: 卡位赛
+                  - generic [ref=f21e1383]: 详情 ›
+            - listitem [ref=f21e1384]:
+              - 'link "08:24 已完赛 南通Hero久竞 4 : 1 WST 卡位赛 详情 ›" [ref=f21e1385] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072801
+                - generic [ref=f21e1386]:
+                  - generic [ref=f21e1387]: 08:24
+                  - generic [ref=f21e1388]: 已完赛
+                - generic [ref=f21e1389]: 南通Hero久竞
+                - generic [ref=f21e1391]: "4 : 1"
+                - generic [ref=f21e1392]: WST
+                - generic [ref=f21e1394]:
+                  - generic [ref=f21e1395]: 卡位赛
+                  - generic [ref=f21e1396]: 详情 ›
+        - generic [ref=f21e1397]:
+          - generic [ref=f21e1398]:
+            - heading "2026/07/27" [level=2] [ref=f21e1399]
+            - generic [ref=f21e1400]: 2 场比赛
+          - list [ref=f21e1401]:
+            - listitem [ref=f21e1402]:
+              - 'link "14:08 已完赛 杭州LGD.NBW 2 : 4 长沙TES.A 卡位赛 详情 ›" [ref=f21e1403] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072702
+                - generic [ref=f21e1404]:
+                  - generic [ref=f21e1405]: 14:08
+                  - generic [ref=f21e1406]: 已完赛
+                - generic [ref=f21e1407]: 杭州LGD.NBW
+                - generic [ref=f21e1409]: "2 : 4"
+                - generic [ref=f21e1410]: 长沙TES.A
+                - generic [ref=f21e1412]:
+                  - generic [ref=f21e1413]: 卡位赛
+                  - generic [ref=f21e1414]: 详情 ›
+            - listitem [ref=f21e1415]:
+              - 'link "09:05 已完赛 上海EDG.M 4 : 2 上海RNG.M 卡位赛 详情 ›" [ref=f21e1416] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072701
+                - generic [ref=f21e1417]:
+                  - generic [ref=f21e1418]: 09:05
+                  - generic [ref=f21e1419]: 已完赛
+                - generic [ref=f21e1420]: 上海EDG.M
+                - generic [ref=f21e1422]: "4 : 2"
+                - generic [ref=f21e1423]: 上海RNG.M
+                - generic [ref=f21e1425]:
+                  - generic [ref=f21e1426]: 卡位赛
+                  - generic [ref=f21e1427]: 详情 ›
+        - generic [ref=f21e1428]:
+          - generic [ref=f21e1429]:
+            - heading "2026/07/26" [level=2] [ref=f21e1430]
+            - generic [ref=f21e1431]: 3 场比赛
+          - list [ref=f21e1432]:
+            - listitem [ref=f21e1433]:
+              - 'link "14:15 已完赛 重庆狼队 3 : 2 南通Hero久竞 常规赛第二轮 详情 ›" [ref=f21e1434] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072603
+                - generic [ref=f21e1435]:
+                  - generic [ref=f21e1436]: 14:15
+                  - generic [ref=f21e1437]: 已完赛
+                - generic [ref=f21e1438]: 重庆狼队
+                - generic [ref=f21e1440]: "3 : 2"
+                - generic [ref=f21e1441]: 南通Hero久竞
+                - generic [ref=f21e1443]:
+                  - generic [ref=f21e1444]: 常规赛第二轮
+                  - generic [ref=f21e1445]: 详情 ›
+            - listitem [ref=f21e1446]:
+              - 'link "10:33 已完赛 深圳DYG 0 : 3 西安WE 常规赛第二轮 详情 ›" [ref=f21e1447] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072602
+                - generic [ref=f21e1448]:
+                  - generic [ref=f21e1449]: 10:33
+                  - generic [ref=f21e1450]: 已完赛
+                - generic [ref=f21e1451]: 深圳DYG
+                - generic [ref=f21e1453]: "0 : 3"
+                - generic [ref=f21e1454]: 西安WE
+                - generic [ref=f21e1456]:
+                  - generic [ref=f21e1457]: 常规赛第二轮
+                  - generic [ref=f21e1458]: 详情 ›
+            - listitem [ref=f21e1459]:
+              - 'link "07:20 已完赛 WST 3 : 0 武汉eStarPro 常规赛第二轮 详情 ›" [ref=f21e1460] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072601
+                - generic [ref=f21e1461]:
+                  - generic [ref=f21e1462]: 07:20
+                  - generic [ref=f21e1463]: 已完赛
+                - generic [ref=f21e1464]: WST
+                - generic [ref=f21e1466]: "3 : 0"
+                - generic [ref=f21e1467]: 武汉eStarPro
+                - generic [ref=f21e1469]:
+                  - generic [ref=f21e1470]: 常规赛第二轮
+                  - generic [ref=f21e1471]: 详情 ›
+        - generic [ref=f21e1472]:
+          - generic [ref=f21e1473]:
+            - heading "2026/07/25" [level=2] [ref=f21e1474]
+            - generic [ref=f21e1475]: 3 场比赛
+          - list [ref=f21e1476]:
+            - listitem [ref=f21e1477]:
+              - 'link "14:11 已完赛 成都AG超玩会 3 : 2 杭州LGD.NBW 常规赛第二轮 详情 ›" [ref=f21e1478] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072503
+                - generic [ref=f21e1479]:
+                  - generic [ref=f21e1480]: 14:11
+                  - generic [ref=f21e1481]: 已完赛
+                - generic [ref=f21e1482]: 成都AG超玩会
+                - generic [ref=f21e1484]: "3 : 2"
+                - generic [ref=f21e1485]: 杭州LGD.NBW
+                - generic [ref=f21e1487]:
+                  - generic [ref=f21e1488]: 常规赛第二轮
+                  - generic [ref=f21e1489]: 详情 ›
+            - listitem [ref=f21e1490]:
+              - 'link "10:40 已完赛 KSG 0 : 3 广州TTG 常规赛第二轮 详情 ›" [ref=f21e1491] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072502
+                - generic [ref=f21e1492]:
+                  - generic [ref=f21e1493]: 10:40
+                  - generic [ref=f21e1494]: 已完赛
+                - generic [ref=f21e1495]: KSG
+                - generic [ref=f21e1497]: "0 : 3"
+                - generic [ref=f21e1498]: 广州TTG
+                - generic [ref=f21e1500]:
+                  - generic [ref=f21e1501]: 常规赛第二轮
+                  - generic [ref=f21e1502]: 详情 ›
+            - listitem [ref=f21e1503]:
+              - 'link "08:28 已完赛 北京JDG 3 : 2 北京WB 常规赛第二轮 详情 ›" [ref=f21e1504] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072501
+                - generic [ref=f21e1505]:
+                  - generic [ref=f21e1506]: 08:28
+                  - generic [ref=f21e1507]: 已完赛
+                - generic [ref=f21e1508]: 北京JDG
+                - generic [ref=f21e1510]: "3 : 2"
+                - generic [ref=f21e1511]: 北京WB
+                - generic [ref=f21e1513]:
+                  - generic [ref=f21e1514]: 常规赛第二轮
+                  - generic [ref=f21e1515]: 详情 ›
+        - generic [ref=f21e1516]:
+          - generic [ref=f21e1517]:
+            - heading "2026/07/24" [level=2] [ref=f21e1518]
+            - generic [ref=f21e1519]: 3 场比赛
+          - list [ref=f21e1520]:
+            - listitem [ref=f21e1521]:
+              - 'link "14:40 已完赛 重庆狼队 2 : 3 长沙TES.A 常规赛第二轮 详情 ›" [ref=f21e1522] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072403
+                - generic [ref=f21e1523]:
+                  - generic [ref=f21e1524]: 14:40
+                  - generic [ref=f21e1525]: 已完赛
+                - generic [ref=f21e1526]: 重庆狼队
+                - generic [ref=f21e1528]: "2 : 3"
+                - generic [ref=f21e1529]: 长沙TES.A
+                - generic [ref=f21e1531]:
+                  - generic [ref=f21e1532]: 常规赛第二轮
+                  - generic [ref=f21e1533]: 详情 ›
+            - listitem [ref=f21e1534]:
+              - 'link "11:01 已完赛 西安WE 3 : 1 武汉eStarPro 常规赛第二轮 详情 ›" [ref=f21e1535] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072402
+                - generic [ref=f21e1536]:
+                  - generic [ref=f21e1537]: 11:01
+                  - generic [ref=f21e1538]: 已完赛
+                - generic [ref=f21e1539]: 西安WE
+                - generic [ref=f21e1541]: "3 : 1"
+                - generic [ref=f21e1542]: 武汉eStarPro
+                - generic [ref=f21e1544]:
+                  - generic [ref=f21e1545]: 常规赛第二轮
+                  - generic [ref=f21e1546]: 详情 ›
+            - listitem [ref=f21e1547]:
+              - 'link "07:19 已完赛 上海RNG.M 3 : 0 WST 常规赛第二轮 详情 ›" [ref=f21e1548] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072401
+                - generic [ref=f21e1549]:
+                  - generic [ref=f21e1550]: 07:19
+                  - generic [ref=f21e1551]: 已完赛
+                - generic [ref=f21e1552]: 上海RNG.M
+                - generic [ref=f21e1554]: "3 : 0"
+                - generic [ref=f21e1555]: WST
+                - generic [ref=f21e1557]:
+                  - generic [ref=f21e1558]: 常规赛第二轮
+                  - generic [ref=f21e1559]: 详情 ›
+        - generic [ref=f21e1560]:
+          - generic [ref=f21e1561]:
+            - heading "2026/07/23" [level=2] [ref=f21e1562]
+            - generic [ref=f21e1563]: 3 场比赛
+          - list [ref=f21e1564]:
+            - listitem [ref=f21e1565]:
+              - 'link "14:12 已完赛 南通Hero久竞 1 : 3 济南RW侠 常规赛第二轮 详情 ›" [ref=f21e1566] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072303
+                - generic [ref=f21e1567]:
+                  - generic [ref=f21e1568]: 14:12
+                  - generic [ref=f21e1569]: 已完赛
+                - generic [ref=f21e1570]: 南通Hero久竞
+                - generic [ref=f21e1572]: "1 : 3"
+                - generic [ref=f21e1573]: 济南RW侠
+                - generic [ref=f21e1575]:
+                  - generic [ref=f21e1576]: 常规赛第二轮
+                  - generic [ref=f21e1577]: 详情 ›
+            - listitem [ref=f21e1578]:
+              - 'link "10:29 已完赛 深圳DYG 0 : 3 佛山DRG 常规赛第二轮 详情 ›" [ref=f21e1579] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072302
+                - generic [ref=f21e1580]:
+                  - generic [ref=f21e1581]: 10:29
+                  - generic [ref=f21e1582]: 已完赛
+                - generic [ref=f21e1583]: 深圳DYG
+                - generic [ref=f21e1585]: "0 : 3"
+                - generic [ref=f21e1586]: 佛山DRG
+                - generic [ref=f21e1588]:
+                  - generic [ref=f21e1589]: 常规赛第二轮
+                  - generic [ref=f21e1590]: 详情 ›
+            - listitem [ref=f21e1591]:
+              - 'link "08:01 已完赛 SYG 1 : 3 上海EDG.M 常规赛第二轮 详情 ›" [ref=f21e1592] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072301
+                - generic [ref=f21e1593]:
+                  - generic [ref=f21e1594]: 08:01
+                  - generic [ref=f21e1595]: 已完赛
+                - generic [ref=f21e1596]: SYG
+                - generic [ref=f21e1598]: "1 : 3"
+                - generic [ref=f21e1599]: 上海EDG.M
+                - generic [ref=f21e1601]:
+                  - generic [ref=f21e1602]: 常规赛第二轮
+                  - generic [ref=f21e1603]: 详情 ›
+        - generic [ref=f21e1604]:
+          - generic [ref=f21e1605]:
+            - heading "2026/07/22" [level=2] [ref=f21e1606]
+            - generic [ref=f21e1607]: 3 场比赛
+          - list [ref=f21e1608]:
+            - listitem [ref=f21e1609]:
+              - 'link "13:39 已完赛 北京WB 0 : 3 广州TTG 常规赛第二轮 详情 ›" [ref=f21e1610] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072203
+                - generic [ref=f21e1611]:
+                  - generic [ref=f21e1612]: 13:39
+                  - generic [ref=f21e1613]: 已完赛
+                - generic [ref=f21e1614]: 北京WB
+                - generic [ref=f21e1616]: "0 : 3"
+                - generic [ref=f21e1617]: 广州TTG
+                - generic [ref=f21e1619]:
+                  - generic [ref=f21e1620]: 常规赛第二轮
+                  - generic [ref=f21e1621]: 详情 ›
+            - listitem [ref=f21e1622]:
+              - 'link "11:08 已完赛 杭州LGD.NBW 1 : 3 KSG 常规赛第二轮 详情 ›" [ref=f21e1623] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072202
+                - generic [ref=f21e1624]:
+                  - generic [ref=f21e1625]: 11:08
+                  - generic [ref=f21e1626]: 已完赛
+                - generic [ref=f21e1627]: 杭州LGD.NBW
+                - generic [ref=f21e1629]: "1 : 3"
+                - generic [ref=f21e1630]: KSG
+                - generic [ref=f21e1632]:
+                  - generic [ref=f21e1633]: 常规赛第二轮
+                  - generic [ref=f21e1634]: 详情 ›
+            - listitem [ref=f21e1635]:
+              - 'link "08:42 已完赛 武汉eStarPro 3 : 2 上海RNG.M 常规赛第二轮 详情 ›" [ref=f21e1636] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072201
+                - generic [ref=f21e1637]:
+                  - generic [ref=f21e1638]: 08:42
+                  - generic [ref=f21e1639]: 已完赛
+                - generic [ref=f21e1640]: 武汉eStarPro
+                - generic [ref=f21e1642]: "3 : 2"
+                - generic [ref=f21e1643]: 上海RNG.M
+                - generic [ref=f21e1645]:
+                  - generic [ref=f21e1646]: 常规赛第二轮
+                  - generic [ref=f21e1647]: 详情 ›
+        - generic [ref=f21e1648]:
+          - generic [ref=f21e1649]:
+            - heading "2026/07/21" [level=2] [ref=f21e1650]
+            - generic [ref=f21e1651]: 3 场比赛
+          - list [ref=f21e1652]:
+            - listitem [ref=f21e1653]:
+              - 'link "13:57 已完赛 济南RW侠 3 : 0 SYG 常规赛第二轮 详情 ›" [ref=f21e1654] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072103
+                - generic [ref=f21e1655]:
+                  - generic [ref=f21e1656]: 13:57
+                  - generic [ref=f21e1657]: 已完赛
+                - generic [ref=f21e1658]: 济南RW侠
+                - generic [ref=f21e1660]: "3 : 0"
+                - generic [ref=f21e1661]: SYG
+                - generic [ref=f21e1663]:
+                  - generic [ref=f21e1664]: 常规赛第二轮
+                  - generic [ref=f21e1665]: 详情 ›
+            - listitem [ref=f21e1666]:
+              - 'link "11:16 已完赛 佛山DRG 3 : 2 西安WE 常规赛第二轮 详情 ›" [ref=f21e1667] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072102
+                - generic [ref=f21e1668]:
+                  - generic [ref=f21e1669]: 11:16
+                  - generic [ref=f21e1670]: 已完赛
+                - generic [ref=f21e1671]: 佛山DRG
+                - generic [ref=f21e1673]: "3 : 2"
+                - generic [ref=f21e1674]: 西安WE
+                - generic [ref=f21e1676]:
+                  - generic [ref=f21e1677]: 常规赛第二轮
+                  - generic [ref=f21e1678]: 详情 ›
+            - listitem [ref=f21e1679]:
+              - 'link "07:33 已完赛 长沙TES.A 3 : 0 上海EDG.M 常规赛第二轮 详情 ›" [ref=f21e1680] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026072101
+                - generic [ref=f21e1681]:
+                  - generic [ref=f21e1682]: 07:33
+                  - generic [ref=f21e1683]: 已完赛
+                - generic [ref=f21e1684]: 长沙TES.A
+                - generic [ref=f21e1686]: "3 : 0"
+                - generic [ref=f21e1687]: 上海EDG.M
+                - generic [ref=f21e1689]:
+                  - generic [ref=f21e1690]: 常规赛第二轮
+                  - generic [ref=f21e1691]: 详情 ›
+        - generic [ref=f21e1692]:
+          - generic [ref=f21e1693]:
+            - heading "2026/07/19" [level=2] [ref=f21e1694]
+            - generic [ref=f21e1695]: 3 场比赛
+          - list [ref=f21e1696]:
+            - listitem [ref=f21e1697]:
+              - 'link "14:44 已完赛 成都AG超玩会 2 : 3 广州TTG 常规赛第二轮 详情 ›" [ref=f21e1698] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071903
+                - generic [ref=f21e1699]:
+                  - generic [ref=f21e1700]: 14:44
+                  - generic [ref=f21e1701]: 已完赛
+                - generic [ref=f21e1702]: 成都AG超玩会
+                - generic [ref=f21e1704]: "2 : 3"
+                - generic [ref=f21e1705]: 广州TTG
+                - generic [ref=f21e1707]:
+                  - generic [ref=f21e1708]: 常规赛第二轮
+                  - generic [ref=f21e1709]: 详情 ›
+            - listitem [ref=f21e1710]:
+              - 'link "11:23 已完赛 杭州LGD.NBW 1 : 3 北京JDG 常规赛第二轮 详情 ›" [ref=f21e1711] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071902
+                - generic [ref=f21e1712]:
+                  - generic [ref=f21e1713]: 11:23
+                  - generic [ref=f21e1714]: 已完赛
+                - generic [ref=f21e1715]: 杭州LGD.NBW
+                - generic [ref=f21e1717]: "1 : 3"
+                - generic [ref=f21e1718]: 北京JDG
+                - generic [ref=f21e1720]:
+                  - generic [ref=f21e1721]: 常规赛第二轮
+                  - generic [ref=f21e1722]: 详情 ›
+            - listitem [ref=f21e1723]:
+              - 'link "08:39 已完赛 上海EDG.M 3 : 2 济南RW侠 常规赛第二轮 详情 ›" [ref=f21e1724] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071901
+                - generic [ref=f21e1725]:
+                  - generic [ref=f21e1726]: 08:39
+                  - generic [ref=f21e1727]: 已完赛
+                - generic [ref=f21e1728]: 上海EDG.M
+                - generic [ref=f21e1730]: "3 : 2"
+                - generic [ref=f21e1731]: 济南RW侠
+                - generic [ref=f21e1733]:
+                  - generic [ref=f21e1734]: 常规赛第二轮
+                  - generic [ref=f21e1735]: 详情 ›
+        - generic [ref=f21e1736]:
+          - generic [ref=f21e1737]:
+            - heading "2026/07/18" [level=2] [ref=f21e1738]
+            - generic [ref=f21e1739]: 3 场比赛
+          - list [ref=f21e1740]:
+            - listitem [ref=f21e1741]:
+              - 'link "14:47 已完赛 重庆狼队 3 : 2 SYG 常规赛第二轮 详情 ›" [ref=f21e1742] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071803
+                - generic [ref=f21e1743]:
+                  - generic [ref=f21e1744]: 14:47
+                  - generic [ref=f21e1745]: 已完赛
+                - generic [ref=f21e1746]: 重庆狼队
+                - generic [ref=f21e1748]: "3 : 2"
+                - generic [ref=f21e1749]: SYG
+                - generic [ref=f21e1751]:
+                  - generic [ref=f21e1752]: 常规赛第二轮
+                  - generic [ref=f21e1753]: 详情 ›
+            - listitem [ref=f21e1754]:
+              - 'link "11:07 已完赛 上海RNG.M 3 : 0 深圳DYG 常规赛第二轮 详情 ›" [ref=f21e1755] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071802
+                - generic [ref=f21e1756]:
+                  - generic [ref=f21e1757]: 11:07
+                  - generic [ref=f21e1758]: 已完赛
+                - generic [ref=f21e1759]: 上海RNG.M
+                - generic [ref=f21e1761]: "3 : 0"
+                - generic [ref=f21e1762]: 深圳DYG
+                - generic [ref=f21e1764]:
+                  - generic [ref=f21e1765]: 常规赛第二轮
+                  - generic [ref=f21e1766]: 详情 ›
+            - listitem [ref=f21e1767]:
+              - 'link "08:15 已完赛 佛山DRG 1 : 3 WST 常规赛第二轮 详情 ›" [ref=f21e1768] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071801
+                - generic [ref=f21e1769]:
+                  - generic [ref=f21e1770]: 08:15
+                  - generic [ref=f21e1771]: 已完赛
+                - generic [ref=f21e1772]: 佛山DRG
+                - generic [ref=f21e1774]: "1 : 3"
+                - generic [ref=f21e1775]: WST
+                - generic [ref=f21e1777]:
+                  - generic [ref=f21e1778]: 常规赛第二轮
+                  - generic [ref=f21e1779]: 详情 ›
+        - generic [ref=f21e1780]:
+          - generic [ref=f21e1781]:
+            - heading "2026/07/17" [level=2] [ref=f21e1782]
+            - generic [ref=f21e1783]: 3 场比赛
+          - list [ref=f21e1784]:
+            - listitem [ref=f21e1785]:
+              - 'link "14:43 已完赛 成都AG超玩会 3 : 2 KSG 常规赛第二轮 详情 ›" [ref=f21e1786] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071703
+                - generic [ref=f21e1787]:
+                  - generic [ref=f21e1788]: 14:43
+                  - generic [ref=f21e1789]: 已完赛
+                - generic [ref=f21e1790]: 成都AG超玩会
+                - generic [ref=f21e1792]: "3 : 2"
+                - generic [ref=f21e1793]: KSG
+                - generic [ref=f21e1795]:
+                  - generic [ref=f21e1796]: 常规赛第二轮
+                  - generic [ref=f21e1797]: 详情 ›
+            - listitem [ref=f21e1798]:
+              - 'link "10:39 已完赛 杭州LGD.NBW 0 : 3 北京WB 常规赛第二轮 详情 ›" [ref=f21e1799] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071702
+                - generic [ref=f21e1800]:
+                  - generic [ref=f21e1801]: 10:39
+                  - generic [ref=f21e1802]: 已完赛
+                - generic [ref=f21e1803]: 杭州LGD.NBW
+                - generic [ref=f21e1805]: "0 : 3"
+                - generic [ref=f21e1806]: 北京WB
+                - generic [ref=f21e1808]:
+                  - generic [ref=f21e1809]: 常规赛第二轮
+                  - generic [ref=f21e1810]: 详情 ›
+            - listitem [ref=f21e1811]:
+              - 'link "07:32 已完赛 南通Hero久竞 0 : 3 长沙TES.A 常规赛第二轮 详情 ›" [ref=f21e1812] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071701
+                - generic [ref=f21e1813]:
+                  - generic [ref=f21e1814]: 07:32
+                  - generic [ref=f21e1815]: 已完赛
+                - generic [ref=f21e1816]: 南通Hero久竞
+                - generic [ref=f21e1818]: "0 : 3"
+                - generic [ref=f21e1819]: 长沙TES.A
+                - generic [ref=f21e1821]:
+                  - generic [ref=f21e1822]: 常规赛第二轮
+                  - generic [ref=f21e1823]: 详情 ›
+        - generic [ref=f21e1824]:
+          - generic [ref=f21e1825]:
+            - heading "2026/07/16" [level=2] [ref=f21e1826]
+            - generic [ref=f21e1827]: 3 场比赛
+          - list [ref=f21e1828]:
+            - listitem [ref=f21e1829]:
+              - 'link "13:38 已完赛 北京JDG 0 : 3 广州TTG 常规赛第二轮 详情 ›" [ref=f21e1830] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071603
+                - generic [ref=f21e1831]:
+                  - generic [ref=f21e1832]: 13:38
+                  - generic [ref=f21e1833]: 已完赛
+                - generic [ref=f21e1834]: 北京JDG
+                - generic [ref=f21e1836]: "0 : 3"
+                - generic [ref=f21e1837]: 广州TTG
+                - generic [ref=f21e1839]:
+                  - generic [ref=f21e1840]: 常规赛第二轮
+                  - generic [ref=f21e1841]: 详情 ›
+            - listitem [ref=f21e1842]:
+              - 'link "11:37 已完赛 武汉eStarPro 3 : 1 深圳DYG 常规赛第二轮 详情 ›" [ref=f21e1843] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071602
+                - generic [ref=f21e1844]:
+                  - generic [ref=f21e1845]: 11:37
+                  - generic [ref=f21e1846]: 已完赛
+                - generic [ref=f21e1847]: 武汉eStarPro
+                - generic [ref=f21e1849]: "3 : 1"
+                - generic [ref=f21e1850]: 深圳DYG
+                - generic [ref=f21e1852]:
+                  - generic [ref=f21e1853]: 常规赛第二轮
+                  - generic [ref=f21e1854]: 详情 ›
+            - listitem [ref=f21e1855]:
+              - 'link "08:29 已完赛 佛山DRG 2 : 3 上海RNG.M 常规赛第二轮 详情 ›" [ref=f21e1856] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071601
+                - generic [ref=f21e1857]:
+                  - generic [ref=f21e1858]: 08:29
+                  - generic [ref=f21e1859]: 已完赛
+                - generic [ref=f21e1860]: 佛山DRG
+                - generic [ref=f21e1862]: "2 : 3"
+                - generic [ref=f21e1863]: 上海RNG.M
+                - generic [ref=f21e1865]:
+                  - generic [ref=f21e1866]: 常规赛第二轮
+                  - generic [ref=f21e1867]: 详情 ›
+        - generic [ref=f21e1868]:
+          - generic [ref=f21e1869]:
+            - heading "2026/07/15" [level=2] [ref=f21e1870]
+            - generic [ref=f21e1871]: 3 场比赛
+          - list [ref=f21e1872]:
+            - listitem [ref=f21e1873]:
+              - 'link "14:26 已完赛 南通Hero久竞 3 : 1 上海EDG.M 常规赛第二轮 详情 ›" [ref=f21e1874] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071503
+                - generic [ref=f21e1875]:
+                  - generic [ref=f21e1876]: 14:26
+                  - generic [ref=f21e1877]: 已完赛
+                - generic [ref=f21e1878]: 南通Hero久竞
+                - generic [ref=f21e1880]: "3 : 1"
+                - generic [ref=f21e1881]: 上海EDG.M
+                - generic [ref=f21e1883]:
+                  - generic [ref=f21e1884]: 常规赛第二轮
+                  - generic [ref=f21e1885]: 详情 ›
+            - listitem [ref=f21e1886]:
+              - 'link "11:47 已完赛 西安WE 2 : 3 WST 常规赛第二轮 详情 ›" [ref=f21e1887] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071502
+                - generic [ref=f21e1888]:
+                  - generic [ref=f21e1889]: 11:47
+                  - generic [ref=f21e1890]: 已完赛
+                - generic [ref=f21e1891]: 西安WE
+                - generic [ref=f21e1893]: "2 : 3"
+                - generic [ref=f21e1894]: WST
+                - generic [ref=f21e1896]:
+                  - generic [ref=f21e1897]: 常规赛第二轮
+                  - generic [ref=f21e1898]: 详情 ›
+            - listitem [ref=f21e1899]:
+              - 'link "08:35 已完赛 SYG 3 : 1 长沙TES.A 常规赛第二轮 详情 ›" [ref=f21e1900] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071501
+                - generic [ref=f21e1901]:
+                  - generic [ref=f21e1902]: 08:35
+                  - generic [ref=f21e1903]: 已完赛
+                - generic [ref=f21e1904]: SYG
+                - generic [ref=f21e1906]: "3 : 1"
+                - generic [ref=f21e1907]: 长沙TES.A
+                - generic [ref=f21e1909]:
+                  - generic [ref=f21e1910]: 常规赛第二轮
+                  - generic [ref=f21e1911]: 详情 ›
+        - generic [ref=f21e1912]:
+          - generic [ref=f21e1913]:
+            - heading "2026/07/13" [level=2] [ref=f21e1914]
+            - generic [ref=f21e1915]: 3 场比赛
+          - list [ref=f21e1916]:
+            - listitem [ref=f21e1917]:
+              - 'link "13:41 已完赛 杭州LGD.NBW 0 : 3 广州TTG 常规赛第二轮 详情 ›" [ref=f21e1918] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071303
+                - generic [ref=f21e1919]:
+                  - generic [ref=f21e1920]: 13:41
+                  - generic [ref=f21e1921]: 已完赛
+                - generic [ref=f21e1922]: 杭州LGD.NBW
+                - generic [ref=f21e1924]: "0 : 3"
+                - generic [ref=f21e1925]: 广州TTG
+                - generic [ref=f21e1927]:
+                  - generic [ref=f21e1928]: 常规赛第二轮
+                  - generic [ref=f21e1929]: 详情 ›
+            - listitem [ref=f21e1930]:
+              - 'link "11:19 已完赛 深圳DYG 1 : 3 WST 常规赛第二轮 详情 ›" [ref=f21e1931] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071302
+                - generic [ref=f21e1932]:
+                  - generic [ref=f21e1933]: 11:19
+                  - generic [ref=f21e1934]: 已完赛
+                - generic [ref=f21e1935]: 深圳DYG
+                - generic [ref=f21e1937]: "1 : 3"
+                - generic [ref=f21e1938]: WST
+                - generic [ref=f21e1940]:
+                  - generic [ref=f21e1941]: 常规赛第二轮
+                  - generic [ref=f21e1942]: 详情 ›
+            - listitem [ref=f21e1943]:
+              - 'link "08:25 已完赛 上海RNG.M 2 : 3 西安WE 常规赛第二轮 详情 ›" [ref=f21e1944] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071301
+                - generic [ref=f21e1945]:
+                  - generic [ref=f21e1946]: 08:25
+                  - generic [ref=f21e1947]: 已完赛
+                - generic [ref=f21e1948]: 上海RNG.M
+                - generic [ref=f21e1950]: "2 : 3"
+                - generic [ref=f21e1951]: 西安WE
+                - generic [ref=f21e1953]:
+                  - generic [ref=f21e1954]: 常规赛第二轮
+                  - generic [ref=f21e1955]: 详情 ›
+        - generic [ref=f21e1956]:
+          - generic [ref=f21e1957]:
+            - heading "2026/07/12" [level=2] [ref=f21e1958]
+            - generic [ref=f21e1959]: 3 场比赛
+          - list [ref=f21e1960]:
+            - listitem [ref=f21e1961]:
+              - 'link "13:41 已完赛 北京WB 3 : 0 成都AG超玩会 常规赛第二轮 详情 ›" [ref=f21e1962] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071203
+                - generic [ref=f21e1963]:
+                  - generic [ref=f21e1964]: 13:41
+                  - generic [ref=f21e1965]: 已完赛
+                - generic [ref=f21e1966]: 北京WB
+                - generic [ref=f21e1968]: "3 : 0"
+                - generic [ref=f21e1969]: 成都AG超玩会
+                - generic [ref=f21e1971]:
+                  - generic [ref=f21e1972]: 常规赛第二轮
+                  - generic [ref=f21e1973]: 详情 ›
+            - listitem [ref=f21e1974]:
+              - 'link "11:47 已完赛 重庆狼队 3 : 2 济南RW侠 常规赛第二轮 详情 ›" [ref=f21e1975] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071202
+                - generic [ref=f21e1976]:
+                  - generic [ref=f21e1977]: 11:47
+                  - generic [ref=f21e1978]: 已完赛
+                - generic [ref=f21e1979]: 重庆狼队
+                - generic [ref=f21e1981]: "3 : 2"
+                - generic [ref=f21e1982]: 济南RW侠
+                - generic [ref=f21e1984]:
+                  - generic [ref=f21e1985]: 常规赛第二轮
+                  - generic [ref=f21e1986]: 详情 ›
+            - listitem [ref=f21e1987]:
+              - 'link "07:46 已完赛 北京JDG 3 : 0 KSG 常规赛第二轮 详情 ›" [ref=f21e1988] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071201
+                - generic [ref=f21e1989]:
+                  - generic [ref=f21e1990]: 07:46
+                  - generic [ref=f21e1991]: 已完赛
+                - generic [ref=f21e1992]: 北京JDG
+                - generic [ref=f21e1994]: "3 : 0"
+                - generic [ref=f21e1995]: KSG
+                - generic [ref=f21e1997]:
+                  - generic [ref=f21e1998]: 常规赛第二轮
+                  - generic [ref=f21e1999]: 详情 ›
+        - generic [ref=f21e2000]:
+          - generic [ref=f21e2001]:
+            - heading "2026/07/10" [level=2] [ref=f21e2002]
+            - generic [ref=f21e2003]: 3 场比赛
+          - list [ref=f21e2004]:
+            - listitem [ref=f21e2005]:
+              - 'link "14:18 已完赛 北京JDG 1 : 3 成都AG超玩会 常规赛第二轮 详情 ›" [ref=f21e2006] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071003
+                - generic [ref=f21e2007]:
+                  - generic [ref=f21e2008]: 14:18
+                  - generic [ref=f21e2009]: 已完赛
+                - generic [ref=f21e2010]: 北京JDG
+                - generic [ref=f21e2012]: "1 : 3"
+                - generic [ref=f21e2013]: 成都AG超玩会
+                - generic [ref=f21e2015]:
+                  - generic [ref=f21e2016]: 常规赛第二轮
+                  - generic [ref=f21e2017]: 详情 ›
+            - listitem [ref=f21e2018]:
+              - 'link "11:36 已完赛 北京WB 3 : 2 KSG 常规赛第二轮 详情 ›" [ref=f21e2019] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071002
+                - generic [ref=f21e2020]:
+                  - generic [ref=f21e2021]: 11:36
+                  - generic [ref=f21e2022]: 已完赛
+                - generic [ref=f21e2023]: 北京WB
+                - generic [ref=f21e2025]: "3 : 2"
+                - generic [ref=f21e2026]: KSG
+                - generic [ref=f21e2028]:
+                  - generic [ref=f21e2029]: 常规赛第二轮
+                  - generic [ref=f21e2030]: 详情 ›
+            - listitem [ref=f21e2031]:
+              - 'link "07:42 已完赛 重庆狼队 3 : 0 上海EDG.M 常规赛第二轮 详情 ›" [ref=f21e2032] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026071001
+                - generic [ref=f21e2033]:
+                  - generic [ref=f21e2034]: 07:42
+                  - generic [ref=f21e2035]: 已完赛
+                - generic [ref=f21e2036]: 重庆狼队
+                - generic [ref=f21e2038]: "3 : 0"
+                - generic [ref=f21e2039]: 上海EDG.M
+                - generic [ref=f21e2041]:
+                  - generic [ref=f21e2042]: 常规赛第二轮
+                  - generic [ref=f21e2043]: 详情 ›
+        - generic [ref=f21e2044]:
+          - generic [ref=f21e2045]:
+            - heading "2026/07/09" [level=2] [ref=f21e2046]
+            - generic [ref=f21e2047]: 3 场比赛
+          - list [ref=f21e2048]:
+            - listitem [ref=f21e2049]:
+              - 'link "14:06 已完赛 佛山DRG 3 : 0 武汉eStarPro 常规赛第二轮 详情 ›" [ref=f21e2050] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070903
+                - generic [ref=f21e2051]:
+                  - generic [ref=f21e2052]: 14:06
+                  - generic [ref=f21e2053]: 已完赛
+                - generic [ref=f21e2054]: 佛山DRG
+                - generic [ref=f21e2056]: "3 : 0"
+                - generic [ref=f21e2057]: 武汉eStarPro
+                - generic [ref=f21e2059]:
+                  - generic [ref=f21e2060]: 常规赛第二轮
+                  - generic [ref=f21e2061]: 详情 ›
+            - listitem [ref=f21e2062]:
+              - 'link "11:39 已完赛 济南RW侠 2 : 3 长沙TES.A 常规赛第二轮 详情 ›" [ref=f21e2063] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070902
+                - generic [ref=f21e2064]:
+                  - generic [ref=f21e2065]: 11:39
+                  - generic [ref=f21e2066]: 已完赛
+                - generic [ref=f21e2067]: 济南RW侠
+                - generic [ref=f21e2069]: "2 : 3"
+                - generic [ref=f21e2070]: 长沙TES.A
+                - generic [ref=f21e2072]:
+                  - generic [ref=f21e2073]: 常规赛第二轮
+                  - generic [ref=f21e2074]: 详情 ›
+            - listitem [ref=f21e2075]:
+              - 'link "08:25 已完赛 南通Hero久竞 2 : 3 SYG 常规赛第二轮 详情 ›" [ref=f21e2076] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070901
+                - generic [ref=f21e2077]:
+                  - generic [ref=f21e2078]: 08:25
+                  - generic [ref=f21e2079]: 已完赛
+                - generic [ref=f21e2080]: 南通Hero久竞
+                - generic [ref=f21e2082]: "2 : 3"
+                - generic [ref=f21e2083]: SYG
+                - generic [ref=f21e2085]:
+                  - generic [ref=f21e2086]: 常规赛第二轮
+                  - generic [ref=f21e2087]: 详情 ›
+        - generic [ref=f21e2088]:
+          - generic [ref=f21e2089]:
+            - heading "2026/07/05" [level=2] [ref=f21e2090]
+            - generic [ref=f21e2091]: 3 场比赛
+          - list [ref=f21e2092]:
+            - listitem [ref=f21e2093]:
+              - 'link "13:48 已完赛 成都AG超玩会 3 : 0 深圳DYG 常规赛第一轮 详情 ›" [ref=f21e2094] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070503
+                - generic [ref=f21e2095]:
+                  - generic [ref=f21e2096]: 13:48
+                  - generic [ref=f21e2097]: 已完赛
+                - generic [ref=f21e2098]: 成都AG超玩会
+                - generic [ref=f21e2100]: "3 : 0"
+                - generic [ref=f21e2101]: 深圳DYG
+                - generic [ref=f21e2103]:
+                  - generic [ref=f21e2104]: 常规赛第一轮
+                  - generic [ref=f21e2105]: 详情 ›
+            - listitem [ref=f21e2106]:
+              - 'link "12:00 已完赛 重庆狼队 3 : 2 济南RW侠 常规赛第一轮 详情 ›" [ref=f21e2107] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070502
+                - generic [ref=f21e2108]:
+                  - generic [ref=f21e2109]: 12:00
+                  - generic [ref=f21e2110]: 已完赛
+                - generic [ref=f21e2111]: 重庆狼队
+                - generic [ref=f21e2113]: "3 : 2"
+                - generic [ref=f21e2114]: 济南RW侠
+                - generic [ref=f21e2116]:
+                  - generic [ref=f21e2117]: 常规赛第一轮
+                  - generic [ref=f21e2118]: 详情 ›
+            - listitem [ref=f21e2119]:
+              - 'link "08:32 已完赛 南通Hero久竞 3 : 2 武汉eStarPro 常规赛第一轮 详情 ›" [ref=f21e2120] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070501
+                - generic [ref=f21e2121]:
+                  - generic [ref=f21e2122]: 08:32
+                  - generic [ref=f21e2123]: 已完赛
+                - generic [ref=f21e2124]: 南通Hero久竞
+                - generic [ref=f21e2126]: "3 : 2"
+                - generic [ref=f21e2127]: 武汉eStarPro
+                - generic [ref=f21e2129]:
+                  - generic [ref=f21e2130]: 常规赛第一轮
+                  - generic [ref=f21e2131]: 详情 ›
+        - generic [ref=f21e2132]:
+          - generic [ref=f21e2133]:
+            - heading "2026/07/04" [level=2] [ref=f21e2134]
+            - generic [ref=f21e2135]: 3 场比赛
+          - list [ref=f21e2136]:
+            - listitem [ref=f21e2137]:
+              - 'link "13:28 已完赛 北京JDG 3 : 0 佛山DRG 常规赛第一轮 详情 ›" [ref=f21e2138] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070403
+                - generic [ref=f21e2139]:
+                  - generic [ref=f21e2140]: 13:28
+                  - generic [ref=f21e2141]: 已完赛
+                - generic [ref=f21e2142]: 北京JDG
+                - generic [ref=f21e2144]: "3 : 0"
+                - generic [ref=f21e2145]: 佛山DRG
+                - generic [ref=f21e2147]:
+                  - generic [ref=f21e2148]: 常规赛第一轮
+                  - generic [ref=f21e2149]: 详情 ›
+            - listitem [ref=f21e2150]:
+              - 'link "10:34 已完赛 KSG 3 : 0 WST 常规赛第一轮 详情 ›" [ref=f21e2151] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070402
+                - generic [ref=f21e2152]:
+                  - generic [ref=f21e2153]: 10:34
+                  - generic [ref=f21e2154]: 已完赛
+                - generic [ref=f21e2155]: KSG
+                - generic [ref=f21e2157]: "3 : 0"
+                - generic [ref=f21e2158]: WST
+                - generic [ref=f21e2160]:
+                  - generic [ref=f21e2161]: 常规赛第一轮
+                  - generic [ref=f21e2162]: 详情 ›
+            - listitem [ref=f21e2163]:
+              - 'link "07:20 已完赛 广州TTG 3 : 0 SYG 常规赛第一轮 详情 ›" [ref=f21e2164] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070401
+                - generic [ref=f21e2165]:
+                  - generic [ref=f21e2166]: 07:20
+                  - generic [ref=f21e2167]: 已完赛
+                - generic [ref=f21e2168]: 广州TTG
+                - generic [ref=f21e2170]: "3 : 0"
+                - generic [ref=f21e2171]: SYG
+                - generic [ref=f21e2173]:
+                  - generic [ref=f21e2174]: 常规赛第一轮
+                  - generic [ref=f21e2175]: 详情 ›
+        - generic [ref=f21e2176]:
+          - generic [ref=f21e2177]:
+            - heading "2026/07/03" [level=2] [ref=f21e2178]
+            - generic [ref=f21e2179]: 3 场比赛
+          - list [ref=f21e2180]:
+            - listitem [ref=f21e2181]:
+              - 'link "14:39 已完赛 成都AG超玩会 3 : 2 重庆狼队 常规赛第一轮 详情 ›" [ref=f21e2182] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070303
+                - generic [ref=f21e2183]:
+                  - generic [ref=f21e2184]: 14:39
+                  - generic [ref=f21e2185]: 已完赛
+                - generic [ref=f21e2186]: 成都AG超玩会
+                - generic [ref=f21e2188]: "3 : 2"
+                - generic [ref=f21e2189]: 重庆狼队
+                - generic [ref=f21e2191]:
+                  - generic [ref=f21e2192]: 常规赛第一轮
+                  - generic [ref=f21e2193]: 详情 ›
+            - listitem [ref=f21e2194]:
+              - 'link "10:30 已完赛 上海EDG.M 3 : 0 武汉eStarPro 常规赛第一轮 详情 ›" [ref=f21e2195] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070302
+                - generic [ref=f21e2196]:
+                  - generic [ref=f21e2197]: 10:30
+                  - generic [ref=f21e2198]: 已完赛
+                - generic [ref=f21e2199]: 上海EDG.M
+                - generic [ref=f21e2201]: "3 : 0"
+                - generic [ref=f21e2202]: 武汉eStarPro
+                - generic [ref=f21e2204]:
+                  - generic [ref=f21e2205]: 常规赛第一轮
+                  - generic [ref=f21e2206]: 详情 ›
+            - listitem [ref=f21e2207]:
+              - 'link "07:25 已完赛 南通Hero久竞 3 : 0 上海RNG.M 常规赛第一轮 详情 ›" [ref=f21e2208] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070301
+                - generic [ref=f21e2209]:
+                  - generic [ref=f21e2210]: 07:25
+                  - generic [ref=f21e2211]: 已完赛
+                - generic [ref=f21e2212]: 南通Hero久竞
+                - generic [ref=f21e2214]: "3 : 0"
+                - generic [ref=f21e2215]: 上海RNG.M
+                - generic [ref=f21e2217]:
+                  - generic [ref=f21e2218]: 常规赛第一轮
+                  - generic [ref=f21e2219]: 详情 ›
+        - generic [ref=f21e2220]:
+          - generic [ref=f21e2221]:
+            - heading "2026/07/02" [level=2] [ref=f21e2222]
+            - generic [ref=f21e2223]: 3 场比赛
+          - list [ref=f21e2224]:
+            - listitem [ref=f21e2225]:
+              - 'link "14:07 已完赛 北京JDG 3 : 1 西安WE 常规赛第一轮 详情 ›" [ref=f21e2226] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070203
+                - generic [ref=f21e2227]:
+                  - generic [ref=f21e2228]: 14:07
+                  - generic [ref=f21e2229]: 已完赛
+                - generic [ref=f21e2230]: 北京JDG
+                - generic [ref=f21e2232]: "3 : 1"
+                - generic [ref=f21e2233]: 西安WE
+                - generic [ref=f21e2235]:
+                  - generic [ref=f21e2236]: 常规赛第一轮
+                  - generic [ref=f21e2237]: 详情 ›
+            - listitem [ref=f21e2238]:
+              - 'link "11:09 已完赛 深圳DYG 0 : 3 济南RW侠 常规赛第一轮 详情 ›" [ref=f21e2239] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070202
+                - generic [ref=f21e2240]:
+                  - generic [ref=f21e2241]: 11:09
+                  - generic [ref=f21e2242]: 已完赛
+                - generic [ref=f21e2243]: 深圳DYG
+                - generic [ref=f21e2245]: "0 : 3"
+                - generic [ref=f21e2246]: 济南RW侠
+                - generic [ref=f21e2248]:
+                  - generic [ref=f21e2249]: 常规赛第一轮
+                  - generic [ref=f21e2250]: 详情 ›
+            - listitem [ref=f21e2251]:
+              - 'link "08:27 已完赛 广州TTG 2 : 3 长沙TES.A 常规赛第一轮 详情 ›" [ref=f21e2252] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070201
+                - generic [ref=f21e2253]:
+                  - generic [ref=f21e2254]: 08:27
+                  - generic [ref=f21e2255]: 已完赛
+                - generic [ref=f21e2256]: 广州TTG
+                - generic [ref=f21e2258]: "2 : 3"
+                - generic [ref=f21e2259]: 长沙TES.A
+                - generic [ref=f21e2261]:
+                  - generic [ref=f21e2262]: 常规赛第一轮
+                  - generic [ref=f21e2263]: 详情 ›
+        - generic [ref=f21e2264]:
+          - generic [ref=f21e2265]:
+            - heading "2026/07/01" [level=2] [ref=f21e2266]
+            - generic [ref=f21e2267]: 3 场比赛
+          - list [ref=f21e2268]:
+            - listitem [ref=f21e2269]:
+              - 'link "13:34 已完赛 北京WB 3 : 0 杭州LGD.NBW 常规赛第一轮 详情 ›" [ref=f21e2270] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070103
+                - generic [ref=f21e2271]:
+                  - generic [ref=f21e2272]: 13:34
+                  - generic [ref=f21e2273]: 已完赛
+                - generic [ref=f21e2274]: 北京WB
+                - generic [ref=f21e2276]: "3 : 0"
+                - generic [ref=f21e2277]: 杭州LGD.NBW
+                - generic [ref=f21e2279]:
+                  - generic [ref=f21e2280]: 常规赛第一轮
+                  - generic [ref=f21e2281]: 详情 ›
+            - listitem [ref=f21e2282]:
+              - 'link "11:40 已完赛 佛山DRG 3 : 1 SYG 常规赛第一轮 详情 ›" [ref=f21e2283] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070102
+                - generic [ref=f21e2284]:
+                  - generic [ref=f21e2285]: 11:40
+                  - generic [ref=f21e2286]: 已完赛
+                - generic [ref=f21e2287]: 佛山DRG
+                - generic [ref=f21e2289]: "3 : 1"
+                - generic [ref=f21e2290]: SYG
+                - generic [ref=f21e2292]:
+                  - generic [ref=f21e2293]: 常规赛第一轮
+                  - generic [ref=f21e2294]: 详情 ›
+            - listitem [ref=f21e2295]:
+              - 'link "08:29 已完赛 上海RNG.M 2 : 3 上海EDG.M 常规赛第一轮 详情 ›" [ref=f21e2296] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026070101
+                - generic [ref=f21e2297]:
+                  - generic [ref=f21e2298]: 08:29
+                  - generic [ref=f21e2299]: 已完赛
+                - generic [ref=f21e2300]: 上海RNG.M
+                - generic [ref=f21e2302]: "2 : 3"
+                - generic [ref=f21e2303]: 上海EDG.M
+                - generic [ref=f21e2305]:
+                  - generic [ref=f21e2306]: 常规赛第一轮
+                  - generic [ref=f21e2307]: 详情 ›
+        - generic [ref=f21e2308]:
+          - generic [ref=f21e2309]:
+            - heading "2026/06/28" [level=2] [ref=f21e2310]
+            - generic [ref=f21e2311]: 3 场比赛
+          - list [ref=f21e2312]:
+            - listitem [ref=f21e2313]:
+              - 'link "13:21 已完赛 重庆狼队 3 : 0 WST 常规赛第一轮 详情 ›" [ref=f21e2314] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062803
+                - generic [ref=f21e2315]:
+                  - generic [ref=f21e2316]: 13:21
+                  - generic [ref=f21e2317]: 已完赛
+                - generic [ref=f21e2318]: 重庆狼队
+                - generic [ref=f21e2320]: "3 : 0"
+                - generic [ref=f21e2321]: WST
+                - generic [ref=f21e2323]:
+                  - generic [ref=f21e2324]: 常规赛第一轮
+                  - generic [ref=f21e2325]: 详情 ›
+            - listitem [ref=f21e2326]:
+              - 'link "10:59 已完赛 南通Hero久竞 1 : 3 北京WB 常规赛第一轮 详情 ›" [ref=f21e2327] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062802
+                - generic [ref=f21e2328]:
+                  - generic [ref=f21e2329]: 10:59
+                  - generic [ref=f21e2330]: 已完赛
+                - generic [ref=f21e2331]: 南通Hero久竞
+                - generic [ref=f21e2333]: "1 : 3"
+                - generic [ref=f21e2334]: 北京WB
+                - generic [ref=f21e2336]:
+                  - generic [ref=f21e2337]: 常规赛第一轮
+                  - generic [ref=f21e2338]: 详情 ›
+            - listitem [ref=f21e2339]:
+              - 'link "07:32 已完赛 杭州LGD.NBW 3 : 0 上海EDG.M 常规赛第一轮 详情 ›" [ref=f21e2340] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062801
+                - generic [ref=f21e2341]:
+                  - generic [ref=f21e2342]: 07:32
+                  - generic [ref=f21e2343]: 已完赛
+                - generic [ref=f21e2344]: 杭州LGD.NBW
+                - generic [ref=f21e2346]: "3 : 0"
+                - generic [ref=f21e2347]: 上海EDG.M
+                - generic [ref=f21e2349]:
+                  - generic [ref=f21e2350]: 常规赛第一轮
+                  - generic [ref=f21e2351]: 详情 ›
+        - generic [ref=f21e2352]:
+          - generic [ref=f21e2353]:
+            - heading "2026/06/27" [level=2] [ref=f21e2354]
+            - generic [ref=f21e2355]: 3 场比赛
+          - list [ref=f21e2356]:
+            - listitem [ref=f21e2357]:
+              - 'link "13:30 已完赛 成都AG超玩会 0 : 3 济南RW侠 常规赛第一轮 详情 ›" [ref=f21e2358] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062703
+                - generic [ref=f21e2359]:
+                  - generic [ref=f21e2360]: 13:30
+                  - generic [ref=f21e2361]: 已完赛
+                - generic [ref=f21e2362]: 成都AG超玩会
+                - generic [ref=f21e2364]: "0 : 3"
+                - generic [ref=f21e2365]: 济南RW侠
+                - generic [ref=f21e2367]:
+                  - generic [ref=f21e2368]: 常规赛第一轮
+                  - generic [ref=f21e2369]: 详情 ›
+            - listitem [ref=f21e2370]:
+              - 'link "11:24 已完赛 KSG 3 : 1 深圳DYG 常规赛第一轮 详情 ›" [ref=f21e2371] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062702
+                - generic [ref=f21e2372]:
+                  - generic [ref=f21e2373]: 11:24
+                  - generic [ref=f21e2374]: 已完赛
+                - generic [ref=f21e2375]: KSG
+                - generic [ref=f21e2377]: "3 : 1"
+                - generic [ref=f21e2378]: 深圳DYG
+                - generic [ref=f21e2380]:
+                  - generic [ref=f21e2381]: 常规赛第一轮
+                  - generic [ref=f21e2382]: 详情 ›
+            - listitem [ref=f21e2383]:
+              - 'link "08:24 已完赛 西安WE 2 : 3 SYG 常规赛第一轮 详情 ›" [ref=f21e2384] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062701
+                - generic [ref=f21e2385]:
+                  - generic [ref=f21e2386]: 08:24
+                  - generic [ref=f21e2387]: 已完赛
+                - generic [ref=f21e2388]: 西安WE
+                - generic [ref=f21e2390]: "2 : 3"
+                - generic [ref=f21e2391]: SYG
+                - generic [ref=f21e2393]:
+                  - generic [ref=f21e2394]: 常规赛第一轮
+                  - generic [ref=f21e2395]: 详情 ›
+        - generic [ref=f21e2396]:
+          - generic [ref=f21e2397]:
+            - heading "2026/06/26" [level=2] [ref=f21e2398]
+            - generic [ref=f21e2399]: 3 场比赛
+          - list [ref=f21e2400]:
+            - listitem [ref=f21e2401]:
+              - 'link "14:32 已完赛 北京JDG 3 : 2 广州TTG 常规赛第一轮 详情 ›" [ref=f21e2402] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062603
+                - generic [ref=f21e2403]:
+                  - generic [ref=f21e2404]: 14:32
+                  - generic [ref=f21e2405]: 已完赛
+                - generic [ref=f21e2406]: 北京JDG
+                - generic [ref=f21e2408]: "3 : 2"
+                - generic [ref=f21e2409]: 广州TTG
+                - generic [ref=f21e2411]:
+                  - generic [ref=f21e2412]: 常规赛第一轮
+                  - generic [ref=f21e2413]: 详情 ›
+            - listitem [ref=f21e2414]:
+              - 'link "11:21 已完赛 南通Hero久竞 2 : 3 上海EDG.M 常规赛第一轮 详情 ›" [ref=f21e2415] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062602
+                - generic [ref=f21e2416]:
+                  - generic [ref=f21e2417]: 11:21
+                  - generic [ref=f21e2418]: 已完赛
+                - generic [ref=f21e2419]: 南通Hero久竞
+                - generic [ref=f21e2421]: "2 : 3"
+                - generic [ref=f21e2422]: 上海EDG.M
+                - generic [ref=f21e2424]:
+                  - generic [ref=f21e2425]: 常规赛第一轮
+                  - generic [ref=f21e2426]: 详情 ›
+            - listitem [ref=f21e2427]:
+              - 'link "07:50 已完赛 佛山DRG 0 : 3 长沙TES.A 常规赛第一轮 详情 ›" [ref=f21e2428] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062601
+                - generic [ref=f21e2429]:
+                  - generic [ref=f21e2430]: 07:50
+                  - generic [ref=f21e2431]: 已完赛
+                - generic [ref=f21e2432]: 佛山DRG
+                - generic [ref=f21e2434]: "0 : 3"
+                - generic [ref=f21e2435]: 长沙TES.A
+                - generic [ref=f21e2437]:
+                  - generic [ref=f21e2438]: 常规赛第一轮
+                  - generic [ref=f21e2439]: 详情 ›
+        - generic [ref=f21e2440]:
+          - generic [ref=f21e2441]:
+            - heading "2026/06/25" [level=2] [ref=f21e2442]
+            - generic [ref=f21e2443]: 3 场比赛
+          - list [ref=f21e2444]:
+            - listitem [ref=f21e2445]:
+              - 'link "13:23 已完赛 杭州LGD.NBW 3 : 0 武汉eStarPro 常规赛第一轮 详情 ›" [ref=f21e2446] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062503
+                - generic [ref=f21e2447]:
+                  - generic [ref=f21e2448]: 13:23
+                  - generic [ref=f21e2449]: 已完赛
+                - generic [ref=f21e2450]: 杭州LGD.NBW
+                - generic [ref=f21e2452]: "3 : 0"
+                - generic [ref=f21e2453]: 武汉eStarPro
+                - generic [ref=f21e2455]:
+                  - generic [ref=f21e2456]: 常规赛第一轮
+                  - generic [ref=f21e2457]: 详情 ›
+            - listitem [ref=f21e2458]:
+              - 'link "10:32 已完赛 WST 0 : 3 深圳DYG 常规赛第一轮 详情 ›" [ref=f21e2459] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062502
+                - generic [ref=f21e2460]:
+                  - generic [ref=f21e2461]: 10:32
+                  - generic [ref=f21e2462]: 已完赛
+                - generic [ref=f21e2463]: WST
+                - generic [ref=f21e2465]: "0 : 3"
+                - generic [ref=f21e2466]: 深圳DYG
+                - generic [ref=f21e2468]:
+                  - generic [ref=f21e2469]: 常规赛第一轮
+                  - generic [ref=f21e2470]: 详情 ›
+            - listitem [ref=f21e2471]:
+              - 'link "07:47 已完赛 北京WB 3 : 0 上海RNG.M 常规赛第一轮 详情 ›" [ref=f21e2472] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062501
+                - generic [ref=f21e2473]:
+                  - generic [ref=f21e2474]: 07:47
+                  - generic [ref=f21e2475]: 已完赛
+                - generic [ref=f21e2476]: 北京WB
+                - generic [ref=f21e2478]: "3 : 0"
+                - generic [ref=f21e2479]: 上海RNG.M
+                - generic [ref=f21e2481]:
+                  - generic [ref=f21e2482]: 常规赛第一轮
+                  - generic [ref=f21e2483]: 详情 ›
+        - generic [ref=f21e2484]:
+          - generic [ref=f21e2485]:
+            - heading "2026/06/24" [level=2] [ref=f21e2486]
+            - generic [ref=f21e2487]: 3 场比赛
+          - list [ref=f21e2488]:
+            - listitem [ref=f21e2489]:
+              - 'link "13:57 已完赛 济南RW侠 0 : 3 KSG 常规赛第一轮 详情 ›" [ref=f21e2490] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062403
+                - generic [ref=f21e2491]:
+                  - generic [ref=f21e2492]: 13:57
+                  - generic [ref=f21e2493]: 已完赛
+                - generic [ref=f21e2494]: 济南RW侠
+                - generic [ref=f21e2496]: "0 : 3"
+                - generic [ref=f21e2497]: KSG
+                - generic [ref=f21e2499]:
+                  - generic [ref=f21e2500]: 常规赛第一轮
+                  - generic [ref=f21e2501]: 详情 ›
+            - listitem [ref=f21e2502]:
+              - 'link "11:32 已完赛 西安WE 3 : 1 佛山DRG 常规赛第一轮 详情 ›" [ref=f21e2503] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062402
+                - generic [ref=f21e2504]:
+                  - generic [ref=f21e2505]: 11:32
+                  - generic [ref=f21e2506]: 已完赛
+                - generic [ref=f21e2507]: 西安WE
+                - generic [ref=f21e2509]: "3 : 1"
+                - generic [ref=f21e2510]: 佛山DRG
+                - generic [ref=f21e2512]:
+                  - generic [ref=f21e2513]: 常规赛第一轮
+                  - generic [ref=f21e2514]: 详情 ›
+            - listitem [ref=f21e2515]:
+              - 'link "08:40 已完赛 长沙TES.A 2 : 3 SYG 常规赛第一轮 详情 ›" [ref=f21e2516] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062401
+                - generic [ref=f21e2517]:
+                  - generic [ref=f21e2518]: 08:40
+                  - generic [ref=f21e2519]: 已完赛
+                - generic [ref=f21e2520]: 长沙TES.A
+                - generic [ref=f21e2522]: "2 : 3"
+                - generic [ref=f21e2523]: SYG
+                - generic [ref=f21e2525]:
+                  - generic [ref=f21e2526]: 常规赛第一轮
+                  - generic [ref=f21e2527]: 详情 ›
+        - generic [ref=f21e2528]:
+          - generic [ref=f21e2529]:
+            - heading "2026/06/21" [level=2] [ref=f21e2530]
+            - generic [ref=f21e2531]: 3 场比赛
+          - list [ref=f21e2532]:
+            - listitem [ref=f21e2533]:
+              - 'link "14:01 已完赛 成都AG超玩会 3 : 1 WST 常规赛第一轮 详情 ›" [ref=f21e2534] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062103
+                - generic [ref=f21e2535]:
+                  - generic [ref=f21e2536]: 14:01
+                  - generic [ref=f21e2537]: 已完赛
+                - generic [ref=f21e2538]: 成都AG超玩会
+                - generic [ref=f21e2540]: "3 : 1"
+                - generic [ref=f21e2541]: WST
+                - generic [ref=f21e2543]:
+                  - generic [ref=f21e2544]: 常规赛第一轮
+                  - generic [ref=f21e2545]: 详情 ›
+            - listitem [ref=f21e2546]:
+              - 'link "11:35 已完赛 北京JDG 3 : 2 长沙TES.A 常规赛第一轮 详情 ›" [ref=f21e2547] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062102
+                - generic [ref=f21e2548]:
+                  - generic [ref=f21e2549]: 11:35
+                  - generic [ref=f21e2550]: 已完赛
+                - generic [ref=f21e2551]: 北京JDG
+                - generic [ref=f21e2553]: "3 : 2"
+                - generic [ref=f21e2554]: 长沙TES.A
+                - generic [ref=f21e2556]:
+                  - generic [ref=f21e2557]: 常规赛第一轮
+                  - generic [ref=f21e2558]: 详情 ›
+            - listitem [ref=f21e2559]:
+              - 'link "08:08 已完赛 上海RNG.M 1 : 3 武汉eStarPro 常规赛第一轮 详情 ›" [ref=f21e2560] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062101
+                - generic [ref=f21e2561]:
+                  - generic [ref=f21e2562]: 08:08
+                  - generic [ref=f21e2563]: 已完赛
+                - generic [ref=f21e2564]: 上海RNG.M
+                - generic [ref=f21e2566]: "1 : 3"
+                - generic [ref=f21e2567]: 武汉eStarPro
+                - generic [ref=f21e2569]:
+                  - generic [ref=f21e2570]: 常规赛第一轮
+                  - generic [ref=f21e2571]: 详情 ›
+        - generic [ref=f21e2572]:
+          - generic [ref=f21e2573]:
+            - heading "2026/06/20" [level=2] [ref=f21e2574]
+            - generic [ref=f21e2575]: 3 场比赛
+          - list [ref=f21e2576]:
+            - listitem [ref=f21e2577]:
+              - 'link "14:02 已完赛 重庆狼队 3 : 1 深圳DYG 常规赛第一轮 详情 ›" [ref=f21e2578] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062003
+                - generic [ref=f21e2579]:
+                  - generic [ref=f21e2580]: 14:02
+                  - generic [ref=f21e2581]: 已完赛
+                - generic [ref=f21e2582]: 重庆狼队
+                - generic [ref=f21e2584]: "3 : 1"
+                - generic [ref=f21e2585]: 深圳DYG
+                - generic [ref=f21e2587]:
+                  - generic [ref=f21e2588]: 常规赛第一轮
+                  - generic [ref=f21e2589]: 详情 ›
+            - listitem [ref=f21e2590]:
+              - 'link "10:22 已完赛 西安WE 0 : 3 广州TTG 常规赛第一轮 详情 ›" [ref=f21e2591] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062002
+                - generic [ref=f21e2592]:
+                  - generic [ref=f21e2593]: 10:22
+                  - generic [ref=f21e2594]: 已完赛
+                - generic [ref=f21e2595]: 西安WE
+                - generic [ref=f21e2597]: "0 : 3"
+                - generic [ref=f21e2598]: 广州TTG
+                - generic [ref=f21e2600]:
+                  - generic [ref=f21e2601]: 常规赛第一轮
+                  - generic [ref=f21e2602]: 详情 ›
+            - listitem [ref=f21e2603]:
+              - 'link "08:23 已完赛 杭州LGD.NBW 3 : 2 南通Hero久竞 常规赛第一轮 详情 ›" [ref=f21e2604] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026062001
+                - generic [ref=f21e2605]:
+                  - generic [ref=f21e2606]: 08:23
+                  - generic [ref=f21e2607]: 已完赛
+                - generic [ref=f21e2608]: 杭州LGD.NBW
+                - generic [ref=f21e2610]: "3 : 2"
+                - generic [ref=f21e2611]: 南通Hero久竞
+                - generic [ref=f21e2613]:
+                  - generic [ref=f21e2614]: 常规赛第一轮
+                  - generic [ref=f21e2615]: 详情 ›
+        - generic [ref=f21e2616]:
+          - generic [ref=f21e2617]:
+            - heading "2026/06/19" [level=2] [ref=f21e2618]
+            - generic [ref=f21e2619]: 3 场比赛
+          - list [ref=f21e2620]:
+            - listitem [ref=f21e2621]:
+              - 'link "14:22 已完赛 成都AG超玩会 3 : 1 KSG 常规赛第一轮 详情 ›" [ref=f21e2622] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061903
+                - generic [ref=f21e2623]:
+                  - generic [ref=f21e2624]: 14:22
+                  - generic [ref=f21e2625]: 已完赛
+                - generic [ref=f21e2626]: 成都AG超玩会
+                - generic [ref=f21e2628]: "3 : 1"
+                - generic [ref=f21e2629]: KSG
+                - generic [ref=f21e2631]:
+                  - generic [ref=f21e2632]: 常规赛第一轮
+                  - generic [ref=f21e2633]: 详情 ›
+            - listitem [ref=f21e2634]:
+              - 'link "11:07 已完赛 北京JDG 3 : 1 SYG 常规赛第一轮 详情 ›" [ref=f21e2635] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061902
+                - generic [ref=f21e2636]:
+                  - generic [ref=f21e2637]: 11:07
+                  - generic [ref=f21e2638]: 已完赛
+                - generic [ref=f21e2639]: 北京JDG
+                - generic [ref=f21e2641]: "3 : 1"
+                - generic [ref=f21e2642]: SYG
+                - generic [ref=f21e2644]:
+                  - generic [ref=f21e2645]: 常规赛第一轮
+                  - generic [ref=f21e2646]: 详情 ›
+            - listitem [ref=f21e2647]:
+              - 'link "07:31 已完赛 北京WB 3 : 0 上海EDG.M 常规赛第一轮 详情 ›" [ref=f21e2648] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061901
+                - generic [ref=f21e2649]:
+                  - generic [ref=f21e2650]: 07:31
+                  - generic [ref=f21e2651]: 已完赛
+                - generic [ref=f21e2652]: 北京WB
+                - generic [ref=f21e2654]: "3 : 0"
+                - generic [ref=f21e2655]: 上海EDG.M
+                - generic [ref=f21e2657]:
+                  - generic [ref=f21e2658]: 常规赛第一轮
+                  - generic [ref=f21e2659]: 详情 ›
+        - generic [ref=f21e2660]:
+          - generic [ref=f21e2661]:
+            - heading "2026/06/18" [level=2] [ref=f21e2662]
+            - generic [ref=f21e2663]: 3 场比赛
+          - list [ref=f21e2664]:
+            - listitem [ref=f21e2665]:
+              - 'link "14:56 已完赛 杭州LGD.NBW 3 : 2 上海RNG.M 常规赛第一轮 详情 ›" [ref=f21e2666] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061803
+                - generic [ref=f21e2667]:
+                  - generic [ref=f21e2668]: 14:56
+                  - generic [ref=f21e2669]: 已完赛
+                - generic [ref=f21e2670]: 杭州LGD.NBW
+                - generic [ref=f21e2672]: "3 : 2"
+                - generic [ref=f21e2673]: 上海RNG.M
+                - generic [ref=f21e2675]:
+                  - generic [ref=f21e2676]: 常规赛第一轮
+                  - generic [ref=f21e2677]: 详情 ›
+            - listitem [ref=f21e2678]:
+              - 'link "11:52 已完赛 西安WE 1 : 3 长沙TES.A 常规赛第一轮 详情 ›" [ref=f21e2679] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061802
+                - generic [ref=f21e2680]:
+                  - generic [ref=f21e2681]: 11:52
+                  - generic [ref=f21e2682]: 已完赛
+                - generic [ref=f21e2683]: 西安WE
+                - generic [ref=f21e2685]: "1 : 3"
+                - generic [ref=f21e2686]: 长沙TES.A
+                - generic [ref=f21e2688]:
+                  - generic [ref=f21e2689]: 常规赛第一轮
+                  - generic [ref=f21e2690]: 详情 ›
+            - listitem [ref=f21e2691]:
+              - 'link "08:31 已完赛 WST 3 : 2 济南RW侠 常规赛第一轮 详情 ›" [ref=f21e2692] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061801
+                - generic [ref=f21e2693]:
+                  - generic [ref=f21e2694]: 08:31
+                  - generic [ref=f21e2695]: 已完赛
+                - generic [ref=f21e2696]: WST
+                - generic [ref=f21e2698]: "3 : 2"
+                - generic [ref=f21e2699]: 济南RW侠
+                - generic [ref=f21e2701]:
+                  - generic [ref=f21e2702]: 常规赛第一轮
+                  - generic [ref=f21e2703]: 详情 ›
+        - generic [ref=f21e2704]:
+          - generic [ref=f21e2705]:
+            - heading "2026/06/17" [level=2] [ref=f21e2706]
+            - generic [ref=f21e2707]: 3 场比赛
+          - list [ref=f21e2708]:
+            - listitem [ref=f21e2709]:
+              - 'link "13:50 已完赛 重庆狼队 0 : 3 KSG 常规赛第一轮 详情 ›" [ref=f21e2710] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061703
+                - generic [ref=f21e2711]:
+                  - generic [ref=f21e2712]: 13:50
+                  - generic [ref=f21e2713]: 已完赛
+                - generic [ref=f21e2714]: 重庆狼队
+                - generic [ref=f21e2716]: "0 : 3"
+                - generic [ref=f21e2717]: KSG
+                - generic [ref=f21e2719]:
+                  - generic [ref=f21e2720]: 常规赛第一轮
+                  - generic [ref=f21e2721]: 详情 ›
+            - listitem [ref=f21e2722]:
+              - 'link "10:41 已完赛 北京WB 3 : 0 武汉eStarPro 常规赛第一轮 详情 ›" [ref=f21e2723] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061702
+                - generic [ref=f21e2724]:
+                  - generic [ref=f21e2725]: 10:41
+                  - generic [ref=f21e2726]: 已完赛
+                - generic [ref=f21e2727]: 北京WB
+                - generic [ref=f21e2729]: "3 : 0"
+                - generic [ref=f21e2730]: 武汉eStarPro
+                - generic [ref=f21e2732]:
+                  - generic [ref=f21e2733]: 常规赛第一轮
+                  - generic [ref=f21e2734]: 详情 ›
+            - listitem [ref=f21e2735]:
+              - 'link "08:08 已完赛 佛山DRG 1 : 3 广州TTG 常规赛第一轮 详情 ›" [ref=f21e2736] [cursor=pointer]':
+                - /url: /matches/kpl-20260003-2026061701
+                - generic [ref=f21e2737]:
+                  - generic [ref=f21e2738]: 08:08
+                  - generic [ref=f21e2739]: 已完赛
+                - generic [ref=f21e2740]: 佛山DRG
+                - generic [ref=f21e2742]: "1 : 3"
+                - generic [ref=f21e2743]: 广州TTG
+                - generic [ref=f21e2745]:
+                  - generic [ref=f21e2746]: 常规赛第一轮
+                  - generic [ref=f21e2747]: 详情 ›
+  - button "回到顶部"

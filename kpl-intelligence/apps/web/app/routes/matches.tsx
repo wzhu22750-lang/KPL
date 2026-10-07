@@ -24,7 +24,6 @@ export function headers() {
   return edgeTtl(30);
 }
 
-const fmtDate = (iso: string | null) => (iso ? iso.slice(5, 10).replace("-", "/") : "");
 const fmtFullDate = (iso: string | null) => (iso ? iso.slice(0, 10).replace(/-/g, "/") : "其他日期");
 const fmtTime = (iso: string | null) => (iso ? iso.slice(11, 16) : "");
 
@@ -49,10 +48,10 @@ export default function MatchesPage() {
   return (
     <div className="pb-10">
       <PhoneBar title="赛程" />
-      <header className="pb-3 pt-3 lg:pt-1">
+      <header className="border-b border-line pb-5 pt-3 lg:pt-1">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 data-page-title="" className="text-[24px] font-semibold leading-[1.3] text-ink">赛程与赛果</h1>
+            <h1 data-page-title="" className="text-[28px] font-semibold leading-[1.3] tracking-tight text-ink">赛程与赛果</h1>
             <p className="mt-1 text-[13px] leading-relaxed text-ink-3">
               {season?.name ?? "暂无赛季数据"} · 点开看每局的 BP 与选手数据
             </p>
@@ -60,15 +59,15 @@ export default function MatchesPage() {
 
           {/* 赛季切换器下拉框 */}
           {availableSeasons.length > 0 && (
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 flex-col gap-1.5 sm:items-start">
               <label htmlFor="season-select" className="shrink-0 text-[12.5px] font-medium text-ink-3">
-                选择赛季:
+                选择赛季
               </label>
               <select
                 id="season-select"
                 value={season?.id ?? ""}
                 onChange={(e) => navigate(`/matches?season=${encodeURIComponent(e.target.value)}`)}
-                className="rounded-control border border-line bg-surface px-3 py-1.5 text-[13px] font-medium text-ink transition hover:border-ink-4 focus:border-accent focus:outline-none cursor-pointer"
+                className="min-h-11 w-full min-w-0 cursor-pointer rounded-control border border-line bg-surface px-3 py-2 text-[13px] font-medium text-ink transition-colors hover:border-ink-4 focus-visible:border-accent sm:w-auto"
               >
                 {availableSeasons.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -89,11 +88,12 @@ export default function MatchesPage() {
                 <button
                   key={s.id}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => navigate(`/matches?season=${encodeURIComponent(s.id)}`)}
-                  className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-medium transition ${
+                  className={`min-h-10 shrink-0 rounded-full border px-3.5 py-2 text-[12px] font-medium transition-colors ${
                     active
-                      ? "bg-accent text-white shadow-sm"
-                      : "bg-bg-sunk text-ink-3 hover:bg-surface hover:text-ink hover:border-line border border-transparent"
+                      ? "border-accent bg-accent text-accent-contrast"
+                      : "border-transparent bg-bg-sunk text-ink-3 hover:border-line hover:bg-surface hover:text-ink"
                   }`}
                 >
                   {s.name.replace(/^[0-9]{4}年?/, "") || s.name}
@@ -106,7 +106,7 @@ export default function MatchesPage() {
       </header>
 
       {/* 按日期分段展示赛程列表 */}
-      <div className="mt-2 space-y-5">
+      <div className="mt-6 space-y-6">
         {[...matchesByDate.entries()].map(([dateKey, list]) => (
           <div key={dateKey}>
             <div className="mb-2 flex items-center justify-between px-1">
@@ -123,13 +123,13 @@ export default function MatchesPage() {
 
                 return (
                   <li key={m.id}>
-                    <IntentLink to={`/matches/${m.id}`} className="group flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-bg-sunk/40">
+                    <IntentLink to={`/matches/${m.id}`} className="group flex items-center gap-2 px-3 py-4 transition-colors hover:bg-accent-softer sm:gap-4 sm:px-5 sm:py-5">
                       {/* 时间与状态徽标 */}
-                      <div className="flex w-14 shrink-0 flex-col items-start gap-1">
+                      <div className="flex w-11 shrink-0 flex-col items-start gap-1.5 sm:w-14">
                         <span className="text-[12px] font-medium tabular-nums text-ink-3">{atTime}</span>
                         {isLive ? (
-                          <span className="inline-flex items-center gap-1 rounded bg-rose-500/10 px-1.5 py-0.5 text-[10px] font-bold text-rose-600">
-                            <span className="size-1.5 rounded-full bg-rose-600 animate-pulse" />
+                          <span className="inline-flex items-center gap-1 rounded-mark bg-hot-soft px-1.5 py-0.5 text-[10px] font-bold text-hot">
+                            <span className="size-1.5 rounded-full bg-hot motion-safe:animate-pulse" />
                             进行中
                           </span>
                         ) : isFinished ? (
@@ -140,8 +140,8 @@ export default function MatchesPage() {
                       </div>
 
                       {/* 战队 A */}
-                      <span className="flex min-w-0 flex-1 items-center justify-end gap-2 text-right">
-                        <span className={`truncate text-[14px] ${homeWon ? "font-bold text-ink" : isFinished ? "text-ink-4" : "font-medium text-ink"}`}>
+                      <span className="flex min-w-0 flex-1 flex-col-reverse items-center gap-1.5 text-center sm:flex-row sm:justify-end sm:gap-2 sm:text-right">
+                        <span className={`w-full truncate text-[12px] sm:w-auto sm:text-[14px] ${homeWon ? "font-bold text-ink" : isFinished ? "text-ink-4" : "font-medium text-ink"}`}>
                           {m.home.name}
                         </span>
                         {m.home.logo && (
@@ -151,9 +151,9 @@ export default function MatchesPage() {
 
                       {/* 比分牌 */}
                       <span
-                        className={`shrink-0 rounded-full px-3 py-1 text-[14px] font-bold tabular-nums ${
+                        className={`min-w-[60px] shrink-0 rounded-control px-2 py-1.5 text-center text-[18px] font-bold tabular-nums sm:min-w-[76px] sm:px-3 ${
                           isLive
-                            ? "bg-rose-500/10 text-rose-600"
+                            ? "bg-hot-soft text-hot"
                             : isFinished
                             ? "bg-bg-sunk text-ink font-mono"
                             : "bg-bg-sunk/60 text-ink-4 font-normal"
@@ -163,11 +163,11 @@ export default function MatchesPage() {
                       </span>
 
                       {/* 战队 B */}
-                      <span className="flex min-w-0 flex-1 items-center gap-2">
+                      <span className="flex min-w-0 flex-1 flex-col items-center gap-1.5 text-center sm:flex-row sm:gap-2 sm:text-left">
                         {m.away.logo && (
                           <img src={m.away.logo} alt="" width={26} height={26} loading="lazy" className="size-[26px] shrink-0 rounded-full object-contain" />
                         )}
-                        <span className={`truncate text-[14px] ${awayWon ? "font-bold text-ink" : isFinished ? "text-ink-4" : "font-medium text-ink"}`}>
+                        <span className={`w-full truncate text-[12px] sm:w-auto sm:text-[14px] ${awayWon ? "font-bold text-ink" : isFinished ? "text-ink-4" : "font-medium text-ink"}`}>
                           {m.away.name}
                         </span>
                       </span>

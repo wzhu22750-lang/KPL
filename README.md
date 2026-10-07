@@ -10,7 +10,8 @@ KPL（王者荣耀职业联赛）内容采集与数据平台：双通道采集�
 | `kpl_vault/` | 精选文章知识库（质检准入后的 Markdown + 离线 HTML + metadata.json + 索引/审计报告） |
 | `reference-projects/` | 只读参考项目 |
 | `AIHOT/` | 上游原版项目（只读） |
-| `curator.py` | AI 质检与初筛门禁：非 KPL 内容剔除、800 字深度门槛、战队精细归档 |
+| `curator.py` | 双阶段门禁：规则粗筛 + AI 内容价值评分，保留战队归档 |
+| `quality_scoring.py` | 六维评分校验、分类权重、模型调用与准入策略 |
 | `dajiala_client.py` | 主通道：大家拉（dajiala.com）商业 API 适配器（微信公众号历史文章 / 官方微博） |
 | `kpl_scraper.py` | 辅助通道：curl-cffi 轻量微信文章抓取器（TLS 指纹伪装，无图纯净版） |
 
@@ -59,11 +60,18 @@ export DAJIALA_API_KEY="你的大家拉API密钥"
 python3 dajiala_client.py --export-json discovered_urls.json
 #    可选：--biz gh_xxx（逗号分隔指定公众号）、--pages N（翻页数）
 
-# 3. 运行质检门禁：逐篇抓取原文 → 质检初筛 → 合格文章归档
-python3 curator.py
-#    ⚠️ curator 每次运行会清空并重建 ./kpl_vault/
+# 3. 校准完成后显式启用评分（可能产生模型费用；默认关闭）
+# 使用提供 /chat/completions JSON 输出的服务，凭据通过环境变量注入
+export KPL_QUALITY_API_BASE="你的模型服务地址（含 /v1 等前缀）"
+export KPL_QUALITY_MODEL="你的模型名称"
+export KPL_QUALITY_API_KEY="你的模型密钥"
+export KPL_QUALITY_MODEL_CALLS_ENABLED=true
 
-# 4. 产物：精选文章位于 kpl_vault/，含 INDEX.md（总目录）与 AUDIT_REPORT.md（质检审计）
+# 4. 抓取原文 → 规则粗筛 → AI 六维评分 → 合格文章归档
+python3 curator.py
+# 不清空旧库；模型未配置、失败或输出非法时待复核，不退回关键词准入。
+
+# 5. kpl_vault/ 下生成 INDEX.md、AUDIT_REPORT.md、QUALITY_AUDIT.json
 ```
 
 依赖锁定见 `requirements.txt`（运行时）与 `requirements-dev.txt`（开发）。
@@ -74,9 +82,13 @@ python3 curator.py
 python3 -m pytest tests_py/ -v
 ```
 
-全部用例离线运行（不触网、不依赖真实密钥与文件系统）。
+全部用例离线运行（不触网、不依赖真实密钥；文件系统测试仅使用临时目录）。
+固定模型响应只验证准入策略与管道契约；真实判断能力需要人工标注集及留出集评测。
 
 ## 相关文档
+
+- [当前AI精选逻辑审查报告](./docs/ai-curation-review.md) —— 修改前流程、问题与评分方案
+- [AI 精选运行与验收说明](./docs/ai-curation-quality.md) —— 配置、字段、测试与上线边界
 
 - [docs/交接文档.md](./docs/交接文档.md) —— 主站现状、已知坑（pg-boss SSL、Supabase 连接池等）与遗留事项
 - [DATA_STRATEGY.md](./DATA_STRATEGY.md) —— 采集双通道架构与质检入库规范

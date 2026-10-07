@@ -23,14 +23,51 @@ test("KPL Dedup - 用户提出的关键用例：KSG 零封 RW侠 年总开门红
   const titleB = "10月2日苏州KSG零封济南RW侠，拿下年度总决赛开门红";
   const titleC = "【2026KPL年度总决赛】10月2日 KSG VS 济南RW侠";
 
-  const isSameAB = areSameKplOccurrence(titleA, titleB);
+  const at = new Date("2026-10-02T12:00:00+08:00");
+  const isSameAB = areSameKplOccurrence(titleA, titleB, at, at);
   assert.equal(isSameAB, true, "titleA 与 titleB 必须被判定为相同事件 (SAME_OCCURRENCE)");
 
-  const isSameAC = areSameKplOccurrence(titleA, titleC);
+  const isSameAC = areSameKplOccurrence(titleA, titleC, at, at);
   assert.equal(isSameAC, true, "titleA 与 titleC 必须被判定为相同比赛对决");
 
-  const isSameBC = areSameKplOccurrence(titleB, titleC);
+  const isSameBC = areSameKplOccurrence(titleB, titleC, at, at);
   assert.equal(isSameBC, true, "titleB 与 titleC 必须被判定为相同比赛对决");
+});
+
+test("different opponents cannot merge through title similarity (October 7 regression)", () => {
+  assert.equal(areSameKplOccurrence(
+    "2026KPL年度总决赛：10月3日北京JDG对阵上海EDG.M",
+    "2026KPL年度总决赛10月7日北京WB对阵上海EDG.M",
+    new Date("2026-10-03T10:16:43Z"), new Date("2026-10-07T09:35:57Z"),
+  ), false);
+});
+
+test("same teams and season do not identify a rematch, nor do matching outcomes", () => {
+  for (const suffix of ["年度总决赛", "零封取得开门红", ""]) {
+    assert.equal(areSameKplOccurrence(`10月3日KSG对阵RW侠${suffix}`, `10月7日KSG对阵RW侠${suffix}`, new Date("2026-10-03"), new Date("2026-10-07")), false);
+  }
+  assert.equal(areSameKplOccurrence("KSG对阵RW侠年度总决赛", "KSG对阵RW侠年度总决赛"), false, "unknown dates are not proof of identity");
+});
+
+test("conflicting seasons and individual games are separate occurrences", () => {
+  const at = new Date("2026-10-07");
+  assert.equal(areSameKplOccurrence("KSG对阵RW侠春季赛", "KSG对阵RW侠夏季赛", at, at), false);
+  assert.equal(areSameKplOccurrence("KSG对阵RW侠第二局", "KSG对阵RW侠第三局", at, at), false);
+  assert.equal(areSameKplOccurrence("KSG对阵RW侠第二局", "KSG 3:1战胜RW侠", at, at), false);
+});
+
+test("partial teams and multi-match roundups cannot force identity", () => {
+  const at = new Date("2026-10-07");
+  assert.equal(areSameKplOccurrence("KSG今日首发阵容公布", "KSG今日首发阵容公布", at, at), false);
+  assert.equal(areSameKplOccurrence("KSG RW侠 AG三队战报", "KSG RW侠 AG三队战报", at, at), false);
+  assert.deepEqual(extractTeamsFromText("West vs TES.A，news test"), ["tes"]);
+});
+
+test("match dates keep explicit dates, validate them and use Beijing rather than host timezone", () => {
+  assert.equal(extractMatchFingerprint("KSG vs RW侠", new Date("2026-10-06T17:00:00Z"))?.dateKey, "20261007");
+  assert.equal(extractMatchFingerprint("2026-10-03 KSG vs RW侠", new Date("2026-10-07"))?.dateKey, "20261003");
+  assert.equal(extractMatchFingerprint("2026年2月30日 KSG vs RW侠")?.dateKey, undefined);
+  assert.equal(areSameKplOccurrence("2026年10月3日 KSG vs RW侠", "2025年10月3日 KSG vs RW侠"), false);
 });
 
 test("KPL Dedup - 标题规范化与前缀噪点过滤", () => {

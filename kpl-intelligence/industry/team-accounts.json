@@ -19,6 +19,16 @@
       "accountUrl": "https://space.bilibili.com/392836434",
       "sourceId": "bili-kpl-official",
       "verifiedEvidence": "三重验证：账号名一致 + 空间页 SSR + 近期发布 2026KPL年度总决赛 官方视频；采集按 upMid 断言身份"
+    },
+    {
+      "entityId": "kpl",
+      "entityName": "KPL王者荣耀职业联赛",
+      "platform": "weibo",
+      "handle": "6074356560",
+      "displayName": "KPL王者荣耀职业联赛",
+      "accountUrl": "https://weibo.com/u/6074356560",
+      "sourceId": "weibo-kpl-official",
+      "verifiedEvidence": "官方蓝V认证，粉丝900万+，实测活跃更新年总赛程与轮换动态"
     }
   ],
   "teams": [
@@ -105,6 +115,86 @@
       "displayName": "武汉eStarPro",
       "sourceId": "mp-estar",
       "verifiedEvidence": "sogou 通道可解析；Dajiala 实测该号（eStar电子竞技俱乐部 gh_0273b0f1b799）最新文章停在 2023-03，判定停更。保留免费通道监测"
+    },
+    {
+      "entityId": "ag",
+      "entityName": "成都AG超玩会",
+      "platform": "weibo",
+      "handle": "5878848794",
+      "displayName": "成都AG超玩会",
+      "accountUrl": "https://weibo.com/u/5878848794",
+      "sourceId": "weibo-ag-club",
+      "verifiedEvidence": "官方认证战队官博，粉丝570万+，实测持续发布年总大名单与比赛动态"
+    },
+    {
+      "entityId": "wolves",
+      "entityName": "重庆狼队",
+      "platform": "weibo",
+      "handle": "6180100850",
+      "displayName": "狼队王者荣耀分部",
+      "accountUrl": "https://weibo.com/u/6180100850",
+      "sourceId": "weibo-wolves-club",
+      "verifiedEvidence": "官方认证分部官博，持续发布首发战况"
+    },
+    {
+      "entityId": "estar",
+      "entityName": "武汉eStarPro",
+      "platform": "weibo",
+      "handle": "2142875194",
+      "displayName": "武汉eStarPro",
+      "accountUrl": "https://weibo.com/u/2142875194",
+      "sourceId": "weibo-estar-club",
+      "verifiedEvidence": "官方认证战队官博，粉丝百万级"
+    },
+    {
+      "entityId": "ttg",
+      "entityName": "广州TTG",
+      "platform": "weibo",
+      "handle": "6383293935",
+      "displayName": "广州TTG",
+      "accountUrl": "https://weibo.com/u/6383293935",
+      "sourceId": "weibo-ttg-club",
+      "verifiedEvidence": "官方认证俱乐部微博"
+    },
+    {
+      "entityId": "wb",
+      "entityName": "北京WB",
+      "platform": "weibo",
+      "handle": "6528198786",
+      "displayName": "北京WB王者荣耀分部",
+      "accountUrl": "https://weibo.com/u/6528198786",
+      "sourceId": "weibo-wb-club",
+      "verifiedEvidence": "官方认证战队微博"
+    },
+    {
+      "entityId": "hero",
+      "entityName": "南京Hero久竞",
+      "platform": "weibo",
+      "handle": "6451712914",
+      "displayName": "南京Hero久竞",
+      "accountUrl": "https://weibo.com/u/6451712914",
+      "sourceId": "weibo-hero-club",
+      "verifiedEvidence": "官方认证俱乐部微博"
+    },
+    {
+      "entityId": "ksg",
+      "entityName": "苏州KSG",
+      "platform": "weibo",
+      "handle": "6134425922",
+      "displayName": "KSG王者荣耀分部",
+      "accountUrl": "https://weibo.com/u/6134425922",
+      "sourceId": "weibo-ksg-club",
+      "verifiedEvidence": "官方认证战队微博"
+    },
+    {
+      "entityId": "drg",
+      "entityName": "佛山DRG",
+      "platform": "weibo",
+      "handle": "6134307924",
+      "displayName": "佛山DRG电子竞技俱乐部",
+      "accountUrl": "https://weibo.com/u/6134307924",
+      "sourceId": "weibo-drg-club",
+      "verifiedEvidence": "官方认证战队微博"
     }
   ]
 }

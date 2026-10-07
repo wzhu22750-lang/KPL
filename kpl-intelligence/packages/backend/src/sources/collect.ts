@@ -14,6 +14,7 @@ import { fetchJsonList } from "./json-list.ts";
 import { syncEsportsSource } from "./esports.ts";
 import { fetchXSearch, planXShards, readXSearch, shardHandle, shardQuery, selfThreadHandle, SHARDABLE_SQL, tweetToCandidate, type XBacklog } from "./x.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
+import { findAdapter, type SourceAdapter } from "./adapters/index.ts";
 
 export interface CollectResult {
   sourceId: string;
@@ -55,7 +56,7 @@ function adjustCandidateForProfile(c: Candidate, source: SourceRow): Candidate {
 
 async function loadSource(id: string): Promise<SourceRow | null> {
   const [s] = await sql<SourceRow[]>`
-    SELECT id, name, kind, config, tier, participation_mode, first_party, interval_minutes, enabled, cursor, fail_count
+    SELECT id, name, kind, config, tier, owner_type, owner_entity_id, participation_mode, first_party, interval_minutes, enabled, cursor, fail_count
     FROM sources WHERE id = ${id}`;
   return s ?? null;
 }
@@ -71,14 +72,44 @@ const DAY_MS = 86_400_000;
 /** A listing title that is no headline: a label that swallowed its summary, or a call to action. */
 const needsTitle = (title: string) => title.length > 100 || /^(read more|learn more|continue reading|more|阅读全文|阅读更多|查看详情|了解更多)$/i.test(title.trim());
 
-async function store(sourceId: string, candidates: Candidate[], backfill: string | null): Promise<{ created: number; revised: number }> {
+async function store(
+  source: SourceRow | string,
+  candidates: Candidate[],
+  backfill: string | null,
+  adapter?: SourceAdapter<any>,
+  rawItemsMap?: Map<string, unknown>,
+): Promise<{ created: number; revised: number }> {
+  const sourceId = typeof source === "string" ? source : source.id;
   let created = 0;
   let revised = 0;
   for (const c of candidates) {
-    const material = { ...c, sourceId, via: "fetch" as const, backfill };
+    const raw = rawItemsMap?.get(c.url);
+    const material = adapter && typeof source !== "string"
+      ? adapter.normalize(c, raw, source)
+      : { ...c, sourceId, via: "fetch" as const, backfill };
+    if (backfill && !material.backfill) material.backfill = backfill;
     const res = await upsertMaterial(material);
     if (res.created) created += 1;
     if (res.revised) revised += 1;
+
+    // 若适配器提供了高置信度实体线索，自动写入 entity_mentions 表建立关系索引
+    if (adapter?.extractEntities && typeof source !== "string") {
+      try {
+        const hints = adapter.extractEntities(c, raw, source);
+        if (hints.length > 0) {
+          const types = hints.map((h) => h.entityType);
+          const ids = hints.map((h) => h.entityId);
+          await sql`
+            INSERT INTO entity_mentions (article_id, entity_type, entity_id)
+            SELECT ${res.articleId}, t.entity_type, t.entity_id
+            FROM unnest(${types}::text[], ${ids}::text[]) AS t(entity_type, entity_id)
+            ON CONFLICT DO NOTHING`;
+        }
+      } catch {
+        // entity mentions linking is best-effort
+      }
+    }
+
     // Extraction first when the source wants full text and none came with the listing, else analysis.
     if (res.created || res.revised || res.processingNeeded) await queueProcessing(res.articleId);
   }
@@ -128,9 +159,12 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
   let revised = 0;
   let found = 0;
   try {
-    // A config entry this kind does not implement fails the run, visibly, instead of being ignored.
-    const unsupported = unsupportedConfig(source.kind, source.config);
-    if (unsupported.length) throw new FetchError(`unsupported config: ${unsupported.join(", ")}`);
+    const adapter = findAdapter(source);
+    if (!adapter) {
+      // A config entry this kind does not implement fails the run, visibly, instead of being ignored.
+      const unsupported = unsupportedConfig(source.kind, source.config);
+      if (unsupported.length) throw new FetchError(`unsupported config: ${unsupported.join(", ")}`);
+    }
     // Structured esports data never becomes articles: matches, games, BP and player stats go to the
     // knowledge-base tables, then the run records health and cursor like every other source.
     if (source.kind === "esports_api") {
@@ -143,7 +177,26 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
     let paidReceiptIds: number[] = [];
     let nextCursor: Record<string, unknown> = { ...(source.cursor ?? {}) };
     let detail: Record<string, unknown> | null = null;
-    if (source.kind === "rss") {
+    const rawItemsMap = new Map<string, unknown>();
+
+    if (adapter) {
+      // 1. Adapter 优先分发抓取
+      const adapterResult = await adapter.collect(source, source.cursor ?? undefined, opts);
+      if (adapterResult.nextCursor) nextCursor = { ...nextCursor, ...adapterResult.nextCursor };
+      if (adapterResult.detail) detail = adapterResult.detail;
+      if (adapterResult.paidReceiptIds) paidReceiptIds = adapterResult.paidReceiptIds;
+
+      candidates = [];
+      for (const raw of adapterResult.rawItems) {
+        const c = adapter.parse(raw, source);
+        if (c) {
+          candidates.push(c);
+          rawItemsMap.set(c.url, raw);
+        }
+      }
+    }
+    // 2. 原生内置协议 fallback 分发
+    else if (source.kind === "rss") {
       const rss = await fetchRss(source, opts);
       candidates = rss.candidates;
       // The first import has a smaller backfill cap than later runs: allow the next run to read
@@ -151,6 +204,14 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
       if (!firstImport) nextCursor.rss = rss.validator;
       else delete nextCursor.rss;
       if (rss.notModified) detail = { notModified: true, httpStatus: 304 };
+      // A wechat:// bridge listing tells us how it got the data. A degraded read (upstream failed,
+      // stale cache served) is a failed collection run: it must not mark the source healthy.
+      if (rss.bridge) {
+        detail = { ...(detail ?? {}), wechat: { status: rss.bridge.status, fetchedAt: new Date(rss.bridge.fetchedAt).toISOString(), droppedUnverified: rss.bridge.droppedUnverified } };
+        if (rss.bridge.status === "stale") {
+          throw new FetchError(`wechat bridge degraded: upstream unavailable, served cache fetched at ${new Date(rss.bridge.fetchedAt).toISOString()}`);
+        }
+      }
     }
     else if (source.kind === "web_list") candidates = await fetchWebList(source);
     else if (source.kind === "json_list") candidates = await fetchJsonList(source);
@@ -240,7 +301,7 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
       }
     }
 
-    ({ created, revised } = await store(sourceId, candidates, firstImport ? "first-import" : null));
+    ({ created, revised } = await store(source, candidates, firstImport ? "first-import" : null, adapter, rawItemsMap));
 
     if (firstImport) nextCursor.initializedAt = new Date().toISOString();
     nextCursor.lastOkAt = new Date().toISOString();
@@ -309,7 +370,7 @@ export async function collectXShard(key: string, sourceIds: string[]): Promise<{
     for (const m of members) {
       const handle = shardHandle(m)!.toLowerCase();
       const mine = read.tweets.filter((t) => t.user.screen_name.toLowerCase() === handle);
-      const stored = await store(m.id, mine.map(tweetToCandidate).map((c) => rewriteUrl(c, m)).filter((c) => !noiseFiltered(c, m)), null);
+      const stored = await store(m, mine.map(tweetToCandidate).map((c) => rewriteUrl(c, m)).filter((c) => !noiseFiltered(c, m)), null);
       found += mine.length;
       created += stored.created;
       counts.set(m.id, { found: mine.length, created: stored.created });
@@ -358,9 +419,11 @@ async function scheduleXShards(): Promise<number> {
 
 /** Every minute: enqueue due sources (enabled, not WeChat/external), oldest due first; X accounts by shard. */
 export async function scheduleDueSources(): Promise<{ enqueued: number; shards: number }> {
+  // Every kind collectSource can dispatch: per-source adapters (weibo) are scheduled exactly like the
+  // built-in readers. mp_account and external are reconciled elsewhere and must not appear here.
   const rows = await sql<{ id: string }[]>`
     SELECT id FROM sources
-    WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search', 'esports_api') AND (next_fetch_at IS NULL OR next_fetch_at <= now()) AND NOT (${sharded()})
+    WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search', 'esports_api', 'weibo') AND (next_fetch_at IS NULL OR next_fetch_at <= now()) AND NOT (${sharded()})
     ORDER BY next_fetch_at NULLS FIRST LIMIT 40`;
   let enqueued = 0;
   for (const r of rows) {
@@ -383,6 +446,8 @@ export async function adaptIntervals(): Promise<{ updated: number }> {
     SELECT s.id, s.participation_mode, s.kind, s.config, s.cursor, coalesce(s.config->>'url', '') LIKE 'https://r.jina.ai/%' AS paid_listing,
       (SELECT count(*) FROM articles a WHERE a.source_id = s.id AND a.discovered_at > now() - interval '7 days' AND NOT a.backfill) / 7.0 AS per_day
     FROM sources s WHERE s.enabled AND s.kind IN ('rss', 'web_list', 'json_list', 'x_search')`;
+  // weibo keeps its configured interval deliberately: per-output adaptation is unproven for an
+  // adapter whose platform rate limits and long-text behaviour are still being verified.
   // esports_api sources keep their configured interval: they produce no articles, and match days
   // want a tight pace (the operator tightens it for the season) that per-day adaptation cannot see.
   let updated = 0;

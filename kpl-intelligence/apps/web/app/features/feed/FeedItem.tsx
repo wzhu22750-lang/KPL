@@ -14,7 +14,6 @@ import { GroupButton, GroupSources } from "./ReadingGroup";
 import { QuotedLine } from "../item/QuotedPost";
 import { ContentKindChip } from "../item/ContentRenderer";
 import { rememberPreview } from "../item/preview";
-import { resolveEntityTag } from "../../lib/entity-links";
 
 export interface FeedItemProps {
   item: FeedItemSummary;
@@ -36,7 +35,6 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
   };
   const showSources = !!group && (group.additionalSourceCount > 0 || group.reportCount > 1);
   const tags = showTags ? item.tags.slice(0, 3) : [];
-  const entityTags = item.tags.map(resolveEntityTag).filter((e) => e.type === "team" || e.type === "player");
 
   return (
     <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
@@ -124,25 +122,6 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
         </div>
       )}
 
-      {/* 关联战队与选手实体标签 */}
-      {entityTags.length > 0 && (
-        <div className="relative z-10 mt-2 flex flex-wrap items-center gap-1.5">
-          {entityTags.map((et, i) => (
-            <Link
-              key={`${et.label}-${i}`}
-              to={et.to}
-              className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-medium transition ${
-                et.type === "team"
-                  ? "bg-amber/10 text-amber hover:bg-amber/20"
-                  : "bg-accent/10 text-accent hover:bg-accent/20"
-              }`}
-            >
-              <span>{et.type === "team" ? "🛡️" : "👤"}</span>
-              <span>{et.label}</span>
-            </Link>
-          ))}
-        </div>
-      )}
 
       {/* Phones: duplicate reports open in a sheet. */}
       {group && showSources && <GroupButton group={group} filters={filters} parentId={item.id} />}

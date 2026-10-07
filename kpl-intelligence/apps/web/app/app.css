@@ -130,8 +130,8 @@
   --rank-2: #a3642f;
   --rank-3: #96702e;
   --rank-rest: #6b7684;
-  --shadow-card: 0 1px 2px rgba(32, 42, 48, 0.025);
-  --shadow-card-hover: 0 3px 12px rgba(32, 42, 48, 0.055);
+  --shadow-card: 0 1px 2px rgba(32, 42, 48, 0.025), 0 3px 10px rgba(32, 42, 48, 0.018);
+  --shadow-card-hover: 0 2px 4px rgba(32, 42, 48, 0.035), 0 8px 20px rgba(32, 42, 48, 0.065);
   --shadow-soft: 0 4px 12px rgba(28, 39, 51, 0.06);
   --shadow-thumb: 0 1px 2px rgba(28, 39, 51, 0.1), 0 1px 1px rgba(28, 39, 51, 0.04);
   --shadow-pop: 0 12px 32px rgba(28, 39, 51, 0.12);
@@ -241,6 +241,9 @@
   img {
     max-width: 100%;
   }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
 }
 
 @layer components {
@@ -334,10 +337,21 @@
 }
 @utility card-hover {
   transition: box-shadow 200ms var(--ease-out-quart), border-color 200ms, transform 200ms var(--ease-out-quart);
-  &:hover {
-    box-shadow: var(--shadow-card-hover);
-    border-color: var(--line-strong);
-    transform: translateY(-1px);
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+    }
+  }
+  &:active {
+    box-shadow: var(--shadow-card);
+    border-color: var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
   }
 }
 

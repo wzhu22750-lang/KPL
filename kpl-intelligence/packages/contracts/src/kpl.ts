@@ -75,6 +75,7 @@ export interface NewsCard {
   summary: string | null;
   publishedAt: string | null;
   selected: boolean;
+  kind?: string | null;
 }
 
 export interface TeamDetailResponse {

@@ -9,10 +9,12 @@ import { sanitizeBody } from "../content/sanitize.ts";
 import { articleCanonicalFromHtml } from "../content/extractors/article.ts";
 import { profileFor } from "../content/extractors/profiles.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
-import { mpArticle, mpHistory, type MpArticle } from "../providers/dajiala.ts";
+import { mpArticle, mpHistory, type MpArticle, type MpPost } from "../providers/dajiala.ts";
 import { BudgetExceededError, ProviderRejectedError } from "../providers/receipts.ts";
 
 const MAX_NEW_PER_CHECK = 8;
+/** Unprocessed posts carried to the next check, newest first; beyond this is the platform's coverage edge. */
+const MP_BACKLOG_CAP = 200;
 /** Posts older than this on the first check of an account are history, not news. */
 const FIRST_CHECK_WINDOW_MS = 7 * 86400_000;
 /** A body missing for a passing reason is fetched again on later checks: this often, while the post is this recent. */
@@ -52,10 +54,19 @@ export async function checkMpAccount(sourceId: string, reason: "schedule" | "man
     // One paid list call per account per 10-minute window, whoever asks.
     const window = `${reason === "schedule" ? "s" : "m"}:${Math.floor(Date.now() / 600_000)}`;
     const history = await mpHistory(ghid, { subject: sourceId, window });
-    const posts = [...history.posts].sort((a, b) => b.post_time - a.post_time);
+    // 上一轮因处理上限未完成的候选；与最新列表合并、按地址去重后再从新到旧处理。
+    const backlog: MpPost[] = Array.isArray(source.cursor?.mpBacklog) ? (source.cursor!.mpBacklog as MpPost[]).filter((p) => p?.url && p?.title) : [];
+    const byUrl = new Map<string, MpPost>();
+    for (const p of [...history.posts, ...backlog]) {
+      if (!p?.url || !p?.title) continue;
+      const prev = byUrl.get(p.url);
+      if (!prev || (p.post_time ?? 0) > (prev.post_time ?? 0)) byUrl.set(p.url, p);
+    }
+    const posts = [...byUrl.values()].sort((a, b) => (b.post_time ?? 0) - (a.post_time ?? 0));
+    const remaining: MpPost[] = [];
     let fetched = 0;
     for (const p of posts) {
-      if (!p.url || !p.title || fetched >= MAX_NEW_PER_CHECK) continue;
+      if (!p.url || !p.title) continue;
       const publishedAt = p.post_time ? new Date(p.post_time * 1000) : null;
       if (firstCheck && publishedAt && Date.now() - publishedAt.getTime() > FIRST_CHECK_WINDOW_MS) continue;
       // Same identity rule as every entrance: the long link without tracking parameters. A known post is
@@ -67,6 +78,11 @@ export async function checkMpAccount(sourceId: string, reason: "schedule" | "man
         : [];
       const retryBody = !!known?.retry && known.body_status === "none" && known.retry.attempts < BODY_RETRIES && Date.now() - known.discovered_at.getTime() < BODY_RETRY_WINDOW_MS;
       if (known && !retryBody) continue;
+      // 预算用尽：保留候选，下一轮继续，绝不静默丢弃（最新在前，历史补漏不会挤掉最新检查）。
+      if (fetched >= MAX_NEW_PER_CHECK) {
+        remaining.push(p);
+        continue;
+      }
       fetched += 1;
       // Without a body the post is listed anyway; analysis works from title and digest.
       const { body, passing } = await fetchBody(p.url, sourceId, p.sn ?? p.url);
@@ -121,12 +137,18 @@ export async function checkMpAccount(sourceId: string, reason: "schedule" | "man
       if (res.created) created += 1;
       if (res.created || res.revised || res.processingNeeded) await queueProcessing(res.articleId);
     }
-    const cursor = { ...(source.cursor ?? {}), lastCheckedAt: new Date().toISOString(), lastPostTime: posts[0]?.post_time ?? source.cursor?.lastPostTime ?? null, remainMoney: history.remainMoney };
+    const cursor = {
+      ...(source.cursor ?? {}),
+      lastCheckedAt: new Date().toISOString(),
+      lastPostTime: history.posts.reduce<number | null>((m, p) => (p.post_time && (!m || p.post_time > m) ? p.post_time : m), typeof source.cursor?.lastPostTime === "number" ? source.cursor.lastPostTime : null),
+      remainMoney: history.remainMoney,
+      mpBacklog: remaining.slice(0, MP_BACKLOG_CAP),
+    };
     await sql`
       UPDATE sources SET last_fetch_at = now(), last_ok_at = now(), fail_count = 0, last_error = NULL, health = 'ok', cursor = ${sql.json(cursor as never)},
         next_fetch_at = now() + make_interval(mins => interval_minutes), updated_at = now()
       WHERE id = ${sourceId}`;
-    await sql`UPDATE fetch_runs SET status = 'ok', finished_at = now(), found_count = ${posts.length}, new_count = ${created} WHERE id = ${run!.id}`;
+    await sql`UPDATE fetch_runs SET status = 'ok', finished_at = now(), found_count = ${posts.length}, new_count = ${created}, detail = ${sql.json({ backlog: remaining.length, fetched })} WHERE id = ${run!.id}`;
     return { sourceId, status: "ok" as const, found: posts.length, created, reused: history.reused };
   } catch (error) {
     const message = String(error instanceof Error ? error.message : error).slice(0, 500);

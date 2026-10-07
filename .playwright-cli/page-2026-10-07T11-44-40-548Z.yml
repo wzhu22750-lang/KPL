@@ -1,0 +1,513 @@
+- generic [ref=f2e2]:
+  - link "跳到正文" [ref=f2e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=f2e4]:
+    - link "KPL Intelligence 首页" [ref=f2e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=f2e6]:
+        - generic [aria-hidden] [ref=f2e8]: KPL Intelligence
+    - navigation "主导航" [ref=f2e9]:
+      - generic [ref=f2e10]:
+        - generic [ref=f2e11]: 内容
+        - generic [ref=f2e12]:
+          - link "精选" [ref=f2e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=f2e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=f2e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=f2e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=f2e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=f2e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=f2e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=f2e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=f2e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=f2e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=f2e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=f2e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=f2e94]:
+        - generic [ref=f2e95]: 更多
+        - generic [ref=f2e96]:
+          - link "Agent 接入" [ref=f2e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=f2e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志 有新的更新" [ref=f2e107] [cursor=pointer]:
+            - /url: /changelog
+            - generic [ref=f2e113]: 更新日志
+            - generic "有新的更新" [ref=f2e114]
+          - link "反馈" [ref=f2e115] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=f2e121]:
+      - radio "深色" [ref=f2e123] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=f2e127] [cursor=pointer]
+      - radio "浅色" [ref=f2e132] [cursor=pointer]
+  - main [ref=f2e137]:
+    - generic [ref=f2e139]:
+      - generic [ref=f2e140]:
+        - heading "战队一览" [level=1] [ref=f2e141]
+        - paragraph [ref=f2e142]: 现役 71 支战队，来自官方赛事数据；点开看阵容、荣誉与最近比赛。
+      - generic [ref=f2e143]:
+        - heading "现役战队" [level=2] [ref=f2e144]
+        - generic [ref=f2e145]: "71"
+      - list [ref=f2e146]:
+        - listitem [ref=f2e147]:
+          - link "BOOM BOOM 阵容与赛事资料" [ref=f2e148] [cursor=pointer]:
+            - /url: /teams/t12407
+            - generic [ref=f2e153]: BOOM
+            - generic [ref=f2e154]: BOOM
+            - generic [ref=f2e155]: 阵容与赛事资料
+        - listitem [ref=f2e156]:
+          - link "BTR BTR 阵容与赛事资料" [ref=f2e157] [cursor=pointer]:
+            - /url: /teams/t12408
+            - generic [ref=f2e162]: BTR
+            - generic [ref=f2e163]: BTR
+            - generic [ref=f2e164]: 阵容与赛事资料
+        - listitem [ref=f2e165]:
+          - link "GKE GKE 阵容与赛事资料" [ref=f2e166] [cursor=pointer]:
+            - /url: /teams/t12405
+            - generic [ref=f2e171]: GKE
+            - generic [ref=f2e172]: GKE
+            - generic [ref=f2e173]: 阵容与赛事资料
+        - listitem [ref=f2e174]:
+          - link "KSG KSG 1 次冠军" [ref=f2e175] [cursor=pointer]:
+            - /url: /teams/ksg
+            - generic [ref=f2e180]: KSG
+            - generic [ref=f2e181]: KSG
+            - generic [ref=f2e182]: 1 次冠军
+        - listitem [ref=f2e191]:
+          - link "LTG LTG 阵容与赛事资料" [ref=f2e192] [cursor=pointer]:
+            - /url: /teams/t10905
+            - generic [ref=f2e197]: LTG
+            - generic [ref=f2e198]: LTG
+            - generic [ref=f2e199]: 阵容与赛事资料
+        - listitem [ref=f2e200]:
+          - link "SYG SYG 阵容与赛事资料" [ref=f2e201] [cursor=pointer]:
+            - /url: /teams/t12202
+            - generic [ref=f2e206]: SYG
+            - generic [ref=f2e207]: SYG
+            - generic [ref=f2e208]: 阵容与赛事资料
+        - listitem [ref=f2e209]:
+          - link "WG WG 阵容与赛事资料" [ref=f2e210] [cursor=pointer]:
+            - /url: /teams/t12411
+            - generic [ref=f2e215]: WG
+            - generic [ref=f2e216]: WG
+            - generic [ref=f2e217]: 阵容与赛事资料
+        - listitem [ref=f2e218]:
+          - link "WST WST 阵容与赛事资料" [ref=f2e219] [cursor=pointer]:
+            - /url: /teams/t10910
+            - generic [ref=f2e224]: WST
+            - generic [ref=f2e225]: WST
+            - generic [ref=f2e226]: 阵容与赛事资料
+        - listitem [ref=f2e227]:
+          - link "ZDC ZDC 阵容与赛事资料" [ref=f2e228] [cursor=pointer]:
+            - /url: /teams/t12404
+            - generic [ref=f2e233]: ZDC
+            - generic [ref=f2e234]: ZDC
+            - generic [ref=f2e235]: 阵容与赛事资料
+        - listitem [ref=f2e236]:
+          - link "ZJQ ZJQ 阵容与赛事资料" [ref=f2e237] [cursor=pointer]:
+            - /url: /teams/t12406
+            - generic [ref=f2e242]: ZJQ
+            - generic [ref=f2e243]: ZJQ
+            - generic [ref=f2e244]: 阵容与赛事资料
+        - listitem [ref=f2e245]:
+          - link "上海EDG.M EDG.M 阵容与赛事资料" [ref=f2e246] [cursor=pointer]:
+            - /url: /teams/edgm
+            - generic [ref=f2e251]: 上海EDG.M
+            - generic [ref=f2e252]: EDG.M
+            - generic [ref=f2e253]: 阵容与赛事资料
+        - listitem [ref=f2e254]:
+          - link "上海RNG.M RNG.M 阵容与赛事资料" [ref=f2e255] [cursor=pointer]:
+            - /url: /teams/rngm
+            - generic [ref=f2e260]: 上海RNG.M
+            - generic [ref=f2e261]: RNG.M
+            - generic [ref=f2e262]: 阵容与赛事资料
+        - listitem [ref=f2e263]:
+          - link "佛山DRG DRG 阵容与赛事资料" [ref=f2e264] [cursor=pointer]:
+            - /url: /teams/drg
+            - generic [ref=f2e269]: 佛山DRG
+            - generic [ref=f2e270]: DRG
+            - generic [ref=f2e271]: 阵容与赛事资料
+        - listitem [ref=f2e272]:
+          - link "北京JDG JDG 阵容与赛事资料" [ref=f2e273] [cursor=pointer]:
+            - /url: /teams/jdg
+            - generic [ref=f2e278]: 北京JDG
+            - generic [ref=f2e279]: JDG
+            - generic [ref=f2e280]: 阵容与赛事资料
+        - listitem [ref=f2e281]:
+          - link "北京WB WB 3 次冠军" [ref=f2e282] [cursor=pointer]:
+            - /url: /teams/wb
+            - generic [ref=f2e287]: 北京WB
+            - generic [ref=f2e288]: WB
+            - generic [ref=f2e289]: 3 次冠军
+        - listitem [ref=f2e298]:
+          - link "南通Hero久竞 Hero 5 次冠军" [ref=f2e299] [cursor=pointer]:
+            - /url: /teams/hero
+            - generic [ref=f2e304]: 南通Hero久竞
+            - generic [ref=f2e305]: Hero
+            - generic [ref=f2e306]: 5 次冠军
+        - listitem [ref=f2e315]:
+          - link "吵一吵 吵一吵 阵容与赛事资料" [ref=f2e316] [cursor=pointer]:
+            - /url: /teams/t12409
+            - generic [ref=f2e321]: 吵一吵
+            - generic [ref=f2e322]: 吵一吵
+            - generic [ref=f2e323]: 阵容与赛事资料
+        - listitem [ref=f2e324]:
+          - link "好厚米 好厚米 阵容与赛事资料" [ref=f2e325] [cursor=pointer]:
+            - /url: /teams/t12410
+            - generic [ref=f2e330]: 好厚米
+            - generic [ref=f2e331]: 好厚米
+            - generic [ref=f2e332]: 阵容与赛事资料
+        - listitem [ref=f2e333]:
+          - link "广州TTG TTG 2 次冠军" [ref=f2e334] [cursor=pointer]:
+            - /url: /teams/ttg
+            - generic [ref=f2e339]: 广州TTG
+            - generic [ref=f2e340]: TTG
+            - generic [ref=f2e341]: 2 次冠军
+        - listitem [ref=f2e350]:
+          - link "成都AG超玩会 AG 8 次冠军" [ref=f2e351] [cursor=pointer]:
+            - /url: /teams/ag
+            - generic [ref=f2e356]: 成都AG超玩会
+            - generic [ref=f2e357]: AG
+            - generic [ref=f2e358]: 8 次冠军
+        - listitem [ref=f2e367]:
+          - link "无锡TCG TCG 阵容与赛事资料" [ref=f2e368] [cursor=pointer]:
+            - /url: /teams/tcg
+            - generic [ref=f2e373]: 无锡TCG
+            - generic [ref=f2e374]: TCG
+            - generic [ref=f2e375]: 阵容与赛事资料
+        - listitem [ref=f2e376]:
+          - link "杭州LGD.NBW LGD 阵容与赛事资料" [ref=f2e377] [cursor=pointer]:
+            - /url: /teams/lgd-nbw
+            - generic [ref=f2e382]: 杭州LGD.NBW
+            - generic [ref=f2e383]: LGD
+            - generic [ref=f2e384]: 阵容与赛事资料
+        - listitem [ref=f2e385]:
+          - link "桐乡情久 情久 阵容与赛事资料" [ref=f2e386] [cursor=pointer]:
+            - /url: /teams/qingjiu
+            - generic [ref=f2e391]: 桐乡情久
+            - generic [ref=f2e392]: 情久
+            - generic [ref=f2e393]: 阵容与赛事资料
+        - listitem [ref=f2e394]:
+          - link "武汉eStarPro ES 7 次冠军" [ref=f2e395] [cursor=pointer]:
+            - /url: /teams/estar
+            - generic [ref=f2e400]: 武汉eStarPro
+            - generic [ref=f2e401]: ES
+            - generic [ref=f2e402]: 7 次冠军
+        - listitem [ref=f2e411]:
+          - link "济南RW侠 RW侠 阵容与赛事资料" [ref=f2e412] [cursor=pointer]:
+            - /url: /teams/rw
+            - generic [ref=f2e417]: 济南RW侠
+            - generic [ref=f2e418]: RW侠
+            - generic [ref=f2e419]: 阵容与赛事资料
+        - listitem [ref=f2e420]:
+          - link "深圳DYG DYG 1 次冠军" [ref=f2e421] [cursor=pointer]:
+            - /url: /teams/dyg
+            - generic [ref=f2e426]: 深圳DYG
+            - generic [ref=f2e427]: DYG
+            - generic [ref=f2e428]: 1 次冠军
+        - listitem [ref=f2e437]:
+          - link "西安WE WE 阵容与赛事资料" [ref=f2e438] [cursor=pointer]:
+            - /url: /teams/we
+            - generic [ref=f2e443]: 西安WE
+            - generic [ref=f2e444]: WE
+            - generic [ref=f2e445]: 阵容与赛事资料
+        - listitem [ref=f2e446]:
+          - link "重庆狼队 狼队 11 次冠军" [ref=f2e447] [cursor=pointer]:
+            - /url: /teams/wolves
+            - generic [ref=f2e452]: 重庆狼队
+            - generic [ref=f2e453]: 狼队
+            - generic [ref=f2e454]: 11 次冠军
+        - listitem [ref=f2e463]:
+          - link "重庆科技大学 重庆科技大学 阵容与赛事资料" [ref=f2e464] [cursor=pointer]:
+            - /url: /teams/t12402
+            - generic [ref=f2e469]: 重庆科技大学
+            - generic [ref=f2e470]: 重庆科技大学
+            - generic [ref=f2e471]: 阵容与赛事资料
+        - listitem [ref=f2e472]:
+          - link "长沙TES.A TES.A 阵容与赛事资料" [ref=f2e473] [cursor=pointer]:
+            - /url: /teams/tes-a
+            - generic [ref=f2e478]: 长沙TES.A
+            - generic [ref=f2e479]: TES.A
+            - generic [ref=f2e480]: 阵容与赛事资料
+        - listitem [ref=f2e481]:
+          - link "阿里巴巴PKQ 阿里巴巴PKQ 阵容与赛事资料" [ref=f2e482] [cursor=pointer]:
+            - /url: /teams/t12403
+            - generic [ref=f2e487]: 阿里巴巴PKQ
+            - generic [ref=f2e488]: 阿里巴巴PKQ
+            - generic [ref=f2e489]: 阵容与赛事资料
+        - listitem [ref=f2e490]:
+          - link "青训潜渊 青训潜渊 阵容与赛事资料" [ref=f2e491] [cursor=pointer]:
+            - /url: /teams/t12401
+            - generic [ref=f2e496]: 青训潜渊
+            - generic [ref=f2e497]: 青训潜渊
+            - generic [ref=f2e498]: 阵容与赛事资料
+        - listitem [ref=f2e499]:
+          - link "APG APG 阵容与赛事资料" [ref=f2e500] [cursor=pointer]:
+            - /url: /teams/t12211
+            - generic [ref=f2e505]: APG
+            - generic [ref=f2e506]: APG
+            - generic [ref=f2e507]: 阵容与赛事资料
+        - listitem [ref=f2e508]:
+          - link "BA黑凤梨 BA 阵容与赛事资料" [ref=f2e509] [cursor=pointer]:
+            - /url: /teams/t10004
+            - generic [ref=f2e514]: BA黑凤梨
+            - generic [ref=f2e515]: BA
+            - generic [ref=f2e516]: 阵容与赛事资料
+        - listitem [ref=f2e517]:
+          - link "CW CW 阵容与赛事资料" [ref=f2e518] [cursor=pointer]:
+            - /url: /teams/t10014
+            - generic [ref=f2e523]: CW
+            - generic [ref=f2e524]: CW
+            - generic [ref=f2e525]: 阵容与赛事资料
+        - listitem [ref=f2e526]:
+          - link "EMC EMC 阵容与赛事资料" [ref=f2e527] [cursor=pointer]:
+            - /url: /teams/t10015
+            - generic [ref=f2e532]: EMC
+            - generic [ref=f2e533]: EMC
+            - generic [ref=f2e534]: 阵容与赛事资料
+        - listitem [ref=f2e535]:
+          - link "ESC ESC 阵容与赛事资料" [ref=f2e536] [cursor=pointer]:
+            - /url: /teams/t10025
+            - generic [ref=f2e541]: ESC
+            - generic [ref=f2e542]: ESC
+            - generic [ref=f2e543]: 阵容与赛事资料
+        - listitem [ref=f2e544]:
+          - link "ESG ESG 阵容与赛事资料" [ref=f2e545] [cursor=pointer]:
+            - /url: /teams/t10033
+            - generic [ref=f2e550]: ESG
+            - generic [ref=f2e551]: ESG
+            - generic [ref=f2e552]: 阵容与赛事资料
+        - listitem [ref=f2e553]:
+          - link "GOG GOG 阵容与赛事资料" [ref=f2e554] [cursor=pointer]:
+            - /url: /teams/t10021
+            - generic [ref=f2e559]: GOG
+            - generic [ref=f2e560]: GOG
+            - generic [ref=f2e561]: 阵容与赛事资料
+        - listitem [ref=f2e562]:
+          - link "HBSE HBSE 阵容与赛事资料" [ref=f2e563] [cursor=pointer]:
+            - /url: /teams/t12209
+            - generic [ref=f2e568]: HBSE
+            - generic [ref=f2e569]: HBSE
+            - generic [ref=f2e570]: 阵容与赛事资料
+        - listitem [ref=f2e571]:
+          - link "HJG HJG 阵容与赛事资料" [ref=f2e572] [cursor=pointer]:
+            - /url: /teams/t10402
+            - generic [ref=f2e577]: HJG
+            - generic [ref=f2e578]: HJG
+            - generic [ref=f2e579]: 阵容与赛事资料
+        - listitem [ref=f2e580]:
+          - link "KZ KZ 阵容与赛事资料" [ref=f2e581] [cursor=pointer]:
+            - /url: /teams/t10011
+            - generic [ref=f2e586]: KZ
+            - generic [ref=f2e587]: KZ
+            - generic [ref=f2e588]: 阵容与赛事资料
+        - listitem [ref=f2e589]:
+          - link "MD KPL 战队 阵容与赛事资料" [ref=f2e590] [cursor=pointer]:
+            - /url: /teams/t10102
+            - generic [ref=f2e595]: MD
+            - generic [ref=f2e596]: KPL 战队
+            - generic [ref=f2e597]: 阵容与赛事资料
+        - listitem [ref=f2e598]:
+          - link "NOVA NOVA 阵容与赛事资料" [ref=f2e599] [cursor=pointer]:
+            - /url: /teams/t12210
+            - generic [ref=f2e604]: NOVA
+            - generic [ref=f2e605]: NOVA
+            - generic [ref=f2e606]: 阵容与赛事资料
+        - listitem [ref=f2e607]:
+          - link "NOVA NOVA 阵容与赛事资料" [ref=f2e608] [cursor=pointer]:
+            - /url: /teams/t10026
+            - generic [ref=f2e613]: NOVA
+            - generic [ref=f2e614]: NOVA
+            - generic [ref=f2e615]: 阵容与赛事资料
+        - listitem [ref=f2e616]:
+          - link "OP OP 阵容与赛事资料" [ref=f2e617] [cursor=pointer]:
+            - /url: /teams/t12201
+            - generic [ref=f2e622]: OP
+            - generic [ref=f2e623]: OP
+            - generic [ref=f2e624]: 阵容与赛事资料
+        - listitem [ref=f2e625]:
+          - link "ROX ROX 阵容与赛事资料" [ref=f2e626] [cursor=pointer]:
+            - /url: /teams/t10012
+            - generic [ref=f2e631]: ROX
+            - generic [ref=f2e632]: ROX
+            - generic [ref=f2e633]: 阵容与赛事资料
+        - listitem [ref=f2e634]:
+          - link "TCG TCG 阵容与赛事资料" [ref=f2e635] [cursor=pointer]:
+            - /url: /teams/t10303
+            - generic [ref=f2e640]: TCG
+            - generic [ref=f2e641]: TCG
+            - generic [ref=f2e642]: 阵容与赛事资料
+        - listitem [ref=f2e643]:
+          - link "TE溯 TE溯 阵容与赛事资料" [ref=f2e644] [cursor=pointer]:
+            - /url: /teams/t12203
+            - generic [ref=f2e649]: TE溯
+            - generic [ref=f2e650]: TE溯
+            - generic [ref=f2e651]: 阵容与赛事资料
+        - listitem [ref=f2e652]:
+          - link "TOPM TOPM 阵容与赛事资料" [ref=f2e653] [cursor=pointer]:
+            - /url: /teams/t10019
+            - generic [ref=f2e658]: TOPM
+            - generic [ref=f2e659]: TOPM
+            - generic [ref=f2e660]: 阵容与赛事资料
+        - listitem [ref=f2e661]:
+          - link "TY TY 阵容与赛事资料" [ref=f2e662] [cursor=pointer]:
+            - /url: /teams/t10301
+            - generic [ref=f2e667]: TY
+            - generic [ref=f2e668]: TY
+            - generic [ref=f2e669]: 阵容与赛事资料
+        - listitem [ref=f2e670]:
+          - link "VSG VSG 阵容与赛事资料" [ref=f2e671] [cursor=pointer]:
+            - /url: /teams/t10024
+            - generic [ref=f2e676]: VSG
+            - generic [ref=f2e677]: VSG
+            - generic [ref=f2e678]: 阵容与赛事资料
+        - listitem [ref=f2e679]:
+          - link "WD WD 阵容与赛事资料" [ref=f2e680] [cursor=pointer]:
+            - /url: /teams/t12205
+            - generic [ref=f2e685]: WD
+            - generic [ref=f2e686]: WD
+            - generic [ref=f2e687]: 阵容与赛事资料
+        - listitem [ref=f2e688]:
+          - link "Wkk Wkk 阵容与赛事资料" [ref=f2e689] [cursor=pointer]:
+            - /url: /teams/t10404
+            - generic [ref=f2e694]: Wkk
+            - generic [ref=f2e695]: Wkk
+            - generic [ref=f2e696]: 阵容与赛事资料
+        - listitem [ref=f2e697]:
+          - link "WYG WYG 阵容与赛事资料" [ref=f2e698] [cursor=pointer]:
+            - /url: /teams/t12204
+            - generic [ref=f2e703]: WYG
+            - generic [ref=f2e704]: WYG
+            - generic [ref=f2e705]: 阵容与赛事资料
+        - listitem [ref=f2e706]:
+          - link "YYG YYG 阵容与赛事资料" [ref=f2e707] [cursor=pointer]:
+            - /url: /teams/t10304
+            - generic [ref=f2e712]: YYG
+            - generic [ref=f2e713]: YYG
+            - generic [ref=f2e714]: 阵容与赛事资料
+        - listitem [ref=f2e715]:
+          - link "世巨A 世巨A 阵容与赛事资料" [ref=f2e716] [cursor=pointer]:
+            - /url: /teams/t10902
+            - generic [ref=f2e721]: 世巨A
+            - generic [ref=f2e722]: 世巨A
+            - generic [ref=f2e723]: 阵容与赛事资料
+        - listitem [ref=f2e724]:
+          - link "东莞Wz WZ 阵容与赛事资料" [ref=f2e725] [cursor=pointer]:
+            - /url: /teams/t10034
+            - generic [ref=f2e730]: 东莞Wz
+            - generic [ref=f2e731]: WZ
+            - generic [ref=f2e732]: 阵容与赛事资料
+        - listitem [ref=f2e733]:
+          - link "佳美娜 佳美娜 阵容与赛事资料" [ref=f2e734] [cursor=pointer]:
+            - /url: /teams/t10904
+            - generic [ref=f2e739]: 佳美娜
+            - generic [ref=f2e740]: 佳美娜
+            - generic [ref=f2e741]: 阵容与赛事资料
+        - listitem [ref=f2e742]:
+          - link "天鹿 天鹿 阵容与赛事资料" [ref=f2e743] [cursor=pointer]:
+            - /url: /teams/t10906
+            - generic [ref=f2e748]: 天鹿
+            - generic [ref=f2e749]: 天鹿
+            - generic [ref=f2e750]: 阵容与赛事资料
+        - listitem [ref=f2e751]:
+          - link "情久 情久 阵容与赛事资料" [ref=f2e752] [cursor=pointer]:
+            - /url: /teams/t10403
+            - generic [ref=f2e757]: 情久
+            - generic [ref=f2e758]: 情久
+            - generic [ref=f2e759]: 阵容与赛事资料
+        - listitem [ref=f2e760]:
+          - link "斗鱼XHW 斗鱼XHW 阵容与赛事资料" [ref=f2e761] [cursor=pointer]:
+            - /url: /teams/t10406
+            - generic [ref=f2e766]: 斗鱼XHW
+            - generic [ref=f2e767]: 斗鱼XHW
+            - generic [ref=f2e768]: 阵容与赛事资料
+        - listitem [ref=f2e769]:
+          - link "昆山SC SC 阵容与赛事资料" [ref=f2e770] [cursor=pointer]:
+            - /url: /teams/t10038
+            - generic [ref=f2e775]: 昆山SC
+            - generic [ref=f2e776]: SC
+            - generic [ref=f2e777]: 阵容与赛事资料
+        - listitem [ref=f2e778]:
+          - link "桑杰队 桑杰队 阵容与赛事资料" [ref=f2e779] [cursor=pointer]:
+            - /url: /teams/t12208
+            - generic [ref=f2e784]: 桑杰队
+            - generic [ref=f2e785]: 桑杰队
+            - generic [ref=f2e786]: 阵容与赛事资料
+        - listitem [ref=f2e787]:
+          - link "梦之队Pro 梦之队Pro 阵容与赛事资料" [ref=f2e788] [cursor=pointer]:
+            - /url: /teams/t10909
+            - generic [ref=f2e793]: 梦之队Pro
+            - generic [ref=f2e794]: 梦之队Pro
+            - generic [ref=f2e795]: 阵容与赛事资料
+        - listitem [ref=f2e796]:
+          - link "虎牙小当家 虎牙小当家 阵容与赛事资料" [ref=f2e797] [cursor=pointer]:
+            - /url: /teams/t10405
+            - generic [ref=f2e802]: 虎牙小当家
+            - generic [ref=f2e803]: 虎牙小当家
+            - generic [ref=f2e804]: 阵容与赛事资料
+        - listitem [ref=f2e805]:
+          - link "辣翻你是绝队 辣翻你是绝队 阵容与赛事资料" [ref=f2e806] [cursor=pointer]:
+            - /url: /teams/t10908
+            - generic [ref=f2e811]: 辣翻你是绝队
+            - generic [ref=f2e812]: 辣翻你是绝队
+            - generic [ref=f2e813]: 阵容与赛事资料
+        - listitem [ref=f2e814]:
+          - link "金陵科技学院 金陵科技学院 阵容与赛事资料" [ref=f2e815] [cursor=pointer]:
+            - /url: /teams/t12206
+            - generic [ref=f2e820]: 金陵科技学院
+            - generic [ref=f2e821]: 金陵科技学院
+            - generic [ref=f2e822]: 阵容与赛事资料
+        - listitem [ref=f2e823]:
+          - link "镇江VTG 镇江VTG 阵容与赛事资料" [ref=f2e824] [cursor=pointer]:
+            - /url: /teams/t10401
+            - generic [ref=f2e829]: 镇江VTG
+            - generic [ref=f2e830]: 镇江VTG
+            - generic [ref=f2e831]: 阵容与赛事资料
+        - listitem [ref=f2e832]:
+          - link "青训凌云 青训凌云 阵容与赛事资料" [ref=f2e833] [cursor=pointer]:
+            - /url: /teams/t10907
+            - generic [ref=f2e838]: 青训凌云
+            - generic [ref=f2e839]: 青训凌云
+            - generic [ref=f2e840]: 阵容与赛事资料
+        - listitem [ref=f2e841]:
+          - link "青训破军 青训破军 阵容与赛事资料" [ref=f2e842] [cursor=pointer]:
+            - /url: /teams/t12207
+            - generic [ref=f2e847]: 青训破军
+            - generic [ref=f2e848]: 青训破军
+            - generic [ref=f2e849]: 阵容与赛事资料
+      - generic [ref=f2e850]:
+        - heading "历史战队" [level=2] [ref=f2e851]
+        - list [ref=f2e852]:
+          - listitem [ref=f2e853]:
+            - link "AS仙阁" [ref=f2e854] [cursor=pointer]:
+              - /url: /teams/asxg
+          - listitem [ref=f2e855]:
+            - link "BOA" [ref=f2e856] [cursor=pointer]:
+              - /url: /teams/t10302
+          - listitem [ref=f2e857]:
+            - link "XYG" [ref=f2e858] [cursor=pointer]:
+              - /url: /teams/t10036
+          - listitem [ref=f2e859]:
+            - link "九江TKL" [ref=f2e860] [cursor=pointer]:
+              - /url: /teams/t10602
+          - listitem [ref=f2e861]:
+            - link "常山UUG" [ref=f2e862] [cursor=pointer]:
+              - /url: /teams/t10101
+          - listitem [ref=f2e863]:
+            - link "深圳KLG" [ref=f2e864] [cursor=pointer]:
+              - /url: /teams/t10901
+          - listitem [ref=f2e865]:
+            - link "郑州MTG" [ref=f2e866] [cursor=pointer]:
+              - /url: /teams/t10032
+  - button "回到顶部"

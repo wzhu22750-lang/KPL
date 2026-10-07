@@ -30,6 +30,7 @@ import { consolidate, liveStory, type Consolidation } from "./consolidate.ts";
 import { mergeStoryInto } from "./merge.ts";
 import { candidateViews, cosine32, recallFacts, recallSelectedBackground, relatedPosts, vectorsFor } from "./recall.ts";
 import { areSameKplOccurrence } from "../lib/kpl-dedup.ts";
+import { conflictingMatchFacts } from "./match-identity.ts";
 import { authorityFor } from "../sources/authority.ts";
 import type { ClaimType } from "../sources/claims.ts";
 import { updateRumorState } from "./rumor.ts";
@@ -350,7 +351,16 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
     return { verdict: "standalone" };
   }
 
-  const kept = await currentMembership(articleId);
+  let kept = await currentMembership(articleId);
+  const matchQuery = { title: an?.title_zh || a.title, at: a.published_at };
+  if (kept && (await conflictingMatchFacts(matchQuery, [kept.factId])).size) {
+    // Revisions/retries must not preserve a demonstrably conflicting automatic identity.
+    const oldFact = kept.factId;
+    await sql.begin(async tx => { await lockCurrentRevision(tx, articleId, a.revision); await resetAutomatic(tx, articleId); });
+    const siblings = await sql<{ article_id: string }[]>`SELECT article_id FROM fact_articles WHERE fact_id=${oldFact}`;
+    for (const sibling of siblings) await publishArticle(sibling.article_id);
+    kept = null;
+  }
   // A material revision clears its value decision, but keeps its established membership. Reuse
   // that identity after judging the replacement material below; ordinary repeats and confirmed
   // nulls from before the value check keep their existing value without buying another judgement.
@@ -372,13 +382,19 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
   };
   const newTitle = String(frame?.title || title).slice(0, 60);
 
-  const { sameUrl, referenced } = await relatedPosts(a);
+  const related = await relatedPosts(a);
+  const referenced = related.referenced;
+  // A reused URL is not permission to attach to a polluted fact.
+  const sameUrl = related.sameUrl && !(await conflictingMatchFacts(matchQuery, [related.sameUrl.fact_id])).size ? related.sameUrl : null;
   // The URL settles identity, but an unseen fact still needs its first reading-value decision.
   const selectedSameUrl = sameUrl && !composite && !kept && (await candidateViews([{
     factId: sameUrl.fact_id, storyId: sameUrl.story_id, factTitle: sameUrl.fact_title, score: 1,
   }]))[0]?.selected === true;
-  const cands = selectedSameUrl ? [] : await candidateViews(await recallFacts(articleId,
+  const recalled = selectedSameUrl ? [] : await candidateViews(await recallFacts(articleId,
     reportText(title, an.summary_zh), RECALL_MIN_COSINE, RECALL_TOP_FACTS, [...referenced, ...(sameUrl ? [sameUrl] : [])]));
+  const conflicts = await conflictingMatchFacts(matchQuery, recalled.map(c => c.factId));
+  // Apply before the model, deterministic shortcuts, high-cosine bypass and story consolidation.
+  const cands = recalled.filter(c => !conflicts.has(c.factId));
   const reading = selectedSameUrl ? [] : await recallSelectedBackground(articleId, reportText(title, an.summary_zh), RECALL_MIN_COSINE);
   let verdicts = new Map<number, Verdict>();
   let selection = NO_SELECTED_COVERAGE;
@@ -485,6 +501,7 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
   const decisionCandidates: DecisionCandidate[] = cands.map((c) => ({
     id: c.factId, score: Math.round(c.score * 1000) / 1000, relation: verdicts.get(c.factId)?.relation, confidence: verdicts.get(c.factId)?.confidence,
   }));
+  for (const c of recalled) if (conflicts.has(c.factId)) decisionCandidates.push({ id: c.factId, score: c.score, relation: "UNRELATED", confidence: 1 });
   if (sameUrl) decisionCandidates.push({ id: sameUrl.fact_id, score: 1, relation: "SAME_OCCURRENCE", confidence: 1 });
   // Only a fact already shown in selected has a representative slot to replace. A duplicate of
   // an unselected fact must retain the value judgement, including a prior low-increment rejection.
@@ -500,6 +517,12 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
     if (late) {
       await markGrouped(articleId, a.revision, { addsValue: true, reason: "人工确认的归属" }, tx);
       return { manual: late, factId: null, storyId: null };
+    }
+    if (factId !== null) {
+      await tx`SELECT id FROM facts WHERE id=${factId} FOR UPDATE`;
+      if ((await conflictingMatchFacts(matchQuery, [factId], tx)).size) {
+        throw new Error("Match identity conflict: candidate changed during grouping; retry after repair");
+      }
     }
     if (storyId !== null) {
       const [current] = await tx`SELECT id FROM stories WHERE id = ${storyId} AND merged_into IS NULL FOR UPDATE`;

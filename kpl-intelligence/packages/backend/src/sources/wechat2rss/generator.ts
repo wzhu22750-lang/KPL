@@ -34,7 +34,8 @@ export function generateRssFeed(
     const guidStr = escapeXml(article.id || article.url);
 
     const descHtml = article.description || article.contentText?.slice(0, 300) || article.title;
-    const bodyHtml = article.contentHtml || `<p>${descHtml}</p>`;
+    // 摘要绝不冒充正文：只有真的有正文时才输出 content:encoded。
+    const bodyHtml = article.contentHtml || null;
 
     let enclosureTag = "";
     if (article.coverUrl && article.coverUrl.startsWith("http")) {
@@ -47,8 +48,7 @@ export function generateRssFeed(
       <guid isPermaLink="false">${guidStr}</guid>
       <pubDate>${pubDateStr}</pubDate>
       <dc:creator>${authorStr}</dc:creator>
-      <description>${cdata(descHtml)}</description>
-      <content:encoded>${cdata(bodyHtml)}</content:encoded>${enclosureTag}
+      <description>${cdata(descHtml)}</description>${bodyHtml ? `\n      <content:encoded>${cdata(bodyHtml)}</content:encoded>` : ""}${enclosureTag}
     </item>`);
   }
 

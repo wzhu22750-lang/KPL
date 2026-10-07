@@ -1,6 +1,11 @@
 import { guardedFetch } from "../../../lib/http-fetch.ts";
 import { cleanWechatHtml, parseWechatDate } from "../parser.ts";
-import type { WechatAccount, WechatAdapter, WechatAdapterResult, WechatArticle } from "../types.ts";
+import { normalizeAccountName, type WechatAccount, type WechatAdapter, type WechatAdapterResult, type WechatArticle } from "../types.ts";
+
+/** 日志只留下可排查的错误类别与账号标识，绝不打印完整响应、Cookie 或凭据。 */
+function warn(message: string): void {
+  console.warn(`[wechat2rss:weread] ${message}`);
+}
 
 export class WereadAdapter implements WechatAdapter {
   readonly name = "weread";
@@ -31,7 +36,10 @@ export class WereadAdapter implements WechatAdapter {
     try {
       const url = `https://weread.qq.com/web/search/global?keyword=${encodeURIComponent(keyword)}&maxIdx=0&fragmentSize=120&count=10`;
       const res = await guardedFetch(url, { headers: this.getHeaders(), timeoutMs: 15_000 });
-      if (res.status !== 200) return [];
+      if (res.status !== 200) {
+        warn(`search HTTP ${res.status} for "${keyword}"`);
+        return [];
+      }
 
       const data = JSON.parse(res.text());
       const accounts: WechatAccount[] = [];
@@ -51,7 +59,8 @@ export class WereadAdapter implements WechatAdapter {
       }
 
       return accounts;
-    } catch {
+    } catch (error) {
+      warn(`search failed for "${keyword}": ${error instanceof Error ? error.message : String(error)}`);
       return [];
     }
   }
@@ -61,23 +70,27 @@ export class WereadAdapter implements WechatAdapter {
    */
   async getArticles(accountIdentifier: string, limit = 15): Promise<WechatAdapterResult | null> {
     try {
-      // 1. 如果传参是公众号名称，先搜索获取 mpId
-      let mpId = accountIdentifier;
+      // 1. 定位公众号的 mpId。只有精确同名才接受；同名/近似名不能自动获得官方身份。
+      let mpId: string;
       let accountName = accountIdentifier;
       let avatar: string | undefined;
       let description: string | undefined;
 
-      // 判断是否需要通过搜索定位
       const isPureId = /^[a-zA-Z0-9_-]{16,}$/.test(accountIdentifier);
-      if (!isPureId) {
+      if (isPureId) {
+        mpId = accountIdentifier;
+      } else {
         const found = await this.search(accountIdentifier);
-        const match = found.find((a) => a.name === accountIdentifier) || found[0];
-        if (match) {
-          mpId = match.id;
-          accountName = match.name;
-          avatar = match.avatar;
-          description = match.description;
+        const target = normalizeAccountName(accountIdentifier);
+        const match = found.find((a) => normalizeAccountName(a.name) === target);
+        if (!match) {
+          warn(`no exact account match for "${accountIdentifier}" among ${found.length} candidates`);
+          return null;
         }
+        mpId = match.id;
+        accountName = match.name;
+        avatar = match.avatar;
+        description = match.description;
       }
 
       // 2. 调用微信读书获取文章列表
@@ -88,115 +101,78 @@ export class WereadAdapter implements WechatAdapter {
         // 尝试备用 API 端点
         const fallbackUrl = `https://weread.qq.com/v1/mp/feed?mp_id=${encodeURIComponent(mpId)}&count=${limit}`;
         const fbRes = await guardedFetch(fallbackUrl, { headers: this.getHeaders(), timeoutMs: 20_000 });
-        if (fbRes.status !== 200) return null;
-        return this.parseFeedResponse(fbRes.text(), mpId, accountName, avatar, description);
+        if (fbRes.status !== 200) {
+          warn(`article list HTTP ${res.status} / fallback HTTP ${fbRes.status} for mp_id ${mpId}`);
+          return null;
+        }
+        return this.parseList(res.text(), mpId, accountName, avatar, description, ["feed", "articles"]);
       }
 
-      return this.parseListResponse(res.text(), mpId, accountName, avatar, description);
-    } catch {
+      return this.parseList(res.text(), mpId, accountName, avatar, description, ["articles", "items", "data"]);
+    } catch (error) {
+      warn(`getArticles failed for "${accountIdentifier}": ${error instanceof Error ? error.message : String(error)}`);
       return null;
     }
   }
 
-  private parseListResponse(
+  /** 解析文章列表响应；JSON 里没有预期数组则返回 null（结构异常，不是“正常无更新”）。 */
+  private parseList(
     responseText: string,
     mpId: string,
     accountName: string,
     avatar?: string,
-    description?: string
+    description?: string,
+    arrayKeys: string[] = ["articles", "items", "data"]
   ): WechatAdapterResult | null {
+    let data: Record<string, any>;
     try {
-      const data = JSON.parse(responseText);
-      const items = data.articles || data.items || data.data || [];
-      if (!Array.isArray(items) || items.length === 0) {
-        return null;
-      }
-
-      const articles: WechatArticle[] = [];
-
-      for (const item of items) {
-        const title = item.title || item.name;
-        const url = item.url || item.link || item.mp_url;
-        if (!title || !url) continue;
-
-        const rawContent = item.content || item.html || item.digest || item.abstract || "";
-        const { html, text } = cleanWechatHtml(rawContent);
-
-        const pubTime = item.publish_time || item.create_time || item.post_time || item.time;
-        const publishedAt = parseWechatDate(pubTime);
-
-        articles.push({
-          id: String(item.id || item.doc_id || item.article_id || url),
-          title,
-          url,
-          author: item.author || accountName,
-          description: item.digest || item.abstract || item.summary || text.slice(0, 300),
-          contentHtml: html || `<p>${item.digest || title}</p>`,
-          contentText: text || item.digest || title,
-          coverUrl: item.cover || item.pic_url || item.cover_url,
-          publishedAt: isNaN(publishedAt.getTime()) ? new Date() : publishedAt,
-          extra: { weread_mp_id: mpId },
-        });
-      }
-
-      return {
-        account: {
-          id: mpId,
-          name: data.mp_name || accountName,
-          avatar: data.avatar || avatar,
-          description: data.intro || description,
-          url: `https://weread.qq.com/web/mp/${mpId}`,
-        },
-        articles,
-      };
+      data = JSON.parse(responseText);
     } catch {
+      warn(`article list was not JSON for mp_id ${mpId}`);
       return null;
     }
-  }
-
-  private parseFeedResponse(
-    responseText: string,
-    mpId: string,
-    accountName: string,
-    avatar?: string,
-    description?: string
-  ): WechatAdapterResult | null {
-    try {
-      const data = JSON.parse(responseText);
-      const items = data.feed || data.articles || [];
-      const articles: WechatArticle[] = [];
-
-      for (const item of items) {
-        const title = item.title;
-        const url = item.link || item.url;
-        if (!title || !url) continue;
-
-        const { html, text } = cleanWechatHtml(item.content || item.summary || "");
-        articles.push({
-          id: String(item.id || url),
-          title,
-          url,
-          author: item.author || accountName,
-          description: item.summary || text.slice(0, 300),
-          contentHtml: html || `<p>${title}</p>`,
-          contentText: text || title,
-          coverUrl: item.cover,
-          publishedAt: parseWechatDate(item.pub_time || item.publish_time || item.create_time),
-        });
-      }
-
-      return {
-        account: {
-          id: mpId,
-          name: accountName,
-          avatar,
-          description,
-          url: `https://weread.qq.com/web/mp/${mpId}`,
-        },
-        articles,
-      };
-    } catch {
+    const items = arrayKeys.map((k) => data[k]).find((v) => Array.isArray(v)) as Record<string, any>[] | undefined;
+    if (!items) {
+      warn(`article list had no ${arrayKeys.join("/")} array for mp_id ${mpId}`);
       return null;
     }
+
+    const account: WechatAccount = {
+      id: mpId,
+      name: data.mp_name || accountName,
+      avatar: data.avatar || avatar,
+      description: data.intro || description,
+      url: `https://weread.qq.com/web/mp/${mpId}`,
+    };
+    if (items.length === 0) {
+      return { account, articles: [], status: "empty", identity: "mp_id", fetchedAt: Date.now() };
+    }
+
+    const articles: WechatArticle[] = [];
+    for (const item of items) {
+      const title = item.title || item.name;
+      const url = item.url || item.link || item.mp_url;
+      if (!title || !url) continue;
+
+      const rawContent = item.content || item.html || "";
+      const { html, text } = cleanWechatHtml(rawContent);
+      const digest = item.digest || item.abstract || item.summary || null;
+
+      articles.push({
+        id: String(item.id || item.doc_id || item.article_id || url),
+        title,
+        url,
+        author: item.author || null,
+        description: digest || item.desc || (text ? text.slice(0, 300) : null),
+        // 列表接口通常只有摘要：没有真实正文时保持 null，别把摘要冒充完整正文。
+        contentHtml: html || null,
+        contentText: text || null,
+        coverUrl: item.cover || item.pic_url || item.cover_url,
+        publishedAt: parseWechatDate(item.publish_time || item.create_time || item.post_time || item.time),
+        extra: { weread_mp_id: mpId },
+      });
+    }
+
+    return { account, articles, status: "ok", identity: "mp_id", fetchedAt: Date.now() };
   }
 }

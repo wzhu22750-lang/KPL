@@ -599,6 +599,327 @@
       "site_fulltext": true,
       "syndicate_fulltext": false,
       "enabled": true
+    },
+    {
+      "id": "weibo-kpl-official",
+      "name": "KPL王者荣耀职业联赛（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6074356560",
+        "platform": "weibo",
+        "owner_type": "league",
+        "owner_entity_id": "kpl"
+      },
+      "tier": "T1",
+      "owner_type": "league",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-hok-official",
+      "name": "王者荣耀（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "5698023579",
+        "platform": "weibo",
+        "owner_type": "league",
+        "owner_entity_id": "kpl",
+        "timeWindowDays": 7
+      },
+      "tier": "T1",
+      "owner_type": "league",
+      "owner_entity_id": "kpl",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-ag-club",
+      "name": "成都AG超玩会（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "5878848794",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "ag",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "ag",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "AG",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-wolves-club",
+      "name": "重庆狼队（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6180100850",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "wolves",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "wolves",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "狼队",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-estar-club",
+      "name": "武汉eStarPro（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "2142875194",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "estar",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "estar",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "eStar",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-ttg-club",
+      "name": "广州TTG（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6383293935",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "ttg",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "ttg",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "TTG",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-wb-club",
+      "name": "北京WB（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6528198786",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "wb",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "wb",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "WB",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-hero-club",
+      "name": "南京Hero久竞（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6451712914",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "hero",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "hero",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "Hero",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-ksg-club",
+      "name": "苏州KSG（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6134425922",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "ksg",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "ksg",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "KSG",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-drg-club",
+      "name": "佛山DRG（官方微博）",
+      "kind": "weibo",
+      "config": {
+        "uid": "6134307924",
+        "platform": "weibo",
+        "owner_type": "club",
+        "owner_entity_id": "drg",
+        "timeWindowDays": 7
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "drg",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": [
+        "战队",
+        "DRG",
+        "官方",
+        "微博官方",
+        "微博"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-topic-ag",
+      "name": "成都AG超玩会（微博超话与社区讨论）",
+      "kind": "weibo",
+      "config": {
+        "mode": "topic",
+        "query": "成都AG超玩会",
+        "platform": "weibo",
+        "owner_type": "community",
+        "owner_entity_id": "ag",
+        "timeWindowDays": 7,
+        "maxPages": 3
+      },
+      "tier": "T2",
+      "owner_type": "community",
+      "owner_entity_id": "ag",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 60,
+      "tags": [
+        "社区",
+        "微博超话",
+        "舆论",
+        "AG"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "weibo-topic-wolves",
+      "name": "重庆狼队（微博超话与社区讨论）",
+      "kind": "weibo",
+      "config": {
+        "mode": "topic",
+        "query": "重庆狼队",
+        "platform": "weibo",
+        "owner_type": "community",
+        "owner_entity_id": "wolves",
+        "timeWindowDays": 7,
+        "maxPages": 3
+      },
+      "tier": "T2",
+      "owner_type": "community",
+      "owner_entity_id": "wolves",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 60,
+      "tags": [
+        "社区",
+        "微博超话",
+        "舆论",
+        "狼队"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
     }
   ]
 }

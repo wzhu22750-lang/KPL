@@ -127,6 +127,11 @@ export default function TeamPage() {
                 <IntentLink to={`/items/${n.id}`} className="block px-4 py-3 transition-colors hover:text-accent">
                   <span className="flex items-baseline gap-2">
                     <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{n.title}</span>
+                    {n.kind === "social_post" && (
+                      <span className="shrink-0 rounded bg-bg-sunk px-1.5 py-0.5 text-[10.5px] font-medium text-ink-3 border border-line-soft">
+                        动态
+                      </span>
+                    )}
                     {n.selected && <span className="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-[10.5px] font-semibold text-accent">精选</span>}
                   </span>
                   {n.summary && <span className="mt-1 line-clamp-2 block text-[12.5px] leading-relaxed text-ink-3">{n.summary}</span>}

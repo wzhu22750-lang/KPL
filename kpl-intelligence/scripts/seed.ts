@@ -13,7 +13,7 @@ import { assertSupportedConfig } from "@aihot/backend/sources/config-keys";
 interface SeedSource {
   id: string;
   name: string;
-  kind: "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external" | "esports_api";
+  kind: "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external" | "esports_api" | "weibo";
   config: Record<string, unknown>;
   tier?: string;
   owner_type?: string | null;

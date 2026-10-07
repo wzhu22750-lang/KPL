@@ -1,11 +1,24 @@
 import type { MaterialInput } from "../content/materials.ts";
 
+export type SourceKind =
+  | "rss"
+  | "web_list"
+  | "json_list"
+  | "x_search"
+  | "mp_account"
+  | "external"
+  | "esports_api"
+  | "weibo";
+
 export interface SourceRow {
   id: string;
   name: string;
-  kind: "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external" | "esports_api";
+  kind: SourceKind;
   config: Record<string, any>;
   tier: string;
+  owner_type?: string | null;
+  owner_entity_id?: string | null;
+  tags?: string[];
   participation_mode: "editorial" | "hot_signal" | "isolated";
   first_party: boolean;
   interval_minutes: number;

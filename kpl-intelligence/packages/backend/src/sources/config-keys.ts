@@ -18,7 +18,7 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
   json_list: [
     ...COLLECTED, "url", "mode", "method", "headers", "bodyJson", "jsonKey", "windowVar", "itemsPath", "itemsObjectValues",
     "titlePaths", "summaryPaths", "summaryIsBody", "authorPaths", "publishedAtPath", "publishedAtUnit", "externalIdPath",
-    "urlTemplate", "urlTemplateFallback", "rawDropKeys", "requireBoolean", "requireString", "minNumeric",
+    "urlTemplate", "urlTemplateFallback", "rawDropKeys", "requireBoolean", "requireString", "minNumeric", "pagination",
   ],
   // X accounts are mostly read in shards, which apply only these.
   x_search: [...PUBLISHER, ...CONTENT_PROFILE, "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
@@ -27,6 +27,7 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
   // Structured esports data: writes matches/games/BP, not articles. baseUrl exists for tests and
   // mirror endpoints; the production default lives in sources/esports.ts.
   esports_api: ["leagueId", "baseUrl", "battlesPerRun", "dataMode"],
+  weibo: [...COLLECTED, "uid", "containerid", "platform", "owner_type", "owner_entity_id", "maxPages", "mode", "query", "timeWindowDays"],
 };
 
 // Objects with fixed keys (headers and bodyJson are request data, free-form).
@@ -37,6 +38,7 @@ const NESTED: Record<string, string[]> = {
   requireBoolean: ["path", "equals"],
   requireString: ["path", "equals"],
   minNumeric: ["path", "min"],
+  pagination: ["pageParam", "startPage", "maxPages", "itemsPath"],
   detail: [
     "maxFetches", "publishedAtSelector", "publishedAtRegex", "publishedAtUtcOffset", "publishedAtAuthoritative", "upgradeDatePrecision",
     "titleSelector", "titleRegex", "titleAuthoritative", "summarySelector",

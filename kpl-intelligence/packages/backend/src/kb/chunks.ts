@@ -73,11 +73,28 @@ export async function fillChunkEmbeddings(sourceType: ChunkSourceType, refId: st
   return filled;
 }
 
-/** 文章正文 → chunks（标题取 articles.title；正文为空时清空该文章的旧块）。 */
+/** 文章正文 → chunks（标题取 articles.title；正文为空时清空该文章的旧块）。
+ * 针对 social_post 实施 RAG 知识库质量准入门槛：过滤低分与无事实动态，守护向量库纯净。
+ */
 export async function rebuildArticleChunks(articleId: string): Promise<number> {
-  const [article] = await sql<{ title: string; body_text: string | null }[]>`
-    SELECT title, body_text FROM articles WHERE id = ${articleId}`;
+  const [article] = await sql<{
+    title: string;
+    body_text: string | null;
+    content_kind: string | null;
+    content_quality_score: number | null;
+  }[]>`
+    SELECT title, body_text, content_kind, content_quality_score FROM articles WHERE id = ${articleId}`;
   if (!article) return 0;
+
+  // 社交动态 (social_post) 准入守卫：仅当质量分 >= 70 时方可切块入库
+  if (article.content_kind === "social_post") {
+    const score = article.content_quality_score ?? 0;
+    if (score < 70) {
+      await sql`DELETE FROM chunks WHERE source_type = 'article' AND ref_id = ${articleId}`;
+      return 0;
+    }
+  }
+
   return writeChunks("article", articleId, article.title, article.body_text ? chunkText(article.body_text) : []);
 }
 

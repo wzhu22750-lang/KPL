@@ -136,7 +136,77 @@ function embeddedJson(html: string, source: SourceRow): unknown {
 
 export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
   const c = source.config;
-  const url = String(c.url ?? "");
+  const baseUrl = String(c.url ?? "");
+  // Pagination is explicit and opt-in: without a documented page parameter the reader stays single-page,
+  // so a source that does not support paging is never guessed at or looped forever.
+  const pagination = c.pagination as { pageParam?: string; startPage?: number; maxPages?: number; itemsPath?: string } | undefined;
+  const pages = pagination?.pageParam ? Math.max(1, Math.min(Number(pagination.maxPages ?? 1), 20)) : 1;
+  const startPage = Number(pagination?.startPage ?? 1);
+
+  const out: Candidate[] = [];
+  const seenFromPriorPages = new Set<string>();
+  let totalItems = 0;
+  for (let i = 0; i < pages; i++) {
+    const url = pageUrl(baseUrl, pagination?.pageParam, pages > 1 ? startPage + i : undefined);
+    const data = await readJson(url, source);
+    const itemsPath = pagination?.itemsPath ?? c.itemsPath;
+    let items = itemsPath ? getPath(data, itemsPath) : c.jsonKey ? getPath(data, c.jsonKey) : data;
+    if (c.itemsObjectValues && items && typeof items === "object" && !Array.isArray(items)) items = Object.values(items);
+    if (!Array.isArray(items)) throw new FetchError("items path did not resolve to an array");
+    if (items.length === 0) break; // 空页视为分页边界
+    totalItems += items.length;
+
+    // Keep duplicates within a page (the single-page behavior collect.ts relies on for `found`); only
+    // drop entries a previous page already produced, so overlapping pages cannot double-charge detail.
+    const pageOut: Candidate[] = [];
+    for (const item of items) {
+      if (c.requireBoolean && getPath(item, c.requireBoolean.path) !== c.requireBoolean.equals) continue;
+      if (c.minNumeric && !(Number(getPath(item, c.minNumeric.path)) >= Number(c.minNumeric.min))) continue;
+      // Identity assertion: an official-account listing only stores content by the expected author.
+      // If the upstream starts returning anything else (keyword drift, hijacked search), every item is
+      // dropped and the run maps to an error — the source degrades visibly instead of mixing voices.
+      // Numbers compare as their text form (ids like B站 upMid arrive as JSON numbers).
+      if (c.requireString) {
+        const got = getPath(item, c.requireString.path);
+        const expected: string[] = Array.isArray(c.requireString.equals) ? c.requireString.equals : [c.requireString.equals];
+        if (got === null || got === undefined || !expected.includes(String(got))) continue;
+      }
+      const title = firstString(item, c.titlePaths);
+      const url = (c.urlTemplate && renderTemplate(c.urlTemplate, item)) || (c.urlTemplateFallback && renderTemplate(c.urlTemplateFallback, item));
+      if (!title || !url) continue;
+      if (i > 0 && seenFromPriorPages.has(url)) continue;
+      const externalId = c.externalIdPath ? getPath(item, c.externalIdPath) : null;
+      const summary = firstString(item, c.summaryPaths);
+      const summaryIsBody = c.summaryIsBody === true && !!summary;
+      pageOut.push({
+        url,
+        title: collapseWhitespace(stripTags(title)),
+        author: firstString(item, c.authorPaths),
+        publishedAt: toDate(getPath(item, c.publishedAtPath), c.publishedAtUnit),
+        excerpt: summary ? collapseWhitespace(stripTags(summary)).slice(0, 2000) : null,
+        bodyText: summaryIsBody ? stripTags(summary!) : null,
+        bodyStatus: summaryIsBody ? "ok" : "pending",
+        raw: { externalId: externalId ?? null },
+      });
+    }
+    for (const candidate of pageOut) seenFromPriorPages.add(candidate.url);
+    out.push(...pageOut);
+  }
+  if (totalItems > 0 && out.length === 0 && !c.requireBoolean && !c.minNumeric) throw new FetchError("no items mapped (check title/url paths)");
+  return out;
+}
+
+/** Adds the page parameter only when the config opted into pagination. */
+function pageUrl(base: string, param: string | undefined, page: number | undefined): string {
+  if (!param || page === undefined) return base;
+  const u = new URL(base);
+  u.searchParams.set(param, String(page));
+  return u.toString();
+}
+
+/** One JSON page: same request shape and credential rules as before. */
+async function readJson(url: string, source: SourceRow): Promise<unknown> {
+  const c = source.config;
   const headers: Record<string, string> = { accept: "application/json, text/html;q=0.9", ...(c.headers ?? {}) };
   if (/^https:\/\/api\.github\.com\//.test(url)) {
     const token = credential("collectors", "GITHUB_TOKEN");
@@ -150,49 +220,10 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
     timeoutMs: 25_000,
   });
   if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
-  let data: unknown;
-  if (c.mode === "html_json_key" || c.mode === "html_window_var") data = embeddedJson(res.text(), source);
-  else {
-    try {
-      data = JSON.parse(res.text());
-    } catch {
-      throw new FetchError("response is not JSON");
-    }
+  if (c.mode === "html_json_key" || c.mode === "html_window_var") return embeddedJson(res.text(), source);
+  try {
+    return JSON.parse(res.text());
+  } catch {
+    throw new FetchError("response is not JSON");
   }
-  let items = c.itemsPath ? getPath(data, c.itemsPath) : c.jsonKey ? getPath(data, c.jsonKey) : data;
-  if (c.itemsObjectValues && items && typeof items === "object" && !Array.isArray(items)) items = Object.values(items);
-  if (!Array.isArray(items)) throw new FetchError("items path did not resolve to an array");
-
-  const out: Candidate[] = [];
-  for (const item of items) {
-    if (c.requireBoolean && getPath(item, c.requireBoolean.path) !== c.requireBoolean.equals) continue;
-    if (c.minNumeric && !(Number(getPath(item, c.minNumeric.path)) >= Number(c.minNumeric.min))) continue;
-    // Identity assertion: an official-account listing only stores content by the expected author.
-    // If the upstream starts returning anything else (keyword drift, hijacked search), every item is
-    // dropped and the run maps to an error — the source degrades visibly instead of mixing voices.
-    // Numbers compare as their text form (ids like B站 upMid arrive as JSON numbers).
-    if (c.requireString) {
-      const got = getPath(item, c.requireString.path);
-      const expected: string[] = Array.isArray(c.requireString.equals) ? c.requireString.equals : [c.requireString.equals];
-      if (got === null || got === undefined || !expected.includes(String(got))) continue;
-    }
-    const title = firstString(item, c.titlePaths);
-    const url = (c.urlTemplate && renderTemplate(c.urlTemplate, item)) || (c.urlTemplateFallback && renderTemplate(c.urlTemplateFallback, item));
-    if (!title || !url) continue;
-    const externalId = c.externalIdPath ? getPath(item, c.externalIdPath) : null;
-    const summary = firstString(item, c.summaryPaths);
-    const summaryIsBody = c.summaryIsBody === true && !!summary;
-    out.push({
-      url,
-      title: collapseWhitespace(stripTags(title)),
-      author: firstString(item, c.authorPaths),
-      publishedAt: toDate(getPath(item, c.publishedAtPath), c.publishedAtUnit),
-      excerpt: summary ? collapseWhitespace(stripTags(summary)).slice(0, 2000) : null,
-      bodyText: summaryIsBody ? stripTags(summary!) : null,
-      bodyStatus: summaryIsBody ? "ok" : "pending",
-      raw: { externalId: externalId ?? null },
-    });
-  }
-  if (items.length > 0 && out.length === 0 && !c.requireBoolean && !c.minNumeric) throw new FetchError("no items mapped (check title/url paths)");
-  return out;
 }

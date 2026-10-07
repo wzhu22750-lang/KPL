@@ -1,11 +1,15 @@
 // KPL 领域化比赛事件识别、语义指纹提取与去重归组算法
 import { collapseWhitespace } from "./text.ts";
+import { beijingDate } from "@aihot/contracts/time";
 
 export interface KplMatchFingerprint {
   teams: string[];
   stage?: string;
   outcome?: string;
+  explicitDateKey?: string;
   dateKey?: string;
+  game?: string;
+  round?: string;
   matchKey: string;
 }
 
@@ -66,14 +70,10 @@ export function extractTeamsFromText(text: string): string[] {
 
   for (const team of TEAM_ALIAS_MAP) {
     for (const alias of team.aliases) {
-      // 避免短词误伤（如 'es'、'we'、'ts'、'qg' 等需配合边界或中文前后）
-      if (alias.length <= 2) {
-        const regex = new RegExp(`(?:[^a-z0-9]|^)${alias}(?:[^a-z0-9]|$)`, "i");
-        if (regex.test(lower)) {
-          found.add(team.slug);
-          break;
-        }
-      } else if (lower.includes(alias)) {
+      // Latin aliases need boundaries too: e.g. TES must not match "test".
+      const escaped = alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const pattern = `${/^[a-z0-9]/.test(alias) ? "(?<![a-z0-9])" : ""}${escaped}${/[a-z0-9]$/.test(alias) ? "(?![a-z0-9])" : ""}`;
+      if (new RegExp(pattern, "i").test(lower)) {
         found.add(team.slug);
         break;
       }
@@ -84,23 +84,32 @@ export function extractTeamsFromText(text: string): string[] {
 }
 
 /**
- * 提取标题中的日期标签（格式 YYYYMMDD 或 MMDD）
+ * 提取标题中的日期标签（格式 YYYYMMDD）。
+ * 返回 { explicitDateKey, dateKey }：explicitDateKey 仅在标题明文出现日期时有值；dateKey 若无明文则回退到发帖日。
  */
+export function extractDateKeysFromText(text: string, fallbackDate?: Date | null): { explicitDateKey?: string; dateKey?: string } {
+  const fallback = fallbackDate && Number.isFinite(+fallbackDate) ? beijingDate(fallbackDate) : undefined;
+  const full = text.match(/(?<!\d)((?:19|20)\d{2})[年/.-](\d{1,2})[月/.-](\d{1,2})(?:[日号]|(?!\d))/);
+  const short = text.match(/(?<!\d)(\d{1,2})月(\d{1,2})[日号]/);
+  const year = full?.[1] ?? text.match(/(?:19|20)\d{2}/)?.[0] ?? fallback?.slice(0, 4);
+  let explicitDateKey: string | undefined;
+  if (full || short) {
+    if (year) {
+      const month = (full?.[2] ?? short![1]!).padStart(2, "0");
+      const day = (full?.[3] ?? short![2]!).padStart(2, "0");
+      const iso = `${year}-${month}-${day}`;
+      const parsed = new Date(`${iso}T00:00:00+08:00`);
+      if (Number.isFinite(+parsed) && beijingDate(parsed) === iso) {
+        explicitDateKey = iso.replaceAll("-", "");
+      }
+    }
+  }
+  const dateKey = explicitDateKey ?? fallback?.replaceAll("-", "");
+  return { explicitDateKey, dateKey };
+}
+
 export function extractDateKeyFromText(text: string, fallbackDate?: Date | null): string | undefined {
-  const dateMatch = text.match(/(?:202\d[年/-])?(\d{1,2})月(\d{1,2})[日号]/);
-  if (dateMatch && dateMatch[1] && dateMatch[2]) {
-    const m = dateMatch[1].padStart(2, "0");
-    const d = dateMatch[2].padStart(2, "0");
-    const y = text.match(/202\d/) ? text.match(/202\d/)![0] : (fallbackDate ? String(fallbackDate.getFullYear()) : "2026");
-    return `${y}${m}${d}`;
-  }
-  if (fallbackDate && !isNaN(fallbackDate.getTime())) {
-    const y = fallbackDate.getFullYear();
-    const m = String(fallbackDate.getMonth() + 1).padStart(2, "0");
-    const d = String(fallbackDate.getDate()).padStart(2, "0");
-    return `${y}${m}${d}`;
-  }
-  return undefined;
+  return extractDateKeysFromText(text, fallbackDate).dateKey;
 }
 
 /**
@@ -109,12 +118,12 @@ export function extractDateKeyFromText(text: string, fallbackDate?: Date | null)
 export function extractMatchFingerprint(title: string, date?: Date | null): KplMatchFingerprint | null {
   const teams = extractTeamsFromText(title);
   // 一场对决通常包含两支队伍（例如 KSG vs RW侠，或包含 "迎战"、"零封"、"对阵"）
-  if (teams.length < 2) {
+  if (teams.length !== 2) {
     return null;
   }
 
   const teamKey = `${teams[0]}-vs-${teams[1]}`;
-  const dateKey = extractDateKeyFromText(title, date);
+  const { explicitDateKey, dateKey } = extractDateKeysFromText(title, date);
 
   let stage = "";
   if (/年度总决赛|年总/.test(title)) stage = "annual-finals";
@@ -127,15 +136,13 @@ export function extractMatchFingerprint(title: string, date?: Date | null): KplM
   if (/零封|3-0|3:0|4-0|4:0/.test(title)) outcome = "sweep";
   else if (/开门红/.test(title)) outcome = "opener";
 
-  const matchKey = `match:${teamKey}${stage ? `:${stage}` : ""}${dateKey ? `:${dateKey}` : ""}`;
+  const ordinal = title.match(/第([一二三四五六七八九十\d]+)局/);
+  const chinese: Record<string, string> = { 一: "1", 二: "2", 三: "3", 四: "4", 五: "5", 六: "6", 七: "7", 八: "8", 九: "9", 十: "10" };
+  const game = ordinal ? chinese[ordinal[1]!] ?? ordinal[1] : undefined;
+  const round = title.match(/\bW\d+D\d+\b/i)?.[0].toUpperCase();
+  const matchKey = `match:${teamKey}${stage ? `:${stage}` : ""}${dateKey ? `:${dateKey}` : ""}${round ? `:${round}` : ""}${game ? `:game-${game}` : ""}`;
 
-  return {
-    teams,
-    stage,
-    outcome,
-    dateKey,
-    matchKey,
-  };
+  return { teams, stage, outcome, explicitDateKey, dateKey, game, round, matchKey };
 }
 
 /**
@@ -169,51 +176,35 @@ export function areSameKplOccurrence(
   dateA?: Date | null,
   dateB?: Date | null
 ): boolean {
-  if (!titleA || !titleB) return false;
+  const a = extractMatchFingerprint(titleA, dateA);
+  const b = extractMatchFingerprint(titleB, dateB);
+  // Similar wording, a shared team, a season, or "零封" is never identity evidence.
+  // Restrict the shortcut to match reports; other news still uses the relation judge.
+  const matchLanguage = /对阵|对战|迎战|战胜|击败|零封|拿下|\bvs\b|\d\s*[:：-]\s*\d/i;
+  return !!(a && b && a.dateKey && a.dateKey === b.dateKey
+    && matchLanguage.test(titleA) && matchLanguage.test(titleB)
+    && !kplOccurrenceConflict(titleA, titleB, dateA, dateB));
+}
 
-  // 1. 比赛事件指纹匹配（例如 KSG 迎战 RW侠，零封/年总开门红）
-  const fpA = extractMatchFingerprint(titleA, dateA);
-  const fpB = extractMatchFingerprint(titleB, dateB);
-
-  if (fpA && fpB) {
-    // 双方对阵队伍完全一致（如 ["ksg", "rw"]）
-    const sameTeams = fpA.teams.length === 2 && fpB.teams.length === 2 &&
-      fpA.teams[0] === fpB.teams[0] && fpA.teams[1] === fpB.teams[1];
-
-    if (sameTeams) {
-      // 场景 1: 日期键明确相同或都在同一赛事阶段
-      if (fpA.dateKey && fpB.dateKey && fpA.dateKey === fpB.dateKey) {
-        return true;
-      }
-      // 场景 2: 都有相同赛事阶段（如年总/春季赛），且若日期已知则时间差在 7 天内
-      if (fpA.stage && fpB.stage && fpA.stage === fpB.stage) {
-        if (!dateA || !dateB || Math.abs(dateA.getTime() - dateB.getTime()) <= 7 * 86400_000) {
-          return true;
-        }
-      }
-      // 场景 3: 双方都包含特定赛事结果关键词（如 "零封" 或 "开门红"）
-      if (fpA.outcome && fpB.outcome && fpA.outcome === fpB.outcome) {
-        return true;
-      }
-    }
+/** Hard veto, also applied AFTER model recall: no positive shortcut may override a conflict.
+ * Missing identity is not a match. A missing date remains uncertain; an explicit event date wins
+ * over publication day (so next-day reports naming yesterday can still join it).
+ */
+export function kplOccurrenceConflict(titleA: string, titleB: string, dateA?: Date | null, dateB?: Date | null): string | null {
+  const a = extractMatchFingerprint(titleA, dateA);
+  const b = extractMatchFingerprint(titleB, dateB);
+  if (!a || !b) return null;
+  if (a.teams.join(",") !== b.teams.join(",")) return "different opponents";
+  // 标题明确指明了不同比赛日期的，绝对互斥
+  if (a.explicitDateKey && b.explicitDateKey && a.explicitDateKey !== b.explicitDateKey) return "different match dates";
+  // 无论是否明文，若日期推导跨度超过 36 小时（即不是同场赛后连夜跨零点报道，而是隔日/隔周比赛），互斥
+  if (a.dateKey && b.dateKey) {
+    const dA = new Date(`${a.dateKey.slice(0, 4)}-${a.dateKey.slice(4, 6)}-${a.dateKey.slice(6, 8)}T00:00:00Z`).getTime();
+    const dB = new Date(`${b.dateKey.slice(0, 4)}-${b.dateKey.slice(4, 6)}-${b.dateKey.slice(6, 8)}T00:00:00Z`).getTime();
+    if (Math.abs(dA - dB) > 36 * 3600 * 1000) return "different match dates";
   }
-
-  // 2. 语义相似度门槛（经过规范化后相似度极高且均包含战队特征）
-  const normA = normalizeKplTitle(titleA);
-  const normB = normalizeKplTitle(titleB);
-  if (normA && normB && normA.length >= 6 && normB.length >= 6) {
-    const teamsA = extractTeamsFromText(titleA);
-    const teamsB = extractTeamsFromText(titleB);
-    if (teamsA.length > 0 && teamsB.length > 0 && teamsA.some(t => teamsB.includes(t))) {
-      const sim = charBigramSimilarity(normA, normB);
-      if (sim >= 0.72) {
-        if (dateA && dateB && Math.abs(dateA.getTime() - dateB.getTime()) > 4 * 86400_000) {
-          return false;
-        }
-        return true;
-      }
-    }
-  }
-
-  return false;
+  if (a.stage && b.stage && a.stage !== b.stage) return "different competitions";
+  if (a.round && b.round && a.round !== b.round) return "different rounds";
+  if (a.game !== b.game && (a.game || b.game)) return "different game scope";
+  return null;
 }

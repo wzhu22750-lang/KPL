@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { cleanWechatHtml, parseWechatDate } from "@aihot/backend/sources/wechat2rss/parser";
 import { generateRssFeed } from "@aihot/backend/sources/wechat2rss/generator";
-import { wechatBridge } from "@aihot/backend/sources/wechat2rss/bridge";
+import { Wechat2RssBridge, wechatBridge } from "@aihot/backend/sources/wechat2rss/bridge";
+import { normalizeAccountName } from "@aihot/backend/sources/wechat2rss/types";
 import { fetchRss } from "@aihot/backend/sources/rss";
 import type { SourceRow } from "@aihot/backend/sources/types";
 
@@ -121,4 +122,82 @@ test("WeChat2RSS Bridge 与 fetchRss 采集集成测试", async () => {
   assert.ok(first.title.length > 0, "文章必须包含标题");
   assert.ok(first.url.startsWith("http"), "文章链接必须有效");
   assert.ok(first.publishedAt instanceof Date, "必须包含解析后的发布时间");
+});
+
+// ---------------------------------------------------------------------------
+// 桥的降级/身份语义（全部使用假适配器，不访问外部服务）
+// ---------------------------------------------------------------------------
+
+const article = {
+  id: "a1",
+  title: "一篇文章",
+  url: "https://mp.weixin.qq.com/s/one",
+  author: "官方号",
+  contentHtml: "<p>正文</p>",
+  contentText: "正文",
+  publishedAt: new Date("2026-10-01T00:00:00Z"),
+};
+
+function bridgeWith(adapter: { name: string; getArticles: (id: string) => Promise<unknown> }): Wechat2RssBridge {
+  const bridge = new Wechat2RssBridge();
+  (bridge as unknown as { adapters: unknown[] }).adapters = [adapter];
+  return bridge;
+}
+
+test("Bridge: 全部失败且无缓存 → getFeed 抛错，不冒充成功", async () => {
+  const bridge = bridgeWith({ name: "fail", getArticles: async () => null });
+  await assert.rejects(() => bridge.getFeed("测试号", { force: true }), /upstream unavailable/);
+});
+
+test("Bridge: 全部失败但有旧缓存 → stale，真实 fetchedAt 不刷新", async () => {
+  const ok = bridgeWith({ name: "ok", getArticles: async () => ({ account: { id: "mp1", name: "测试号" }, articles: [article], identity: "mp_id", fetchedAt: 1_700_000_000_000 }) });
+  const first = await ok.getFeed("测试号", { force: true });
+  assert.equal(first.status, "ok");
+  assert.equal(first.fetchedAt, 1_700_000_000_000);
+
+  // 同一实例：注入成功缓存后换成失败适配器
+  (ok as unknown as { adapters: unknown[] }).adapters = [{ name: "fail", getArticles: async () => null }];
+  const stale1 = await ok.getFeed("测试号", { force: true });
+  assert.equal(stale1.status, "stale");
+  assert.equal(stale1.degraded, true);
+  assert.equal(stale1.fetchedAt, 1_700_000_000_000, "降级不得把旧数据重新标记为新鲜");
+  await new Promise((r) => setTimeout(r, 15));
+  const stale2 = await ok.getFeed("测试号", { force: true });
+  assert.equal(stale2.fetchedAt, 1_700_000_000_000, "反复读取旧缓存不延长真实新鲜度");
+});
+
+test("Bridge: 可验证的空结果是 empty，不触发故障", async () => {
+  const bridge = bridgeWith({ name: "empty", getArticles: async () => ({ account: { id: "mp1", name: "空号" }, articles: [], status: "empty", identity: "mp_id", fetchedAt: 1_700_000_000_001 }) });
+  const feed = await bridge.getFeed("空号", { force: true });
+  assert.equal(feed.status, "empty");
+  assert.equal(feed.degraded, false);
+});
+
+test("Bridge: 仅展示名称匹配（display_name）默认拒收；mp_id 才是可信身份", async () => {
+  const displayName = { name: "display_name", getArticles: async () => ({ account: { id: "x", name: "测试号" }, articles: [article], identity: "display_name", droppedUnverified: 0, fetchedAt: 1 }) };
+  const bridge = bridgeWith(displayName);
+  await assert.rejects(() => bridge.getFeed("测试号", { force: true }), /upstream unavailable/);
+  const allowed = await bridge.fetchAccountArticles("测试号", { force: true, allowDisplayNameIdentity: true });
+  assert.equal(allowed?.articles.length, 1);
+});
+
+test("Bridge: 作者不精确匹配的第三方文章被拒收计数，且不把作者改成目标账号名", async () => {
+  const mismatch = bridgeWith({ name: "mismatch", getArticles: async () => ({ account: { id: "x", name: "目标号" }, articles: [article], identity: "display_name", droppedUnverified: 2, fetchedAt: 2 }) });
+  const result = await mismatch.fetchAccountArticles("目标号", { force: true, allowDisplayNameIdentity: true });
+  assert.equal(result?.droppedUnverified, 2, "第三方文章的拒收计数被保留以便排查");
+  assert.equal(result?.articles[0]?.author, "官方号", "保留上游真实作者，不改成目标账号名");
+});
+
+test("normalizeAccountName: 相似名/括号备注不相等", () => {
+  assert.equal(normalizeAccountName("KPL王者荣耀职业联赛（官方）"), normalizeAccountName("kpl 王者荣耀职业联赛"));
+  assert.notEqual(normalizeAccountName("AG超玩会"), normalizeAccountName("AG超玩会官方"));
+});
+
+test("Generator: 没有正文时不输出 content:encoded（摘要不冒充正文）", () => {
+  const xml = generateRssFeed(
+    { id: "mp", name: "测试号" },
+    [{ id: "1", title: "标题", url: "https://mp.weixin.qq.com/s/x", author: "号", description: "这是摘要", contentHtml: null, contentText: null, publishedAt: new Date("2026-10-01T00:00:00Z") }]
+  );
+  assert.ok(xml.includes("<description>"), "摘要仍保留在 description");
+  assert.ok(!xml.includes("<content:encoded>"), "没有正文时不得输出 content:encoded");
 });

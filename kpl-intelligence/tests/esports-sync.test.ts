@@ -12,11 +12,12 @@ import { collectSource } from "@aihot/backend/sources/collect";
 
 const LEAGUE = "20990001";
 let battleDetailHits = 0;
+let failingMatch: string | null = null;
 
-function matchRow(matchId: string, a: { id: string; name: string; score: number }, b: { id: string; name: string; score: number }, winCamp: number) {
+function matchRow(matchId: string, a: { id: string; name: string; score: number }, b: { id: string; name: string; score: number }, winCamp: number, endTime = "2099-01-10 16:44:21") {
   return {
     match_id: matchId, league_id: LEAGUE, bo: 5, status: 2, win_camp: winCamp,
-    start_time: "2099-01-10 14:00:00", end_time: "2099-01-10 16:44:21",
+    start_time: "2099-01-10 14:00:00", end_time: endTime,
     match_stage_name: "cgs1", match_stage_desc: "常规赛第一轮", cc_match_id: "KPL2099S1M1W1D1", match_desc: "", match_address: "测试馆",
     camp1: { team_id: a.id, team_name: a.name, team_abbreviation: "A", team_icon: `http://img/${a.id}.png`, is_win: winCamp === 1, score: a.score, rank: 0 },
     camp2: { team_id: b.id, team_name: b.name, team_abbreviation: "B", team_icon: `http://img/${b.id}.png`, is_win: winCamp === 2, score: b.score, rank: 0 },
@@ -79,7 +80,7 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({
       results: [
         matchRow(MATCH1.id, { id: MATCH1.a.id, name: MATCH1.a.name, score: 3 }, { id: MATCH1.b.id, name: MATCH1.b.name, score: 1 }, 1),
-        matchRow(MATCH2.id, { id: MATCH2.a.id, name: MATCH2.a.name, score: 3 }, { id: MATCH2.b.id, name: MATCH2.b.name, score: 2 }, 1),
+        matchRow(MATCH2.id, { id: MATCH2.a.id, name: MATCH2.a.name, score: 3 }, { id: MATCH2.b.id, name: MATCH2.b.name, score: 2 }, 1, "2099-01-11 16:44:21"),
       ],
     }));
   } else if (url.pathname === "/leaguesite/match/battles/open") {
@@ -89,6 +90,7 @@ const server = http.createServer((req, res) => {
   } else if (url.pathname === "/leaguesite/battle/open") {
     battleDetailHits += 1;
     const battleId = url.searchParams.get("battle_id") ?? "";
+    if (failingMatch && battleId.includes(failingMatch)) { res.statusCode = 500; res.end("upstream error"); return; }
     const [matchId, seqStr] = battleId.split("_");
     const match = matchId === MATCH1.id ? MATCH1 : MATCH2;
     const seq = Number(seqStr);
@@ -170,4 +172,35 @@ test("esports sync: league rows land, battle backfill respects the budget and re
   const [stint] = await sql<{ stints: number }[]>`
     SELECT count(*) stints FROM player_stints ps JOIN players p ON p.id = ps.player_id WHERE p.nickname LIKE 'Fly%' AND ps.team_id IS NOT NULL`;
   assert.ok(stint!.stints >= 10, "first sight of a player starts a stint on their team");
+});
+
+test("esports sync: 小局存在但 BP/选手数据缺失时按字段补全", async () => {
+  const id = await source(12);
+  await collectSource(id);
+  const gameId = "kpl-" + LEAGUE + "-" + MATCH1.id + "-g1";
+  await sql`DELETE FROM bp_actions WHERE game_id = ${gameId}`;
+  await sql`DELETE FROM player_games WHERE game_id = ${gameId}`;
+  const res = await collectSource(id);
+  assert.equal(res.status, "ok");
+  const [bp] = await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM bp_actions WHERE game_id = ${gameId}`;
+  const [pg] = await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM player_games WHERE game_id = ${gameId}`;
+  assert.equal(bp!.n, 20, "缺失的 BP 被补回");
+  assert.equal(pg!.n, 10, "缺失的选手数据被补回");
+});
+
+test("esports sync: 单场持续失败不阻挡近期比赛，且每轮请求数受预算约束", async () => {
+  await sql`DELETE FROM games WHERE match_id IN (${'kpl-' + LEAGUE + '-' + MATCH1.id}, ${'kpl-' + LEAGUE + '-' + MATCH2.id})`;
+  const id = await source(1);
+  failingMatch = MATCH1.id;
+  battleDetailHits = 0;
+  try {
+    for (let i = 0; i < 10; i++) {
+      const run = await collectSource(id);
+      assert.equal(run.status, "ok", "单场失败不使整轮失败");
+    }
+  } finally {
+    failingMatch = null;
+  }
+  const [stored] = await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM games WHERE match_id = ${'kpl-' + LEAGUE + '-' + MATCH2.id}`;
+  assert.equal(stored!.n, 5, "近期比赛在旧比赛持续失败时仍全部补全");
 });
