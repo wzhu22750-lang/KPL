@@ -110,6 +110,8 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
     subDirs = await fs.readdir(vaultDir);
   } catch (err) {
     console.error(`无法读取 vault 目录: ${vaultDir}`, err);
+    result.failed++;
+    result.errors.push({ path: vaultDir, error: `无法读取 vault 目录: ${(err as Error).message}` });
     return result;
   }
 
@@ -207,29 +209,18 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
           SELECT id FROM articles WHERE url = ${meta.source_url} OR identity_key = ${identityKey} LIMIT 1
         `;
         if (existing) {
-          // 检查关联的 publications 与实体提及是否已创建；若中途失败缺失则补齐
+          // 检查关联的 publications 是否已创建；若中途失败缺失则补齐
           const [pub] = await sql<{ exists: boolean }[]>`
             SELECT EXISTS(SELECT 1 FROM publications WHERE article_id = ${existing.id}) AS exists
           `;
-          const [mention] = await sql<{ exists: boolean }[]>`
-            SELECT EXISTS(SELECT 1 FROM entity_mentions WHERE article_id = ${existing.id}) AS exists
-          `;
 
-          let recovered = false;
-          if (!mention?.exists) {
-            await recordArticleEntityMentions(existing.id, meta.title + "\n\n" + mdText);
-            recovered = true;
-          }
           if (!pub?.exists) {
+            await recordArticleEntityMentions(existing.id, meta.title + "\n\n" + mdText);
             await publishArticle(existing.id);
-            recovered = true;
-          }
-
-          if (recovered) {
-            console.log(`  🔄 [RECOVERED] 文章已存在，已补齐缺失关联: [${existing.id}] ${meta.title}`);
+            console.log(`  🔄 [RECOVERED] 文章已存在，已补齐缺失发布: [${existing.id}] ${meta.title}`);
             result.imported++;
           } else {
-            console.log(`  ⏩ [SKIP] 文章已存在且关联完整，跳过: [${existing.id}] ${meta.title}`);
+            console.log(`  ⏩ [SKIP] 文章已存在且发布完整，跳过: [${existing.id}] ${meta.title}`);
             result.skipped++;
           }
           continue;

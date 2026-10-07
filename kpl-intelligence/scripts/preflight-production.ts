@@ -38,27 +38,35 @@ const env = process.env;
 
 // DATABASE_URL
 const rawDbUrl = env.DATABASE_URL;
+let parsedDbUrl: URL | null = null;
 if (!rawDbUrl) {
   record("Env & Security", "DATABASE_URL", "FAIL", "DATABASE_URL 环境变量未设置");
 } else {
   try {
-    const parsed = new URL(rawDbUrl);
-    const host = parsed.hostname;
+    parsedDbUrl = new URL(rawDbUrl);
+    const host = parsedDbUrl.hostname;
     const isLocal = host === "127.0.0.1" || host === "localhost" || host === "::1";
-    const sslParam = (parsed.searchParams.get("sslmode") || parsed.searchParams.get("ssl") || "").toLowerCase();
+    const sslParam = (parsedDbUrl.searchParams.get("sslmode") || parsedDbUrl.searchParams.get("ssl") || "").toLowerCase();
 
     if (isLocal && (env.NODE_ENV === "production" || env.AIHOT_ENVIRONMENT === "production")) {
       record("Env & Security", "DATABASE_URL Host", "WARN", `生产环境连接至本地数据库 (${host})，请确认是否符合预期`);
     } else {
-      record("Env & Security", "DATABASE_URL Host", "PASS", `目标主机: ${host}:${parsed.port || 5432}`);
+      record("Env & Security", "DATABASE_URL Host", "PASS", `目标主机: ${host}:${parsedDbUrl.port || 5432}`);
     }
 
-    if (sslParam === "disable" || sslParam === "false" || sslParam === "0") {
-      record("Env & Security", "DATABASE_URL TLS", "FAIL", "生产环境拒绝 sslmode=disable，强制启用安全传输 (如 ?sslmode=require)");
+    const SECURE_SSL_MODES = new Set(["require", "verify-ca", "verify-full", "true", "1"]);
+    const INSECURE_SSL_MODES = new Set(["disable", "allow", "prefer", "false", "0"]);
+
+    if (INSECURE_SSL_MODES.has(sslParam)) {
+      record("Env & Security", "DATABASE_URL TLS", "FAIL", `生产环境拒绝 sslmode=${sslParam} (可能退回明文传输)，强制启用安全加密 (如 ?sslmode=require)`);
     } else if (!isLocal && !sslParam) {
-      record("Env & Security", "DATABASE_URL TLS", "WARN", "外部数据库连接串未显式指定 ?sslmode=require (系统已自动补充注入)");
+      record("Env & Security", "DATABASE_URL TLS", "WARN", "外部数据库连接串未显式指定 ?sslmode=require (系统客户端已按默认配置补充注入)");
+    } else if (isLocal && !sslParam) {
+      record("Env & Security", "DATABASE_URL TLS", "PASS", "本地开发连接 (local plain)");
+    } else if (SECURE_SSL_MODES.has(sslParam)) {
+      record("Env & Security", "DATABASE_URL TLS", "PASS", `TLS 模式: ${sslParam} (强制安全加密)`);
     } else {
-      record("Env & Security", "DATABASE_URL TLS", "PASS", `TLS 模式: ${sslParam || (isLocal ? "local (plain)" : "require")}`);
+      record("Env & Security", "DATABASE_URL TLS", "WARN", `未识别的 TLS 参数: ${sslParam}，建议使用 ?sslmode=require`);
     }
   } catch (err) {
     record("Env & Security", "DATABASE_URL Format", "FAIL", `DATABASE_URL 格式非法: ${(err as Error).message}`);
@@ -169,6 +177,21 @@ try {
   // Postgres version
   const ver = await sql<{ version: string }[]>`SELECT version()`;
   record("Database", "Version", "PASS", (ver[0]?.version ?? "unknown").split(" on ")[0]!);
+
+  // Check if connection is using SSL (when external host)
+  const isLocalHost = parsedDbUrl ? (parsedDbUrl.hostname === "127.0.0.1" || parsedDbUrl.hostname === "localhost") : false;
+  if (!isLocalHost) {
+    try {
+      const [sslRow] = await sql<{ ssl: boolean }[]>`SELECT ssl_is_used() AS ssl`;
+      if (sslRow?.ssl) {
+        record("Database", "Active Connection SSL", "PASS", "实际数据库传输链路已启用 SSL 加密");
+      } else {
+        record("Database", "Active Connection SSL", "FAIL", "实际数据库链路未启用 SSL 加密，存在明文风险");
+      }
+    } catch {
+      // 某些无 ssl_is_used 权限的环境跳过
+    }
+  }
 
   // Required extensions
   const extensions = await sql<{ extname: string }[]>`SELECT extname FROM pg_extension`;
