@@ -30,7 +30,8 @@ export function OutlineSheet({ open, onClose, outline, title = "目录" }: { ope
   useEffect(() => {
     if (!open) return;
     // The section being read: the last one whose start has reached the bar.
-    const bar = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bar-h")) || 48;
+    const barEl = document.querySelector<HTMLElement>("[data-phone-bar]");
+    const bar = barEl?.offsetHeight || 48;
     let at: string | null = null;
     for (const o of outline) {
       const el = document.getElementById(o.id);

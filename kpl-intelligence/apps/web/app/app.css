@@ -84,8 +84,11 @@
   --page-max-wide: max(1200px, calc(270dvh - 236px));
   --page-max-reading: max(1100px, calc(200dvh - 236px));
   /* The phone shell (below lg): the top bar's height, which sticky headers inside pages sit below, and
-     side gutters that keep clear of the notch in landscape. The desktop shell has no top bar. */
-  --bar-h: 48px;
+     side gutters that keep clear of the notch in landscape. The desktop shell has no top bar.
+     --safe-top leaves breathing room on mobile and clears notches/status bars. */
+  --safe-top: max(10px, env(safe-area-inset-top, 0px));
+  --bar-inner-h: 48px;
+  --bar-h: calc(var(--bar-inner-h) + var(--safe-top));
   --gutter-l: max(16px, env(safe-area-inset-left));
   --gutter-r: max(16px, env(safe-area-inset-right));
   color-scheme: light;
@@ -148,6 +151,8 @@
 
 @media (min-width: 961px) {
   :root {
+    --safe-top: 0px;
+    --bar-inner-h: 0px;
     --bar-h: 0px;
   }
 }

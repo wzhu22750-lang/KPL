@@ -128,7 +128,7 @@ export function SearchOverlay() {
           }
           addRecentSearch(q);
         }}
-        className="flex h-14 shrink-0 items-center gap-1 pl-4 pr-1 pt-[env(safe-area-inset-top)]"
+        className="flex min-h-[calc(3.5rem+var(--safe-top))] shrink-0 items-center gap-1 pl-4 pr-1 pt-[var(--safe-top)]"
       >
         <label className="relative flex-1">
           <span className="sr-only">搜索标题、摘要和正文</span>

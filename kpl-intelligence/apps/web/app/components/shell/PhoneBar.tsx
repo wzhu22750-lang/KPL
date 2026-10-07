@@ -36,9 +36,9 @@ export function PhoneBar({ back, title, large = false, sub, leading, center, act
     <>
       <header
         data-phone-bar=""
-        className={`bleed sticky top-0 z-40 bg-bg/85 backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200 lg:hidden ${scrolled ? "shadow-[0_1px_0_var(--line-soft)]" : ""}`}
+        className={`bleed sticky top-0 z-40 bg-bg/85 pt-[var(--safe-top)] backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200 lg:hidden ${scrolled ? "shadow-[0_1px_0_var(--line-soft)]" : ""}`}
       >
-        <div className={`-mx-2.5 grid h-[var(--bar-h)] items-center ${wideCenter ? "grid-cols-[minmax(0,1fr)_auto]" : "grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"}`}>
+        <div className={`-mx-2.5 grid h-[var(--bar-inner-h)] items-center ${wideCenter ? "grid-cols-[minmax(0,1fr)_auto]" : "grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"}`}>
           {!wideCenter && <div className="flex min-w-0 items-center">{back ? <BackButton {...back} /> : leading}</div>}
           <div className={`flex min-w-0 justify-center ${wideCenter ? "" : "max-w-[calc(100vw-184px)]"}`}>
             {center ?? (
@@ -147,7 +147,8 @@ function useHeadingUnderBar(enabled: boolean): boolean {
       setUnder(true);
       return;
     }
-    const bar = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bar-h")) || 48;
+    const barEl = document.querySelector<HTMLElement>("[data-phone-bar]");
+    const bar = barEl?.offsetHeight || 48;
     const io = new IntersectionObserver(([entry]) => setUnder(!!entry && !entry.isIntersecting && entry.boundingClientRect.top < bar), {
       rootMargin: `-${bar}px 0px 0px 0px`,
     });

@@ -97,8 +97,8 @@ export default function AdminLayout({ loaderData }: Route.ComponentProps) {
         </div>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur lg:hidden">
-          <div className="flex items-center gap-2 px-4 pt-3">
+        <div className="sticky top-0 z-40 border-b border-line bg-bg/85 pt-[var(--safe-top)] backdrop-blur lg:hidden">
+          <div className="flex items-center gap-2 px-4 pt-2">
             <RingMark className="size-5 text-accent" />
             <span className="text-[14px] font-semibold text-ink">{SITE.name} 后台</span>
             {me.dev && <span className="rounded bg-amber/15 px-1.5 text-[11px] font-medium text-amber">开发</span>}
