@@ -3,7 +3,7 @@
 // wording lives in the industry pack (industry/prompts/); a failed guard falls back without a repair call.
 import { IDENTITY_CONTEXT_ALIASES, IDENTITY_LEXICON, PUBLISHER_DOMAINS } from "@aihot/industry/taxonomy";
 import { onlyXArticleLink } from "../sources/x.ts";
-import type { AnalyzeInputArticle } from "./input.ts";
+import { CONTENT_KIND_LABELS, type AnalyzeInputArticle } from "./input.ts";
 import { promptText } from "./prompts.ts";
 
 export const PREFILTER_SYSTEM = promptText("prefilter");
@@ -84,6 +84,12 @@ export function needsShortTweetTranslation(text: string): boolean {
 /** The post is an X Article's link whose article could not be fetched. */
 const unfetchedXArticle = (a: AnalyzeInputArticle) => !!a.xPost && a.bodyStatus !== "ok" && onlyXArticleLink(String(a.xPost.text ?? ""));
 
+/** 【内容类型】标注：理解/写作步骤按内容形态切换规则（content-kind-rules.md 的分支选择器）。 */
+const contentKindLine = (a: AnalyzeInputArticle): string | null => {
+  if (!a.contentKind) return null;
+  return `【内容类型】${CONTENT_KIND_LABELS[a.contentKind] ?? a.contentKind}`;
+};
+
 function materialQuality(a: AnalyzeInputArticle): string {
   if (a.xPost) return "完整正文（来自 RSS / API 自带的 content 字段）";
   if (a.bodyText) return a.source.fetchesBody ? "完整正文（抓自原始网页）" : "完整正文（来自 RSS / API 自带的 content 字段）";
@@ -97,6 +103,8 @@ export function renderContext(a: AnalyzeInputArticle, opts: { annotateQuoted?: b
   const lines: string[] = [];
   lines.push(`【来源】${a.source.name}（${a.source.kind}，tier=${a.source.tier || "未分级"}）`);
   if (a.source.tags?.length) lines.push(`【来源标签】${a.source.tags.join(", ")}`);
+  const kindLine = contentKindLine(a);
+  if (kindLine) lines.push(kindLine);
   const name = a.xPost?.authorName || a.author;
   const handle = a.xPost?.handle;
   if (name || handle) lines.push(`【作者】${[name, handle ? `@${handle}` : null].filter(Boolean).join(" · ")}`);
@@ -119,7 +127,9 @@ export function renderContext(a: AnalyzeInputArticle, opts: { annotateQuoted?: b
     }
   }
   lines.push("");
-  lines.push(opts.annotateQuoted && quoted ? "【正文（作者自己的内容）】" : "【正文】");
+  const isVideo = a.contentKind === "video_post";
+  const isForum = a.contentKind === "forum_thread";
+  lines.push(opts.annotateQuoted && quoted ? "【正文（作者自己的内容）】" : isVideo ? "【视频简介（不是完整视频内容）】" : isForum ? "【主帖与高价值回复（社区讨论）】" : "【正文】");
   lines.push(capBody(a.xPost ? String(a.xPost.text ?? a.title) : (a.bodyText ?? a.excerpt ?? "(无正文)")));
   lines.push("");
   lines.push(`【材料质量】${materialQuality(a)}`);
@@ -175,6 +185,15 @@ export interface TranslateInput {
   quotedText?: string;
   quotedAuthor?: string;
   publishedAt?: Date;
+  /** 内容类型（CanonicalContent 的 kind）：summarize 提示按它切换规则。 */
+  contentKind?: string | null;
+}
+
+/** 内容类型的提示行（summarize-article 的 {{contentNote}}）。 */
+export function contentNoteOf(input: TranslateInput): string {
+  if (!input.contentKind) return "";
+  const label = CONTENT_KIND_LABELS[input.contentKind] ?? input.contentKind;
+  return `【内容类型】${label}（按下方内容类型规则处理）`;
 }
 
 export function translateInputOf(a: AnalyzeInputArticle): TranslateInput {
@@ -191,6 +210,7 @@ export function translateInputOf(a: AnalyzeInputArticle): TranslateInput {
     quotedText: a.xPost?.quoted?.text ? String(a.xPost.quoted.text) : undefined,
     quotedAuthor: a.xPost?.quoted?.handle ? String(a.xPost.quoted.handle) : undefined,
     publishedAt: a.publishedAt ?? undefined,
+    contentKind: a.contentKind ?? null,
   };
 }
 
@@ -297,6 +317,7 @@ export function buildArticlePrompt(input: TranslateInput): string {
     sourceName: sourceName(input.sourceName),
     identity: identityPrompt(input),
     title: input.title,
+    contentNote: contentNoteOf(input),
     body: input.text ? clampText(cleanArticleTextForLLM(input.text), 6000) : promptText("summarize-article-empty"),
   });
 }

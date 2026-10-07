@@ -37,6 +37,73 @@ export interface StoryRef {
   title: string;
 }
 
+// ---------------------------------------------------------------------------
+// Source-aware content views：内容类型、质量与各形态的专属视图。
+// community/video/social 里的文本全部来自真实抓取（CanonicalContent）；AI 只出现在 summary 类字段。
+// ---------------------------------------------------------------------------
+
+export type SiteContentKind =
+  | "article" | "news" | "official_announcement" | "forum_thread" | "social_post" | "video_post" | "interview" | "analysis" | "unknown";
+
+export type SiteContentCompleteness = "full" | "partial" | "summary_only" | "failed";
+
+export interface ContentQualityView {
+  score: number | null;
+  completeness: SiteContentCompleteness | null;
+  warnings: string[];
+}
+
+export interface DiscussionPostView {
+  author: string | null;
+  avatarUrl: string | null;
+  text: string;
+  publishedAt: string | null;
+  likes: number | null;
+  floor: number | null;
+  isOriginalAuthor: boolean;
+  quote: { author: string | null; text: string } | null;
+}
+
+/** 论坛/社区的 thread 视图：主帖、楼主补充与高价值讨论分离，评论绝不混入正文。 */
+export interface CommunityView {
+  originalPost: DiscussionPostView;
+  authorFollowups: DiscussionPostView[];
+  highlightedReplies: DiscussionPostView[];
+  totalReplies: number | null;
+  /** AI 整理的社区讨论焦点（唯一允许 AI 生成的讨论字段，UI 标注 AI 整理）。 */
+  communitySummary: string | null;
+}
+
+export interface VideoView {
+  /** 视频简介——永远不标成"正文"。 */
+  description: string | null;
+  cover: { url: string; srcSet?: string; width: number | null; height: number | null } | null;
+  durationSeconds: number | null;
+  views: number | null;
+  likes: number | null;
+  comments: number | null;
+  favorites: number | null;
+  shares: number | null;
+  /** 已有字幕/transcript 时才有；没有就禁止根据标题/简介推断视频内容。 */
+  transcriptSummary: string | null;
+}
+
+export interface SocialView {
+  postText: string;
+  quoted: { author: string | null; text: string } | null;
+}
+
+/** 一条内容的类型化视图：article 族沿用 body；其余形态各有专属结构。 */
+export interface ContentView {
+  kind: SiteContentKind;
+  quality: ContentQualityView;
+  community?: CommunityView | null;
+  video?: VideoView | null;
+  social?: SocialView | null;
+  /** 正文图片（content_image）gallery；文章正文图继续走 body 内嵌图。 */
+  gallery?: MediaView[] | null;
+}
+
 /** What every site answer about an article carries; a card and a page each add the X post in their own form. */
 export interface ItemSummary {
   id: string;
@@ -59,6 +126,8 @@ export interface ItemSummary {
 
 /** The fields rendered by a site feed card; full original text lives in the item detail. */
 export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "source" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel"> {
+  /** 轻度类型标签（报道/官方/社区/视频…），卡片只取 kind，不做视觉过载。 */
+  contentKind?: SiteContentKind | null;
   x: (Pick<XPostView, "authorName" | "handle" | "avatarUrl" | "avatarSrcSet" | "media"> & {
     quoted: Omit<NonNullable<XPostView["quoted"]>, "url"> | null;
   }) | null;
@@ -132,6 +201,8 @@ export interface OutlineEntry {
 export interface SiteItemDetail extends ItemSummary {
   /** The post with all its media; its text is the body. */
   x: Omit<XPostView, "text" | "translation"> | null;
+  /** 类型化内容视图（content kind/quality + community/video/social 专属结构）；article 族为 null。 */
+  content: ContentView | null;
   /** Selected, but its fact's seat is held by this report: marked 同新闻, without a reason of its own. */
   sameEvent?: { id: string; title: string } | null;
   readingMode: "full" | "summary-only";
@@ -222,6 +293,14 @@ export interface StoryFactView {
   firstReportAt: string;
   reportCount: number;
   representative: StoryReportView;
+  /** KPL 事实类型（sources/claims.ts）：match_result / transfer / roster / discipline … */
+  claimType?: string | null;
+  /** 爆料状态（events/rumor.ts）：unverified / multiple_reports / player_hint / club_hint / official_confirmed / official_denied。 */
+  rumorState?: string | null;
+  /** 有确认资格的发布方确认/辟谣的时间。 */
+  confirmedAt?: string | null;
+  /** 事实主源（按 claim-type 权威矩阵选举，官宣到达时自动升级）。 */
+  primarySource?: string | null;
 }
 
 export interface StoryDetail {

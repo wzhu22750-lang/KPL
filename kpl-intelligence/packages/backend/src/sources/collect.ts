@@ -2,6 +2,7 @@
 // A failed fetch never advances the success cursor; the source's health reflects consecutive failures.
 import { sql, type Db } from "../db.ts";
 import { identityKeyFor, upsertMaterial } from "../content/materials.ts";
+import { profileFor } from "../content/extractors/index.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { enqueue, QUEUES, shutdownSignal } from "../jobs/queue.ts";
 import { queueProcessing } from "../jobs/content.ts";
@@ -40,6 +41,15 @@ export function noiseFiltered(c: Candidate, source: SourceRow): boolean {
 function rewriteUrl(c: Candidate, source: SourceRow): Candidate {
   const rw = source.config.itemUrlPrefixRewrite;
   if (rw?.from && rw?.to && c.url.startsWith(rw.from)) return { ...c, url: rw.to + c.url.slice(rw.from.length) };
+  return c;
+}
+
+/** 来源 profile 对候选的形态修正：video 来源的 listing 摘要不是正文（宁可 pending，不冒充）。 */
+function adjustCandidateForProfile(c: Candidate, source: SourceRow): Candidate {
+  const profile = profileFor({ sourceId: source.id, url: c.url, kind: source.kind, config: source.config });
+  if (profile.presentation === "video" && c.bodyText) {
+    return { ...c, excerpt: c.excerpt ?? c.bodyText.slice(0, 2000), bodyText: null, bodyHtml: null, bodyStatus: "pending" };
+  }
   return c;
 }
 
@@ -156,6 +166,9 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
     }
     found = candidates.length;
     candidates = candidates.filter((c) => allowed(c.url, source)).map((c) => rewriteUrl(c, source)).filter((c) => !noiseFiltered(c, source));
+    // Content-type intake：video profile 的 listing 摘要（如 B站 description）不当正文——留作摘要，
+    // 真实结构（视频元数据/简介）交给 extract 队列的 bilibili extractor 去取。
+    candidates = candidates.map((c) => adjustCandidateForProfile(c, source));
     if (source.config.sortByPublishedAt) candidates.sort((a, b) => (b.publishedAt?.getTime() ?? 0) - (a.publishedAt?.getTime() ?? 0));
     // Deduplicate before enrichment and limits: URL aliases must neither buy duplicate detail reads
     // nor crowd other articles out of the window. Use exactly the identity the material will store; a
@@ -199,15 +212,22 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
         summary: !!d.summarySelector && !c.excerpt,
         body: source.participation_mode === "editorial" && !c.bodyText && (!c.bodyStatus || c.bodyStatus === "pending"),
       };
-      if (!need.date && !need.title && !need.summary) continue;
+      // An editorial entry with every listing fact but no body still needs its detail page: skipping
+      // it here left whole sources body-less (the article then waited on the extraction queue alone).
+      if (!need.date && !need.title && !need.summary && !need.body) continue;
       detailUsed += 1;
       try {
         const got = await fetchDetail(c.url, source, need);
         if (got.title) c.title = got.title;
         if (got.summary) c.excerpt = got.summary;
-        // The same Readability path as extraction, using bytes already fetched for the detail rules.
-        // A confirmed body enters through normal material revisions and skips the redundant fetch job.
-        if (got.body) {
+        // Registry 的 canonical 优先：body 字段由 upsert 从它派生，结构化层一起落列。
+        if (got.canonical) {
+          c.canonical = got.canonical;
+          c.bodyStatus = got.canonical.quality.completeness === "failed" ? "unconfirmed" : "ok";
+          if (!c.media?.length && got.canonical.media.length) {
+            c.media = got.canonical.media.map((m) => ({ kind: "image" as const, url: m.url, width: m.width ?? null, height: m.height ?? null, alt: m.alt ?? null }));
+          }
+        } else if (got.body) {
           c.bodyHtml = got.body.html;
           c.bodyText = got.body.text;
           c.bodyStatus = "ok";

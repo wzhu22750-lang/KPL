@@ -104,8 +104,15 @@ async function storyContent(storyId: number, now: Date) {
   const primaryReports = reports.filter((r) => r.role !== "mention");
   const byFact = new Map<number, ReportRow[]>();
   for (const r of primaryReports) byFact.set(r.fact_id, [...(byFact.get(r.fact_id) ?? []), r]);
-  const facts = await sql<{ id: number; public_id: string; title: string }[]>`
-    SELECT id, public_id, title FROM facts WHERE story_id = ${storyId}`;
+  const facts = await sql<{ id: number; public_id: string; title: string; claim_type: string | null; rumor_state: string | null; confirmed_at: Date | null; primary_source_id: string | null }[]>`
+    SELECT f.id, f.public_id, f.title, f.claim_type, f.rumor_state, f.confirmed_at,
+           coalesce(ps.name, src.name) AS primary_source_id
+    FROM facts f
+    LEFT JOIN sources ps ON ps.id = f.primary_source_id
+    LEFT JOIN LATERAL (
+      SELECT s.name FROM fact_articles fa JOIN articles a ON a.id = fa.article_id JOIN sources s ON s.id = a.source_id
+      WHERE fa.fact_id = f.id AND fa.role = 'primary' LIMIT 1) src ON true
+    WHERE f.story_id = ${storyId}`;
   const developments = facts
     .filter((f) => byFact.has(f.id))
     .map((f) => {
@@ -113,7 +120,12 @@ async function storyContent(storyId: number, now: Date) {
       const selected = members.filter((r) => r.selected);
       const rep = pickRepresentative(selected.length ? selected : members);
       const first = members.reduce((m, r) => (r.at < m ? r.at : m), members[0]!.at);
-      return { factId: f.public_id, title: f.title, firstReportAt: first.toISOString(), reportCount: members.length, representative: rep };
+      return {
+        factId: f.public_id, title: f.title, firstReportAt: first.toISOString(), reportCount: members.length, representative: rep,
+        // KPL 溯源：事实类型、爆料状态与主源名，供事件页显示"官方确认/传言"与"原始出处"。
+        claimType: f.claim_type, rumorState: f.rumor_state,
+        confirmedAt: f.confirmed_at ? f.confirmed_at.toISOString() : null, primarySource: f.primary_source_id,
+      };
     })
     .sort((a, b) => Date.parse(b.firstReportAt) - Date.parse(a.firstReportAt));
 

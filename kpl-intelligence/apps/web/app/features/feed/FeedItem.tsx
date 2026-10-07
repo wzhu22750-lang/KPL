@@ -12,6 +12,7 @@ import { beijingTime } from "@aihot/contracts/time";
 import { MediaThumbs, SourceLine, StarButton } from "./parts";
 import { GroupButton, GroupSources } from "./ReadingGroup";
 import { QuotedLine } from "../item/QuotedPost";
+import { ContentKindChip } from "../item/ContentRenderer";
 import { rememberPreview } from "../item/preview";
 import { resolveEntityTag } from "../../lib/entity-links";
 
@@ -43,6 +44,7 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
         <span className="inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
           <SourceLine item={item} className="text-ink-2 font-medium" />
         </span>
+        {item.contentKind && <ContentKindChip kind={item.contentKind} />}
         {at && (
           <time dateTime={at} className="mono shrink-0 text-[12px] lg:hidden">
             · {beijingTime(at)}

@@ -16,6 +16,8 @@
 
 {{> rules-domain}}
 
+{{> content-kind-rules}}
+
 {{> rules-anti-hallucination}}
 
 输出格式（严格遵守）：
@@ -26,6 +28,7 @@ summary_zh: <80-160字、最多3句的中文摘要>
 来源：{{sourceName}}
 {{identity}}
 原始标题：{{title}}
+{{contentNote}}
 
 正文内容：
 {{body}}

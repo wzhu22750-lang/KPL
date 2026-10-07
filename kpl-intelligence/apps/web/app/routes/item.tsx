@@ -18,6 +18,7 @@ import { StoryFollowups } from "../features/item/StoryFollowups";
 import { MediaGallery } from "../features/item/MediaGallery";
 import { QuotedPost } from "../features/item/QuotedPost";
 import { ArticleBody } from "../features/item/ArticleBody";
+import { ContentRenderer, QualityNotice } from "../features/item/ContentRenderer";
 import { ActionsSheet, ReaderToolbar, type ActionRow } from "../features/item/ReaderTools";
 import { OutlineSheet, scrollToAnchor } from "../components/ui/OutlineSheet";
 import { takePreview } from "../features/item/preview";
@@ -283,6 +284,9 @@ function ItemView({ item }: { item: SiteItemDetail }) {
   const summaryOnly = item.readingMode === "summary-only";
   const showOutline = item.outline.length >= 3;
   const originalLabel = isX ? "在 X 查看原推" : "打开原文";
+  // Source-aware rendering: forum/video/social 有专属视图，不走"正文"通道；article 族才显示 body。
+  const typedContent = item.content ?? null;
+  const renderTyped = typedContent && (typedContent.kind === "forum_thread" || typedContent.kind === "video_post" || (typedContent.kind === "social_post" && !isX));
 
   const related = item.relatedStories.filter((s) => s.publicId !== item.story?.publicId);
 
@@ -524,7 +528,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
 
           {summaryOnly && <p className="mt-7 rounded-control bg-bg-sunk px-4 py-3 text-[13.5px] leading-relaxed text-ink-3">应来源方要求，这里只提供摘要与原文入口。完整内容请阅读原文。</p>}
 
-          {(!bodyHtml && !summaryOnly) && (
+          {(!bodyHtml && !summaryOnly && !renderTyped) && (
             <section className="mt-9 border-t border-line pt-6 xl:mt-10">
               <div className="rounded-card border border-line-soft bg-surface p-5 text-center shadow-sm">
                 <div className="mx-auto mb-1.5 text-[15px] font-semibold text-ink">
@@ -548,7 +552,15 @@ function ItemView({ item }: { item: SiteItemDetail }) {
             </section>
           )}
 
-          {item.body && bodyHtml && (
+          {renderTyped && typedContent && (
+            <section className="mt-9 border-t border-line pt-6 xl:mt-10">
+              <ContentRenderer content={typedContent} originalUrl={item.links.original} />
+            </section>
+          )}
+
+          {typedContent && !renderTyped && <QualityNotice content={typedContent} />}
+
+          {item.body && bodyHtml && !renderTyped && (
             <section className="mt-9 border-t border-line pt-4 xl:mt-10">
               <div className="mb-6 flex items-center justify-between gap-3">
                 <span className="text-[12px] text-ink-4">{bodyLabel}</span>

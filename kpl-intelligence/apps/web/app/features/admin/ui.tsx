@@ -20,12 +20,15 @@ export function AdminPage({ title, subtitle, actions, children }: { title: React
   );
 }
 
-export function Card({ title, right, children, className = "", pad = true }: { title?: ReactNode; right?: ReactNode; children: ReactNode; className?: string; pad?: boolean }) {
+export function Card({ title, subtitle, right, children, className = "", pad = true }: { title?: ReactNode; subtitle?: ReactNode; right?: ReactNode; children: ReactNode; className?: string; pad?: boolean }) {
   return (
     <section className={`rounded-panel bg-surface ring-1 ring-line ${className}`}>
       {(title || right) && (
         <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
-          <h2 className="text-[14px] font-semibold text-ink">{title}</h2>
+          <div className="min-w-0">
+            <h2 className="text-[14px] font-semibold text-ink">{title}</h2>
+            {subtitle && <p className="mt-0.5 text-[12px] leading-relaxed text-ink-4">{subtitle}</p>}
+          </div>
           {right && <div className="flex items-center gap-2 text-[12.5px] text-ink-3">{right}</div>}
         </div>
       )}

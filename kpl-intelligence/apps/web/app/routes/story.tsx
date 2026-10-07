@@ -51,7 +51,37 @@ const STATUS = {
 const SECTIONS = { overview: "event-overview", reports: "event-reports", heat: "event-heat" } as const;
 type SectionKey = keyof typeof SECTIONS;
 
+/** KPL 事实类型（后端 sources/claims.ts）的显示名：事件进展上一眼看出"这件事属于哪类"。 */
+const CLAIM_TYPE_LABEL: Record<string, string> = {
+  match_result: "赛果", schedule: "赛程", roster: "名单", transfer: "转会", rumor: "传闻", retirement: "退役",
+  injury: "伤病", starting_lineup: "首发", rule_change: "规则", discipline: "纪律", tournament: "赛事",
+  standings: "积分", milestone: "里程碑", interview: "采访", statement: "声明", club_news: "俱乐部动态",
+  player_news: "选手动态", analysis: "分析", community_discussion: "社区讨论", ticketing: "票务",
+  venue: "场馆", commercial: "商务", entertainment: "娱乐",
+};
+
 const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+/**
+ * 爆料状态徽章（events/rumor.ts）：事实与传闻在界面上必须一眼可分——
+ * 官方确认/辟谣是绿/红，其余线索与未经证实是中性/警示色。
+ */
+function RumorBadge({ state, confirmedAt }: { state: string; confirmedAt: string | null }) {
+  const view: Record<string, { label: string; tone: string }> = {
+    official_confirmed: { label: "官方确认", tone: "bg-ok-soft text-ok-ink" },
+    official_denied: { label: "官方辟谣", tone: "bg-hot-soft text-hot" },
+    club_hint: { label: "俱乐部线索·待官宣", tone: "bg-amber-soft text-amber-ink" },
+    player_hint: { label: "选手线索·待确认", tone: "bg-amber-soft text-amber-ink" },
+    multiple_reports: { label: "多方报道·未经证实", tone: "bg-amber-soft text-amber-ink" },
+    unverified: { label: "未经证实", tone: "bg-surface-2 text-ink-3" },
+  };
+  const v = view[state] ?? { label: state, tone: "bg-surface-2 text-ink-3" };
+  return (
+    <span className={`rounded-control px-1.5 py-0.5 text-[11.5px] font-medium ${v.tone}`} title={confirmedAt ? `定案时间 ${monthDayTime(confirmedAt)}` : undefined}>
+      {v.label}
+    </span>
+  );
+}
 
 /** A main-column card: 17px title, 24px padding. */
 function Panel({ id, title, sub, right, children, className = "" }: { id?: string; title: ReactNode; sub?: ReactNode; right?: ReactNode; children: ReactNode; className?: string }) {
@@ -308,6 +338,15 @@ export default function StoryPage() {
                     <Link viewTransition to={`/items/${d.representative.id}`} className="mt-0.5 block text-[15px] font-semibold leading-snug text-ink transition-colors hover:text-accent">
                       {d.title}
                     </Link>
+                    {(d.claimType || d.rumorState || d.primarySource) && (
+                      <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                        {d.claimType && CLAIM_TYPE_LABEL[d.claimType] && (
+                          <span className="rounded-control bg-surface-2 px-1.5 py-0.5 text-[11.5px] font-medium text-ink-3">{CLAIM_TYPE_LABEL[d.claimType]}</span>
+                        )}
+                        {d.rumorState && <RumorBadge state={d.rumorState} confirmedAt={d.confirmedAt ?? null} />}
+                        {d.primarySource && <span className="rounded-control bg-surface-2 px-1.5 py-0.5 text-[11.5px] text-ink-3">主源：{d.primarySource}</span>}
+                      </div>
+                    )}
                     <div className="mt-0.5 truncate text-[12.5px] text-ink-4">
                       {d.representative.source.name}：{d.representative.title}
                     </div>

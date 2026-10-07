@@ -139,8 +139,8 @@ B站没有免鉴权的开放接口，但站内搜索接口可以直接用，`jso
 ```
 
 - `summaryPaths` 按顺序取第一个非空：优先视频简介，简介为空时退回标签（标签含战队与赛事名，对实体关联有用），`tag` 几乎不会为空。
-- **`summaryIsBody: true` 应当保留**。视频简介就是这条内容能拿到的全部文本；不设它，条目会带着 `pending` 的正文状态进入正文抓取，对每个视频先直连抓一次、失败再退回 Jina（需要 `JINA_API_KEY`，且视频页的发布时间常与 `pubdate` 不一致）。设了它正文状态直接是 `ok`，不产生付费调用。
-- 代价是正文约等于标题（官方赛事视频的简介通常就是标题），分析只能依据标题。要更完整的正文，配好 `JINA_API_KEY` 后再去掉 `summaryIsBody`。
+- **`summaryIsBody: true` 可以保留**：列表里的 `description` 会作为摘要存档，不再冒充正文（内容智能管道按来源形态识别出这是视频，正文状态保持 `pending`，由 `bilibili` extractor 去取真正的视频元数据）。视频简介在网页上标注为「视频简介」，AI 提示明确「简介不是完整视频内容」，禁止据此推断视频里说了什么。
+- 简介通常很短，质量评估因此给出 `summary_only`——这是如实表达，不是抓取失败。要更完整的正文只能靠已有字幕/文案，页面上会标「AI 整理」。
 - 搜索接口单次最多 20 条、没有游标，`json_list` 每轮全量重扫并按 `bvid` 判重；`order=pubdate` 下新视频进入窗口就会被发现。赛事密集期可以按不同关键词多加几个信源扩大窗口。
 - 社区向的信源建议配 `participation_mode: hot_signal`，只作热度证据、不进精选。
 
@@ -257,6 +257,26 @@ http.createServer((req, res) => {
 每个公众号按它的抓取间隔检查一次（查列表按次计费），新文章的正文一并取回。
 
 需要在后端 `.env` 配置 `DAJIALA_KEY`，`ghid` 换成公众号原始 ID。配置字段用上面的 `ghid` / `nickname`，不要写成 `biz` / `name`。当前 `mp_account` 不支持“预览抓取”；`external` 也不支持主动试抓，按下方推送接口接入。
+
+## 内容形态（Content Profile）
+
+信源抓到的链接不是同一种东西：公众号长文、媒体稿、论坛帖、视频、社交动态的正文结构完全不同。内容智能管道按**来源 + 页面结构**判断它是什么，再选对应的抽取器，而不是把一切都交给 Readability：
+
+```
+发现链接 → SourceContentProfile → Extractor（专属 → 家族 → 通用文章 → Readability）→ CanonicalContent → 质量评估 → AI 理解 → 来源感知的网页呈现
+```
+
+**内置 profile**（按域名自动识别，无需配置）：`mp.weixin.qq.com` → 公众号文章；`bbs.hupu.com` → 社区帖；`bilibili.com` → 视频；`x.com` → 社交动态。其余来源默认按文章语义处理，页面自带 JSON-LD `articleBody`、语义 DOM 评分、Readability 依次兜底，Jina 是最后手段且如实标注来源（`body_provenance`）。
+
+**新增一个来源通常什么都不用配**：只要域名是上面四种之一，Profile 自动命中；普通新闻站走通用文章抽取器。需要更精确时，在 `config` 里加：
+
+- `contentProfile`：直接指定内置 profile id（`wechat-mp`、`hupu-forum`、`bilibili`、`x-social`）。
+- `contentFamily`：声明家族（`publisher` / `official` / `forum` / `social` / `video` / `blog` / `aggregator` / `unknown`）。非虎扑的其他论坛写 `forum`，就复用通用 thread 结构与高价值评论排序，不必等专用 adapter。
+- `threadSelectors`（论坛专用，可选）：`post` / `author` / `content` / `time` / `likes` / `floor` / `quote` / `title`，覆盖通用帖子选择器。省略时用内置的一套（`[class*='post']` 等）。
+
+**不同形态的呈现**：文章族走正文（`body_html`）；论坛帖分层展示「原帖 / 楼主补充 / 社区讨论焦点（AI 整理）/ 高亮讨论」，评论绝不混入正文；视频展示封面、时长与「视频简介」；社交动态原样呈现文本与引用。正文完整性如实标注（`full` / `partial` / `summary_only` / `failed`），不完整时页面提示「正文提取可能不完整」并给原文入口。
+
+**质量评估按形态分档**：新闻 350 字才算完整、官方公告 120 字即可、社交帖 30 字即 100%、论坛主帖 80 字加丰富评论区就是好内容。评分与完整度、抽取器、版本、fallback、正文来源（`content_extraction_meta`）都落库，后台「内容链路」页可见，可用 `scripts/re-extract-content.ts` 按来源/类型/质量分批量重跑。
 
 ## 分级、参与方式与全文
 

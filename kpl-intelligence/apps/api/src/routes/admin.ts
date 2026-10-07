@@ -17,6 +17,7 @@ import { resolveDelivery } from "@aihot/backend/notify/deliver";
 import { releaseReceipt } from "@aihot/backend/operations/recover";
 import { replaceContactQr, setTargetEnabled, settingsOverview, updateBudget } from "@aihot/backend/admin/settings";
 import { createSource, fetchNow, listSources, previewSource, previewStoredSource, sourceDetail, updateSource } from "@aihot/backend/admin/sources";
+import { computeCoverage } from "@aihot/backend/kb/discover";
 import { loadAdminFunnel } from "@aihot/backend/admin/dashboard";
 import { sendProblem } from "../http/respond.ts";
 import { adminHandler } from "./admin-auth.ts";
@@ -53,6 +54,9 @@ export function registerAdmin(app: FastifyInstance) {
   }));
   app.post("/api/admin/sources/:id/preview", adminHandler(async (req, reply) => orNotFound(req, reply, await previewStoredSource(param(req, "id")))));
   app.post("/api/admin/sources/:id/fetch", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await fetchNow(param(req, "id"), actorOf(admin)))));
+
+  // KPL 信源覆盖率：联盟/战队覆盖、first-party 事件率、社区入口健康、发现队列与告警（kb/discover.ts）。
+  app.get("/api/admin/coverage", adminHandler(async () => computeCoverage()));
 
   // Content and events
   app.get("/api/admin/content", adminHandler(async (req) => ({ rows: await searchContent(q(req).q ?? "") })));

@@ -19,6 +19,8 @@ export interface AnalyzeInputArticle {
   excerpt: string | null;
   /** pending: no body fetched yet; ok; unconfirmed: fetching failed; none. */
   bodyStatus?: string;
+  /** 内容类型（CanonicalContent 的 kind）：分析步骤按它切换理解方式。 */
+  contentKind?: string | null;
   xPost: Record<string, any> | null;
   media: Array<Record<string, any>>;
   source: {
@@ -28,6 +30,8 @@ export interface AnalyzeInputArticle {
     firstParty: boolean;
     tags?: string[];
     ownerEntityId?: string | null;
+    /** 发布方主体类型（league/club/community…）：事实类型分类区分舆情与事实用（sources/claims.ts）。 */
+    ownerType?: string | null;
     /** The source asks for the article page (fetchPublicContent, detail pages, web listings). */
     fetchesBody?: boolean;
   };
@@ -48,12 +52,12 @@ export function withXArticle(xPost: Record<string, any> | null, article: { title
 export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputArticle | null> {
   const [row] = await sql<{
     id: string; revision: number; title: string; url: string; author: string | null; published_at: Date | null; discovered_at: Date;
-    body_text: string | null; excerpt: string | null; body_status: string; x_post: Record<string, any> | null; x_article: { title?: string; text?: string } | null;
-    media: Array<Record<string, any>>; source_name: string; source_kind: string; tier: string; first_party: boolean; source_tags: string[]; owner_entity_id: string | null;
+    body_text: string | null; excerpt: string | null; body_status: string; content_kind: string | null; x_post: Record<string, any> | null; x_article: { title?: string; text?: string } | null;
+    media: Array<Record<string, any>>; source_name: string; source_kind: string; tier: string; first_party: boolean; source_tags: string[]; owner_entity_id: string | null; owner_type: string | null;
     config: Record<string, any>; translation_zh: string | null;
   }[]>`
-    SELECT a.id, a.revision, a.title, a.url, a.author, a.published_at, a.discovered_at, a.body_text, a.excerpt, a.body_status, a.x_post, a.x_article, a.media,
-           s.name AS source_name, s.kind AS source_kind, s.tier, s.first_party, s.tags AS source_tags, s.owner_entity_id, s.config,
+    SELECT a.id, a.revision, a.title, a.url, a.author, a.published_at, a.discovered_at, a.body_text, a.excerpt, a.body_status, a.content_kind, a.x_post, a.x_article, a.media,
+           s.name AS source_name, s.kind AS source_kind, s.tier, s.first_party, s.tags AS source_tags, s.owner_entity_id, s.owner_type, s.config,
            tr.body_text AS translation_zh
     FROM articles a JOIN sources s ON s.id = a.source_id
     LEFT JOIN translations tr ON tr.article_id = a.id AND tr.lang = 'zh' AND tr.revision >= a.revision
@@ -61,9 +65,9 @@ export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputA
   if (!row) return null;
   return {
     id: row.id, revision: row.revision, title: row.title, url: row.url, author: row.author, publishedAt: row.published_at, discoveredAt: row.discovered_at,
-    bodyText: row.body_text, excerpt: row.excerpt, bodyStatus: row.body_status, xPost: withXArticle(row.x_post, row.x_article), media: row.media,
+    bodyText: row.body_text, excerpt: row.excerpt, bodyStatus: row.body_status, contentKind: row.content_kind, xPost: withXArticle(row.x_post, row.x_article), media: row.media,
     source: {
-      name: row.source_name, kind: row.source_kind, tier: row.tier, firstParty: row.tier === "T1", tags: row.source_tags, ownerEntityId: row.owner_entity_id,
+      name: row.source_name, kind: row.source_kind, tier: row.tier, firstParty: row.tier === "T1", tags: row.source_tags, ownerEntityId: row.owner_entity_id, ownerType: row.owner_type,
       fetchesBody: row.config?.fetchPublicContent === true || !!row.config?.detail || row.source_kind === "web_list",
     },
     translationZh: row.translation_zh,
@@ -72,6 +76,18 @@ export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputA
 
 const KIND_LABEL: Record<string, string> = {
   rss: "RSS", web_list: "网页", json_list: "网页接口", x_search: "X 帖子", mp_account: "微信公众号", external: "外部上报",
+};
+
+/** 内容类型的材料标注：分析步骤按它选择理解方式（industry/prompts/content-kind-rules.md）。 */
+export const CONTENT_KIND_LABELS: Record<string, string> = {
+  news: "报道", article: "文章", official_announcement: "官方公告", forum_thread: "社区论坛帖子", social_post: "短社交媒体动态", video_post: "视频内容", interview: "采访/专访", analysis: "战术分析/赛后复盘", unknown: "未确定类型",
+};
+
+const contentKindLine = (a: AnalyzeInputArticle): string | null => {
+  const kind = a.contentKind ?? null;
+  if (!kind) return null;
+  const label = CONTENT_KIND_LABELS[kind] ?? kind;
+  return `【内容类型】${label}`;
 };
 
 /** The material as the structure step reads it (source facts, text, link). */
@@ -85,6 +101,8 @@ export function buildMaterial(a: AnalyzeInputArticle): string {
   lines.push(`类型：${KIND_LABEL[a.source.kind] ?? a.source.kind}；分级：${a.source.tier}；一手来源：${a.source.firstParty ? "是" : "否"}`);
   lines.push("</source>");
   lines.push("<material>");
+  const kindLine = contentKindLine(a);
+  if (kindLine) lines.push(kindLine);
   if (a.publishedAt) lines.push(`发布时间：${beijingDate(a.publishedAt)} ${beijingTime(a.publishedAt)}（北京时间）`);
   if (a.author) lines.push(`作者：${a.author}`);
   if (a.xPost) {
@@ -94,8 +112,9 @@ export function buildMaterial(a: AnalyzeInputArticle): string {
     if (a.translationZh) lines.push(`帖子中文译文：\n${truncate(a.translationZh, 4000)}`);
   } else {
     lines.push(`标题：${collapseWhitespace(a.title)}`);
+    const isVideo = a.contentKind === "video_post";
     const original = a.bodyText ?? a.excerpt ?? "";
-    lines.push(original ? `正文：\n${body(original)}` : "正文：（无）");
+    lines.push(original ? (isVideo ? `视频简介（不是完整视频内容）：\n${body(original)}` : `正文：\n${body(original)}`) : "正文：（无）");
     if (a.translationZh && !a.bodyText) lines.push(`正文中文译文：\n${truncate(a.translationZh, 5000)}`);
   }
   lines.push(`原文链接：${a.url}`);

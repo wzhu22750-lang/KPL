@@ -2,6 +2,8 @@
 
 {{> safety}}
 
+{{> content-kind-rules}}
+
 一、类别 category（{{categoryCount}}选一）
 按当前材料的主要信息分一类：读者主要得到的是哪项赛果、变化、认知或判断，而不是文中提到了谁。分类与标签必须描述同一个重点。
 {{categoryGuide}}

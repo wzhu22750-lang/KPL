@@ -13,6 +13,7 @@ import { CATEGORIES } from "@aihot/industry/taxonomy";
 import { SELECTION } from "@aihot/industry/selection";
 import { sql } from "../db.ts";
 import { recordArticleEntityMentions } from "../kb/entity-mentions.ts";
+import { classifyClaim } from "../sources/claims.ts";
 import { chatJson, MODELS, ModelOutputError, type ContentPart } from "../providers/llm.ts";
 import { completeReceipt, ProviderRejectedError, ReceiptUnknownError } from "../providers/receipts.ts";
 import { collapseWhitespace } from "../lib/text.ts";
@@ -523,6 +524,23 @@ export async function analyzeArticle(articleId: string, opts: StepOpts = {}): Pr
     return { analysisId: row!.id, stale };
   });
   const reused = run.prefilter.reused && (run.scores?.reused ?? true) && (w?.reused ?? true) && (run.structure?.reused ?? true);
+  // KPL 事实类型与转载标记（sources/claims.ts）：规则层细分，无模型调用。事件主源选举、rumor 状态机
+  // 与佐证独立性都读 articles.claim_type/origin_type；分类失败只留空，不影响已提交的分析。
+  if (!committed.stale) {
+    try {
+      const claim = classifyClaim({
+        title: out.titleZh ?? input.title,
+        excerpt: [out.summaryZh, input.excerpt, input.bodyText?.slice(0, 2000)].filter(Boolean).join("\n") || null,
+        category: out.category,
+        tags: out.tags,
+        community: input.source.ownerType === "community",
+      });
+      await sql`UPDATE articles SET claim_type = ${claim.claimType}, origin_type = ${claim.originType}, origin_entity = ${claim.originEntity}
+                WHERE id = ${articleId} AND revision = ${input.revision}`;
+    } catch (error) {
+      console.warn(`claim classification failed for ${articleId}:`, error);
+    }
+  }
   // 新闻↔实体桥：分析完成后把标题/摘要/正文里提到的战队、选手、英雄写入 entity_mentions。
   // 抽取是纯数据库匹配，失败只影响“相关新闻”展示，不影响已提交的分析结果。
   try {

@@ -9,6 +9,7 @@ import { translatePending } from "@aihot/backend/editorial/translate";
 import { adaptIntervals, scheduleDueSources } from "@aihot/backend/sources/collect";
 import { scheduleMpReconcile } from "@aihot/backend/sources/mp";
 import { refreshSourceIcons } from "@aihot/backend/sources/icons";
+import { refreshDiscoveryQueue, seedTeamAccounts } from "@aihot/backend/kb/discover";
 import { computeHotRanking, snapshotHeat } from "@aihot/backend/events/hot";
 import { linkRelatedStories } from "@aihot/backend/events/consolidate";
 import { composeDueReports } from "@aihot/backend/reports/compose";
@@ -31,6 +32,13 @@ interface Scheduled {
 }
 
 const collecting = process.env.COLLECT_ENABLED === "true";
+
+/** 每天的战队发现：已验证账号档案幂等导入 + 活跃战队缺口入发现队列（覆盖率看板读同一批表）。 */
+async function discoverTeamsDaily() {
+  const accounts = await seedTeamAccounts();
+  const queue = await refreshDiscoveryQueue();
+  return { accounts, queue };
+}
 
 export const SCHEDULES: Scheduled[] = [
   { name: "content.sweep", cron: "*/5 * * * *", run: sweepUnprocessed },
@@ -67,6 +75,8 @@ export const SCHEDULES: Scheduled[] = [
         { name: "sources.adapt-intervals", cron: "20 4 * * *", run: adaptIntervals },
         // WeChat official accounts (paid), each once per its interval.
         { name: "sources.mp-reconcile", cron: "*/15 * * * *", run: () => scheduleMpReconcile() },
+        // KPL 战队发现与账号缺口队列：活跃战队清单跟着官方赛事数据滚动，缺口天天对齐（kb/discover.ts）。
+        { name: "sources.discover-teams", cron: "30 4 * * *", missed: "once" as const, run: () => discoverTeamsDaily() },
       ]
     : []),
   // Codex reset monitor: every ten minutes as the pages state, and the last 48 hours read again once a day;

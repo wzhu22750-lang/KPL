@@ -29,6 +29,10 @@ __pycache__/
 .env
 .env.*
 !.env.example
+!.env.production.example
+
+# Agent temp reports
+.temp_reports/
 
 # 临时与运行产物
 discovered_urls.json

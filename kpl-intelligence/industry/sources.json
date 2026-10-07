@@ -1,5 +1,5 @@
 {
-  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖，之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型，Phase 3 启用）；新闻类信源按下面格式在后台逐个添加并先用“预览抓取”验证。字段说明见 docs/customize.md 与 docs/sources.md。",
+  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts，ON CONFLICT 会覆盖同 id 行），之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型）。owner_type 标注发布方主体（league/club/player/coach/media/community），事件主源选举与 rumor 确认门槛按 sources/authority.ts 的 claim-type 矩阵计算。俱乐部公众号均用 Dajiala post_condition 按昵称解析出的 ghid（scripts/resolve-mp-ghids.ts 可复核）；未能验证的账号进 SOURCE_CANDIDATES.md，不凭名字猜 ID。",
   "sources": [
     {
       "id": "mp-kpl-official",
@@ -10,6 +10,7 @@
         "nickname": "KPL王者荣耀职业联赛"
       },
       "tier": "T1",
+      "owner_type": "league",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 60,
@@ -30,6 +31,7 @@
         "summaryIsBody": false
       },
       "tier": "T1",
+      "owner_type": "league",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -43,34 +45,35 @@
     },
     {
       "id": "bili-kpl-official",
-      "name": "哔哩哔哩王者荣耀赛事（B站官方账号）",
+      "name": "哔哩哔哩王者荣耀赛事（B站官方赛事账号）",
       "kind": "json_list",
       "config": {
-        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=哔哩哔哩王者荣耀赛事&order=pubdate&page=1",
+        "url": "https://api.bilibili.com/x/series/recArchivesByKeywords?mid=392836434&keywords=&ps=30&pn=1",
         "mode": "json_api",
         "headers": {
-          "Referer": "https://www.bilibili.com/"
+          "Referer": "https://space.bilibili.com/392836434"
         },
-        "itemsPath": "data.result",
+        "itemsPath": "data.archives",
         "titlePaths": [
           "title"
         ],
         "urlTemplate": "https://www.bilibili.com/video/{bvid}",
         "summaryPaths": [
-          "description",
-          "tag"
+          "description"
         ],
         "summaryIsBody": true,
-        "authorPaths": [
-          "author"
-        ],
         "publishedAtPath": "pubdate",
         "publishedAtUnit": "epoch_s",
         "externalIdPath": "bvid",
+        "requireString": {
+          "path": "upMid",
+          "equals": "392836434"
+        },
         "publisherRole": "organization",
         "sortByPublishedAt": true
       },
-      "tier": "T1_5",
+      "tier": "T1",
+      "owner_type": "league",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 60,
@@ -90,6 +93,7 @@
         "battlesPerRun": 12
       },
       "tier": "T1",
+      "owner_type": "league",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -130,14 +134,39 @@
         "sortByPublishedAt": true,
         "ingestNoiseFilter": {
           "keepIfMatches": [
-            "复盘", "深度", "战术", "赛后", "分析", "bp", "评分", "打法", "教学", "转会", "大名单", "纪录片", "专访", "体系"
+            "复盘",
+            "深度",
+            "战术",
+            "赛后",
+            "分析",
+            "bp",
+            "评分",
+            "打法",
+            "教学",
+            "转会",
+            "大名单",
+            "纪录片",
+            "专访",
+            "体系"
           ],
           "dropMarkersTitleOnly": [
-            "红包", "抽奖", "福利", "领奖", "门票", "cos", "配音", "日常", "集锦", "搞笑", "整活", "饭圈"
+            "红包",
+            "抽奖",
+            "福利",
+            "领奖",
+            "门票",
+            "cos",
+            "配音",
+            "日常",
+            "集锦",
+            "搞笑",
+            "整活",
+            "饭圈"
           ]
         }
       },
       "tier": "T2",
+      "owner_type": "community",
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
@@ -150,13 +179,14 @@
     },
     {
       "id": "mp-ag",
-      "name": "成都AG超玩会（俱乐部官方公众号）",
+      "name": "成都AG超玩会（俱乐部公众号，sogou 回退通道）",
       "kind": "rss",
       "config": {
         "feedUrl": "wechat://成都AG超玩会",
         "summaryIsBody": false
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "ag",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -173,12 +203,13 @@
     {
       "id": "mp-wolves",
       "name": "重庆狼队（俱乐部官方公众号）",
-      "kind": "rss",
+      "kind": "mp_account",
       "config": {
-        "feedUrl": "wechat://重庆狼队",
-        "summaryIsBody": false
+        "ghid": "gh_8389c476fb4f",
+        "nickname": "狼队电子竞技俱乐部"
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "wolves",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -194,13 +225,14 @@
     },
     {
       "id": "mp-estar",
-      "name": "武汉eStarPro（俱乐部官方公众号）",
+      "name": "武汉eStarPro（俱乐部公众号，sogou 回退通道）",
       "kind": "rss",
       "config": {
         "feedUrl": "wechat://武汉eStarPro",
         "summaryIsBody": false
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "estar",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -215,20 +247,21 @@
       "enabled": true
     },
     {
-      "id": "mp-wb",
-      "name": "北京WB（俱乐部官方公众号）",
-      "kind": "rss",
+      "id": "mp-dyg",
+      "name": "深圳DYG（俱乐部官方公众号）",
+      "kind": "mp_account",
       "config": {
-        "feedUrl": "wechat://北京WB王者荣耀分部",
-        "summaryIsBody": false
+        "ghid": "gh_cd126a641e8e",
+        "nickname": "DYG电子竞技俱乐部"
       },
       "tier": "T1_5",
-      "owner_entity_id": "wb",
+      "owner_type": "club",
+      "owner_entity_id": "dyg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
       "tags": [
         "战队",
-        "WB",
+        "DYG",
         "官方",
         "微信公众号"
       ],
@@ -238,19 +271,89 @@
     },
     {
       "id": "mp-hero",
-      "name": "南京Hero久竞（俱乐部官方公众号）",
-      "kind": "rss",
+      "name": "南通Hero久竞（俱乐部官方公众号）",
+      "kind": "mp_account",
       "config": {
-        "feedUrl": "wechat://南京Hero久竞俱乐部",
-        "summaryIsBody": false
+        "ghid": "gh_5d7654622d57",
+        "nickname": "Hero久竞"
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "hero",
       "participation_mode": "editorial",
       "interval_minutes": 120,
       "tags": [
         "战队",
         "Hero",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-edgm",
+      "name": "上海EDG.M（待验证账号）——未验证，暂不启用（见 SOURCE_CANDIDATES.md）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://EDG电子竞技俱乐部",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "edgm",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "EDG.M",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-jdg",
+      "name": "北京JDG（待验证账号）——未验证，暂不启用（见 SOURCE_CANDIDATES.md）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://京东电竞",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "jdg",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "JDG",
+        "官方",
+        "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-wb",
+      "name": "北京WB（俱乐部公众号，sogou 回退通道）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "wechat://北京WB王者荣耀分部",
+        "summaryIsBody": false
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "wb",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "战队",
+        "WB",
         "官方",
         "微信公众号"
       ],
@@ -267,6 +370,7 @@
         "summaryIsBody": false
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "ttg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -289,6 +393,7 @@
         "summaryIsBody": false
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "ksg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -311,6 +416,7 @@
         "summaryIsBody": false
       },
       "tier": "T1_5",
+      "owner_type": "club",
       "owner_entity_id": "drg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -319,6 +425,138 @@
         "DRG",
         "官方",
         "微信公众号"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "bili-wb-club",
+      "name": "北京WB王者荣耀分部（B站官方账号）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/series/recArchivesByKeywords?mid=688039490&keywords=&ps=30&pn=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://space.bilibili.com/688039490"
+        },
+        "itemsPath": "data.archives",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description"
+        ],
+        "summaryIsBody": true,
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "requireString": {
+          "path": "upMid",
+          "equals": "688039490"
+        },
+        "publisherRole": "organization",
+        "sortByPublishedAt": true
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "wb",
+      "participation_mode": "editorial",
+      "interval_minutes": 125,
+      "tags": [
+        "战队",
+        "WB",
+        "官方",
+        "B站"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "bili-hero-club",
+      "name": "南京Hero久竞（B站官方账号）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/series/recArchivesByKeywords?mid=319475099&keywords=&ps=30&pn=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://space.bilibili.com/319475099"
+        },
+        "itemsPath": "data.archives",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description"
+        ],
+        "summaryIsBody": true,
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "requireString": {
+          "path": "upMid",
+          "equals": "319475099"
+        },
+        "publisherRole": "organization",
+        "sortByPublishedAt": true
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "hero",
+      "participation_mode": "editorial",
+      "interval_minutes": 130,
+      "tags": [
+        "战队",
+        "Hero",
+        "官方",
+        "B站"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "bili-drg-club",
+      "name": "佛山DRG电子竞技俱乐部（B站官方账号）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/series/recArchivesByKeywords?mid=189929058&keywords=&ps=30&pn=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://space.bilibili.com/189929058"
+        },
+        "itemsPath": "data.archives",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description"
+        ],
+        "summaryIsBody": true,
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "requireString": {
+          "path": "upMid",
+          "equals": "189929058"
+        },
+        "publisherRole": "organization",
+        "sortByPublishedAt": true
+      },
+      "tier": "T1_5",
+      "owner_type": "club",
+      "owner_entity_id": "drg",
+      "participation_mode": "editorial",
+      "interval_minutes": 135,
+      "tags": [
+        "战队",
+        "DRG",
+        "官方",
+        "B站"
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
@@ -351,7 +589,8 @@
         }
       },
       "tier": "T2",
-      "participation_mode": "editorial",
+      "owner_type": "community",
+      "participation_mode": "hot_signal",
       "interval_minutes": 30,
       "tags": [
         "社区",

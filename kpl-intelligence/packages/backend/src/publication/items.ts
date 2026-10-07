@@ -1,7 +1,7 @@
 // Public read layer, item level. Every exit (site API, v1, RSS, MCP, sitemap) reads
 // items through these columns and views; which rows are public is decided by scope.ts.
 import type { CategoryKey, ChannelKey } from "@aihot/contracts/taxonomy";
-import type { FeedItemSummary, ItemSummary, MediaView, XPostView } from "@aihot/contracts/site";
+import type { ContentView, DiscussionPostView, FeedItemSummary, ItemSummary, MediaView, SiteContentKind, XPostView } from "@aihot/contracts/site";
 import { sql, type Db } from "../db.ts";
 import { proxiedImage, proxiedImageSet } from "../media/imgproxy.ts";
 import { displayTags, publicSourceName } from "./rules.ts";
@@ -34,6 +34,8 @@ export interface ItemRow {
   x_post: Record<string, any> | null;
   author: string | null;
   language: string | null;
+  /** 内容类型（CanonicalContent 的 kind）：article 族以外的形态有专属视图。 */
+  content_kind: string | null;
   story_public_id: string | null;
   story_title: string | null;
   zh_text: string | null;
@@ -46,7 +48,7 @@ export const ITEM_COLUMNS = sql`
   p.article_id AS id, p.title, p.original_title, p.summary, p.reason, p.category, p.tags, p.score,
   p.selected, p.seat, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.visibility,
   p.body_mode, p.indexable, p.fact_id, s.name AS source_name, s.participation_mode AS source_mode,
-  a.x_post, a.author, a.language,
+  a.x_post, a.author, a.language, a.content_kind,
   st.public_id::text AS story_public_id, st.title AS story_title,
   CASE WHEN p.channel = 'x' THEN tr.body_text END AS zh_text, qt.text_zh AS quoted_zh`;
 
@@ -158,6 +160,7 @@ export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
     id: item.id, title: item.title, summary: item.summary, reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,
     category: item.category, tags: item.tags, score: item.score, selected: item.selected, channel: item.channel,
+    contentKind: contentKindOf(row),
     x: x ? {
       authorName: x.authorName, handle: x.handle, avatarUrl: x.avatarUrl,
       ...(x.avatarSrcSet ? { avatarSrcSet: x.avatarSrcSet } : {}), media: x.media,
@@ -191,4 +194,89 @@ export async function seatHolders(rows: ItemRow[], now: Date, db: Db = sql): Pro
     WHERE p.fact_id IN ${db([...new Set(yielding.map((r) => r.fact_id!))])} AND ${seatedCondition(now)}`;
   const byFact = new Map(holders.map((h) => [Number(h.fact_id), { id: h.id, title: h.title }]));
   return new Map(yielding.flatMap((r) => (byFact.has(Number(r.fact_id)) ? [[r.id, byFact.get(Number(r.fact_id))!] as const] : [])));
+}
+
+// ---------------------------------------------------------------------------
+// Source-aware content views：canonical 行到站内 content 视图的投影
+// ---------------------------------------------------------------------------
+
+/** 行的内容类型：X 帖子恒为 social_post，其余取 content_kind。 */
+export function contentKindOf(row: Pick<ItemRow, "channel" | "content_kind">): SiteContentKind | null {
+  if (row.channel === "x") return "social_post";
+  return (row.content_kind as SiteContentKind | null) ?? null;
+}
+
+const ARTICLE_KINDS = new Set<string>(["article", "news", "official_announcement", "interview", "analysis", "unknown"]);
+
+const postView = (p: Record<string, any>): DiscussionPostView => ({
+  author: p.author?.name ?? null,
+  avatarUrl: proxiedImage(p.author?.avatarUrl, "avatar"),
+  text: String(p.text ?? ""),
+  publishedAt: p.publishedAt ?? null,
+  likes: typeof p.likes === "number" ? p.likes : null,
+  floor: typeof p.floor === "number" ? p.floor : null,
+  isOriginalAuthor: !!p.isOriginalAuthor,
+  quote: p.quote?.text ? { author: p.quote.author ?? null, text: String(p.quote.text) } : null,
+});
+
+/**
+ * canonical_content → ContentView：forum/video/social 各有专属结构（原话全部来自真实抓取）；
+ * article 族只在正文不完整时携带 quality（完整文章走原有 body 通道，content 为 null）。
+ */
+export function toContentView(row: ItemRow & {
+  canonical_content?: Record<string, any> | null;
+  content_quality_score?: number | null;
+  content_completeness?: string | null;
+}): ContentView | null {
+  const canonical = row.canonical_content ?? null;
+  const kind = canonical?.kind ?? contentKindOf(row);
+  if (!kind) return null;
+
+  const quality = {
+    score: canonical?.quality?.score ?? row.content_quality_score ?? null,
+    completeness: canonical?.quality?.completeness ?? (row.content_completeness as ContentView["quality"]["completeness"]) ?? null,
+    warnings: Array.isArray(canonical?.quality?.warnings) ? canonical.quality.warnings : [],
+  };
+
+  // article 族：正文完整时不需要专属视图；不完整时如实携带（前端显示"正文提取可能不完整"）。
+  if (ARTICLE_KINDS.has(kind)) {
+    if (quality.completeness === null || quality.completeness === "full") return null;
+    return { kind, quality };
+  }
+
+  const content: ContentView = { kind, quality, community: null, video: null, social: null, gallery: null };
+  const discussion = canonical?.discussion;
+  if (kind === "forum_thread" && discussion?.originalPost) {
+    content.community = {
+      originalPost: postView(discussion.originalPost),
+      authorFollowups: (discussion.authorFollowups ?? []).map(postView),
+      highlightedReplies: (discussion.highlightedReplies ?? []).map(postView),
+      totalReplies: discussion.totalReplies ?? null,
+      communitySummary: discussion.communitySummary ?? null,
+    };
+    content.gallery = ((canonical?.media ?? []) as Array<Record<string, any>>)
+      .map((m) => mediaView({ kind: "image", ...m }, "full", true))
+      .filter((m): m is MediaView => m !== null);
+  }
+  if (kind === "video_post" && canonical?.video) {
+    const coverUrl = proxiedImage(canonical.video.cover, "full");
+    content.video = {
+      description: canonical.video.description ?? null,
+      cover: coverUrl ? { url: coverUrl, width: null, height: null } : null,
+      durationSeconds: typeof canonical.video.durationSeconds === "number" ? canonical.video.durationSeconds : null,
+      views: canonical.engagement?.views ?? null,
+      likes: canonical.engagement?.likes ?? null,
+      comments: canonical.engagement?.comments ?? null,
+      favorites: canonical.engagement?.favorites ?? null,
+      shares: canonical.engagement?.shares ?? null,
+      transcriptSummary: canonical.video.transcriptSummary ?? null,
+    };
+  }
+  if (kind === "social_post" && canonical?.social && row.channel !== "x") {
+    content.social = {
+      postText: String(canonical.social.postText ?? ""),
+      quoted: canonical.social.quoted?.text ? { author: canonical.social.quoted.author ?? null, text: String(canonical.social.quoted.text) } : null,
+    };
+  }
+  return content;
 }

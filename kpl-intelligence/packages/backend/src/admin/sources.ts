@@ -96,11 +96,13 @@ const EDITABLE = z
     name: z.string().min(1).max(200),
     enabled: z.boolean(),
     interval_minutes: z.number().int().min(1).max(1440),
-    tier: z.enum(["T1", "T1_5", "T2", "EXCLUDE_MP"]),
+    tier: z.enum(["T1", "T1_5", "T2", "T3", "EXCLUDE_MP"]),
     participation_mode: z.enum(["editorial", "hot_signal", "isolated"]),
     signal_group_id: z.string().max(120).nullable(),
     first_party: z.boolean(),
     owner_entity_id: z.string().max(120).nullable(),
+    owner_type: z.enum(["league", "club", "player", "coach", "staff", "media", "community"]).nullable(),
+    claim_types: z.array(z.string().max(40)).max(30),
     site_fulltext: z.boolean(),
     syndicate_fulltext: z.boolean(),
     tags: z.array(z.string().max(60)).max(30),
@@ -155,7 +157,7 @@ export async function updateSource(id: string, input: { patch: unknown; version:
 }
 
 /** Source fields the public projection reads (publication/rules.ts and the v1 payload). */
-const PUBLICATION_FIELDS: string[] = ["participation_mode", "site_fulltext", "syndicate_fulltext", "tier", "name", "first_party", "owner_entity_id"];
+const PUBLICATION_FIELDS: string[] = ["participation_mode", "site_fulltext", "syndicate_fulltext", "tier", "name", "first_party", "owner_entity_id", "owner_type", "claim_types"];
 
 const CreateSchema = z
   .object({
@@ -163,10 +165,12 @@ const CreateSchema = z
     name: z.string().min(1).max(200),
     kind: z.enum(["rss", "web_list", "json_list", "x_search", "mp_account", "external"]),
     config: z.record(z.string(), z.unknown()),
-    tier: z.enum(["T1", "T1_5", "T2", "EXCLUDE_MP"]).default("T2"),
+    tier: z.enum(["T1", "T1_5", "T2", "T3", "EXCLUDE_MP"]).default("T2"),
     participation_mode: z.enum(["editorial", "hot_signal", "isolated"]).default("editorial"),
     interval_minutes: z.number().int().min(1).max(1440).default(30),
     first_party: z.boolean().default(false),
+    owner_type: z.enum(["league", "club", "player", "coach", "staff", "media", "community"]).nullable().default(null),
+    claim_types: z.array(z.string().max(40)).max(30).default([]),
     tags: z.array(z.string()).default([]),
     site_fulltext: z.boolean().default(false),
     syndicate_fulltext: z.boolean().default(false),
@@ -205,8 +209,8 @@ export async function createSource(input: unknown, actor: string): Promise<Befor
     const dup = await findDuplicateSource(s.kind, s.config, undefined, tx);
     if (dup) return { created: false as const, duplicate: dup };
     const [row] = await tx<BeforeJson<AdminSource>[]>`
-    INSERT INTO sources (id, name, kind, config, tier, participation_mode, interval_minutes, first_party, tags, site_fulltext, syndicate_fulltext, next_fetch_at)
-    VALUES (${s.id}, ${s.name}, ${s.kind}, ${tx.json(s.config as never)}, ${s.tier}, ${s.participation_mode}, ${s.interval_minutes}, ${s.first_party}, ${s.tags},
+    INSERT INTO sources (id, name, kind, config, tier, participation_mode, interval_minutes, first_party, owner_type, claim_types, tags, site_fulltext, syndicate_fulltext, next_fetch_at)
+    VALUES (${s.id}, ${s.name}, ${s.kind}, ${tx.json(s.config as never)}, ${s.tier}, ${s.participation_mode}, ${s.interval_minutes}, ${s.first_party}, ${s.owner_type}, ${s.claim_types}, ${s.tags},
             ${s.site_fulltext}, ${s.syndicate_fulltext}, now())
     ON CONFLICT (id) DO NOTHING RETURNING *`;
     if (!row) throw new Conflict(`信源 ID ${s.id} 已存在`);

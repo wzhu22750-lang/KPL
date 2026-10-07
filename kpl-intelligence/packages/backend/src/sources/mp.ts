@@ -6,6 +6,8 @@ import { enqueue, QUEUES } from "../jobs/queue.ts";
 import { queueProcessing } from "../jobs/content.ts";
 import { stripTags } from "../lib/text.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
+import { articleCanonicalFromHtml } from "../content/extractors/article.ts";
+import { profileFor } from "../content/extractors/profiles.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { mpArticle, mpHistory, type MpArticle } from "../providers/dajiala.ts";
 import { BudgetExceededError, ProviderRejectedError } from "../providers/receipts.ts";
@@ -76,6 +78,23 @@ export async function checkMpAccount(sourceId: string, reason: "schedule" | "man
       // Mode 1 bodies are light HTML (paragraphs and image tags).
       const html = body?.content ? sanitizeBody(body.content, p.url) : null;
       const text = body?.content ? stripTags(body.content.replace(/<\/p>|<br\s*\/?>/gi, "\n")).replace(/\n{3,}/g, "\n\n").trim() : null;
+      // 服务商正文也进 canonical 管道：kind/质量/抽取元数据与正文一同落列（provenance source_api）。
+      const canonical = html && text
+        ? articleCanonicalFromHtml({
+          url: p.url,
+          html,
+          text,
+          title: p.title,
+          author: body?.author ?? null,
+          excerpt: p.digest ?? body?.desc ?? null,
+          publishedAt,
+          sourceId,
+          profile: profileFor({ sourceId, url: p.url, kind: "mp_account", config: source.config }),
+          extractor: "wechat-dajiala",
+          bodyProvenance: "source_api",
+          sourceAuthority: "official",
+        })
+        : null;
       const res = await upsertMaterial({
         sourceId,
         url: p.url,
@@ -87,6 +106,7 @@ export async function checkMpAccount(sourceId: string, reason: "schedule" | "man
         bodyHtml: html,
         bodyText: text || null,
         bodyStatus: text ? "ok" : "none",
+        canonical,
         via: "fetch",
         backfill: firstCheck ? "first-import" : null,
         raw: {

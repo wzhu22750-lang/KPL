@@ -1,0 +1,110 @@
+{
+  "$comment": "KPL 官方账号档案（TeamSourceProfile 种子数据）：只收录经过验证、且实测有内容的账号。验证证据写在 verified_evidence 里，全部可复核：① 微信公众号用 Dajiala post_history 拉到的真实文章列表（含发布时间）为准，scripts/verify-mp-account.ts 可复核；② B站账号用三重验证（账号名与俱乐部全称一致 + 空间页 SSR 标题一致 + 近期发布 KPL 内容）；③ sogou 通道以 wechat2rss 桥预览的最新文章时间为准。未能验证、账号停更、或平台无法稳定接入的，不写在这里，由 SOURCE_CANDIDATES.md 与 source_discovery_queue 跟踪。",
+  "league": [
+    {
+      "entityId": "kpl",
+      "entityName": "KPL王者荣耀职业联赛",
+      "platform": "wechat",
+      "handle": "gh_49991182cd21",
+      "displayName": "KPL王者荣耀职业联赛",
+      "sourceId": "mp-kpl-official",
+      "verifiedEvidence": "Dajiala post_history 实测有 2026-10-05 文章（KPL十大年度记忆人物专题片），生产源已稳定运行数周"
+    },
+    {
+      "entityId": "kpl",
+      "entityName": "KPL王者荣耀职业联赛",
+      "platform": "bilibili",
+      "handle": "392836434",
+      "displayName": "哔哩哔哩王者荣耀赛事",
+      "accountUrl": "https://space.bilibili.com/392836434",
+      "sourceId": "bili-kpl-official",
+      "verifiedEvidence": "三重验证：账号名一致 + 空间页 SSR + 近期发布 2026KPL年度总决赛 官方视频；采集按 upMid 断言身份"
+    }
+  ],
+  "teams": [
+    {
+      "entityId": "wolves",
+      "entityName": "重庆狼队",
+      "platform": "wechat",
+      "handle": "gh_8389c476fb4f",
+      "displayName": "狼队电子竞技俱乐部",
+      "sourceId": "mp-wolves",
+      "verifiedEvidence": "Dajiala post_history 实测：2026-09-30 狼队月报、2026-09-01 重庆狼队八连胜晋级胜者组决赛（母俱乐部账号，覆盖 KPL 分部）"
+    },
+    {
+      "entityId": "hero",
+      "entityName": "南通Hero久竞",
+      "platform": "wechat",
+      "handle": "gh_5d7654622d57",
+      "displayName": "Hero久竞",
+      "sourceId": "mp-hero",
+      "verifiedEvidence": "Dajiala post_history 实测：2026-07-30 南通Hero久竞 KPL 夏季赛卡位赛战报、2026-07-08 第二轮赛程公布"
+    },
+    {
+      "entityId": "hero",
+      "entityName": "南通Hero久竞",
+      "platform": "bilibili",
+      "handle": "319475099",
+      "displayName": "南京Hero久竞",
+      "accountUrl": "https://space.bilibili.com/319475099",
+      "sourceId": "bili-hero-club",
+      "verifiedEvidence": "三重验证：空间页 SSR 名称一致 + 采集实测 found 29 条（upMid 断言通过）；但最新视频停在 2024-07，账号已停更，保留监测并按部分覆盖计"
+    },
+    {
+      "entityId": "dyg",
+      "entityName": "深圳DYG",
+      "platform": "wechat",
+      "handle": "gh_cd126a641e8e",
+      "displayName": "DYG电子竞技俱乐部",
+      "sourceId": "mp-dyg",
+      "verifiedEvidence": "Dajiala post_history 实测返回 10 篇文章（生产采集首次运行 status ok）"
+    },
+    {
+      "entityId": "ttg",
+      "entityName": "广州TTG",
+      "platform": "wechat",
+      "handle": "广州TTG",
+      "displayName": "广州TTG",
+      "sourceId": "mp-ttg",
+      "verifiedEvidence": "sogou 通道 wechat2rss 预览实测最新文章 2026-10-02（账号持续更新）"
+    },
+    {
+      "entityId": "wb",
+      "entityName": "北京WB",
+      "platform": "bilibili",
+      "handle": "688039490",
+      "displayName": "北京WB王者荣耀分部",
+      "accountUrl": "https://space.bilibili.com/688039490",
+      "sourceId": "bili-wb-club",
+      "verifiedEvidence": "三重验证：空间页 SSR 名称一致 + 近期发布 10-05 赛程预告与队伍内容；生产采集实测 found 30 条入库"
+    },
+    {
+      "entityId": "drg",
+      "entityName": "佛山DRG",
+      "platform": "bilibili",
+      "handle": "189929058",
+      "displayName": "佛山DRG电子竞技俱乐部",
+      "accountUrl": "https://space.bilibili.com/189929058",
+      "sourceId": "bili-drg-club",
+      "verifiedEvidence": "三重验证：空间页 SSR 名称一致 + 近期发布赛训与队伍内容"
+    },
+    {
+      "entityId": "ag",
+      "entityName": "成都AG超玩会",
+      "platform": "wechat",
+      "handle": "成都AG超玩会",
+      "displayName": "成都AG超玩会",
+      "sourceId": "mp-ag",
+      "verifiedEvidence": "sogou 通道可解析该账号，但最新文章停在 2024-03（账号停更）；Dajiala 索引中该号（phacct_ 视频号）无文章。保留免费通道监测，覆盖以微博/B站为主待补"
+    },
+    {
+      "entityId": "estar",
+      "entityName": "武汉eStarPro",
+      "platform": "wechat",
+      "handle": "武汉eStarPro",
+      "displayName": "武汉eStarPro",
+      "sourceId": "mp-estar",
+      "verifiedEvidence": "sogou 通道可解析；Dajiala 实测该号（eStar电子竞技俱乐部 gh_0273b0f1b799）最新文章停在 2023-03，判定停更。保留免费通道监测"
+    }
+  ]
+}

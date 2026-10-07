@@ -5,6 +5,8 @@ import { newArticleId, sha256 } from "../lib/ids.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { collapseWhitespace } from "../lib/text.ts";
 import { publishArticleTx } from "../publication/publish.ts";
+import { canonicalToBody } from "./canonical.ts";
+import type { CanonicalContent } from "./extractors/types.ts";
 import { groupingReset, reconcileMaterialSource } from "./provenance.ts";
 
 export interface MediaItem {
@@ -42,6 +44,8 @@ export interface MaterialInput {
   bodyText?: string | null;
   bodyStatus?: "pending" | "ok" | "unconfirmed" | "none";
   media?: MediaItem[];
+  /** CanonicalContent（内容智能管道的产物）：kind/质量/抽取元数据与它派生的 body 一起落列。 */
+  canonical?: CanonicalContent | null;
   xPost?: XPostData | null;
   raw?: unknown;
   via: "fetch" | "ingest" | "import";
@@ -143,6 +147,18 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     publishedAt: m.publishedAt && Number.isFinite(m.publishedAt.getTime()) ? m.publishedAt : null,
     sourceUpdatedAt: m.sourceUpdatedAt && Number.isFinite(m.sourceUpdatedAt.getTime()) ? m.sourceUpdatedAt : null,
   };
+  // CanonicalContent present: its derived body fields fill in whatever the caller did not bring, and
+  // the structured layer lands in its own columns (kind, quality, extraction meta, canonical JSON).
+  const canonical = m.canonical ?? null;
+  if (canonical) {
+    const derived = canonicalToBody(canonical);
+    m = {
+      ...m,
+      bodyHtml: m.bodyHtml ?? (derived.html || null),
+      bodyText: m.bodyText ?? (derived.text || null),
+      bodyStatus: m.bodyStatus ?? (canonical.quality.completeness === "failed" ? "unconfirmed" : "ok"),
+    };
+  }
   const identityKey = identityKeyFor(m);
   const discoveredAt = m.discoveredAt ?? new Date();
   const title = collapseWhitespace(m.title).slice(0, 1000) || m.url;
@@ -153,12 +169,15 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   const [inserted] = await db<{ id: string }[]>`
     INSERT INTO articles (id, source_id, identity_key, url, title, author, language, published_at, published_at_claim,
       discovered_at, source_updated_at, timeline_at, backfill, backfill_reason, revision, content_hash, excerpt,
-      body_text, body_html, body_status, media, x_post, raw)
+      body_text, body_html, body_status, media, x_post, raw, content_kind, content_quality_score, content_completeness,
+      content_extraction_meta, canonical_content)
     VALUES (${newId}, ${m.sourceId}, ${identityKey}, ${m.url}, ${title}, ${m.author ?? null}, ${m.language ?? null},
       ${t.publishedAt}, ${m.publishedAt ?? null}, ${discoveredAt}, ${m.sourceUpdatedAt ?? null}, ${t.timelineAt},
       ${t.backfill}, ${t.backfillReason}, 1, ${hash}, ${m.excerpt ?? null}, ${m.bodyText ?? null}, ${m.bodyHtml ?? null},
       ${m.bodyStatus ?? (m.bodyText ? "ok" : "pending")}, ${db.json((m.media ?? []) as never)},
-      ${m.xPost ? db.json(m.xPost as never) : null}, ${m.raw === undefined ? null : db.json(m.raw as never)})
+      ${m.xPost ? db.json(m.xPost as never) : null}, ${m.raw === undefined ? null : db.json(m.raw as never)},
+      ${canonical?.kind ?? null}, ${canonical?.quality.score ?? null}, ${canonical?.quality.completeness ?? null},
+      ${canonical ? db.json(canonical.extraction as never) : null}, ${canonical ? db.json(canonical as never) : null})
     ON CONFLICT (identity_key) DO NOTHING RETURNING id`;
   if (inserted) {
     await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
@@ -223,7 +242,12 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
       body_text = coalesce(${m.bodyText ?? null}, body_text), body_html = coalesce(${m.bodyHtml ?? null}, body_html),
       body_status = CASE WHEN ${m.bodyText ?? null}::text IS NULL THEN body_status ELSE ${m.bodyStatus ?? "ok"} END,
       media = CASE WHEN ${media}::jsonb IS NULL THEN media ELSE ${media}::jsonb END,
-      x_post = coalesce(${m.xPost ? sql.json(m.xPost as never) : null}, x_post)`,
+      x_post = coalesce(${m.xPost ? sql.json(m.xPost as never) : null}, x_post),
+      content_kind = coalesce(${canonical?.kind ?? null}, content_kind),
+      content_quality_score = coalesce(${canonical?.quality.score ?? null}, content_quality_score),
+      content_completeness = coalesce(${canonical?.quality.completeness ?? null}, content_completeness),
+      content_extraction_meta = coalesce(${canonical ? sql.json(canonical.extraction as never) : null}, content_extraction_meta),
+      canonical_content = coalesce(${canonical ? sql.json(canonical as never) : null}, canonical_content)`,
     hash: next, title, bodyText,
   });
   return { articleId: existing!.id, created: false, revised: true, backfill: existing!.backfill };

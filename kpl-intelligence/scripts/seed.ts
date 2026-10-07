@@ -16,7 +16,9 @@ interface SeedSource {
   kind: "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external" | "esports_api";
   config: Record<string, unknown>;
   tier?: string;
+  owner_type?: string | null;
   owner_entity_id?: string | null;
+  claim_types?: string[];
   participation_mode?: string;
   interval_minutes?: number;
   tags?: string[];
@@ -32,8 +34,8 @@ for (const s of sources) {
   const tier = s.tier ?? "T2";
   // First-party means a T1 source, as the admin sets it.
   const inserted = await sql`
-    INSERT INTO sources (id, name, kind, config, tier, first_party, owner_entity_id, participation_mode, interval_minutes, tags, site_fulltext, syndicate_fulltext, enabled, next_fetch_at)
-    VALUES (${s.id}, ${s.name}, ${s.kind}, ${sql.json(s.config as never)}, ${tier}, ${tier === "T1"}, ${s.owner_entity_id ?? null},
+    INSERT INTO sources (id, name, kind, config, tier, first_party, owner_type, owner_entity_id, claim_types, participation_mode, interval_minutes, tags, site_fulltext, syndicate_fulltext, enabled, next_fetch_at)
+    VALUES (${s.id}, ${s.name}, ${s.kind}, ${sql.json(s.config as never)}, ${tier}, ${tier === "T1"}, ${s.owner_type ?? null}, ${s.owner_entity_id ?? null}, ${s.claim_types ?? []},
             ${s.participation_mode ?? "editorial"}, ${s.interval_minutes ?? 60}, ${s.tags ?? []}, ${s.site_fulltext ?? false}, ${s.syndicate_fulltext ?? false},
             ${s.enabled ?? true}, now())
     ON CONFLICT (id) DO UPDATE SET
@@ -41,7 +43,9 @@ for (const s of sources) {
       kind = EXCLUDED.kind,
       config = EXCLUDED.config,
       tier = EXCLUDED.tier,
+      owner_type = EXCLUDED.owner_type,
       owner_entity_id = EXCLUDED.owner_entity_id,
+      claim_types = EXCLUDED.claim_types,
       participation_mode = EXCLUDED.participation_mode,
       interval_minutes = EXCLUDED.interval_minutes,
       tags = EXCLUDED.tags,

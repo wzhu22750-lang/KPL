@@ -4,6 +4,8 @@ import { guardedFetch } from "../lib/http-fetch.ts";
 import { normalizeUrl } from "../lib/url.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
 import { readable, type ExtractedBody } from "../content/extract.ts";
+import { extractCanonicalForUrl } from "../content/extract.ts";
+import type { CanonicalContent } from "../content/extractors/types.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
 import { jinaRead } from "../providers/jina.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
@@ -340,9 +342,12 @@ export interface DetailNeed {
  * What a listing's detail pages add (config.detail): the date, title and summary its rules find. Each
  * rule reads the rendering it was written for. For a listing read through Jina, regexes match Jina's
  * text ("Published Time: …", "# Heading"), so that paid rendering is bought only when such a rule is
- * needed; selectors and page metadata read the page's own HTML.
+ * needed; selectors and page metadata read the page's own HTML. The body (when asked for) comes from
+ * the extractor registry: canonical content plus its derived body fields.
  */
-export async function fetchDetail(url: string, source: SourceRow, need: DetailNeed): Promise<{ publishedAt: Date | null; title: string | null; summary: string | null; body: ExtractedBody | null }> {
+export async function fetchDetail(url: string, source: SourceRow, need: DetailNeed): Promise<{
+  publishedAt: Date | null; title: string | null; summary: string | null; body: ExtractedBody | null; canonical: CanonicalContent | null;
+}> {
   const d = source.config.detail ?? {};
   const jinaListing = String(source.config.url ?? "").startsWith(JINA_PREFIX);
   const dateInJina = need.date && jinaListing && !!d.publishedAtRegex;
@@ -350,13 +355,25 @@ export async function fetchDetail(url: string, source: SourceRow, need: DetailNe
   const jina = dateInJina || titleInJina ? (await jinaRead(url, { purpose: "source_detail", subject: `source:${source.id}` })).raw : null;
   let html: string | null = null;
   let body: ExtractedBody | null = null;
-  if ((need.date && !dateInJina) || (need.title && !titleInJina) || need.summary) {
+  let canonical: CanonicalContent | null = null;
+  // A body-only need fetches the page too: the bytes that serve the metadata serve the body, and an
+  // entry needing only its正文 must not be skipped here (collect.ts asks for it through need.body).
+  if ((need.date && !dateInJina) || (need.title && !titleInJina) || need.summary || need.body) {
     const res = await guardedFetch(url, { timeoutMs: 20_000 });
     if (res.status === 200) {
       html = res.text();
       if (need.body && /html/.test(res.headers.get("content-type") ?? "")) {
-        try { body = readable(html, res.url); }
-        catch { /* A failed extraction must not discard the detail metadata. */ }
+        try {
+          // Registry first (source-specific → family → generic → readability); a failed extraction
+          // must not discard the detail metadata.
+          const got = await extractCanonicalForUrl({ sourceId: source.id, sourceKind: source.kind, sourceConfig: source.config }, res.url, html, { title: null, excerpt: null });
+          if (got) {
+            canonical = got.content;
+            body = { ...got.body, via: "extractor" };
+          } else {
+            body = readable(html, res.url);
+          }
+        } catch { body = null; }
       }
     }
   }
@@ -391,5 +408,5 @@ export async function fetchDetail(url: string, source: SourceRow, need: DetailNe
     const el = $(d.summarySelector).first();
     summary = collapseWhitespace(el.attr("content") ?? el.text()) || null;
   }
-  return { publishedAt, title, summary, body };
+  return { publishedAt, title, summary, body, canonical };
 }

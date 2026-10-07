@@ -3,6 +3,8 @@ import { XMLParser } from "fast-xml-parser";
 import { guardedFetch } from "../lib/http-fetch.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
+import { articleCanonicalFromHtml } from "../content/extractors/article.ts";
+import { profileFor } from "../content/extractors/profiles.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
 import { wechatBridge } from "./wechat2rss/index.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
@@ -123,6 +125,29 @@ function feedText(bodyHtml: string | null, summaryHtml: string, source: SourceRo
     : { excerpt, bodyHtml: null, bodyText: null, bodyStatus: "pending" };
 }
 
+/**
+ * A feed entry that carries the whole article (content:encoded) enters the canonical pipeline too:
+ * its kind/quality/extraction meta land beside the body, provenance "feed" (no page was fetched).
+ */
+function feedCanonical(c: Candidate, source: SourceRow) {
+  if (c.bodyStatus !== "ok" || !c.bodyHtml || !c.bodyText) return null;
+  const profile = profileFor({ sourceId: source.id, url: c.url, kind: source.kind, config: source.config });
+  return articleCanonicalFromHtml({
+    url: c.url,
+    html: c.bodyHtml,
+    text: c.bodyText,
+    title: c.title,
+    author: c.author ?? null,
+    excerpt: c.excerpt ?? null,
+    publishedAt: c.publishedAt ?? null,
+    sourceId: source.id,
+    profile,
+    extractor: profile.preferredExtractor === "wechat" ? "wechat-feed" : "feed",
+    bodyProvenance: "feed",
+    sourceAuthority: profile.contentFamily === "official" ? "official" : "publisher",
+  });
+}
+
 interface RssValidator {
   configHash: string;
   responseUrl: string;
@@ -204,7 +229,7 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
         ...(enclosure ? [{ kind: "image" as const, url: enclosure["@url"]! }] : []),
         ...(bodyHtmlRaw ? imagesFrom(bodyHtmlRaw, link) : []),
       ];
-      out.push({
+      const candidate: Candidate = {
         url: link,
         title,
         author: text(it["dc:creator"]) || text(it.author) || null,
@@ -213,7 +238,9 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
         media: media.slice(0, 6),
         categories: arr(it.category).map((c) => text(c)).filter(Boolean),
         raw: { guid: text(it.guid) || null },
-      });
+      };
+      candidate.canonical = feedCanonical(candidate, source);
+      out.push(candidate);
     }
     return { candidates: out, validator, notModified: false };
   }
@@ -230,7 +257,7 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
       const content = text(e.content);
       const summary = text(e.summary);
       const bodyHtml = content ? sanitizeBody(content, entryUrl) : null;
-      out.push({
+      const entry: Candidate = {
         url: entryUrl,
         title,
         author: text(arr(e.author)[0]?.name) || null,
@@ -240,7 +267,9 @@ export async function fetchRss(source: SourceRow, opts: { force?: boolean } = {}
         media: content ? imagesFrom(content, entryUrl) : [],
         categories: arr(e.category).map((c: any) => c?.["@term"] ?? text(c)).filter(Boolean),
         raw: { id: text(e.id) || null },
-      });
+      };
+      entry.canonical = feedCanonical(entry, source);
+      out.push(entry);
     }
     return { candidates: out, validator, notModified: false };
   }

@@ -134,6 +134,26 @@ export default function ContentItem({ loaderData }: Route.ComponentProps) {
               ) : (
                 <span className="text-ink-4">只有初始版本</span>
               )}
+              {(a.content_kind || a.content_extraction_meta) && (
+                <div className="mt-2 rounded-control bg-bg-sunk/60 p-3 ring-1 ring-line text-[12px] leading-relaxed">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <Badge tone="info">类型 {a.content_kind ?? "-"}</Badge>
+                    <Badge>质量 {a.content_quality_score ?? "-"}</Badge>
+                    {a.content_completeness && (
+                      <Badge tone={a.content_completeness === "full" ? "ok" : a.content_completeness === "failed" ? "bad" : "warn"}>
+                        完整度 {a.content_completeness}
+                      </Badge>
+                    )}
+                  </div>
+                  {a.content_extraction_meta && (
+                    <div className="mt-1.5 text-ink-4">
+                      Extractor {a.content_extraction_meta.extractor} v{a.content_extraction_meta.version} · family {a.content_extraction_meta.sourceFamily} ·
+                      provenance {a.content_extraction_meta.bodyProvenance} · fallback {a.content_extraction_meta.fallbackUsed ? "是" : "否"}{a.content_extraction_meta.sourceAuthority ? ` · authority ${a.content_extraction_meta.sourceAuthority}` : ""}
+                      {a.content_extraction_meta.warnings?.length ? ` · warnings: ${a.content_extraction_meta.warnings.join(", ")}` : ""}
+                    </div>
+                  )}
+                </div>
+              )}
               <div className="mt-2 flex gap-2">
                 <Button size="sm" onClick={() => setDialog("extract")}>重新抽取正文</Button>
               </div>

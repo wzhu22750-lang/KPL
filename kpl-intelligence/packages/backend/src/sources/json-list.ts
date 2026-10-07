@@ -167,6 +167,15 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
   for (const item of items) {
     if (c.requireBoolean && getPath(item, c.requireBoolean.path) !== c.requireBoolean.equals) continue;
     if (c.minNumeric && !(Number(getPath(item, c.minNumeric.path)) >= Number(c.minNumeric.min))) continue;
+    // Identity assertion: an official-account listing only stores content by the expected author.
+    // If the upstream starts returning anything else (keyword drift, hijacked search), every item is
+    // dropped and the run maps to an error — the source degrades visibly instead of mixing voices.
+    // Numbers compare as their text form (ids like B站 upMid arrive as JSON numbers).
+    if (c.requireString) {
+      const got = getPath(item, c.requireString.path);
+      const expected: string[] = Array.isArray(c.requireString.equals) ? c.requireString.equals : [c.requireString.equals];
+      if (got === null || got === undefined || !expected.includes(String(got))) continue;
+    }
     const title = firstString(item, c.titlePaths);
     const url = (c.urlTemplate && renderTemplate(c.urlTemplate, item)) || (c.urlTemplateFallback && renderTemplate(c.urlTemplateFallback, item));
     if (!title || !url) continue;

@@ -2,6 +2,8 @@
 
 {{> rules-domain}}
 
+{{> content-kind-rules}}
+
 {{> rules-anti-hallucination}}
 
 {{> rules-self-contained-title}}

@@ -5,7 +5,9 @@ import type { SourceRow } from "./types.ts";
 
 // Rules applied in collect.ts to every kind read through collectSource.
 const PUBLISHER = ["publisherRole", "publisherUrlPrefixes"];
-const COLLECTED = [...PUBLISHER, "_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent"];
+// Content intelligence：来源的内容形态声明（SourceContentProfile 的选择与覆盖）。
+const CONTENT_PROFILE = ["contentProfile", "contentFamily", "threadSelectors"];
+const COLLECTED = [...PUBLISHER, ...CONTENT_PROFILE, "_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent"];
 
 const KEYS: Record<SourceRow["kind"], string[]> = {
   rss: [...COLLECTED, "feedUrl", "summaryIsBody", "preserveUrlFragment", "allowCategories", "denyCategories"],
@@ -16,11 +18,11 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
   json_list: [
     ...COLLECTED, "url", "mode", "method", "headers", "bodyJson", "jsonKey", "windowVar", "itemsPath", "itemsObjectValues",
     "titlePaths", "summaryPaths", "summaryIsBody", "authorPaths", "publishedAtPath", "publishedAtUnit", "externalIdPath",
-    "urlTemplate", "urlTemplateFallback", "rawDropKeys", "requireBoolean", "minNumeric",
+    "urlTemplate", "urlTemplateFallback", "rawDropKeys", "requireBoolean", "requireString", "minNumeric",
   ],
   // X accounts are mostly read in shards, which apply only these.
-  x_search: [...PUBLISHER, "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
-  mp_account: [...PUBLISHER, "wxid", "ghid", "nickname"],
+  x_search: [...PUBLISHER, ...CONTENT_PROFILE, "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
+  mp_account: [...PUBLISHER, ...CONTENT_PROFILE, "wxid", "ghid", "nickname"],
   external: [...PUBLISHER],
   // Structured esports data: writes matches/games/BP, not articles. baseUrl exists for tests and
   // mirror endpoints; the production default lives in sources/esports.ts.
@@ -33,17 +35,20 @@ const NESTED: Record<string, string[]> = {
   ingestNoiseFilter: ["dropMarkers", "dropMarkersTitleOnly", "keepIfMatches"],
   itemUrlPrefixRewrite: ["from", "to"],
   requireBoolean: ["path", "equals"],
+  requireString: ["path", "equals"],
   minNumeric: ["path", "min"],
   detail: [
     "maxFetches", "publishedAtSelector", "publishedAtRegex", "publishedAtUtcOffset", "publishedAtAuthoritative", "upgradeDatePrecision",
     "titleSelector", "titleRegex", "titleAuthoritative", "summarySelector",
   ],
+  threadSelectors: ["post", "author", "content", "time", "likes", "floor", "quote", "title", "avatar"],
 };
 
 const VALUES: Record<string, string[]> = {
   publisherRole: ["organization", "person"],
   adapter: ["mimo_home"],
   parseMode: ["html", "markdown", "docusaurus_changelog"],
+  contentFamily: ["publisher", "official", "forum", "social", "video", "blog", "aggregator", "unknown"],
 };
 
 /** The config entries a source of this kind would ignore or cannot run, e.g. ["adapter=site_cards", "detail.titleFoo"]. */

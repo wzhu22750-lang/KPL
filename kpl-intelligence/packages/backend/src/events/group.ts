@@ -30,6 +30,9 @@ import { consolidate, liveStory, type Consolidation } from "./consolidate.ts";
 import { mergeStoryInto } from "./merge.ts";
 import { candidateViews, cosine32, recallFacts, recallSelectedBackground, relatedPosts, vectorsFor } from "./recall.ts";
 import { areSameKplOccurrence } from "../lib/kpl-dedup.ts";
+import { authorityFor } from "../sources/authority.ts";
+import type { ClaimType } from "../sources/claims.ts";
+import { updateRumorState } from "./rumor.ts";
 import {
   BATCH_SYSTEM, BATCH_PROMPT_VERSION, BatchSchema, PAIR_SYSTEM, PairSchema, RELATE_PROMPT_VERSION, SIGNAL_SYSTEM, SignalSchema, TIE_MIN_CONFIDENCE,
   batchUser, completeDecisions, firmlyTied, pairUser, reportText, sameOccurrence, signalTarget, storyForDevelopment, verdictsByFact,
@@ -61,6 +64,14 @@ interface ArticleRow {
   first_party: boolean;
   participation_mode: string;
   backfill: boolean;
+  // KPL 信源权威体系（sources/claims.ts + authority.ts）：事实类型、转载标记与发布方主体。
+  claim_type: string | null;
+  origin_type: "original" | "repost" | "syndication" | null;
+  tier: string;
+  owner_type: string | null;
+  owner_entity_id: string | null;
+  claim_types: string[] | null;
+  kind: string;
 }
 
 /**
@@ -109,13 +120,13 @@ async function createStory(db: Db, title: string, at: Date): Promise<number> {
   return row!.id;
 }
 
-async function createFact(db: Db, storyId: number, title: string, frame: Record<string, any> | null, at: Date): Promise<number> {
+async function createFact(db: Db, storyId: number, title: string, frame: Record<string, any> | null, at: Date, claimType: string | null): Promise<number> {
   let occurred = typeof frame?.occurredAt === "string" && /^\d{4}-\d{2}-\d{2}$/.test(frame.occurredAt) ? new Date(`${frame.occurredAt}T00:00:00+08:00`) : null;
   if (occurred && (!Number.isFinite(+occurred) || beijingDate(occurred) !== frame!.occurredAt)) occurred = null;
   const conditions = Array.isArray(frame?.conditions) ? frame.conditions.map((c: { text?: string }) => c.text).filter(Boolean).join("；") || null : null;
   const [row] = await db<{ id: number }[]>`
-    INSERT INTO facts (public_id, story_id, title, subject, action, object, conditions, occurred_at, created_at)
-    VALUES (${`f${newShortId(8)}`}, ${storyId}, ${title}, ${frame?.subject ?? null}, ${frame?.action ?? null}, ${frame?.object ?? null}, ${conditions}, ${occurred}, ${at})
+    INSERT INTO facts (public_id, story_id, title, subject, action, object, conditions, occurred_at, claim_type, created_at)
+    VALUES (${`f${newShortId(8)}`}, ${storyId}, ${title}, ${frame?.subject ?? null}, ${frame?.action ?? null}, ${frame?.object ?? null}, ${conditions}, ${occurred}, ${claimType}, ${at})
     RETURNING id`;
   return row!.id;
 }
@@ -134,6 +145,40 @@ export async function recordSignal(db: Tx, storyId: number, articleId: string, s
 }
 
 type DecisionCandidate = { id: number; score: number; relation?: Relation; confidence?: number };
+
+/**
+ * 事实主源的 claim-aware 选举（§31 一手来源升级）：不再只看 first_party 布尔位——主源是该事实类型上
+ * 权威分最高的发布方。媒体先到的事件，俱乐部/联盟官宣到达时自动把 primary 升级过去，旧主源降为
+ * report 留作佐证；人工指定的主源（manual）永不降级。
+ */
+const PRIMARY_MIN_AUTHORITY = 40;
+
+async function electPrimary(tx: Tx, factId: number, articleId: string, a: ArticleRow): Promise<"primary" | "report"> {
+  const [fact] = await tx<{ claim_type: string | null }[]>`SELECT claim_type FROM facts WHERE id = ${factId}`;
+  const claimType = (fact?.claim_type ?? a.claim_type ?? "club_news") as ClaimType;
+  const mentions = await tx<{ entity_id: string }[]>`SELECT entity_id FROM entity_mentions WHERE article_id = ${articleId} AND entity_type IN ('team', 'player')`;
+  const mine = authorityFor({ kind: a.kind, tier: a.tier, first_party: a.first_party, owner_type: a.owner_type, claim_types: a.claim_types, owner_entity_id: a.owner_entity_id }, claimType, mentions.map((m) => m.entity_id));
+  const [current] = await tx<{ article_id: string; manual: boolean; tier: string; kind: string; first_party: boolean; owner_type: string | null; claim_types: string[] | null; owner_entity_id: string | null }[]>`
+    SELECT fa.article_id, fa.manual, s.tier, s.kind, s.first_party, s.owner_type, s.claim_types, s.owner_entity_id
+    FROM fact_articles fa JOIN articles ar ON ar.id = fa.article_id JOIN sources s ON s.id = ar.source_id
+    WHERE fa.fact_id = ${factId} AND fa.role = 'primary' LIMIT 1`;
+  let role: "primary" | "report" = "report";
+  if (!current) {
+    if (mine >= PRIMARY_MIN_AUTHORITY) {
+      role = "primary";
+      await tx`UPDATE facts SET primary_source_id = ${a.source_id}, updated_at = now() WHERE id = ${factId}`;
+    }
+  } else if (!current.manual) {
+    const theirMentions = await tx<{ entity_id: string }[]>`SELECT entity_id FROM entity_mentions WHERE article_id = ${current.article_id} AND entity_type IN ('team', 'player')`;
+    const theirs = authorityFor({ kind: current.kind, tier: current.tier, first_party: current.first_party, owner_type: current.owner_type, claim_types: current.claim_types, owner_entity_id: current.owner_entity_id }, claimType, theirMentions.map((m) => m.entity_id));
+    if (mine > theirs) {
+      role = "primary";
+      await tx`UPDATE fact_articles SET role = 'report' WHERE fact_id = ${factId} AND article_id = ${current.article_id}`;
+      await tx`UPDATE facts SET primary_source_id = ${a.source_id}, updated_at = now() WHERE id = ${factId}`;
+    }
+  }
+  return role;
+}
 
 async function recordDecision(db: Db, articleId: string, factId: number | null, storyId: number | null, verdict: string, candidates: DecisionCandidate[], receiptId: number | null) {
   await db`INSERT INTO grouping_decisions (article_id, fact_id, story_id, verdict, candidates, receipt_id)
@@ -264,7 +309,9 @@ export async function groupArticle(articleId: string, opts: GroupOptions = {}): 
 async function decide(articleId: string, opts: GroupOptions, revision: number, recheckSelection: boolean): Promise<GroupResult> {
   const [a] = await sql<ArticleRow[]>`
     SELECT a.id, a.revision, a.title, a.url, a.published_at, a.discovered_at, a.grouped_at, a.body_text, a.x_post, a.backfill,
-           s.id AS source_id, s.name AS source_name, s.signal_group_id, (s.tier = 'T1') AS first_party, s.participation_mode
+           a.claim_type, a.origin_type,
+           s.id AS source_id, s.name AS source_name, s.signal_group_id, (s.tier = 'T1') AS first_party, s.participation_mode,
+           s.owner_type, s.owner_entity_id, s.claim_types, s.kind, s.tier
     FROM articles a JOIN sources s ON s.id = a.source_id WHERE a.id = ${articleId}`;
   if (a && a.revision !== revision) throw new GroupingSupersededError("Grouping input changed before it was read");
   if (!a) return { verdict: "skipped" };
@@ -459,12 +506,12 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
       if (!current) throw new Error("Grouping target changed; retry against the current story");
     }
     const story = storyId ?? (await createStory(tx, newTitle, observedAt));
-    const fact = factId ?? (await createFact(tx, story, newTitle, frame, observedAt));
-    const [hasPrimary] = await tx<{ n: number }[]>`SELECT count(*) AS n FROM fact_articles WHERE fact_id = ${fact} AND role = 'primary'`;
-    const role = a.first_party && Number(hasPrimary?.n ?? 0) === 0 ? "primary" : "report";
+    const fact = factId ?? (await createFact(tx, story, newTitle, frame, observedAt, a.claim_type));
     const evidence = [frame?.evidence, ...(Array.isArray(frame?.conditions) ? frame.conditions.map((c: { quote?: string }) => c.quote) : [])].filter((x): x is string => typeof x === "string" && !!x).join("\n") || null;
+    const role = await electPrimary(tx, fact, articleId, a);
     await tx`INSERT INTO fact_articles (fact_id, article_id, role, evidence, created_at) VALUES (${fact}, ${articleId}, ${role}, ${evidence}, ${observedAt}) ON CONFLICT (fact_id, article_id) DO NOTHING`;
     await recordSignal(tx, story, articleId, source, "editorial", observedAt);
+    await updateRumorState(tx, fact, articleId);
     await recordDecision(tx, articleId, fact, story, verdict, decisionCandidates, receipts[0] ?? null);
     await markGrouped(articleId, a.revision, selection, tx);
     return { manual: null, factId: fact, storyId: story };

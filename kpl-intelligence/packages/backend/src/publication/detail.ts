@@ -5,7 +5,7 @@ import { bodyToMarkdown } from "../content/markdown.ts";
 import { sql } from "../db.ts";
 import { proxyBodyImages } from "../media/imgproxy.ts";
 import { textToHtml } from "../content/sanitize.ts";
-import { exportTranslation, isChineseBody, ITEM_COLUMNS, ITEM_FROM, seatHolders, toItemSummary, xView, type ItemRow } from "./items.ts";
+import { exportTranslation, isChineseBody, ITEM_COLUMNS, ITEM_FROM, seatHolders, toContentView, toItemSummary, xView, type ItemRow } from "./items.ts";
 import { listedCondition } from "./scope.ts";
 import { itemUrl } from "./links.ts";
 import { hasItemPage, publicSourceName } from "./rules.ts";
@@ -18,6 +18,9 @@ interface DetailRow extends ItemRow {
   tr_html: string | null;
   tr_complete: boolean | null;
   topics: string[];
+  canonical_content: Record<string, any> | null;
+  content_quality_score: number | null;
+  content_completeness: string | null;
 }
 
 export type DetailResult =
@@ -41,6 +44,7 @@ function withOutline(html: string): { html: string; outline: OutlineEntry[] } {
 async function loadRow(id: string): Promise<DetailRow | null> {
   const [row] = await sql<DetailRow[]>`
     SELECT ${ITEM_COLUMNS}, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete,
+      a.canonical_content, a.content_quality_score, a.content_completeness,
       ${topicMembership()} AS topics
     ${ITEM_FROM}
     WHERE p.article_id = ${id}`;
@@ -86,6 +90,7 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
       reason: null,
       tags: [],
       x: null,
+      content: null,
       readingMode: "summary-only",
       author: null,
       body: null,
@@ -150,6 +155,7 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     ...(sameEvent ? { reason: null, sameEvent } : {}),
     readingMode: "full",
     author: row.author,
+    content: toContentView(row),
     body: reading.body,
     outline: reading.outline,
     relatedStories: related,
