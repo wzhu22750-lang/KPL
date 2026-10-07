@@ -286,7 +286,13 @@ function ItemView({ item }: { item: SiteItemDetail }) {
   const originalLabel = isX ? "在 X 查看原推" : "打开原文";
   // Source-aware rendering: forum/video/social 有专属视图，不走"正文"通道；article 族才显示 body。
   const typedContent = item.content ?? null;
-  const renderTyped = typedContent && (typedContent.kind === "forum_thread" || typedContent.kind === "video_post" || (typedContent.kind === "social_post" && !isX));
+  const renderTyped = !!(
+    typedContent && (
+      (typedContent.kind === "forum_thread" && !!typedContent.community) ||
+      (typedContent.kind === "video_post" && !!typedContent.video) ||
+      (typedContent.kind === "social_post" && !isX && !!typedContent.social)
+    )
+  );
 
   const related = item.relatedStories.filter((s) => s.publicId !== item.story?.publicId);
 

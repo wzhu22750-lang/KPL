@@ -8,6 +8,8 @@ import { fileURLToPath } from "node:url";
 import { extractCanonical, profileFor } from "@aihot/backend/content/extractors/index";
 import { evaluateContentQuality } from "@aihot/backend/content/extractors/quality";
 import { canonicalToBody } from "@aihot/backend/content/canonical";
+import { wechatExtractor } from "@aihot/backend/content/extractors/wechat";
+import { toContentView } from "@aihot/backend/publication/items";
 import type { CanonicalContent } from "@aihot/backend/content/extractors/types";
 import type { ExtractionInput } from "@aihot/backend/content/extractors/base";
 
@@ -284,4 +286,107 @@ test("profileFor：按 hostname 识别虎扑/B站/微信，config 可覆盖家�
   assert.equal(profileFor({ url: "https://forum.example.com/t/1", config: { contentFamily: "forum" } }).preferredExtractor, "forum");
   // 普通 rss 来源默认文章语义
   assert.equal(profileFor({ url: "https://blog.example.org/feed-entry" }).preferredExtractor, "generic-article");
+});
+
+// ---------------------------------------------------------------------------
+// 安全与 XSS 防护验证
+// ---------------------------------------------------------------------------
+
+test("微信域名严格校验：带参数与子域名仿冒无法绕过 canHandle", () => {
+  assert.equal(wechatExtractor.canHandle(input({ url: "https://evil.com/?target=mp.weixin.qq.com" })), false);
+  assert.equal(wechatExtractor.canHandle(input({ url: "https://mp.weixin.qq.com.evil.com/s/xyz" })), false);
+  assert.equal(wechatExtractor.canHandle(input({ url: "https://notmp.weixin.qq.com/s/xyz" })), false);
+  assert.equal(wechatExtractor.canHandle(input({ url: "https://mp.weixin.qq.com/s/valid_token" })), true);
+});
+
+test("HTML 清洗：canonicalToBody 对 bodyHtmlSource 与派生 HTML 进行严格 sanitizeBody，剔除 onerror/onclick", () => {
+  const dirtyHtml = '<p onclick="alert(1)">测试正文<img src="https://example.com/pic.jpg" onerror="alert(2)"></p><script>alert(3)</script>';
+  const c: CanonicalContent = {
+    kind: "article",
+    title: "安全测试",
+    author: null,
+    publishedAt: null,
+    lead: null,
+    main: [{ type: "paragraph", text: "测试正文" }],
+    media: [],
+    bodyHtmlSource: dirtyHtml,
+    discussion: null,
+    video: null,
+    social: null,
+    engagement: null,
+    extraction: { extractor: "wechat", version: "1.0.0", sourceId: "s", sourceFamily: "official", fallbackUsed: false, bodyProvenance: "page_dom", sourceAuthority: "official" },
+    quality: { score: 90, completeness: "full", warnings: [] },
+  };
+
+  const derived = canonicalToBody(c);
+  // c.bodyHtmlSource 本身已被严格清洗
+  assert.ok(!c.bodyHtmlSource?.includes("onerror"));
+  assert.ok(!c.bodyHtmlSource?.includes("onclick"));
+  assert.ok(!c.bodyHtmlSource?.includes("<script>"));
+  // 派生出来的 HTML 同样杜绝 XSS 属性
+  assert.ok(!derived.html.includes("onerror"));
+  assert.ok(!derived.html.includes("onclick"));
+  assert.ok(!derived.html.includes("<script>"));
+  assert.ok(derived.html.includes("测试正文"));
+});
+
+test("toContentView 权限约束：非 full 授权或 unconfirmed 状态下，不向前端泄露全文未授权数据", () => {
+  const dummyRow: any = {
+    id: "art-1",
+    title: "论坛讨论测试",
+    original_title: null,
+    summary: "合规摘要内容",
+    reason: null,
+    category: "kpl",
+    tags: [],
+    score: 80,
+    selected: true,
+    seat: true,
+    channel: "news",
+    url: "https://bbs.example.com/thread/1",
+    published_at: new Date(),
+    discovered_at: new Date(),
+    timeline_at: new Date(),
+    visibility: "public",
+    body_mode: "summary", // 未获得全文授权
+    body_status: "ok",
+    indexable: true,
+    fact_id: null,
+    source_name: "某论坛",
+    source_mode: "editorial",
+    x_post: null,
+    author: "楼主",
+    language: "zh",
+    content_kind: "forum_thread",
+    story_public_id: null,
+    story_title: null,
+    zh_text: null,
+    quoted_zh: null,
+    canonical_content: {
+      kind: "forum_thread",
+      discussion: {
+        originalPost: { author: { name: "楼主" }, text: "这是绝密未授权全文内容" },
+        authorFollowups: [],
+        highlightedReplies: [{ author: { name: "路人" }, text: "这是敏感讨论回复" }],
+      },
+    },
+  };
+
+  // 1. 当 body_mode === "summary" 时，不暴露 community 全文
+  const summaryView = toContentView(dummyRow);
+  assert.equal(summaryView?.kind, "forum_thread");
+  assert.equal(summaryView?.community, null, "未获全文授权时 community 应为 null");
+  assert.equal(summaryView?.quality.completeness, "summary_only");
+
+  // 2. 当 body_mode === "full" 但正文为 unconfirmed 时，同样不暴露全文
+  const unconfirmedRow = { ...dummyRow, body_mode: "full", body_status: "unconfirmed" };
+  const unconfirmedView = toContentView(unconfirmedRow);
+  assert.equal(unconfirmedView?.community, null, "正文 unconfirmed 时 community 应为 null");
+  assert.equal(unconfirmedView?.quality.completeness, "summary_only");
+
+  // 3. 当获得全文授权 (full) 且状态 ok 时，正常提供完整视图
+  const fullRow = { ...dummyRow, body_mode: "full", body_status: "ok" };
+  const fullView = toContentView(fullRow);
+  assert.ok(fullView?.community !== null);
+  assert.equal(fullView?.community?.originalPost.text, "这是绝密未授权全文内容");
 });

@@ -7,14 +7,21 @@ import { htmlToBlocks } from "./html-blocks.ts";
 import type { ContentExtractor, ExtractionInput } from "./base.ts";
 import type { CanonicalContent, ContentBlock } from "./types.ts";
 
-const WECHAT_URL = /mp\.weixin\.qq\.com/i;
+function isWechatHost(rawUrl: string): boolean {
+  try {
+    const parsed = new URL(rawUrl);
+    return parsed.hostname === "mp.weixin.qq.com";
+  } catch {
+    return false;
+  }
+}
 
 export const wechatExtractor: ContentExtractor = {
   id: "wechat",
   version: "1.0.0",
 
   canHandle(input: ExtractionInput): boolean {
-    return WECHAT_URL.test(input.url) || input.profile.preferredExtractor === "wechat";
+    return isWechatHost(input.url) || input.profile.preferredExtractor === "wechat";
   },
 
   async extract(input: ExtractionInput): Promise<CanonicalContent | null> {

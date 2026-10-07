@@ -7,6 +7,14 @@ import { sql } from "@aihot/backend/db";
 import { importVault } from "../scripts/import-kpl-vault.ts";
 
 test("kpl-vault-import 测试集", async (t) => {
+  // 检查数据库连通性
+  try {
+    await sql`SELECT 1`;
+  } catch (err) {
+    t.skip("跳过依赖本地 PostgreSQL 的集成测试（当前未运行本地测试数据库）: " + (err as Error).message);
+    return;
+  }
+
   // 确保测试数据库存在信源与战队实体种子
   await sql`
     INSERT INTO sources (id, name, kind, tier, participation_mode, site_fulltext, syndicate_fulltext, next_fetch_at)
@@ -87,10 +95,29 @@ test("kpl-vault-import 测试集", async (t) => {
     assert.ok(mentions.length > 0, "应命中成都AG或一诺等实体关联");
   });
 
-  await t.test("3. 幂等性测试：再次导入不崩溃", async () => {
+  await t.test("3. 幂等性测试：再次导入正常跳过已存在内容", async () => {
     const res = await importVault({ vaultDir: tmpDir, dryRun: false });
-    assert.equal(res.imported, 2);
+    assert.equal(res.imported, 0, "再次导入时无新增文章");
+    assert.equal(res.skipped, 2, "全部已存在且关联完整的文章应跳过");
     assert.equal(res.failed, 0);
+  });
+
+  await t.test("3.1 断点恢复测试：若关联 publications 缺失则自动补齐", async () => {
+    const [art] = await sql<{ id: string }[]>`
+      SELECT id FROM articles WHERE url = 'https://mp.weixin.qq.com/s/test_ag_mock_1'
+    `;
+    assert.ok(art);
+    await sql`DELETE FROM publications WHERE article_id = ${art.id}`;
+
+    const res = await importVault({ vaultDir: tmpDir, dryRun: false });
+    assert.equal(res.imported, 1, "缺失 publication 的文章应被恢复补齐");
+    assert.equal(res.skipped, 1, "另一篇完整文章应跳过");
+    assert.equal(res.failed, 0);
+
+    const [pub] = await sql<{ article_id: string }[]>`
+      SELECT article_id FROM publications WHERE article_id = ${art.id}
+    `;
+    assert.ok(pub, "publications 应成功补齐");
   });
 
   await t.test("4. 容错测试：损坏的 metadata.json 不会导致整个导入流程崩溃", async () => {
@@ -100,7 +127,8 @@ test("kpl-vault-import 测试集", async (t) => {
 
     const res = await importVault({ vaultDir: tmpDir, dryRun: false });
     assert.equal(res.failed, 1, "应记录 1 篇失败");
-    assert.equal(res.imported, 2, "其他 2 篇应正常导入");
+    assert.equal(res.skipped, 2, "已入库且关联完整的 2 篇应正常跳过");
+    assert.equal(res.imported, 0);
   });
 
   // 清理临时目录

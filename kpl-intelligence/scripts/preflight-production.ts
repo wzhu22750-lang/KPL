@@ -15,13 +15,13 @@ const phase = phaseIndex !== -1 && args[phaseIndex + 1] ? args[phaseIndex + 1] :
 interface CheckResult {
   category: string;
   name: string;
-  status: "PASS" | "WARN" | "FAIL";
+  status: "PASS" | "WARN" | "FAIL" | "INFO";
   message: string;
 }
 
 const results: CheckResult[] = [];
 
-function record(category: string, name: string, status: "PASS" | "WARN" | "FAIL", message: string) {
+function record(category: string, name: string, status: "PASS" | "WARN" | "FAIL" | "INFO", message: string) {
   results.push({ category, name, status, message });
 }
 
@@ -45,7 +45,7 @@ if (!rawDbUrl) {
     const parsed = new URL(rawDbUrl);
     const host = parsed.hostname;
     const isLocal = host === "127.0.0.1" || host === "localhost" || host === "::1";
-    const sslParam = parsed.searchParams.get("sslmode") || parsed.searchParams.get("ssl");
+    const sslParam = (parsed.searchParams.get("sslmode") || parsed.searchParams.get("ssl") || "").toLowerCase();
 
     if (isLocal && (env.NODE_ENV === "production" || env.AIHOT_ENVIRONMENT === "production")) {
       record("Env & Security", "DATABASE_URL Host", "WARN", `生产环境连接至本地数据库 (${host})，请确认是否符合预期`);
@@ -53,7 +53,9 @@ if (!rawDbUrl) {
       record("Env & Security", "DATABASE_URL Host", "PASS", `目标主机: ${host}:${parsed.port || 5432}`);
     }
 
-    if (!isLocal && !sslParam) {
+    if (sslParam === "disable" || sslParam === "false" || sslParam === "0") {
+      record("Env & Security", "DATABASE_URL TLS", "FAIL", "生产环境拒绝 sslmode=disable，强制启用安全传输 (如 ?sslmode=require)");
+    } else if (!isLocal && !sslParam) {
       record("Env & Security", "DATABASE_URL TLS", "WARN", "外部数据库连接串未显式指定 ?sslmode=require (系统已自动补充注入)");
     } else {
       record("Env & Security", "DATABASE_URL TLS", "PASS", `TLS 模式: ${sslParam || (isLocal ? "local (plain)" : "require")}`);
@@ -174,12 +176,16 @@ try {
   
   if (extSet.has("pg_trgm")) {
     record("Database", "Extension pg_trgm", "PASS", "已安装 (文本三元组索引)");
+  } else if (phase === "pre-migrate") {
+    record("Database", "Extension pg_trgm", "INFO", "扩展将在迁移 0001 中创建 (pre-migrate 提示，不阻断新数据库迁移)");
   } else {
     record("Database", "Extension pg_trgm", "FAIL", "未安装 pg_trgm 扩展，全文检索将不可用");
   }
 
   if (extSet.has("vector")) {
     record("Database", "Extension vector", "PASS", "已安装 (向量检索/HNSW)");
+  } else if (phase === "pre-migrate") {
+    record("Database", "Extension vector", "INFO", "扩展将在迁移 0055 中创建 (pre-migrate 提示，不阻断新数据库迁移)");
   } else {
     record("Database", "Extension vector", "FAIL", "未安装 vector 扩展，语义归组与向量索引不可用");
   }
@@ -245,22 +251,24 @@ try {
 const categories = [...new Set(results.map((r) => r.category))];
 let passCount = 0;
 let warnCount = 0;
+let infoCount = 0;
 let failCount = 0;
 
 for (const cat of categories) {
   console.log(`[ ${cat} ]`);
   for (const item of results.filter((r) => r.category === cat)) {
-    const symbol = item.status === "PASS" ? "✅ [PASS]" : item.status === "WARN" ? "⚠️  [WARN]" : "❌ [FAIL]";
+    const symbol = item.status === "PASS" ? "✅ [PASS]" : item.status === "WARN" ? "⚠️  [WARN]" : item.status === "INFO" ? "ℹ️  [INFO]" : "❌ [FAIL]";
     console.log(`  ${symbol} ${item.name.padEnd(28)} : ${item.message}`);
     if (item.status === "PASS") passCount += 1;
     else if (item.status === "WARN") warnCount += 1;
+    else if (item.status === "INFO") infoCount += 1;
     else if (item.status === "FAIL") failCount += 1;
   }
   console.log("");
 }
 
 console.log(`================================================================`);
-console.log(`📊 预检统计: 总计 ${results.length} 项 | 通过: ${passCount} | 警告: ${warnCount} | 失败: ${failCount}`);
+console.log(`📊 预检统计: 总计 ${results.length} 项 | 通过: ${passCount} | 提示: ${infoCount} | 警告: ${warnCount} | 失败: ${failCount}`);
 
 if (failCount > 0) {
   console.log(`🚨 预检未通过！存在 ${failCount} 项致命阻断问题，请修复后再次运行。`);

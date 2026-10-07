@@ -41,6 +41,7 @@ export interface ItemRow {
   zh_text: string | null;
   /** Chinese translation of the post an X post quotes. */
   quoted_zh: string | null;
+  body_status?: string | null;
 }
 
 /** Columns every item listing selects. Internal judgement details never leave this layer. */
@@ -155,7 +156,8 @@ export function toItemSummary(row: ItemRow): ItemSummary {
 export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
   const item = toItemSummary(row);
   // An X post's own text and media are its body: shown only where the source allows full text.
-  const x = row.channel === "x" && row.body_mode === "full" ? xView(row, true) : null;
+  const isFull = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
+  const x = row.channel === "x" && isFull ? xView(row, true) : null;
   return {
     id: item.id, title: item.title, summary: item.summary, reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,
@@ -227,21 +229,39 @@ export function toContentView(row: ItemRow & {
   canonical_content?: Record<string, any> | null;
   content_quality_score?: number | null;
   content_completeness?: string | null;
+  body_status?: string | null;
 }): ContentView | null {
   const canonical = row.canonical_content ?? null;
   const kind = canonical?.kind ?? contentKindOf(row);
   if (!kind) return null;
 
+  const isFullAllowed = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
+
   const quality = {
     score: canonical?.quality?.score ?? row.content_quality_score ?? null,
-    completeness: canonical?.quality?.completeness ?? (row.content_completeness as ContentView["quality"]["completeness"]) ?? null,
+    completeness: (!isFullAllowed
+      ? ("summary_only" as const)
+      : (canonical?.quality?.completeness ?? (row.content_completeness as ContentView["quality"]["completeness"]) ?? null)),
     warnings: Array.isArray(canonical?.quality?.warnings) ? canonical.quality.warnings : [],
   };
 
-  // article 族：正文完整时不需要专属视图；不完整时如实携带（前端显示"正文提取可能不完整"）。
+  // article 族：正文完整且已授权时不需要专属视图；不完整或未授权时如实携带质量提示（前端显示摘要或正文提示）。
   if (ARTICLE_KINDS.has(kind)) {
-    if (quality.completeness === null || quality.completeness === "full") return null;
+    if (isFullAllowed && (quality.completeness === null || quality.completeness === "full")) return null;
     return { kind, quality };
+  }
+
+  // 非 article 形态（forum_thread / video_post / social_post）：
+  // 若未获得全文授权或正文未确认，不向前端泄露未授权全文数据，仅保留类型与合规摘要状态。
+  if (!isFullAllowed) {
+    return {
+      kind,
+      quality,
+      community: null,
+      video: null,
+      social: null,
+      gallery: null,
+    };
   }
 
   const content: ContentView = { kind, quality, community: null, video: null, social: null, gallery: null };

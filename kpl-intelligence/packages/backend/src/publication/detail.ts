@@ -114,8 +114,9 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
 
   let x: SiteItemDetail["x"] = null;
   let reading: Pick<SiteItemDetail, "body" | "outline" | "hasTranslation" | "bodyLanguage"> = { body: null, outline: [], hasTranslation: false, bodyLanguage: "original" };
+  const isFullAllowed = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
   // An X post's own text and media are its body: shown only where the source allows full text.
-  if (row.channel === "x" && row.body_mode === "full") {
+  if (row.channel === "x" && isFullAllowed) {
     const post = xView(row, false, true);
     const text = String(row.x_post?.text ?? row.body_text ?? "");
     // A post's text is sent as written: its headings make the outline, without anchors.
@@ -125,7 +126,7 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
       const { text: _text, translation: _translation, ...shown } = post;
       x = shown;
     }
-  } else if (row.body_mode === "full" && row.body_html) {
+  } else if (isFullAllowed && row.body_html) {
     const chinese = isChineseBody(row);
     const zh = chinese ? { html: row.body_html, kind: "original" as const } : row.tr_html ? { html: row.tr_html, kind: "translation" as const } : null;
     reading = readingBody(language, zh, chinese ? null : row.body_html, chinese ? true : row.tr_complete ?? false, (html) => withOutline(proxyBodyImages(html)));
@@ -153,7 +154,7 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     ...summary,
     x,
     ...(sameEvent ? { reason: null, sameEvent } : {}),
-    readingMode: "full",
+    readingMode: isFullAllowed ? "full" : "summary-only",
     author: row.author,
     content: toContentView(row),
     body: reading.body,
@@ -174,10 +175,11 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
  * (a summary, or a post or body whose full text may be shown).
  */
 export function markdownAvailable(row: {
-  visibility: string; source_mode: string; summary: string | null; body_mode: string; body_html?: string | null; channel: string; x_post: Record<string, any> | null;
+  visibility: string; source_mode: string; summary: string | null; body_mode: string; body_html?: string | null; channel: string; x_post: Record<string, any> | null; body_status?: string | null;
 }): boolean {
   if (row.visibility !== "public" || !hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode })) return false;
-  return !!row.summary || (row.body_mode === "full" && ((row.channel === "x" && !!row.x_post?.text) || !!row.body_html));
+  const isFull = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
+  return !!row.summary || (isFull && ((row.channel === "x" && !!row.x_post?.text) || !!row.body_html));
 }
 
 export async function exportMarkdown(id: string): Promise<{ filename: string; body: string } | null> {
@@ -192,13 +194,14 @@ export async function exportMarkdown(id: string): Promise<{ filename: string; bo
   lines.push(`- 原文：${row.url}`, "");
   if (row.summary) lines.push("## 摘要", "", row.summary, "");
   if (row.selected && row.seat && row.reason) lines.push("## 推荐理由", "", row.reason, "");
-  if (row.channel === "x" && row.body_mode === "full" && row.x_post?.text) {
+  const isFull = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
+  if (row.channel === "x" && isFull && row.x_post?.text) {
     lines.push("## 正文", "", String(row.x_post.text), "");
     if (row.zh_text) lines.push("## 中文译文", "", row.zh_text, "");
     const q = row.x_post.quoted as { handle?: string; text?: string; url?: string } | null | undefined;
     if (q?.text) lines.push(`## 引用 @${q.handle ?? ""}`, "", ...String(q.text).split("\n").map((l) => `> ${l}`), "", ...(q.url ? [q.url, ""] : []));
     if (q?.text && row.quoted_zh) lines.push("### 引用中文译文", "", ...row.quoted_zh.split("\n").map((l) => `> ${l}`), "");
-  } else if (row.body_mode === "full" && row.body_html) {
+  } else if (isFull && row.body_html) {
     const translation = exportTranslation(row);
     if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(translation, row.url), "");
     lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(row.body_html, row.url), "");

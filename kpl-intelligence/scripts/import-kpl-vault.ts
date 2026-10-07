@@ -202,13 +202,36 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
           continue;
         }
 
-        // 正式运行：幂等性检查，已存在的文章直接跳过
+        // 正式运行：幂等性检查与断点恢复
         const [existing] = await sql<{ id: string }[]>`
           SELECT id FROM articles WHERE url = ${meta.source_url} OR identity_key = ${identityKey} LIMIT 1
         `;
         if (existing) {
-          console.log(`  ⏩ [SKIP] 文章已存在，跳过: [${existing.id}] ${meta.title}`);
-          result.skipped++;
+          // 检查关联的 publications 与实体提及是否已创建；若中途失败缺失则补齐
+          const [pub] = await sql<{ exists: boolean }[]>`
+            SELECT EXISTS(SELECT 1 FROM publications WHERE article_id = ${existing.id}) AS exists
+          `;
+          const [mention] = await sql<{ exists: boolean }[]>`
+            SELECT EXISTS(SELECT 1 FROM entity_mentions WHERE article_id = ${existing.id}) AS exists
+          `;
+
+          let recovered = false;
+          if (!mention?.exists) {
+            await recordArticleEntityMentions(existing.id, meta.title + "\n\n" + mdText);
+            recovered = true;
+          }
+          if (!pub?.exists) {
+            await publishArticle(existing.id);
+            recovered = true;
+          }
+
+          if (recovered) {
+            console.log(`  🔄 [RECOVERED] 文章已存在，已补齐缺失关联: [${existing.id}] ${meta.title}`);
+            result.imported++;
+          } else {
+            console.log(`  ⏩ [SKIP] 文章已存在且关联完整，跳过: [${existing.id}] ${meta.title}`);
+            result.skipped++;
+          }
           continue;
         }
 
@@ -250,8 +273,29 @@ export async function importVault(options: { vaultDir?: string; dryRun?: boolean
           console.log(`  ✅ 成功导入 [${sourceId}] ${meta.title} (${pubDate.toISOString().slice(0, 10)}) -> ID: ${res.articleId}`);
           result.imported++;
         } else {
-          console.log(`  ⏩ [SKIP] 未产生新文章修订 (已存在): ID: ${res.articleId}`);
-          result.skipped++;
+          // 未产生新文章修订，检查是否缺失关联并补齐
+          const [pub] = await sql<{ exists: boolean }[]>`
+            SELECT EXISTS(SELECT 1 FROM publications WHERE article_id = ${res.articleId}) AS exists
+          `;
+          const [mention] = await sql<{ exists: boolean }[]>`
+            SELECT EXISTS(SELECT 1 FROM entity_mentions WHERE article_id = ${res.articleId}) AS exists
+          `;
+          let recovered = false;
+          if (!mention?.exists) {
+            await recordArticleEntityMentions(res.articleId, meta.title + "\n\n" + mdText);
+            recovered = true;
+          }
+          if (!pub?.exists) {
+            await publishArticle(res.articleId);
+            recovered = true;
+          }
+          if (recovered) {
+            console.log(`  🔄 [RECOVERED] 补齐关联 publications/实体: ID: ${res.articleId}`);
+            result.imported++;
+          } else {
+            console.log(`  ⏩ [SKIP] 未产生新文章修订 (已存在且完整): ID: ${res.articleId}`);
+            result.skipped++;
+          }
         }
       } catch (err) {
         result.failed++;
@@ -279,11 +323,16 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     vaultDir = path.resolve(process.cwd(), "../kpl_vault");
   }
 
+  let res: ImportVaultResult | null = null;
   try {
-    await importVault({ vaultDir, dryRun });
+    res = await importVault({ vaultDir, dryRun });
   } finally {
     if (!dryRun) {
       await closeDb();
     }
+  }
+
+  if (res && res.failed > 0) {
+    process.exit(1);
   }
 }

@@ -48,14 +48,14 @@ after(async () => { await new Promise<void>((r) => server.close(() => r())); awa
 test("collect 的 detail 路径把论坛帖抽成 forum_thread 并落 canonical 列", async () => {
   // 一个 hupu 域名下的来源：Profile 按域名命中论坛形态，抽取走 hupu → forum 链。
   const id = `e2e-hupu-${T}`;
-  await sql`INSERT INTO sources (id,name,kind,config,tier,participation_mode,cursor,next_fetch_at)
+  await sql`INSERT INTO sources (id,name,kind,config,tier,participation_mode,site_fulltext,cursor,next_fetch_at)
     VALUES (${id},'端到端论坛来源','json_list',
       ${sql.json({
         url: `${base}/thread/list`,
         titlePaths: ["title"], urlTemplate: "{raw:url}", publishedAtPath: "date", summaryPaths: ["summary"],
         detail: { maxFetches: 3 },
         itemUrlPrefixRewrite: { from: `${base}/thread/`, to: `${base}/thread/` },
-      } as never)},'T2','editorial',NULL,'2100-01-01')`;
+      } as never)},'T2','editorial',true,NULL,'2100-01-01')`;
   // 用 hupu 域名不可能命中 127.0.0.1：直接声明家族（这正是"新增论坛来源"的接入方式）。
   await sql`UPDATE sources SET config = config || ${sql.json({ contentFamily: "forum" } as never)} WHERE id = ${id}`;
 
@@ -86,4 +86,15 @@ test("collect 的 detail 路径把论坛帖抽成 forum_thread 并落 canonical 
   assert.ok(item.content!.community!.highlightedReplies.some((r) => r.author === "路人乙"));
   assert.ok(item.content!.community!.originalPost.likes === 188);
   assert.ok(!item.content!.community!.originalPost.text.includes("路人乙"));
+
+  // 安全与授权约束：当未授权全文 (body_mode !== 'full') 或正文未确认时，toContentView 绝不泄露社区全文
+  const [pubRow] = await sql<any[]>`SELECT * FROM publications WHERE article_id = ${row!.id}`;
+  const summaryOnlyView = toContentView({ ...pubRow, body_mode: "summary", canonical_content: canonical });
+  assert.equal(summaryOnlyView?.kind, "forum_thread");
+  assert.equal(summaryOnlyView?.community, null, "未获得全文授权时，不应向前端暴露帖子与讨论全文");
+  assert.equal(summaryOnlyView?.quality.completeness, "summary_only");
+
+  const unconfirmedView = toContentView({ ...pubRow, body_mode: "full", body_status: "unconfirmed", canonical_content: canonical });
+  assert.equal(unconfirmedView?.community, null, "正文未确认时，不应向前端暴露帖子与讨论全文");
+  assert.equal(unconfirmedView?.quality.completeness, "summary_only");
 });

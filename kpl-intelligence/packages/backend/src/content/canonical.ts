@@ -3,6 +3,7 @@
 import type { CanonicalContent } from "./extractors/types.ts";
 import { blocksToHtml } from "./extractors/html-blocks.ts";
 import { collapseWhitespace } from "../lib/text.ts";
+import { sanitizeBody } from "./sanitize.ts";
 
 export interface DerivedBody {
   html: string;
@@ -16,6 +17,10 @@ export interface DerivedBody {
  * social → post text。
  */
 export function canonicalToBody(c: CanonicalContent): DerivedBody {
+  if (typeof c.bodyHtmlSource === "string") {
+    c.bodyHtmlSource = sanitizeBody(c.bodyHtmlSource);
+  }
+
   const images = c.media.map((m) => ({ kind: "image" as const, url: m.url, width: m.width ?? null, height: m.height ?? null }));
   if (c.discussion) {
     const d = c.discussion;
@@ -31,26 +36,27 @@ export function canonicalToBody(c: CanonicalContent): DerivedBody {
         textParts.push(`@${r.author.name ?? "网友"}：${r.text}`);
       }
     }
-    return { html: htmlParts.join(""), text: textParts.join("\n\n"), images };
+    return { html: sanitizeBody(htmlParts.join("")), text: textParts.join("\n\n"), images };
   }
   if (c.social) {
     const text = c.social.quoted?.text ? `${c.social.postText}\n\n[引用]：${c.social.quoted.text}` : c.social.postText;
-    return { html: `<p>${escapeHtml(c.social.postText).replace(/\n/g, "<br>")}</p>`, text, images };
+    return { html: sanitizeBody(`<p>${escapeHtml(c.social.postText).replace(/\n/g, "<br>")}</p>`), text, images };
   }
   if (c.video) {
     const text = c.video.description ?? "";
-    return { html: text ? `<p>${escapeHtml(text).replace(/\n/g, "<br>")}</p>` : "", text, images };
+    return { html: text ? sanitizeBody(`<p>${escapeHtml(text).replace(/\n/g, "<br>")}</p>`) : "", text, images };
   }
   // 文章族：body_text 只来自正文块（lead 是页面 meta 的导语，属于摘要，不属于正文），
   // 块间以空白合并（与旧 stripTags 的单空格输出一致）；body_html 优先用 extractor 的净化富 HTML
-  // （保住链接/加粗/图片排版），没有时才从 blocks 降级重建。
+  // （保住链接/加粗/图片排版），没有时才从 blocks 降级重建。所有落库 HTML 必须经过 sanitizeBody 清洗。
   const text = collapseWhitespace(c.main.reduce((n, b) => {
     if (b.type === "paragraph" || b.type === "quote" || b.type === "heading") return `${n}\n${b.text}`;
     if (b.type === "list") return `${n}\n${b.items.join("\n")}`;
     if (b.type === "table") return `${n}\n${b.rows.map((r) => r.join(" ")).join("\n")}`;
     return n;
   }, ""));
-  return { html: c.bodyHtmlSource ?? blocksToHtml(c.main), text, images };
+  const rawHtml = c.bodyHtmlSource ?? blocksToHtml(c.main);
+  return { html: sanitizeBody(rawHtml), text, images };
 }
 
 function escapeHtml(s: string): string {
