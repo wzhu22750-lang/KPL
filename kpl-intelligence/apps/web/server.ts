@@ -10,8 +10,8 @@ import { createRequestListener } from "@react-router/node";
 import { isApiOwned, resolveRedirect } from "@aihot/contracts/http-policy";
 import { API_BASE_URL } from "./app/lib/api.server.ts";
 
-const PORT = Number(process.env.WEB_PORT || 3000);
-const HOST = process.env.WEB_HOST || "127.0.0.1";
+const PORT = Number(process.env.PORT || process.env.WEB_PORT || 3000);
+const HOST = process.env.WEB_HOST || "0.0.0.0";
 const API = new URL(API_BASE_URL);
 /**
  * Whether a reverse proxy in front (Caddy, nginx) records the visitor in X-Forwarded-For. Without one
