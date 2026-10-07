@@ -26,4 +26,4 @@ COPY --from=build --chown=node:node /app /app
 RUN mkdir -p /data && chown node:node /data
 USER node
 EXPOSE 3000
-CMD ["sh", "-c", "node apps/api/src/main.ts & exec node apps/web/server.ts"]
+CMD ["sh", "-c", "node apps/api/src/main.ts & node apps/worker/src/main.ts & exec node apps/web/server.ts"]
