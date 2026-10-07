@@ -11,7 +11,7 @@ jobs:
   collect-and-publish:
     name: Fetch & Publish News
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
 
     steps:
       - name: Checkout Code
