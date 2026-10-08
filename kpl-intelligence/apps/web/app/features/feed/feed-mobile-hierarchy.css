@@ -1,0 +1,379 @@
+/* 移动端信息分组与呼吸感优化 */
+
+@media (max-width: 960px) {
+  /* ========== 核心原则 ========== 
+   * 1. 拉大主次对比（标题 vs 元信息）
+   * 2. 增加垂直留白（卡片间距、内边距）
+   * 3. 减少横向密度（隐藏次要信息）
+   * 4. 视觉分组（背景色、边框、阴影）
+   */
+
+  /* ========== 整体布局 ========== */
+  .home-overview {
+    padding: 16px 12px 40px;
+  }
+
+  /* 列表容器呼吸感 */
+  .home-overview [aria-labelledby="featured-updates"] {
+    margin-top: 32px;
+  }
+
+  /* ========== 卡片间距与呼吸 ========== */
+  .home-overview [data-card-key] {
+    margin-bottom: 20px; /* 从 20px 不变，但增加内边距 */
+  }
+
+  /* 卡片内边距重新分配 */
+  .home-overview [data-item-id] {
+    padding: 0; /* 移除统一内边距，改为内部组件独立控制 */
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+  }
+
+  /* 点击态反馈 */
+  .home-overview [data-item-id]:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  /* ========== 标题区：最大视觉权重 ========== */
+  .home-overview .feed-headline {
+    /* 直接在 FeedItemMobile 中控制 */
+    padding: 24px 20px 0;
+    font-size: 19px;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  /* ========== 摘要区：次要权重 ========== */
+  .home-overview .feed-summary {
+    padding: 12px 20px 0;
+    font-size: 15.5px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ========== 元信息区：最小权重 + 分隔 ========== */
+  .home-overview .feed-meta {
+    /* 移到 footer 位置，视觉降权 */
+    display: none; /* 旧版 header meta 隐藏 */
+  }
+
+  /* 新版 footer 元信息栏 */
+  .home-overview .feed-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    margin: 0;
+    border-top: 1px solid var(--line-soft);
+    background: var(--bg-sunk);
+  }
+
+  .home-overview .feed-footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+    font-size: 12.5px;
+    color: var(--ink-4);
+  }
+
+  .home-overview .feed-footer-meta > * {
+    white-space: nowrap;
+  }
+
+  /* 来源名称 */
+  .home-overview .feed-source {
+    font-weight: 500;
+    color: var(--ink-3);
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  /* 分组标签 */
+  .home-overview .feed-source-group {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--bg-muted);
+    color: var(--ink-4);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* 时间戳 */
+  .home-overview .feed-footer-time {
+    font-size: 11.5px;
+    color: var(--ink-4);
+    font-family: var(--font-mono);
+  }
+
+  /* ========== 操作区：评分 + 收藏 ========== */
+  .home-overview .feed-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .home-overview .feed-star {
+    margin: -8px -12px -8px 0;
+  }
+
+  .home-overview .feed-star button {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* ========== 视觉状态差异化 ========== */
+  
+  /* 已读状态 */
+  .home-overview [data-item-id][data-read="true"] {
+    opacity: 0.6;
+    background: var(--bg-sunk);
+  }
+
+  .home-overview [data-item-id][data-read="true"] .feed-headline {
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+
+  .home-overview [data-item-id][data-read="true"] .feed-summary {
+    color: var(--ink-4);
+  }
+
+  /* 高优先级内容 */
+  .home-overview [data-item-id]:has([data-score-tier="A"]),
+  .home-overview [data-item-id]:has([data-score-tier="S"]) {
+    border-color: var(--accent-soft);
+    background: linear-gradient(135deg, var(--surface) 0%, var(--accent-softer) 100%);
+    box-shadow: 0 2px 6px rgba(59, 109, 255, 0.08);
+  }
+
+  /* 左侧高亮条 */
+  .home-overview [data-item-id]:has([data-score-tier="A"])::before,
+  .home-overview [data-item-id]:has([data-score-tier="S"])::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-soft) 100%);
+    border-radius: 12px 0 0 12px;
+  }
+
+  /* ========== 特殊卡片类型 ========== */
+  
+  /* Radar 话题卡片 */
+  .home-overview .focus-story {
+    padding: 24px 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .home-overview .focus-list .focus-story:first-child {
+    border: 2px solid var(--accent-soft);
+    background: linear-gradient(135deg, var(--accent-softer) 0%, var(--surface) 100%);
+    box-shadow: 0 2px 8px rgba(59, 109, 255, 0.1);
+  }
+
+  .home-overview .focus-title {
+    font-size: 20px;
+    line-height: 1.55;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 12px;
+  }
+
+  .home-overview .focus-meta {
+    font-size: 12px;
+    color: var(--ink-4);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .home-overview .focus-summary {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+    margin-top: 12px;
+  }
+
+  /* ========== 比赛卡片 ========== */
+  .home-overview .match-score-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .home-overview .match-score-content {
+    padding: 24px 20px 16px;
+  }
+
+  /* 比赛进行中标识 */
+  .home-overview [data-match-status="live"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #FF4757 0%, #FF6B81 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    animation: match-live-pulse 2s ease-in-out infinite;
+  }
+
+  .home-overview [data-match-status="live"]::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    animation: live-dot-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ========== 热门话题区块 ========== */
+  .home-overview [aria-labelledby="hot-topics"] {
+    margin-bottom: 28px;
+    padding: 20px 18px;
+    background: linear-gradient(135deg, var(--accent-softer) 0%, var(--surface) 100%);
+    border: 1px solid var(--accent-soft);
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(59, 109, 255, 0.08);
+  }
+
+  .home-overview #hot-topics {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent-ink);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .home-overview .hot-ranking-row {
+    padding-block: 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .home-overview .hot-ranking-row:last-child {
+    border-bottom: 0;
+  }
+
+  .home-overview .hot-ranking-title {
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ========== 日期分隔 ========== */
+  .home-overview [data-card-key] + [data-card-key]:has(.DayHeader) {
+    margin-top: 40px; /* 日期组之间更大间距 */
+  }
+
+  /* 日期栏样式 */
+  .home-overview .bg-daybar {
+    background: var(--daybar);
+    backdrop-filter: blur(8px);
+  }
+
+  .home-overview .bg-daybar > div {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  /* ========== 加载状态 ========== */
+  .home-overview [data-item-id].loading {
+    animation: card-loading 1.5s ease-in-out infinite;
+  }
+
+  /* ========== 动画 ========== */
+  @keyframes match-live-pulse {
+    0%, 100% {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes live-dot-pulse {
+    0%, 100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes card-loading {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* ========== 超小屏优化（≤640px）========== */
+@media (max-width: 640px) {
+  .home-overview {
+    padding: 12px 8px 32px;
+  }
+
+  .home-overview [data-item-id] {
+    border-radius: 10px;
+  }
+
+  .home-overview .feed-headline {
+    padding: 20px 16px 0;
+    font-size: 18px;
+  }
+
+  .home-overview .feed-summary {
+    padding: 10px 16px 0;
+    font-size: 15px;
+    -webkit-line-clamp: 3; /* 小屏显示更多摘要 */
+  }
+
+  .home-overview .feed-footer {
+    padding: 14px 16px;
+  }
+
+  .home-overview .focus-story {
+    padding: 20px 16px;
+  }
+
+  .home-overview .focus-title {
+    font-size: 19px;
+  }
+
+  .home-overview .match-score-content {
+    padding: 20px 16px 14px;
+  }
+}
