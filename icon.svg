@@ -1,0 +1,47 @@
+<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B6DFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38BDF8;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="iconGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark background for app icon -->
+  <rect width="160" height="160" fill="#0A0E1A" rx="36"/>
+  
+  <!-- Centered K mark -->
+  <g transform="translate(30, 20)">
+    <!-- Vertical stem -->
+    <rect x="15" y="30" width="14" height="80" fill="#F0F3F7" rx="2"/>
+    
+    <!-- Upper diagonal data stream -->
+    <path d="M 29 60 L 50 45 L 56 48 L 63 43 L 70 46 L 77 40" 
+          stroke="url(#iconFlow)" 
+          stroke-width="13" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#iconGlow)"/>
+    
+    <!-- Lower diagonal -->
+    <path d="M 29 70 L 45 85 L 52 92 L 60 100 L 68 108" 
+          stroke="url(#iconFlow)" 
+          stroke-width="13" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#iconGlow)"/>
+    
+    <!-- Intelligence indicator -->
+    <circle cx="77" cy="40" r="7" fill="#38BDF8" opacity="0.9"/>
+    <circle cx="77" cy="40" r="3.5" fill="#F0F3F7"/>
+  </g>
+</svg>

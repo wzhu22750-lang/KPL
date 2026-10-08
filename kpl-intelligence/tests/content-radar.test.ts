@@ -176,6 +176,12 @@ test('closed rollout gate stops radar exposure and does not enqueue judgment wor
     const calls=provider.hits();
     const response=await app.inject({method:'GET',url:`/api/site/radar?day=${day}`});
     assert.equal(response.statusCode,503);
+    const overview = await app.inject({method:'GET',url:'/api/site/match-overview'});
+    assert.equal(overview.statusCode,200,'canonical schedule stays public with the radar rollout closed');
+    const cards = overview.json().matches;
+    assert.ok(cards.some((m: { id: string })=>m.id===`ag-lgd-${t}`));
+    assert.ok(cards.every((m: { materials: unknown[] })=>m.materials.length===0),'the closed gate still withholds editorial projections');
+    assert.match(overview.headers['cache-control'] as string,/max-age=30/);
     const hot = await app.inject({method:'GET',url:'/api/site/hot/strip'});
     assert.equal(hot.statusCode,200,'the original hot ranking is independent of the radar rollout gate');
     assert.ok(Array.isArray(hot.json().entries));

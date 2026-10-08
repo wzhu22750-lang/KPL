@@ -130,7 +130,7 @@ function MatchRadar({ match, expanded, onToggle }: { match: RadarMatch; expanded
   </section>;
 }
 
-function MatchCarousel({ matches }: { matches: RadarMatch[] }) {
+function MatchCarousel({ matches, unavailable }: { matches: RadarMatch[]; unavailable: boolean }) {
   const rail = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const expanded = matches.find(match => match.id === expandedId);
@@ -145,13 +145,13 @@ function MatchCarousel({ matches }: { matches: RadarMatch[] }) {
       <h2 id="radar-matches" className="text-[18px] font-semibold text-ink">比赛速览</h2>
       <div className="flex items-center gap-2">
         <IntentLink to="/matches" className="mr-1 inline-flex min-h-11 items-center gap-1 text-[12px] text-ink-3 hover:text-accent">全部赛程<IconChevronRight size={14} /></IntentLink>
-        <button type="button" onClick={() => scroll(-1)} aria-label="向左查看比赛" aria-controls="match-score-rail" className="inline-flex size-11 items-center justify-center rounded-control border border-line text-ink-3 hover:bg-surface"><IconChevronLeft size={16} /></button>
-        <button type="button" onClick={() => scroll(1)} aria-label="向右查看比赛" aria-controls="match-score-rail" className="inline-flex size-11 items-center justify-center rounded-control border border-line text-ink-3 hover:bg-surface"><IconChevronRight size={16} /></button>
+        {matches.length > 1 && <><button type="button" onClick={() => scroll(-1)} aria-label="向左查看比赛" aria-controls="match-score-rail" className="inline-flex size-11 items-center justify-center rounded-control border border-line text-ink-3 hover:bg-surface"><IconChevronLeft size={16} /></button>
+        <button type="button" onClick={() => scroll(1)} aria-label="向右查看比赛" aria-controls="match-score-rail" className="inline-flex size-11 items-center justify-center rounded-control border border-line text-ink-3 hover:bg-surface"><IconChevronRight size={16} /></button></>}
       </div>
     </div>
-    <div id="match-score-rail" ref={rail} role="region" aria-label="比赛卡片，可横向滑动" tabIndex={0} className="scrollbar-none flex snap-x snap-proximity items-start gap-3 overflow-x-auto px-1 pb-3 pt-1">
+    {matches.length > 0 ? <div id="match-score-rail" ref={rail} role="region" aria-label="比赛卡片，可横向滑动" tabIndex={0} className="scrollbar-none flex snap-x snap-proximity items-start gap-3 overflow-x-auto px-1 pb-3 pt-1">
       {matches.map(match => <MatchRadar key={match.id} match={match} expanded={expandedId === match.id} onToggle={() => setExpandedId(id => id === match.id ? null : match.id)} />)}
-    </div>
+    </div> : <p className="rounded-card border border-dashed border-line px-5 py-6 text-[14px] leading-relaxed text-ink-3">{unavailable ? '赛程暂时无法加载，请稍后重试或前往全部赛程。' : '暂无已收录的赛程，可前往全部赛程查看。'}</p>}
     <section id="match-quick-timeline" hidden={!expanded} className="mt-2 rounded-card border border-line bg-surface">
       {expanded && <>
         <header className="flex items-center justify-between gap-4 px-5 py-3"><h3 className="text-[15px] font-semibold text-ink">{expanded.title}</h3><button type="button" onClick={() => setExpandedId(null)} className="min-h-11 shrink-0 text-[12px] text-accent">收起时间线</button></header>
@@ -161,9 +161,9 @@ function MatchCarousel({ matches }: { matches: RadarMatch[] }) {
   </section>;
 }
 
-export function ContentRadar({ radar }: { radar: RadarResponse }) {
-  const [lead, ...topics] = radar.topics;
-  const empty = !lead && !radar.matches.length;
+export function ContentRadar({ radar, matches, matchesUnavailable }: { radar: RadarResponse | null; matches: RadarMatch[]; matchesUnavailable: boolean }) {
+  const [lead, ...topics] = radar?.topics ?? [];
+  const empty = radar && !lead && !matches.length;
   return <section aria-label="KPL内容雷达" className="radar-overview my-6 space-y-7 sm:space-y-8">
 
     {lead && <section aria-labelledby="radar-focus">
@@ -174,7 +174,7 @@ export function ContentRadar({ radar }: { radar: RadarResponse }) {
       </div>
     </section>}
 
-    {radar.matches.length > 0 && <MatchCarousel matches={radar.matches} />}
+    <MatchCarousel matches={matches} unavailable={matchesUnavailable} />
 
     {empty && <div className="rounded-card border border-dashed border-line-strong px-5 py-8 sm:px-8">
       <h2 className="text-[20px] font-semibold text-ink">暂时没有新焦点</h2>
@@ -182,11 +182,11 @@ export function ContentRadar({ radar }: { radar: RadarResponse }) {
       <IntentLink to="/all" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-control bg-accent px-4 text-[13px] font-medium text-accent-contrast hover:bg-accent-ink">全部动态<IconChevronRight size={15} /></IntentLink>
     </div>}
 
-    <details className="disclosure border-t border-line pt-2 text-[12px] text-ink-3">
+    {radar && <details className="disclosure border-t border-line pt-2 text-[12px] text-ink-3">
       <summary className="flex min-h-11 w-fit items-center gap-2">关于内容筛选与热度<IconChevronDown size={14} /></summary>
       <p className="max-w-[80ch] pb-2 leading-relaxed">焦点汇集最近七天仍有进展的讨论，按内容价值与真实互动信号综合排序；不是全网热搜榜。比赛独立展示进行中、接下来的赛程和最近赛果。</p>
       <p className="max-w-[80ch] pb-2 leading-relaxed">{radar.coverage.note}</p>
       {radar.coverage.pending > 0 && <p className="pb-2 leading-relaxed">还有 {radar.coverage.pending} 份素材待评估；技术失败与待复核不会自动发布。</p>}
-    </details>
+    </details>}
   </section>;
 }

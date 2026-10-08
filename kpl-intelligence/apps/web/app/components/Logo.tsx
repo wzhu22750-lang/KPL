@@ -1,11 +1,14 @@
 // 康平路情报站 (KPL Intelligence) 专属品牌 Logo 与标识组件
 import { SITE } from "@aihot/industry/site";
 
-/** 康平路情报站专属 SVG 战术徽标 (Tactical Beacon & Crest) */
+/**
+ * 用户全新 KPL Intelligence 战术数据流 Logo 图标 (Mark)
+ * 由白色坚毅立柱 + 蓝青发光数据流脉冲 (Data Flow Stream) + 智能指示星核组成
+ */
 export function LogoMark({ size = 24, className = "" }: { size?: number; className?: string }) {
   return (
     <svg
-      viewBox="0 0 32 32"
+      viewBox="0 0 160 160"
       width={size}
       height={size}
       fill="none"
@@ -14,50 +17,62 @@ export function LogoMark({ size = 24, className = "" }: { size?: number; classNa
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="lmBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.75" />
-          <stop offset="50%" stopColor="#0e7490" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.65" />
+        <linearGradient id="kplDataFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3B6DFF" />
+          <stop offset="100%" stopColor="#38BDF8" />
         </linearGradient>
-        <linearGradient id="lmCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#67e8f9" />
-          <stop offset="50%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#0891b2" />
-        </linearGradient>
-        <linearGradient id="lmGold" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#d97706" />
-          <stop offset="50%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#fef08a" />
-        </linearGradient>
+        <filter id="kplGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
-      {/* 战术外框底座 */}
-      <rect x="1" y="1" width="30" height="30" rx="7.5" fill="#0b1419" stroke="url(#lmBorder)" strokeWidth="1.2" />
-      {/* 雷达测距微环 */}
-      <circle cx="16" cy="15" r="11" stroke="#22d3ee" strokeWidth="0.7" strokeDasharray="2 3" strokeOpacity="0.35" />
-      {/* 左轴立柱 */}
-      <path d="M8.5 9 L12 6.5 V21.5 L8.5 24 Z" fill="url(#lmCyan)" />
-      <path d="M11 7 L12 6.5 V21.5 L11 22 Z" fill="#ffffff" fillOpacity="0.6" />
-      {/* 右上天线展翼 */}
-      <path d="M12 13.5 L19.5 7 L22.5 8.5 L16 15 Z" fill="url(#lmCyan)" />
-      {/* 右下支撑底座 */}
-      <path d="M14.5 13.5 L22 21.5 L19.5 23.5 L12 16 Z" fill="#155e75" />
-      <path d="M12 21.5 H23 L21 23.5 H8.5 Z" fill="url(#lmCyan)" opacity="0.9" />
-      {/* 荣耀金切面 */}
-      <polygon points="15,12 18.5,9 17,14" fill="url(#lmGold)" />
-      {/* 右上情报脉冲弧 */}
-      <path d="M20 9.5 A 8 8 0 0 1 24.5 14" stroke="#22d3ee" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.75" />
-      {/* 核心信标星核 */}
-      <path d="M16.5 11 Q16.5 13 18.5 13 Q16.5 13 16.5 15 Q16.5 13 14.5 13 Q16.5 13 16.5 11 Z" fill="url(#lmGold)" />
-      <circle cx="16.5" cy="13" r="1" fill="#ffffff" />
+
+      {/* 科技深黑底座 */}
+      <rect width="160" height="160" fill="#0A0E1A" rx="36" />
+
+      {/* K 字母数据流形态 */}
+      <g transform="translate(30, 20)">
+        {/* 左轴垂直立柱 */}
+        <rect x="15" y="30" width="14" height="80" fill="#F0F3F7" rx="2" />
+
+        {/* 右上阶梯式数据流 */}
+        <path
+          d="M 29 60 L 50 45 L 56 48 L 63 43 L 70 46 L 77 40"
+          stroke="url(#kplDataFlow)"
+          strokeWidth="13"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          filter="url(#kplGlow)"
+        />
+
+        {/* 右下延展数据流 */}
+        <path
+          d="M 29 70 L 45 85 L 52 92 L 60 100 L 68 108"
+          stroke="url(#kplDataFlow)"
+          strokeWidth="13"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          filter="url(#kplGlow)"
+        />
+
+        {/* 右上智能指示星点 */}
+        <circle cx="77" cy="40" r="7" fill="#38BDF8" opacity="0.9" />
+        <circle cx="77" cy="40" r="3.5" fill="#F0F3F7" />
+      </g>
     </svg>
   );
 }
 
 export function Wordmark({ size = 22, className = "" }: { size?: number; className?: string }) {
-  const iconSize = Math.max(16, Math.round(size * 1.08));
+  const iconSize = Math.max(16, Math.round(size * 1.1));
   return (
     <span className={`inline-flex items-center font-black leading-none tracking-[-0.03em] ${className}`} style={{ fontSize: size }} aria-label={SITE.name} role="img">
-      <LogoMark size={iconSize} className="mr-[0.35em] shrink-0 drop-shadow-sm" />
+      <LogoMark size={iconSize} className="mr-[0.35em] shrink-0 rounded-[22%] shadow-sm" />
       <span aria-hidden="true" className="tracking-tight">{SITE.name}</span>
     </span>
   );
@@ -74,4 +89,5 @@ export function RingMark({ className = "", spinning = false }: { className?: str
     </svg>
   );
 }
+
 

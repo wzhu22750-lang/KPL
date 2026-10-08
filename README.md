@@ -1,94 +1,74 @@
-# 康平路情报站 (KPL Intelligence)
+# KPL Intelligence Logo
 
-KPL（王者荣耀职业联赛）内容采集与数据平台：双通道采集微信公众号等信源内容，经统一质检门禁进入精选知识库，并支撑主站的战队/选手/赛程数据与 AI 问答能力。
+为 **KPL Intelligence** 设计的现代极简 Logo 系统，融合电竞专业感与 AI 科技美学。
 
-## 目录结构
+## 设计理念
 
-| 目录/文件 | 说明 |
-| --- | --- |
-| `kpl-intelligence/` | 主站核心系统（TypeScript monorepo：web / api / worker / backend / contracts / database / industry） |
-| `kpl_vault/` | 精选文章知识库（质检准入后的 Markdown + 离线 HTML + metadata.json + 索引/审计报告） |
-| `reference-projects/` | 只读参考项目 |
-| `AIHOT/` | 上游原版项目（只读） |
-| `curator.py` | 双阶段门禁：规则粗筛 + AI 内容价值评分，保留战队归档 |
-| `quality_scoring.py` | 六维评分校验、分类权重、模型调用与准入策略 |
-| `dajiala_client.py` | 主通道：大家拉（dajiala.com）商业 API 适配器（微信公众号历史文章 / 官方微博） |
-| `kpl_scraper.py` | 辅助通道：curl-cffi 轻量微信文章抓取器（TLS 指纹伪装，无图纯净版） |
+**核心图形：** 以字母 "K" 为主体，上下两条对角线通过阶梯式数据流动效果呈现，象征智能分析与实时数据传输。右上角的圆点作为"智能指示器"，强化科技感与精准定位的概念。
 
-## 生产环境部署与运维
+**视觉语言：**
+- 极简几何造型，避免过度装饰
+- 科技蓝渐变（#3B6DFF → #38BDF8）贯穿整个标识系统
+- 微妙的发光效果增强数字化氛围
+- 紧凑的字距与现代无衬线字体传递专业与效率
 
-详见完整部署手册：[`kpl-intelligence/docs/DEPLOYMENT_GUIDE.md`](./kpl-intelligence/docs/DEPLOYMENT_GUIDE.md)。
+**配色体系：**
+- 主色：科技蓝渐变（#3B6DFF, #38BDF8）
+- 文字主色：近白色 #FAFAFA / #F0F3F7
+- 文字辅色：中性灰 #A1A9B8 / #8B92A5
+- 背景：深黑 #0A0E1A（深色版本）
 
-```bash
-cd kpl-intelligence
+## 文件说明
 
-# 1. 复制生产配置模板并填入密钥
-cp .env.production.example .env
+### 1. `logo.svg` - 浅色背景版本
+完整的 Logo（图形标 + 文字标），适用于：
+- 白色或浅色网页背景
+- 印刷品与演示文稿
+- 对外宣传材料
 
-# 2. 运行生产环境预检（验证数据库连通性、TLS、连接池与迁移状态）
-npm run preflight:production
+### 2. `logo-dark.svg` - 深色背景版本
+带深色背景的完整 Logo，适用于：
+- 深色主题网站
+- 深色模式 App 界面
+- 社交媒体封面图
 
-# 3. 一键构建、迁移、拉起容器并完成健康检查（带 HTTPS 自动证书）
-./scripts/deploy-production.sh --profile https
-```
+### 3. `icon.svg` - App 图标版本
+160×160px 独立图形标，圆角矩形背景，适用于：
+- iOS / Android App 图标
+- 桌面应用图标
+- 社交媒体头像
 
-## 主站运行方法（TypeScript Monorepo 开发环境）
+### 4. `favicon.svg` - 网站图标版本
+32×32px 简化版本，优化小尺寸显示，适用于：
+- 浏览器标签页图标
+- 书签图标
+- PWA 应用图标
 
-```bash
-cd kpl-intelligence
+## 使用规范
 
-# 1. 安装依赖
-npm install
+**最小尺寸：**
+- 完整 Logo：宽度不小于 200px
+- 独立图形标：不小于 32×32px
+- Favicon：保持 32×32px 或 16×16px
 
-# 2. 类型检查与测试
-npm run typecheck
+**留白规则：**
+图形标周围保持至少 1/2 图形宽度的安全留白区域
 
-# 3. 启动开发服务
-# 需要本地 Docker pgvector 或 Supabase 配置（参考 .env.example）
-npm run dev
-```
+**禁止事项：**
+- 不要改变配色方案
+- 不要拉伸或扭曲 Logo
+- 不要在低对比度背景上使用
+- 不要添加阴影、描边或其他效果
 
-## Python 采集流水线用法
+## 技术特性
 
-架构见 [DATA_STRATEGY.md](./DATA_STRATEGY.md)（双通道采集 + AI 质检准入）：
+- 纯 SVG 矢量格式，无损缩放
+- 嵌入渐变与滤镜效果，无需外部依赖
+- 优化的路径与几何形状，文件体积小
+- 支持现代浏览器的 CSS 变量覆盖（如需主题定制）
 
-```bash
-# 1. 配置主通道密钥（或写入项目根目录 .env 文件）
-export DAJIALA_API_KEY="你的大家拉API密钥"
+---
 
-# 2. 拉取公众号历史文章列表并导出元信息（默认 KPL 官方号，产物供 curator 消费）
-python3 dajiala_client.py --export-json discovered_urls.json
-#    可选：--biz gh_xxx（逗号分隔指定公众号）、--pages N（翻页数）
-
-# 3. 校准完成后显式启用评分（可能产生模型费用；默认关闭）
-# 使用提供 /chat/completions JSON 输出的服务，凭据通过环境变量注入
-export KPL_QUALITY_API_BASE="你的模型服务地址（含 /v1 等前缀）"
-export KPL_QUALITY_MODEL="你的模型名称"
-export KPL_QUALITY_API_KEY="你的模型密钥"
-export KPL_QUALITY_MODEL_CALLS_ENABLED=true
-
-# 4. 抓取原文 → 规则粗筛 → AI 六维评分 → 合格文章归档
-python3 curator.py
-# 不清空旧库；模型未配置、失败或输出非法时待复核，不退回关键词准入。
-
-# 5. kpl_vault/ 下生成 INDEX.md、AUDIT_REPORT.md、QUALITY_AUDIT.json
-```
-
-依赖锁定见 `requirements.txt`（运行时）与 `requirements-dev.txt`（开发）。
-
-## 测试
-
-```bash
-python3 -m pytest tests_py/ -v
-```
-
-全部用例离线运行（不触网、不依赖真实密钥；文件系统测试仅使用临时目录）。
-固定模型响应只验证准入策略与管道契约；真实判断能力需要人工标注集及留出集评测。
-
-## 相关文档
-
-- [当前AI精选逻辑审查报告](./docs/ai-curation-review.md) —— 修改前流程、问题与评分方案
-- [AI 精选运行与验收说明](./docs/ai-curation-quality.md) —— 配置、字段、测试与上线边界
-
-- [docs/交接文档.md](./docs/交接文档.md) —— 主站现状、已知坑（pg-boss SSL、Supabase 连接池等）与遗留事项
-- [DATA_STRATEGY.md](./DATA_STRATEGY.md) —— 采集双通道架构与质检入库规范
+**设计风格：** 克制、精致、原创
+**适配场景：** Web、移动端、印刷、社交媒体
+**品牌定位：** 电竞数据分析 × AI 智能检索

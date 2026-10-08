@@ -16,6 +16,12 @@ let deadline: number;
 let metaDelayMs = 0;
 let hotUnavailable = false;
 let timelineUnavailable = false;
+let radarUnavailable = false;
+let overviewUnavailable = false;
+let overviewEmpty = false;
+let overviewDeadlineOffset = 0;
+let overviewNoStore = false;
+let timelineEmpty = false;
 let radarDeadlineOffset = 0;
 let timelineDeadlineOffset = 0;
 let timelineNoStore = false;
@@ -35,7 +41,14 @@ const api = createServer((req, res) => {
     const respond = () => res.end(JSON.stringify({ changelogVersion: "2026-09-28T12:00" }));
     return metaDelayMs ? setTimeout(respond, metaDelayMs) : respond();
   }
+  if (url.pathname === '/api/site/match-overview') {
+    if (overviewUnavailable) { res.statusCode = 503; return res.end(JSON.stringify({ code: 'service_unavailable' })); }
+    res.setHeader('X-Accel-Expires', `@${deadline + overviewDeadlineOffset}`);
+    res.setHeader('Cache-Control', overviewNoStore ? 'private, no-store' : 'public, max-age=30, s-maxage=30');
+    return res.end(JSON.stringify({ matches: overviewEmpty ? [] : [{ id: 'production-series', title: '成都AG vs 杭州LGD', bo: 5, status: 'scheduled', scheduledAt: '2026-10-09T09:00:00Z', home: { slug: 'ag', name: '成都AG', shortName: 'AG', logo: null }, away: { slug: 'lgd', name: '杭州LGD', shortName: 'LGD', logo: null }, homeScore: 0, awayScore: 0, materials: [], games: [] }] }));
+  }
   if (url.pathname === "/api/site/radar") {
+    if (radarUnavailable) { res.statusCode = 503; return res.end(JSON.stringify({ code: 'service_unavailable', detail: 'content radar disabled' })); }
     res.setHeader("X-Accel-Expires", `@${deadline + radarDeadlineOffset}`);
     res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
     return res.end(JSON.stringify({ day: '2026-10-08', topics: [], matches: [], standalone: [], coverage: { reviewed: 0, pending: 0, note: 'test' } }));
@@ -45,7 +58,7 @@ const api = createServer((req, res) => {
     const filters = { channel: "all", category: url.searchParams.get("category"), tag: null, sourceGroup: url.searchParams.get('sourceGroup') };
     res.setHeader("X-Accel-Expires", `@${deadline + timelineDeadlineOffset}`);
     res.setHeader("Cache-Control", timelineNoStore ? 'private, no-store' : "public, max-age=30, s-maxage=30");
-    return res.end(JSON.stringify({ filters, cards: timelineCards, nextCursor: null, dayCounts: { '2026-10-08': 1, '2026-10-07': 1 }, hot: hotUnavailable ? null : hotEntries }));
+    return res.end(JSON.stringify({ filters, cards: timelineEmpty ? [] : timelineCards, nextCursor: null, dayCounts: { '2026-10-08': 1, '2026-10-07': 1 }, hot: hotUnavailable ? null : hotEntries }));
   }
   if (url.pathname === "/api/site/hot/strip") return res.end(JSON.stringify({ entries: hotEntries }));
   if (url.pathname === "/api/site/hot") return res.end(JSON.stringify({ entries: [] }));
@@ -133,6 +146,33 @@ test('homepage keeps hot ranking above radar and restores the original selected 
   assert.equal(search.headers.get('Location'),'/all?q=all');
 });
 
+test('closed radar never hides the independently available match overview on production SSR', async () => {
+  radarUnavailable = true;
+  try {
+    const response = await fetch(origin + '/');
+    const html = await response.text();
+    assert.equal(response.status, 200);
+    assert.ok(html.includes('id="radar-matches"'), 'match overview must render even when radar returns 503');
+    assert.ok(html.includes('/matches/production-series'), 'existing schedule must remain reachable');
+    assert.ok(html.includes('原精选报道 0'));
+    assert.ok(apiPaths.includes('/api/site/match-overview'));
+  } finally { radarUnavailable = false; }
+});
+
+test('empty or unavailable schedule keeps its section visible and never invents matches', async () => {
+  try {
+    for (const unavailable of [false, true]) {
+      overviewEmpty = !unavailable; overviewUnavailable = unavailable;
+      const response = await fetch(origin + '/');
+      const html = await response.text();
+      assert.equal(response.status, 200);
+      assert.ok(html.includes('id="radar-matches"'));
+      assert.ok(html.includes(unavailable ? '赛程暂时无法加载' : '暂无已收录的赛程'));
+      assert.ok(!html.includes('/matches/production-series'));
+    }
+  } finally { overviewEmpty = false; overviewUnavailable = false; }
+});
+
 test('homepage publisher boxes filter in place and preserve hot topics and radar', async () => {
   for (const sourceGroup of SOURCE_GROUP_KEYS) {
     const response = await fetch(`${origin}/?sourceGroup=${sourceGroup}`, { redirect: 'manual' });
@@ -149,6 +189,18 @@ test('homepage publisher boxes filter in place and preserve hot topics and radar
     assert.match(html, /发现动态/);
     assert.ok(html.includes(`/?sourceGroup=${sourceGroup}`), 'canonical URL carries the applied group');
   }
+});
+
+test('an empty publisher selection links to the same scope in all updates', async () => {
+  timelineEmpty = true;
+  try {
+    const response = await fetch(`${origin}/?sourceGroup=caster`);
+    const html = await response.text();
+    assert.equal(response.status, 200);
+    assert.match(html, /这个筛选下还没有入选动态/);
+    assert.match(html, /href="\/all\?sourceGroup=caster"/);
+    assert.ok(html.includes('id="hot-topics"'));
+  } finally { timelineEmpty = false; }
 });
 
 test('no hot entries never hides radar or the original selected feed', async () => {
@@ -176,8 +228,8 @@ test('unavailable selected feed never hides the current focus', async () => {
 
 test('composed homepage uses the earliest API deadline and respects no-store from either list', async () => {
   try {
-    for (const [radar, timeline] of [[-7, -2], [-2, -7]]) {
-      radarDeadlineOffset = radar; timelineDeadlineOffset = timeline;
+    for (const [radar, timeline, overview] of [[-7, -2, 0], [-2, -7, 0], [0, 0, -7]]) {
+      radarDeadlineOffset = radar; timelineDeadlineOffset = timeline; overviewDeadlineOffset = overview;
       const response = await fetch(origin + '/');
       assert.equal(response.status, 200);
       assert.equal(response.headers.get('X-Accel-Expires'), `@${deadline - 7}`);
@@ -188,7 +240,11 @@ test('composed homepage uses the earliest API deadline and respects no-store fro
     assert.equal(response.headers.get('X-Accel-Expires'), '0');
     assert.match(response.headers.get('Cache-Control')!, /no-cache|no-store/);
     await response.text();
-  } finally { radarDeadlineOffset = 0; timelineDeadlineOffset = 0; timelineNoStore = false; }
+    overviewNoStore = true; timelineNoStore = false;
+    const matchResponse = await fetch(origin + '/');
+    assert.equal(matchResponse.headers.get('X-Accel-Expires'), '0');
+    await matchResponse.text();
+  } finally { radarDeadlineOffset = 0; timelineDeadlineOffset = 0; timelineNoStore = false; overviewDeadlineOffset = 0; overviewNoStore = false; }
 });
 
 test("HTML and navigation share freshness; cookies do not personalize public results", async () => {

@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dataFlowDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5B8DFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60D5FC;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glowDark">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="#0A0E1A"/>
+  
+  <!-- K letterform -->
+  <g id="mark">
+    <rect x="20" y="40" width="12" height="120" fill="#F0F3F7" rx="2"/>
+    
+    <path d="M 32 85 L 75 50 L 82 55 L 90 48 L 97 52 L 105 45 L 112 50 L 120 40" 
+          stroke="url(#dataFlowDark)" 
+          stroke-width="11" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#glowDark)"/>
+    
+    <path d="M 32 95 L 60 115 L 68 125 L 76 133 L 85 143 L 95 153 L 105 160" 
+          stroke="url(#dataFlowDark)" 
+          stroke-width="11" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#glowDark)"/>
+    
+    <circle cx="110" cy="40" r="6" fill="#60D5FC" opacity="0.9"/>
+    <circle cx="110" cy="40" r="3" fill="#F0F3F7"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <g id="wordmark">
+    <text x="150" y="115" 
+          font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" 
+          font-size="64" 
+          font-weight="700" 
+          letter-spacing="-0.02em"
+          fill="#F0F3F7">KPL</text>
+    
+    <text x="295" y="115" 
+          font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" 
+          font-size="64" 
+          font-weight="300" 
+          letter-spacing="-0.01em"
+          fill="#8B92A5">Intelligence</text>
+  </g>
+  
+  <g opacity="0.5">
+    <rect x="150" y="135" width="28" height="3" fill="#60D5FC" rx="1.5"/>
+    <rect x="182" y="135" width="16" height="3" fill="#5B8DFF" rx="1.5"/>
+    <rect x="202" y="135" width="22" height="3" fill="#60D5FC" rx="1.5"/>
+  </g>
+</svg>

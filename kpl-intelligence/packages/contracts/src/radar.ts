@@ -20,6 +20,8 @@ export interface RadarMatch {
   homeScore: number; awayScore: number; materials: RadarMaterial[];
   games: Array<{ gameNo: number; winner: string | null; mvp: string | null }>;
 }
+/** Canonical match cards; available even when experimental radar judgment is disabled. */
+export interface MatchOverviewResponse { matches: RadarMatch[]; }
 export interface RadarResponse {
   day: string; matches: RadarMatch[]; topics: RadarTopic[]; standalone: RadarMaterial[];
   coverage: { reviewed: number; pending: number; note: string };

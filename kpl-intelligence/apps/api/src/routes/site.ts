@@ -10,6 +10,7 @@ import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detai
 import { loadPool, SearchBusyError } from "@aihot/backend/publication/pool";
 import { loadTimeline } from "@aihot/backend/publication/timeline";
 import { loadRadar } from "@aihot/backend/publication/radar";
+import { loadCurrentMatchOverview } from "@aihot/backend/publication/match-overview";
 import { loadStoryFollowups } from "@aihot/backend/publication/followups";
 import { loadGroupReports } from "@aihot/backend/publication/groups";
 import { loadHotStrip } from "@aihot/backend/publication/hot";
@@ -243,6 +244,10 @@ export function registerSite(app: FastifyInstance) {
   }));
 
   registerFeedback(app);
+
+  app.get("/api/site/match-overview", siteHandler(async (req, reply) => {
+    return sendJsonWithEtag(req, reply, await loadCurrentMatchOverview(), { etagPrefix: "match-overview", cacheControl: "public, max-age=30, s-maxage=30" });
+  }));
 
   app.get("/api/site/radar", siteHandler(async (req, reply) => {
     if (!RADAR.enabled) return sendProblem(req, reply, { status: 503, code: "service_unavailable", detail: "content radar disabled" });

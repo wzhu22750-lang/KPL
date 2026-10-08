@@ -151,7 +151,7 @@ export function registerStatic(app: FastifyInstance) {
   }
 
   // Icons from the industry pack (industry/brand/).
-  for (const icon of ["favicon.ico", "icon.png", "icon-192.png", "apple-icon.png", "logo.svg"]) {
+  for (const icon of ["favicon.ico", "favicon.svg", "icon.png", "icon.svg", "icon-192.png", "apple-icon.png", "logo.svg", "logo-dark.svg"]) {
     app.get(`/${icon}`, (req, reply) => sendFile(req, reply, path.join(BRAND, icon), { cacheControl: "public, max-age=86400, stale-while-revalidate=604800" }));
   }
 
