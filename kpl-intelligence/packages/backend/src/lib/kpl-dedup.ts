@@ -208,3 +208,25 @@ export function kplOccurrenceConflict(titleA: string, titleB: string, dateA?: Da
   if (a.game !== b.game && (a.game || b.game)) return "different game scope";
   return null;
 }
+
+/**
+ * P2 SAME_SERIES：同一系列赛的不同小局（同两队 + 同日期 + 同赛事/轮次，但局次不同）。
+ * 软关系，仅用于“不触发 kplOccurrenceConflict 硬 veto”：调用方把这类两篇并入同一个 story、
+ * 按局次分属不同 fact。至少一篇带局次信息且两篇局次不一致才算（两篇都没局次 → 不是“不同局”）。
+ */
+export function areSameSeriesDifferentGame(
+  titleA: string,
+  titleB: string,
+  dateA?: Date | null,
+  dateB?: Date | null
+): boolean {
+  const a = extractMatchFingerprint(titleA, dateA);
+  const b = extractMatchFingerprint(titleB, dateB);
+  if (!a || !b) return false;
+  if (a.teams.join(",") !== b.teams.join(",")) return false;
+  if (!a.dateKey || !b.dateKey || a.dateKey !== b.dateKey) return false;
+  if ((a.stage || "") !== (b.stage || "")) return false;
+  if ((a.round || "") !== (b.round || "")) return false;
+  if (!a.game && !b.game) return false;
+  return a.game !== b.game;
+}

@@ -35,7 +35,7 @@ const provider = await stub(async (_hit, request) => {
     return new Reply(503, { error: "temporary outage" });
   }
   const content = step === "prefilter" ? { label: original ? "BLOCK" : "PASS", reason: "local fixture" }
-    : step === "score" ? { attentionScore: 80 }
+    : step === "score" ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "fixture" }
     : step === "structure" ? { category: "match-result", tags: [], subjects: [], fact: null }
     : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: `新判断 ${T}`, summaryZh: "比赛顺利结束，比分已经出炉。" };
   return { choices: [{ message: { content: JSON.stringify(content) } }] };

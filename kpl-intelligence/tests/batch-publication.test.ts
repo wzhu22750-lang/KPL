@@ -30,7 +30,7 @@ const SOURCE = `test-batch-${T}`;
 
 type Step = "prefilter" | "score" | "understand" | "structure" | "summarize";
 const MARKERS = ["BATCHOK", "BATCHFAIL", "BATCHRETRY", "BATCHEXIST", "BATCHLEGACY"];
-const scoreAnswers: Record<string, number[]> = { BATCHOK: [78, 72] };
+const scoreBases: Record<string, number[]> = { BATCHOK: [78, 72] }; // v2 base; finals add official 8 (T1) + heat 6 (unknown)
 
 const stepOf = (system: string): Step =>
   system.includes("KPL相关性预筛") ? "prefilter" : system.includes("事件注意力评分器") ? "score"
@@ -51,7 +51,7 @@ const provider = await stub((_hit, req) => {
   });
   if (marker !== "BATCHOK") return new Reply(500, { error: "provider outage" });
   if (step === "prefilter") return answer({ label: "PASS", reason: "测试" });
-  if (step === "score") return answer({ attentionScore: scoreAnswers.BATCHOK!.shift() });
+  if (step === "score") return answer({ content_kind: "announcement", base: scoreBases.BATCHOK!.shift(), heat_evidence: "", noise_flags: [], reasons: "测试" });
   if (step === "understand") return answer({ itemType: "roster_move", authorRole: "principal", tags: ["阵容转会"], editorialJudgment: "阵容变动", titleZh: `理解标题 ${marker}`, summaryZh: `理解摘要 ${marker}。第二句补充一个关键数字。` });
   if (step === "structure") return answer({ scope: "single", category: "roster", tags: ["阵容转会"], subjects: [], fact: null });
   return answer(`title_zh: 翻译标题 ${marker}\nsummary_zh: 翻译摘要 ${marker}。第二句补充影响。`);
@@ -113,13 +113,13 @@ test("the batch runner publishes a genuinely analyzed article under the normal s
     SELECT origin, model, score, selected FROM analyses WHERE article_id = ${id} ORDER BY id DESC LIMIT 1`;
   assert.equal(analysis!.origin, "model");
   assert.notEqual(analysis!.model, "kpl-processor");
-  assert.equal(Number(analysis!.score), 75, "floor((78+72)/2): the normal two-call mean rule, untouched");
+  assert.equal(Number(analysis!.score), 89, "v2: floor(((78+8+6) + (72+8+6))/2); the two-call mean rule, untouched");
   assert.equal(analysis!.selected, true);
   const [pub] = await sql<{ eligible: boolean; selected: boolean; selection_candidate: boolean; score: string | null }[]>`
     SELECT eligible, selected, selection_candidate, score FROM publications WHERE article_id = ${id}`;
   assert.equal(pub!.eligible, true);
   assert.equal(pub!.selection_candidate, true, "精选 comes from the real scores behind the grouping gate, not from the tier");
-  assert.equal(Number(pub!.score), 75);
+  assert.equal(Number(pub!.score), 89);
 });
 
 test("an exhausted analysis failure writes no score, publishes nothing and stays observable", async () => {

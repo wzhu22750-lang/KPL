@@ -24,7 +24,7 @@ export interface ScheduleMatch {
   seasonName: string;
   stage: string | null;
   bo: number | null;
-  status: "scheduled" | "live" | "finished" | "cancelled";
+  status: "scheduled" | "live" | "finished" | "postponed" | "cancelled";
   scheduledAt: string | null;
   playedAt: string | null;
   gamesExpected: number | null;
@@ -47,6 +47,15 @@ export interface ScheduleResponse {
   season: { id: string; name: string } | null;
   availableSeasons: AvailableSeason[];
   matches: ScheduleMatch[];
+}
+
+/**
+ * P4 首页“今日比赛”（GET /api/site/kb/schedule?day=today）：
+ * day 是北京时间日期；fallback=true 表示今日无比赛，已回退到最近场次。
+ */
+export interface DayScheduleResponse extends ScheduleResponse {
+  day: string;
+  fallback: boolean;
 }
 
 export interface TeamsResponse {
@@ -140,6 +149,43 @@ export interface MatchDetailResponse {
   red: ScheduleMatchSide & { id: string };
   games: GameDetail[];
   videos?: MatchBattleVideoItem[];
+}
+
+/** P2 比赛主卡：match + games + 关联 stories + 按局次/时间组织的时间线。 */
+export type MatchStoryLinkType = "series" | "game" | "node";
+
+export interface MatchCardStory {
+  story: {
+    publicId: string;
+    title: string;
+    firstReportAt: string | null;
+    latestAt: string | null;
+  };
+  gameNo: number | null;
+  linkType: MatchStoryLinkType;
+}
+
+export interface MatchCardTimelineItem {
+  kind: "game" | "story";
+  /** 局次（game_no）；整场级 story 为 null，排在小局之后。 */
+  gameNo: number | null;
+  title: string;
+  /** 小局胜者（game kind）；story kind 为 null。 */
+  winner: string | null;
+  /** story kind 的 public_id；game kind 为 null。 */
+  storyPublicId: string | null;
+  linkType: MatchStoryLinkType | null;
+  /** 发布时间（game：null；story：最早报道的发布时间）。 */
+  publishedAt: string | null;
+  /** 发现时间（game：null；story：最早报道的发现时间）。 */
+  discoveredAt: string | null;
+}
+
+export interface MatchCardResponse {
+  match: ScheduleMatch & { sourceUrl: string | null };
+  games: GameDetail[];
+  stories: MatchCardStory[];
+  timeline: MatchCardTimelineItem[];
 }
 
 export interface PlayerStint {

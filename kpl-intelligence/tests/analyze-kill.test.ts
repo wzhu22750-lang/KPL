@@ -29,7 +29,7 @@ const provider = await stub(async (_hit, request) => {
     await held.answer.promise;
   }
   const content = step === "prefilter" ? { label: "PASS", reason: "KPL match result" }
-    : step === "score" ? { attentionScore: 80 }
+    : step === "score" ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "测试" }
       : step === "structure" ? { category: "match-result", tags: ["赛果战报"], subjects: [], fact: { title: "比赛赛果" } }
         : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: `比赛赛果 ${T}`, summaryZh: "比赛顺利结束，比分已经出炉。" };
   return { id: `stub-${calls.length}`, choices: [{ message: { content: JSON.stringify(content) } }], usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 } };
@@ -198,7 +198,7 @@ test("SIGKILL after responses are saved but before the business commit reuses al
   assert.equal(calls.length, 5, "restart sent no additional model requests");
   const [analysis] = await sql`SELECT selected,score,receipt_ids FROM analyses WHERE article_id=${articleId}`;
   assert.equal(analysis?.selected, true);
-  assert.equal(Number(analysis?.score), 80);
+  assert.equal(Number(analysis?.score), 84, "v2: base 70 + official 8 (T1) + heat 6 (unknown)");
   assert.deepEqual(analysis!.receipt_ids.map(String).sort(), receivedIds.slice().sort());
   assert.equal((await sql`SELECT 1 FROM receipts WHERE subject=${subject} AND status='completed'`).length, 5);
   assert.equal((await sql`SELECT 1 FROM receipt_attempts a JOIN receipts r ON r.id=a.receipt_id WHERE r.subject=${subject}`).length, 5);

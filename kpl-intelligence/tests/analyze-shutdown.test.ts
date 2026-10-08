@@ -36,7 +36,7 @@ const provider = await stub(async (_hit, request) => {
   if (step === "structure" && count === 1) { active.structureAsked.open(); await active.structureAnswer.promise; }
   if (step === "understand" && active.writingAnswer) { active.writingAsked!.open(); await active.writingAnswer.promise; }
   const content = step === "prefilter" ? { label: "PASS", reason: "KPL match result" }
-    : step === "score" ? { attentionScore: 80 }
+    : step === "score" ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "fixture" }
       : step === "structure" ? { category: "match-result", tags: ["赛果战报"], subjects: [], fact: { title: "比赛赛果" } }
         : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: `比赛赛果 ${T}`, summaryZh: "比赛顺利结束，比分已经出炉。" };
   return { id: `stub-${active.calls.length}`, choices: [{ message: { content: JSON.stringify(content) } }], usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 } };
@@ -111,7 +111,7 @@ test("SIGTERM during the final paid writing call still commits the complete anal
   assert.equal((await sql`SELECT state FROM pgboss.job WHERE id=${jobId}`)[0]!.state, "completed");
   assert.equal((await sql`SELECT processing_state FROM articles WHERE id=${articleId}`)[0]!.processing_state, "analyzed");
   const [analysis] = await sql`SELECT selected,score,receipt_ids FROM analyses WHERE article_id=${articleId}`;
-  assert.equal(analysis!.selected, true); assert.equal(analysis!.score, 80); assert.equal(analysis!.receipt_ids.length, 5);
+  assert.equal(analysis!.selected, true); assert.equal(analysis!.score, 84); assert.equal(analysis!.receipt_ids.length, 5);
   assert.deepEqual({ ...(await sql`SELECT selected, selection_candidate FROM publications WHERE article_id=${articleId}`)[0] },
     { selected: false, selection_candidate: true }, "saved analysis nominates a candidate while news identity is pending");
   assert.equal((await sql`SELECT 1 FROM receipts WHERE subject=${`article:${articleId}@1`} AND status='completed'`).length, 5);
@@ -152,6 +152,6 @@ for (const failScore of [false, true]) test(`SIGTERM during ${failScore ? "faile
   assert.equal(active.calls.filter(s => s === "score").length, failScore ? 3 : 2, "two ordered successful scores, only a rejected request repeats");
   assert.equal(active.calls.filter(s => s === "understand").length, 1);
   const [result] = await sql`SELECT selected,score,receipt_ids FROM analyses WHERE article_id=${articleId}`;
-  assert.equal(result!.selected, true); assert.equal(result!.score, 80); assert.equal(result!.receipt_ids.length, 5);
+  assert.equal(result!.selected, true); assert.equal(result!.score, 84); assert.equal(result!.receipt_ids.length, 5);
   assert.equal((await sql`SELECT processing_attempts FROM articles WHERE id=${articleId}`)[0]!.processing_attempts, 0);
 });
