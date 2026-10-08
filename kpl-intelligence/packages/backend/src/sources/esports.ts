@@ -4,6 +4,7 @@
 import { sql } from "../db.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";
 import { beijingTime, SMOBA_BASE, ensureSeason, ensureTeam, upsertGame, upsertMatch, type BpEntry, type BattlePlayer } from "../kb/upsert.ts";
+import { boostSourcesForMatch } from "./collect.ts";
 import type { SourceRow } from "./types.ts";
 
 export interface EsportsSyncResult {
@@ -141,6 +142,12 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
     if (!campTeams[1] || !campTeams[2]) continue;
     const finished = row.status === 2 || (row.win_camp === 1 || row.win_camp === 2);
     const winnerId = finished && row.win_camp ? campTeams[row.win_camp as 1 | 2] ?? null : null;
+    const nextStatus = finished ? "finished" : row.status === 1 ? "live" : "scheduled";
+    // P2：检测“进入 live”跃迁（upsert 不返回旧状态，先读一次）。best-effort，失败不阻断同步。
+    const matchDbId = ["kpl", leagueId, row.match_id].join("-");
+    const [prev] = nextStatus === "live"
+      ? await sql<{ status: string }[]>`SELECT status FROM matches WHERE id = ${matchDbId}`
+      : [];
     const res = await upsertMatch(sql, {
       leagueId, matchId: row.match_id, seasonId,
       ccKey: row.cc_match_id ?? null,
@@ -149,13 +156,25 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
       teamAId: campTeams[1]!, teamBId: campTeams[2]!,
       scoreA: Number(row.camp1?.score ?? 0), scoreB: Number(row.camp2?.score ?? 0),
       winnerId,
-      status: finished ? "finished" : row.status === 1 ? "live" : "scheduled",
+      status: nextStatus,
       scheduledAt: beijingTime(row.start_time), playedAt: beijingTime(row.end_time),
       sourceUrl: "https://pvp.qq.com/matchdata/schedule.html?league_id=" + leagueId,
       raw: row,
     });
     if (res.created) created += 1;
     else if (res.revised) revised += 1;
+    if (nextStatus === "live" && prev?.status !== "live") {
+      try {
+        const teams = await sql<{ slug: string }[]>`SELECT slug FROM teams WHERE id = ANY(${[campTeams[1]!, campTeams[2]!]})`;
+        await boostSourcesForMatch(sql, {
+          teamSlugs: teams.map((t) => t.slug),
+          reason: `match-live:${matchDbId}`,
+          minutes: 240,
+        });
+      } catch (error) {
+        console.warn(`[esports] boostSourcesForMatch failed for ${matchDbId}: ${String(error).slice(0, 200)}`);
+      }
+    }
   }
 
   // 对局详情回灌：按字段完整度选候选，预算限制实际请求尝试，持续失败不再抢占候选名额。

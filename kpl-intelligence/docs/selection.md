@@ -4,7 +4,7 @@
 
 1. **收进来**：同一网址、同一内容只留一份。只有标题或订阅摘要的，先抓原文页面再判断。
 2. **预筛**（`prefilter.md`）：这是不是本行业的事。宽进，只拦明显无关的：`BLOCK` 的资料不出现在任何公开页面；`PASS` 和拿不准的 `UNKNOWN` 继续往下走。
-3. **评分**（`selection-score.md`）：同一份评分标准独立打两次分（0–100）。**两次之和 ≥ 2 × 门槛**就够分，门槛按信源分级不同；够分的还要过第 6 步的去重才进精选。页面上显示的分数是两次的平均（向下取整）。
+3. **评分**（`selection-score.md`，v2 公式）：模型只评材料自身的内容——按五类 rubric（公告/战报、争议/观点、分析/复盘、趣评/二创、日常/活动）打 `base`（0–70），并标出 `noise_flags`（扣分依据）与观察到的互动描述。代码层再合成最终分：`final = clamp(base + official + heat − noise, 0, 100)`，其中 `official`（0–10）按信源 tier/owner_type/role 的规则表计算（不进模型输入），`heat`（0–20）按事件的 `story_signals` 换算（归组前无数据时记 `coverage='unknown'` 缺失降级、不记 0），`noise`（0–30）由 `noise_flags` 映射（与正文噪声净化去重、不双罚）。**两次独立调用，分量分别平均后再合成**；两次 final 之和 ≥ 2 × 门槛才够分。资格门：无关/引流/辱骂直接拦截；严重失实/隐私/断章进待复核（压分不发布）；模型故障不伪造分数，资料停在待处理。归组完成后 heat 会按真实信号刷新一次（只刷新 coverage='unknown' 的 v2 行，v1 旧分不动）。页面上显示的分数是两次 final 的平均（向下取整）。旧版 v1 公式见 `industry/prompts/selection-score-v1.md`（已归档）。
 4. **结构化**（`structure.md`）：和评分同时进行。给出分类和标签（页面上显示的就是这一份）、主体公司，判断这篇是一条具体新闻、讲多件事的综合稿，还是材料不够、说不清；是具体新闻的，抽出它的事实（谁、做了什么、对什么、什么时候）和原文里的出处、前提条件。主题页、事件归组和日报都靠它。
 5. **写标题摘要**：等结构化完成再写。入选的和差一点入选的（平均分高于 `understandFloor`），按 `content-understanding.md` 写中文标题、答案先行的摘要和推荐理由；其余的按 `summarize-*.md` 写简短的标题摘要，进“全部动态”。
 6. **归组与去重**（`group-*.md`）：不同来源报道的同一件事归成一个事件，事件页有综述（`story-digest.md`），“热门”按事件排。分数够了的资料要等归组完成才进精选：模型同时判断它和精选里已有的报道是不是同一条新闻，以及它有没有精选还没给过的具体信息。
@@ -88,3 +88,38 @@ node --env-file=.env scripts/eval-selection.ts --gold .data/gold.jsonl --split d
 ## 换模型
 
 后台“模型与评测”页能看到每一步当前用哪个模型、近期的成功率、耗时和 token 用量，也能直接切换（只影响之后的新任务）。换评分模型之前，先用 `--models` 在同一批样本上比一比。
+
+## P3：v2 评分公式与争议话题（2026-10-08）
+
+### v2 公式
+
+`final = clamp(base + official + heat − noise, 0, 100)`，实现见 `packages/backend/src/editorial/scoring-v2.ts`（纯函数，可单测）：
+
+- `base` 0–70：模型按内容类型 rubric 打分（`industry/prompts/selection-score.md` 输出 v2 JSON：`content_kind`/`base`/`heat_evidence`/`noise_flags`/`reasons`）。
+- `official` 0–10：代码按信源 `tier`/`owner_type`/`role` 的规则表计算——T1 联盟/俱乐部一手公告 +8–10、官方采访/原创 +3–6、普通应援/重复海报/纯商务 +0–2、搬运（`origin_type='repost'`）不继承。**信源身份不进模型输入**。
+- `heat` 0–20：代码按事件 `story_signals` 的独立参与者数、近 6 小时增长、跨社区数换算（规则公开可复核）。评分时文章尚未归组，`heat` 取缺失占位值（`HEAT_UNKNOWN_VALUE=6`，`coverage='unknown'`），排序时同分降级、不记 0；归组完成后 `refreshScoreHeat` 按真实信号刷新一次。
+- `noise` 0–30：`noise_flags` → 扣分映射（`title_bait`/`betting` 另有 30 分硬上限）。评分输入是已净化文本，已被 `clean-noise.ts` 剔除的尾部噪声不会重复扣分。
+
+资格门：`unrelated`/`drainage`/`abuse` → 直接拦截（等同 prefilter BLOCK）；`severe_misinformation`/`privacy_violation`/`out_of_context` → 待复核（压到 15 分以下，不发布）；模型调用失败 → 不伪造分数，资料保持待处理。
+
+### 版本化
+
+- 迁移 `0067_scoring_v2.sql`：`analyses`/`publications` 加 `score_formula_version`（默认 `'v1'`）与 `score_components`（jsonb：`{base, official, heat, noise, coverage, reasons}`）。
+- `score` 列语义不变，仍是最终 0–100（clamp 后）。旧数据为 `v1`，新评分写 `v2`；不重算旧分（`analyses` append-only，heat 刷新只动同一行的 v2 分量）。
+
+### 阈值声明
+
+`SELECTION` 阈值（T1=58 / T1_5=64 / T2=74）按 v1 尺度**暂时保留、未改**。v2 的分数组成变了（base 上限 70 + official/heat/noise），必须用 `scripts/eval-scoring-v2.ts` 在标注样本上重校准后再调阈值；P3 只交付对照报告，不擅自改线上阈值。
+
+### 争议话题
+
+- 迁移 `0067` 给 `stories` 加 `topic_kind`（`general`/`dispute`/`fun`，默认 `general`）、`positions`（jsonb：`[{stance, holders, evidence, source}]`；`NULL`=尚未抽取，`[]`=已抽取但无争议）、`dispute_status`（`ongoing`/`responded`/`clarified`/`settled`）。
+- 归组完成后 best-effort 跑 `industry/prompts/dispute-extract.md`（`packages/backend/src/events/dispute.ts`）：已抽取的不重复跑；模型调用关闭或失败时保持 `general`。
+- 事件 API（`StoryDetail`）与事件页展示立场/时间线/回应状态；未新增 taxonomy 大类，不冲击日报分节。
+
+### 未验证范围
+
+- v2 阈值尚未在标注样本上校准（`scripts/eval-scoring-v2.ts` 需 `MODEL_CALLS_ENABLED=true` 手动跑）。
+- heat 刷新只在归组完成时跑一次；之后信号继续增长不再追评（已知局限）。
+- 争议抽取每个事件最多跑一次（已抽取的不重跑）；事件性质后续变化不会自动重判。
+- DB 测试（`tests/scoring-v2-db.test.ts`）已写好，本地无 Postgres 未执行。

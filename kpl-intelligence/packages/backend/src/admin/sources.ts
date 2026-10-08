@@ -29,7 +29,8 @@ export async function listSources(f: SourceListFilters): Promise<BeforeJson<Admi
   const page = Math.max(1, f.page ?? 1);
   const q = f.q?.trim() ? `%${f.q.trim()}%` : null;
   const rows = await sql<BeforeJson<AdminSourceRow>[]>`
-    SELECT s.id, s.name, s.kind, s.tier, s.participation_mode, s.enabled, s.health, s.fail_count, s.interval_minutes,
+    SELECT s.id, s.name, s.kind, s.tier, s.role, s.participation_mode, s.enabled, s.health, s.fail_count, s.interval_minutes,
+           s.priority_weight, s.auto_tune,
            s.last_ok_at, s.last_fetch_at, s.last_error, (s.tier = 'T1') AS first_party, s.next_fetch_at,
            (SELECT count(*)::int FROM articles a WHERE a.source_id = s.id AND a.discovered_at > now() - interval '7 days') AS items_7d,
            coalesce(selected.n, 0) AS selected_30d
@@ -97,6 +98,10 @@ const EDITABLE = z
     enabled: z.boolean(),
     interval_minutes: z.number().int().min(1).max(1440),
     tier: z.enum(["T1", "T1_5", "T2", "T3", "EXCLUDE_MP"]),
+    role: z.enum(["league_official", "club_official", "principal", "caster", "media", "community"]),
+    priority_weight: z.number().int().min(0).max(1000),
+    auto_tune: z.boolean(),
+    verified_evidence: z.string().max(2000).nullable(),
     participation_mode: z.enum(["editorial", "hot_signal", "isolated"]),
     signal_group_id: z.string().max(120).nullable(),
     first_party: z.boolean(),
@@ -166,6 +171,10 @@ const CreateSchema = z
     kind: z.enum(["rss", "web_list", "json_list", "x_search", "mp_account", "external"]),
     config: z.record(z.string(), z.unknown()),
     tier: z.enum(["T1", "T1_5", "T2", "T3", "EXCLUDE_MP"]).default("T2"),
+    role: z.enum(["league_official", "club_official", "principal", "caster", "media", "community"]).default("media"),
+    priority_weight: z.number().int().min(0).max(1000).default(0),
+    auto_tune: z.boolean().default(true),
+    verified_evidence: z.string().max(2000).nullable().default(null),
     participation_mode: z.enum(["editorial", "hot_signal", "isolated"]).default("editorial"),
     interval_minutes: z.number().int().min(1).max(1440).default(30),
     first_party: z.boolean().default(false),
@@ -209,8 +218,8 @@ export async function createSource(input: unknown, actor: string): Promise<Befor
     const dup = await findDuplicateSource(s.kind, s.config, undefined, tx);
     if (dup) return { created: false as const, duplicate: dup };
     const [row] = await tx<BeforeJson<AdminSource>[]>`
-    INSERT INTO sources (id, name, kind, config, tier, participation_mode, interval_minutes, first_party, owner_type, claim_types, tags, site_fulltext, syndicate_fulltext, next_fetch_at)
-    VALUES (${s.id}, ${s.name}, ${s.kind}, ${tx.json(s.config as never)}, ${s.tier}, ${s.participation_mode}, ${s.interval_minutes}, ${s.first_party}, ${s.owner_type}, ${s.claim_types}, ${s.tags},
+    INSERT INTO sources (id, name, kind, config, tier, role, priority_weight, auto_tune, verified_evidence, participation_mode, interval_minutes, first_party, owner_type, claim_types, tags, site_fulltext, syndicate_fulltext, next_fetch_at)
+    VALUES (${s.id}, ${s.name}, ${s.kind}, ${tx.json(s.config as never)}, ${s.tier}, ${s.role}, ${s.priority_weight}, ${s.auto_tune}, ${s.verified_evidence}, ${s.participation_mode}, ${s.interval_minutes}, ${s.first_party}, ${s.owner_type}, ${s.claim_types}, ${s.tags},
             ${s.site_fulltext}, ${s.syndicate_fulltext}, now())
     ON CONFLICT (id) DO NOTHING RETURNING *`;
     if (!row) throw new Conflict(`信源 ID ${s.id} 已存在`);

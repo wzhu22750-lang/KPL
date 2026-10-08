@@ -6,7 +6,7 @@ import type { AdminSource, AdminSourceDetail, AdminSourcePreview } from "@aihot/
 import { adminGet } from "../../lib/admin.server";
 import { useAdminAction } from "../../features/admin/action";
 import { bj, duration, num } from "../../features/admin/format";
-import { HEALTH_LABEL, KIND_LABEL, MODE_LABEL, TIER_LABEL, VISIBILITY_LABEL } from "../../features/admin/labels";
+import { HEALTH_LABEL, KIND_LABEL, MODE_LABEL, ROLE_LABEL, TIER_LABEL, VISIBILITY_LABEL } from "../../features/admin/labels";
 import { AdminPage, Badge, Button, Card, DataTable, Dot, Empty, Field, healthTone, Input, Json, KV, ReasonDialog, Select, Stat, Textarea, Time } from "../../features/admin/ui";
 
 
@@ -20,13 +20,17 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
 export const meta: Route.MetaFunction = ({ loaderData }) => [{ title: `${loaderData?.source.name ?? "信源"} · ${SITE.name} 后台` }];
 
-type Draft = Pick<AdminSource, "name" | "interval_minutes" | "tier" | "participation_mode" | "signal_group_id" | "first_party" | "owner_entity_id" | "site_fulltext" | "syndicate_fulltext"> & { tags: string; config: string };
+type Draft = Pick<AdminSource, "name" | "interval_minutes" | "tier" | "role" | "priority_weight" | "auto_tune" | "verified_evidence" | "participation_mode" | "signal_group_id" | "first_party" | "owner_entity_id" | "site_fulltext" | "syndicate_fulltext"> & { tags: string; config: string };
 
 function draftOf(s: AdminSource): Draft {
   return {
     name: s.name,
     interval_minutes: s.interval_minutes,
     tier: s.tier,
+    role: s.role,
+    priority_weight: s.priority_weight,
+    auto_tune: s.auto_tune,
+    verified_evidence: s.verified_evidence,
     participation_mode: s.participation_mode,
     signal_group_id: s.signal_group_id,
     first_party: s.first_party,
@@ -67,6 +71,8 @@ export default function SourceDetail({ loaderData }: Route.ComponentProps) {
       tags: draft.tags.split(/[,，]/).map((t) => t.trim()).filter(Boolean),
       config,
       interval_minutes: Number(draft.interval_minutes),
+      priority_weight: Number(draft.priority_weight),
+      verified_evidence: draft.verified_evidence?.trim() || null,
       signal_group_id: draft.signal_group_id || null,
       owner_entity_id: draft.owner_entity_id || null,
     };
@@ -171,6 +177,14 @@ export default function SourceDetail({ loaderData }: Route.ComponentProps) {
                   {Object.entries(TIER_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                 </Select>
               </Field>
+              <Field label="信源角色" hint="决定调度权重与可信度身份">
+                <Select value={draft.role} onChange={(e) => setDraft({ ...draft, role: e.target.value })}>
+                  {Object.entries(ROLE_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                </Select>
+              </Field>
+              <Field label="调度权重" hint="数字越大越先被调度（weibo 官方源默认 10）">
+                <Input type="number" min={0} max={1000} value={draft.priority_weight} onChange={(e) => setDraft({ ...draft, priority_weight: Number(e.target.value) })} />
+              </Field>
               <Field label="讨论分组 ID" hint="同一机构的多个账号共用，热度只算一次">
                 <Input value={draft.signal_group_id ?? ""} onChange={(e) => setDraft({ ...draft, signal_group_id: e.target.value })} />
               </Field>
@@ -182,6 +196,7 @@ export default function SourceDetail({ loaderData }: Route.ComponentProps) {
               </Field>
               <div className="flex flex-col justify-end gap-2 text-[13px] text-ink-2">
                 {([
+                  ["auto_tune", "允许自动调速（关 = 频率人工定，如公众号）"],
                   ["site_fulltext", "站内可展示全文"],
                   ["syndicate_fulltext", "对外接口可带全文"],
                 ] as const).map(([k, label]) => (
@@ -191,6 +206,12 @@ export default function SourceDetail({ loaderData }: Route.ComponentProps) {
                   </label>
                 ))}
               </div>
+            </div>
+            <div className="mt-4">
+              <Field label="验证证据" hint="账号真实性的可复核证据（如 Dajiala 实测记录）；清空则视为未验证">
+                <Textarea rows={3} value={draft.verified_evidence ?? ""} onChange={(e) => setDraft({ ...draft, verified_evidence: e.target.value })} />
+              </Field>
+              {s.last_verified_at && <div className="mt-1 text-[12px] text-ink-4">上次验证：{bj(s.last_verified_at, true)}</div>}
             </div>
             <div className="mt-4">
               <Field label="采集配置（JSON）">
