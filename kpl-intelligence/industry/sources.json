@@ -1,5 +1,5 @@
 {
-  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts，ON CONFLICT 会覆盖同 id 行），之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型）。owner_type 标注发布方主体（league/club/player/coach/media/community），事件主源选举与 rumor 确认门槛按 sources/authority.ts 的 claim-type 矩阵计算。俱乐部公众号均用 Dajiala post_condition 按昵称解析出的 ghid（scripts/resolve-mp-ghids.ts 可复核）；未能验证的账号进 SOURCE_CANDIDATES.md，不凭名字猜 ID。",
+  "$comment": "KPL Intelligence 的信源清单：首次启动时导入（scripts/seed.ts，ON CONFLICT 会覆盖同 id 行），之后在后台“信源”里管理。本站的结构化赛事数据不走这里，见 packages/backend/src/sources/esports.ts（esports_api 类型）。owner_type 标注发布方主体（league/club/player/coach/media/community），事件主源选举与 rumor 确认门槛按 sources/authority.ts 的 claim-type 矩阵计算。俱乐部公众号均用 Dajiala post_condition 按昵称解析出的 ghid（scripts/resolve-mp-ghids.ts 可复核）；未能验证的账号进 SOURCE_CANDIDATES.md，不凭名字猜 ID。role 填写约定（2026-10 P1）：owner_type 为 league → league_official，club → club_official，community → community；主播/选手/教练等本人账号 → caster/principal，媒体 → media；角色不明时填 media（最保守身份，当前清单无不明角色源）。auto_tune=false 仅给公众号（含 wechat:// sogou 回退通道）：这些通道要么走付费 API（Dajiala）要么通道脆弱，降频保护——不让每天 04:20 的 adaptIntervals 自动给它们提速，频率由运营人工定。weibo 源 priority_weight=10：官方动态最快最新，调度时先于同 tier 的其他源。",
   "sources": [
     {
       "id": "mp-kpl-official",
@@ -11,6 +11,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -20,7 +21,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-hok-official",
@@ -32,6 +34,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -41,7 +44,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": false,
+      "auto_tune": false
     },
     {
       "id": "bili-kpl-official",
@@ -74,6 +78,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 60,
@@ -94,6 +99,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -167,6 +173,7 @@
       },
       "tier": "T2",
       "owner_type": "community",
+      "role": "community",
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
@@ -187,6 +194,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ag",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -198,7 +206,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-wolves",
@@ -210,6 +219,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "wolves",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -221,7 +231,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-estar",
@@ -233,6 +244,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "estar",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -244,7 +256,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-dyg",
@@ -256,6 +269,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "dyg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -267,7 +281,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-hero",
@@ -279,6 +294,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "hero",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -290,7 +306,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-edgm",
@@ -302,6 +319,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "edgm",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -313,7 +331,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": false,
+      "auto_tune": false
     },
     {
       "id": "mp-jdg",
@@ -325,6 +344,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "jdg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -336,7 +356,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": false
+      "enabled": false,
+      "auto_tune": false
     },
     {
       "id": "mp-wb",
@@ -348,6 +369,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "wb",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -359,7 +381,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-ttg",
@@ -371,6 +394,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ttg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -382,7 +406,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-ksg",
@@ -394,6 +419,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ksg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -405,7 +431,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "mp-drg",
@@ -417,6 +444,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "drg",
       "participation_mode": "editorial",
       "interval_minutes": 120,
@@ -428,7 +456,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "auto_tune": false
     },
     {
       "id": "bili-wb-club",
@@ -461,6 +490,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "wb",
       "participation_mode": "editorial",
       "interval_minutes": 125,
@@ -505,6 +535,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "hero",
       "participation_mode": "editorial",
       "interval_minutes": 130,
@@ -549,6 +580,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "drg",
       "participation_mode": "editorial",
       "interval_minutes": 135,
@@ -590,6 +622,7 @@
       },
       "tier": "T2",
       "owner_type": "community",
+      "role": "community",
       "participation_mode": "hot_signal",
       "interval_minutes": 60,
       "tags": [
@@ -612,6 +645,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -622,7 +656,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-hok-official",
@@ -637,6 +672,7 @@
       },
       "tier": "T1",
       "owner_type": "league",
+      "role": "league_official",
       "owner_entity_id": "kpl",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -647,7 +683,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-ag-club",
@@ -662,6 +699,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ag",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -674,7 +712,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-wolves-club",
@@ -689,6 +728,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "wolves",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -701,7 +741,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-estar-club",
@@ -716,6 +757,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "estar",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -728,7 +770,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-ttg-club",
@@ -743,6 +786,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ttg",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -755,7 +799,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-wb-club",
@@ -770,6 +815,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "wb",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -782,7 +828,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-hero-club",
@@ -797,6 +844,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "hero",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -809,7 +857,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-ksg-club",
@@ -824,6 +873,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "ksg",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -836,7 +886,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-drg-club",
@@ -851,6 +902,7 @@
       },
       "tier": "T1_5",
       "owner_type": "club",
+      "role": "club_official",
       "owner_entity_id": "drg",
       "participation_mode": "editorial",
       "interval_minutes": 30,
@@ -863,7 +915,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-topic-ag",
@@ -880,6 +933,7 @@
       },
       "tier": "T2",
       "owner_type": "community",
+      "role": "community",
       "owner_entity_id": "ag",
       "participation_mode": "hot_signal",
       "interval_minutes": 60,
@@ -891,7 +945,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     },
     {
       "id": "weibo-topic-wolves",
@@ -908,6 +963,7 @@
       },
       "tier": "T2",
       "owner_type": "community",
+      "role": "community",
       "owner_entity_id": "wolves",
       "participation_mode": "hot_signal",
       "interval_minutes": 60,
@@ -919,7 +975,8 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false,
-      "enabled": true
+      "enabled": true,
+      "priority_weight": 10
     }
   ]
 }

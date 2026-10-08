@@ -10,13 +10,14 @@ import { loadPool, SearchBusyError } from "@aihot/backend/publication/pool";
 import { loadTimeline } from "@aihot/backend/publication/timeline";
 import { loadStoryFollowups } from "@aihot/backend/publication/followups";
 import { loadGroupReports } from "@aihot/backend/publication/groups";
+import { loadHomeFeed, loadFollowed } from "@aihot/backend/publication/homefeed";
 import { loadHotStrip } from "@aihot/backend/publication/hot";
 import { loadChangelog, siteMeta } from "@aihot/backend/site/meta";
 import { loadContact, loadMakerAvatar } from "@aihot/backend/site/contact";
 import { loadSiteStats } from "@aihot/backend/site/stats";
 import { itemAvailability } from "@aihot/backend/publication/availability";
 import { listTopicSummaries, loadTopicPage } from "@aihot/backend/publication/topics";
-import { listTeams, loadHeroDetail, loadHeroesList, loadH2H, loadKbHome, loadMatchDetail, loadPlayerDetail, loadSchedule, loadStandings, loadTeamDetail } from "@aihot/backend/kb/read";
+import { listTeams, loadHeroDetail, loadHeroesList, loadH2H, loadKbHome, loadMatchCard, loadMatchDetail, loadPlayerDetail, loadSchedule, loadStandings, loadTeamDetail, loadTodaySchedule } from "@aihot/backend/kb/read";
 import { registerFeedback } from "./feedback.ts";
 import { loadHot, loadStoryDetail, resolveStory } from "@aihot/backend/publication/stories";
 import { listReports, loadReport, reportNavigation, loadReportNavigation, loadReportMonth, type ReportKind } from "@aihot/backend/publication/reports";
@@ -101,6 +102,21 @@ export function registerSite(app: FastifyInstance) {
     // Any cache in front and the home page built from this answer share one absolute deadline.
     reply.header("X-Accel-Expires", `@${Math.floor(Date.now() / 1000) + 60}`);
     return sendJsonWithEtag(req, reply, { ...data, hot }, { etagPrefix: "tl", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  // P4 首页混合信息流：热榜 + 时间线按分桶配比混排（/api/site/timeline 语义不变）。
+  app.get("/api/site/homefeed", siteHandler(async (req, reply) => {
+    const q = looseQuery(req);
+    const limit = Math.min(Math.max(Number(q.limit) || 20, 1), 40);
+    const data = await loadHomeFeed({ limit, cursor: q.cursor || null });
+    reply.header("X-Accel-Expires", `@${Math.floor(Date.now() / 1000) + 60}`);
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "hf", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  // P4 关注动态（无账号方案）：按本地关注的战队 slugs 返回各队最新卡片。
+  app.get("/api/site/followed", siteHandler(async (req, reply) => {
+    const teams = (looseQuery(req).teams ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+    return sendJsonWithEtag(req, reply, await loadFollowed({ teams }), { etagPrefix: "followed", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
 
   app.get("/api/site/pool", siteHandler(async (req, reply) => {
@@ -188,6 +204,11 @@ export function registerSite(app: FastifyInstance) {
 
   app.get("/api/site/kb/schedule", siteHandler(async (req, reply) => {
     const q = looseQuery(req);
+    // P4 首页“今日比赛”：北京时间当日的 scheduled/live/finished；无今日比赛回退最近场次。
+    if (q.day === "today") {
+      const data = await loadTodaySchedule(Math.min(Math.max(Number(q.limit) || 5, 1), 20));
+      return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-schedule-today", cacheControl: "public, max-age=30, s-maxage=30" });
+    }
     const data = await loadSchedule({ season: q.season ?? null, team: q.team ?? null, upcoming: q.upcoming === "1", limit: Number(q.limit) || 150 });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-schedule", cacheControl: "public, max-age=30, s-maxage=30" });
   }));
@@ -196,6 +217,13 @@ export function registerSite(app: FastifyInstance) {
     const data = await loadMatchDetail((req.params as { id: string }).id);
     if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "match not found", cacheControl: "public, max-age=60" });
     return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-match", cacheControl: "public, max-age=60, s-maxage=60" });
+  }));
+
+  // P2 比赛主卡：match + games + 关联 stories + 按局次/时间组织的时间线。
+  app.get("/api/site/kb/matches/:id/card", siteHandler(async (req, reply) => {
+    const data = await loadMatchCard((req.params as { id: string }).id);
+    if (!data) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "match not found", cacheControl: "public, max-age=60" });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "kb-match-card", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
 
   app.get("/api/site/kb/players/:slug", siteHandler(async (req, reply) => {

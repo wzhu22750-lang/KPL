@@ -43,6 +43,8 @@ interface AnalysisRow {
   reason_zh: string | null;
   score: number | null;
   selected: boolean | null;
+  score_formula_version: string | null;
+  score_components: { needsReview?: boolean } | null;
 }
 
 interface OverrideRow {
@@ -223,7 +225,8 @@ export async function publishArticleTx(tx: Tx, articleId: string, options: Publi
     SELECT id, name, kind, tier, participation_mode, first_party, site_fulltext, syndicate_fulltext FROM sources WHERE id = ${article.source_id}`;
   if (!source) return null;
   const [analysis] = await tx<AnalysisRow[]>`
-    SELECT id, relevance, category, tags, subjects, title_zh, summary_zh, reason_zh, score, selected
+    SELECT id, relevance, category, tags, subjects, title_zh, summary_zh, reason_zh, score, selected,
+           score_formula_version, score_components
     FROM analyses WHERE article_id = ${articleId} ORDER BY input_revision DESC, id DESC LIMIT 1`;
   const [override] = await tx<OverrideRow[]>`SELECT fields, visibility FROM editorial_overrides WHERE article_id = ${articleId}`;
   const [membership] = await tx<{ fact_id: number; story_id: number | null }[]>`
@@ -256,7 +259,10 @@ export async function publishArticleTx(tx: Tx, articleId: string, options: Publi
   // Material from an isolated source reaches no public surface at all: not even a detail page.
   const visibility = source.participation_mode === "isolated" ? "withdrawn" : (override?.visibility ?? "public");
 
-  const eligible = isPoolEligible({ participationMode: source.participation_mode, relevance, title, summary });
+  const eligible0 = isPoolEligible({ participationMode: source.participation_mode, relevance, title, summary });
+  // v2 资格门：待复核（严重失实/隐私/断章）不发布——保留 publication 行，但不进公共池。
+  const heldForReview = analysis?.score_components?.needsReview === true;
+  const eligible = eligible0 && !heldForReview;
   const selectionCandidate = isSelectable(eligible, judgedSelected, source.tier);
   // Scoring nominates a report; a completed identity/value decision admits it to selection.
   // A historical import already has its public decision. Preserve that confirmed state on rebuild.
@@ -342,6 +348,15 @@ export async function publishArticleTx(tx: Tx, articleId: string, options: Publi
         EXCLUDED.selected_ready_at, EXCLUDED.visible_after, EXCLUDED.body_mode, EXCLUDED.syndicate,
         EXCLUDED.indexable, EXCLUDED.story_id, EXCLUDED.fact_id, EXCLUDED.search_text,
         EXCLUDED.sort_at)`;
+
+  // v2 评分版本与分量跟着同一份 analysis 走（诊断字段，不参与 changed 比较）。
+  if (analysis) {
+    await tx`UPDATE publications SET score_formula_version = ${analysis.score_formula_version ?? "v1"},
+               score_components = ${tx.json(analysis.score_components as never)}
+             WHERE article_id = ${articleId}
+               AND (publications.score_formula_version IS DISTINCT FROM ${analysis.score_formula_version ?? "v1"}
+                 OR publications.score_components IS DISTINCT FROM ${tx.json(analysis.score_components as never)})`;
+  }
 
   // The pool search row follows eligibility; its body part only covers full text the site may show.
   if (eligible) {
