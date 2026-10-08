@@ -4,7 +4,7 @@ import type { Route } from "./+types/sources";
 import type { AdminSources } from "@aihot/contracts/admin";
 import { adminGet } from "../../lib/admin.server";
 import { num } from "../../features/admin/format";
-import { HEALTH_LABEL, KIND_LABEL, MODE_LABEL } from "../../features/admin/labels";
+import { HEALTH_LABEL, KIND_LABEL, MODE_LABEL, ROLE_LABEL } from "../../features/admin/labels";
 import { AdminPage, Badge, ButtonLink, Card, DataTable, Dot, FilterChips, healthTone, Input, Pager, Select, Stat, Time } from "../../features/admin/ui";
 
 
@@ -85,8 +85,19 @@ export default function Sources({ loaderData }: Route.ComponentProps) {
                 <div className="flex gap-1">
                   <Badge tone={r.participation_mode === "editorial" ? "accent" : "muted"}>{MODE_LABEL[r.participation_mode] ?? r.participation_mode}</Badge>
                   <Badge tone="info">{r.tier.replace("_", ".")}</Badge>
+                  <Badge>{ROLE_LABEL[r.role] ?? r.role}</Badge>
                   {r.first_party && <Badge tone="ok">一手</Badge>}
                 </div>
+              ),
+            },
+            {
+              key: "priority",
+              label: "调度",
+              render: (r) => (
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12.5px] text-ink-3">
+                  权重 {r.priority_weight}
+                  {!r.auto_tune && <Badge tone="warn">手动调频</Badge>}
+                </span>
               ),
             },
             {

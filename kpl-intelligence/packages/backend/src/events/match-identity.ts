@@ -1,7 +1,7 @@
 // Match identity is a hard constraint, not a similarity score. Check every primary/report member:
 // an erroneous group must not become safe merely because its representative was replaced.
 import { sql, type Db } from "../db.ts";
-import { kplOccurrenceConflict } from "../lib/kpl-dedup.ts";
+import { areSameSeriesDifferentGame, kplOccurrenceConflict } from "../lib/kpl-dedup.ts";
 import { latestCompositeCondition } from "../publication/scope.ts";
 
 export interface MatchReport { title: string; at: Date | null }
@@ -20,6 +20,35 @@ export async function factMatchReports(ids: number[], db: Db = sql): Promise<Fac
 
 export function matchConflict(a: MatchReport, b: MatchReport): string | null {
   return kplOccurrenceConflict(a.title, b.title, a.at, b.at);
+}
+
+/**
+ * P2 SAME_SERIES：与 query 的唯一分歧是小局粒度（conflict 只有 "different game scope"，
+ * 且同两队+同日期+同赛事/轮次、局次不同）的 fact id。这些 fact 不触发硬 veto：
+ * 新报道进同一个 story、另起一个 fact（按局次），两篇都走 match-link 链接器。
+ * 其余 veto（不同对手/日期/赛事/轮次）保持不动。
+ */
+export async function sameSeriesDifferentGameFacts(query: MatchReport, ids: number[], db: Db = sql): Promise<number[]> {
+  const reports = await factMatchReports(ids, db);
+  const out: number[] = [];
+  for (const id of ids) {
+    const members = reports.filter((r) => r.fact_id === id);
+    if (!members.length) continue;
+    let series = false;
+    let ok = true;
+    for (const m of members) {
+      const conflict = matchConflict(query, m);
+      if (conflict === null) continue;
+      if (conflict === "different game scope" && areSameSeriesDifferentGame(query.title, m.title, query.at, m.at)) {
+        series = true;
+        continue;
+      }
+      ok = false;
+      break;
+    }
+    if (ok && series) out.push(id);
+  }
+  return out;
 }
 
 export async function conflictingMatchFacts(query: MatchReport, ids: number[], db: Db = sql): Promise<Map<number, string>> {

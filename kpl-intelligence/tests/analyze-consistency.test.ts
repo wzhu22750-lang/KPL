@@ -19,7 +19,7 @@ const provider = await stub(async (_hit, request) => {
     await waiting.release.promise;
   }
   const content = prefilter ? { label: "PASS", reason: "local fixture" }
-    : system.includes("评分器") ? { attentionScore: 80 }
+    : system.includes("评分器") ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "fixture" }
     : system.includes("资料结构化助手") ? { category: "match-result", tags: [], subjects: [], scope: "single", fact: null }
     : { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "战队发挥出色", titleZh: "战队拿下比赛", summaryZh: "战队在决赛中表现出色，顺利拿下比赛胜利。" };
   return { choices: [{ message: { content: JSON.stringify(content) } }] };

@@ -14,7 +14,7 @@ const provider = await stub((_hit, request) => {
     : system.includes("评分器") ? "score"
     : system.includes("资料结构化助手") ? "structure" : "writing";
   steps.push(step);
-  const result = step === "prefilter" ? { label: "PASS", reason: "fixture" } : step === "score" ? { attentionScore: 80 } : "invalid output";
+  const result = step === "prefilter" ? { label: "PASS", reason: "fixture" } : step === "score" ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "fixture" } : "invalid output";
   return { choices: [{ message: { content: typeof result === "string" ? result : JSON.stringify(result) } }] };
 });
 for (const key of ["DASHSCOPE_BASE_URL", "ZHIPU_BASE_URL", "DEEPSEEK_BASE_URL"]) process.env[key] = `${provider.url}/v1`;

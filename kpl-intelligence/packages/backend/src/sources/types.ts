@@ -10,6 +10,8 @@ export type SourceKind =
   | "esports_api"
   | "weibo";
 
+export type SourceRole = "league_official" | "club_official" | "principal" | "caster" | "media" | "community";
+
 export interface SourceRow {
   id: string;
   name: string;
@@ -25,6 +27,14 @@ export interface SourceRow {
   enabled: boolean;
   cursor: Record<string, any> | null;
   fail_count: number;
+  /** 信源身份角色（P1 信源目录）；旧行默认为 'media'（见迁移 0065）。 */
+  role?: SourceRole | null;
+  /** 调度排序的显式权重，越大越优先。 */
+  priority_weight?: number | null;
+  /** false 时 adaptIntervals 跳过该源（公众号等敏感通道的降频保护）。 */
+  auto_tune?: boolean | null;
+  verified_evidence?: string | null;
+  last_verified_at?: Date | null;
 }
 
 /**

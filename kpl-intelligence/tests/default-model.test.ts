@@ -21,7 +21,7 @@ const provider = await stub((_hit, req) => {
   seen.push({ model: body.model, system });
   const content =
     system.includes("宽召回") ? { label: "PASS", reason: "测试" }
-    : system.includes("评分器") ? { attentionScore: 80 }
+    : system.includes("评分器") ? { content_kind: "announcement", base: 70, heat_evidence: "", noise_flags: [], reasons: "fixture" }
     : system.includes("内容理解编辑") ? { itemType: "match_report", authorRole: "principal", tags: ["赛果战报"], editorialJudgment: "理由", titleZh: "一个模型的标题", summaryZh: "一个模型写的摘要。第二句。" }
     : system.includes("资料结构化助手") ? { category: "match-result", tags: ["赛果战报"], subjects: [], fact: null }
     : user.includes("title_zh") ? "title_zh: 标题\nsummary_zh: 摘要。"

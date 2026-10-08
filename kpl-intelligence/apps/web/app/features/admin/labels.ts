@@ -5,3 +5,6 @@ export const HEALTH_LABEL: Record<string, string> = { ok: "正常", degraded: "�
 export const VISIBILITY_LABEL: Record<string, string> = { public: "公开", "summary-only": "仅摘要", withdrawn: "已下架" };
 export const FEEDBACK_STATUS: Record<string, string> = { new: "新反馈", triaged: "处理中", replied: "已回复", resolved: "已解决", spam: "垃圾信息" };
 export const TIER_LABEL: Record<string, string> = { T1: "T1", T1_5: "T1.5", T2: "T2", EXCLUDE_MP: "排除公众号" };
+export const ROLE_LABEL: Record<string, string> = {
+  league_official: "联盟官方", club_official: "俱乐部官方", principal: "当事人", caster: "解说主播", media: "媒体", community: "社区",
+};

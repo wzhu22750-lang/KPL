@@ -75,3 +75,48 @@ node --env-file=.env scripts/eval-relations.ts \
 token usage 与平均 latency 按报告引用的回执所对应的全部请求尝试汇总，包括之前解析失败的响应；同一回执不会因多条样本重复计算。缓存重跑仍展示这些历史用量，不代表本次新增费用。
 
 CI 验证 JSONL parsing、deterministic sampling、metrics，以及本地模型替身下的并发复用和重试用量统计，不访问外部模型服务。
+
+## P2 比赛聚合：大场 → 小局 → 节点（2026-10-08）
+
+契约：`docs/content-redesign-contracts.md` §1（repo 根目录）。本节只描述 P2 的归组侧改动；
+API 主卡见路由 `GET /api/site/kb/matches/:id/card`，读取层 `packages/backend/src/kb/read.ts#loadMatchCard`。
+
+### match_story_links（迁移 0066_match_aggregation.sql）
+
+新闻域与比赛域唯一的桥：`match_story_links(match_id, story_id, game_no, link_type, confidence, origin)`，
+`game_no` 为 NULL 表示整场级（`link_type='series'`），数字表示归属小局（`link_type='game'`）。
+同一次迁移把 `matches.status` 补齐为 `scheduled/live/finished/postponed/cancelled`。
+
+链接器 `packages/backend/src/events/match-link.ts#linkStoryToMatch(db, storyId)`：
+用 `lib/kpl-dedup.ts` 的指纹（两队 slug + 日期键 + 赛事/阶段）在 `matches` 表找候选——
+`team_a_id/team_b_id` 双向匹配，且 `played_at` 或 `scheduled_at` 落在故事日期 ±1 天
+（跨午夜比赛按赛事日口径不拆档）。唯一候选 → 写入（`ON CONFLICT DO NOTHING` 幂等，
+`game_no` 为 NULL 时唯一约束不生效，写前先查重）；多候选/零候选 → 不写，只记日志。
+局次归属：story 的 facts/报道标题里出现唯一的局次（"第一局/第三局"）→ `game` 级；
+否则整场级 `series`（未知局次不误归档）。在 `groupArticle` 成功路径后 best-effort 调用，
+失败不阻断归组。
+
+### SAME_SERIES（同系列赛不同小局）
+
+`lib/kpl-dedup.ts#areSameSeriesDifferentGame(a, b)`：同两队 + 同日期 + 同赛事/轮次、
+但局次不同（至少一篇带局次）→ 软关系，不触发 `kplOccurrenceConflict` 的硬 veto。
+`events/group.ts` 里这类候选进**同一个 story、另起一个 fact（按局次）**，走确定性指纹规则，
+不经过模型判断；两篇都走上面的链接器。`SAME_OCCURRENCE` 直通与其它 veto 条件不动，
+`match-identity.ts` 的冲突校验保持。
+
+### 事件加频挂钩
+
+比赛进入 live 时（`sources/esports.ts` 同步里检测到 `status` 跃迁为 `live`），调用 P1 的
+`boostSourcesForMatch(db, { teamSlugs, reason, minutes })`（`sources/collect.ts`，P1 交付，
+P2 以 P1 为准），给两队 weibo 源写 `source_boosts` 行。best-effort，失败不阻断同步。
+
+### 未验证范围
+
+- DB 测试（`tests/match-aggregation.test.ts` 的 DB 部分：linker 幂等/多候选不写/跨午夜/
+  未知局次/同队不同日期/postponed/BO9/`sameSeriesDifferentGameFacts`/weibo 加频/
+  `groupArticle` SAME_SERIES 分 fact）在本机无 Postgres 的环境下**未执行**（自动跳过），
+  纯函数单测（`areSameSeriesDifferentGame` 8 项）已通过。`npm run typecheck` 通过。
+- 链接器依赖指纹里的战队别名表（`TEAM_ALIAS_MAP`）与 `teams.slug` 对齐；别名缺失的战队
+  链不上（记日志跳过），不误链。
+- 延期/取消的比赛只放宽了状态值，不改变归组与链接逻辑；`postponed` 比赛的报道仍按
+  日期窗口链接。
