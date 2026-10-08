@@ -322,3 +322,36 @@ Content-Type: application/json
 - `sourceId` 不存在时会自动建一个 `external` 信源，默认不进公开页面：到后台把它的参与方式改成 `editorial` 才会出现在站上。
 - 在后台暂停信源后，推送接口返回 409，不再接收新文章；恢复信源后可以继续推送。
 - 条目的 `raw._aihot.backfill` 为 `true` 时按历史回灌处理（不进入“今天”、不推送）。
+
+## P1 信源目录与调度策略（2026-10）
+
+### 新增字段（迁移 0065_source_directory.sql，`sources` 表）
+
+- `role`：信源身份角色，取值 `league_official`（联盟官方）/ `club_official`（俱乐部官方）/ `principal`（当事人：选手/教练/工作人员本人账号）/ `caster`（解说/主播）/ `media`（媒体）/ `community`（社区），默认 `'media'`（最保守身份）。种子数据按 owner_type 映射：league → league_official、club → club_official、community → community（填写约定见 `industry/sources.json` 的 `$comment`）。
+- `priority_weight`：调度排序的显式权重，默认 0；weibo 官方源默认 10（官方动态最快最新）。
+- `auto_tune`：默认 true；为 false 时每天 04:20 的 `adaptIntervals` 跳过该源（降频保护）。种子数据只给公众号（含 `wechat://` sogou 回退通道）设 false：这些通道要么走付费 API（Dajiala）要么通道脆弱，频率由运营人工定。
+- `verified_evidence` / `last_verified_at`：账号真实性的可复核证据；种子导入时从 `industry/team-accounts.json` 按 sourceId 匹配写入（证据文本变化时 last_verified_at 才刷新，见 `scripts/seed.ts`）。
+
+### 调度权重（`scheduleDueSources`，每分钟）
+
+到期源按 `(priority_weight DESC, tier 权重 DESC, next_fetch_at ASC)` 取 40 个：tier 权重 T1=3、T1_5=2、T2=1、其他=0。防重入逻辑不变（入队后重排约 10 分钟后，防止一分钟内重复入队）。
+
+### 事件加频（`source_boosts` 表）
+
+比赛等事件期间给相关信源临时加频。表字段：source_id、reason、interval_override_minutes、starts_at、ends_at、created_at。`getActiveBoosts(db)` 查出当前有效的 boost（starts_at ≤ now < ends_at）；同一个源多个 boost 并存时取最激进的（override 最小）。调度时若源有有效 boost，下一次到期按 `interval_override_minutes` 计算——只影响下一次，`sources.interval_minutes` 本身永不改写；boost 过期后自动恢复原节奏。
+
+`boostSourcesForMatch(db, { teamSlugs, reason, minutes })` 供 P2 的比赛调度调用（进入 live 时，见 `sources/esports.ts`）：按 owner_entity_id 找到两队相关的 weibo 源，每条写入一条持续 `minutes` 分钟的 boost，加频期间 10 分钟一跳；同 reason 重复调用不叠加（幂等）。注意：`minutes` 是加频持续分钟数（调用方如 `match-live` 传 240），不是间隔。
+
+### auto_tune 语义
+
+`adaptIntervals` 每天 04:20 按近 7 天产出自动调速（活跃 15 分钟 … 安静 120 分钟），但跳过 `auto_tune=false` 的源，跳过的数量和名单记在返回结果（`skipped_auto_tune`，随 job_runs 记录）并打一条结构化日志说明原因。这些源的频率只能在后台手工改——公众号走 Dajiala 付费接口，自动提速会直接烧钱；sogou 回退通道脆弱，经不起高频轮询。
+
+### 后台
+
+信源列表新增「角色 / 调度」列（角色徽标、权重数字、auto_tune=false 时显示「手动调频」）；详情编辑页可改 role、priority_weight、auto_tune、verified_evidence（验证证据文本清空即视为未验证）。
+
+### 各平台真实状态（2026-10-08 实测，本机网络）
+
+- **微博 m.weibo.cn 访客接口**：✅ 可达。流程与采集器一致：先 `POST visitor.passport.weibo.cn/visitor/genvisitor2` 换访客凭证（HTTP 200，拿到 SUB/SUBP），再调 `api/container/getIndex?type=uid&value=6074356560`（HTTP 200，`ok=1`，账号「KPL王者荣耀职业联赛」，蓝V，902.3 万粉丝——与 team-accounts.json 的验证证据一致）。注意：不带访客凭证直接调会被 302 到访客系统页面，必须走 negotiation。
+- **B站 series 接口**（`api.bilibili.com/x/series/recArchivesByKeywords?mid=392836434`）：❌ 本机被风控。即使带齐浏览器头（Referer/Origin/UA/Accept），返回 `{"code":-412,"message":"request was banned"}`——这是 B站对本机出口 IP 的封禁，不是接口下线。生产环境换网络后可能正常，本机无法验证成功路径；team-accounts.json 里该账号的验证证据（空间页 SSR + 采集实测）仍是此前可用的依据。
+- **微信公众号**：Dajiala / sogou 通道未在本机实测（付费与登录态），以 team-accounts.json 的验证证据为准。

@@ -28,6 +28,10 @@ import {
 } from "./writing.ts";
 import { CATEGORY_GUIDE, CATEGORY_TAGS, ENTITIES, ENTITY_TAGS, ITEM_TYPES, normalizeTags, TOPIC_TAGS } from "./vocabulary.ts";
 import { promptText, promptVersion } from "./prompts.ts";
+import {
+  SCORE_FORMULA_VERSION, averageModelOutputs, clampScore, finalizeScore, officialScore,
+  type ModelScoreOutput, type ScoreComponents, type ScoreContentKind,
+} from "./scoring-v2.ts";
 
 export { buildMaterial, loadAnalyzeInput, type AnalyzeInputArticle };
 
@@ -67,10 +71,21 @@ const SCORE_CALL: Record<string, { temperature: number; maxTokens: number; timeo
 };
 const scoreCall = (model: string) => SCORE_CALL[model] ?? { temperature: 0.2, maxTokens: 1024, timeoutMs: 120_000 };
 
-/** The score prompt: the industry's taste (industry/prompts/selection-score.md). */
+/** The score prompt: the industry's taste (industry/prompts/selection-score.md), v2 components. */
 export const SCORE_SYSTEM = promptText("selection-score");
 
-export const ScoreSchema = z.object({ attentionScore: z.coerce.number().int().min(0).max(100) });
+/**
+ * v2 score output: the model judges only the material's own content (base 0–70 against the
+ * content-kind rubric, plus the noise flags it observed). Source authority and story heat are
+ * computed in code (editorial/scoring-v2.ts) — the model's input never carries source identity.
+ */
+export const ScoreSchema = z.object({
+  content_kind: z.enum(["announcement", "dispute", "analysis", "fun", "daily"]).catch("daily"),
+  base: z.coerce.number().int().min(0).max(70),
+  heat_evidence: z.string().max(500).catch(""),
+  noise_flags: z.array(z.string()).max(12).catch([]),
+  reasons: z.string().max(400).catch(""),
+});
 
 const SCORE_TIME = new Intl.DateTimeFormat("sv-SE", {
   timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
@@ -193,8 +208,13 @@ export interface AnalysisRun {
   /**
    * The independent score calls and the tier threshold they are held against; absent when the material
    * is not scored. `refused`: the model's content filter declined it, so it is not selected.
+   * v2: `values` are the per-call finals (base+official+heat−noise); `components` is the averaged
+   * breakdown stored on the analysis row.
    */
-  scores: { model: string; threshold: number; values: number[]; receiptIds: number[]; reused: boolean; refused?: boolean } | null;
+  scores: {
+    model: string; threshold: number; values: number[]; receiptIds: number[]; reused: boolean; refused?: boolean;
+    formulaVersion?: typeof SCORE_FORMULA_VERSION; components?: ScoreComponents | null;
+  } | null;
   /** The reader-facing copy: `understand` (selected, near-selected), `summarize`, `verbatim` (a Chinese short post), `none`. */
   writing: {
     kind: "understand" | "summarize" | "verbatim" | "none";
@@ -269,6 +289,11 @@ export async function runSelectionPrefilter(
   }
 }
 
+/**
+ * The v2 score step: two independent calls each output the content components
+ * (base/noise flags); the code layer adds source authority and the (still unknown) heat,
+ * then clamps. Heat is filled in after grouping (editorial/score-refresh.ts).
+ */
 async function runScores(
   a: AnalyzeInputArticle,
   threshold: number,
@@ -278,6 +303,11 @@ async function runScores(
   const model = opts.scoreModel ?? (await modelFor("score"));
   const call = scoreCall(model);
   const input = buildScoreInput(a);
+  const official = officialScore(
+    { tier: a.source.tier, ownerType: a.source.ownerType, role: a.source.role, firstParty: a.source.firstParty },
+    a.source.isRelay === true,
+  );
+  const calls: ModelScoreOutput[] = [];
   const values: number[] = [];
   const receiptIds: number[] = [];
   let reused = true;
@@ -292,7 +322,18 @@ async function runScores(
         attemptTag: tagged(opts.attemptTag, `score-${i + 1}`),
       });
       onReceipt?.(res.receiptId);
-      values.push(res.data.attentionScore);
+      const d = res.data;
+      const out: ModelScoreOutput = {
+        contentKind: d.content_kind as ScoreContentKind,
+        base: clampScore(d.base),
+        heatEvidence: d.heat_evidence ?? "",
+        noiseFlags: d.noise_flags ?? [],
+        reasons: d.reasons ?? "",
+      };
+      calls.push(out);
+      // Heat is unknown before grouping: the degraded placeholder, marked in the components.
+      const { final } = finalizeScore({ base: out.base, official, heat: null, noiseFlags: out.noiseFlags, contentKind: out.contentKind });
+      values.push(final);
       receiptIds.push(res.receiptId);
       reused &&= res.reused;
     } catch (error) {
@@ -300,10 +341,16 @@ async function runScores(
       if (receiptId !== null) onReceipt?.(receiptId);
       // The model's content filter declines the material (Zhipu 1301): not scored, so not selected.
       if (isContentFilter(error)) return { model, threshold, values, receiptIds, reused: false, refused: true };
+      // Any other failure fabricates nothing: the throw leaves the article pending for review.
       throw error;
     }
   }
-  return { model, threshold, values, receiptIds, reused };
+  const avg = averageModelOutputs(calls);
+  const { components } = finalizeScore({
+    base: avg.base, official, heat: null, noiseFlags: avg.noiseFlags, contentKind: avg.contentKind,
+    heatEvidence: avg.heatEvidence, reasons: avg.reasons,
+  });
+  return { model, threshold, values, receiptIds, reused, formulaVersion: SCORE_FORMULA_VERSION, components };
 }
 
 /** The production score step; its threshold stays case-specific even when an evaluator shares model output. */
@@ -436,13 +483,16 @@ export function normalizeAnalysis(run: AnalysisRun) {
   const summaryZh = (run.writing?.summaryZh ?? "").trim();
   // Past the prefilter (PASS or UNKNOWN) an item is relevant, but without a usable Chinese title and
   // summary it cannot be published: it waits.
-  const relevance = label === "BLOCK" ? "block" : run.writing && (!titleZh || !summaryZh) ? "unknown" : "pass";
-  // Selected when the two scores add up to twice the tier threshold; the mean, floored, is the score
-  // shown (it never decides a half point on its own).
+  // Selected when the two score finals add up to twice the tier threshold; the mean, floored, is
+  // the score shown (it never decides a half point on its own). v2 only: the score column keeps its
+  // 0–100 final semantics; score_formula_version/score_components say how it was built.
   const values = run.scores && !run.scores.refused ? run.scores.values : null;
   const sum = values?.length === SCORE_CALLS ? values.reduce((total, v) => total + v, 0) : null;
   const score = sum === null ? null : Math.floor(sum / SCORE_CALLS);
   const threshold = run.scores?.threshold ?? null;
+  const components = run.scores?.components ?? null;
+  // 资格门：模型标出的无关/引流/辱骂直接拦截（等同 prefilter BLOCK）。
+  const relevance = components?.blocked ? "block" : label === "BLOCK" ? "block" : run.writing && (!titleZh || !summaryZh) ? "unknown" : "pass";
   const selected = relevance === "pass" && sum !== null && threshold !== null && sum >= threshold * SCORE_CALLS;
   const subjects = run.structure?.subjects ?? [];
   const tags = [...(run.structure?.tags ?? [])];
@@ -463,6 +513,9 @@ export function normalizeAnalysis(run: AnalysisRun) {
     scores: values,
     scoreModel: run.scores?.model ?? null,
     scoreRefused: run.scores?.refused ?? false,
+    /** v2 only: how the final was built (old rows predate the components and read 'v1' from the DB default). */
+    scoreFormulaVersion: run.scores?.formulaVersion ?? null,
+    scoreComponents: components,
     threshold,
     category: run.structure?.category ?? null,
     tags,
@@ -503,6 +556,7 @@ export async function analyzeArticle(articleId: string, opts: StepOpts = {}): Pr
   const detail = {
     prefilter: { label: run.prefilter.label, reason: run.prefilter.reason },
     scores: out.scores, scoreModel: out.scoreModel, threshold: out.threshold, ...(out.scoreRefused ? { scoreRefused: true } : {}),
+    ...(out.scoreComponents ? { scoreFormulaVersion: out.scoreFormulaVersion, scoreComponents: out.scoreComponents } : {}),
     ...(w ? { writer: w.kind, writerModel: w.model, itemType: w.itemType ?? null, authorRole: w.authorRole ?? null } : {}),
     ...(w?.identityGuard?.outcome === "fallback" ? { identityGuard: w.identityGuard } : {}),
     scope: out.scope, fact: out.fact,
@@ -512,10 +566,10 @@ export async function analyzeArticle(articleId: string, opts: StepOpts = {}): Pr
     const stale = !current || current.revision !== input.revision;
     const [row] = await tx<{ id: number }[]>`
       INSERT INTO analyses (article_id, input_revision, origin, model, prompt_version, receipt_ids, relevance, category, tags,
-        subjects, title_zh, summary_zh, reason_zh, score, selected, output)
+        subjects, title_zh, summary_zh, reason_zh, score, selected, score_formula_version, score_components, output)
       VALUES (${articleId}, ${input.revision}, 'model', ${w?.model ?? run.prefilter.model}, ${ANALYZE_PROMPT_VERSION}, ${receiptIds},
         ${out.relevance}, ${out.category}, ${out.tags}, ${out.subjects}, ${out.titleZh}, ${out.summaryZh}, ${out.reasonZh},
-        ${out.score}, ${out.selected}, ${tx.json(detail as never)})
+        ${out.score}, ${out.selected}, ${out.scoreFormulaVersion ?? "v1"}, ${tx.json(out.scoreComponents as never)}, ${tx.json(detail as never)})
       RETURNING id`;
     for (const id of receiptIds) await completeReceipt(tx, id);
     if (!stale) {

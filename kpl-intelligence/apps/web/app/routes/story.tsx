@@ -62,6 +62,41 @@ const CLAIM_TYPE_LABEL: Record<string, string> = {
 
 const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
+/** P3 争议话题：立场 / 依据 / 回应状态，复用 Panel + Badge。 */
+const DISPUTE_STATUS_LABEL: Record<string, { label: string; tone: "hot" | "amber" | "neutral" }> = {
+  ongoing: { label: "争议进行中", tone: "hot" },
+  responded: { label: "当事方已回应", tone: "amber" },
+  clarified: { label: "已有澄清", tone: "amber" },
+  settled: { label: "已有定论", tone: "neutral" },
+};
+
+function DisputePanel({ story }: { story: StoryDetail }) {
+  const status = story.disputeStatus ? DISPUTE_STATUS_LABEL[story.disputeStatus] : null;
+  const positions = story.positions ?? [];
+  if (story.topicKind !== "dispute" || positions.length === 0) return null;
+  return (
+    <Panel
+      title="争议焦点"
+      sub="各方立场来自公开报道"
+      className="order-2"
+      right={status ? <Badge tone={status.tone}>{status.label}</Badge> : undefined}
+    >
+      <ol className="space-y-4">
+        {positions.map((p, i) => (
+          <li key={i} className="border-l-2 border-line-strong pl-3">
+            <p className="text-[14.5px] font-semibold leading-snug text-ink">{p.stance}</p>
+            {p.holders.length > 0 && (
+              <p className="mt-1 text-[12.5px] text-ink-3">持方：{p.holders.join("、")}{p.source ? `（最早见 ${p.source}）` : ""}</p>
+            )}
+            <p className="mt-0.5 text-[12.5px] leading-relaxed text-ink-4">依据：{p.evidence}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-4 text-[12px] text-ink-4">立场由 AI 根据报道整理，仅供参考；完整时间线见下方"事件进展"与"报道时间线"。</p>
+    </Panel>
+  );
+}
+
 /**
  * 爆料状态徽章（events/rumor.ts）：事实与传闻在界面上必须一眼可分——
  * 官方确认/辟谣是绿/红，其余线索与未经证实是中性/警示色。
@@ -252,6 +287,8 @@ export default function StoryPage() {
         <div className="flex items-center gap-2 text-[12px] text-ink-4">
           热点事件
           <Badge tone={status.tone}>{status.label}</Badge>
+          {story.topicKind === "dispute" && <Badge tone="hot">争议话题</Badge>}
+          {story.topicKind === "fun" && <Badge tone="amber">趣评</Badge>}
         </div>
         <h1 data-page-title="" className="mt-2.5 text-[27px] font-bold leading-[1.5] tracking-[-0.01em] text-ink lg:mt-3 lg:text-[36px] lg:font-[730]">{story.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-[12.5px] text-ink-3">
@@ -320,6 +357,8 @@ export default function StoryPage() {
               </div>
             )}
           </Panel>
+
+          <DisputePanel story={story} />
 
           {story.developments.length > 1 && (
             <Panel title="事件进展" sub={`${story.developments.length} 个进展`} className="order-3" right={
