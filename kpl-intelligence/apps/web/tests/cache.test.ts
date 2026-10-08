@@ -142,7 +142,8 @@ test('homepage publisher boxes filter in place and preserve hot topics and radar
     assert.ok(nav);
     for (const key of SOURCE_GROUP_KEYS) assert.ok(nav.includes(SOURCE_GROUP_LABELS[key]));
     assert.doesNotMatch(nav, /一手|赛果|阵容|版本|联盟|战术|观点/);
-    assert.match(nav, new RegExp(`href="/\\?sourceGroup=${sourceGroup}"[^>]*aria-current="page"`));
+    const active = /<a\b[^>]*aria-current="page"[^>]*>/.exec(nav)?.[0];
+    assert.ok(active?.includes(`href="/?sourceGroup=${sourceGroup}"`));
     assert.ok(apiPaths.includes(`/api/site/timeline?sourceGroup=${sourceGroup}`));
     assert.ok(html.includes('id="hot-topics"') && html.includes('aria-label="KPL内容雷达"'));
     assert.match(html, /发现动态/);

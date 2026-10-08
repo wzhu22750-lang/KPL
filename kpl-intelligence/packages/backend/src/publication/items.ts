@@ -140,7 +140,7 @@ export function toItemSummary(row: ItemRow): ItemSummary {
     originalTitle: row.original_title,
     summary: row.summary,
     reason: row.selected ? row.reason : null,
-    source: { name: publicSourceName(row.source_name), group: row.source_group ?? null },
+    source: { name: publicSourceName(row.source_name), ...(row.source_group ? { group: row.source_group } : {}) },
     links: { original: row.url },
     publishedAt: row.published_at?.toISOString() ?? null,
     discoveredAt: row.discovered_at.toISOString(),

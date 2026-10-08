@@ -50,15 +50,16 @@ for (const sourceGroup of SOURCE_GROUP_KEYS) test(`${sourceGroup}: pool, timelin
   const timeline = await loadTimeline({...filters,sourceGroup});
   assert.equal(timeline.cards.length,expected.length+1,'one shared fact plus each standalone report');
   assert.ok(timeline.cards.every(card=>card.item.source.group===sourceGroup));
-  const shared=timeline.cards.find(card=>card.group)!;
-  assert.equal(shared.group!.reportCount,expected.length);
+  const shared=timeline.cards.find(card=>card.key.startsWith('f'))!;
+  assert.ok(shared);
+  assert.equal(shared.group?.reportCount ?? 1,expected.length);
   const group = await loadGroupReports({...filters,sourceGroup,factPublicId},now);
   assert.deepEqual(new Set(group!.reports.map(item=>item.id.split('-')[0])),new Set(expected));
 });
 
 test('unknown T1 sources are not official; theme filters still intersect identity filters',async () => {
   const all=await loadPool(filters);
-  assert.equal(all.items.find(item=>item.id==='unknown-0')!.source.group,null);
+  assert.equal(all.items.find(item=>item.id==='unknown-0')!.source.group ?? null,null);
   const club=await loadPool({...filters,sourceGroup:'club',category:'match-result',tag:'赛果战报'});
   assert.equal(club.total,2);
   assert.equal((await loadPool({...filters,sourceGroup:'club',category:'roster'})).total,0);
