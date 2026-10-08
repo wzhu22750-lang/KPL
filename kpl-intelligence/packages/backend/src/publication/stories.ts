@@ -95,7 +95,8 @@ function reportView(r: ReportRow): StoryReportView {
 
 /** The story's reports newest first, its developments, and its latest and first non-mention reports. */
 async function storyContent(storyId: number, now: Date) {
-  const [s] = await sql<{ public_id: string; title: string }[]>`SELECT public_id::text, title FROM stories WHERE id = ${storyId}`;
+  const [s] = await sql<{ public_id: string; title: string; topic_kind: string; positions: StoryDetail["positions"]; dispute_status: StoryDetail["disputeStatus"] }[]>`
+    SELECT public_id::text, title, topic_kind, positions, dispute_status FROM stories WHERE id = ${storyId}`;
   if (!s) return null;
   const reports = await storyReports(storyId, now);
   if (reports.length === 0) return null;
@@ -176,6 +177,9 @@ export async function loadStoryDetail(storyId: number, now = new Date()): Promis
     publicId: s.public_id,
     title: s.title,
     status: storyStatusFor(latestAt, now.getTime()),
+    topicKind: (s.topic_kind === "dispute" || s.topic_kind === "fun" ? s.topic_kind : "general") as StoryDetail["topicKind"],
+    positions: s.positions ?? null,
+    disputeStatus: s.dispute_status ?? null,
     reportCount: reports.length,
     sourceCount: new Set(reports.map((r) => r.source_id)).size,
     firstReportAt: firstReportAt.toISOString(),

@@ -11,10 +11,12 @@ export const KEYS = {
   changelogSeen: "aihot-changelog-seen-version",
   feedbackDraft: "aihot-feedback-draft-v1",
   recentSearches: "aihot-recent-searches",
+  followTeams: "aihot-follow-teams",
 } as const;
 
 const STARRED_LIMIT = 500;
 const READ_LIMIT = 5000;
+const FOLLOW_LIMIT = 30;
 const RECENT_SEARCH_LIMIT = 10;
 const RECENT_SEARCH_MAX_CHARS = 200;
 const IMPORT_MAX_CHARS = 2_000_000;
@@ -114,6 +116,7 @@ const subscribeRead = subscribeKey(KEYS.read);
 const subscribeTheme = subscribeKey(KEYS.theme);
 const subscribeChangelog = subscribeKey(KEYS.changelogSeen);
 const subscribeRecentSearches = subscribeKey(KEYS.recentSearches);
+const subscribeFollowTeams = subscribeKey(KEYS.followTeams);
 
 // Snapshot cache so useSyncExternalStore gets stable references between changes.
 const cache = new Map<string, unknown>();
@@ -228,6 +231,42 @@ export function markRead(id: string) {
     writeRaw(KEYS.read, JSON.stringify(next));
     invalidate(KEYS.read);
   });
+}
+
+// followed teams (P4 关注动态，无账号方案：只存本浏览器)
+// slug 是 kb teams 表的 slug；非法 slug 丢弃，上限 FOLLOW_LIMIT。
+const TEAM_SLUG_PATTERN = /^[a-z0-9-]{1,40}$/;
+
+export function getFollowTeams(): string[] {
+  return cached(KEYS.followTeams, () => {
+    const parsed = readJson(KEYS.followTeams);
+    if (!Array.isArray(parsed)) return [];
+    const slugs = [...new Set(parsed.filter((v): v is string => typeof v === "string" && TEAM_SLUG_PATTERN.test(v)))];
+    return slugs.slice(0, FOLLOW_LIMIT);
+  });
+}
+
+function setFollowTeamList(slugs: string[]): boolean {
+  const saved = writeRaw(KEYS.followTeams, JSON.stringify(slugs.slice(0, FOLLOW_LIMIT)));
+  invalidate(KEYS.followTeams);
+  return saved;
+}
+
+/** 关注/取关一支战队，返回操作后是否在关注。 */
+export function toggleFollowTeam(slug: string): boolean {
+  return editLocalData(() => {
+    if (!TEAM_SLUG_PATTERN.test(slug)) return false;
+    const list = getFollowTeams();
+    const exists = list.includes(slug);
+    const next = exists ? list.filter((s) => s !== slug) : [...list, slug].slice(0, FOLLOW_LIMIT);
+    setFollowTeamList(next);
+    return !exists;
+  });
+}
+
+export function clearFollowTeams() {
+  writeRaw(KEYS.followTeams, null);
+  invalidate(KEYS.followTeams);
 }
 
 // theme
@@ -461,4 +500,9 @@ export function useChangelogSeen(): string | null {
 const NO_SEARCHES: string[] = [];
 export function useRecentSearches(): string[] {
   return useSyncExternalStore(subscribeRecentSearches, getRecentSearches, () => NO_SEARCHES);
+}
+
+const NO_TEAMS: string[] = [];
+export function useFollowTeams(): string[] {
+  return useSyncExternalStore(subscribeFollowTeams, getFollowTeams, () => NO_TEAMS);
 }

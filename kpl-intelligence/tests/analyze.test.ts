@@ -1,8 +1,9 @@
-// The judging and writing steps (editorial/analyze.ts): the prefilter decides relevance, two scores
-// against the tier threshold decide 精选, selected and near-selected items are written by the content
-// understanding and the rest by the title/summary translation, a structure step gives the category,
-// subjects and fact. Material with only a feed summary has its page fetched first. Every prompt in the
-// pack renders.
+// The judging and writing steps (editorial/analyze.ts): the prefilter decides relevance, the v2 score
+// (two independent component calls: base 0-70 + noise flags; the code adds source authority and the
+// unknown-heat placeholder, then clamps) decides 精选 against the tier threshold, selected and
+// near-selected items are written by the content understanding and the rest by the title/summary
+// translation, a structure step gives the category, subjects and fact. Material with only a feed
+// summary has its page fetched first. Every prompt in the pack renders.
 import { Reply, stub, tag } from "./setup.ts";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
@@ -24,7 +25,10 @@ type Step = "prefilter" | "score" | "understand" | "summarize" | "structure";
 interface Req { step: Step; marker: string; system: string; user: string }
 const requests: Req[] = [];
 const MARKERS = ["CLEAR", "RESCUE", "LOW", "OFFTOPIC", "BARE", "VAGUE", "THIN", "SENSITIVE", "推文"];
-const scoreAnswers: Record<string, number[]> = { CLEAR: [78, 72], RESCUE: [56, 50], LOW: [45, 40], THIN: [70, 70], SENSITIVE: [80, 80], 推文: [40, 40], BARE: [30, 34], VAGUE: [60, 62] };
+// v2 score bases; each final adds official 8 (T1) + heat 6 (unknown placeholder):
+// CLEAR [92,86]→89 ✓ · RESCUE [58,54]→56 near-miss · LOW [44,40]→42 · THIN [84,84]→84 ✓
+// SENSITIVE [94,94]→94 ✓ · 推文 verbatim · BARE [44,48]→46 · VAGUE [74,76]→75 ✓
+const scoreBases: Record<string, number[]> = { CLEAR: [78, 72], RESCUE: [44, 40], LOW: [30, 26], THIN: [70, 70], SENSITIVE: [80, 80], 推文: [40, 40], BARE: [30, 34], VAGUE: [60, 62] };
 
 const stepOf = (system: string, user: string): Step =>
   system.includes("宽召回") ? "prefilter" : system.includes("评分器") ? "score"
@@ -42,7 +46,7 @@ const provider = await stub((_hit, req) => {
   requests.push({ step, marker, system, user });
   const answer = (content: unknown) => ({ id: `stub-${requests.length}`, model: "stub", choices: [{ message: { content: typeof content === "string" ? content : JSON.stringify(content) } }], usage: { prompt_tokens: 10, completion_tokens: 5, total_tokens: 15 } });
   if (step === "prefilter") return answer({ label: marker === "OFFTOPIC" || marker === "BARE" ? "BLOCK" : marker === "VAGUE" ? "UNKNOWN" : "PASS", reason: "测试" });
-  if (step === "score") return answer({ attentionScore: scoreAnswers[marker]!.shift() });
+  if (step === "score") return answer({ content_kind: "announcement", base: scoreBases[marker]!.shift(), heat_evidence: "", noise_flags: [], reasons: "测试" });
   if (step === "understand") {
     if (marker === "SENSITIVE") return new Reply(400, { contentFilter: [{ level: 1, role: "user" }], error: { code: "1301", message: "系统检测到输入或生成内容可能包含不安全或敏感内容" } });
     return answer({ itemType: "match_report", authorRole: "principal", tags: ["赛果战报", "成都AG超玩会"], editorialJudgment: `理由 ${marker}`, titleZh: `理解标题 ${marker}`, summaryZh: `理解摘要 ${marker}。第二句补充一个关键数字。` });
@@ -73,8 +77,8 @@ const article = async (marker: string, extra: Record<string, unknown> = {}) =>
   } as never)).articleId;
 const calls = (marker: string) => requests.filter((r) => r.marker === marker).map((r) => r.step);
 const row = async (id: string) =>
-  (await sql<{ selected: boolean; relevance: string; score: string | null; title_zh: string; reason_zh: string | null; category: string | null; tags: string[]; subjects: string[]; receipt_ids: string[]; output: Record<string, any> }[]>`
-    SELECT selected, relevance, score, title_zh, reason_zh, category, tags, subjects, receipt_ids, output FROM analyses WHERE article_id = ${id} ORDER BY id DESC LIMIT 1`)[0]!;
+  (await sql<{ selected: boolean; relevance: string; score: string | null; title_zh: string; reason_zh: string | null; category: string | null; tags: string[]; subjects: string[]; receipt_ids: string[]; score_formula_version: string; score_components: Record<string, any> | null; output: Record<string, any> }[]>`
+    SELECT selected, relevance, score, title_zh, reason_zh, category, tags, subjects, receipt_ids, score_formula_version, score_components, output FROM analyses WHERE article_id = ${id} ORDER BY id DESC LIMIT 1`)[0]!;
 
 test("every prompt in the pack renders, with the site's own name", () => {
   const dir = new URL("../industry/prompts/", import.meta.url);
@@ -93,10 +97,14 @@ test("a selected item: prefilter, two scores, the content understanding and the 
   assert.equal(tierThreshold("T1"), 58);
   const id = await article("CLEAR");
   const res = await analyzeArticle(id);
-  assert.deepEqual([res!.output!.selected, res!.output!.score], [true, 75], "78 + 72 = 150 >= 116");
+  assert.deepEqual([res!.output!.selected, res!.output!.score], [true, 89], "v2 finals 92 + 86 = 178 >= 116");
   assert.deepEqual(calls("CLEAR").sort(), ["prefilter", "score", "score", "structure", "understand"]);
   const r = await row(id);
   assert.deepEqual([r.title_zh, r.reason_zh, r.category, r.receipt_ids.length], ["理解标题 CLEAR", "理由 CLEAR", "match-result", 5]);
+  assert.equal(r.score_formula_version, "v2");
+  assert.deepEqual([r.score_components!.base, r.score_components!.official, r.score_components!.heat, r.score_components!.noise, r.score_components!.coverage],
+    [75, 8, 6, 0, "unknown"], "averaged v2 components on the row");
+  assert.equal(res!.output!.scoreFormulaVersion, "v2");
   // Failure case: the writer's independent labels contradict the structural category.
   assert.deepEqual(r.tags, ["赛果战报", "AG"], "category and tags come from the same structural judgement, plus the verified subject tag");
   assert.deepEqual(r.subjects, ["ag"]);
@@ -148,7 +156,7 @@ test("structure retains grounded conditions, rejects invented or unseen quotes, 
 
 test("a near-selected item is written like a selected one; below the floor it is translated", async () => {
   const near = await analyzeArticle(await article("RESCUE"));
-  assert.deepEqual([near!.output!.selected, near!.output!.reasonZh], [false, "理由 RESCUE"], "56 + 50 = 106 > 100");
+  assert.deepEqual([near!.output!.selected, near!.output!.reasonZh], [false, "理由 RESCUE"], "v2 finals 58 + 54 = 112 < 116 but > 100: near-selected, written like selected");
   const lowId = await article("LOW");
   const low = await analyzeArticle(lowId);
   assert.deepEqual([low!.output!.selected, low!.output!.titleZh, low!.output!.reasonZh], [false, "翻译标题 LOW", null]);
@@ -160,7 +168,7 @@ test("the prefilter's BLOCK stops everything; UNKNOWN goes on like PASS", async 
   const off = await analyzeArticle(await article("OFFTOPIC"));
   assert.deepEqual([off!.output!.relevance, off!.output!.selected], ["block", false]);
   assert.deepEqual(calls("OFFTOPIC"), ["prefilter"]);
-  // An UNKNOWN with material is judged and written like a PASS, up to 精选 (60 + 62 ≥ 2 × 60).
+  // An UNKNOWN with material is judged and written like a PASS, up to 精选 (v2 finals 74 + 76 ≥ 2 × 58).
   const vagueId = await article("VAGUE");
   const vague = await analyzeArticle(vagueId);
   assert.deepEqual([vague!.output!.relevance, vague!.output!.selected, vague!.output!.titleZh], ["pass", true, "理解标题 VAGUE"]);
@@ -168,7 +176,7 @@ test("the prefilter's BLOCK stops everything; UNKNOWN goes on like PASS", async 
   // Nothing but a title and no page to fetch: the BLOCK counts as UNKNOWN and is scored, but the
   // translation writes nothing from a bare title, so it waits for material instead of being published.
   const bare = await analyzeArticle(await article("BARE", { bodyText: null, excerpt: null, bodyStatus: "none" }));
-  assert.deepEqual([bare!.output!.relevance, bare!.output!.selected, bare!.output!.score], ["unknown", false, 32]);
+  assert.deepEqual([bare!.output!.relevance, bare!.output!.selected, bare!.output!.score], ["unknown", false, 46]);
   assert.deepEqual(calls("BARE").sort(), ["prefilter", "score", "score", "structure"]);
 });
 
@@ -218,7 +226,7 @@ test("guards: a company the input does not name is not written in; long summarie
 });
 
 test("analysing the same revision again reuses every paid answer", async () => {
-  scoreAnswers.CLEAR = [80, 70];
+  scoreBases.CLEAR = [80, 70];
   const id = await article("CLEAR", { url: `https://example.com/CLEAR-again-${T}`, title: `CLEAR model release again ${T}` });
   const first = await analyzeArticle(id);
   assert.equal(first!.reused, false);

@@ -307,6 +307,10 @@ export interface StoryDetail {
   publicId: string;
   title: string;
   status: "active" | "watching" | "settled";
+  /** P3: 话题类型。positions 为 null 表示尚未跑争议抽取；[] 表示已抽取但无争议。 */
+  topicKind: "general" | "dispute" | "fun";
+  positions: Array<{ stance: string; holders: string[]; evidence: string; source: string }> | null;
+  disputeStatus: "ongoing" | "responded" | "clarified" | "settled" | null;
   reportCount: number;
   sourceCount: number;
   firstReportAt: string | null;
@@ -577,4 +581,52 @@ export interface TopicPage {
   page: number;
   pageCount: number;
   pageSize: number;
+}
+
+// ---------------------------------------------------------------------------
+// 首页混合信息流（P4）：热榜 + 时间线按配比分桶混排。
+// ---------------------------------------------------------------------------
+
+/** 混合信息流的分桶：dispute 争议话题、fun 趣评、opinion 评论类（观点/战术）、other 其余精选。 */
+export type HomeFeedBucket = "dispute" | "fun" | "opinion" | "other";
+
+/**
+ * 卡片的覆盖状态：
+ * - known：有热度观测数据（上榜或所在故事有观测）；
+ * - unknown：已入选但暂无热度观测数据；
+ * - pending_review：未经过编辑精选（待复核），展示但明确标识。
+ */
+export type HomeFeedCoverage = "known" | "unknown" | "pending_review";
+
+/** 混合信息流的一条：热榜条目或时间线卡片，二者都带分桶与状态标识。 */
+export interface HomeFeedEntry {
+  kind: "hot" | "timeline";
+  bucket: HomeFeedBucket;
+  storyPublicId: string | null;
+  topicKind: "general" | "dispute" | "fun" | null;
+  disputeStatus: "ongoing" | "responded" | "clarified" | "settled" | null;
+  heat: number | null;
+  trend: HotStripEntry["trend"] | null;
+  coverage: HomeFeedCoverage;
+  hot: HotStripEntry | null;
+  card: TimelineCard | null;
+}
+
+/** GET /api/site/homefeed：首页热点优先的混合流。enabled=false 时 entries 为空，首页回退时间线。 */
+export interface HomeFeedResponse {
+  enabled: boolean;
+  entries: HomeFeedEntry[];
+  nextCursor: string | null;
+}
+
+/** 关注动态（无账号方案）：每支关注战队的最新卡片。 */
+export interface FollowedTeamFeed {
+  slug: string;
+  name: string;
+  cards: TimelineCard[];
+}
+
+/** GET /api/site/followed?teams=ag,wolves：按本地关注的战队 slugs 返回最新 cards。 */
+export interface FollowedResponse {
+  teams: FollowedTeamFeed[];
 }
