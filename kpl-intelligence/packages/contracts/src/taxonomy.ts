@@ -1,6 +1,14 @@
 // Public vocabularies shared by the website, the API and the worker. The categories themselves belong to
 // the industry pack (industry/taxonomy.ts); their keys are external identities (URLs, API, RSS).
 import { CATEGORIES } from "@aihot/industry/taxonomy";
+import { SOURCE_GROUPS } from "@aihot/industry/source-groups";
+
+export type SourceGroupKey = (typeof SOURCE_GROUPS)[number]['key'];
+export const SOURCE_GROUP_KEYS = SOURCE_GROUPS.map(group => group.key);
+export const SOURCE_GROUP_LABELS = Object.fromEntries(SOURCE_GROUPS.map(group => [group.key, group.label])) as Record<SourceGroupKey, string>;
+export function isSourceGroupKey(value: unknown): value is SourceGroupKey {
+  return typeof value === 'string' && SOURCE_GROUP_KEYS.includes(value as SourceGroupKey);
+}
 
 export type CategoryKey = (typeof CATEGORIES)[number]["key"];
 export const CATEGORY_KEYS = CATEGORIES.map((c) => c.key) as unknown as readonly [CategoryKey, ...CategoryKey[]];

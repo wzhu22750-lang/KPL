@@ -11,6 +11,7 @@ import {
   type ItemRow,
 } from "./items.ts";
 import { evidenceCondition, listedCondition, ownFactEvidenceCondition, selectedCondition } from "./scope.ts";
+import { sourceGroupCondition } from './source-groups.ts';
 
 export interface TimelineQuery extends TimelineFilters {
   cursor?: string | null;
@@ -24,11 +25,11 @@ interface GroupRow {
 }
 
 function filterSql(q: TimelineQuery) {
-  return sql`${channelCondition(q.channel)} ${categoryCondition(q.category)} ${tagCondition(q.tag)}`;
+  return sql`${sourceGroupCondition(q.sourceGroup)} ${channelCondition(q.channel)} ${categoryCondition(q.category)} ${tagCondition(q.tag)}`;
 }
 
 function binding(q: TimelineQuery): string {
-  return queryBinding({ c: q.channel, k: q.category, t: q.tag });
+  return queryBinding({ c: q.channel, k: q.category, t: q.tag, s: q.sourceGroup ?? null });
 }
 
 /**
@@ -159,5 +160,5 @@ export async function loadTimeline(q: TimelineQuery): Promise<Omit<TimelineRespo
 
   const last = page[page.length - 1];
   const nextCursor = hasMore && last ? encodeCursor("tl2", { a: last.anchor_at.getTime(), g: last.gk, b: bind }) : null;
-  return { filters: { channel: q.channel, category: q.category, tag: q.tag }, cards, nextCursor, dayCounts };
+  return { filters: { sourceGroup: q.sourceGroup ?? null, channel: q.channel, category: q.category, tag: q.tag }, cards, nextCursor, dayCounts };
 }

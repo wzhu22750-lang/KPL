@@ -1,18 +1,20 @@
 import { data as withHeaders, redirect, useLoaderData } from 'react-router';
 import type { Route } from './+types/home';
 import type { RadarResponse } from '@aihot/contracts/radar';
-import type { TimelineResponse } from '@aihot/contracts/site';
+import type { TimelineResponse, HotStripEntry } from '@aihot/contracts/site';
 import { apiDeadlineCache, apiGet } from '../lib/api.server';
-import { itemListLd, pageMeta, siteLd } from '../lib/seo';
+import { filterParams, listPath, readFilters, itemListLd, pageMeta, siteLd } from '../lib/seo';
 import type { Screen } from '../components/shell/screens';
 import { IntentLink } from '../components/ui/IntentLink';
 import { IconArrowRight } from '../components/icons';
 import { ContentRadar } from '../features/feed/ContentRadar';
 import { HotTopics } from '../features/feed/HotTopics';
 import { Timeline } from '../features/feed/Timeline';
+import { SourceTabs } from '../features/feed/Filters';
+import { SOURCE_GROUP_LABELS } from '@aihot/contracts/taxonomy';
 import '../features/feed/home-mobile.css';
 
-export const handle: Screen = { tab: 'featured', name: '精选' };
+export const handle: Screen = { tab: 'featured', name: '发现' };
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
@@ -25,24 +27,27 @@ export async function loader({ request }: Route.LoaderArgs) {
   if (url.searchParams.has('radarDay')) throw redirect('/');
   const radarHeaders = new Headers();
   const timelineHeaders = new Headers();
+  const hotHeaders = new Headers();
+  const filters = readFilters(url.searchParams);
   const optional = <T,>(promise: Promise<T>) => promise.catch(error => {
     if (request.signal.aborted) throw error;
     return null;
   });
-  const [radar, timeline] = await Promise.all([
+  const [radar, timeline, hotStrip] = await Promise.all([
     optional(apiGet<RadarResponse>('/api/site/radar?current=true', { responseHeaders: radarHeaders, signal: request.signal })),
-    optional(apiGet<TimelineResponse>('/api/site/timeline', { responseHeaders: timelineHeaders, signal: request.signal })),
+    optional(apiGet<TimelineResponse>(listPath('/api/site/timeline', filterParams(filters)), { responseHeaders: timelineHeaders, signal: request.signal })),
+    filters.sourceGroup ? optional(apiGet<{ entries: HotStripEntry[] }>('/api/site/hot/strip', { responseHeaders: hotHeaders, signal: request.signal })) : null,
   ]);
   // The composed page must expire no later than either upstream response.
-  const headers = apiDeadlineCache(30, Date.now(), [radarHeaders, timelineHeaders]);
-  return withHeaders({ radar, timeline, hot: timeline?.hot ?? [] }, { headers });
+  const headers = apiDeadlineCache(30, Date.now(), [radarHeaders, timelineHeaders, ...(filters.sourceGroup ? [hotHeaders] : [])]);
+  return withHeaders({ radar, timeline, filters, hot: hotStrip?.entries ?? timeline?.hot ?? [] }, { headers });
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  const path = '/';
+  const path = listPath('/', filterParams(loaderData?.filters ?? { channel: 'all', category: null, tag: null }));
   const radar = loaderData?.radar;
   const titles = [...new Set([...(loaderData?.hot ?? []).map(h => h.title), ...(radar?.topics ?? []).map(t => t.title), ...(radar?.matches ?? []).map(m => m.title), ...(loaderData?.timeline?.cards ?? []).map(c => c.item.title)])];
-  return pageMeta({ path, jsonLd: path === '/' ? [...siteLd(), itemListLd('/', '精选', titles)] : undefined });
+  return pageMeta({ path, jsonLd: path === '/' ? [...siteLd(), itemListLd('/', '发现', titles)] : undefined });
 }
 
 export function headers({ loaderHeaders }: Route.HeadersArgs) {
@@ -50,10 +55,10 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
 }
 
 export default function Home() {
-  const { radar, hot, timeline } = useLoaderData<typeof loader>();
+  const { radar, hot, timeline, filters } = useLoaderData<typeof loader>();
   return <div className="home-overview pb-6">
     <header className="flex items-center justify-between gap-4">
-      <h1 className="text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">精选</h1>
+      <h1 className="text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">发现</h1>
       <IntentLink to="/all" className="inline-flex min-h-11 items-center gap-1 text-[13px] text-ink-3 hover:text-accent">全部 KPL 动态<IconArrowRight size={14} /></IntentLink>
     </header>
     {hot.length > 0 && <div className="mt-5"><HotTopics entries={hot} /></div>}
@@ -63,8 +68,9 @@ export default function Home() {
       <div className="mt-4 flex gap-5 text-[13px] text-accent"><IntentLink to="/all" className="inline-flex min-h-11 items-center">全部动态</IntentLink><IntentLink to="/matches" className="inline-flex min-h-11 items-center">全部赛程</IntentLink></div>
     </div>}
     <section aria-labelledby="featured-updates" className="mt-7">
-      <h2 id="featured-updates" className="mb-4 border-b border-line pb-4 text-[18px] font-semibold text-ink">精选动态</h2>
-      {timeline ? <Timeline initial={timeline} filters={timeline.filters} groupByDay={false} /> : <p className="py-5 text-[14px] text-ink-3">精选动态暂不可用，可前往全部动态查看。</p>}
+      <h2 id="featured-updates" className="border-b border-line pb-4 text-[18px] font-semibold text-ink">发现动态{filters.sourceGroup && <span className="ml-2 text-[13px] font-normal text-ink-3">· {SOURCE_GROUP_LABELS[filters.sourceGroup]}</span>}</h2>
+      <SourceTabs base="/" sourceGroup={filters.sourceGroup} className="mb-4 mt-4" />
+      {timeline ? <Timeline initial={timeline} filters={filters} groupByDay={false} /> : <p className="py-5 text-[14px] text-ink-3">发现动态暂不可用，可前往全部动态查看。</p>}
     </section>
   </div>;
 }

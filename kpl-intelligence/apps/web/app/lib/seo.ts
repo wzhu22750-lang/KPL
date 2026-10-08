@@ -3,7 +3,7 @@
 // (industry/site.ts); its address from SITE_URL.
 import type { MetaDescriptor } from "react-router";
 import type { ReportDetail, TimelineFilters } from "@aihot/contracts/site";
-import { isCategoryKey, isChannelKey } from "@aihot/contracts/taxonomy";
+import { isCategoryKey, isChannelKey, isSourceGroupKey } from "@aihot/contracts/taxonomy";
 import { SITE, subjectAfter, withSubject } from "@aihot/industry/site";
 
 /**
@@ -48,7 +48,9 @@ export function listPath(path: string, params: Record<string, string | number | 
 export function readFilters(params: URLSearchParams): TimelineFilters {
   const channel = params.get("channel") ?? "all";
   const category = params.get("category");
+  const sourceGroup = params.get('sourceGroup');
   return {
+    sourceGroup: isSourceGroupKey(sourceGroup) ? sourceGroup : null,
     channel: isChannelKey(channel) ? channel : "all",
     category: category && isCategoryKey(category) ? category : null,
     tag: params.get("tag")?.trim() || null,
@@ -57,7 +59,7 @@ export function readFilters(params: URLSearchParams): TimelineFilters {
 
 /** Feed filters as list address parameters: the default channel and unset filters are left out. */
 export function filterParams(f: TimelineFilters) {
-  return { channel: f.channel === "all" ? null : f.channel, category: f.category, tag: f.tag };
+  return { channel: f.channel === "all" ? null : f.channel, category: f.category, tag: f.tag, sourceGroup: f.sourceGroup ?? null };
 }
 
 /** "Title · Site". */

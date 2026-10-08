@@ -88,4 +88,11 @@ export const IconVs = (p: P) => (
     <path d="M8 16l-4 4" />
   </Svg>
 );
+export const IconCompass = (p: P) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" fillOpacity={0.2} />
+  </Svg>
+);
+
 

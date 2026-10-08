@@ -6,7 +6,8 @@ import { Link } from "react-router";
 import { IntentLink } from "../../components/ui/IntentLink";
 import type { GroupInfo, FeedItemSummary, TimelineFilters } from "@aihot/contracts/site";
 import { IconChevronDown } from '../../components/icons';
-import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
+import { CATEGORY_LABELS, SOURCE_GROUP_LABELS } from "@aihot/contracts/taxonomy";
+import { feedTopicTags } from './tags';
 import { SameEventBadge, SelectedBadge } from "../../components/ui/Badge";
 import { ScoreLabel } from "../../components/ui/Score";
 import { beijingDate, beijingTime } from "@aihot/contracts/time";
@@ -37,7 +38,7 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
     onOpen?.(item.id);
   };
   const showSources = !!group && (group.additionalSourceCount > 0 || group.reportCount > 1);
-  const tags = showTags ? item.tags.slice(0, 3) : [];
+  const tags = showTags ? feedTopicTags(item.tags, item.category) : [];
 
   return (
     <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
@@ -45,6 +46,7 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
         <span className="feed-source inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
           <SourceLine item={item} className="text-ink-2 font-medium" />
         </span>
+        {item.source.group && <Link to={`/all?sourceGroup=${item.source.group}`} aria-label={`查看${SOURCE_GROUP_LABELS[item.source.group]}发布的动态`} className="relative z-10 inline-flex min-h-7 items-center rounded border border-line-soft px-1.5 text-[11px] text-ink-3 hover:text-accent">{SOURCE_GROUP_LABELS[item.source.group]}</Link>}
         {item.contentKind && <span className="feed-kind"><ContentKindChip kind={item.contentKind} /></span>}
         {at && (
           <time dateTime={at} className="feed-header-time mono shrink-0 text-[12px] lg:hidden">

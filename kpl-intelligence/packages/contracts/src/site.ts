@@ -1,11 +1,13 @@
 // First-party site API (/api/site/*). Not a public API: it may evolve with the website,
 // but it is served from the same public read layer as v1, RSS and MCP.
 import type { LbBrand } from "./leaderboard.ts";
-import type { CategoryKey, ChannelKey } from "./taxonomy.ts";
+import type { CategoryKey, ChannelKey, SourceGroupKey } from "./taxonomy.ts";
 
 export interface SourceRef {
   /** The name readers see (publication/rules.ts publicSourceName), as is every source name here. */
   name: string;
+  /** 发布者身份，独立于文章类别；档案不明时为空。 */
+  group?: SourceGroupKey | null;
 }
 
 export interface MediaView {
@@ -165,6 +167,7 @@ export interface HotStripEntry {
 }
 
 export interface TimelineFilters {
+  sourceGroup?: SourceGroupKey | null;
   channel: ChannelKey;
   category: CategoryKey | null;
   tag: string | null;

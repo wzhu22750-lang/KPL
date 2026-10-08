@@ -25,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   { rel: "icon", type: "image/png", href: "/icon.png" },
   { rel: "apple-touch-icon", href: "/apple-icon.png" },
   { rel: "manifest", href: "/manifest.webmanifest" },
-  { rel: "alternate", type: "application/rss+xml", title: `${SITE.name} — 精选`, href: "/feed.xml" },
+  { rel: "alternate", type: "application/rss+xml", title: `${SITE.name} — 发现`, href: "/feed.xml" },
 ];
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -136,7 +136,7 @@ export function ErrorBoundary() {
             重新加载
           </Link>}
           <Link reloadDocument to="/" className={buttonClass(notFound ? "primary" : "secondary")}>
-            回到精选
+            回到发现
           </Link>
           <Link reloadDocument to="/all" className={buttonClass("secondary")}>
             浏览全部动态

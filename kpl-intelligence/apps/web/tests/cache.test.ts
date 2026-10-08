@@ -152,7 +152,7 @@ test('unavailable selected feed never hides the current focus', async () => {
     const html = await response.text();
     assert.equal(response.status, 200);
     assert.ok(html.includes('aria-label="KPL内容雷达"'));
-    assert.ok(html.includes('精选动态暂不可用'));
+    assert.ok(html.includes('发现动态暂不可用'));
   } finally { timelineUnavailable = false; }
 });
 

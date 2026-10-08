@@ -4,19 +4,19 @@
 
 export const SITE = {
   /** 站名：导航、页面标题、分享图、RSS、MCP、后台都用它。 */
-  name: "KPL Intelligence",
+  name: "康平路情报站",
   /**
    * 行业词：拼进默认说法里，比如“KPL 日报”“KPL 动态”。
    * 改成“法律”“HR”“黄金”之类，页面上就会变成“法律日报”“法律动态”。
    */
   subject: "KPL",
   /** 首页的完整标题（浏览器标签、搜索结果）。 */
-  homeTitle: "KPL Intelligence — 王者荣耀职业联赛 · 智能信息检索与赛事分析",
+  homeTitle: "康平路情报站 — 王者荣耀职业联赛 · 智能信息检索与赛事分析",
   /** 一句话介绍：搜索引擎、分享卡片、RSS、llms.txt 会用。 */
   description:
     "盯住 KPL 的官方信源与赛事数据，用模型摘要、打分、精选，把同一场比赛、同一笔转会的报道归到一起；自然语言提问，AI 检索数据后给出有引用的回答。",
   /** 首页左上角和侧边栏下面的一行小字。 */
-  tagline: "值得关注的 KPL 动态",
+  tagline: "值得关注的 KPL 动态与战术情报",
   /** 界面语言（HTML lang、og:locale）。 */
   locale: "zh-CN",
   /** 默认域名，只在没设置 SITE_URL 时使用。 */
@@ -34,12 +34,12 @@ export const SITE = {
   icp: null as string | null,
   /** 结构化数据里的网站运营者（搜索引擎用）。 */
   organization: {
-    name: "KPL Intelligence",
+    name: "康平路情报站",
     /** 创始人（选填）：{ name, url, description }。 */
     founder: null as null | { name: string; url?: string; description?: string },
   },
   /** 抓取信源时报上的名字（User-Agent 里用），不要冒用别的站。 */
-  crawlerName: "KPLIntelligenceBot",
+  crawlerName: "KangPingLuBot",
 } as const;
 
 /** 关于页的文案。数字（信源数、收录数、精选数、日报期数）来自站内实时统计，不用写在这里。 */

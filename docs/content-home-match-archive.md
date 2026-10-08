@@ -16,6 +16,24 @@
 
 当前本地首页为 5 条热点、5 场比赛、6 张原精选新闻卡片；同一事实的额外报道通过原多信源入口查看。
 
+## 手机端阅读层级
+
+首页采用保留品牌的轻阅读调整，仍按“热点 → 焦点 → 横向比赛 → 原精选”排列。只在 ≤960px 的首页作用；其它页面不套用这组卡片样式。
+
+| 之前 | 现在 |
+|---|---|
+| 新闻条目紧贴、多个标签和分数塞在一行 | 页面左右 20px、新闻独立卡片内边距 20px、卡片间距 20px；来源与时间分层 |
+| 版块标题与正文差别不明显 | 版块标题 21px、新闻标题 18px、摘要 15px；主要版块间距 40px |
+| 热点标题单行截断、热度数字争抢空间 | 手机上标题最多两行、行间留白；热度详情仍在完整榜单可见 |
+| 焦点摘要整段铺开 | 默认三行，展开来源与观点时恢复完整摘要；观点/传闻标签不隐藏 |
+| 每条新闻默认展示分数和整段入选理由 | 收入“入选信息”，点击或键盘展开即可读取；多信源入口和收藏仍保留 |
+
+实现：`apps/web/app/features/feed/home-mobile.css`，在首页 route 引入并由 `home-overview` 限定范围；不新增依赖，不修改选稿结果、评分或公开权限。桌面原有理由与评分继续展示。
+
+本地曾发现旧样式文件 404；重启 Web 进程使 SSR 引用与当前构建一致。最终浏览器检查 CSS/JS 资源失败数为 0，没有加入重试或生产兼容机制。
+
+手机截图：[首屏](../output/playwright/content-redesign/mobile-comfort-top.png)、[精选卡片](../output/playwright/content-redesign/mobile-comfort-news.png)、[深色](../output/playwright/content-redesign/mobile-comfort-dark.png)、[完整页面](../output/playwright/content-redesign/mobile-comfort-home.png)。
+
 ## 比赛档案
 
 - 顶部：队徽、总比分、状态、赛事与时间。
@@ -28,8 +46,8 @@
 
 ## 验证
 
-- 后端完整回归：766 项，712 通过、54 跳过、0 失败。
-- Web：恢复原精选后，35 项全部通过；类型检查、Web build、全站 smoke、diff check 通过。
+- 最新仓库完整回归：773 项，719 通过、54 跳过、0 失败（包含仓库同期已有的其它新增测试，不将其归为本次 UI 新增）。
+- 最新 Web：38 项全部通过；类型检查、Web build、全站 smoke、本次文件的定向 diff check 通过。全局 diff check 发现非本次修改的 `components/Logo.tsx` 与 `components/icons.tsx` 有 EOF 多余空行，保留其它工作的文件不擅自清理。
 - 顶部热点补充验证：真实 5 条榜单位于圈内焦点上方，390px 无横向溢出；SSR 测试覆盖榜单位置与热点服务不可用的情形。
 - 最新截图：[完整首页](../output/playwright/content-redesign/final-home-desktop.png)、[横向比赛卡](../output/playwright/content-redesign/final-match-carousel-desktop.png)、[原精选手机](../output/playwright/content-redesign/selected-feed-mobile.png)、[原精选深色](../output/playwright/content-redesign/selected-feed-dark.png)。此前的 `current-home-*` / `current-hot-top-*` / `match-carousel-*` 截图是中间版本。
 - 新增测试：跨日期焦点与独立赛程、队徽与读取不调用模型；超过 300 条的单场报道与撤稿/旧版本过滤；原精选保持选稿结果与撤稿保护；前端新闻过滤/排序、旧日期链接重定向、原精选顺序和卡片、两 API 最早缓存期限及 `no-store`。
@@ -37,6 +55,7 @@
 - 横向滑动浏览器核验：5 场同一行、左右按钮有效、手机最后一场可到达、展开时间线不增加轨道高度。
 - 原精选核验：6 张卡片及顺序与原 API 一致，无日期分组；返回可恢复列表，多信源弹层可读、Escape 可关闭，320/390/768/1160px 无页面级横向溢出，深浅主题有效。
 - 首轮验证发现一处模板字符串括号错误，修正后重新执行完整回归通过；首次失败日志另存，不覆盖为成功。
+- 手机端补充核验：320/360/390/430/768/1160px 无页面级溢出；入选信息可点按/键盘展开、焦点完整摘要可恢复、收藏及多信源弹层可用、横向比赛末项可到达。新闻标题/摘要/来源/时间的浅色实测对比度分别约 14.63/11.35/6.00/6.00，均超过 AA 4.5。深色及 reduced-motion 状态检查通过。
 - 自动化浏览器已关闭，本地服务保留。未重新采集、未重评历史素材、未部署生产。
 
 比赛档案截图：[比赛档案桌面](../output/playwright/content-redesign/match-archive-desktop.png)、[比赛档案手机](../output/playwright/content-redesign/match-archive-mobile.png)。

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { subjectAfter, withSubject } from "@aihot/industry/site";
 import { FEATURES } from "@aihot/industry/features";
 import {
-  IconBolt, IconBookmark, IconChart, IconDoc, IconFlame, IconGrid, IconHeart, IconHistory, IconList, IconMessage, IconPlug, IconSparkles, IconSword, IconTrophy, IconUser, IconVs,
+  IconBolt, IconBookmark, IconChart, IconCompass, IconDoc, IconFlame, IconGrid, IconHeart, IconHistory, IconList, IconMessage, IconPlug, IconSparkles, IconSword, IconTrophy, IconUser, IconVs,
 } from "../icons";
 
 export interface NavItem {
@@ -20,7 +20,7 @@ export const SIDEBAR: Array<{ title: string; items: NavItem[] }> = [
   {
     title: "内容",
     items: [
-      { to: "/", label: "精选", icon: IconBolt, end: true },
+      { to: "/", label: "发现", icon: IconCompass, end: true },
       { to: "/all", label: subjectAfter("全部", "动态"), icon: IconList },
       { to: "/heroes", label: "英雄榜", icon: IconSword },
       { to: "/standings", label: "积分榜", icon: IconTrophy },
@@ -80,7 +80,7 @@ export interface Tab {
 }
 
 export const TABS: Tab[] = [
-  { key: "featured", to: "/", label: "精选", icon: IconBolt },
+  { key: "featured", to: "/", label: "发现", icon: IconCompass },
   { key: "hot", to: "/hot", label: "热点", icon: IconFlame },
   { key: "daily", to: "/daily", label: "日报", icon: IconDoc },
   ...(FEATURES.leaderboard ? [{ key: "leaderboard" as const, to: "/leaderboard", label: "模型榜", icon: IconChart }] : []),

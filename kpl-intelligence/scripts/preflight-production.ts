@@ -26,7 +26,7 @@ function record(category: string, name: string, status: "PASS" | "WARN" | "FAIL"
 }
 
 console.log(`\n================================================================`);
-console.log(`🚀 KPL Intelligence 生产上线预检 (Preflight Production Check)`);
+console.log(`🚀 康平路情报站 (KPL Intelligence) 生产上线预检 (Preflight Production Check)`);
 console.log(`   阶段 (Phase): ${phase}`);
 console.log(`   时间 (Timestamp): ${new Date().toISOString()}`);
 console.log(`================================================================\n`);

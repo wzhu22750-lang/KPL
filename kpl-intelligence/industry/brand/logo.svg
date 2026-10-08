@@ -1,1 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="#13191c"/><path d="M256 92C271 199 313 241 420 256C313 271 271 313 256 420C241 313 199 271 92 256C199 241 241 199 256 92Z" fill="#2ce2e8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- 1. 背景深邃暗夜渐变 -->
+    <radialGradient id="bgGradient" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#152229"/>
+      <stop offset="50%" stop-color="#0d151a"/>
+      <stop offset="100%" stop-color="#060a0c"/>
+    </radialGradient>
+
+    <!-- 2. 赛博青光主渐变 (电竞科技/情报侦听) -->
+    <linearGradient id="cyanCore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="40%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+
+    <!-- 3. 高光青白切面渐变 -->
+    <linearGradient id="cyanHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cffafe"/>
+      <stop offset="45%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+
+    <!-- 4. 冠军金/荣耀琥珀金渐变 (KPL 银龙杯荣耀与高价值情报信标) -->
+    <linearGradient id="goldAccent" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="45%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+
+    <!-- 5. 战术暗影渐变 (立体空间深度) -->
+    <linearGradient id="cyanDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#164e63"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+
+    <!-- 6. 外边框微光渐变 -->
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#0e7490" stop-opacity="0.2"/>
+      <stop offset="80%" stop-color="#f59e0b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- 7. 发光滤镜 -->
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="beaconGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1. 背景底板 (精密方圆壳体) -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGradient)"/>
+  <rect width="506" height="506" x="3" y="3" rx="113" fill="none" stroke="url(#borderGradient)" stroke-width="2.5"/>
+
+  <!-- 2. 战术情报雷达网与 HUD 刻度 (Radar HUD & Coordinates) -->
+  <g opacity="0.75">
+    <!-- 外层雷达环 (虚线) -->
+    <circle cx="256" cy="230" r="176" fill="none" stroke="#164e63" stroke-width="1.5" stroke-dasharray="5 9" opacity="0.55"/>
+    <!-- 中层六边形防卫装甲圈 -->
+    <polygon points="256,92 376,161 376,299 256,368 136,299 136,161" fill="none" stroke="#0e7490" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="6 6"/>
+    <!-- 内层测距雷达环 -->
+    <circle cx="256" cy="230" r="120" fill="none" stroke="#22d3ee" stroke-width="1" stroke-opacity="0.2"/>
+    <circle cx="256" cy="230" r="64" fill="none" stroke="#22d3ee" stroke-width="0.8" stroke-opacity="0.15"/>
+
+    <!-- 四向战术准星刻度线 -->
+    <line x1="256" y1="42" x2="256" y2="70" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="256" y1="390" x2="256" y2="418" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="68" y1="230" x2="96" y2="230" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="416" y1="230" x2="444" y2="230" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- 四象限准星金色与青色微标 -->
+    <circle cx="256" cy="54" r="2.5" fill="#f59e0b"/>
+    <circle cx="256" cy="406" r="2.5" fill="#22d3ee"/>
+    <circle cx="80" cy="230" r="2.5" fill="#22d3ee"/>
+    <circle cx="432" cy="230" r="2.5" fill="#f59e0b"/>
+
+    <!-- 45度斜角辅助侦察标线 -->
+    <line x1="145" y1="119" x2="158" y2="132" stroke="#0e7490" stroke-width="1.5" opacity="0.6"/>
+    <line x1="367" y1="119" x2="354" y2="132" stroke="#0e7490" stroke-width="1.5" opacity="0.6"/>
+    <line x1="145" y1="341" x2="158" y2="328" stroke="#0e7490" stroke-width="1.5" opacity="0.6"/>
+    <line x1="367" y1="341" x2="354" y2="328" stroke="#0e7490" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- 3. 右上角全天候情报侦听脉冲弧 (Intelligence Pulse Waves) -->
+  <g opacity="0.85">
+    <path d="M312 154 A 120 120 0 0 1 378 220" fill="none" stroke="url(#cyanHighlight)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <path d="M332 126 A 156 156 0 0 1 412 206" fill="none" stroke="url(#cyanHighlight)" stroke-width="2.5" stroke-linecap="round" opacity="0.4" stroke-dasharray="12 8"/>
+    <path d="M352 98 A 194 194 0 0 1 448 194" fill="none" stroke="url(#goldAccent)" stroke-width="2" stroke-linecap="round" opacity="0.5" stroke-dasharray="4 6"/>
+  </g>
+
+  <!-- 4. 核心主体：KPL 空间字母与王者战术水晶折面 -->
+  <g filter="url(#glowFilter)">
+    <!-- [左轴] 坚毅立柱 (K 主干与 P 主轴) -->
+    <!-- 阴影底面 -->
+    <path d="M154 136 L200 106 L200 326 L154 356 Z" fill="url(#cyanDark)"/>
+    <!-- 高光侧面 -->
+    <path d="M168 126 L208 100 L208 332 L168 360 Z" fill="url(#cyanHighlight)"/>
+    <!-- 极亮前棱线 -->
+    <path d="M200 106 L208 100 L208 332 L200 326 Z" fill="#ffffff" opacity="0.9"/>
+
+    <!-- [右上展翼] K 的右上斜冲与 P 的环翼 (全频感知天线) -->
+    <path d="M208 214 L310 120 L354 142 L266 230 Z" fill="url(#cyanCore)"/>
+    <path d="M224 200 L310 120 L334 108 L254 186 Z" fill="url(#cyanHighlight)"/>
+    <path d="M310 120 L354 142 L346 154 L302 132 Z" fill="#a5f3fc"/>
+
+    <!-- [右下展翼与底座] K 的右下支架与 L 的坚实底盘 -->
+    <path d="M242 208 L346 332 L306 360 L208 248 Z" fill="url(#cyanDark)"/>
+    <path d="M258 224 L346 332 L322 348 L236 244 Z" fill="url(#cyanCore)"/>
+    <!-- L 字底座水平支撑面 -->
+    <path d="M208 332 L354 332 L332 360 L168 360 Z" fill="url(#cyanHighlight)" opacity="0.9"/>
+    <path d="M208 332 L354 332 L366 318 L220 318 Z" fill="#cffafe"/>
+
+    <!-- 荣耀金折射水晶面 (金青交辉折光面) -->
+    <polygon points="246,186 298,142 280,212" fill="url(#goldAccent)"/>
+    <polygon points="246,186 280,212 230,238" fill="#b45309" opacity="0.85"/>
+  </g>
+
+  <!-- 5. 核心情报信标星 (Central Beacon Star / Tactical Core) -->
+  <g transform="translate(262, 210)" filter="url(#beaconGlow)">
+    <!-- 四芒透镜星光 -->
+    <path d="M0 -30 Q0 0 30 0 Q0 0 0 30 Q0 0 -30 0 Q0 0 0 -30 Z" fill="url(#goldAccent)"/>
+    <!-- 中心光核 -->
+    <circle cx="0" cy="0" r="5.5" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="2.5" fill="#fef08a"/>
+  </g>
+
+  <!-- 6. 底部战术徽标刻印 (HUD Micro Typography) -->
+  <g opacity="0.9">
+    <!-- 装饰基线与菱形准星 -->
+    <line x1="134" y1="416" x2="174" y2="416" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+    <line x1="338" y1="416" x2="378" y2="416" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+    <polygon points="182,416 186,412 190,416 186,420" fill="#f59e0b"/>
+    <polygon points="322,416 326,412 330,416 326,420" fill="#f59e0b"/>
+
+    <!-- 战术英文字标 -->
+    <text x="256" y="421" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#cffafe" letter-spacing="5" text-anchor="middle">KPL · INTEL</text>
+    <!-- 中文官方品牌名 -->
+    <text x="256" y="446" font-family="system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="600" fill="#67e8f9" letter-spacing="6" text-anchor="middle" opacity="0.8">康平路情报站</text>
+  </g>
+</svg>

@@ -20,7 +20,7 @@ function parseArgs(): { sourceId?: string } {
 const { sourceId } = parseArgs();
 
 console.log("==================================================");
-console.log("  KPL Intelligence - 微博官方与俱乐部动态批量采集");
+console.log("  康平路情报站 (KPL Intelligence) - 微博官方与俱乐部动态批量采集");
 console.log("==================================================");
 
 let sources: SourceRow[];

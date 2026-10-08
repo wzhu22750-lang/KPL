@@ -3,7 +3,7 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { FEATURES } from "@aihot/industry/features";
 import { RADAR } from "@aihot/industry/radar";
-import { isCategoryKey, isChannelKey, type CategoryKey, type ChannelKey } from "@aihot/contracts/taxonomy";
+import { isCategoryKey, isChannelKey, isSourceGroupKey, type CategoryKey, type ChannelKey, type SourceGroupKey } from "@aihot/contracts/taxonomy";
 import type { ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SiteContact } from "@aihot/contracts/site";
 import { InvalidCursorError } from "@aihot/backend/lib/cursor";
 import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detail";
@@ -51,6 +51,7 @@ export function siteHandler(fn: Handler): Handler {
 }
 
 export interface FilterParams {
+  sourceGroup: SourceGroupKey | null;
   channel: ChannelKey;
   category: CategoryKey | null;
   tag: string | null;
@@ -62,7 +63,9 @@ export function parseFilters(q: Record<string, string>): FilterParams {
   const category = q.category ?? null;
   if (category !== null && !isCategoryKey(category)) throw new BadRequest("invalid category");
   const tag = q.tag?.trim() ? q.tag.trim().slice(0, 60) : null;
-  return { channel, category: category as CategoryKey | null, tag };
+  const sourceGroup = q.sourceGroup || null;
+  if (sourceGroup !== null && !isSourceGroupKey(sourceGroup)) throw new BadRequest('invalid source group');
+  return { sourceGroup: sourceGroup as SourceGroupKey | null, channel, category: category as CategoryKey | null, tag };
 }
 
 export function registerSite(app: FastifyInstance) {
@@ -95,7 +98,7 @@ export function registerSite(app: FastifyInstance) {
     const q = looseQuery(req);
     const filters = parseFilters(q);
     const limit = Math.min(Math.max(Number(q.limit) || 20, 1), 40);
-    const unfiltered = filters.channel === "all" && !filters.category && !filters.tag && !q.cursor;
+    const unfiltered = filters.channel === "all" && !filters.sourceGroup && !filters.category && !filters.tag && !q.cursor;
     const [data, hot] = await Promise.all([
       loadTimeline({ ...filters, cursor: q.cursor || null, limit }),
       unfiltered ? loadHotStrip() : null,
