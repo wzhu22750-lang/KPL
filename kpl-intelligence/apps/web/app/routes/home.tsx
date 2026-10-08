@@ -1,17 +1,21 @@
 import { data as withHeaders, redirect, useLoaderData } from "react-router";
 import type { Route } from "./+types/home";
-import type { TimelineResponse } from "@aihot/contracts/site";
-import type { ScheduleMatch, ScheduleResponse, TeamsResponse } from "@aihot/contracts/kpl";
+import type { HomeFeedResponse, TimelineResponse } from "@aihot/contracts/site";
+import type { DayScheduleResponse, ScheduleMatch, ScheduleResponse, TeamsResponse } from "@aihot/contracts/kpl";
 import { apiDeadlineCache, apiGet, loadOr404 } from "../lib/api.server";
 import { filterParams, itemListLd, listPath, pageMeta, readFilters, siteLd } from "../lib/seo";
 import type { Screen } from "../components/shell/screens";
 import { Timeline } from "../features/feed/Timeline";
-import { HotTopics } from "../features/feed/HotTopics";
+import { HomeFeed } from "../features/feed/HomeFeed";
+import { FollowStrip } from "../features/feed/FollowStrip";
 import { ActiveFilters, CategoryTabs, FeedBar, SearchField } from "../features/feed/Filters";
 import { IntentLink } from "../components/ui/IntentLink";
 import { IconArrowRight, IconSparkles } from "../components/icons";
+import { toggleFollowTeam, useFollowTeams } from "../lib/local-state";
 
 export const handle: Screen = { tab: "featured", name: "精选" };
+
+type HomeFeedData = { kind: "homefeed"; data: HomeFeedResponse } | { kind: "timeline"; data: TimelineResponse };
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
@@ -20,17 +24,30 @@ export async function loader({ request }: Route.LoaderArgs) {
   if (q && q.trim()) throw redirect(`/all${url.search}`);
   const filters = readFilters(url.searchParams);
   const upstream = new Headers();
-  const [data, schedule, teams] = await Promise.all([
-    loadOr404<TimelineResponse>(listPath("/api/site/timeline", filterParams(filters)), { responseHeaders: upstream, signal: request.signal }),
-    apiGet<ScheduleResponse>("/api/site/kb/schedule?limit=5", { signal: request.signal }).catch(() => null),
+  // 无筛选时走 P4 混合信息流；有筛选时保持原来的时间线语义。
+  const unfiltered = filters.channel === "all" && !filters.category && !filters.tag;
+  const [feed, schedule, teams] = await Promise.all([
+    (async (): Promise<HomeFeedData> => {
+      if (unfiltered) {
+        const home = await apiGet<HomeFeedResponse>("/api/site/homefeed?limit=20", { responseHeaders: upstream, signal: request.signal }).catch(() => null);
+        if (home?.enabled && home.entries.length > 0) return { kind: "homefeed", data: home };
+      }
+      return { kind: "timeline", data: await loadOr404<TimelineResponse>(listPath("/api/site/timeline", filterParams(filters)), { responseHeaders: upstream, signal: request.signal }) };
+    })(),
+    apiGet<DayScheduleResponse>("/api/site/kb/schedule?day=today&limit=5", { signal: request.signal }).catch(() => null),
     apiGet<TeamsResponse>("/api/site/kb/teams", { signal: request.signal }).catch(() => null),
   ]);
-  return withHeaders({ data, filters, schedule, teams }, { headers: apiDeadlineCache(60, Date.now(), upstream) });
+  return withHeaders({ feed, filters, schedule, teams }, { headers: apiDeadlineCache(60, Date.now(), upstream) });
+}
+
+function feedTitles(feed: HomeFeedData): string[] {
+  if (feed.kind === "timeline") return feed.data.cards.map((c) => c.item.title);
+  return feed.data.entries.flatMap((e) => (e.kind === "hot" ? (e.hot?.title ? [e.hot.title] : []) : e.card ? [e.card.item.title] : []));
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
   const path = listPath("/", loaderData ? filterParams(loaderData.filters) : {});
-  const titles = loaderData?.data.cards.map((c) => c.item.title) ?? [];
+  const titles = loaderData ? feedTitles(loaderData.feed) : [];
   return pageMeta({ path, jsonLd: path === "/" ? [...siteLd(), itemListLd("/", "精选", titles)] : undefined });
 }
 
@@ -41,13 +58,17 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
 const fmtAt = (m: ScheduleMatch) =>
   m.status === "scheduled" ? `${(m.scheduledAt ?? "").slice(5, 10).replace("-", "/")} ${(m.scheduledAt ?? "").slice(11, 16)}` : `${(m.playedAt ?? "").slice(5, 10).replace("-", "/")} 已赛`;
 
-/** 临近赛程与最近赛果；比分牌点进比赛详情。 */
-function MatchStrip({ matches }: { matches: ScheduleResponse["matches"] }) {
+/** 今日比赛：北京时间当日的 scheduled/live/finished；休赛期回退最近场次并注明。 */
+function MatchStrip({ schedule }: { schedule: DayScheduleResponse | null }) {
+  const matches = schedule?.matches ?? [];
   if (matches.length === 0) return null;
   return (
-    <section aria-label="近期赛事" className="mt-6">
+    <section aria-label="今日比赛" className="mt-6">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-[15px] font-semibold text-ink">近期赛事</h2>
+        <h2 className="text-[15px] font-semibold text-ink">
+          今日比赛
+          {schedule?.fallback && <span className="ml-2 align-middle text-[11.5px] font-normal text-ink-4">今日无比赛 · 最近赛事</span>}
+        </h2>
         <IntentLink to="/matches" className="inline-flex min-h-10 items-center gap-1 text-[12px] font-medium text-accent transition-colors hover:text-accent-ink">全部赛程 <IconArrowRight size={14} /></IntentLink>
       </div>
       <ul className="scrollbar-none mt-1 flex snap-x snap-proximity gap-3 overflow-x-auto px-0.5 pb-3 pt-1">
@@ -77,7 +98,26 @@ function MatchStrip({ matches }: { matches: ScheduleResponse["matches"] }) {
   );
 }
 
-/** 热门战队：一排队徽，直达战队页。 */
+/** 关注按钮：无账号方案，存在本浏览器。 */
+function FollowButton({ slug }: { slug: string }) {
+  const follows = useFollowTeams();
+  const on = follows.includes(slug);
+  return (
+    <button
+      type="button"
+      onClick={() => toggleFollowTeam(slug)}
+      aria-pressed={on}
+      title={on ? "取消关注" : "关注这支战队，在首页看它的动态"}
+      className={`ml-1 inline-flex min-h-8 shrink-0 items-center rounded-full border px-2.5 text-[11.5px] font-medium transition-colors ${
+        on ? "border-accent bg-accent-softer text-accent" : "border-line bg-surface text-ink-3 hover:border-accent hover:text-accent"
+      }`}
+    >
+      {on ? "已关注" : "关注"}
+    </button>
+  );
+}
+
+/** 热门战队：一排队徽，直达战队页；可关注，关注后首页出现“关注动态”。 */
 function TeamStrip({ teams }: { teams: TeamsResponse["teams"] }) {
   if (teams.length === 0) return null;
   return (
@@ -88,11 +128,12 @@ function TeamStrip({ teams }: { teams: TeamsResponse["teams"] }) {
       </div>
       <ul className="mt-2.5 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {teams.map((t) => (
-          <li key={t.slug} className="shrink-0">
+          <li key={t.slug} className="flex shrink-0 items-center">
             <IntentLink to={`/teams/${t.slug}`} className="flex min-h-11 items-center gap-2 rounded-full border border-line bg-surface py-1.5 pl-2 pr-3.5 transition-colors hover:border-accent hover:bg-accent-softer">
               {t.logo && <img src={t.logo} alt="" width={24} height={24} loading="lazy" className="h-6 w-6 rounded-full object-contain" />}
               <span className="text-[12.5px] font-medium text-ink">{t.shortName ?? t.name}</span>
             </IntentLink>
+            <FollowButton slug={t.slug} />
           </li>
         ))}
       </ul>
@@ -101,7 +142,7 @@ function TeamStrip({ teams }: { teams: TeamsResponse["teams"] }) {
 }
 
 export default function Home() {
-  const { data, filters, schedule, teams } = useLoaderData<typeof loader>();
+  const { feed, filters, schedule, teams } = useLoaderData<typeof loader>();
   const title = filters.tag ? `#${filters.tag}` : "精选";
   return (
     <div className="pb-6">
@@ -124,12 +165,11 @@ export default function Home() {
         </div>
       </div>
 
-      {schedule && <MatchStrip matches={schedule.matches} />}
+      {schedule && <MatchStrip schedule={schedule} />}
       {teams && <TeamStrip teams={teams.teams} />}
+      <FollowStrip />
 
-      {data.hot && <HotTopics entries={data.hot} />}
-
-      <Timeline initial={data} filters={data.filters} />
+      {feed.kind === "homefeed" ? <HomeFeed initial={feed.data} /> : <Timeline initial={feed.data} filters={feed.data.filters} />}
     </div>
   );
 }

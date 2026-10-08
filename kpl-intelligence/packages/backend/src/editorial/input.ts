@@ -32,6 +32,10 @@ export interface AnalyzeInputArticle {
     ownerEntityId?: string | null;
     /** 发布方主体类型（league/club/community…）：事实类型分类区分舆情与事实用（sources/claims.ts）。 */
     ownerType?: string | null;
+    /** 信源角色（0065）：v2 官方分由代码按 tier/owner_type/role 计算，不进模型输入。 */
+    role?: string | null;
+    /** 转载（articles.origin_type='repost'）：搬运不继承一手分的加成。 */
+    isRelay?: boolean;
     /** The source asks for the article page (fetchPublicContent, detail pages, web listings). */
     fetchesBody?: boolean;
   };
@@ -53,11 +57,11 @@ export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputA
   const [row] = await sql<{
     id: string; revision: number; title: string; url: string; author: string | null; published_at: Date | null; discovered_at: Date;
     body_text: string | null; excerpt: string | null; body_status: string; content_kind: string | null; x_post: Record<string, any> | null; x_article: { title?: string; text?: string } | null;
-    media: Array<Record<string, any>>; source_name: string; source_kind: string; tier: string; first_party: boolean; source_tags: string[]; owner_entity_id: string | null; owner_type: string | null;
+    media: Array<Record<string, any>>; source_name: string; source_kind: string; tier: string; first_party: boolean; source_tags: string[]; owner_entity_id: string | null; owner_type: string | null; source_role: string | null; origin_type: string | null;
     config: Record<string, any>; translation_zh: string | null;
   }[]>`
     SELECT a.id, a.revision, a.title, a.url, a.author, a.published_at, a.discovered_at, a.body_text, a.excerpt, a.body_status, a.content_kind, a.x_post, a.x_article, a.media,
-           s.name AS source_name, s.kind AS source_kind, s.tier, s.first_party, s.tags AS source_tags, s.owner_entity_id, s.owner_type, s.config,
+           s.name AS source_name, s.kind AS source_kind, s.tier, s.first_party, s.tags AS source_tags, s.owner_entity_id, s.owner_type, s.role AS source_role, a.origin_type, s.config,
            tr.body_text AS translation_zh
     FROM articles a JOIN sources s ON s.id = a.source_id
     LEFT JOIN translations tr ON tr.article_id = a.id AND tr.lang = 'zh' AND tr.revision >= a.revision
@@ -68,6 +72,7 @@ export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputA
     bodyText: row.body_text, excerpt: row.excerpt, bodyStatus: row.body_status, contentKind: row.content_kind, xPost: withXArticle(row.x_post, row.x_article), media: row.media,
     source: {
       name: row.source_name, kind: row.source_kind, tier: row.tier, firstParty: row.tier === "T1", tags: row.source_tags, ownerEntityId: row.owner_entity_id, ownerType: row.owner_type,
+      role: row.source_role, isRelay: row.origin_type === "repost",
       fetchesBody: row.config?.fetchPublicContent === true || !!row.config?.detail || row.source_kind === "web_list",
     },
     translationZh: row.translation_zh,

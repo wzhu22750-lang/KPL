@@ -113,7 +113,7 @@ test("default evaluation follows the production score route and shares duplicate
     const score = await stub(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
       return {
-        choices: [{ message: { content: JSON.stringify({ attentionScore: 70 }) } }],
+        choices: [{ message: { content: JSON.stringify({ content_kind: "announcement", base: 60, heat_evidence: "", noise_flags: [], reasons: "fixture" }) } }],
         usage: { prompt_tokens: 100, completion_tokens: 20 },
       };
     });
@@ -140,7 +140,7 @@ test("a shared unusable score fails every matching case once, then retry usage i
       usage: { prompt_tokens: 10, completion_tokens: 5 },
     }));
     const score = await stub((hit) => ({
-      choices: [{ message: { content: hit === 1 ? "not JSON" : JSON.stringify({ attentionScore: 70 }) } }],
+      choices: [{ message: { content: hit === 1 ? "not JSON" : JSON.stringify({ content_kind: "announcement", base: 60, heat_evidence: "", noise_flags: [], reasons: "fixture" }) } }],
       usage: { prompt_tokens: hit === 1 ? 100 : 300, completion_tokens: 20 },
     }));
     t.after(async () => { await Promise.all([prefilter.close(), score.close()]); });
