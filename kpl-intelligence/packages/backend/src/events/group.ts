@@ -30,7 +30,10 @@ import { consolidate, liveStory, type Consolidation } from "./consolidate.ts";
 import { mergeStoryInto } from "./merge.ts";
 import { candidateViews, cosine32, recallFacts, recallSelectedBackground, relatedPosts, vectorsFor } from "./recall.ts";
 import { areSameKplOccurrence } from "../lib/kpl-dedup.ts";
-import { conflictingMatchFacts } from "./match-identity.ts";
+import { conflictingMatchFacts, sameSeriesDifferentGameFacts } from "./match-identity.ts";
+import { linkStoryToMatch } from "./match-link.ts";
+import { refreshScoreHeat } from "../editorial/score-refresh.ts";
+import { refreshDisputeClassification } from "./dispute.ts";
 import { authorityFor } from "../sources/authority.ts";
 import type { ClaimType } from "../sources/claims.ts";
 import { updateRumorState } from "./rumor.ts";
@@ -294,6 +297,17 @@ export async function groupArticle(articleId: string, opts: GroupOptions = {}): 
     const result = await decide(articleId, opts, revision, input.grouping_status !== 'complete' && input.selection_adds_value === null);
     await markGrouped(articleId, revision);
     await publishArticle(articleId);
+    if (result.storyId != null) {
+      // P2：新闻 ↔ 比赛硬链接（best-effort，失败不阻断归组）。
+      try {
+        await linkStoryToMatch(sql, result.storyId);
+      } catch (error) {
+        console.warn(`[group] linkStoryToMatch failed for story ${result.storyId}: ${String(error).slice(0, 200)}`);
+      }
+      // P3：v2 评分的 heat 刷新与争议话题抽取（best-effort，失败不阻断归组）。
+      refreshScoreHeat(articleId, result.storyId).catch((error) => console.warn(`score heat refresh failed for ${articleId}:`, error));
+      refreshDisputeClassification(result.storyId).catch((error) => console.warn(`dispute classification failed for story ${result.storyId}:`, error));
+    }
     return result;
   } catch (error) {
     const receiptId = error && typeof error === 'object' && 'receiptId' in error && typeof error.receiptId === 'number' ? error.receiptId : null;
@@ -394,7 +408,9 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
     reportText(title, an.summary_zh), RECALL_MIN_COSINE, RECALL_TOP_FACTS, [...referenced, ...(sameUrl ? [sameUrl] : [])]));
   const conflicts = await conflictingMatchFacts(matchQuery, recalled.map(c => c.factId));
   // Apply before the model, deterministic shortcuts, high-cosine bypass and story consolidation.
-  const cands = recalled.filter(c => !conflicts.has(c.factId));
+  // P2 SAME_SERIES：与候选的唯一分歧是小局粒度时，不触发硬 veto（同 story、按局次分 fact）。
+  const seriesFactIds = new Set(await sameSeriesDifferentGameFacts(matchQuery, [...conflicts.keys()]));
+  const cands = recalled.filter(c => !conflicts.has(c.factId) || seriesFactIds.has(c.factId));
   const reading = selectedSameUrl ? [] : await recallSelectedBackground(articleId, reportText(title, an.summary_zh), RECALL_MIN_COSINE);
   let verdicts = new Map<number, Verdict>();
   let selection = NO_SELECTED_COVERAGE;
@@ -466,7 +482,12 @@ async function decide(articleId: string, opts: GroupOptions, revision: number, r
       }
 
       if (!factId) {
-        for (const pick of sameOccurrence(cands, verdicts)) {
+        // P2 SAME_SERIES：同系列赛不同小局 → 同一个 story、另起一个 fact（按局次），不走模型判断。
+        const series = cands.find((c) => seriesFactIds.has(c.factId));
+        if (series) {
+          storyId = series.storyId;
+          verdicts.set(series.factId, { relation: "SAME_STORY", confidence: 0.95, note: "SAME_SERIES：同系列赛不同小局，同 story 按局次分 fact" });
+        } else for (const pick of sameOccurrence(cands, verdicts)) {
           if (pick.score >= CONFIRM_BELOW_COSINE) {
             factId = pick.factId;
             break;

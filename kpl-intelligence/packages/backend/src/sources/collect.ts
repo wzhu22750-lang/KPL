@@ -417,20 +417,94 @@ async function scheduleXShards(): Promise<number> {
   return enqueued;
 }
 
-/** Every minute: enqueue due sources (enabled, not WeChat/external), oldest due first; X accounts by shard. */
+/** Every minute: enqueue due sources (enabled, not WeChat/external); X accounts by shard. */
 export async function scheduleDueSources(): Promise<{ enqueued: number; shards: number }> {
   // Every kind collectSource can dispatch: per-source adapters (weibo) are scheduled exactly like the
   // built-in readers. mp_account and external are reconciled elsewhere and must not appear here.
+  // Priority order: the source's explicit priority_weight first, then the tier weight
+  // (T1=3, T1_5=2, T2=1, others=0), then the oldest due time. Anti-re-entry is untouched: every
+  // enqueued source is re-armed so it cannot be picked up twice within a minute.
+  const boosts = await getActiveBoosts();
   const rows = await sql<{ id: string }[]>`
     SELECT id FROM sources
     WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search', 'esports_api', 'weibo') AND (next_fetch_at IS NULL OR next_fetch_at <= now()) AND NOT (${sharded()})
-    ORDER BY next_fetch_at NULLS FIRST LIMIT 40`;
+    ORDER BY priority_weight DESC,
+             CASE tier WHEN 'T1' THEN 3 WHEN 'T1_5' THEN 2 WHEN 'T2' THEN 1 ELSE 0 END DESC,
+             next_fetch_at NULLS FIRST
+    LIMIT 40`;
   let enqueued = 0;
   for (const r of rows) {
     if (await enqueue(QUEUES.fetchSource, { sourceId: r.id }, { singletonKey: r.id })) enqueued += 1;
-    await sql`UPDATE sources SET next_fetch_at = now() + interval '10 minutes' WHERE id = ${r.id}`;
+    // The re-arm is a guard against double-enqueue, not the schedule itself: the source's own
+    // interval_minutes (set by recordFetch after a run) decides the following pace. A boost only
+    // shortens this one re-arm wait; sources.interval_minutes is never rewritten.
+    const override = boosts.get(r.id)?.intervalOverrideMinutes;
+    await sql`UPDATE sources SET next_fetch_at = now() + make_interval(mins => ${override ?? 10}) WHERE id = ${r.id}`;
   }
   return { enqueued, shards: await scheduleXShards() };
+}
+
+/** A currently effective source_boost row. */
+export interface SourceBoost {
+  id: number;
+  sourceId: string;
+  reason: string;
+  intervalOverrideMinutes: number;
+  startsAt: Date;
+  endsAt: Date;
+}
+
+/**
+ * Boosts in effect right now (starts_at <= now < ends_at), by source id. When several overlap on
+ * one source the most aggressive wins (the smallest override). A boost only shortens its source's
+ * next due wait in scheduleDueSources; the source's own interval_minutes is never rewritten.
+ */
+export async function getActiveBoosts(db: Db = sql): Promise<Map<string, SourceBoost>> {
+  const rows = await db<Array<{
+    id: number; source_id: string; reason: string; interval_override_minutes: number; starts_at: Date; ends_at: Date;
+  }>>`
+    SELECT id, source_id, reason, interval_override_minutes, starts_at, ends_at
+    FROM source_boosts
+    WHERE starts_at <= now() AND ends_at > now()
+    ORDER BY interval_override_minutes ASC`;
+  const out = new Map<string, SourceBoost>();
+  for (const r of rows) {
+    if (!out.has(r.source_id)) {
+      out.set(r.source_id, {
+        id: r.id, sourceId: r.source_id, reason: r.reason,
+        intervalOverrideMinutes: r.interval_override_minutes, startsAt: r.starts_at, endsAt: r.ends_at,
+      });
+    }
+  }
+  return out;
+}
+
+/** 比赛/事件加频时 weibo 源的采集间隔（分钟）：官方动态最快最新。 */
+const BOOST_INTERVAL_MINUTES = 10;
+
+/**
+ * 事件加频（P2 的比赛调度在进入 live 时调用，见 sources/esports.ts）。
+ * 按 owner_entity_id 找到两队相关的 weibo 源，写入一条持续 `minutes` 分钟的 boost，
+ * 加频期间每 10 分钟一跳。同 reason 幂等：重复调用不叠加。
+ * 只写 source_boosts 行，不改 sources.interval_minutes 本身（实际生效由调度的 getActiveBoosts 接管）。
+ */
+export async function boostSourcesForMatch(db: Db, opts: { teamSlugs: string[]; reason: string; minutes: number }): Promise<number> {
+  const { teamSlugs, reason, minutes } = opts;
+  if (!teamSlugs.length || minutes <= 0) return 0;
+  const sources = await db<{ id: string }[]>`
+    SELECT id FROM sources WHERE kind = 'weibo' AND enabled AND owner_entity_id = ANY(${teamSlugs})`;
+  let boosted = 0;
+  for (const s of sources) {
+    // 同因幂等：同一 reason 的有效加频已存在则跳过（重复 sync 不重复建档）。
+    const [active] = await db<{ one: number }[]>`
+      SELECT 1 AS one FROM source_boosts
+      WHERE source_id = ${s.id} AND reason = ${reason} AND starts_at <= now() AND ends_at > now() LIMIT 1`;
+    if (active) continue;
+    await db`INSERT INTO source_boosts (source_id, reason, interval_override_minutes, starts_at, ends_at)
+             VALUES (${s.id}, ${reason}, ${BOOST_INTERVAL_MINUTES}, now(), now() + make_interval(mins => ${minutes}))`;
+    boosted += 1;
+  }
+  return boosted;
 }
 
 /** Minutes between reads of a shard: editorial accounts every half hour, hot-signal accounts hourly. */
@@ -439,11 +513,12 @@ const shardMinutes = (mode: string) => X_SHARD_MINUTES[mode] ?? 60;
 
 /**
  * Daily: adapt each source's interval to its recent output (active 15 min … quiet 120 min).
- * hot_signal sources are allowed to be slower.
+ * hot_signal sources are allowed to be slower. Sources with auto_tune=false are skipped entirely:
+ * they ride paid or fragile channels (e.g. WeChat accounts) whose pace is set by the operator.
  */
-export async function adaptIntervals(): Promise<{ updated: number }> {
-  const rows = await sql<Array<Pick<SourceRow, "id" | "participation_mode" | "kind" | "config" | "cursor"> & { paid_listing: boolean; per_day: number }>>`
-    SELECT s.id, s.participation_mode, s.kind, s.config, s.cursor, coalesce(s.config->>'url', '') LIKE 'https://r.jina.ai/%' AS paid_listing,
+export async function adaptIntervals(): Promise<{ updated: number; skipped_auto_tune: number }> {
+  const rows = await sql<Array<Pick<SourceRow, "id" | "participation_mode" | "kind" | "config" | "cursor" | "auto_tune"> & { paid_listing: boolean; per_day: number }>>`
+    SELECT s.id, s.participation_mode, s.kind, s.config, s.cursor, s.auto_tune, coalesce(s.config->>'url', '') LIKE 'https://r.jina.ai/%' AS paid_listing,
       (SELECT count(*) FROM articles a WHERE a.source_id = s.id AND a.discovered_at > now() - interval '7 days' AND NOT a.backfill) / 7.0 AS per_day
     FROM sources s WHERE s.enabled AND s.kind IN ('rss', 'web_list', 'json_list', 'x_search')`;
   // weibo keeps its configured interval deliberately: per-output adaptation is unproven for an
@@ -451,7 +526,13 @@ export async function adaptIntervals(): Promise<{ updated: number }> {
   // esports_api sources keep their configured interval: they produce no articles, and match days
   // want a tight pace (the operator tightens it for the season) that per-day adaptation cannot see.
   let updated = 0;
+  const skipped: string[] = [];
   for (const r of rows) {
+    // 降频保护：auto_tune=false 的源频率由运营人工定，自动调速不得动它。
+    if (r.auto_tune === false) {
+      skipped.push(r.id);
+      continue;
+    }
     const perDay = Number(r.per_day);
     // Editorial sites and feeds are looked at hourly at least (they cost nothing);
     // editorial X and listings read through Jina stop at two hours (paid per call, within their budgets);
@@ -464,5 +545,11 @@ export async function adaptIntervals(): Promise<{ updated: number }> {
     const res = await sql`UPDATE sources SET interval_minutes = ${target} WHERE id = ${r.id} AND interval_minutes <> ${target}`;
     updated += res.count;
   }
-  return { updated };
+  if (skipped.length) {
+    console.log(JSON.stringify({
+      level: "info", msg: "adaptIntervals skipped sources with auto_tune=false",
+      count: skipped.length, sources: skipped, reason: "auto_tune=false（降频保护：公众号等敏感通道的频率由运营人工定）",
+    }));
+  }
+  return { updated, skipped_auto_tune: skipped.length };
 }
