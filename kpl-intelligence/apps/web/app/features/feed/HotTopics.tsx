@@ -49,14 +49,14 @@ export function HotTopics({ entries }: { entries: HotStripEntry[] }) {
           <li key={e.rank} className={i >= 3 ? "max-sm:hidden" : undefined}>
             <Link viewTransition
               to={hrefOf(e)}
-              className="group -mx-2 grid min-h-10 sm:min-h-0 grid-cols-[20px_minmax(0,1fr)_auto] items-center gap-x-3 rounded-tile px-2 py-1.5 transition-colors hover:bg-bg-sunk/70 active:bg-bg-sunk sm:grid-cols-[20px_minmax(0,1fr)_120px_64px_20px] sm:gap-x-4 sm:py-2 dark:hover:bg-bg-muted/40"
+              className="hot-ranking-row group -mx-2 grid min-h-10 sm:min-h-0 grid-cols-[20px_minmax(0,1fr)_auto] items-center gap-x-3 rounded-tile px-2 py-1.5 transition-colors hover:bg-bg-sunk/70 active:bg-bg-sunk sm:grid-cols-[20px_minmax(0,1fr)_120px_64px_20px] sm:gap-x-4 sm:py-2 dark:hover:bg-bg-muted/40"
             >
               <span className={`num text-center leading-none ${RANK_COLOR[i] ?? "text-[14px] font-bold text-rank-rest"}`}>{e.rank}</span>
-              <span className="line-clamp-1 min-w-0 text-[14.5px] font-semibold leading-[1.5] text-ink transition-colors group-hover:text-accent lg:text-[14px]">{e.title}</span>
+              <span className="hot-ranking-title line-clamp-1 min-w-0 text-[14.5px] font-semibold leading-[1.5] text-ink transition-colors group-hover:text-accent lg:text-[14px]">{e.title}</span>
               <span className="hidden justify-end sm:flex">
                 <Faces participants={e.participants} total={e.participantCount} size={20} interactive={false} />
               </span>
-              <span className="flex items-center justify-end gap-2.5 sm:contents">
+              <span className="hot-ranking-signal flex items-center justify-end gap-2.5 sm:contents">
                 <span className="whitespace-nowrap text-right text-[12.5px] text-ink-4" title="热度指数">
                   <span className="num text-[13.5px] font-semibold text-ink-2">{Math.round(e.heat)}</span> 热度
                 </span>

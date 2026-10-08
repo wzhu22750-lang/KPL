@@ -337,7 +337,7 @@ export interface H2HResponse {
 export interface StandingRow {
   rank: number;
   team: TeamSummary;
-  group: 'S' | 'A' | 'B' | '季后赛' | '总榜';
+  group: string;          // 官方组名，如 S组、大师组、精英组；未知分组为总榜
   stageName?: string;      // '常规赛第一轮'
   matchesPlayed: number;
   wins: number;
@@ -355,6 +355,9 @@ export interface StandingsResponse {
   availableSeasons: AvailableSeason[];
   currentStage: string;
   stages: string[];        // ['常规赛第一轮', '常规赛第二轮', '常规赛第三轮', '季后赛']
-  standingsByGroup: Record<string, StandingRow[]>; // { "S组": [...], "A组": [...], "B组": [...] }
+  standingsByGroup: Record<string, StandingRow[]>;
+  notes?: string[];
+  rulesDescription?: string | null;
+  rulesSourceUrl?: string | null;
 }
 

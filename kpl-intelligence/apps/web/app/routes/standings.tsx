@@ -25,8 +25,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 export function meta({ loaderData }: Route.MetaArgs) {
   const sName = loaderData?.season.name ?? "当前赛季";
   return pageMeta({
-    title: `${sName}：S/A/B 分组积分榜与升降级态势`,
-    description: `涵盖 ${sName} 各赛段的战队排位、大场胜负、小局净胜差、胜率及胜者组晋级态势。`,
+    title: `${sName}：赛段积分榜与战队战绩`,
+    description: `查看 ${sName} 各赛段分组、大场胜负、小局净胜差与胜率，含年度总决赛大师组、精英组积分。`,
     path: "/standings",
   });
 }
@@ -36,43 +36,46 @@ export function headers() {
 }
 
 function GroupHeaderStyle(groupName: string) {
-  if (groupName.includes("S") || groupName.includes("s")) {
+  if (groupName === "大师组") {
+    return { border: "border-amber-500/40", badge: "bg-amber-500/15 text-amber-500 border border-amber-500/30", title: "大师组积分榜", sub: "组外单循环 · 组内独立排名" };
+  }
+  if (groupName === "精英组") {
+    return { border: "border-slate-400/40", badge: "bg-slate-400/15 text-ink-3 border border-slate-400/30", title: "精英组积分榜", sub: "组外单循环 · 组内独立排名" };
+  }
+  if (groupName === "S组") {
     return {
       border: "border-amber-500/40",
       badge: "bg-amber-500/15 text-amber-500 border border-amber-500/30",
       title: "S 组积分榜",
-      sub: "前 4 名晋级季后赛胜者组 · 5~6 名进入卡位赛 / 败者组",
+      sub: "晋级规则以当前赛段官方赛制为准",
     };
   }
-  if (groupName.includes("A") || groupName.includes("a")) {
+  if (groupName === "A组") {
     return {
       border: "border-slate-400/40",
       badge: "bg-slate-400/15 text-slate-300 border border-slate-400/30",
       title: "A 组积分榜",
-      sub: "前 2 名争夺 S 组卡位赛 · 后 2 名进入 B 组卡位赛",
+      sub: "晋级规则以当前赛段官方赛制为准",
     };
   }
-  if (groupName.includes("B") || groupName.includes("b")) {
+  if (groupName === "B组") {
     return {
       border: "border-amber-700/40",
       badge: "bg-amber-700/15 text-amber-600 border border-amber-700/30",
       title: "B 组积分榜",
-      sub: "前 2 名进入升 A 卡位赛 · 后 4 名面临淘汰淘汰线",
+      sub: "晋级规则以当前赛段官方赛制为准",
     };
   }
   return {
     border: "border-line",
     badge: "bg-bg-sunk text-ink-3 border border-line",
-    title: `${groupName} 积分榜`,
-    sub: "组内单循环赛段积分排位",
+    title: groupName,
+    sub: "仅汇总本赛段战绩",
   };
 }
 
 function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[] }) {
   const meta = GroupHeaderStyle(groupName);
-  const isSGroup = groupName.includes("S");
-  const isAGroup = groupName.includes("A");
-  const isBGroup = groupName.includes("B");
 
   return (
     <div className={`overflow-hidden rounded-card border ${meta.border} bg-surface shadow-sm`}>
@@ -94,20 +97,16 @@ function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[
             <tr className="border-b border-line-soft bg-bg-sunk/30 text-left text-ink-4 text-[11.5px]">
               <th className="py-2.5 pl-4 pr-2 font-medium w-12 text-center">排名</th>
               <th className="py-2.5 pr-2 font-medium">战队</th>
+              <th className="py-2.5 pr-2 font-medium text-center">已赛</th>
               <th className="py-2.5 pr-2 font-medium text-center">胜 - 负</th>
               <th className="py-2.5 pr-2 font-medium text-center">净胜局</th>
               <th className="py-2.5 pr-2 font-medium text-center">胜率</th>
               <th className="py-2.5 pr-2 font-medium text-center">积分</th>
-              <th className="py-2.5 pr-4 font-medium text-right">状态 / 走势</th>
+              <th className="py-2.5 pr-4 font-medium text-right">近期走势</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line-soft/60">
             {rows.map((r) => {
-              // 状态区域高亮：S 组前 4 为胜者组锁定
-              const isTop4InS = isSGroup && r.rank <= 4;
-              const isPlayoffA = isAGroup && r.rank <= 2;
-              const isDangerB = isBGroup && r.rank >= 5;
-
               return (
                 <tr
                   key={r.team.slug}
@@ -149,6 +148,7 @@ function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[
                     </IntentLink>
                   </td>
 
+                  <td className="py-3 pr-2 text-center tabular-nums text-ink-3">{r.matchesPlayed}</td>
                   {/* 胜 - 负 */}
                   <td className="py-3 pr-2 text-center tabular-nums text-ink">
                     <span className="font-bold text-accent">{r.wins}</span>
@@ -165,7 +165,7 @@ function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[
 
                   {/* 胜率 */}
                   <td className="py-3 pr-2 text-center tabular-nums text-ink-3">
-                    {(r.winRate * 100).toFixed(0)}%
+                    {r.matchesPlayed ? `${(r.winRate * 100).toFixed(1)}%` : "—"}
                   </td>
 
                   {/* 积分 */}
@@ -176,21 +176,6 @@ function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[
                   {/* 走势与区域提示 */}
                   <td className="py-3 pr-4 text-right">
                     <div className="flex items-center justify-end gap-1.5">
-                      {isTop4InS && (
-                        <span className="rounded bg-green-500/10 px-1.5 py-0.5 text-[10.5px] font-bold text-green-500 border border-green-500/20">
-                          胜者组
-                        </span>
-                      )}
-                      {isPlayoffA && (
-                        <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-[10.5px] font-bold text-blue-500 border border-blue-500/20">
-                          升S卡位
-                        </span>
-                      )}
-                      {isDangerB && (
-                        <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-[10.5px] font-bold text-red-500 border border-red-500/20">
-                          淘汰预警
-                        </span>
-                      )}
                       <span className="text-[11.5px] text-ink-4 font-medium">
                         {r.streak}
                       </span>
@@ -207,7 +192,7 @@ function GroupTable({ groupName, rows }: { groupName: string; rows: StandingRow[
 }
 
 export default function StandingsPage() {
-  const { season, availableSeasons, currentStage, stages, standingsByGroup } = useLoaderData<typeof loader>();
+  const { season, availableSeasons, currentStage, stages, standingsByGroup, notes, rulesDescription, rulesSourceUrl } = useLoaderData<typeof loader>();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSeasonChange = (seasonId: string) => {
@@ -240,7 +225,7 @@ export default function StandingsPage() {
               {season.name} 积分榜
             </h1>
             <p className="mt-1 text-[13px] text-ink-3">
-              KPL 官方常规赛 S/A/B 分组实时积分、小局净胜差与胜者组晋级格局
+              按赛季与赛段统计战队积分、胜负和净胜局；分组以已核实的官方名单为准
             </p>
           </div>
 
@@ -284,6 +269,12 @@ export default function StandingsPage() {
           </div>
         )}
       </header>
+
+      <aside className="mt-4 rounded-card border border-line bg-surface px-4 py-3 text-[12px] leading-relaxed text-ink-3" aria-label="统计口径与赛制">
+        {rulesDescription && <p>{rulesDescription}</p>}
+        {notes?.map(note => <p key={note} className="mt-1">{note}</p>)}
+        {rulesSourceUrl && <a href={rulesSourceUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-accent underline">官方赛制与分组公告</a>}
+      </aside>
 
       {/* 分组积分榜列表 */}
       <section className="mt-6 space-y-6">

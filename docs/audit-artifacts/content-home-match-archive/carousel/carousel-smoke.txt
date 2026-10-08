@@ -1,0 +1,32 @@
+✓ /
+✓ /all
+✓ /hot
+✓ /daily
+✓ /daily/archive
+✓ /topics
+✓ /starred
+✓ /agent
+✓ /about
+✓ /changelog
+✓ /feedback
+✓ /terms
+✓ /privacy
+✓ /more
+✓ /admin/login
+✓ /api/health
+✓ /api/v1/items
+✓ /api/v1/hot-topics
+✓ /api/v1/selected/snapshot
+✓ /feed.xml
+✓ /feed/all.xml
+✓ /llms.txt
+✓ /robots.txt
+✓ /sitemap.xml
+✓ /manifest.webmanifest
+✓ /openapi-v1.json
+✓ /og/site.png
+✓ /icon.png
+✓ /favicon.ico
+✓ /api/mcp initialize
+
+all checks passed

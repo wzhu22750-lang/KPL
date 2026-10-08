@@ -4,13 +4,17 @@
 
 ## 首页
 
-- 当前热点：按后续反馈恢复原有热点榜，放在最上方；桌面显示前五条、手机前三条，完整榜单入口保留。复用统一公开读取层的 `loadHotStrip()`，不恢复旧精选时间线。榜单不可用时仍展示下方内容。
+- 当前热点：恢复原有热点榜，放在最上方；桌面前五条、手机前三条，保留完整榜单入口。数据复用原精选 API 的 `hot` 字段和统一公开读取层 `loadHotStrip()`。
 - 圈内焦点：最近七天仍有实质进展的公开讨论，沿用内容价值、官方属性与真实互动信号的综合排序，不修改模型权重，不冒充全网热搜。
 - 比赛速览：独立读取进行中的比赛（最多 3 场）、接下来赛程（最多 2 场）及最近赛果（最多 3 场）。保留每场实际时间，不按天分组。
-- 比赛卡展示结构化队伍名称、队徽与比分；缺少队徽或图片加载失败时保留等尺寸文字占位。
-- 更多动态继续展示。删除首页的第二套旧精选时间线和战队条；搜索/分类旧链接转到 `/all`，内容并未删除。
+- 比赛卡改为单行横向滑动，手机可滑动、桌面可用左右按钮；结构化队伍名称、队徽、比分、档案入口均保留。展开时间线显示在卡片轨道下方，不挤窄报道、也不撑高整个滑动轨道。缺少队徽或加载失败时保留等尺寸文字占位。
+- 精选动态：按最新反馈，用原 `Timeline` / `FeedItem` 和原选稿结果替换“更多动态”。保留事实去重、多信源展开、收藏/已读、分页及返回恢复；首页不按天分组，但每条保留真实日期与时间。其它列表的按日分组不变。
+- 停止旧版的“雷达关联素材自动从精选中隐藏”机制：原精选公开读取恢复独立性，不因关联比赛或雷达话题而少展示已选中内容；撤稿、来源权限和其它公开范围检查不变。不重评已有选稿、不修改评分权重。
+- 战队条仍不恢复；搜索/分类旧链接仍转到 `/all`。
 
-`/api/site/radar?current=true` 提供统一公开读取；不接受与 `day` / `match` 混用，不调用模型。原按日读取仍供既有 API 与旧去重链路使用，不作为首页 UI。
+首页并行请求 `/api/site/radar?current=true` 与 `/api/site/timeline`，两者均经过统一公开读取层，不调用模型。整页缓存不超过两个 API 的最早失效时间，任何上游 `no-store` 都不扩大为共享缓存。`current` 不接受与 `day` / `match` 混用，原按日读取仍保留 API 兼容，不作为首页日期分期。
+
+当前本地首页为 5 条热点、5 场比赛、6 张原精选新闻卡片；同一事实的额外报道通过原多信源入口查看。
 
 ## 比赛档案
 
@@ -25,13 +29,16 @@
 ## 验证
 
 - 后端完整回归：766 项，712 通过、54 跳过、0 失败。
-- Web：恢复顶部热点后，33 项全部通过；类型检查、Web build、全站 smoke、diff check 通过。
+- Web：恢复原精选后，35 项全部通过；类型检查、Web build、全站 smoke、diff check 通过。
 - 顶部热点补充验证：真实 5 条榜单位于圈内焦点上方，390px 无横向溢出；SSR 测试覆盖榜单位置与热点服务不可用的情形。
-- 最新截图：[顶部热点桌面](../output/playwright/content-redesign/current-hot-top-desktop.png)、[顶部热点手机](../output/playwright/content-redesign/current-hot-top-mobile.png)。
-- 新增测试：跨日期当前焦点与独立赛程、队徽字段、读取不调用模型；超过 300 条的单场报道与撤稿/旧版本过滤；前端新闻过滤/排序；首页不请求旧 timeline、旧日期链接重定向、缓存期限保持 API 约束。
+- 最新截图：[完整首页](../output/playwright/content-redesign/final-home-desktop.png)、[横向比赛卡](../output/playwright/content-redesign/final-match-carousel-desktop.png)、[原精选手机](../output/playwright/content-redesign/selected-feed-mobile.png)、[原精选深色](../output/playwright/content-redesign/selected-feed-dark.png)。此前的 `current-home-*` / `current-hot-top-*` / `match-carousel-*` 截图是中间版本。
+- 新增测试：跨日期焦点与独立赛程、队徽与读取不调用模型；超过 300 条的单场报道与撤稿/旧版本过滤；原精选保持选稿结果与撤稿保护；前端新闻过滤/排序、旧日期链接重定向、原精选顺序和卡片、两 API 最早缓存期限及 `no-store`。
 - 真实浏览器：1160×722 桌面；320/390/768/1160px 无页面级横向溢出；G2/G5 胜方正确，G2 的 10 名选手数据保留；13 条报道与 13 个原文入口均可访问；队徽故障占位有效；深浅主题已检查。
+- 横向滑动浏览器核验：5 场同一行、左右按钮有效、手机最后一场可到达、展开时间线不增加轨道高度。
+- 原精选核验：6 张卡片及顺序与原 API 一致，无日期分组；返回可恢复列表，多信源弹层可读、Escape 可关闭，320/390/768/1160px 无页面级横向溢出，深浅主题有效。
+- 首轮验证发现一处模板字符串括号错误，修正后重新执行完整回归通过；首次失败日志另存，不覆盖为成功。
 - 自动化浏览器已关闭，本地服务保留。未重新采集、未重评历史素材、未部署生产。
 
-截图：[首页桌面](../output/playwright/content-redesign/current-home-desktop.png)、[首页手机](../output/playwright/content-redesign/current-home-mobile.png)、[比赛档案桌面](../output/playwright/content-redesign/match-archive-desktop.png)、[比赛档案手机](../output/playwright/content-redesign/match-archive-mobile.png)。
+比赛档案截图：[比赛档案桌面](../output/playwright/content-redesign/match-archive-desktop.png)、[比赛档案手机](../output/playwright/content-redesign/match-archive-mobile.png)。
 
 [验证日志](audit-artifacts/content-home-match-archive/)。

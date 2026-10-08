@@ -1,0 +1,1386 @@
+
+> test
+> node --test-global-setup=tests/databases.ts --import ./tests/databases.ts --test --test-concurrency=6 --test-timeout=120000 "tests/*.test.ts"
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/admin-corrections.test.ts (2236.491041ms)
+✔ releasing an unknown receipt of an analysis step puts the article back (275.717875ms)
+✔ a report grouped into a fact already sent to a group is not sent there again (241.571834ms)
+✔ the content group gets first-party and near-first-party sources only (80.500792ms)
+✔ session binding migration follows upstream migrations with a unique number (1.608125ms)
+✔ session binding migration preserves an already-installed binding and legacy rows (79.182833ms)
+✔ effective password replacement revokes old cookies at actual read/write/check guards (261.003959ms)
+✔ password removal revokes existing sessions (30.740416ms)
+✔ password invalid-short config revokes existing sessions (37.337208ms)
+✔ unchanged sessions preserve CSRF, token hashing and password secrecy (53.530709ms)
+✔ password login does not bind old authentication to a password changed during the user write (87.948792ms)
+✔ password login does not bind old authentication to a secret changed during the user write (31.548209ms)
+✔ Feishu original union or normalized email remains authorized under OR semantics (47.822833ms)
+✔ a coalesced older profile email cannot keep a newly verified identity authorized (64.796792ms)
+✔ new profile claims cannot replace the original verified session claims (96.793833ms)
+✔ password and Feishu sessions sharing admin@local retain independent authority (36.729417ms)
+✔ Feishu app ID revokes only federated sessions (15.324625ms)
+✔ Feishu missing ID revokes only federated sessions (27.092375ms)
+✔ Feishu missing secret revokes only federated sessions (16.885917ms)
+✔ Feishu app-secret-only rotation preserves same-app authorized sessions (14.052042ms)
+✔ OAuth binds the configuration actually used before a mid-exchange app ID change (15.391ms)
+✔ OAuth binds the configuration actually used before a mid-exchange session secret change (24.136833ms)
+✔ session-secret rotation revokes both methods (34.54ms)
+✔ session-secret removal revokes both methods (19.357459ms)
+✔ legacy unbound sessions fail closed and are deleted (14.012834ms)
+✔ malformed bindings and Feishu claims fail closed (110.512ms)
+✔ expiry, unknown token, logout isolation and explicit development mode retain their guards (200.206083ms)
+✔ a fresh process observes its effective replacement password after reload (526.679625ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/agent-public.test.ts (1904.512375ms)
+{"level":"warn","msg":"alert (not sent: FEISHU_INTERNAL_ENABLED is off)","title":"🔴 新内容卡住了，进不了网站（已持续 3 小时）","lines":["影响：10 篇新文章等了 2 小时以上还没处理完，精选和热点会缺内容","会自己好吗：服务恢复后会自动补处理","你需要：转给 AI 处理","给 AI 的细节：没有记录错误"]}
+{"level":"warn","msg":"alert (not sent: FEISHU_INTERNAL_ENABLED is off)","title":"🔴 今天的日报还没生成","lines":["影响：读者看不到今天的日报","会自己好吗：系统每半小时补做一次，到现在还没成功","你需要：转给 AI 处理","给 AI 的细节：reports daily 2026-10-08 不存在；看 reports.compose 的运行记录"]}
+{"level":"warn","msg":"alert (not sent: FEISHU_INTERNAL_ENABLED is off)","title":"🔴 仍未恢复：新内容卡住了，进不了网站（已持续 4 小时 1 分钟）","lines":["影响：10 篇新文章等了 2 小时以上还没处理完，精选和热点会缺内容","会自己好吗：服务恢复后会自动补处理","你需要：转给 AI 处理","给 AI 的细节：没有记录错误"]}
+{"level":"warn","msg":"alert (not sent: FEISHU_INTERNAL_ENABLED is off)","title":"🔴 仍未恢复：今天的日报还没生成（已持续 1 小时 1 分钟）","lines":["影响：读者看不到今天的日报","会自己好吗：系统每半小时补做一次，到现在还没成功","你需要：转给 AI 处理","给 AI 的细节：reports daily 2026-10-08 不存在；看 reports.compose 的运行记录"]}
+{"level":"warn","msg":"alert (not sent: FEISHU_INTERNAL_ENABLED is off)","title":"✅ 已恢复：新内容卡住了，进不了网站","lines":["持续 4 小时 10 分钟（10月8日 12:11 起）"]}
+✔ an outage is announced once, repeated hourly, and closed with one recovery (609.334916ms)
+✔ backup failures still escalate after fifty hours without a success (85.154042ms)
+✔ selected identity delays show reader impact, recovery state and the affected articles (830.485959ms)
+✔ the ops digest does not describe unknown paid work as harmless or already retried (94.422709ms)
+✔ a late successful analysis preserves newer input awaiting processing (642.189917ms)
+✔ a failed analysis commit rolls back its judgement and receipt completion; retry reuses the saved responses (660.405916ms)
+✔ SIGKILL after the provider accepted a request leaves an unknown outcome, released only once (5768.847208ms)
+✔ SIGKILL after responses are saved but before the business commit reuses all receipts on restart (3255.300041ms)
+✔ an unresolved current identity does not start a separate writing request (208.463417ms)
+✔ SIGTERM during the final paid writing call still commits the complete analysis and publication (1967.858833ms)
+✔ SIGTERM during successful first score drains slower structure and leaves a retryable job (3786.927792ms)
+✔ SIGTERM during failed first score drains slower structure and leaves a retryable job (3465.582417ms)
+✔ every prompt in the pack renders, with the site's own name (105.952333ms)
+✔ a selected item: prefilter, two scores, the content understanding and the structure (360.363625ms)
+✔ structure retains grounded conditions, rejects invented or unseen quotes, and does not infer missing scope (94.900333ms)
+✔ a near-selected item is written like a selected one; below the floor it is translated (393.187208ms)
+✔ the prefilter's BLOCK stops everything; UNKNOWN goes on like PASS (208.206666ms)
+✔ a feed summary alone: the article page is fetched first, then the whole article is judged (303.567625ms)
+✔ a short post in Chinese is its own copy; a content-filter refusal is translated instead (319.603208ms)
+✔ guards: a company the input does not name is not written in; long summaries are cut at sentences (1.598584ms)
+✔ analysing the same revision again reuses every paid answer (205.293875ms)
+✔ the web reaches the backend only over HTTP (69.524375ms)
+✔ packages never import the apps, and nothing below the admin imports it (144.13025ms)
+✔ public routes read content only through the public read layer (4.631042ms)
+✔ the tables that carry a rule are written only by the module that owns it (20.771ms)
+✔ the public scope and the composite rule are spelled once, in publication/scope.ts (19.496375ms)
+✔ every table and column is used by the code that reads and writes the database (147.726708ms)
+✔ every environment variable the code reads is listed in a template, and every listed one is read (92.08025ms)
+✔ every field of the website's own interfaces is read by the website (42.669041ms)
+✔ a cold read that finds nothing yet does not stick: later reads see the first published ranking and run (104.133542ms)
+✔ a real paired restore opens a feedback screenshot when forwarding is disabled and uploads are absent (4025.213083ms)
+✔ both attachment roots restore nested paths and bytes, without caches or previous backups (1117.229166ms)
+✔ existing uploads still restore when the feedback directory is absent (1069.14ms)
+✔ missing/empty roots produce an extractable archive: neither (333.425209ms)
+✔ missing/empty roots produce an extractable archive: uploads (406.5955ms)
+✔ missing/empty roots produce an extractable archive: feedback-screenshots (728.178291ms)
+✔ missing/empty roots produce an extractable archive: uploads+feedback-screenshots (612.427833ms)
+✔ packing retries once and a successful retry preserves the screenshot (1714.758208ms)
+✔ persistent packing failure still sends the database and reports incomplete backup (664.41825ms)
+✔ local retention keeps three dump/archive pairs without deleting source attachments (2725.931458ms)
+✔ an unreadable upload directory cannot become a successful empty backup (1524.940708ms)
+✔ the batch runner publishes a genuinely analyzed article under the normal scoring rule (1258.013084ms)
+✔ an exhausted analysis failure writes no score, publishes nothing and stays observable (1009.506459ms)
+✔ a first analysis failure schedules a retry instead of faking or publishing a score (1071.716375ms)
+✔ a batch run preserves the existing analysis, its publication and the editorial override (1668.524167ms)
+✔ the legacy bulk publisher stays deleted and nothing fakes model analyses for wechat articles (13.126875ms)
+✔ new models require a launch classification as well as an official, new model event (0.917667ms)
+✔ category corrections revise every standard report atomically without selecting, rewriting or notifying (833.937625ms)
+✔ a curated chronicle that does not follow the format is refused, with the reason (4.042417ms)
+✔ a company's band is its curated history, then the milestones picked up after it (17.032542ms)
+✔ a company without a curated history still has its band: the year the site picked up (0.155459ms)
+✔ every curated chronicle in the repository follows the format (0.123708ms)
+✔ Clean Noise - 剔除用户反馈的典型末尾招聘、求报道与推荐阅读噪点 (6.221542ms)
+✔ Clean Noise - HTML 尾部噪点净化 (13.130708ms)
+✔ an entry with title, date and summary but no body still has its detail page fetched for the body (682.648292ms)
+✔ an entry whose body the listing already carries costs no detail request (94.952542ms)
+✔ detail enrichment shares material identity across duplicate cards and changing tracking parameters (714.363459ms)
+✔ html sections explicitly configured as posts retain distinct identities (122.251792ms)
+✔ markdown sections explicitly configured as posts retain distinct identities (81.694958ms)
+✔ all WeChat transports get daily fixed cadence; account/search Weibo remain prioritized (2.772792ms)
+✔ policy rejects silent invalid modes, nested garbage and non-object values (0.248584ms)
+✔ cadence plan is idempotent, preserves cooldowns and has a before image (0.179125ms)
+✔ observations keep unknown separate from zero and do not invent precision (0.414958ms)
+✔ the 61st entry of a known feed is stored before its validator answers 304 (2390.7325ms)
+✔ a regular JSON run keeps all 0 entries it was given (37.090459ms)
+✔ a regular JSON run keeps all 1 entries it was given (54.088458ms)
+✔ a regular JSON run keeps all 59 entries it was given (3391.072333ms)
+✔ a regular JSON run keeps all 60 entries it was given (3888.129042ms)
+✔ a regular JSON run keeps all 61 entries it was given (1703.737792ms)
+✔ a regular JSON run keeps all 100 entries it was given (4181.858125ms)
+✔ a listing longer than a query's parameter limit is still deduplicated and its new tail stored (1730.932417ms)
+✔ with the first 60 known, the tail is still created and revised, and queued for processing once (9272.119583ms)
+✔ a web list of 100 entries loses none, newest first (4638.757ms)
+✔ a web list of 100 entries loses none, oldest first (4032.066417ms)
+✔ the first import keeps its count and age limits; the next regular run fills in the rest before accepting 304 (3525.205542ms)
+✔ a long listing still keeps to the detail budget and to the detail titles already known (3908.271542ms)
+✔ in the tail an alias of a known URL keeps the first record, and URL, category and noise filters still apply (4958.162084ms)
+✔ a storage failure in the tail does not advance the feed's validator; the retry fills in without new revisions (2826.410875ms)
+✔ scheduleDueSources: 到期且启用的微博源入队一次，禁用/未到期不入队，重复调度安全 (403.381292ms)
+✔ wechat:// 降级（上游失败但有旧缓存）记为失败，不刷新 last_ok_at (115.808333ms)
+✔ an X search longer than one run is read to the old watermark over the next runs (16562.582083ms)
+✔ 微信长文：正文段落完整，二维码/编辑署名/往期推荐不进正文 (27.051709ms)
+✔ 新闻站：正文来自 article 容器，导航、侧栏与相关阅读不混入 (14.425959ms)
+✔ 质量引擎：官方公告 150 字即完整，新闻 150 字算不完整，社交帖 50 字即完整 (0.2135ms)
+✔ 质量引擎：论坛主帖短但评论区丰富不算失败；空正文判 failed 并携带警告 (0.340167ms)
+✔ 虎扑帖子：主帖与评论分离，楼主补充成组，纯水回复被过滤 (10.6785ms)
+✔ 通用论坛 extractor：无专用 adapter 也产出 thread schema (1.184084ms)
+✔ B站视频：kind=video_post，正文为空，简介放 video.description 且标注 summary_only (5.203417ms)
+✔ B站：页面无 INITIAL_STATE 时通过 view API 取数据 (0.49775ms)
+✔ 社交动态：X 帖子映射 social_post，短文本判 full，引用分离 (0.391917ms)
+✔ 无正文页面：整条 extractor 链不产出，派生不出正文，绝不伪装 (6.005041ms)
+✔ 低质量正文：completeness=failed 的内容派生不出垃圾 body_text (0.266209ms)
+✔ profileFor：按 hostname 识别虎扑/B站/微信，config 可覆盖家族，transport 与内容类型分离 (0.109833ms)
+✔ 微信域名严格校验：带参数与子域名仿冒无法绕过 canHandle (0.065667ms)
+✔ HTML 清洗：canonicalToBody 对 bodyHtmlSource 与派生 HTML 进行严格 sanitizeBody，剔除 onerror/onclick (0.466917ms)
+✔ toContentView 权限约束：非 full 授权或 unconfirmed 状态下，不向前端泄露全文未授权数据 (0.269541ms)
+✔ collect 的 detail 路径把论坛帖抽成 forum_thread 并落 canonical 列 (525.337375ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/content-publication.test.ts (608.844125ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/content-radar.test.ts (1072.532ms)
+✔ same text stores new counters without resetting analysis, changing revision or adding publications (312.887584ms)
+✔ old observation history expires but keeps the latest snapshot of a quiet article (17.853166ms)
+✔ dry-run and apply change only cadence; fixed WeChat RSS survives daily adaptation (27.771667ms)
+✔ keyword search failure is not healthy empty; partial material is retained without advancing last_ok_at (217.32125ms)
+✔ Weibo and paid WeChat are included in heat coverage clocks (6.251541ms)
+✔ a WeChat body that failed for a passing reason is fetched on the next check and analysed again (1522.469958ms)
+✔ the Dajiala key never follows a redirect to another origin; a same-origin redirect still works (39.617458ms)
+✔ one model runs the prefilter, both scores, the writing and the structure (1242.035666ms)
+✔ disabled pushes and missing credentials leave the retry available without sending (239.22425ms)
+✔ only an explicit webhook acknowledgement counts as delivered (226.090542ms)
+✔ a disabled target cannot receive a manual retry (17.089542ms)
+✔ a withdrawn selected item cannot be sent through manual recovery (52.741125ms)
+✔ a withdrawal while one target is sending stops the following mirror (73.240917ms)
+✔ a lost webhook reply still suppresses another report later grouped into the same fact (111.667334ms)
+✔ regrouping the same selected article cannot send it again under a new fact identity (2428.653625ms)
+✔ enabling a group excludes earlier content and includes content arriving at its activation time (78.580584ms)
+✔ concurrent sibling claims reserve a target once, including the pending delivery (240.986084ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/delivery-resolution.test.ts (1327.898875ms)
+✔ a stored vector of 2 dimensions is computed again at the configured 4 (457.65725ms)
+✔ a stored vector of 8 dimensions is computed again at the configured 4 (642.959542ms)
+✔ a restarted process with other dimensions pays for a request of its own (755.45975ms)
+✔ the provider's own size keeps stored vectors, asks for no dimensions and never compares sizes (498.084084ms)
+✔ unusable embedding responses retain the paid answer and never write partial vectors (455.097875ms)
+✔ out-of-order embeddings retain input correspondence and replay without another paid call (47.031959ms)
+✔ embedding batch rolls back and reuses its paid receipt before completing (57.34ms)
+✔ esports sync: league rows land, battle backfill respects the budget and resumes, re-runs are idempotent (2674.984916ms)
+✔ esports sync: swapped battle camps preserve winner and align kills/gold to series teams (638.549083ms)
+✔ esports sync: missing, foreign or duplicate camp identities do not erase a valid game (418.061708ms)
+✔ esports sync: 小局存在但 BP/选手数据缺失时按字段补全 (651.617292ms)
+✔ esports sync: 单场持续失败不阻挡近期比赛，且每轮请求数受预算约束 (1806.489333ms)
+✔ explicitly insufficient original material cannot found an event or retain an automatic fact (263.732833ms)
+✔ a detach made while the model is deciding the report's fact stands (271.141458ms)
+✔ a report joins the fact the model names, and a revision keeps that membership without asking again (306.997042ms)
+✔ an explicit regroup drops the automatic membership and decides again (839.922667ms)
+✔ a development attaches to the story's earliest fact that still holds reports (372.685209ms)
+✔ a SAME_OCCURRENCE decision made before a merge is retried without writing into the retired story (735.83275ms)
+✔ a SAME_STORY decision made before a merge is retried without writing into the retired story (576.165625ms)
+✔ detaching a discussion post removes its signal even though it has no fact membership (278.738333ms)
+✔ a manual detach during a discussion judgement wins just as it does for an editorial report (218.044834ms)
+✔ fact dates survive candidate recall without a timezone shift and invalid dates stay unknown (335.936958ms)
+✔ a composite first, with no candidates, stays standalone and cannot become the later single report's root (978.145042ms)
+✔ a composite arriving after independent products only mentions them even when the model calls both the same occurrence (402.090209ms)
+✔ a newly identified composite loses automatic membership and cannot serve as an old root or redirect bridge (575.842209ms)
+✔ composite classification never deletes an editor's explicit membership (115.823208ms)
+✔ ROUNDUP answers describe a pair, not the single query's identity; grounded conditions reach its new fact (257.360042ms)
+✔ a story's root is the fact reported first, not the one with the lowest number (303.6225ms)
+✔ two stories a report ties together merge when both models see one story in their roots (1033.392834ms)
+✔ editor-confirmed identities skip automatic comparison and merging, while explicit editor merges work (132.814209ms)
+✔ an editor identity correction during comparison prevents merging and is not reported as a successful merge (103.850416ms)
+✔ two stories stay apart when their roots are different events, whatever the report ties them with (415.432042ms)
+✔ a story whose reports all moved away keeps its address: it redirects to where the last one went (5475.18975ms)
+✔ stories that reports keep tying together without merging list each other as related (818.850084ms)
+✔ a stale page successful response cannot change newer material (493.803ms)
+✔ a stale page empty response cannot change newer material (100.737458ms)
+✔ a stale X Article successful response cannot change newer material (112.18725ms)
+✔ a stale X Article empty response cannot change newer material (59.746542ms)
+✔ overlapping page extractions and an unchanged admin retry create only one body revision (206.279167ms)
+✔ an obsolete extraction failure cannot penalize a newer complete report (772.252541ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/feedback-upload.test.ts (2593.960292ms)
+✔ a failed screenshot upload keeps the feedback waiting, and the sweep sends it with the image (342.204416ms)
+✔ a send that fails after the upload goes out with the same image next time (39.908125ms)
+✔ a screenshot that cannot be uploaded for a day is dropped, and the text still goes (35.842542ms)
+✔ a picture Feishu refuses is dropped at once, and the text still goes (28.571167ms)
+✔ imported feedback that was never forwarded is not sent now (12.146875ms)
+✔ missing and invalid identity answers cannot silently assert unrelated (3869.64425ms)
+✔ a single report with an incomplete answer stays unresolved and can recover (783.711167ms)
+✔ a roundup with an incomplete answer stays unresolved and can recover (466.318125ms)
+✔ a native timeout fails its job with the receipt id, and the release wakes that same job (435.422667ms)
+✔ a lost pending grouping job is repaired once, but a terminal failure waits for recovery (215.414291ms)
+✔ an old grouping answer cannot settle a changed material (189.591417ms)
+✔ an old grouping failure cannot settle a changed material (599.782708ms)
+✔ revision withdraws the old selected projection in the same transaction (239.645584ms)
+✔ regroup withdraws the old selected projection in the same transaction (173.645166ms)
+✔ faces are 精选组 sources by tier (T1, T1.5, T2), at most 6; 氛围组 only counts in +N (5425.448292ms)
+✔ hot covers follow current visibility and full-text rights within one ranking (592.509042ms)
+✔ editorial heat follows factual membership; signal-only evidence survives without a fact (360.838583ms)
+✔ withdrawn reports and changed roles are counted as they stand now (225.856ms)
+✔ one company's channels are one participant; every community author is one (83.167417ms)
+✔ publisher attribution repairs participant identity without rewriting stored evidence (34.378125ms)
+✔ the change compares with the earlier time's full 48-hour window, without sources added since (80.752875ms)
+✔ hourly snapshots are idempotent and repair an incomplete hour after collection catches up (92.303833ms)
+✔ an hour taken again updates the cohort after a source changes role (30.564959ms)
+✔ cross-origin replay refuses sensitive header Authorization (19.557792ms)
+✔ cross-origin replay refuses sensitive header aUtHoRiZaTiOn (2.342208ms)
+✔ cross-origin replay refuses sensitive header Cookie (1.637084ms)
+✔ cross-origin replay refuses sensitive header Proxy-Authorization (0.972125ms)
+✔ cross-origin replay refuses sensitive header X-Unknown-Credential (1.032042ms)
+✔ body-bearing request stays origin-bound (JSON) (4.756666ms)
+✔ body-bearing request stays origin-bound (empty) (2.269792ms)
+✔ explicit query protection and late relative chain stay bound to the original origin (2.336083ms)
+✔ ordinary public headers allow a different-origin redirect (4.609375ms)
+✔ same-origin 301 preserves expected POST semantics (3.496166ms)
+✔ same-origin 301 preserves expected PUT semantics (1.37175ms)
+✔ same-origin 301 preserves expected GET semantics (0.855291ms)
+✔ same-origin 301 preserves expected HEAD semantics (6.522542ms)
+✔ same-origin 302 preserves expected POST semantics (3.701917ms)
+✔ same-origin 302 preserves expected PUT semantics (2.305208ms)
+✔ same-origin 302 preserves expected GET semantics (1.732541ms)
+✔ same-origin 302 preserves expected HEAD semantics (2.149833ms)
+✔ same-origin 303 preserves expected POST semantics (2.535333ms)
+✔ same-origin 303 preserves expected PUT semantics (1.933458ms)
+✔ same-origin 303 preserves expected GET semantics (1.4425ms)
+✔ same-origin 303 preserves expected HEAD semantics (2.188584ms)
+✔ same-origin 307 preserves expected POST semantics (1.510959ms)
+✔ same-origin 307 preserves expected PUT semantics (1.666291ms)
+✔ same-origin 307 preserves expected GET semantics (2.776958ms)
+✔ same-origin 307 preserves expected HEAD semantics (1.635542ms)
+✔ same-origin 308 preserves expected POST semantics (1.5465ms)
+✔ same-origin 308 preserves expected PUT semantics (1.327541ms)
+✔ same-origin 308 preserves expected GET semantics (1.618458ms)
+✔ same-origin 308 preserves expected HEAD semantics (1.518292ms)
+✔ non-redirect 300 with Location is returned without another request (0.658708ms)
+✔ non-redirect 304 with Location is returned without another request (0.573875ms)
+✔ non-redirect 305 with Location is returned without another request (0.656917ms)
+✔ protected request remains bound after its body was removed by 303 (1.592083ms)
+✔ synthetic HTTPS downgrade is refused before target dispatch without TLS bypass (2.125875ms)
+✔ redirect limits do not expose query credentials (2.225208ms)
+✔ one deadline and response byte limit remain effective (103.019ms)
+✔ normal private-network guards still refuse direct and redirect destinations (1.238625ms)
+✔ opaque JSON-source query configuration cannot redirect to another origin (1.604667ms)
+✔ opaque JSON query callers retain same-origin redirects (3.398375ms)
+📂 开始扫描 kpl_vault 知识库目录: /Users/kuangqie/Documents/VibeCoding/KPL/kpl_vault (dryRun: true)
+✔ parsePublishDate: 解析标准时间字符串与时区 (1.684833ms)
+✔ resolveVaultSourceId: 按目录名准确映射俱乐部与联赛官方公众号 ID (0.120875ms)
+✔ validateVaultMetadata: 安全防护与合法性校验 (0.241458ms)
+  [DRY-RUN] 拟入库 [mp-kpl-official] 2020年KPL春季赛总决赛在上海落下帷幕，VSPN携手KPL一同走过四年八届 (2020-06-14) - 2595 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 南京再发电竞意见，产业发展由“城市”到“区位” (2020-11-25) - 3146 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 专访武汉斗鱼NBW战队教练刘晨畅：路人战队如何逆袭职业赛事舞台 (2021-07-27) - 5668 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 赛场之外  KSG首发队员的5种切面人生 (2023-08-23) - 7220 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 成都高新区电竞俱乐部夺得王者荣耀世界冠军杯！ (2023-12-30) - 1122 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 200多人的武汉公司赴美IPO，让我们看到了一个行业的可能性 (2024-06-20) - 4978 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 国资公司丨“鸟巢”震撼上演2025王者荣耀KPL年度总决赛 流量变“留”量激活消费新生态 (2025-11-14) - 1798 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 定档成都！2026KPL王者荣耀年度总决赛好久举行？ (2026-01-07) - 2233 字
+  [DRY-RUN] 拟入库 [mp-kpl-official] 十年炽热，光与热爱同歌：CKC炫动2026 KPL春季赛决赛！ (2026-04-16) - 3333 字
+  [DRY-RUN] 拟入库 [mp-ag] VSPN第一线丨共迎新十代！2021年KPL春季赛常规赛今日正式拉开帷幕 (2021-03-27) - 2579 字
+  [DRY-RUN] 拟入库 [mp-ag] 今晚18:00——2025KPL夏季赛决赛正式开赛！成都AG超玩会 vs 北京WB，谁将傲立钱塘？ (2025-09-07) - 6869 字
+  [DRY-RUN] 拟入库 [mp-ag] 六连冠！成都高新区电竞战队创造历史 (2025-09-08) - 1402 字
+  [DRY-RUN] 拟入库 [mp-ag] 鸟巢里的KPL年度总决赛丨触乐 (2025-11-10) - 5646 字
+  [DRY-RUN] 拟入库 [mp-dyg] 斗鱼旗下DYG正式启用深圳主场，电竞主客场制和商业化路怎么走 (2021-04-20) - 3686 字
+
+📊 知识库导入完毕: 总数 14, 成功 14, 跳过 0, 失败 0
+
+✔ importVault: dry-run 运行不连接写库，且真实知识库无解析错误 (340.304583ms)
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-2E7fIC/tmp/kpl-vault-test-jcQ3f2 (dryRun: true)
+
+📊 知识库导入完毕: 总数 1, 成功 0, 跳过 0, 失败 1
+
+✔ importVault: 隔离测试目录中的异常元数据捕获 (4.139375ms)
+✔ a paused external source rejects pushed items without recording a successful fetch (1097.108ms)
+✔ epoch_s collection keeps invalid middle claims and later articles, then repeats cleanly (1646.298792ms)
+✔ epoch_ms collection keeps invalid middle claims and later articles, then repeats cleanly (380.883333ms)
+✔ first-import sorting keeps unknown epoch dates and the normal backfill fallback (203.565959ms)
+✔ invalid claim does not break an existing identity's unchanged write (45.869291ms)
+✔ invalid claim does not break an existing identity's revised write (32.549834ms)
+✔ storage preserves finite future claims and existing timeline boundaries (30.141291ms)
+✔ unrelated storage failures still fail collection visibly (50.0625ms)
+✔ a listing read whose outcome is unknown is not sent again; each later fetch is a paid read of its own (1579.00675ms)
+✔ a listing parsed with selectors is read from Jina as rendered HTML, dates included (93.573833ms)
+✔ a listing page received before a storage failure stays on its receipt (86.21775ms)
+✔ each admin preview is a paid read of its own (69.593041ms)
+✔ 默认单页：未配置 pagination 只发一次请求 (52.692875ms)
+✔ 显式配置后按页追平，遇空页停止，重复条目去重 (21.820375ms)
+✔ chunkText:短文本单块、段落组装受控、超长单段硬切 (5.699416ms)
+✔ 比赛综述切块:写入、内容含比分与 MVP、重跑幂等 (375.325167ms)
+✔ 战队/选手/英雄档案切块:渲染与实体字段 (508.962667ms)
+✔ embedding:全部 chunks 均为 1024 维向量（本地 stub） (3.606625ms)
+✔ classifyClaim 按最具体的语态识别事实类型 (5.103417ms)
+✔ classifyClaim 标记爆料、辟谣与转载出处 (0.246208ms)
+✔ authorityFor：同一发布方在不同事实类型上的资格完全不同 (0.237375ms)
+✔ claim_types 声明范围外的类型一票无资格 (0.089541ms)
+✔ canConfirm 的确认门槛把官宣与报道分开 (0.0925ms)
+✔ nextRumorState：爆料只能到 multiple_reports，官宣才 confirmed，且绝不降级 (0.139291ms)
+✔ rumor 状态机覆盖全部用户定义的爆料类声明 (0.09775ms)
+✔ KPL Dedup - 识别战队 (22.800959ms)
+✔ KPL Dedup - 用户提出的关键用例：KSG 零封 RW侠 年总开门红 (9.98325ms)
+✔ different opponents cannot merge through title similarity (October 7 regression) (0.52625ms)
+✔ same teams and season do not identify a rematch, nor do matching outcomes (3.742916ms)
+✔ conflicting seasons and individual games are separate occurrences (9.811291ms)
+✔ partial teams and multi-match roundups cannot force identity (2.772375ms)
+✔ match dates keep explicit dates, validate them and use Beijing rather than host timezone (4.394625ms)
+✔ KPL Dedup - 标题规范化与前缀噪点过滤 (1.586542ms)
+✔ KPL Dedup - 互斥/不同事件不应被误判为相同事件 (1.766458ms)
+✔ discoverActiveTeams 从官方赛事数据动态发现战队，不靠硬编码名单 (219.457333ms)
+✔ seedTeamAccounts 幂等导入已验证账号档案 (144.941083ms)
+✔ refreshDiscoveryQueue 把活跃战队的平台缺口入队，且重复执行幂等 (179.929083ms)
+✔ computeCoverage 报告战队覆盖、first-party 事件率与告警 (104.342125ms)
+✔ 媒体报道转会：事实挂 transfer + unverified，媒体权威不足当不了主源 (632.697666ms)
+✔ 一天后俱乐部官宣：主源升级为俱乐部官方，rumor → official_confirmed，时间线保留 (1195.999625ms)
+✔ 两个独立来源的转会爆料：multiple_reports，但绝不写成 confirmed (306.604292ms)
+✔ 官方辟谣把状态推到 official_denied 并落 confirmed_at (239.230917ms)
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-nuLOCD/tmp/kpl-vault-test-nfdniD (dryRun: true)
+  [DRY-RUN] 拟入库 [mp-kpl-official] 2026KPL赛事联盟发展规划白皮书 (2026-01-01) - 38 字
+  [DRY-RUN] 拟入库 [mp-ag] 鸟巢总决赛测试文章成都AG超玩会 (2025-11-10) - 38 字
+
+📊 知识库导入完毕: 总数 2, 成功 2, 跳过 0, 失败 0
+
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-nuLOCD/tmp/kpl-vault-test-nfdniD (dryRun: false)
+▶ kpl-vault-import 测试集
+  ✔ 1. dry-run 模式：零写入 (129.873625ms)
+  ✅ 成功导入 [mp-kpl-official] 2026KPL赛事联盟发展规划白皮书 (2026-01-01) -> ID: spm3zyx8qt02cgsrr6vebvrtc
+  ✅ 成功导入 [mp-ag] 鸟巢总决赛测试文章成都AG超玩会 (2025-11-10) -> ID: ibflnnx6a2qo93ypqcc455onv
+
+📊 知识库导入完毕: 总数 2, 成功 2, 跳过 0, 失败 0
+
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-nuLOCD/tmp/kpl-vault-test-nfdniD (dryRun: false)
+  ✔ 2. 首次正常导入：imported=2 并建立实体关联 (725.148417ms)
+  ⏩ [SKIP] 文章已存在且发布完整，跳过: [spm3zyx8qt02cgsrr6vebvrtc] 2026KPL赛事联盟发展规划白皮书
+  ⏩ [SKIP] 文章已存在且发布完整，跳过: [ibflnnx6a2qo93ypqcc455onv] 鸟巢总决赛测试文章成都AG超玩会
+
+📊 知识库导入完毕: 总数 2, 成功 0, 跳过 2, 失败 0
+
+  ✔ 3. 幂等性测试：再次导入正常跳过已存在内容 (26.919792ms)
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-nuLOCD/tmp/kpl-vault-test-nfdniD (dryRun: false)
+  ⏩ [SKIP] 文章已存在且发布完整，跳过: [spm3zyx8qt02cgsrr6vebvrtc] 2026KPL赛事联盟发展规划白皮书
+  🔄 [RECOVERED] 文章已存在，已补齐缺失发布: [ibflnnx6a2qo93ypqcc455onv] 鸟巢总决赛测试文章成都AG超玩会
+
+📊 知识库导入完毕: 总数 2, 成功 1, 跳过 1, 失败 0
+
+  ✔ 3.1 断点恢复测试：若关联 publications 缺失则自动补齐 (152.526167ms)
+📂 开始扫描 kpl_vault 知识库目录: /var/folders/lp/2l9n_krs3fq7hpxnc9_b9qb40000gn/T/aihot-test-74627-nuLOCD/tmp/kpl-vault-test-nfdniD (dryRun: false)
+  ⏩ [SKIP] 文章已存在且发布完整，跳过: [spm3zyx8qt02cgsrr6vebvrtc] 2026KPL赛事联盟发展规划白皮书
+  ⏩ [SKIP] 文章已存在且发布完整，跳过: [ibflnnx6a2qo93ypqcc455onv] 鸟巢总决赛测试文章成都AG超玩会
+
+📊 知识库导入完毕: 总数 3, 成功 0, 跳过 2, 失败 1
+
+  ✔ 4. 容错测试：损坏的 metadata.json 不会导致整个导入流程崩溃 (46.710125ms)
+✔ kpl-vault-import 测试集 (1252.537625ms)
+﹣ an unknown source cannot qualify through a first-party tier or self-asserted metadata (7.0125ms) # SKIP
+﹣ an audited direct protocol permits its stated default without inventing a reasoning tier (0.221333ms) # SKIP
+﹣ fallback evidence overrides both audited defaults and a composite's ordinary reference reason (0.150417ms) # SKIP
+﹣ a recorded unknown mode, a row exception and special systems cannot inherit a direct protocol (0.137375ms) # SKIP
+﹣ only the disclosed Vals Opus 5 configuration is excluded, including old stored rows (0.135ms) # SKIP
+﹣ a reviewed fixed harness is eligible, while a different harness or benchmark version is not (0.130333ms) # SKIP
+﹣ source composites and heterogeneous systems remain readable references (0.073958ms) # SKIP
+﹣ LiveBench coding preserves its direct and controlled-tool parts; private prompts do not disqualify Mystery (0.057958ms) # SKIP
+﹣ only a real Epoch run start becomes measuredAt; publication dates do not (0.188083ms) # SKIP
+﹣ typed sample metadata does not confuse votes, attempts and unique tasks (0.1305ms) # SKIP
+﹣ annotation inherits snapshot versions, preserves raw values and bars row exceptions before representative selection (0.194583ms) # SKIP
+﹣ two source fetches overlap, a failing source is retried once, and its last snapshot is preserved (1.032791ms) # SKIP
+﹣ a release date follows the source it came from, and only that source (0.872875ms) # SKIP
+﹣ calibration only uses the fixed references and is bound to one measurement protocol (3.02125ms) # SKIP
+﹣ frozen calibration preserves each anchor configuration and snapshot and rejects altered provenance (0.655875ms) # SKIP
+﹣ calibration verification survives JSONB object-key reordering without changing the persisted digest (3.710084ms) # SKIP
+﹣ domain and family shares stay fixed when a family gains a measurement (0.372042ms) # SKIP
+﹣ capability budgets separate language from creative writing and do not count tools as a second professional domain (0.11925ms) # SKIP
+﹣ task families follow distinct evidence tasks while related benchmark variants share a family budget (0.342459ms) # SKIP
+﹣ two distinct measurements from one source do not claim two independent sources (0.121166ms) # SKIP
+﹣ tiny raw differences create proportionally tiny support and zero difference stays a tie (1.063291ms) # SKIP
+﹣ a tie preference cannot discard a genuine tiny continuous margin (0.08775ms) # SKIP
+﹣ changing units and their frozen calibration together preserves every comparison (0.1305ms) # SKIP
+﹣ adding a new ordinary model never changes an existing pair's scale or vote weight (0.076291ms) # SKIP
+﹣ missing or invalid calibration casts no comparisons and cannot connect a board (0.045583ms) # SKIP
+﹣ unknown errors remain explicit and a rating without reference anchors stays unavailable (0.03925ms) # SKIP
+﹣ published bounds count as known errors without turning absent errors into measured precision (0.053167ms) # SKIP
+﹣ two internally comparable islands cannot be published as one precise ranking (0.036541ms) # SKIP
+﹣ row, signal and candidate input order cannot change a deterministic replay (0.066709ms) # SKIP
+﹣ a genuine preference cycle reports its optimal conflict (0.067208ms) # SKIP
+﹣ 40 independent families with 100 models complete the reference order (0.047583ms) # SKIP
+﹣ model pages retain current evidence beyond rank 30 and dated evidence after leaving the ranking (1.942084ms) # SKIP
+﹣ a category leader with insufficient overall breadth remains visible with its actual evidence (0.657125ms) # SKIP
+﹣ rule budget cards list only evidence in the published overall comparison (0.422ms) # SKIP
+﹣ current scores are identical on board and detail without replacing coverage (0.074709ms) # SKIP
+﹣ cloaked test names are recognised in their usual spellings (1.727167ms) # SKIP
+﹣ a cloaked row is kept but never selected (0.092708ms) # SKIP
+﹣ reader filters select from the full ranking, combine, and preserve ranks and scores (0.060041ms) # SKIP
+﹣ open weights require an exact verified model, independently of developer country (0.052541ms) # SKIP
+﹣ score uses continuous differences, a declared anchor baseline and a bounded scale (0.841459ms) # SKIP
+﹣ ties are not given invented rank gaps and conflicts respect the published order (0.074792ms) # SKIP
+﹣ missing comparisons stay absent, and consistent entrants or weight units do not inflate scores (0.053916ms) # SKIP
+﹣ no anchor, disconnected data or invalid margins cannot produce scores (0.157375ms) # SKIP
+﹣ the same scores in a new edition create a new snapshot (0.812ms) # SKIP
+﹣ rank, evaluation time and exclusion corrections are preserved even without a score change (0.068917ms) # SKIP
+﹣ carry-forward fills omissions, but never revives a newer excluded result or crosses an edition (0.052167ms) # SKIP
+﹣ a wholly missing public category fails the round and retains the previous published run (0.045792ms) # SKIP
+﹣ LiveBench skips empty/missing measurements, keeps real zeros and reads quoted CSV names (0.053625ms) # SKIP
+﹣ EQ-Bench skips empty scores and reads quoted CSV names in both writing datasets (0.048209ms) # SKIP
+﹣ calibration is frozen per unit and protocol, with insufficient evidence kept uncalibrated (0.061083ms) # SKIP
+﹣ worker computation errors reject the round (0.893583ms) # SKIP
+﹣ a round exceeding its explicit worker deadline terminates instead of occupying the queue indefinitely (0.137875ms) # SKIP
+✔ an article a feed lists twice is stored once and stays put across fetches (745.91525ms)
+✔ sections of one page are separate articles when the source keeps fragments (121.046584ms)
+✔ a feed that garbles different characters on every load keeps one version (56.203584ms)
+✔ a changelog's date headings date its updates and are no articles themselves (69.45125ms)
+✔ reader Markdown preserves block structure and still passes through the HTML whitelist (80.070625ms)
+✔ OpenAI Reader pages drop responsive navigation and recommendations, retaining captions and notes (20.710542ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/match-identity.test.ts (1031.867ms)
+✔ invalid source timestamps remain unknown on inserts and revisions (82.656625ms)
+✔ concurrent changes to one article each get a revision (222.907167ms)
+✔ an unchanged report does not add a revision (133.722791ms)
+✔ a material revision resets old processing failures without resetting unchanged material (350.801791ms)
+✔ an imported article's first report records a baseline, not a revision (33.568917ms)
+✔ simultaneous first reports of one URL create one article (39.076541ms)
+✔ another source listing the same article records a discovery, not a revision (197.813708ms)
+✔ an article linking to a tweet is stored separately from the tweet (77.5795ms)
+✔ another source reporting an imported article first does not set its baseline (35.564333ms)
+✔ a return to an earlier version is not a revision (106.2275ms)
+✔ an imported article that returns to its baseline is not revised again (22.045375ms)
+✔ characters lost in transit are no revision, lost or restored (77.209875ms)
+✔ MCP initializes through {"host":"localhost"} (40.761542ms)
+✔ MCP initializes through {"host":"LOCALHOST:65535"} (10.598375ms)
+✔ MCP initializes through {"host":"127.0.0.1"} (7.992ms)
+✔ MCP initializes through {"host":"127.0.0.1:3001"} (10.902958ms)
+✔ MCP initializes through {"host":"[::1]:0"} (9.576667ms)
+✔ MCP initializes through {"host":"[::1]:00080"} (4.928042ms)
+✔ MCP initializes through {"host":"[::1]"} (6.571459ms)
+✔ MCP initializes through {"host":"[::1]:3001"} (4.725666ms)
+✔ MCP initializes through {"host":"[0:0:0:0:0:0:0:1]:3001"} (5.595708ms)
+✔ MCP initializes through {"host":"127.0.0.1:3001","x-forwarded-host":"[::1]:3000"} (6.246708ms)
+✔ MCP rejects malformed or disallowed Host and forwarded authorities (37.617292ms)
+✔ MCP rejects an empty Host received over HTTP (8.450083ms)
+✔ MCP rejects repeated effective authority headers over HTTP (9.264208ms)
+✔ MCP keeps forwarded Host precedence (1.2775ms)
+✔ MCP keeps localhost and IPv4 Origins while rejecting unconfigured IPv6 and other Origins (7.813416ms)
+✔ MCP preserves preflight, unsupported methods, and shared GET/DELETE Host checks (3.011333ms)
+✔ MCP normalizes only explicitly configured site and extra host authorities (709.48975ms)
+✔ MCP retains an IPv6 site's existing matching-Origin allowance (1535.155875ms)
+✔ MCP preserves explicitly configured IPv4 spelling 127.1 (1736.615625ms)
+✔ MCP preserves explicitly configured IPv4 spelling 2130706433 (785.8685ms)
+✔ MCP preserves explicitly configured IPv4 spelling 0x7f000001 (900.1455ms)
+✔ MCP preserves explicitly configured IPv4 spelling 0177.0.0.1 (1105.049333ms)
+✔ closing the API drains a live MCP subscription before closing HTTP (100.897917ms)
+✔ an MCP client with a list-changed handler opens no listen stream (68.718375ms)
+✔ simultaneous modes share original bytes, preserve dimensions and use their disk caches (160.035125ms)
+✔ failed originals are not retried for every mode (2.31975ms)
+✔ site media exposes responsive previews and full lightboxes while RSS retains thumb images (1.12675ms)
+✔ concurrent cold OG and poster requests all succeed with identical cached bytes (842.520792ms)
+✔ successive responsive candidates reuse the completed original download (260.762917ms)
+✔ responsive URLs and web body candidates retain exact signatures and stable expiry (5.34725ms)
+✔ image HTTP responses keep earlier URLs valid, reject tampering before fetching and do not vary on Accept (496.412583ms)
+✔ image validators save unchanged bytes only after signature verification (242.249875ms)
+✔ image failures are cached for at most a minute and never beyond the signature (2.682916ms)
+✔ pending animations expire at caches, then publish the prepared disk rendition without refetching (562.172584ms)
+✔ binary-labelled real images work, but binary-labelled error pages still return 502 (144.6775ms)
+✔ tracking pixels are omitted from old and new bodies without removing article illustrations (196.279166ms)
+✔ a correction to the second event in a combined card reaches only groups that received it (255.7ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/monitor-efficiency.test.ts (1177.019625ms)
+✔ a recognition receipt is completed with the monitor business write (127.085125ms)
+{"level":"error","msg":"monitor recognition failed","post":"9000000000000000001","error":"Error: Model deepseek-flash returned unusable output for x:9000000000000000001: [\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"relevant\"\n    ],\n    \"message\": \"Invalid input: expected boolean, received undefined\"\n  },\n  {\n    \"expected\": \"boolean\",\n    \"code\": \"inv"}
+✔ malformed recognition remains retryable and preserves every claim (185.702167ms)
+✔ normal scanning and daily lookback cannot run concurrently (330.518666ms)
+✔ a truncated first scan retains all unread pages (327.503209ms)
+✔ a truncated lookback retains all unread pages (547.178042ms)
+✔ an unresolved claim never advances the complete verification watermark (55.13275ms)
+✔ uncertain announcements and withdrawals wait for review without changing public events (196.746542ms)
+✔ old or refused backlog cursors stay visibly unfinished (159.333375ms)
+✔ manual schedule changes replace the old estimate; reopening clears confirmation evidence (324.2735ms)
+✔ an explicitly unknown receipt day clears the old day without replacing an official confirmation (814.95975ms)
+✔ moving a post keeps public activity consistent, and moving to itself preserves the link (348.215583ms)
+✔ a duration is not a stated number of resets (105.050083ms)
+✔ overnight windows stay ordered and model estimates cannot start before the stated time (20.314334ms)
+✔ a passed window outranks an earlier 'in progress' (17.706125ms)
+✔ 'by 8pm' stays a deadline and is expected from the announcement until shortly after (16.169666ms)
+✔ only a group that received the announcement receives its amendment, with the source text (80.852291ms)
+✔ monitor health invalidates the page version independently of events (64.901917ms)
+✔ recent snapshot keeps old citations for recent events and unfinished events, with unchanged shape (53.967334ms)
+✔ correcting an older reset does not make it the most recent completed reset (103.009ms)
+✔ the monitor calendar follows Beijing today across month and year boundaries without losing history (311.55ms)
+✔ a confirmed card does not promote a same-day estimated reset in the last reset statistic (240.228041ms)
+✔ a confirmation of two resets nobody announced records two confirmed resets, once (73.791291ms)
+✔ plural wording without a stated number stays one reset (7.584292ms)
+✔ a held claim from a quoted post stays out of public reset activities (13.228875ms)
+✔ an account receipt can settle an unspecified reset as a card without an official confirmation (57.248958ms)
+✔ 超过每轮上限的候选取入 backlog，下轮继续，正文不重复计费 (1858.325792ms)
+✔ value output is required and boolean, never a silent approval (50.897375ms)
+✔ same-fact reports remain eligible to replace the representative despite no new information (1659.986125ms)
+✔ a same-fact copy cannot revive a low-increment fact without new value (1571.67625ms)
+✔ a same-url copy cannot revive a low-increment fact without new value (888.787333ms)
+✔ a same-url report can be the first selected report of an unseen fact (360.187834ms)
+✔ a same-url report can replace a selected representative without a call (241.025917ms)
+✔ a low-increment follow-up stays a distinct fact in all content without a selected slot (292.39325ms)
+✔ a material revision rechecks value in the same batch while keeping its confirmed fact (341.169584ms)
+✔ an older confirmed membership with no value field keeps its existing eligibility (719.347125ms)
+✔ an independent evaluation remains selected as a new fact (454.533542ms)
+✔ a roundup can lose its selected slot while retaining only mention links (966.724875ms)
+✔ a selected composite supplies reading coverage for a retelling without becoming a fact (662.072625ms)
+✔ a selected composite supplies reading coverage for a new result without becoming a fact (1191.726458ms)
+✔ reading-only context excludes unselected, nonpublic and old reports (3490.394917ms)
+✔ unselected candidates are not prior selected coverage (1093.529125ms)
+✔ value context uses the actually selected report without replacing the identity representative (296.450083ms)
+✔ a missing value answer remains failed and cannot settle a fact (722.204125ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/private-routes.test.ts (1306.519166ms)
+✔ a failed audit rolls back the receipt release and the processing job (367.6505ms)
+✔ a manual re-evaluation survives extraction, a lost job, and receipt release with the same paid identity (60.315625ms)
+✔ an already released receipt wakes its failed grouping job once, with the original parameters (81.699291ms)
+✔ a temporary provider failure resumes the manual evaluation instead of reinstalling the old verdict (4714.911875ms)
+✔ a late refusal for an old revision preserves the new revision's completed processing (2341.190917ms)
+✔ historical analysis queues a free identity confirmation behind live news (690.424125ms)
+✔ the first external discovery uses a paused verified publisher, keeps the real discovery and queues extraction once (388.791792ms)
+✔ a repeated signal discovery adopts a newly registered publisher and resumes editorial processing without revising material (131.604875ms)
+✔ publisher promotion cannot reuse a signal-only grouping as news confirmation (198.245625ms)
+✔ source-mode promotion cannot reuse a signal-only grouping as news confirmation (175.78475ms)
+✔ a T1 channel linking another publisher is still a discovery, not that URL's publisher (20.018375ms)
+✔ attribution reuses an existing current-revision editorial judgement even after the source became a signal (43.786041ms)
+✔ only an observed web-list path supplies implicit ownership; non-T1 and RSS domains never do (26.0085ms)
+✔ a later verified publisher repairs source and author, preserving judgement, content and time (53.314083ms)
+✔ publisher-first discovery remains the publisher, and an unrelated T1 URL cannot take ownership (24.894708ms)
+✔ ambiguous registered publishers do not silently choose a source (18.258833ms)
+✔ a non-T1 flag cannot enter the first-party channel, and source edits derive the flag from tier (55.0925ms)
+✔ through the egress proxy only internal answers refuse a name; literals keep the full check (23.740916ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/public-methods.test.ts (2190.975417ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/publication.test.ts (1028.538667ms)
+✔ 正确回答：通过校验，引用与内容原样返回 (112.196292ms)
+✔ 编造比分：触发重试，第二次合法则通过 (31.750875ms)
+✔ 两次编造：降级为只输出数据卡片 + 抱歉文案 (35.763209ms)
+✔ 张冠李戴：回答出现材料中没有的战队 → 重试后仍出现则降级 (123.426709ms)
+✔ 引用缺失：首次无 citations 触发重试，第二次给出则通过 (45.020041ms)
+✔ 空材料：不调用模型，直接降级 (2.062833ms)
+✔ 结构化通道：h2h 意图产出交手数据卡片 (339.388709ms)
+✔ 结构化通道：match-result 意图产出赛果卡片 (51.67425ms)
+✔ 结构化通道：roster 意图产出阵容卡片 (42.757583ms)
+✔ 语义+关键词通道：命中战队 chunks 且 RRF 去重 (80.444459ms)
+✔ 空通道容错：open 意图且无实体无关键词时数据卡片为空但不崩 (497.203167ms)
+✔ 事件序列：meta → delta → citation → done (987.886875ms)
+✔ 缓存回放：24h 内相同问题直接回放，不再调用模型 (18.7595ms)
+✔ 限流：每日第 21 次起拒绝，返回 429 + error 事件 (138.76175ms)
+✔ 空问题：400 + error 事件 (0.213333ms)
+✔ 合法 JSON 输出：解析出意图与实体 (466.962834ms)
+✔ markdown 代码块包裹的 JSON：照常解析，缺失字段兜底 (64.13725ms)
+qa understand degraded: Model default returned unusable output for qa:b60bb33a9bf2da2f: Error: No JSON object in model output
+✔ 纯文本垃圾输出：降级为开放问答，不抛异常 (131.623708ms)
+✔ 空白问题：直接降级，不调用模型 (0.836125ms)
+✔ a failed first database connection does not poison all later queue requests (543.883458ms)
+✔ type-weighted base, official bonus and real heat are independently explainable (5.528125ms)
+✔ a platform name does not grant heat, zero is observed and unsupported platforms stay unknown (0.452416ms)
+✔ strict model contract does not coerce dimensions or execute injected instructions (5.249833ms)
+✔ match parent groups different games without merging their fact identity; ambiguous identity remains null (9.708667ms)
+✔ soft mix fills available content without manufacturing controversy (0.669167ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/reading-group-performance.test.ts (1069.162209ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/reading.test.ts (2709.285625ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/readpath-performance.test.ts (2661.571708ms)
+✔ shutdown drains and reuses paid results while refusing new pages and retries before budget reservation (299.418875ms)
+✔ the migrations seed a budget for every paid service (84.874042ms)
+✔ an answer already received is reused instead of bought again (177.899041ms)
+✔ stale recovery waiting on a response transaction preserves its committed answer and attempt (418.488917ms)
+✔ a fully received non-object model response is unusable output, not an unknown paid outcome (93.4105ms)
+✔ retries of unusable answers stop at the budget, and every request sent is counted (234.35225ms)
+✔ concurrent distinct requests cannot both spend the last service budget slot (80.033ms)
+✔ the hour budget independently refuses a paid request until its attempt expires (54.537584ms)
+✔ the day budget independently refuses a paid request until its attempt expires (29.487791ms)
+✔ with the valve off nothing is sent (1.241833ms)
+✔ an unknown outcome is released automatically once, so a lost answer costs at most one repeat (330.38475ms)
+✔ identical pair inputs retain every gold case on both cold and cached evaluations (1722.98825ms)
+✔ failed duplicate inputs share one attempt and a later retry retains all response usage (1677.759708ms)
+✔ relation gold JSONL parses all four labels and rejects malformed rows (5.759208ms)
+✔ sampling is deterministic and applies the split before the limit (0.838916ms)
+✔ custom split names are made safe before they enter report filenames (0.518875ms)
+✔ multiclass metrics expose the confusion matrix, per-class scores, macro-F1, and errors (0.711542ms)
+✔ story-level threshold metrics match the production tie semantics (0.485583ms)
+✔ reports assign delayed and boundary releases to the period readers first see them (1132.029583ms)
+✔ a release waiting for the article lock uses the time after the cutoff (501.909834ms)
+✔ a release waiting for the fact seat lock uses the time after the cutoff (220.260958ms)
+✔ a release waiting for the report snapshot lock uses the time after the cutoff (82.227875ms)
+✔ daily composition waits for a pre-cutoff release to commit instead of losing it between issues (433.688459ms)
+✔ an editors' lead is matched to the item it is written about (4.01275ms)
+✔ a lead that matches no item clearly has no item (0.473166ms)
+✔ without an editors' lead the first highlight leads (0.178917ms)
+✔ a withdrawn highlight never leads the front page (1.757958ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/report-ordinals.test.ts (1187.034459ms)
+✔ automatic retries preserve all three published issue kinds; explicit corrections keep a revision (774.012417ms)
+✔ report publication and its receipt commit together and recovery reuses the response (176.612833ms)
+{"level":"error","msg":"report failed","report":"daily:2024-01-24","error":"Error: daily 2024-01-24: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-25","error":"Error: daily 2024-01-25: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-26","error":"Error: daily 2024-01-26: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-27","error":"Error: daily 2024-01-27: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-28","error":"Error: daily 2024-01-28: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-29","error":"Error: daily 2024-01-29: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-30","error":"Error: daily 2024-01-30: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-01-31","error":"Error: daily 2024-01-31: no selected items in its window"}
+{"level":"error","msg":"report failed","report":"daily:2024-02-01","error":"Error: daily 2024-02-01: no selected items in its window"}
+✔ empty older gaps cannot starve a later daily, weekly or monthly, and failures remain visible (552.686875ms)
+✔ a late run writes the issue that was due, not today's (2.672125ms)
+✔ a daily with nothing in its window is refused, not published empty (100.977084ms)
+✔ a weekly that froze no summaries shows the articles' public summaries (505.989541ms)
+✔ RSS first backfill, ordinary window, 304, revision and config edits preserve collection behavior (3777.437209ms)
+✔ Last-Modified works without ETag and changing redirect targets cannot accept an unrelated 304 (136.4345ms)
+✔ Atom article links honor absolute xml:base on feed, entry and link (59.613583ms)
+✔ relative xml:base values compose through feed, entry and link (2.356666ms)
+✔ relative Atom links use the final document URL after redirects (4.789417ms)
+✔ absolute alternate links and the first-link fallback keep working (41.9035ms)
+✔ resolved Atom article URLs keep their fragments, which sources of page sections use as identity (4.6785ms)
+✔ Atom XHTML titles and summaries keep the article and its text in order (22.928417ms)
+✔ Atom XHTML bodies match escaped HTML and CDATA without losing mixed-content order (17.645375ms)
+✔ Atom XHTML still passes through HTML sanitization without decoding escaped markup twice (7.273042ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/seats.test.ts (707.73475ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/selected-news-gate.test.ts (791.762625ms)
+✔ default evaluation follows the production score route and shares duplicate score inputs without changing tier decisions (3017.146542ms)
+✔ a shared unusable score fails every matching case once, then retry usage includes every provider attempt (2817.719334ms)
+✔ custom split names cannot escape the evaluation output directory (906.867541ms)
+✔ a discussion post that came before any report is grouped again when a report founds its fact (824.323625ms)
+✔ history waits behind live work and founds no event; a new source's post from today is news (366.639166ms)
+✔ a discussion post that quotes a post not yet collected joins its story when the original arrives (644.813333ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/site-routes.test.ts (900.040042ms)
+✔ Adapter Registry: 注册、查询、列表与注销生命周期 (4.727959ms)
+✔ Adapter Registry: 未注册的协议 (如 rss) 不被拦截 (0.372209ms)
+✔ BaseSourceAdapter: collect、parse 与 normalize 标准流程 (2.144292ms)
+✔ BaseSourceAdapter: extractEntities 实体线索感知 (0.260417ms)
+✔ BaseSourceAdapter: resolveTimeline 时间线保真决策 (2.589459ms)
+✔ a config entry the collector does not implement fails the fetch instead of being ignored (85.37675ms)
+✔ feed entries outside the source's URL rules are skipped (267.142958ms)
+✔ detail rules fill what the listing lacks, and a detail title survives the next listing (221.807375ms)
+✔ a Jina listing is read on every fetch, and buys a detail rendering only where a regex rule needs it (231.140667ms)
+✔ detail HTML supplies the ordinary extracted body once, while short pages keep extraction pending (12.190084ms)
+✔ Jina card links become posts with their own titles (7.530167ms)
+✔ anchors into the listing page itself are navigation, not posts (14.353833ms)
+✔ posts addressed by a query on the listing's path are posts, its pages and filters are not (6.262083ms)
+✔ promotions a feed rotates inside its posts are left out of the body (18.980209ms)
+✔ the MiMo homepage lists its posts and model pages, not its menu (111.083ms)
+✔ a MiMo homepage without the list fails the fetch instead of listing its menu (2.538875ms)
+✔ a listing that links other articles in its teasers takes only the links that begin a line (0.699292ms)
+✔ feed text that only teases the article is a summary: the page is fetched before judging (16.399166ms)
+✔ hidden page parts are dropped whole, and a news page's closing blocks are trimmed (12.600791ms)
+✔ noise words match whatever their case (0.398042ms)
+✔ dates in yyyymmdd and in JSON-LD are read (9.56475ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/timeline-day-counts.test.ts (627.681833ms)
+✔ a team's month keeps five matches, two roster moves and one piece of club news, each by score (24.059958ms)
+✔ what is not a node stays out, however high its score (0.307625ms)
+✔ a match belongs to the winner named before the verb, or to the fact's subject (0.488375ms)
+✔ one match's reports within a week are one milestone: the earliest date, the strongest Chinese headline (0.189208ms)
+✔ curated months cannot suppress an event's automatic milestone after the curated boundary (0.145292ms)
+✔ a field topic's chronicle takes what names it: results and league affairs, not tutorials or other teams' matches (0.326334ms)
+✔ the results timeline keeps eight matches of a busy month, field topics five (0.673375ms)
+✔ a team's highlights lead with its matches, then roster moves and club news (0.154792ms)
+✔ a topic without milestones stays a collection without an empty chronicle claim (0.980542ms)
+✔ a topic with milestones keeps its ordered event names and public story links (0.868875ms)
+✔ tutorial, opinion and trend topics keep selected reading without manufacturing milestones or SEO highlights (570.394667ms)
+✔ launches keep their milestones when the headline also mentions supporting guides or benchmarks (335.540333ms)
+✔ event dates use an explicit occurrence, otherwise the earliest publication, and do not move with the stronger report (549.590959ms)
+✔ cached milestone eligibility follows current score, launch tag and fact subject corrections (174.319791ms)
+✔ a withdrawn report leaves the chronicle band and the index while the topic index is still cached (482.661416ms)
+✔ a correction refreshes named content and its topic membership before the index expires (132.912125ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/topics.test.ts (1437.944667ms)
+✔ SIGTERM finishes the sent normal batch and resumes from its receipt (1511.276834ms)
+✔ SIGTERM finishes the sent misaligned batch and resumes from its receipt (1868.096834ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/translate.test.ts (882.073833ms)
+✔ X and Twitter status URL variants keep the same material identity (1.229958ms)
+✔ other sites containing a tweet URL keep their own material identity (1.655958ms)
+✔ only a complete status id at the expected path identifies a tweet (0.0915ms)
+✔ invalid and non-HTTP URLs cannot acquire a tweet identity (0.110041ms)
+✔ internal and reserved addresses are blocked in every spelling (3.6245ms)
+✔ URL literals that embed a loopback address are refused before any request (3.727ms)
+✔ a name resolving to an internal address is refused at connect time (7.804375ms)
+✔ one alert when the worker stops, none while it stays stopped, one recovery when it is back (79.713ms)
+✔ a failed send is tried again at the next check (87.498083ms)
+✔ a date and time without a zone is in the source's offset, not the server's (3.791875ms)
+✔ a bare date is midnight in the source's offset; an ISO date alone stays UTC midnight (0.185916ms)
+✔ a date that carries its zone keeps it (0.184125ms)
+✔ no date at all is null (0.176833ms)
+✔ an old document render failure checks its build and reloads its exact URL once (2.123333ms)
+✔ the current build and unsuccessful checks keep the error page (2.793667ms)
+✔ route responses, loader/network failures, admin pages and documents without a build never check (1.014833ms)
+✔ blocked storage never risks an automatic reload loop (0.367666ms)
+[wechat2rss] all adapters failed for "测试号" and no cache is available
+[wechat2rss] all adapters failed for "测试号"; serving cache fetched at 2023-11-14T22:13:20.000Z
+✔ WeChat2RSS parseWechatDate - 各种时间戳与相对时间解析 (1.25075ms)
+✔ WeChat2RSS HTML parser - 防盗链图片清洗与标签规范化 (7.061125ms)
+✔ WeChat2RSS Generator - 生成标准 RSS 2.0 XML (0.796333ms)
+✔ WeChat2RSS Bridge 与 fetchRss 采集集成测试 (8.881ms)
+✔ Bridge: 全部失败且无缓存 → getFeed 抛错，不冒充成功 (0.537125ms)
+[wechat2rss] all adapters failed for "测试号"; serving cache fetched at 2023-11-14T22:13:20.000Z
+[wechat2rss] display_name returned 1 article(s) for "测试号" with identity=display_name; rejected
+[wechat2rss] all adapters failed for "测试号" and no cache is available
+✔ Bridge: 全部失败但有旧缓存 → stale，真实 fetchedAt 不刷新 (16.245666ms)
+✔ Bridge: 可验证的空结果是 empty，不触发故障 (0.209167ms)
+✔ Bridge: 仅展示名称匹配（display_name）默认拒收；mp_id 才是可信身份 (0.192292ms)
+✔ Bridge: 作者不精确匹配的第三方文章被拒收计数，且不把作者改成目标账号名 (0.123625ms)
+✔ normalizeAccountName: 相似名/括号备注不相等 (0.172709ms)
+✔ Generator: 没有正文时不输出 content:encoded（摘要不冒充正文） (0.087167ms)
+✔ WeiboAdapter 注册与支持检测 (1.032334ms)
+✔ parse(): 官方微博字段解析 (标题/正文/链接/配图) (1.365333ms)
+✔ normalize(): 转换为高保真 CanonicalContent (social_post) (0.6375ms)
+✔ extractEntities(): 战队主体绑定与文本话题提及提取 (1.74125ms)
+✔ parseWeiboDate(): 多种时间格式精准解析（不依赖服务器本地时区） (1.432416ms)
+✔ parseWeiboDate(): MM-DD 跨年落到去年，不产生未来时间 (0.732292ms)
+✔ parse/normalize: 空日期保持未知；长微博如实标记为部分内容 (0.246625ms)
+✔ extractEntities(): 只绑定有效的账号主体，不再做硬编码话题关键词映射 (2.032625ms)
+✔ cleanWeiboText(): 彻底消除 '... 全文'、'……全文' 与末尾截断残留 (1.664041ms)
+✔ evaluateSocialPost(): 官方赛程轮换动态 vs 粉丝玩梗/抽奖噪声评估 (1.164375ms)
+✔ body cleanup cannot block the event loop on spaced ordinary comments (489.928292ms)
+✔ body cleanup removes truncation buttons but preserves ordinary mentions of full text (0.826792ms)
+✔ pure helpers: page token and numeric id order (0.207458ms)
+✔ collect: 多页增量追到水印后停止，不再翻旧页 (9.093333ms)
+✔ collect: 置顶旧帖不使水印倒退，重复 token 结束循环 (0.906ms)
+✔ collect: 后一页失败保留已读页并保存断点游标，不整体失败 (0.4685ms)
+✔ collect: 第一页失败（含重试）后抛出，不伪造成空结果 (0.680083ms)
+✔ keyword search distinguishes valid empty results from HTTP, login and malformed failures (0.808417ms)
+✔ keyword search retains a good page but signals a failed tail (0.422041ms)
+✔ keyword search budget is bounded, not an invented full-coverage result (0.241125ms)
+✔ normalized observations carry source time and missing counters stay null (0.5125ms)
+✔ a post that links an X Article waits for extraction, which brings the article in as a new revision (350.299ms)
+✔ extracting the same article again (an admin re-run) neither repeats it nor makes a revision (42.943958ms)
+✔ an article that cannot be fetched is flagged to the model, not passed off as a complete body (22.419459ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/publication/timeline.ts:117
+        WHERE p.fact_id IN ${sql(factIds)}
+          AND ${selectedCondition(now)} AND ${ownFactEvidenceCondition()} ${filterSql(q)}`}
+                                                                                          ^
+      : Promise.resolve([] as Member[]),
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expected ':', got '}'
+    at parseTypeScript (node:internal/modules/typescript:72:36)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:209:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:642:29)
+    at #translate (node:internal/modules/esm/loader:451:20)
+    at afterLoad (node:internal/modules/esm/loader:507:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:512:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:555:36)
+    at afterResolve (node:internal/modules/esm/loader:603:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:609:12) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v25.9.0
+✖ tests/x-fulltext-license.test.ts (1186.308958ms)
+✔ shards keep to the query length and account limits, per participation mode (87.337833ms)
+✔ one search reads a shard; each account gets its own posts, run and watermark (273.611334ms)
+✔ a page failing after the first keeps what was read and goes on from there next run (81.640208ms)
+✔ a quiet account's old newest post does not drag the shard's search back: its last check does (14.518375ms)
+✔ a failed search fails every account of the shard and moves no watermark (19.409916ms)
+✔ due accounts are scheduled by shard, not one by one (8.733041ms)
+✔ verified publishers include self-thread announcements in both single and shared searches (35.950958ms)
+✔ a shard storage failure closes all runs without advancing its coverage (62.970792ms)
+✔ paid search receipts and coverage commit together for single sources and shards (96.964959ms)
+ℹ tests 660
+ℹ suites 0
+ℹ pass 586
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 52
+ℹ todo 0
+ℹ duration_ms 167151.744667
+
+✖ failing tests:
+
+test at tests/admin-corrections.test.ts:1:1
+✖ tests/admin-corrections.test.ts (2236.491041ms)
+  'test failed'
+
+test at tests/agent-public.test.ts:1:1
+✖ tests/agent-public.test.ts (1904.512375ms)
+  'test failed'
+
+test at tests/content-publication.test.ts:1:1
+✖ tests/content-publication.test.ts (608.844125ms)
+  'test failed'
+
+test at tests/content-radar.test.ts:1:1
+✖ tests/content-radar.test.ts (1072.532ms)
+  'test failed'
+
+test at tests/delivery-resolution.test.ts:1:1
+✖ tests/delivery-resolution.test.ts (1327.898875ms)
+  'test failed'
+
+test at tests/feedback-upload.test.ts:1:1
+✖ tests/feedback-upload.test.ts (2593.960292ms)
+  'test failed'
+
+test at tests/match-identity.test.ts:1:1
+✖ tests/match-identity.test.ts (1031.867ms)
+  'test failed'
+
+test at tests/monitor-efficiency.test.ts:1:1
+✖ tests/monitor-efficiency.test.ts (1177.019625ms)
+  'test failed'
+
+test at tests/private-routes.test.ts:1:1
+✖ tests/private-routes.test.ts (1306.519166ms)
+  'test failed'
+
+test at tests/public-methods.test.ts:1:1
+✖ tests/public-methods.test.ts (2190.975417ms)
+  'test failed'
+
+test at tests/publication.test.ts:1:1
+✖ tests/publication.test.ts (1028.538667ms)
+  'test failed'
+
+test at tests/reading-group-performance.test.ts:1:1
+✖ tests/reading-group-performance.test.ts (1069.162209ms)
+  'test failed'
+
+test at tests/reading.test.ts:1:1
+✖ tests/reading.test.ts (2709.285625ms)
+  'test failed'
+
+test at tests/readpath-performance.test.ts:1:1
+✖ tests/readpath-performance.test.ts (2661.571708ms)
+  'test failed'
+
+test at tests/report-ordinals.test.ts:1:1
+✖ tests/report-ordinals.test.ts (1187.034459ms)
+  'test failed'
+
+test at tests/seats.test.ts:1:1
+✖ tests/seats.test.ts (707.73475ms)
+  'test failed'
+
+test at tests/selected-news-gate.test.ts:1:1
+✖ tests/selected-news-gate.test.ts (791.762625ms)
+  'test failed'
+
+test at tests/site-routes.test.ts:1:1
+✖ tests/site-routes.test.ts (900.040042ms)
+  'test failed'
+
+test at tests/timeline-day-counts.test.ts:1:1
+✖ tests/timeline-day-counts.test.ts (627.681833ms)
+  'test failed'
+
+test at tests/topics.test.ts:1:1
+✖ tests/topics.test.ts (1437.944667ms)
+  'test failed'
+
+test at tests/translate.test.ts:1:1
+✖ tests/translate.test.ts (882.073833ms)
+  'test failed'
+
+test at tests/x-fulltext-license.test.ts:1:1
+✖ tests/x-fulltext-license.test.ts (1186.308958ms)
+  'test failed'

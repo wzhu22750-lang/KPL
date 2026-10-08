@@ -159,7 +159,7 @@ export function GroupButton({ group, filters, parentId }: { group: GroupInfo; fi
         }}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="relative z-10 mt-2 flex min-h-11 w-full items-center justify-between rounded-tile bg-bg-sunk px-3 py-2 text-left text-[12.5px] text-ink-4 transition-colors active:bg-bg-muted lg:hidden dark:bg-bg-muted/60 dark:active:bg-bg-muted"
+        className="feed-group-button relative z-10 mt-2 flex min-h-11 w-full items-center justify-between rounded-tile bg-bg-sunk px-3 py-2 text-left text-[12.5px] text-ink-4 transition-colors active:bg-bg-muted lg:hidden dark:bg-bg-muted/60 dark:active:bg-bg-muted"
       >
         {labelOf(group)}
         <IconChevronRight size={14} />

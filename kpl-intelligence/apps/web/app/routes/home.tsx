@@ -10,6 +10,7 @@ import { IconArrowRight } from '../components/icons';
 import { ContentRadar } from '../features/feed/ContentRadar';
 import { HotTopics } from '../features/feed/HotTopics';
 import { Timeline } from '../features/feed/Timeline';
+import '../features/feed/home-mobile.css';
 
 export const handle: Screen = { tab: 'featured', name: '精选' };
 
@@ -50,7 +51,7 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
 
 export default function Home() {
   const { radar, hot, timeline } = useLoaderData<typeof loader>();
-  return <div className="pb-6">
+  return <div className="home-overview pb-6">
     <header className="flex items-center justify-between gap-4">
       <h1 className="text-[24px] font-semibold tracking-tight text-ink sm:text-[28px]">精选</h1>
       <IntentLink to="/all" className="inline-flex min-h-11 items-center gap-1 text-[13px] text-ink-3 hover:text-accent">全部 KPL 动态<IconArrowRight size={14} /></IntentLink>

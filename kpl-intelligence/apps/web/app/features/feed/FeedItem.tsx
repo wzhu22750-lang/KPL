@@ -5,6 +5,7 @@ import { memo } from "react";
 import { Link } from "react-router";
 import { IntentLink } from "../../components/ui/IntentLink";
 import type { GroupInfo, FeedItemSummary, TimelineFilters } from "@aihot/contracts/site";
+import { IconChevronDown } from '../../components/icons';
 import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
 import { SameEventBadge, SelectedBadge } from "../../components/ui/Badge";
 import { ScoreLabel } from "../../components/ui/Score";
@@ -40,13 +41,13 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
 
   return (
     <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
-      <header className="flex min-h-[22px] flex-wrap items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
-        <span className="inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
+      <header className="feed-meta flex min-h-[22px] flex-wrap items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
+        <span className="feed-source inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
           <SourceLine item={item} className="text-ink-2 font-medium" />
         </span>
-        {item.contentKind && <ContentKindChip kind={item.contentKind} />}
+        {item.contentKind && <span className="feed-kind"><ContentKindChip kind={item.contentKind} /></span>}
         {at && (
-          <time dateTime={at} className="mono shrink-0 text-[12px] lg:hidden">
+          <time dateTime={at} className="feed-header-time mono shrink-0 text-[12px] lg:hidden">
             · {showDate && `${beijingDate(at).slice(5).replace('-', '/')} `}{beijingTime(at)}
           </time>
         )}
@@ -59,10 +60,10 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
           <span className="hidden lg:inline-flex">
             <ScoreLabel score={item.score} />
           </span>
-          <span className="lg:hidden">
+          <span className="feed-mobile-score lg:hidden">
             <ScoreLabel score={item.score} compact />
           </span>
-          <span className="-my-[11px] -mr-3 inline-flex lg:-my-1 lg:mr-0">
+          <span className="feed-star -my-[11px] -mr-3 inline-flex lg:-my-1 lg:mr-0">
             <StarButton item={item} className="size-11 lg:size-[26px]" />
           </span>
         </span>
@@ -76,12 +77,12 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
         </p>
       ) : (
         <>
-          <h3 className={`mt-1.5 line-clamp-2 text-[17px] font-[650] leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${read ? "text-ink-4" : "text-ink"}`}>
+          <h3 className={`feed-headline mt-1.5 line-clamp-2 text-[17px] font-[650] leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${read ? "text-ink-4" : "text-ink"}`}>
             <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} className="after:absolute after:inset-0 after:content-['']">
               {item.title}
             </IntentLink>
           </h3>
-          {item.summary && <p className="mt-1 line-clamp-2 text-[14.5px] leading-[1.7] text-ink-3 lg:mt-2 lg:line-clamp-3 lg:text-[15px] lg:leading-[1.75]">{item.summary}</p>}
+          {item.summary && <p className="feed-summary mt-1 line-clamp-2 text-[14.5px] leading-[1.7] text-ink-3 lg:mt-2 lg:line-clamp-3 lg:text-[15px] lg:leading-[1.75]">{item.summary}</p>}
         </>
       )}
 
@@ -118,15 +119,28 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
       )}
 
       {item.reason && (
-        <div className="relative z-10 mt-2.5 rounded-md bg-accent-soft/35 px-3 py-1.5 text-[12.5px] leading-relaxed text-ink-2 border border-accent/15">
+        <div className="feed-reason relative z-10 mt-2.5 rounded-md bg-accent-soft/35 px-3 py-1.5 text-[12.5px] leading-relaxed text-ink-2 border border-accent/15">
           <span className="font-semibold text-accent mr-1.5">入选理由:</span>
           <span>{item.reason}</span>
         </div>
       )}
 
 
-      {/* Phones: duplicate reports open in a sheet. */}
-      {group && showSources && <GroupButton group={group} filters={filters} parentId={item.id} />}
+      {/* The homepage keeps selection metadata behind a disclosure on phones. */}
+      <footer className="feed-footer lg:hidden">
+        {at && <time dateTime={at} className="feed-footer-time hidden text-[12px] text-ink-3">{showDate && `${beijingDate(at).slice(5).replace('-', '/')} `}{beijingTime(at)}</time>}
+        <div className="feed-mobile-actions">
+          {(item.reason || item.score !== null) && <details className="feed-review disclosure group/review relative z-10 hidden text-[12.5px] text-ink-3">
+            <summary className="inline-flex min-h-11 items-center gap-1.5">入选信息<IconChevronDown size={14} className="transition-transform group-open/review:rotate-180 motion-reduce:transition-none" /></summary>
+            <div className="space-y-3 rounded-control bg-bg-sunk p-4 leading-relaxed">
+              <ScoreLabel score={item.score} />
+              {item.reason && <p><span className="font-medium text-ink-2">入选理由：</span>{item.reason}</p>}
+              <p>评分用于内容筛选，不代表事实已经核实。</p>
+            </div>
+          </details>}
+          {group && showSources && <GroupButton group={group} filters={filters} parentId={item.id} />}
+        </div>
+      </footer>
     </article>
   );
 });

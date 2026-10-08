@@ -1,0 +1,55 @@
+/* Mobile reading hierarchy, scoped to the overview so other feeds and desktop stay unchanged. */
+@media (max-width: 960px) {
+  .home-overview { padding: 8px 4px 24px; }
+  .home-overview > header { margin-bottom: 24px; }
+  .home-overview > header h1 { font-size: 28px; }
+  .home-overview .radar-overview { margin-block: 40px; }
+  .home-overview .radar-overview > :not(:last-child) { margin-block-end: 40px; }
+  .home-overview #radar-focus,
+  .home-overview #radar-matches,
+  .home-overview #featured-updates { font-size: 21px; letter-spacing: -0.02em; }
+  .home-overview .focus-heading { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 20px; }
+  .home-overview .focus-heading > span { font-size: 13px; }
+  .home-overview .focus-story { padding: 22px 20px; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
+  .home-overview .focus-list { display: flex; flex-direction: column; gap: 20px; }
+  .home-overview .focus-title { font-size: 22px; line-height: 1.6; margin-top: 16px; }
+  .home-overview .focus-list .focus-title { font-size: 18px; }
+  .home-overview .focus-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; font-size: 15px; line-height: 1.85; margin-top: 12px; }
+  .home-overview .focus-story:has(> .focus-details[open]) .focus-summary { display: block; -webkit-line-clamp: unset; }
+  .home-overview .focus-details { margin-top: 16px; }
+  .home-overview #match-score-rail { gap: 16px; padding-bottom: 8px; align-items: stretch; }
+  .home-overview .match-score-card { display: flex; flex-direction: column; }
+  .home-overview .match-score-content { flex: 1; padding: 22px 20px 12px; }
+  .home-overview .match-score-card > a { min-height: 48px; font-size: 13px; }
+  .home-overview #featured-updates { margin-bottom: 24px; padding-bottom: 0; border: 0; }
+  .home-overview [aria-labelledby="featured-updates"] { margin-top: 40px; }
+  .home-overview [aria-labelledby="featured-updates"] [data-card-key] { margin-inline: 0; padding-inline: 0; margin-bottom: 20px; }
+  .home-overview [aria-labelledby="featured-updates"] [data-card-key] > div { border: 0; padding: 0; }
+  .home-overview [aria-labelledby="featured-updates"] [data-item-id] { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
+  .home-overview .feed-meta { flex-wrap: nowrap; gap: 8px; }
+  .home-overview .feed-source { flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; font-size: 12.5px; }
+  .home-overview .feed-source > span { color: var(--ink-3); }
+  .home-overview .feed-star { margin: -8px -8px -8px 0; }
+  .home-overview .feed-header-time,
+  .home-overview .feed-mobile-score,
+  .home-overview .feed-reason { display: none; }
+  .home-overview .feed-headline { -webkit-line-clamp: 3; font-size: 18px; line-height: 1.6; margin-top: 14px; }
+  .home-overview .feed-summary { font-size: 15px; line-height: 1.8; margin-top: 10px; color: var(--ink-2); }
+  .home-overview .feed-footer { margin-top: 16px; }
+  .home-overview .feed-footer-time { display: block; line-height: 1.6; }
+  .home-overview .feed-mobile-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 20px; margin-top: 4px; }
+  .home-overview .feed-review { display: block; min-width: 0; }
+  .home-overview .feed-review[open] { flex-basis: 100%; }
+  .home-overview .feed-review > summary { cursor: pointer; }
+  .home-overview .feed-group-button { width: auto; margin-top: 0; padding: 0; gap: 8px; background: transparent; color: var(--ink-3); }
+}
+
+@media (max-width: 640px) {
+  .home-overview [aria-labelledby="hot-topics"] { margin-bottom: 0; padding: 16px 18px 8px; background-image: none; box-shadow: none; }
+  .home-overview #hot-topics { font-size: 19px; }
+  .home-overview #hot-topics .animate-ping { display: none; }
+  .home-overview [aria-labelledby="hot-topics"] > div { margin-bottom: 8px; }
+  .home-overview .hot-ranking-row { grid-template-columns: 18px minmax(0, 1fr); min-height: 56px; padding-block: 12px; gap: 12px; }
+  .home-overview .hot-ranking-title { -webkit-line-clamp: 2; font-size: 15.5px; line-height: 1.65; }
+  .home-overview .hot-ranking-signal { display: none; }
+}

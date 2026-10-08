@@ -47,15 +47,15 @@ export function RadarMaterialArticle({ item, omitTitle = false, omitSummary = fa
 
 function Topic({ topic, lead = false }: { topic: RadarTopic; lead?: boolean }) {
   const first = topic.materials[0];
-  return <article className={lead ? 'min-w-0 rounded-card border border-line bg-surface p-5 sm:p-6' : 'min-w-0 border-b border-line py-5 first:pt-0 last:border-0 last:pb-0'}>
-    <div className="flex flex-wrap items-center gap-2 text-[12px] text-ink-3">
+  return <article className={`focus-story ${lead ? 'min-w-0 rounded-card border border-line bg-surface p-5 sm:p-6' : 'min-w-0 border-b border-line py-5 first:pt-0 last:border-0 last:pb-0'}`}>
+    <div className="focus-meta flex flex-wrap items-center gap-2 text-[12px] text-ink-3">
       {first && <ClaimLabel item={first} />}
       <span>{topic.materials.length} 条来源</span>
       <time dateTime={topic.updatedAt}>{timeOf(topic.updatedAt)}</time>
     </div>
-    <h3 className={`mt-3 font-semibold text-ink ${lead ? 'max-w-[28em] text-[23px] leading-[1.5] tracking-tight sm:text-[26px]' : 'text-[17px] leading-relaxed'}`}>{topic.title}</h3>
-    {first && <p className={`mt-3 text-ink-2 ${lead ? 'max-w-[65ch] text-[14px] leading-[1.9]' : 'line-clamp-3 text-[13px] leading-[1.85]'}`}>{first.summary}</p>}
-    <details className="disclosure group/topic mt-3">
+    <h3 className={`focus-title mt-3 font-semibold text-ink ${lead ? 'max-w-[28em] text-[23px] leading-[1.5] tracking-tight sm:text-[26px]' : 'text-[17px] leading-relaxed'}`}>{topic.title}</h3>
+    {first && <p className={`focus-summary mt-3 text-ink-2 ${lead ? 'max-w-[65ch] text-[14px] leading-[1.9]' : 'line-clamp-3 text-[13px] leading-[1.85]'}`}>{first.summary}</p>}
+    <details className="focus-details disclosure group/topic mt-3">
       <summary className="flex min-h-11 w-fit items-center gap-2 rounded-control text-[13px] font-medium text-accent hover:text-accent-ink">
         查看来源与观点 <IconChevronDown size={15} className="transition-transform group-open/topic:rotate-180" />
       </summary>
@@ -110,8 +110,8 @@ function MatchTimeline({ match }: { match: RadarMatch }) {
 function MatchRadar({ match, expanded, onToggle }: { match: RadarMatch; expanded: boolean; onToggle: () => void }) {
   const teams = [match.home, match.away];
   const scored = match.status === 'live' || match.status === 'finished';
-  return <section className="w-[272px] shrink-0 snap-start rounded-card border border-line bg-surface sm:w-[292px]">
-    <div className="p-5 pb-2">
+  return <section className="match-score-card w-[272px] shrink-0 snap-start rounded-card border border-line bg-surface sm:w-[292px]">
+    <div className="match-score-content p-5 pb-2">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-[12px] text-ink-3">
         <span className={match.status === 'live' ? 'font-medium text-accent' : ''}>{STATUS[match.status] ?? match.status}</span>
         <span>{match.scheduledAt && `${timeOf(match.scheduledAt)} · `}BO{match.bo ?? '?'}</span>
@@ -122,7 +122,7 @@ function MatchRadar({ match, expanded, onToggle }: { match: RadarMatch; expanded
           <span className={`num text-[28px] font-semibold leading-none ${scored && (i === 0 ? match.homeScore > match.awayScore : match.awayScore > match.homeScore) ? 'text-accent' : 'text-ink-3'}`}>{scored ? (i === 0 ? match.homeScore : match.awayScore) : '·'}</span>
         </span>)}
       </h3>
-      <button type="button" onClick={onToggle} aria-expanded={expanded} aria-controls="match-quick-timeline" aria-label={`${expanded ? '收起' : '展开'} ${match.title} 时间线`} className="mt-3 flex min-h-11 w-full items-center justify-between gap-2 text-left text-[12px] text-ink-3 hover:text-accent">
+      <button type="button" onClick={onToggle} aria-expanded={expanded} aria-controls="match-quick-timeline" aria-label={`${expanded ? '收起' : '展开'} ${match.title} 时间线`} className="match-timeline-toggle mt-3 flex min-h-11 w-full items-center justify-between gap-2 text-left text-[12px] text-ink-3 hover:text-accent">
         <span>{expanded ? '收起' : '展开'}时间线 · {match.materials.length} 条报道</span><IconChevronDown size={16} className={`transition-transform motion-reduce:transition-none ${expanded ? 'rotate-180' : ''}`} />
       </button>
     </div>
@@ -137,7 +137,7 @@ function MatchCarousel({ matches }: { matches: RadarMatch[] }) {
   const scroll = (direction: number) => {
     const element = rail.current;
     if (!element) return;
-    const step = (element.firstElementChild?.getBoundingClientRect().width ?? 292) + 12;
+    const step = (element.firstElementChild?.getBoundingClientRect().width ?? 292) + parseFloat(window.getComputedStyle(element).columnGap);
     element.scrollBy({ left: direction * step, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
   return <section aria-labelledby="radar-matches">
@@ -164,13 +164,13 @@ function MatchCarousel({ matches }: { matches: RadarMatch[] }) {
 export function ContentRadar({ radar }: { radar: RadarResponse }) {
   const [lead, ...topics] = radar.topics;
   const empty = !lead && !radar.matches.length;
-  return <section aria-label="KPL内容雷达" className="my-6 space-y-7 sm:space-y-8">
+  return <section aria-label="KPL内容雷达" className="radar-overview my-6 space-y-7 sm:space-y-8">
 
     {lead && <section aria-labelledby="radar-focus">
-      <div className="mb-4 flex items-baseline gap-3"><h2 id="radar-focus" className="text-[18px] font-semibold text-ink">圈内焦点</h2><span className="text-[12px] text-ink-3">近期最值得关注的讨论</span></div>
+      <div className="focus-heading mb-4 flex items-baseline gap-3"><h2 id="radar-focus" className="text-[18px] font-semibold text-ink">圈内焦点</h2><span className="text-[12px] text-ink-3">近期最值得关注的讨论</span></div>
       <div className={topics.length ? 'grid items-start gap-6 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-8' : ''}>
         <Topic topic={lead} lead />
-        {topics.length > 0 && <div className="divide-y divide-line">{topics.map(topic => <Topic key={topic.id} topic={topic} />)}</div>}
+        {topics.length > 0 && <div className="focus-list divide-y divide-line">{topics.map(topic => <Topic key={topic.id} topic={topic} />)}</div>}
       </div>
     </section>}
 

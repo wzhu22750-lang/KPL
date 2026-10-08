@@ -23,6 +23,8 @@ import type {
   TeamSummary,
 } from "@aihot/contracts/kpl";
 import { cached, cachedByKey } from "../lib/cache.ts";
+import { standingsRules } from "@aihot/industry/standings";
+import { calculateStandings, validStandingResult, type StandingsMatch } from "./standings.ts";
 
 interface MatchRowRaw {
   id: string; season_id: string; season_name: string; stage: string | null; bo: number | null; status: string;
@@ -1015,24 +1017,14 @@ async function fetchStandingsRaw(opts?: { season?: string; stage?: string }): Pr
   if (opts?.season) {
     const matched = availableSeasons.find((s) => s.id === opts.season || s.externalId === opts.season);
     if (matched) selectedSeason = matched;
-  } else {
-    const [regularRow] = await sql<{ season_id: string }[]>`
-      SELECT season_id FROM matches
-      WHERE stage LIKE '%常规赛%'
-      ORDER BY played_at DESC NULLS LAST
-      LIMIT 1`;
-    if (regularRow) {
-      const matched = availableSeasons.find((s) => s.id === regularRow.season_id);
-      if (matched) selectedSeason = matched;
-    }
   }
 
   const stagesRows = await sql<{ stage: string; count: string }[]>`
     SELECT stage, count(*) AS count
     FROM matches
-    WHERE season_id = ${selectedSeason.id} AND stage IS NOT NULL AND status = 'finished'
+    WHERE season_id = ${selectedSeason.id} AND stage IS NOT NULL AND status != 'cancelled'
     GROUP BY stage
-    ORDER BY max(played_at) ASC NULLS LAST`;
+    ORDER BY min(coalesce(played_at, scheduled_at)) ASC NULLS LAST, stage ASC`;
 
   const stages = stagesRows.map((r) => r.stage);
   if (stages.length === 0) {
@@ -1047,163 +1039,49 @@ async function fetchStandingsRaw(opts?: { season?: string; stage?: string }): Pr
 
   let currentStage = opts?.stage;
   if (!currentStage || !stages.includes(currentStage)) {
-    if (stages.includes("常规赛第二轮")) currentStage = "常规赛第二轮";
-    else if (stages.includes("常规赛第一轮")) currentStage = "常规赛第一轮";
-    else currentStage = stages[0];
+    const [latest] = await sql<{ stage: string }[]>`
+      SELECT stage FROM matches
+      WHERE season_id = ${selectedSeason.id} AND stage IS NOT NULL
+        AND status IN ('finished', 'live')
+      ORDER BY coalesce(played_at, scheduled_at) DESC NULLS LAST, id DESC LIMIT 1`;
+    currentStage = latest?.stage ?? stages[0];
   }
 
   const stageMatches = await sql<MatchRowRaw[]>`
     ${MATCH_SELECT}
     WHERE m.season_id = ${selectedSeason.id}
       AND m.stage = ${currentStage}
-      AND m.status = 'finished'
-    ORDER BY m.played_at ASC, m.scheduled_at ASC`;
+      AND m.status != 'cancelled'
+    ORDER BY coalesce(m.played_at, m.scheduled_at) ASC NULLS LAST, m.id ASC`;
 
-  const adj = new Map<string, Set<string>>();
-  const teamsMap = new Map<
-    string,
-    {
-      team: TeamSummary;
-      matchesPlayed: number;
-      wins: number;
-      losses: number;
-      gamesWon: number;
-      gamesLost: number;
-      recent: boolean[];
-    }
-  >();
-
-  for (const m of stageMatches) {
-    for (const [id, slug, name, shortName, logo, isHome] of [
-      [m.team_a_id, m.a_slug, m.a_name, m.a_short, m.a_logo, true],
-      [m.team_b_id, m.b_slug, m.b_name, m.b_short, m.b_logo, false],
-    ] as const) {
-      if (!adj.has(id)) adj.set(id, new Set());
-      if (!teamsMap.has(id)) {
-        teamsMap.set(id, {
-          team: { slug, name, shortName, logo },
-          matchesPlayed: 0,
-          wins: 0,
-          losses: 0,
-          gamesWon: 0,
-          gamesLost: 0,
-          recent: [],
-        });
-      }
-      const data = teamsMap.get(id)!;
-      data.matchesPlayed++;
-      const won = m.winner_id === id;
-      if (won) {
-        data.wins++;
-        data.recent.push(true);
-      } else {
-        data.losses++;
-        data.recent.push(false);
-      }
-      data.gamesWon += isHome ? m.score_a : m.score_b;
-      data.gamesLost += isHome ? m.score_b : m.score_a;
-    }
-    adj.get(m.team_a_id)?.add(m.team_b_id);
-    adj.get(m.team_b_id)?.add(m.team_a_id);
-  }
-
-  const visited = new Set<string>();
-  const connectedGroups: string[][] = [];
-  for (const teamId of adj.keys()) {
-    if (visited.has(teamId)) continue;
-    const group: string[] = [];
-    const queue = [teamId];
-    visited.add(teamId);
-    while (queue.length > 0) {
-      const cur = queue.pop()!;
-      group.push(cur);
-      const neighbors = adj.get(cur);
-      if (neighbors) {
-        for (const n of neighbors) {
-          if (!visited.has(n)) {
-            visited.add(n);
-            queue.push(n);
-          }
-        }
-      }
-    }
-    connectedGroups.push(group);
-  }
-
+  const matches: StandingsMatch[] = stageMatches.map(m => ({
+    id: m.id,
+    home: { slug: m.a_slug, name: m.a_name, shortName: m.a_short, logo: m.a_logo },
+    away: { slug: m.b_slug, name: m.b_name, shortName: m.b_short, logo: m.b_logo },
+    scoreA: m.score_a, scoreB: m.score_b, status: m.status, bo: m.bo,
+    winner: m.winner_id === m.team_a_id ? m.a_slug : m.winner_id === m.team_b_id ? m.b_slug : null,
+  }));
+  const rules = standingsRules(selectedSeason.externalId, currentStage);
+  const teams = new Map(matches.flatMap(m => [[m.home.slug, m.home], [m.away.slug, m.away]] as const));
   const standingsByGroup: Record<string, StandingRow[]> = {};
-
-  const buildGroupRows = (teamIds: string[], groupName: 'S' | 'A' | 'B' | '季后赛' | '总榜'): StandingRow[] => {
-    const list = teamIds.map((id) => {
-      const d = teamsMap.get(id)!;
-      const gameDiff = d.gamesWon - d.gamesLost;
-      const winRate = d.matchesPlayed > 0 ? Math.round((d.wins / d.matchesPlayed) * 1000) / 1000 : 0;
-      let streak = "-";
-      if (d.recent.length > 0) {
-        const last = d.recent[d.recent.length - 1];
-        let cnt = 0;
-        for (let i = d.recent.length - 1; i >= 0; i--) {
-          if (d.recent[i] === last) cnt++;
-          else break;
-        }
-        streak = `${cnt}${last ? "连胜" : "连败"}`;
-      }
-      return {
-        team: d.team,
-        group: groupName,
-        stageName: currentStage,
-        matchesPlayed: d.matchesPlayed,
-        wins: d.wins,
-        losses: d.losses,
-        winRate,
-        gamesWon: d.gamesWon,
-        gamesLost: d.gamesLost,
-        gameDiff,
-        points: d.wins,
-        streak,
-      };
-    });
-
-    list.sort((a, b) => b.points - a.points || b.gameDiff - a.gameDiff || b.gamesWon - a.gamesWon);
-    return list.map((item, idx) => ({ ...item, rank: idx + 1 }));
-  };
-
-  if (currentStage.includes("第二轮") && connectedGroups.length === 3) {
-    const groupTags = connectedGroups.map((g) => {
-      const slugs = g.map((id) => teamsMap.get(id)?.team.slug ?? "");
-      let sScore = 0;
-      if (slugs.includes("wolves")) sScore += 5;
-      if (slugs.includes("wb")) sScore += 5;
-      if (slugs.includes("ksg")) sScore += 4;
-      if (slugs.includes("ag")) sScore += 3;
-      if (slugs.includes("jdg")) sScore += 3;
-      if (slugs.includes("drg")) sScore += 1;
-      return { g, sScore };
-    });
-    groupTags.sort((a, b) => b.sScore - a.sScore);
-
-    standingsByGroup["S组"] = buildGroupRows(groupTags[0].g, "S");
-    standingsByGroup["A组"] = buildGroupRows(groupTags[1].g, "A");
-    standingsByGroup["B组"] = buildGroupRows(groupTags[2].g, "B");
-  } else if (currentStage.includes("第三轮") && connectedGroups.length === 2) {
-    const groupTags = connectedGroups.map((g) => {
-      const slugs = g.map((id) => teamsMap.get(id)?.team.slug ?? "");
-      const sScore = (slugs.includes("wolves") ? 5 : 0) + (slugs.includes("ag") ? 5 : 0);
-      return { g, sScore };
-    });
-    groupTags.sort((a, b) => b.sScore - a.sScore);
-    standingsByGroup["S组"] = buildGroupRows(groupTags[0].g, "S");
-    standingsByGroup["A组"] = buildGroupRows(groupTags[1].g, "A");
-  } else if (connectedGroups.length > 1) {
-    connectedGroups.forEach((g, idx) => {
-      const name = `${idx + 1}组`;
-      standingsByGroup[name] = buildGroupRows(g, "总榜");
-    });
-  } else if (connectedGroups.length === 1) {
-    const isPlayoffs = currentStage.includes("季后赛") || currentStage.includes("决赛");
-    standingsByGroup[isPlayoffs ? "季后赛" : "总榜"] = buildGroupRows(connectedGroups[0], isPlayoffs ? "季后赛" : "总榜");
+  const notes = ['仅统计本赛段已完赛且比分、胜方一致的比赛；胜一场积 1 分，按积分、净胜局排序。同分同净胜局暂列并列，最终顺位以官方裁定为准。'];
+  if (rules) {
+    const slugs = Object.values(rules.groups).flat();
+    const roster = await sql<{ slug: string; name: string; short_name: string | null; logo_url: string | null }[]>`
+      SELECT slug, name, short_name, logo_url FROM teams WHERE slug IN ${sql(slugs)}`;
+    for (const t of roster) teams.set(t.slug, { slug: t.slug, name: t.name, shortName: t.short_name, logo: t.logo_url });
+    for (const [group, members] of Object.entries(rules.groups)) {
+      standingsByGroup[group] = calculateStandings(matches, members.flatMap(slug => teams.has(slug) ? [teams.get(slug)!] : []), group, currentStage);
+    }
+    if (slugs.some(slug => !teams.has(slug))) notes.push('部分参赛战队档案尚未入库，名单展示不完整。');
+    if (matches.some(m => !slugs.includes(m.home.slug) || !slugs.includes(m.away.slug))) notes.push('赛程存在不在已核实分组名单中的战队，请复核分组资料。');
   } else {
-    standingsByGroup["总榜"] = [];
+    // 对局关系不能证明官方组别，尤其年总是组外循环。缺名单时只展示战绩汇总。
+    standingsByGroup['战绩汇总（分组待核实）'] = calculateStandings(matches, [...teams.values()], '总榜', currentStage);
+    notes.push('本赛段尚无已核实的官方分组资料，暂展示战绩汇总，不代表官方积分排名或晋级顺位。');
   }
+  const invalidCount = matches.filter(m => m.status === 'finished' && !validStandingResult(m)).length;
+  if (invalidCount) notes.push(`${invalidCount} 场完赛记录的比分或胜方不完整，暂未计入统计。`);
 
   return {
     season: { id: selectedSeason.id, name: selectedSeason.name, year: selectedSeason.year },
@@ -1211,6 +1089,9 @@ async function fetchStandingsRaw(opts?: { season?: string; stage?: string }): Pr
     currentStage,
     stages,
     standingsByGroup,
+    notes,
+    rulesDescription: rules?.description ?? null,
+    rulesSourceUrl: rules?.sourceUrl ?? null,
   };
 }
 
@@ -1220,7 +1101,7 @@ const cachedStandings = cachedByKey<string, StandingsResponse | null>(
     const [season, stage] = key.split("::");
     return fetchStandingsRaw({ season: season || undefined, stage: stage || undefined });
   },
-  { freshMs: 15 * 60_000, maxStaleMs: 60 * 60_000, maxKeys: 40 }
+  { freshMs: 60_000, maxStaleMs: 5 * 60_000, maxKeys: 40 }
 );
 
 export async function loadStandings(opts?: { season?: string; stage?: string }): Promise<StandingsResponse | null> {
