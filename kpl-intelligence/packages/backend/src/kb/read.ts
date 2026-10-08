@@ -1,9 +1,11 @@
 // KPL 知识库的公开读取函数：网站 API（apps/api site 路由）读这里。
 // 全部参数绑定；只读 kb 表，不碰 articles/publications（新闻侧走 publication/ 的读取层）。
 import { sql } from "../db.ts";
+import { beijingDate, beijingMidnight } from "@aihot/contracts/time";
 import type {
   AvailableSeason,
   BpStep,
+  DayScheduleResponse,
   GameDetail,
   GamePlayerRow,
   H2HResponse,
@@ -11,6 +13,9 @@ import type {
   HeroListItem,
   HeroListResponse,
   MatchBattleVideoItem,
+  MatchCardResponse,
+  MatchCardStory,
+  MatchCardTimelineItem,
   MatchDetailResponse,
   MatchSummary,
   PlayerHeroStat,
@@ -164,6 +169,26 @@ const cachedSchedule = cachedByKey<string, ScheduleResponse>(
 
 export async function loadSchedule(opts: { season?: string | null; team?: string | null; upcoming?: boolean; limit?: number }): Promise<ScheduleResponse> {
   return cachedSchedule(`${opts.season ?? ""}::${opts.team ?? ""}::${opts.upcoming ? "1" : "0"}::${opts.limit ?? 60}`);
+}
+
+/**
+ * 首页“今日比赛”（P4）：北京时间当日的 scheduled/live/finished 比赛，按开赛时间排序；
+ * 今日无比赛（休赛期）时回退到最近 5 场（loadUpcomingAndRecent 的语义），并标记 fallback。
+ */
+export async function loadTodaySchedule(limit = 5): Promise<DayScheduleResponse> {
+  const day = beijingDate(new Date());
+  const start = Math.floor(beijingMidnight(day).getTime() / 1000);
+  const rows = await sql<MatchRowRaw[]>`
+    ${MATCH_SELECT}
+    WHERE m.status IN ('scheduled', 'live', 'finished')
+      AND coalesce(m.scheduled_at, m.played_at) >= to_timestamp(${start})
+      AND coalesce(m.scheduled_at, m.played_at) < to_timestamp(${start + 86_400})
+    ORDER BY m.scheduled_at ASC NULLS LAST, m.played_at ASC NULLS LAST
+    LIMIT ${Math.min(Math.max(limit, 1), 20)}`;
+  if (rows.length > 0) {
+    return { season: null, availableSeasons: [], matches: rows.map(toScheduleMatch), day, fallback: false };
+  }
+  return { season: null, availableSeasons: [], matches: await loadUpcomingAndRecent(limit), day, fallback: true };
 }
 
 /** 首页的“今日赛事”：有临近赛程时显示未来的比赛；休赛期回退到最近已赛的比赛。 */
@@ -352,6 +377,53 @@ export async function loadMatchDetail(id: string): Promise<MatchDetailResponse |
     games: [...byGame.values()],
     videos,
   };
+}
+
+/**
+ * P2 比赛主卡：match + games + match_story_links 关联的 stories + 按局次/时间组织的时间线。
+ * stories 只读 match_story_links（P2 建的桥）与 stories 表；时间线保留发布时间与发现时间。
+ */
+export async function loadMatchCard(id: string): Promise<MatchCardResponse | null> {
+  const detail = await loadMatchDetail(id);
+  if (!detail) return null;
+  const links = await sql<{
+    game_no: number | null; link_type: "series" | "game" | "node";
+    public_id: string; title: string; first_report_at: Date | null; latest_at: Date | null;
+    published_at: Date | null; discovered_at: Date | null;
+  }[]>`
+    SELECT l.game_no, l.link_type, s.public_id::text, s.title, s.first_report_at, s.latest_at,
+      (SELECT min(a.published_at) FROM facts f JOIN fact_articles fa ON fa.fact_id = f.id
+        JOIN articles a ON a.id = fa.article_id
+        WHERE f.story_id = s.id AND fa.role IN ('primary', 'report')) AS published_at,
+      (SELECT min(a.discovered_at) FROM facts f JOIN fact_articles fa ON fa.fact_id = f.id
+        JOIN articles a ON a.id = fa.article_id
+        WHERE f.story_id = s.id AND fa.role IN ('primary', 'report')) AS discovered_at
+    FROM match_story_links l JOIN stories s ON s.id = l.story_id
+    WHERE l.match_id = ${id} AND s.merged_into IS NULL
+    ORDER BY l.game_no NULLS LAST, s.first_report_at NULLS LAST`;
+  const stories: MatchCardStory[] = links.map((l) => ({
+    story: {
+      publicId: l.public_id, title: l.title,
+      firstReportAt: iso(l.first_report_at), latestAt: iso(l.latest_at),
+    },
+    gameNo: l.game_no, linkType: l.link_type,
+  }));
+  // 时间线：小局按局次，局级报道跟在对应小局之后，整场级报道按发布时间排在最后。
+  const timeline: MatchCardTimelineItem[] = [
+    ...detail.games.map((g): MatchCardTimelineItem => ({
+      kind: "game", gameNo: g.gameNo, title: `第 ${g.gameNo} 局`, winner: g.winner,
+      storyPublicId: null, linkType: null, publishedAt: null, discoveredAt: null,
+    })),
+    ...links.map((l): MatchCardTimelineItem => ({
+      kind: "story", gameNo: l.game_no, title: l.title, winner: null,
+      storyPublicId: l.public_id, linkType: l.link_type,
+      publishedAt: iso(l.published_at), discoveredAt: iso(l.discovered_at),
+    })),
+  ].sort((a, b) =>
+    (a.gameNo ?? Number.MAX_SAFE_INTEGER) - (b.gameNo ?? Number.MAX_SAFE_INTEGER) ||
+    (a.kind === b.kind ? 0 : a.kind === "game" ? -1 : 1) ||
+    (a.publishedAt ?? "").localeCompare(b.publishedAt ?? ""));
+  return { match: detail.match, games: detail.games, stories, timeline };
 }
 
 async function fetchPlayerDetailRaw(slug: string) {
