@@ -1,0 +1,41 @@
+✔ public route subsets produce the same complete navigation data; old filters redirect to all (673.976875ms)
+✔ homepage retains the current hot strip above radar without returning the old timeline (90.48275ms)
+✔ an unavailable hot strip never hides the remaining homepage (18.81975ms)
+✔ HTML and navigation share freshness; cookies do not personalize public results (47.539708ms)
+✔ missing routes cannot be hidden by a root-only request; errors and redirects stay uncached (55.178417ms)
+✔ admin data and actions never become public cache entries (7.076875ms)
+✔ browser freshness shares the selected deadline, including slow sibling loaders (2358.616ms)
+✔ a shared cache may keep an item page longer than browsers (8.5235ms)
+✔ browser caching preserves noindex and private sign-in responses (29.32125ms)
+✔ a visitor cannot name its own address to the api without a trusted proxy in front (9.652917ms)
+✔ import keeps bookmarks with invalid dates and persists displayable replacements (45.898834ms)
+✔ stored bookmarks with damaged dates remain readable, exportable and removable (5.504625ms)
+✔ valid dates are preserved and an import cannot replace an existing bookmark (2.972041ms)
+✔ a cached tab merges newer saved bookmarks and read marks before writing (5.643541ms)
+✔ failed bookmark writes and damaged existing data do not report a successful toggle (5.245042ms)
+✔ a link to the site's own address becomes an in-site path (45.204875ms)
+✔ any other address opens in a new tab (0.266875ms)
+✔ match reports show all sources newest first, leaving unknown timestamps last without mutating inputs (4.840875ms)
+✔ game filters use exact stored association; unknown game reports stay separate (0.144166ms)
+✔ production SSR daily masthead shows 405 instead of the navigation length (686.711875ms)
+✔ production SSR daily oldest detail retains its own first issue number (33.584208ms)
+✔ production SSR weekly masthead shows 405 instead of the navigation length (68.891375ms)
+✔ production SSR weekly oldest detail retains its own first issue number (42.311ms)
+✔ production SSR monthly masthead shows 405 instead of the navigation length (24.794667ms)
+✔ production SSR monthly oldest detail retains its own first issue number (21.7315ms)
+✔ daily calendar keeps the current old issue number without inventing other old issues (0.757958ms)
+✔ daily known entries without numbers stay published without length-based fallback (0.205875ms)
+✔ weekly calendar keeps the current old issue number without inventing other old issues (0.932042ms)
+✔ weekly known entries without numbers stay published without length-based fallback (0.27275ms)
+✔ monthly calendar keeps the current old issue number without inventing other old issues (0.217417ms)
+✔ monthly known entries without numbers stay published without length-based fallback (0.048875ms)
+✔ public and admin loaders forward cancellation without turning it into a 503 (1646.082542ms)
+✔ history cache batches writes and survives eviction, expiry and storage denial (82.216084ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3790.621083

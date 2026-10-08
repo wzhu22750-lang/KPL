@@ -1,0 +1,37 @@
+✔ public route subsets produce the same complete navigation data; filters still differ (676.517917ms)
+✔ HTML and navigation share freshness; cookies do not personalize public results (68.44375ms)
+✔ missing routes cannot be hidden by a root-only request; errors and redirects stay uncached (67.235166ms)
+✔ admin data and actions never become public cache entries (8.615917ms)
+✔ browser freshness shares the selected deadline, including slow sibling loaders (2364.32825ms)
+✔ a shared cache may keep an item page longer than browsers (6.294958ms)
+✔ browser caching preserves noindex and private sign-in responses (19.989917ms)
+✔ a visitor cannot name its own address to the api without a trusted proxy in front (5.939208ms)
+✔ import keeps bookmarks with invalid dates and persists displayable replacements (31.433542ms)
+✔ stored bookmarks with damaged dates remain readable, exportable and removable (3.603458ms)
+✔ valid dates are preserved and an import cannot replace an existing bookmark (2.131458ms)
+✔ a cached tab merges newer saved bookmarks and read marks before writing (1.890667ms)
+✔ failed bookmark writes and damaged existing data do not report a successful toggle (19.793ms)
+✔ a link to the site's own address becomes an in-site path (3.322583ms)
+✔ any other address opens in a new tab (24.364334ms)
+✔ production SSR daily masthead shows 405 instead of the navigation length (608.231958ms)
+✔ production SSR daily oldest detail retains its own first issue number (23.391791ms)
+✔ production SSR weekly masthead shows 405 instead of the navigation length (69.052291ms)
+✔ production SSR weekly oldest detail retains its own first issue number (54.296708ms)
+✔ production SSR monthly masthead shows 405 instead of the navigation length (20.5105ms)
+✔ production SSR monthly oldest detail retains its own first issue number (17.741666ms)
+✔ daily calendar keeps the current old issue number without inventing other old issues (0.8125ms)
+✔ daily known entries without numbers stay published without length-based fallback (0.219583ms)
+✔ weekly calendar keeps the current old issue number without inventing other old issues (2.452833ms)
+✔ weekly known entries without numbers stay published without length-based fallback (1.024791ms)
+✔ monthly calendar keeps the current old issue number without inventing other old issues (0.264625ms)
+✔ monthly known entries without numbers stay published without length-based fallback (0.062458ms)
+✔ public and admin loaders forward cancellation without turning it into a 503 (1652.318875ms)
+✔ history cache batches writes and survives eviction, expiry and storage denial (69.059959ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3652.227875

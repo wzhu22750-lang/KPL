@@ -1,0 +1,422 @@
+- generic [ref=f1e2]:
+  - link "跳到正文" [ref=f1e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=f1e4]:
+    - link "KPL Intelligence 首页" [ref=f1e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=f1e6]:
+        - generic [aria-hidden] [ref=f1e8]: KPL Intelligence
+    - navigation "主导航" [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - generic [ref=f1e11]: 内容
+        - generic [ref=f1e12]:
+          - link "精选" [ref=f1e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=f1e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=f1e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=f1e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=f1e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=f1e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=f1e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=f1e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=f1e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=f1e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=f1e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=f1e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=f1e94]:
+        - generic [ref=f1e95]: 更多
+        - generic [ref=f1e96]:
+          - link "Agent 接入" [ref=f1e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=f1e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=f1e107] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=f1e114] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=f1e120]:
+      - radio "深色" [ref=f1e122] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=f1e126] [cursor=pointer]
+      - radio "浅色" [ref=f1e131] [cursor=pointer]
+  - main [ref=f1e136]:
+    - generic [ref=f1e138]:
+      - link "全部赛程" [ref=f1e139] [cursor=pointer]:
+        - /url: /matches
+      - generic [ref=f1e142]:
+        - generic [ref=f1e143]:
+          - paragraph [ref=f1e144]: 2026年KPL年度总决赛 · 擂台赛 · BO5
+          - time [ref=f1e145]: 10/07 20:00
+        - heading "成都AG超玩会 对阵 杭州LGD.NBW · 比赛档案" [level=1] [ref=f1e146]
+        - generic [ref=f1e147]:
+          - link "成都AG超玩会" [ref=f1e148] [cursor=pointer]:
+            - /url: /teams/ag
+          - generic [ref=f1e151]:
+            - generic [ref=f1e152]: "2 : 3"
+            - generic [ref=f1e153]: 已结束
+          - link "杭州LGD.NBW" [ref=f1e154] [cursor=pointer]:
+            - /url: /teams/lgd-nbw
+        - paragraph [ref=f1e157]: 杭州LGD.NBW 获胜
+      - navigation "比赛档案导航" [ref=f1e158]:
+        - link "对局数据 · 5 局" [ref=f1e159] [cursor=pointer]:
+          - /url: "#game-data"
+        - link "本场报道 · 13 条" [ref=f1e160] [cursor=pointer]:
+          - /url: "#match-news"
+        - link "官方回放 · 5" [ref=f1e161] [cursor=pointer]:
+          - /url: "#match-replays"
+      - generic [ref=f1e162]:
+        - generic [ref=f1e163]:
+          - generic [ref=f1e164]:
+            - heading "对局数据" [level=2] [ref=f1e165]
+            - navigation "选择小局" [ref=f1e166]:
+              - button "G1" [pressed] [ref=f1e167] [cursor=pointer]
+              - button "G2" [ref=f1e168] [cursor=pointer]
+              - button "G3" [ref=f1e169] [cursor=pointer]
+              - button "G4" [ref=f1e170] [cursor=pointer]
+              - button "G5" [ref=f1e171] [cursor=pointer]
+            - article "第 1 局数据" [ref=f1e172]:
+              - generic [ref=f1e173]:
+                - generic [ref=f1e174]:
+                  - heading "第 1 局" [level=3] [ref=f1e175]
+                  - paragraph [ref=f1e176]: 成都AG超玩会 胜
+                - generic [ref=f1e177]:
+                  - paragraph [ref=f1e178]: 时长 17:35
+                  - paragraph [ref=f1e179]: MVP 轩染
+              - generic [ref=f1e180]:
+                - paragraph [ref=f1e181]: 统计顺序：AG / LGD
+                - generic [ref=f1e182]:
+                  - paragraph [ref=f1e183]:
+                    - text: 击杀
+                    - generic [ref=f1e184]: "10 : 12"
+                  - paragraph [ref=f1e185]:
+                    - text: 经济
+                    - generic [ref=f1e186]: "55.1k : 54.4k"
+              - heading "英雄 BP" [level=4] [ref=f1e187]
+              - generic [ref=f1e188]:
+                - generic [ref=f1e189]:
+                  - heading "蓝方 成都AG超玩会" [level=4] [ref=f1e190]:
+                    - generic [ref=f1e191]: 蓝方
+                    - text: 成都AG超玩会
+                  - generic [ref=f1e192]:
+                    - link "盾山 大帅" [ref=f1e193] [cursor=pointer]:
+                      - /url: /heroes/509
+                      - generic [ref=f1e194]: 盾山
+                      - generic [ref=f1e195]: 大帅
+                    - link "武则天 长生" [ref=f1e196] [cursor=pointer]:
+                      - /url: /heroes/136
+                      - generic [ref=f1e197]: 武则天
+                      - generic [ref=f1e198]: 长生
+                    - link "艾琳 一诺" [ref=f1e199] [cursor=pointer]:
+                      - /url: /heroes/155
+                      - generic [ref=f1e200]: 艾琳
+                      - generic [ref=f1e201]: 一诺
+                    - link "镜 钟意" [ref=f1e202] [cursor=pointer]:
+                      - /url: /heroes/531
+                      - generic [ref=f1e203]: 镜
+                      - generic [ref=f1e204]: 钟意
+                    - link "夏洛特 轩染" [ref=f1e205] [cursor=pointer]:
+                      - /url: /heroes/536
+                      - generic [ref=f1e206]: 夏洛特
+                      - generic [ref=f1e207]: 轩染
+                  - generic [ref=f1e208]:
+                    - generic [ref=f1e209]: 禁用
+                    - link "关羽" [ref=f1e210] [cursor=pointer]:
+                      - /url: /heroes/140
+                    - link "敖隐" [ref=f1e211] [cursor=pointer]:
+                      - /url: /heroes/519
+                    - link "心魔六耳" [ref=f1e212] [cursor=pointer]:
+                      - /url: /heroes/549
+                    - link "裴擒虎" [ref=f1e213] [cursor=pointer]:
+                      - /url: /heroes/502
+                    - link "白起" [ref=f1e214] [cursor=pointer]:
+                      - /url: /heroes/120
+                - generic [ref=f1e215]:
+                  - heading "红方 杭州LGD.NBW" [level=4] [ref=f1e216]:
+                    - generic [ref=f1e217]: 红方
+                    - text: 杭州LGD.NBW
+                  - generic [ref=f1e218]:
+                    - link "小乔 NBW.九尾" [ref=f1e219] [cursor=pointer]:
+                      - /url: /heroes/106
+                      - generic [ref=f1e220]: 小乔
+                      - generic [ref=f1e221]: NBW.九尾
+                    - link "钟馗 NBW.小崽" [ref=f1e222] [cursor=pointer]:
+                      - /url: /heroes/175
+                      - generic [ref=f1e223]: 钟馗
+                      - generic [ref=f1e224]: NBW.小崽
+                    - link "戈娅 NBW.小久" [ref=f1e225] [cursor=pointer]:
+                      - /url: /heroes/548
+                      - generic [ref=f1e226]: 戈娅
+                      - generic [ref=f1e227]: NBW.小久
+                    - link "哪吒 NBW.断雨" [ref=f1e228] [cursor=pointer]:
+                      - /url: /heroes/180
+                      - generic [ref=f1e229]: 哪吒
+                      - generic [ref=f1e230]: NBW.断雨
+                    - link "钟无艳 NBW.小落" [ref=f1e231] [cursor=pointer]:
+                      - /url: /heroes/117
+                      - generic [ref=f1e232]: 钟无艳
+                      - generic [ref=f1e233]: NBW.小落
+                  - generic [ref=f1e234]:
+                    - generic [ref=f1e235]: 禁用
+                    - link "鲁班大师" [ref=f1e236] [cursor=pointer]:
+                      - /url: /heroes/525
+                    - link "不知火舞" [ref=f1e237] [cursor=pointer]:
+                      - /url: /heroes/157
+                    - link "司空震" [ref=f1e238] [cursor=pointer]:
+                      - /url: /heroes/537
+                    - link "铠" [ref=f1e239] [cursor=pointer]:
+                      - /url: /heroes/193
+                    - link "曹操" [ref=f1e240] [cursor=pointer]:
+                      - /url: /heroes/128
+              - generic [ref=f1e241]:
+                - heading "选手表现" [level=4] [ref=f1e242]
+                - region "第 1 局选手统计，可横向滚动" [ref=f1e243]:
+                  - table [ref=f1e244]:
+                    - caption [ref=f1e245]: 第 1 局选手数据，按评分排列
+                    - rowgroup [ref=f1e246]:
+                      - row [ref=f1e247]:
+                        - columnheader "选手 / 队伍" [ref=f1e248]
+                        - columnheader "英雄" [ref=f1e249]
+                        - columnheader "K/D/A" [ref=f1e250]
+                        - columnheader "经济" [ref=f1e251]
+                        - columnheader "输出" [ref=f1e252]
+                        - columnheader "评分" [ref=f1e253]
+                    - rowgroup [ref=f1e254]:
+                      - row [ref=f1e255]:
+                        - rowheader "轩染MVP 成都AG超玩会" [ref=f1e256]:
+                          - generic [ref=f1e257]: 轩染MVP
+                          - generic [ref=f1e258]: 成都AG超玩会
+                        - cell [ref=f1e259]:
+                          - link "夏洛特" [ref=f1e260] [cursor=pointer]:
+                            - /url: /heroes/536
+                        - cell "7/0/1" [ref=f1e262]
+                        - cell "12.0k" [ref=f1e263]
+                        - cell "87.9k" [ref=f1e264]
+                        - cell "10.6" [ref=f1e265]
+                      - row [ref=f1e266]:
+                        - rowheader "NBW.小久 杭州LGD.NBW" [ref=f1e267]:
+                          - text: NBW.小久
+                          - generic [ref=f1e268]: 杭州LGD.NBW
+                        - cell [ref=f1e269]:
+                          - link "戈娅" [ref=f1e270] [cursor=pointer]:
+                            - /url: /heroes/548
+                        - cell "2/1/8" [ref=f1e272]
+                        - cell "12.9k" [ref=f1e273]
+                        - cell "92.1k" [ref=f1e274]
+                        - cell "9.2" [ref=f1e275]
+                      - row [ref=f1e276]:
+                        - rowheader "一诺 成都AG超玩会" [ref=f1e277]:
+                          - text: 一诺
+                          - generic [ref=f1e278]: 成都AG超玩会
+                        - cell [ref=f1e279]:
+                          - link "艾琳" [ref=f1e280] [cursor=pointer]:
+                            - /url: /heroes/155
+                        - cell "3/3/5" [ref=f1e282]
+                        - cell "12.4k" [ref=f1e283]
+                        - cell "109.0k" [ref=f1e284]
+                        - cell "8.5" [ref=f1e285]
+                      - row [ref=f1e286]:
+                        - rowheader "NBW.断雨 杭州LGD.NBW" [ref=f1e287]:
+                          - text: NBW.断雨
+                          - generic [ref=f1e288]: 杭州LGD.NBW
+                        - cell [ref=f1e289]:
+                          - link "哪吒" [ref=f1e290] [cursor=pointer]:
+                            - /url: /heroes/180
+                        - cell "4/2/6" [ref=f1e292]
+                        - cell "12.4k" [ref=f1e293]
+                        - cell "92.0k" [ref=f1e294]
+                        - cell "8.3" [ref=f1e295]
+                      - row [ref=f1e296]:
+                        - rowheader "NBW.九尾 杭州LGD.NBW" [ref=f1e297]:
+                          - text: NBW.九尾
+                          - generic [ref=f1e298]: 杭州LGD.NBW
+                        - cell [ref=f1e299]:
+                          - link "小乔" [ref=f1e300] [cursor=pointer]:
+                            - /url: /heroes/106
+                        - cell "3/2/6" [ref=f1e302]
+                        - cell "10.4k" [ref=f1e303]
+                        - cell "81.5k" [ref=f1e304]
+                        - cell "7.5" [ref=f1e305]
+                      - row [ref=f1e306]:
+                        - rowheader "大帅 成都AG超玩会" [ref=f1e307]:
+                          - text: 大帅
+                          - generic [ref=f1e308]: 成都AG超玩会
+                        - cell [ref=f1e309]:
+                          - link "盾山" [ref=f1e310] [cursor=pointer]:
+                            - /url: /heroes/509
+                        - cell "0/4/8" [ref=f1e312]
+                        - cell "8692" [ref=f1e313]
+                        - cell "38.7k" [ref=f1e314]
+                        - cell "6.4" [ref=f1e315]
+                      - row [ref=f1e316]:
+                        - rowheader "NBW.小落 杭州LGD.NBW" [ref=f1e317]:
+                          - text: NBW.小落
+                          - generic [ref=f1e318]: 杭州LGD.NBW
+                        - cell [ref=f1e319]:
+                          - link "钟无艳" [ref=f1e320] [cursor=pointer]:
+                            - /url: /heroes/117
+                        - cell "2/2/5" [ref=f1e322]
+                        - cell "10.4k" [ref=f1e323]
+                        - cell "71.5k" [ref=f1e324]
+                        - cell "6.3" [ref=f1e325]
+                      - row [ref=f1e326]:
+                        - rowheader "NBW.小崽 杭州LGD.NBW" [ref=f1e327]:
+                          - text: NBW.小崽
+                          - generic [ref=f1e328]: 杭州LGD.NBW
+                        - cell [ref=f1e329]:
+                          - link "钟馗" [ref=f1e330] [cursor=pointer]:
+                            - /url: /heroes/175
+                        - cell "1/3/6" [ref=f1e332]
+                        - cell "8475" [ref=f1e333]
+                        - cell "28.1k" [ref=f1e334]
+                        - cell "5.5" [ref=f1e335]
+                      - row [ref=f1e336]:
+                        - rowheader "钟意 成都AG超玩会" [ref=f1e337]:
+                          - text: 钟意
+                          - generic [ref=f1e338]: 成都AG超玩会
+                        - cell [ref=f1e339]:
+                          - link "镜" [ref=f1e340] [cursor=pointer]:
+                            - /url: /heroes/531
+                        - cell "0/3/3" [ref=f1e342]
+                        - cell "12.4k" [ref=f1e343]
+                        - cell "34.7k" [ref=f1e344]
+                        - cell "5.4" [ref=f1e345]
+                      - row [ref=f1e346]:
+                        - rowheader "长生 成都AG超玩会" [ref=f1e347]:
+                          - text: 长生
+                          - generic [ref=f1e348]: 成都AG超玩会
+                        - cell [ref=f1e349]:
+                          - link "武则天" [ref=f1e350] [cursor=pointer]:
+                            - /url: /heroes/136
+                        - cell "0/2/4" [ref=f1e352]
+                        - cell "9608" [ref=f1e353]
+                        - cell "81.1k" [ref=f1e354]
+                        - cell "4.3" [ref=f1e355]
+              - generic [ref=f1e356]:
+                - link "查看本局报道（1）" [ref=f1e357] [cursor=pointer]:
+                  - /url: "#match-news"
+                - link "本局官方回放" [ref=f1e358] [cursor=pointer]:
+                  - /url: https://v.qq.com/x/page/m33371c2vcv.html
+          - generic [ref=f1e361]:
+            - heading "官方回放" [level=2] [ref=f1e362]
+            - generic [ref=f1e363]:
+              - link "G1第 1 局官方高清回放" [ref=f1e364] [cursor=pointer]:
+                - /url: https://v.qq.com/x/page/m33371c2vcv.html
+                - generic [ref=f1e365]:
+                  - generic [ref=f1e366]: G1
+                  - text: 第 1 局官方高清回放
+              - link "G2第 2 局官方高清回放" [ref=f1e369] [cursor=pointer]:
+                - /url: https://v.qq.com/x/page/n3337o3s66h.html
+                - generic [ref=f1e370]:
+                  - generic [ref=f1e371]: G2
+                  - text: 第 2 局官方高清回放
+              - link "G3第 3 局官方高清回放" [ref=f1e374] [cursor=pointer]:
+                - /url: https://v.qq.com/x/page/k3337m6lvhy.html
+                - generic [ref=f1e375]:
+                  - generic [ref=f1e376]: G3
+                  - text: 第 3 局官方高清回放
+              - link "G4第 4 局官方高清回放" [ref=f1e379] [cursor=pointer]:
+                - /url: https://v.qq.com/x/page/v3337p93h9t.html
+                - generic [ref=f1e380]:
+                  - generic [ref=f1e381]: G4
+                  - text: 第 4 局官方高清回放
+              - link "G5第 5 局官方高清回放" [ref=f1e384] [cursor=pointer]:
+                - /url: https://v.qq.com/x/page/c333748jxb5.html
+                - generic [ref=f1e385]:
+                  - generic [ref=f1e386]: G5
+                  - text: 第 5 局官方高清回放
+        - generic [ref=f1e389]:
+          - generic [ref=f1e390]:
+            - heading "本场报道" [level=2] [ref=f1e391]
+            - generic [ref=f1e392]: 13 条 · 最新在前
+          - paragraph [ref=f1e393]: 汇集已采集、已关联且可公开的内容，不代表全网覆盖。
+          - navigation "筛选比赛报道" [ref=f1e394]:
+            - button "全部" [pressed] [ref=f1e395] [cursor=pointer]
+            - button "G1" [ref=f1e396] [cursor=pointer]
+            - button "G2" [ref=f1e397] [cursor=pointer]
+            - button "G3" [ref=f1e398] [cursor=pointer]
+            - button "G4" [ref=f1e399] [cursor=pointer]
+            - button "G5" [ref=f1e400] [cursor=pointer]
+            - button "未分局" [ref=f1e401] [cursor=pointer]
+          - status [ref=f1e402]: 全部关联报道 · 13 条
+          - generic [ref=f1e403]:
+            - article [ref=f1e404]:
+              - generic [ref=f1e405]:
+                - generic [ref=f1e406]: 观点
+                - generic [aria-hidden] [ref=f1e407]: ·
+                - generic [ref=f1e408]: KPL王者荣耀职业联赛（官方微博）
+                - time [ref=f1e409]: 10/07 23:16
+              - link "九尾赛后谈团队状态，也转述小崽被庄周克制的吐槽" [ref=f1e410] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlCnbmNwi
+              - paragraph [ref=f1e413]: LGDNBW战胜AG后，九尾在赛后采访中谈到队伍会互相信任、打得开心，并转述小崽称巅峰赛玩钟馗时被庄周“恶心了”。这是轻松的对局感受分享，没有形成公开争议；片段未提供比赛细节或完整采访。
+              - group [ref=f1e414]:
+                - generic "来源与判断依据" [ref=f1e415] [cursor=pointer]
+            - article [ref=f1e418]:
+              - generic [ref=f1e419]:
+                - generic [ref=f1e420]: 事实陈述
+                - generic [aria-hidden] [ref=f1e421]: ·
+                - generic [ref=f1e422]: KPL王者荣耀职业联赛（官方微博）
+                - generic [ref=f1e423]: 第 5 局
+                - time [ref=f1e424]: 10/07 23:16
+              - link "年度总决赛擂台赛：杭州LGD.NBW连扳三局，2:3逆转成都AG" [ref=f1e425] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlCn95wik
+              - paragraph [ref=f1e428]: 材料称，2026KPL年度总决赛擂台赛W1D6，杭州LGD.NBW以3:2战胜成都AG超玩会，完成让二追三并拿下第五局。第五局中，LGD.NBW在前期团战打出优势，随后连续推进并于19分钟点破水晶；断雨使用橘右京获本局MVP。
+              - group [ref=f1e429]:
+                - generic "来源与判断依据" [ref=f1e430] [cursor=pointer]
+            - article [ref=f1e433]:
+              - generic [ref=f1e434]:
+                - generic [ref=f1e435]: 事实陈述
+                - generic [aria-hidden] [ref=f1e436]: ·
+                - generic [ref=f1e437]: 成都AG超玩会（官方微博）
+                - time [ref=f1e438]: 10/07 23:12
+              - link "年度总决赛擂台赛：成都AG超玩会2:3不敌杭州LGD.NBW" [ref=f1e439] [cursor=pointer]:
+                - /url: https://weibo.com/5878848794/RlCln2oFc
+              - paragraph [ref=f1e442]: 材料称，成都AG超玩会在2026KPL年度总决赛擂台赛中以2:3负于杭州LGD.NBW，并提到轩染和大帅获得胜局MVP。AG表示大师组每一分都重要，队伍将短暂休整，下一场比赛安排在11日。
+              - group [ref=f1e443]:
+                - generic "来源与判断依据" [ref=f1e444] [cursor=pointer]
+            - article [ref=f1e447]:
+              - generic [ref=f1e448]:
+                - generic [ref=f1e449]: 事实陈述
+                - generic [aria-hidden] [ref=f1e450]: ·
+                - generic [ref=f1e451]: KPL王者荣耀职业联赛（官方微博）
+                - generic [ref=f1e452]: 第 5 局
+                - time [ref=f1e453]: 10/07 23:02
+              - link "九尾在年度总决赛擂台赛第五局达成KPL生涯500胜局" [ref=f1e454] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlChj4Dvm
+              - paragraph [ref=f1e457]: 官方发布里程碑信息：2026年KPL年度总决赛擂台赛杭州LGD.NBW对阵成都AG超玩会第五局，九尾使用沈梦溪取得其KPL赛场第500个胜局。原文同时附有关注、转发抽奖活动。
+              - group [ref=f1e458]:
+                - generic "来源与判断依据" [ref=f1e459] [cursor=pointer]
+            - article [ref=f1e462]:
+              - generic [ref=f1e463]:
+                - generic [ref=f1e464]: 事实陈述
+                - generic [aria-hidden] [ref=f1e465]: ·
+                - generic [ref=f1e466]: KPL王者荣耀职业联赛（官方微博）
+                - time [ref=f1e467]: 10/07 22:53
+              - link "九尾沈梦溪越塔三杀，LGD.NBW团战一换五" [ref=f1e468] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlCdKf4tC
+              - paragraph [ref=f1e471]: 材料称，在2026年KPL年度总决赛AG对战LGD.NBW的比赛中，约7分钟LGD.NBW反打追击，九尾使用沈梦溪越塔击杀并拿下三连决胜，随后LGD.NBW团灭对手，打出团战一换五。未提供具体小局或更多比赛背景。
+              - group [ref=f1e472]:
+                - generic "来源与判断依据" [ref=f1e473] [cursor=pointer]
+            - article [ref=f1e476]:
+              - generic [ref=f1e477]:
+                - generic [ref=f1e478]: 事实陈述
+                - generic [aria-hidden] [ref=f1e479]: ·
+                - generic [ref=f1e480]: 成都AG超玩会（官方微博）
+                - generic [ref=f1e481]: 第 5 局
+                - time [ref=f1e482]: 10/07 22:42
+              - link "AG超玩会对阵LGD.NBW，年度总决赛擂台赛进入第五局" [ref=f1e483] [cursor=pointer]:
+                - /url: https://weibo.com/5878848794/RlC9k14D3
+              - paragraph [ref=f1e486]: 材料称，2026KPL年度总决赛擂台赛中，成都AG超玩会对阵杭州LGD.NBW，第五局比赛开始；未提供阵容详情或比赛结果。
+              - group [ref=f1e487]:
+                - generic "来源与判断依据" [ref=f1e488] [cursor=pointer]
+          - button "继续查看报道（7 条）" [ref=f1e491] [cursor=pointer]
+  - button "回到顶部"

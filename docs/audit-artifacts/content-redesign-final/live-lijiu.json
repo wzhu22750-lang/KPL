@@ -1,0 +1,34 @@
+{
+  "sourceId": "weibo-caster-lijiu",
+  "checkedAt": "2026-10-07T18:34:37.421Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 1,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "5687445105",
+    "pages": 1,
+    "extractedMblogs": 1,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": true
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/5687445105/RkFuwijRj",
+      "publishedAt": "2026-10-01T09:22:46.000Z",
+      "author": {
+        "id": "5687445105",
+        "name": "解说李九",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 477,
+        "comments": 18,
+        "shares": 6
+      }
+    }
+  ]
+}

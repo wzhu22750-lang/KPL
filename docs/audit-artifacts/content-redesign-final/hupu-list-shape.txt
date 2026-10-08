@@ -1,0 +1,56 @@
+HTTP 200
+list count 26
+[
+  {
+    "tid": "642813722",
+    "title": "首轮预测",
+    "cover": "",
+    "url": "/642813722.html",
+    "lights": 0,
+    "replies": 0,
+    "read": 137,
+    "createdAt": 1791394615000,
+    "createdAtFormat": "34分钟前",
+    "repliedAt": 1791394615000,
+    "hasVideo": false,
+    "author": {
+      "puid": "99027366",
+      "puname": "虎扑JR0144856656",
+      "url": "https://my.hupu.com/182103053674523"
+    },
+    "topicId": "88",
+    "topic": {
+      "topicId": "88",
+      "name": "王者荣耀",
+      "url": "/kog"
+    },
+    "merge": 1,
+    "mergeTagId": 158400,
+    "foldDesc": "展开1050条 #年总擂台赛排名预测# 相关帖子"
+  },
+  {
+    "tid": "642813789",
+    "title": "感觉现在老一辈教练的bp已经被研究透了",
+    "cover": "",
+    "url": "/642813789.html",
+    "lights": 0,
+    "replies": 0,
+    "read": 462,
+    "createdAt": 1791395305000,
+    "createdAtFormat": "23分钟前",
+    "repliedAt": 1791395305000,
+    "hasVideo": false,
+    "author": {
+      "puid": "118506055",
+      "puname": "虎扑JR0084937611",
+      "url": "https://my.hupu.com/178438952926399"
+    },
+    "topicId": "88",
+    "topic": {
+      "topicId": "88",
+      "name": "王者荣耀",
+      "url": "/kog"
+    },
+    "titleFont": ""
+  }
+]

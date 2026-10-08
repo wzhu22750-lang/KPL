@@ -1,0 +1,28 @@
+(node:57973) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ relevance ranks all candidates, caps the public total at 2000 and keeps empty page totals (293.59825ms)
+✖ site cards omit unread payload while the detail retains its original body (40.940625ms)
+✔ unfiltered single-term relevance combines direct/body scores and retains one-sided and empty matches (39.955708ms)
+✔ v1 search allows terms to match direct text and body, retaining time cursor order and public scope (32.026416ms)
+✔ RSS summary excludes bodies; full RSS includes only licensed items (9.24525ms)
+✔ report directory projection preserves citation order, fallback headlines and absent historical citations (8.48ms)
+﹣ minimal monitor polling version equals the full page across announcement/expiry/outage transitions (0.081ms) # SKIP
+✔ unchanged pool and timeline revalidate with 304 while a content change returns a new body (61.211292ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 1827.112875
+
+✖ failing tests:
+
+test at tests/readpath-performance.test.ts:71:1
+✖ site cards omit unread payload while the detail retains its original body (40.940625ms)
+  TypeError: Cannot read properties of null (reading 'original')
+      at TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/readpath-performance.test.ts:82:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)

@@ -154,7 +154,9 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     ...summary,
     x,
     ...(sameEvent ? { reason: null, sameEvent } : {}),
-    readingMode: isFullAllowed ? "full" : "summary-only",
+    // readingMode is the editorial visibility, not the source's fulltext licence.
+    // An ordinary public page still allows summary export/navigation when its body is withheld.
+    readingMode: "full",
     author: row.author,
     content: toContentView(row),
     body: reading.body,

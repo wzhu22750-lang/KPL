@@ -70,13 +70,15 @@ export function edgeTtl(seconds: number): Record<string, string> {
 
 /**
  * Cache headers for a page of selected items: shared caches keep it at most `maxSeconds`, and never
- * past the absolute deadline the api gave a proxy or CDN in front for its data.
+ * past the earliest absolute deadline the APIs gave a proxy or CDN in front for their data.
  */
-export function apiDeadlineCache(maxSeconds: number, now = Date.now(), upstream?: Headers): Record<string, string> {
+export function apiDeadlineCache(maxSeconds: number, now = Date.now(), upstream?: Headers | readonly Headers[]): Record<string, string> {
   let deadline = Math.floor(now / 1000) + maxSeconds;
-  const sourceDeadline = upstream?.get("X-Accel-Expires");
-  if (sourceDeadline?.startsWith("@")) deadline = Math.min(deadline, Number(sourceDeadline.slice(1)));
-  if (sourceDeadline === "0" || /(?:no-cache|no-store)/i.test(upstream?.get("Cache-Control") ?? "")) deadline = Math.floor(now / 1000);
+  for (const source of upstream instanceof Headers ? [upstream] : upstream ?? []) {
+    const sourceDeadline = source.get("X-Accel-Expires");
+    if (sourceDeadline?.startsWith("@")) deadline = Math.min(deadline, Number(sourceDeadline.slice(1)));
+    if (sourceDeadline === "0" || /(?:no-cache|no-store)/i.test(source.get("Cache-Control") ?? "")) deadline = Math.floor(now / 1000);
+  }
   const seconds = Math.max(0, Math.floor(deadline - now / 1000));
   return seconds > 0 ? { ...edgeTtl(seconds), "X-Accel-Expires": `@${deadline}` } : { "Cache-Control": "no-cache", "X-Accel-Expires": "0" };
 }

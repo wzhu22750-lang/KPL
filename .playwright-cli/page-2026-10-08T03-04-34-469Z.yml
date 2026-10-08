@@ -1,0 +1,861 @@
+- generic [ref=f1e2]:
+  - link "跳到正文" [ref=f1e3] [cursor=pointer]:
+    - /url: "#main"
+  - main [ref=f1e4]:
+    - generic [ref=f1e6]:
+      - generic [ref=f1e8]:
+        - button "赛程" [ref=f1e10] [cursor=pointer]
+        - generic [ref=f1e14]: 成都AG超玩会 vs 杭州LGD.NBW
+      - generic [ref=f1e16]:
+        - paragraph [ref=f1e17]: 2026年KPL年度总决赛 · 擂台赛 · BO5
+        - generic [ref=f1e18]:
+          - link "成都AG超玩会" [ref=f1e19] [cursor=pointer]:
+            - /url: /teams/ag
+          - generic [ref=f1e21]: "2 : 3"
+          - link "杭州LGD.NBW" [ref=f1e22] [cursor=pointer]:
+            - /url: /teams/lgd-nbw
+        - paragraph [ref=f1e24]: 杭州LGD.NBW 获胜
+      - generic [ref=f1e25]:
+        - link "成都AG超玩会 vs 杭州LGD.NBW" [ref=f1e26] [cursor=pointer]:
+          - /url: /matches/kpl-20260004-2026100703
+        - paragraph [ref=f1e27]: BO5 · 已结束 · 2:3
+        - group [ref=f1e28]:
+          - generic "展开比赛时间线 · 13份材料" [ref=f1e29] [cursor=pointer]
+      - generic [ref=f1e30]:
+        - generic [ref=f1e31]:
+          - generic [ref=f1e32]:
+            - generic [ref=f1e33]: ▶
+            - heading "官方高清比赛回放" [level=2] [ref=f1e34]
+          - generic [ref=f1e35]: 共 5 局视频
+        - generic [ref=f1e36]:
+          - link "G1 第 1 局官方高清回放 直达 ↗" [ref=f1e37] [cursor=pointer]:
+            - /url: https://v.qq.com/x/page/m33371c2vcv.html
+            - generic [ref=f1e38]:
+              - generic [ref=f1e39]: G1
+              - generic [ref=f1e40]: 第 1 局官方高清回放
+            - generic [ref=f1e41]: 直达 ↗
+          - link "G2 第 2 局官方高清回放 直达 ↗" [ref=f1e42] [cursor=pointer]:
+            - /url: https://v.qq.com/x/page/n3337o3s66h.html
+            - generic [ref=f1e43]:
+              - generic [ref=f1e44]: G2
+              - generic [ref=f1e45]: 第 2 局官方高清回放
+            - generic [ref=f1e46]: 直达 ↗
+          - link "G3 第 3 局官方高清回放 直达 ↗" [ref=f1e47] [cursor=pointer]:
+            - /url: https://v.qq.com/x/page/k3337m6lvhy.html
+            - generic [ref=f1e48]:
+              - generic [ref=f1e49]: G3
+              - generic [ref=f1e50]: 第 3 局官方高清回放
+            - generic [ref=f1e51]: 直达 ↗
+          - link "G4 第 4 局官方高清回放 直达 ↗" [ref=f1e52] [cursor=pointer]:
+            - /url: https://v.qq.com/x/page/v3337p93h9t.html
+            - generic [ref=f1e53]:
+              - generic [ref=f1e54]: G4
+              - generic [ref=f1e55]: 第 4 局官方高清回放
+            - generic [ref=f1e56]: 直达 ↗
+          - link "G5 第 5 局官方高清回放 直达 ↗" [ref=f1e57] [cursor=pointer]:
+            - /url: https://v.qq.com/x/page/c333748jxb5.html
+            - generic [ref=f1e58]:
+              - generic [ref=f1e59]: G5
+              - generic [ref=f1e60]: 第 5 局官方高清回放
+            - generic [ref=f1e61]: 直达 ↗
+      - generic [ref=f1e62]:
+        - heading "每局详情" [level=2] [ref=f1e63]
+        - list [ref=f1e64]:
+          - listitem [ref=f1e65]:
+            - generic [ref=f1e66]:
+              - heading "第 1 局" [level=3] [ref=f1e67]
+              - paragraph [ref=f1e68]:
+                - generic [ref=f1e69]: 成都AG超玩会 胜
+                - generic [ref=f1e70]: · 17:35
+                - generic [ref=f1e71]: · 击杀 10:12
+                - generic [ref=f1e72]: · 经济 55.1k:54.4k
+                - generic [ref=f1e73]: · MVP 轩染
+            - generic [ref=f1e75]:
+              - generic [ref=f1e76]:
+                - generic [ref=f1e77]:
+                  - link "关羽" [ref=f1e78] [cursor=pointer]:
+                    - /url: /heroes/140
+                  - link "敖隐" [ref=f1e79] [cursor=pointer]:
+                    - /url: /heroes/519
+                  - link "心魔六耳" [ref=f1e80] [cursor=pointer]:
+                    - /url: /heroes/549
+                  - link "裴擒虎" [ref=f1e81] [cursor=pointer]:
+                    - /url: /heroes/502
+                  - link "白起" [ref=f1e82] [cursor=pointer]:
+                    - /url: /heroes/120
+                - generic [ref=f1e83]:
+                  - link "盾山大帅" [ref=f1e84] [cursor=pointer]:
+                    - /url: /heroes/509
+                  - link "武则天长生" [ref=f1e85] [cursor=pointer]:
+                    - /url: /heroes/136
+                  - link "艾琳一诺" [ref=f1e86] [cursor=pointer]:
+                    - /url: /heroes/155
+                  - link "镜钟意" [ref=f1e87] [cursor=pointer]:
+                    - /url: /heroes/531
+                  - link "夏洛特轩染" [ref=f1e88] [cursor=pointer]:
+                    - /url: /heroes/536
+              - generic [ref=f1e89]:
+                - generic [ref=f1e90]:
+                  - link "鲁班大师" [ref=f1e91] [cursor=pointer]:
+                    - /url: /heroes/525
+                  - link "不知火舞" [ref=f1e92] [cursor=pointer]:
+                    - /url: /heroes/157
+                  - link "司空震" [ref=f1e93] [cursor=pointer]:
+                    - /url: /heroes/537
+                  - link "铠" [ref=f1e94] [cursor=pointer]:
+                    - /url: /heroes/193
+                  - link "曹操" [ref=f1e95] [cursor=pointer]:
+                    - /url: /heroes/128
+                - generic [ref=f1e96]:
+                  - link "小乔NBW.九尾" [ref=f1e97] [cursor=pointer]:
+                    - /url: /heroes/106
+                  - link "钟馗NBW.小崽" [ref=f1e98] [cursor=pointer]:
+                    - /url: /heroes/175
+                  - link "戈娅NBW.小久" [ref=f1e99] [cursor=pointer]:
+                    - /url: /heroes/548
+                  - link "哪吒NBW.断雨" [ref=f1e100] [cursor=pointer]:
+                    - /url: /heroes/180
+                  - link "钟无艳NBW.小落" [ref=f1e101] [cursor=pointer]:
+                    - /url: /heroes/117
+            - table [ref=f1e103]:
+              - rowgroup [ref=f1e104]:
+                - row [ref=f1e105]:
+                  - columnheader "选手" [ref=f1e106]
+                  - columnheader "英雄" [ref=f1e107]
+                  - columnheader "K/D/A" [ref=f1e108]
+                  - columnheader "经济" [ref=f1e109]
+                  - columnheader "输出" [ref=f1e110]
+                  - columnheader "评分" [ref=f1e111]
+              - rowgroup [ref=f1e112]:
+                - row [ref=f1e113]:
+                  - cell "轩染MVP" [ref=f1e114]
+                  - cell [ref=f1e115]:
+                    - link "夏洛特" [ref=f1e116] [cursor=pointer]:
+                      - /url: /heroes/%E5%A4%8F%E6%B4%9B%E7%89%B9
+                  - cell "7/0/1" [ref=f1e118]
+                  - cell "12.0k" [ref=f1e119]
+                  - cell "87.9k" [ref=f1e120]
+                  - cell "10.6" [ref=f1e121]
+                - row [ref=f1e122]:
+                  - cell "NBW.小久" [ref=f1e123]
+                  - cell [ref=f1e124]:
+                    - link "戈娅" [ref=f1e125] [cursor=pointer]:
+                      - /url: /heroes/%E6%88%88%E5%A8%85
+                  - cell "2/1/8" [ref=f1e127]
+                  - cell "12.9k" [ref=f1e128]
+                  - cell "92.1k" [ref=f1e129]
+                  - cell "9.2" [ref=f1e130]
+                - row [ref=f1e131]:
+                  - cell "一诺" [ref=f1e132]
+                  - cell [ref=f1e133]:
+                    - link "艾琳" [ref=f1e134] [cursor=pointer]:
+                      - /url: /heroes/%E8%89%BE%E7%90%B3
+                  - cell "3/3/5" [ref=f1e136]
+                  - cell "12.4k" [ref=f1e137]
+                  - cell "109.0k" [ref=f1e138]
+                  - cell "8.5" [ref=f1e139]
+                - row [ref=f1e140]:
+                  - cell "NBW.断雨" [ref=f1e141]
+                  - cell [ref=f1e142]:
+                    - link "哪吒" [ref=f1e143] [cursor=pointer]:
+                      - /url: /heroes/%E5%93%AA%E5%90%92
+                  - cell "4/2/6" [ref=f1e145]
+                  - cell "12.4k" [ref=f1e146]
+                  - cell "92.0k" [ref=f1e147]
+                  - cell "8.3" [ref=f1e148]
+                - row [ref=f1e149]:
+                  - cell "NBW.九尾" [ref=f1e150]
+                  - cell [ref=f1e151]:
+                    - link "小乔" [ref=f1e152] [cursor=pointer]:
+                      - /url: /heroes/%E5%B0%8F%E4%B9%94
+                  - cell "3/2/6" [ref=f1e154]
+                  - cell "10.4k" [ref=f1e155]
+                  - cell "81.5k" [ref=f1e156]
+                  - cell "7.5" [ref=f1e157]
+                - row [ref=f1e158]:
+                  - cell "大帅" [ref=f1e159]
+                  - cell [ref=f1e160]:
+                    - link "盾山" [ref=f1e161] [cursor=pointer]:
+                      - /url: /heroes/%E7%9B%BE%E5%B1%B1
+                  - cell "0/4/8" [ref=f1e163]
+                  - cell "8692" [ref=f1e164]
+                  - cell "38.7k" [ref=f1e165]
+                  - cell "6.4" [ref=f1e166]
+                - row [ref=f1e167]:
+                  - cell "NBW.小落" [ref=f1e168]
+                  - cell [ref=f1e169]:
+                    - link "钟无艳" [ref=f1e170] [cursor=pointer]:
+                      - /url: /heroes/%E9%92%9F%E6%97%A0%E8%89%B3
+                  - cell "2/2/5" [ref=f1e172]
+                  - cell "10.4k" [ref=f1e173]
+                  - cell "71.5k" [ref=f1e174]
+                  - cell "6.3" [ref=f1e175]
+                - row [ref=f1e176]:
+                  - cell "NBW.小崽" [ref=f1e177]
+                  - cell [ref=f1e178]:
+                    - link "钟馗" [ref=f1e179] [cursor=pointer]:
+                      - /url: /heroes/%E9%92%9F%E9%A6%97
+                  - cell "1/3/6" [ref=f1e181]
+                  - cell "8475" [ref=f1e182]
+                  - cell "28.1k" [ref=f1e183]
+                  - cell "5.5" [ref=f1e184]
+                - row [ref=f1e185]:
+                  - cell "钟意" [ref=f1e186]
+                  - cell [ref=f1e187]:
+                    - link "镜" [ref=f1e188] [cursor=pointer]:
+                      - /url: /heroes/%E9%95%9C
+                  - cell "0/3/3" [ref=f1e190]
+                  - cell "12.4k" [ref=f1e191]
+                  - cell "34.7k" [ref=f1e192]
+                  - cell "5.4" [ref=f1e193]
+                - row [ref=f1e194]:
+                  - cell "长生" [ref=f1e195]
+                  - cell [ref=f1e196]:
+                    - link "武则天" [ref=f1e197] [cursor=pointer]:
+                      - /url: /heroes/%E6%AD%A6%E5%88%99%E5%A4%A9
+                  - cell "0/2/4" [ref=f1e199]
+                  - cell "9608" [ref=f1e200]
+                  - cell "81.1k" [ref=f1e201]
+                  - cell "4.3" [ref=f1e202]
+          - listitem [ref=f1e203]:
+            - generic [ref=f1e204]:
+              - heading "第 2 局" [level=3] [ref=f1e205]
+              - paragraph [ref=f1e206]:
+                - generic [ref=f1e207]: 杭州LGD.NBW 胜
+                - generic [ref=f1e208]: · 22:18
+                - generic [ref=f1e209]: · 击杀 11:18
+                - generic [ref=f1e210]: · 经济 69.2k:80.8k
+                - generic [ref=f1e211]: · MVP 大帅
+            - generic [ref=f1e213]:
+              - generic [ref=f1e214]:
+                - generic [ref=f1e215]:
+                  - link "张飞" [ref=f1e216] [cursor=pointer]:
+                    - /url: /heroes/171
+                  - link "小乔" [ref=f1e217] [cursor=pointer]:
+                    - /url: /heroes/106
+                  - link "女娲" [ref=f1e218] [cursor=pointer]:
+                    - /url: /heroes/179
+                  - link "王维" [ref=f1e219] [cursor=pointer]:
+                    - /url: /heroes/138
+                  - link "安琪拉" [ref=f1e220] [cursor=pointer]:
+                    - /url: /heroes/142
+                - generic [ref=f1e221]:
+                  - link "海月NBW.九尾" [ref=f1e222] [cursor=pointer]:
+                    - /url: /heroes/521
+                  - link "夏洛特NBW.小落" [ref=f1e223] [cursor=pointer]:
+                    - /url: /heroes/536
+                  - link "苏烈NBW.小崽" [ref=f1e224] [cursor=pointer]:
+                    - /url: /heroes/194
+                  - link "苍NBW.小久" [ref=f1e225] [cursor=pointer]:
+                    - /url: /heroes/177
+                  - link "马超NBW.断雨" [ref=f1e226] [cursor=pointer]:
+                    - /url: /heroes/518
+              - generic [ref=f1e227]:
+                - generic [ref=f1e228]:
+                  - link "盾山" [ref=f1e229] [cursor=pointer]:
+                    - /url: /heroes/509
+                  - link "鲁班大师" [ref=f1e230] [cursor=pointer]:
+                    - /url: /heroes/525
+                  - link "百里守约" [ref=f1e231] [cursor=pointer]:
+                    - /url: /heroes/196
+                  - link "裴擒虎" [ref=f1e232] [cursor=pointer]:
+                    - /url: /heroes/502
+                  - link "铠" [ref=f1e233] [cursor=pointer]:
+                    - /url: /heroes/193
+                - generic [ref=f1e234]:
+                  - link "赵云钟意" [ref=f1e235] [cursor=pointer]:
+                    - /url: /heroes/107
+                  - link "敖隐一诺" [ref=f1e236] [cursor=pointer]:
+                    - /url: /heroes/519
+                  - link "芈月轩染" [ref=f1e237] [cursor=pointer]:
+                    - /url: /heroes/121
+                  - link "赵怀真大帅" [ref=f1e238] [cursor=pointer]:
+                    - /url: /heroes/544
+                  - link "姜子牙长生" [ref=f1e239] [cursor=pointer]:
+                    - /url: /heroes/148
+            - table [ref=f1e241]:
+              - rowgroup [ref=f1e242]:
+                - row [ref=f1e243]:
+                  - columnheader "选手" [ref=f1e244]
+                  - columnheader "英雄" [ref=f1e245]
+                  - columnheader "K/D/A" [ref=f1e246]
+                  - columnheader "经济" [ref=f1e247]
+                  - columnheader "输出" [ref=f1e248]
+                  - columnheader "评分" [ref=f1e249]
+              - rowgroup [ref=f1e250]:
+                - row [ref=f1e251]:
+                  - cell "大帅MVP" [ref=f1e252]
+                  - cell [ref=f1e253]:
+                    - link "赵怀真" [ref=f1e254] [cursor=pointer]:
+                      - /url: /heroes/%E8%B5%B5%E6%80%80%E7%9C%9F
+                  - cell "2/2/14" [ref=f1e256]
+                  - cell "12.9k" [ref=f1e257]
+                  - cell "56.6k" [ref=f1e258]
+                  - cell "10.4" [ref=f1e259]
+                - row [ref=f1e260]:
+                  - cell "一诺" [ref=f1e261]
+                  - cell [ref=f1e262]:
+                    - link "敖隐" [ref=f1e263] [cursor=pointer]:
+                      - /url: /heroes/%E6%95%96%E9%9A%90
+                  - cell "5/1/6" [ref=f1e265]
+                  - cell "18.9k" [ref=f1e266]
+                  - cell "134.3k" [ref=f1e267]
+                  - cell "9.3" [ref=f1e268]
+                - row [ref=f1e269]:
+                  - cell "NBW.断雨" [ref=f1e270]
+                  - cell [ref=f1e271]:
+                    - link "马超" [ref=f1e272] [cursor=pointer]:
+                      - /url: /heroes/%E9%A9%AC%E8%B6%85
+                  - cell "3/3/6" [ref=f1e274]
+                  - cell "17.1k" [ref=f1e275]
+                  - cell "133.1k" [ref=f1e276]
+                  - cell "9.1" [ref=f1e277]
+                - row [ref=f1e278]:
+                  - cell "长生" [ref=f1e279]
+                  - cell [ref=f1e280]:
+                    - link "姜子牙" [ref=f1e281] [cursor=pointer]:
+                      - /url: /heroes/%E5%A7%9C%E5%AD%90%E7%89%99
+                  - cell "3/2/8" [ref=f1e283]
+                  - cell "13.8k" [ref=f1e284]
+                  - cell "153.0k" [ref=f1e285]
+                  - cell "8.6" [ref=f1e286]
+                - row [ref=f1e287]:
+                  - cell "NBW.小久" [ref=f1e288]
+                  - cell [ref=f1e289]:
+                    - link "苍" [ref=f1e290] [cursor=pointer]:
+                      - /url: /heroes/%E8%8B%8D
+                  - cell "4/4/2" [ref=f1e292]
+                  - cell "15.1k" [ref=f1e293]
+                  - cell "174.9k" [ref=f1e294]
+                  - cell "8.3" [ref=f1e295]
+                - row [ref=f1e296]:
+                  - cell "NBW.小落" [ref=f1e297]
+                  - cell [ref=f1e298]:
+                    - link "夏洛特" [ref=f1e299] [cursor=pointer]:
+                      - /url: /heroes/%E5%A4%8F%E6%B4%9B%E7%89%B9
+                  - cell "1/4/9" [ref=f1e301]
+                  - cell "14.4k" [ref=f1e302]
+                  - cell "129.5k" [ref=f1e303]
+                  - cell "8.3" [ref=f1e304]
+                - row [ref=f1e305]:
+                  - cell "轩染" [ref=f1e306]
+                  - cell [ref=f1e307]:
+                    - link "芈月" [ref=f1e308] [cursor=pointer]:
+                      - /url: /heroes/%E8%8A%88%E6%9C%88
+                  - cell "4/4/7" [ref=f1e310]
+                  - cell "17.6k" [ref=f1e311]
+                  - cell "127.2k" [ref=f1e312]
+                  - cell "8.3" [ref=f1e313]
+                - row [ref=f1e314]:
+                  - cell "钟意" [ref=f1e315]
+                  - cell [ref=f1e316]:
+                    - link "赵云" [ref=f1e317] [cursor=pointer]:
+                      - /url: /heroes/%E8%B5%B5%E4%BA%91
+                  - cell "4/2/8" [ref=f1e319]
+                  - cell "17.6k" [ref=f1e320]
+                  - cell "106.0k" [ref=f1e321]
+                  - cell "7.6" [ref=f1e322]
+                - row [ref=f1e323]:
+                  - cell "NBW.九尾" [ref=f1e324]
+                  - cell [ref=f1e325]:
+                    - link "海月" [ref=f1e326] [cursor=pointer]:
+                      - /url: /heroes/%E6%B5%B7%E6%9C%88
+                  - cell "2/3/5" [ref=f1e328]
+                  - cell "12.0k" [ref=f1e329]
+                  - cell "106.4k" [ref=f1e330]
+                  - cell "6.9" [ref=f1e331]
+                - row [ref=f1e332]:
+                  - cell "NBW.小崽" [ref=f1e333]
+                  - cell [ref=f1e334]:
+                    - link "苏烈" [ref=f1e335] [cursor=pointer]:
+                      - /url: /heroes/%E8%8B%8F%E7%83%88
+                  - cell "1/4/8" [ref=f1e337]
+                  - cell "10.7k" [ref=f1e338]
+                  - cell "37.6k" [ref=f1e339]
+                  - cell "6.2" [ref=f1e340]
+          - listitem [ref=f1e341]:
+            - generic [ref=f1e342]:
+              - heading "第 3 局" [level=3] [ref=f1e343]
+              - paragraph [ref=f1e344]:
+                - generic [ref=f1e345]: 杭州LGD.NBW 胜
+                - generic [ref=f1e346]: · 16:11
+                - generic [ref=f1e347]: · 击杀 1:11
+                - generic [ref=f1e348]: · 经济 47.0k:55.7k
+                - generic [ref=f1e349]: · MVP NBW.小久
+            - generic [ref=f1e351]:
+              - generic [ref=f1e352]:
+                - generic [ref=f1e353]:
+                  - link "盾山" [ref=f1e354] [cursor=pointer]:
+                    - /url: /heroes/509
+                  - link "少司缘" [ref=f1e355] [cursor=pointer]:
+                    - /url: /heroes/577
+                  - link "关羽" [ref=f1e356] [cursor=pointer]:
+                    - /url: /heroes/140
+                  - link "曹操" [ref=f1e357] [cursor=pointer]:
+                    - /url: /heroes/128
+                  - link "安琪拉" [ref=f1e358] [cursor=pointer]:
+                    - /url: /heroes/142
+                - generic [ref=f1e359]:
+                  - link "张飞大帅" [ref=f1e360] [cursor=pointer]:
+                    - /url: /heroes/171
+                  - link "不知火舞长生" [ref=f1e361] [cursor=pointer]:
+                    - /url: /heroes/157
+                  - link "裴擒虎染详" [ref=f1e362] [cursor=pointer]:
+                    - /url: /heroes/502
+                  - link "戈娅小麦" [ref=f1e363] [cursor=pointer]:
+                    - /url: /heroes/548
+                  - link "狂铁轩染" [ref=f1e364] [cursor=pointer]:
+                    - /url: /heroes/503
+              - generic [ref=f1e365]:
+                - generic [ref=f1e366]:
+                  - link "海月" [ref=f1e367] [cursor=pointer]:
+                    - /url: /heroes/521
+                  - link "鲁班大师" [ref=f1e368] [cursor=pointer]:
+                    - /url: /heroes/525
+                  - link "马超" [ref=f1e369] [cursor=pointer]:
+                    - /url: /heroes/518
+                  - link "司空震" [ref=f1e370] [cursor=pointer]:
+                    - /url: /heroes/537
+                  - link "莱西奥" [ref=f1e371] [cursor=pointer]:
+                    - /url: /heroes/545
+                - generic [ref=f1e372]:
+                  - link "百里守约NBW.小久" [ref=f1e373] [cursor=pointer]:
+                    - /url: /heroes/196
+                  - link "太乙真人NBW.小崽" [ref=f1e374] [cursor=pointer]:
+                    - /url: /heroes/186
+                  - link "杨戬NBW.断雨" [ref=f1e375] [cursor=pointer]:
+                    - /url: /heroes/178
+                  - link "影NBW.小落" [ref=f1e376] [cursor=pointer]:
+                    - /url: /heroes/558
+                  - link "武则天NBW.九尾" [ref=f1e377] [cursor=pointer]:
+                    - /url: /heroes/136
+            - table [ref=f1e379]:
+              - rowgroup [ref=f1e380]:
+                - row [ref=f1e381]:
+                  - columnheader "选手" [ref=f1e382]
+                  - columnheader "英雄" [ref=f1e383]
+                  - columnheader "K/D/A" [ref=f1e384]
+                  - columnheader "经济" [ref=f1e385]
+                  - columnheader "输出" [ref=f1e386]
+                  - columnheader "评分" [ref=f1e387]
+              - rowgroup [ref=f1e388]:
+                - row [ref=f1e389]:
+                  - cell "NBW.小久MVP" [ref=f1e390]
+                  - cell [ref=f1e391]:
+                    - link "百里守约" [ref=f1e392] [cursor=pointer]:
+                      - /url: /heroes/%E7%99%BE%E9%87%8C%E5%AE%88%E7%BA%A6
+                  - cell "4/0/3" [ref=f1e394]
+                  - cell "12.8k" [ref=f1e395]
+                  - cell "112.5k" [ref=f1e396]
+                  - cell "10" [ref=f1e397]
+                - row [ref=f1e398]:
+                  - cell "NBW.小落" [ref=f1e399]
+                  - cell [ref=f1e400]:
+                    - link "影" [ref=f1e401] [cursor=pointer]:
+                      - /url: /heroes/%E5%BD%B1
+                  - cell "2/0/5" [ref=f1e403]
+                  - cell "11.8k" [ref=f1e404]
+                  - cell "122.5k" [ref=f1e405]
+                  - cell "9.5" [ref=f1e406]
+                - row [ref=f1e407]:
+                  - cell "NBW.小崽" [ref=f1e408]
+                  - cell [ref=f1e409]:
+                    - link "太乙真人" [ref=f1e410] [cursor=pointer]:
+                      - /url: /heroes/%E5%A4%AA%E4%B9%99%E7%9C%9F%E4%BA%BA
+                  - cell "1/0/8" [ref=f1e412]
+                  - cell "8684" [ref=f1e413]
+                  - cell "32.6k" [ref=f1e414]
+                  - cell "8.6" [ref=f1e415]
+                - row [ref=f1e416]:
+                  - cell "NBW.断雨" [ref=f1e417]
+                  - cell [ref=f1e418]:
+                    - link "杨戬" [ref=f1e419] [cursor=pointer]:
+                      - /url: /heroes/%E6%9D%A8%E6%88%AC
+                  - cell "2/1/4" [ref=f1e421]
+                  - cell "12.8k" [ref=f1e422]
+                  - cell "98.3k" [ref=f1e423]
+                  - cell "8" [ref=f1e424]
+                - row [ref=f1e425]:
+                  - cell "NBW.九尾" [ref=f1e426]
+                  - cell [ref=f1e427]:
+                    - link "武则天" [ref=f1e428] [cursor=pointer]:
+                      - /url: /heroes/%E6%AD%A6%E5%88%99%E5%A4%A9
+                  - cell "2/0/5" [ref=f1e430]
+                  - cell "9616" [ref=f1e431]
+                  - cell "88.2k" [ref=f1e432]
+                  - cell "6.5" [ref=f1e433]
+                - row [ref=f1e434]:
+                  - cell "小麦" [ref=f1e435]
+                  - cell [ref=f1e436]:
+                    - link "戈娅" [ref=f1e437] [cursor=pointer]:
+                      - /url: /heroes/%E6%88%88%E5%A8%85
+                  - cell "1/1/0" [ref=f1e439]
+                  - cell "11.4k" [ref=f1e440]
+                  - cell "101.2k" [ref=f1e441]
+                  - cell "6.4" [ref=f1e442]
+                - row [ref=f1e443]:
+                  - cell "大帅" [ref=f1e444]
+                  - cell [ref=f1e445]:
+                    - link "张飞" [ref=f1e446] [cursor=pointer]:
+                      - /url: /heroes/%E5%BC%A0%E9%A3%9E
+                  - cell "0/1/1" [ref=f1e448]
+                  - cell "7834" [ref=f1e449]
+                  - cell "31.6k" [ref=f1e450]
+                  - cell "5.6" [ref=f1e451]
+                - row [ref=f1e452]:
+                  - cell "轩染" [ref=f1e453]
+                  - cell [ref=f1e454]:
+                    - link "狂铁" [ref=f1e455] [cursor=pointer]:
+                      - /url: /heroes/%E7%8B%82%E9%93%81
+                  - cell "0/4/0" [ref=f1e457]
+                  - cell "7862" [ref=f1e458]
+                  - cell "43.1k" [ref=f1e459]
+                  - cell "5.3" [ref=f1e460]
+                - row [ref=f1e461]:
+                  - cell "长生" [ref=f1e462]
+                  - cell [ref=f1e463]:
+                    - link "不知火舞" [ref=f1e464] [cursor=pointer]:
+                      - /url: /heroes/%E4%B8%8D%E7%9F%A5%E7%81%AB%E8%88%9E
+                  - cell "0/1/1" [ref=f1e466]
+                  - cell "8622" [ref=f1e467]
+                  - cell "66.8k" [ref=f1e468]
+                  - cell "4.6" [ref=f1e469]
+                - row [ref=f1e470]:
+                  - cell "染详" [ref=f1e471]
+                  - cell [ref=f1e472]:
+                    - link "裴擒虎" [ref=f1e473] [cursor=pointer]:
+                      - /url: /heroes/%E8%A3%B4%E6%93%92%E8%99%8E
+                  - cell "0/4/0" [ref=f1e475]
+                  - cell "11.3k" [ref=f1e476]
+                  - cell "42.8k" [ref=f1e477]
+                  - cell "4.1" [ref=f1e478]
+          - listitem [ref=f1e479]:
+            - generic [ref=f1e480]:
+              - heading "第 4 局" [level=3] [ref=f1e481]
+              - paragraph [ref=f1e482]:
+                - generic [ref=f1e483]: 成都AG超玩会 胜
+                - generic [ref=f1e484]: · 12:53
+                - generic [ref=f1e485]: · 击杀 15:7
+                - generic [ref=f1e486]: · 经济 46.1k:40.0k
+                - generic [ref=f1e487]: · MVP NBW.小落
+            - generic [ref=f1e489]:
+              - generic [ref=f1e490]:
+                - generic [ref=f1e491]:
+                  - link "海月" [ref=f1e492] [cursor=pointer]:
+                    - /url: /heroes/521
+                  - link "少司缘" [ref=f1e493] [cursor=pointer]:
+                    - /url: /heroes/577
+                  - link "哪吒" [ref=f1e494] [cursor=pointer]:
+                    - /url: /heroes/180
+                  - link "曹操" [ref=f1e495] [cursor=pointer]:
+                    - /url: /heroes/128
+                  - link "司空震" [ref=f1e496] [cursor=pointer]:
+                    - /url: /heroes/537
+                - generic [ref=f1e497]:
+                  - link "鲁班大师NBW.小崽" [ref=f1e498] [cursor=pointer]:
+                    - /url: /heroes/525
+                  - link "元流之子(射手)NBW.小久" [ref=f1e499] [cursor=pointer]:
+                    - /url: /heroes/584
+                  - link "镜NBW.断雨" [ref=f1e500] [cursor=pointer]:
+                    - /url: /heroes/531
+                  - link "庄周NBW.九尾" [ref=f1e501] [cursor=pointer]:
+                    - /url: /heroes/113
+                  - link "元歌NBW.小落" [ref=f1e502] [cursor=pointer]:
+                    - /url: /heroes/125
+              - generic [ref=f1e503]:
+                - generic [ref=f1e504]:
+                  - link "盾山" [ref=f1e505] [cursor=pointer]:
+                    - /url: /heroes/509
+                  - link "关羽" [ref=f1e506] [cursor=pointer]:
+                    - /url: /heroes/140
+                  - link "女娲" [ref=f1e507] [cursor=pointer]:
+                    - /url: /heroes/179
+                  - link "王维" [ref=f1e508] [cursor=pointer]:
+                    - /url: /heroes/138
+                  - link "蒙恬" [ref=f1e509] [cursor=pointer]:
+                    - /url: /heroes/527
+                - generic [ref=f1e510]:
+                  - link "钟馗大帅" [ref=f1e511] [cursor=pointer]:
+                    - /url: /heroes/175
+                  - link "小乔长生" [ref=f1e512] [cursor=pointer]:
+                    - /url: /heroes/106
+                  - link "虞姬一诺" [ref=f1e513] [cursor=pointer]:
+                    - /url: /heroes/174
+                  - link "白起轩染" [ref=f1e514] [cursor=pointer]:
+                    - /url: /heroes/120
+                  - link "暃钟意" [ref=f1e515] [cursor=pointer]:
+                    - /url: /heroes/542
+            - table [ref=f1e517]:
+              - rowgroup [ref=f1e518]:
+                - row [ref=f1e519]:
+                  - columnheader "选手" [ref=f1e520]
+                  - columnheader "英雄" [ref=f1e521]
+                  - columnheader "K/D/A" [ref=f1e522]
+                  - columnheader "经济" [ref=f1e523]
+                  - columnheader "输出" [ref=f1e524]
+                  - columnheader "评分" [ref=f1e525]
+              - rowgroup [ref=f1e526]:
+                - row [ref=f1e527]:
+                  - cell "NBW.小落MVP" [ref=f1e528]
+                  - cell [ref=f1e529]:
+                    - link "元歌" [ref=f1e530] [cursor=pointer]:
+                      - /url: /heroes/%E5%85%83%E6%AD%8C
+                  - cell "5/1/7" [ref=f1e532]
+                  - cell "10.1k" [ref=f1e533]
+                  - cell "81.4k" [ref=f1e534]
+                  - cell "11.1" [ref=f1e535]
+                - row [ref=f1e536]:
+                  - cell "NBW.断雨" [ref=f1e537]
+                  - cell [ref=f1e538]:
+                    - link "镜" [ref=f1e539] [cursor=pointer]:
+                      - /url: /heroes/%E9%95%9C
+                  - cell "5/1/8" [ref=f1e541]
+                  - cell "12.7k" [ref=f1e542]
+                  - cell "74.7k" [ref=f1e543]
+                  - cell "11.1" [ref=f1e544]
+                - row [ref=f1e545]:
+                  - cell "NBW.九尾" [ref=f1e546]
+                  - cell [ref=f1e547]:
+                    - link "庄周" [ref=f1e548] [cursor=pointer]:
+                      - /url: /heroes/%E5%BA%84%E5%91%A8
+                  - cell "2/1/10" [ref=f1e550]
+                  - cell "7207" [ref=f1e551]
+                  - cell "30.3k" [ref=f1e552]
+                  - cell "7.5" [ref=f1e553]
+                - row [ref=f1e554]:
+                  - cell "NBW.小崽" [ref=f1e555]
+                  - cell [ref=f1e556]:
+                    - link "鲁班大师" [ref=f1e557] [cursor=pointer]:
+                      - /url: /heroes/%E9%B2%81%E7%8F%AD%E5%A4%A7%E5%B8%88
+                  - cell "0/2/14" [ref=f1e559]
+                  - cell "6843" [ref=f1e560]
+                  - cell "25.1k" [ref=f1e561]
+                  - cell "7.1" [ref=f1e562]
+                - row [ref=f1e563]:
+                  - cell "NBW.小久" [ref=f1e564]
+                  - cell [ref=f1e565]:
+                    - link "元流之子(射手)" [ref=f1e566] [cursor=pointer]:
+                      - /url: /heroes/%E5%85%83%E6%B5%81%E4%B9%8B%E5%AD%90(%E5%B0%84%E6%89%8B)
+                  - cell "3/2/6" [ref=f1e568]
+                  - cell "9264" [ref=f1e569]
+                  - cell "40.4k" [ref=f1e570]
+                  - cell "7" [ref=f1e571]
+                - row [ref=f1e572]:
+                  - cell "钟意" [ref=f1e573]
+                  - cell [ref=f1e574]:
+                    - link "暃" [ref=f1e575] [cursor=pointer]:
+                      - /url: /heroes/%E6%9A%83
+                  - cell "4/2/1" [ref=f1e577]
+                  - cell "10.9k" [ref=f1e578]
+                  - cell "52.0k" [ref=f1e579]
+                  - cell "6.8" [ref=f1e580]
+                - row [ref=f1e581]:
+                  - cell "长生" [ref=f1e582]
+                  - cell [ref=f1e583]:
+                    - link "小乔" [ref=f1e584] [cursor=pointer]:
+                      - /url: /heroes/%E5%B0%8F%E4%B9%94
+                  - cell "1/3/2" [ref=f1e586]
+                  - cell "7034" [ref=f1e587]
+                  - cell "57.0k" [ref=f1e588]
+                  - cell "5.5" [ref=f1e589]
+                - row [ref=f1e590]:
+                  - cell "一诺" [ref=f1e591]
+                  - cell [ref=f1e592]:
+                    - link "虞姬" [ref=f1e593] [cursor=pointer]:
+                      - /url: /heroes/%E8%99%9E%E5%A7%AC
+                  - cell "1/2/2" [ref=f1e595]
+                  - cell "8886" [ref=f1e596]
+                  - cell "52.6k" [ref=f1e597]
+                  - cell "5" [ref=f1e598]
+                - row [ref=f1e599]:
+                  - cell "轩染" [ref=f1e600]
+                  - cell [ref=f1e601]:
+                    - link "白起" [ref=f1e602] [cursor=pointer]:
+                      - /url: /heroes/%E7%99%BD%E8%B5%B7
+                  - cell "1/4/2" [ref=f1e604]
+                  - cell "7259" [ref=f1e605]
+                  - cell "23.7k" [ref=f1e606]
+                  - cell "4.2" [ref=f1e607]
+                - row [ref=f1e608]:
+                  - cell "大帅" [ref=f1e609]
+                  - cell [ref=f1e610]:
+                    - link "钟馗" [ref=f1e611] [cursor=pointer]:
+                      - /url: /heroes/%E9%92%9F%E9%A6%97
+                  - cell "0/4/4" [ref=f1e613]
+                  - cell "5909" [ref=f1e614]
+                  - cell "32.6k" [ref=f1e615]
+                  - cell "4.1" [ref=f1e616]
+          - listitem [ref=f1e617]:
+            - generic [ref=f1e618]:
+              - heading "第 5 局" [level=3] [ref=f1e619]
+              - paragraph [ref=f1e620]:
+                - generic [ref=f1e621]: 成都AG超玩会 胜
+                - generic [ref=f1e622]: · 19:32
+                - generic [ref=f1e623]: · 击杀 10:3
+                - generic [ref=f1e624]: · 经济 64.4k:61.7k
+                - generic [ref=f1e625]: · MVP NBW.九尾
+            - generic [ref=f1e627]:
+              - generic [ref=f1e628]:
+                - generic [ref=f1e629]:
+                  - link "海月" [ref=f1e630] [cursor=pointer]:
+                    - /url: /heroes/521
+                  - link "鲁班大师" [ref=f1e631] [cursor=pointer]:
+                    - /url: /heroes/525
+                  - link "百里守约" [ref=f1e632] [cursor=pointer]:
+                    - /url: /heroes/196
+                  - link "苍" [ref=f1e633] [cursor=pointer]:
+                    - /url: /heroes/177
+                  - link "卢雅那" [ref=f1e634] [cursor=pointer]:
+                    - /url: /heroes/547
+                - generic [ref=f1e635]:
+                  - link "敖隐NBW.小久" [ref=f1e636] [cursor=pointer]:
+                    - /url: /heroes/519
+                  - link "项羽NBW.小落" [ref=f1e637] [cursor=pointer]:
+                    - /url: /heroes/135
+                  - link "沈梦溪NBW.九尾" [ref=f1e638] [cursor=pointer]:
+                    - /url: /heroes/312
+                  - link "空空儿NBW.小崽" [ref=f1e639] [cursor=pointer]:
+                    - /url: /heroes/550
+                  - link "橘右京NBW.断雨" [ref=f1e640] [cursor=pointer]:
+                    - /url: /heroes/163
+              - generic [ref=f1e641]:
+                - generic [ref=f1e642]:
+                  - link "盾山" [ref=f1e643] [cursor=pointer]:
+                    - /url: /heroes/509
+                  - link "赵云" [ref=f1e644] [cursor=pointer]:
+                    - /url: /heroes/107
+                  - link "心魔六耳" [ref=f1e645] [cursor=pointer]:
+                    - /url: /heroes/549
+                  - link "裴擒虎" [ref=f1e646] [cursor=pointer]:
+                    - /url: /heroes/502
+                  - link "暃" [ref=f1e647] [cursor=pointer]:
+                    - /url: /heroes/542
+                - generic [ref=f1e648]:
+                  - link "少司缘大帅" [ref=f1e649] [cursor=pointer]:
+                    - /url: /heroes/577
+                  - link "关羽轩染" [ref=f1e650] [cursor=pointer]:
+                    - /url: /heroes/140
+                  - link "女娲长生" [ref=f1e651] [cursor=pointer]:
+                    - /url: /heroes/179
+                  - link "云缨钟意" [ref=f1e652] [cursor=pointer]:
+                    - /url: /heroes/538
+                  - link "元流之子(射手)一诺" [ref=f1e653] [cursor=pointer]:
+                    - /url: /heroes/584
+            - table [ref=f1e655]:
+              - rowgroup [ref=f1e656]:
+                - row [ref=f1e657]:
+                  - columnheader "选手" [ref=f1e658]
+                  - columnheader "英雄" [ref=f1e659]
+                  - columnheader "K/D/A" [ref=f1e660]
+                  - columnheader "经济" [ref=f1e661]
+                  - columnheader "输出" [ref=f1e662]
+                  - columnheader "评分" [ref=f1e663]
+              - rowgroup [ref=f1e664]:
+                - row [ref=f1e665]:
+                  - cell "NBW.九尾MVP" [ref=f1e666]
+                  - cell [ref=f1e667]:
+                    - link "沈梦溪" [ref=f1e668] [cursor=pointer]:
+                      - /url: /heroes/%E6%B2%88%E6%A2%A6%E6%BA%AA
+                  - cell "3/0/7" [ref=f1e670]
+                  - cell "12.6k" [ref=f1e671]
+                  - cell "123.8k" [ref=f1e672]
+                  - cell "9.7" [ref=f1e673]
+                - row [ref=f1e674]:
+                  - cell "NBW.小崽" [ref=f1e675]
+                  - cell [ref=f1e676]:
+                    - link "空空儿" [ref=f1e677] [cursor=pointer]:
+                      - /url: /heroes/%E7%A9%BA%E7%A9%BA%E5%84%BF
+                  - cell "0/0/9" [ref=f1e679]
+                  - cell "11.2k" [ref=f1e680]
+                  - cell "53.0k" [ref=f1e681]
+                  - cell "8.4" [ref=f1e682]
+                - row [ref=f1e683]:
+                  - cell "NBW.小久" [ref=f1e684]
+                  - cell [ref=f1e685]:
+                    - link "敖隐" [ref=f1e686] [cursor=pointer]:
+                      - /url: /heroes/%E6%95%96%E9%9A%90
+                  - cell "2/0/7" [ref=f1e688]
+                  - cell "14.4k" [ref=f1e689]
+                  - cell "72.2k" [ref=f1e690]
+                  - cell "7.7" [ref=f1e691]
+                - row [ref=f1e692]:
+                  - cell "NBW.断雨" [ref=f1e693]
+                  - cell [ref=f1e694]:
+                    - link "橘右京" [ref=f1e695] [cursor=pointer]:
+                      - /url: /heroes/%E6%A9%98%E5%8F%B3%E4%BA%AC
+                  - cell "3/1/5" [ref=f1e697]
+                  - cell "15.1k" [ref=f1e698]
+                  - cell "77.2k" [ref=f1e699]
+                  - cell "7.5" [ref=f1e700]
+                - row [ref=f1e701]:
+                  - cell "NBW.小落" [ref=f1e702]
+                  - cell [ref=f1e703]:
+                    - link "项羽" [ref=f1e704] [cursor=pointer]:
+                      - /url: /heroes/%E9%A1%B9%E7%BE%BD
+                  - cell "2/2/2" [ref=f1e706]
+                  - cell "11.0k" [ref=f1e707]
+                  - cell "32.7k" [ref=f1e708]
+                  - cell "6" [ref=f1e709]
+                - row [ref=f1e710]:
+                  - cell "长生" [ref=f1e711]
+                  - cell [ref=f1e712]:
+                    - link "女娲" [ref=f1e713] [cursor=pointer]:
+                      - /url: /heroes/%E5%A5%B3%E5%A8%B2
+                  - cell "0/1/2" [ref=f1e715]
+                  - cell "12.4k" [ref=f1e716]
+                  - cell "103.1k" [ref=f1e717]
+                  - cell "5.5" [ref=f1e718]
+                - row [ref=f1e719]:
+                  - cell "一诺" [ref=f1e720]
+                  - cell [ref=f1e721]:
+                    - link "元流之子(射手)" [ref=f1e722] [cursor=pointer]:
+                      - /url: /heroes/%E5%85%83%E6%B5%81%E4%B9%8B%E5%AD%90(%E5%B0%84%E6%89%8B)
+                  - cell "0/2/3" [ref=f1e724]
+                  - cell "14.0k" [ref=f1e725]
+                  - cell "82.7k" [ref=f1e726]
+                  - cell "5.3" [ref=f1e727]
+                - row [ref=f1e728]:
+                  - cell "大帅" [ref=f1e729]
+                  - cell [ref=f1e730]:
+                    - link "少司缘" [ref=f1e731] [cursor=pointer]:
+                      - /url: /heroes/%E5%B0%91%E5%8F%B8%E7%BC%98
+                  - cell "2/2/1" [ref=f1e733]
+                  - cell "10.9k" [ref=f1e734]
+                  - cell "36.8k" [ref=f1e735]
+                  - cell "5.2" [ref=f1e736]
+                - row [ref=f1e737]:
+                  - cell "轩染" [ref=f1e738]
+                  - cell [ref=f1e739]:
+                    - link "关羽" [ref=f1e740] [cursor=pointer]:
+                      - /url: /heroes/%E5%85%B3%E7%BE%BD
+                  - cell "1/3/2" [ref=f1e742]
+                  - cell "11.0k" [ref=f1e743]
+                  - cell "38.9k" [ref=f1e744]
+                  - cell "5" [ref=f1e745]
+                - row [ref=f1e746]:
+                  - cell "钟意" [ref=f1e747]
+                  - cell [ref=f1e748]:
+                    - link "云缨" [ref=f1e749] [cursor=pointer]:
+                      - /url: /heroes/%E4%BA%91%E7%BC%A8
+                  - cell "0/2/3" [ref=f1e751]
+                  - cell "13.4k" [ref=f1e752]
+                  - cell "60.3k" [ref=f1e753]
+                  - cell "4.9" [ref=f1e754]
+  - navigation "底部导航" [ref=f1e755]:
+    - generic [ref=f1e756]:
+      - link "精选" [ref=f1e757] [cursor=pointer]:
+        - /url: /
+      - link "热点" [ref=f1e761] [cursor=pointer]:
+        - /url: /hot
+      - link "日报" [ref=f1e765] [cursor=pointer]:
+        - /url: /daily
+      - link "我的 有新的更新" [ref=f1e770] [cursor=pointer]:
+        - /url: /more
+        - generic [ref=f1e774]: 我的
+        - generic "有新的更新" [ref=f1e775]
+  - dialog "搜索":
+    - search:
+      - generic:
+        - generic: 搜索标题、摘要和正文
+        - searchbox "搜索标题、摘要和正文"
+      - button "取消"

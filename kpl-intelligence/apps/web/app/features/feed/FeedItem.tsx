@@ -8,7 +8,7 @@ import type { GroupInfo, FeedItemSummary, TimelineFilters } from "@aihot/contrac
 import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
 import { SameEventBadge, SelectedBadge } from "../../components/ui/Badge";
 import { ScoreLabel } from "../../components/ui/Score";
-import { beijingTime } from "@aihot/contracts/time";
+import { beijingDate, beijingTime } from "@aihot/contracts/time";
 import { MediaThumbs, SourceLine, StarButton } from "./parts";
 import { GroupButton, GroupSources } from "./ReadingGroup";
 import { QuotedLine } from "../item/QuotedPost";
@@ -25,9 +25,11 @@ export interface FeedItemProps {
   showTags?: boolean;
   /** The time the item sits at in its list; phones show it in the source line (desktop: on the rail). */
   at?: string;
+  /** Include the real date when the list has no date-group headings. */
+  showDate?: boolean;
 }
 
-export const FeedItem = memo(function FeedItem({ item, group, filters, read = false, onOpen, showTags = false, at }: FeedItemProps) {
+export const FeedItem = memo(function FeedItem({ item, group, filters, read = false, onOpen, showTags = false, at, showDate = false }: FeedItemProps) {
   const isX = item.channel === "x" && !!item.x;
   const open = () => {
     rememberPreview(item);
@@ -38,14 +40,14 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
 
   return (
     <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
-      <header className="flex min-h-[22px] items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
+      <header className="flex min-h-[22px] flex-wrap items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
         <span className="inline-flex items-center rounded bg-bg-sunk px-2 py-0.5 text-[11.5px] font-medium text-ink-2 border border-line-soft">
           <SourceLine item={item} className="text-ink-2 font-medium" />
         </span>
         {item.contentKind && <ContentKindChip kind={item.contentKind} />}
         {at && (
           <time dateTime={at} className="mono shrink-0 text-[12px] lg:hidden">
-            · {beijingTime(at)}
+            · {showDate && `${beijingDate(at).slice(5).replace('-', '/')} `}{beijingTime(at)}
           </time>
         )}
         {item.selected && (

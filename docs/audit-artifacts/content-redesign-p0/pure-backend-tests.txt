@@ -1,0 +1,27 @@
+✔ KPL Dedup - 识别战队 (5.491458ms)
+✔ KPL Dedup - 用户提出的关键用例：KSG 零封 RW侠 年总开门红 (8.337542ms)
+✔ different opponents cannot merge through title similarity (October 7 regression) (0.810542ms)
+✔ same teams and season do not identify a rematch, nor do matching outcomes (0.4795ms)
+✔ conflicting seasons and individual games are separate occurrences (0.451333ms)
+✔ partial teams and multi-match roundups cannot force identity (1.745291ms)
+✔ match dates keep explicit dates, validate them and use Beijing rather than host timezone (0.237084ms)
+✔ KPL Dedup - 标题规范化与前缀噪点过滤 (0.485084ms)
+✔ KPL Dedup - 互斥/不同事件不应被误判为相同事件 (0.811542ms)
+✔ WeiboAdapter 注册与支持检测 (0.813708ms)
+✔ parse(): 官方微博字段解析 (标题/正文/链接/配图) (0.97375ms)
+✔ normalize(): 转换为高保真 CanonicalContent (social_post) (0.432583ms)
+✔ extractEntities(): 战队主体绑定与文本话题提及提取 (0.165833ms)
+✔ parseWeiboDate(): 多种时间格式精准解析（不依赖服务器本地时区） (0.468542ms)
+✔ parseWeiboDate(): MM-DD 跨年落到去年，不产生未来时间 (0.107583ms)
+✔ parse/normalize: 空日期保持未知；长微博如实标记为部分内容 (0.171584ms)
+✔ extractEntities(): 只绑定有效的账号主体，不再做硬编码话题关键词映射 (0.773416ms)
+✔ cleanWeiboText(): 彻底消除 '... 全文'、'……全文' 与末尾截断残留 (0.108916ms)
+✔ evaluateSocialPost(): 官方赛程轮换动态 vs 粉丝玩梗/抽奖噪声评估 (0.654625ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 521.06025

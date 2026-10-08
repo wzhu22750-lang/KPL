@@ -101,7 +101,7 @@ export function DayHeader({ day, today, count, collapsed, onToggle, aside }: { d
  * One dated slot: the time, the rail (desktop) and the item. As on the original timeline, the rail is a
  * 1px line from this node's centre to the next one's, so the day reads as one continuous thread.
  */
-export function TimelineSlot({ at, children, fresh = false, delay = 0, dataKey }: { at: string; children: React.ReactNode; fresh?: boolean; delay?: number; dataKey?: string }) {
+export function TimelineSlot({ at, children, fresh = false, delay = 0, dataKey, showDate = false }: { at: string; children: React.ReactNode; fresh?: boolean; delay?: number; dataKey?: string; showDate?: boolean }) {
   return (
     <li
       data-card-key={dataKey}
@@ -111,7 +111,7 @@ export function TimelineSlot({ at, children, fresh = false, delay = 0, dataKey }
       {/* Phones: the row without the rail (the item shows its time); a hairline between rows. */}
       <div className="grid grid-cols-[minmax(0,1fr)] border-b border-line-soft py-3.5 group-last/slot:border-b-0 lg:grid-cols-[64px_22px_minmax(0,1fr)] lg:border-b-0 lg:py-0 lg:pb-3 lg:group-last/slot:pb-0">
         <time dateTime={at} className="mono hidden text-ink-3 lg:block lg:pt-[17px] lg:text-[12.5px] lg:font-semibold lg:leading-6">
-          {beijingTime(at)}
+          {showDate && <span className="block text-ink-4">{beijingDate(at).slice(5).replace('-', '/')}</span>}{beijingTime(at)}
         </time>
         <span aria-hidden="true" className="relative hidden lg:block">
           <span className="absolute -bottom-[41px] left-[10.5px] top-[29px] w-px bg-line-strong group-last/slot:hidden" />
@@ -123,7 +123,7 @@ export function TimelineSlot({ at, children, fresh = false, delay = 0, dataKey }
   );
 }
 
-export function Timeline({ initial, filters }: { initial: TimelineResponse; filters: TimelineFilters }) {
+export function Timeline({ initial, filters, groupByDay = true }: { initial: TimelineResponse; filters: TimelineFilters; groupByDay?: boolean }) {
   const location = useLocation();
   const navigation = useNavigation();
   const readSet = useReadSet();
@@ -278,6 +278,13 @@ export function Timeline({ initial, filters }: { initial: TimelineResponse; filt
     setState((s) => ({ ...s, collapsed: s.collapsed.includes(day) ? s.collapsed.filter((d) => d !== day) : [...s.collapsed, day] }));
 
   let order = 0;
+  const renderCard = (c: TimelineCard) => {
+    const fresh = freshKeys.has(c.key);
+    const delay = fresh ? Math.min(order++, 10) * 40 : 0;
+    return <TimelineSlot key={c.key} dataKey={c.key} at={c.anchorAt} showDate={!groupByDay} fresh={fresh} delay={delay}>
+      <FeedItem item={c.item} group={c.group} filters={filters} read={readSet.has(c.item.id)} onOpen={markRead} at={c.anchorAt} showDate={!groupByDay} />
+    </TimelineSlot>;
+  };
   return (
     <div className="relative">
       {days.length === 0 && (
@@ -286,7 +293,8 @@ export function Timeline({ initial, filters }: { initial: TimelineResponse; filt
         </div>
       )}
 
-      {days.map(({ day, cards }) => {
+      {!groupByDay && <ol className="lg:pt-1">{state.cards.map(renderCard)}</ol>}
+      {groupByDay && days.map(({ day, cards }) => {
         const collapsed = state.collapsed.includes(day);
         const count = state.dayCounts[day] ?? cards.length;
         return (
@@ -294,15 +302,7 @@ export function Timeline({ initial, filters }: { initial: TimelineResponse; filt
             <DayHeader day={day} today={today} count={count} collapsed={collapsed} onToggle={() => toggleDay(day)} />
             <Collapse open={!collapsed}>
                 <ol className="lg:pt-1">
-                  {cards.map((c) => {
-                    const fresh = freshKeys.has(c.key);
-                    const delay = fresh ? Math.min(order++, 10) * 40 : 0;
-                    return (
-                      <TimelineSlot key={c.key} dataKey={c.key} at={c.anchorAt} fresh={fresh} delay={delay}>
-                        <FeedItem item={c.item} group={c.group} filters={filters} read={readSet.has(c.item.id)} onOpen={markRead} at={c.anchorAt} />
-                      </TimelineSlot>
-                    );
-                  })}
+                  {cards.map(renderCard)}
                 </ol>
             </Collapse>
           </section>

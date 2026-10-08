@@ -1,0 +1,32 @@
+✔ esports sync: league rows land, battle backfill respects the budget and resumes, re-runs are idempotent (700.732208ms)
+✖ esports sync: swapped battle camps preserve winner and align kills/gold to series teams (77.321083ms)
+✔ esports sync: 小局存在但 BP/选手数据缺失时按字段补全 (73.74425ms)
+✔ esports sync: 单场持续失败不阻挡近期比赛，且每轮请求数受预算约束 (485.769166ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2506.580416
+
+✖ failing tests:
+
+test at tests/esports-sync.test.ts:180:1
+✖ esports sync: swapped battle camps preserve winner and align kills/gold to series teams (77.321083ms)
+  AssertionError [ERR_ASSERTION]: camp2 in this battle is team A, not team B
+  
+  '测试B队' !== '测试A队'
+  
+      at TestContext.<anonymous> (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/esports-sync.test.ts:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '测试B队',
+    expected: '测试A队',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

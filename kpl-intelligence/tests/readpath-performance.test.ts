@@ -22,11 +22,11 @@ const filters = { channel: 'all' as const, category: null, tag: T, now };
 const app = await buildApp();
 
 before(async () => {
-  await sql`INSERT INTO sources (id, name, kind, tier, participation_mode, next_fetch_at)
-    VALUES (${SOURCE}, 'Performance fixture', 'rss', 'T1', 'editorial', '2100-01-01')`;
-  await sql`INSERT INTO articles (id, source_id, identity_key, url, title, discovered_at, timeline_at, published_at, body_html, language)
+  await sql`INSERT INTO sources (id, name, kind, tier, participation_mode, site_fulltext, next_fetch_at)
+    VALUES (${SOURCE}, 'Performance fixture', 'rss', 'T1', 'editorial', true, '2100-01-01')`;
+  await sql`INSERT INTO articles (id, source_id, identity_key, url, title, discovered_at, timeline_at, published_at, body_html, body_status, language)
     SELECT ${T} || '-' || lpad(n::text, 4, '0'), ${SOURCE}, ${T} || '-' || n, 'https://example.org/' || ${T} || '/' || n,
-      ${T} || CASE WHEN n = 1 THEN ' needle' ELSE ' general' END, ${now}, ${now}, ${now}, '<p>licensed body</p>', 'en'
+      ${T} || CASE WHEN n = 1 THEN ' needle' ELSE ' general' END, ${now}, ${now}, ${now}, '<p>licensed body</p>', 'ok', 'en'
     FROM generate_series(1, 2108) n`;
   await sql`INSERT INTO publications (article_id, title, source_id, channel, url, discovered_at, timeline_at, published_at, sort_at,
       eligible, selected, visible_after, visibility, search_text, tags, summary, body_mode, syndicate)
@@ -80,6 +80,22 @@ test('site cards omit unread payload while the detail retains its original body'
   const detail = (await app.inject({ method: 'GET', url: `/api/site/items/${id(1)}` })).json();
   assert.equal(detail.links.original, `https://example.org/${T}/1`);
   assert.ok(detail.body.original?.includes('licensed body'), 'the detail retains licensed original text');
+});
+
+test('stale full publication never overrides an unconfirmed body status', async () => {
+  await sql`UPDATE articles SET body_status='unconfirmed' WHERE id=${id(1)}`;
+  try {
+    for (const suffix of ['', '/original']) {
+      const response=await app.inject({method:'GET',url:`/api/site/items/${id(1)}${suffix}`});
+      assert.equal(response.statusCode,200);
+      assert.equal(response.json().body,null);
+      assert.equal(response.json().readingMode,'full','ordinary public visibility is not a manual summary-only override');
+      assert.ok(!response.body.includes('licensed body'));
+    }
+    const markdown=await app.inject({method:'GET',url:`/items/${id(1)}/markdown`});
+    assert.equal(markdown.statusCode,200);assert.ok(markdown.body.includes('fixture summary'));
+    assert.ok(!markdown.body.includes('licensed body'),'export retains only its summary');
+  } finally { await sql`UPDATE articles SET body_status='ok' WHERE id=${id(1)}`; }
 });
 
 test('unfiltered single-term relevance combines direct/body scores and retains one-sided and empty matches', async () => {

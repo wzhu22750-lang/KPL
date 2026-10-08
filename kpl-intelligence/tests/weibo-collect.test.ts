@@ -3,8 +3,27 @@
 // failing keeps the pages already read and stores the resume token.
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
-import { WeiboAdapter, weiboIdGreater, weiboPageToken } from "@aihot/backend/sources/adapters/weibo";
+import { spawnSync } from 'node:child_process';
+import { WeiboAdapter, weiboIdGreater, weiboPageToken, cleanWeiboText } from "@aihot/backend/sources/adapters/weibo";
 import type { SourceRow } from "@aihot/backend/sources/types";
+
+test('body cleanup cannot block the event loop on spaced ordinary comments',()=>{
+  // Isolate the regression: the old nullable nested regex hangs, so an in-process timeout cannot help.
+  const moduleUrl=new URL('../packages/backend/src/sources/adapters/weibo.ts',import.meta.url).href;
+  const code=`const {cleanWeiboText}=await import(${JSON.stringify(moduleUrl)});console.log(cleanWeiboText('公开评论'+' '.repeat(64)+'不同意见'));`;
+  const child=spawnSync(process.execPath,['--input-type=module','-e',code],{encoding:'utf8',timeout:4000});
+  assert.equal(child.error,undefined,'cleanup must finish, not hit the subprocess deadline');
+  assert.equal(child.status,0);assert.equal(child.stdout.trim(),'公开评论 不同意见');
+});
+test('body cleanup removes truncation buttons but preserves ordinary mentions of full text',()=>{
+  assert.equal(cleanWeiboText('正文……展开全文'),'正文');
+  assert.equal(cleanWeiboText('正文... 查看全文'),'正文');
+  assert.equal(cleanWeiboText('正文……'),'正文');
+  assert.equal(cleanWeiboText('作者发布了全文'),'作者发布了全文');
+  assert.equal(cleanWeiboText('<a href="/note">详见全文解读</a>'),'详见全文解读');
+  assert.equal(cleanWeiboText('正文<a href="/status/1"><span>全文</span></a>'),'正文');
+  assert.equal(cleanWeiboText('公开评论'+' '.repeat(10000)+'不同意见'),'公开评论 不同意见');
+});
 
 const realFetch = globalThis.fetch;
 afterEach(() => {
@@ -92,9 +111,53 @@ test("collect: 后一页失败保留已读页并保存断点游标，不整体�
   assert.equal(res.nextCursor?.lastMid, "106");
   assert.equal(res.nextCursor?.pageSinceId, "T1", "预算/失败断点被保存，下轮可续");
   assert.equal((res.detail as { truncated: boolean }).truncated, true);
+  assert.match(res.incompleteReason!, /page 2 failed/);
 });
 
 test("collect: 第一页失败（含重试）后抛出，不伪造成空结果", async () => {
   stub(() => json({ ok: 0 }, 500));
   await assert.rejects(() => new WeiboAdapter().collect(source(), { lastMid: "100" }), /failed to fetch mblogs/);
+});
+
+test("keyword search distinguishes valid empty results from HTTP, login and malformed failures", async () => {
+  const search = source({ mode: "topic", query: "AG" });
+  for (const reply of [() => json({}, 403), () => json({ ok: 0, msg: "login" }), () => new Response("<html>login</html>"), () => json({ ok: 1 })]) {
+    stub(reply);
+    await assert.rejects(() => new WeiboAdapter().collect(search), /keyword search page 1 failed/);
+  }
+  stub(() => json({ ok: 1, data: { cards: [] } }));
+  const empty = await new WeiboAdapter().collect(search);
+  assert.deepEqual(empty.rawItems, []);
+  assert.equal(empty.incompleteReason, undefined);
+  assert.equal(empty.detail?.capability, "keyword_search", "does not claim a supertopic feed");
+  assert.equal(empty.detail?.coverage, "complete");
+});
+
+test("keyword search retains a good page but signals a failed tail", async () => {
+  stub((url) => new URL(url).searchParams.get("page") === "1"
+    ? json({ ok: 1, data: { cards: [card("106")] } }) : json({}, 429));
+  const result = await new WeiboAdapter().collect(source({ mode: "search", query: "AG" }));
+  assert.deepEqual(result.rawItems.map((m) => m.id), ["106"]);
+  assert.equal(result.detail?.coverage, "partial");
+  assert.match(result.incompleteReason!, /HTTP 429/);
+});
+
+test("keyword search budget is bounded, not an invented full-coverage result", async () => {
+  stub(() => json({ ok: 1, data: { cards: [card("106")] } }));
+  const result = await new WeiboAdapter().collect(source({ mode: "search", query: "AG", maxPages: 1 }));
+  assert.equal(result.detail?.coverage, "bounded");
+  assert.equal(result.incompleteReason, undefined);
+});
+
+test("normalized observations carry source time and missing counters stay null", () => {
+  const adapter = new WeiboAdapter();
+  const s = source();
+  const raw = { ...mblog("106"), attitudes_count: 0 };
+  const candidate = adapter.parse(raw, s)!;
+  const result = adapter.normalize(candidate, raw, s);
+  assert.equal(result.canonical?.engagement?.likes, 0);
+  assert.equal(result.canonical?.engagement?.comments, null);
+  assert.equal(result.engagementObservation?.platform, "weibo");
+  assert.equal(result.engagementObservation?.method, "source_api");
+  assert.ok(Number.isFinite(result.engagementObservation?.observedAt.getTime()));
 });

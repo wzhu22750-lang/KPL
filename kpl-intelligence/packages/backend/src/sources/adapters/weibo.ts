@@ -4,6 +4,7 @@
 // 3. 产出标准化 CanonicalContent (social_post)，包含九宫格原图矩阵与转评赞互动量
 // 4. 实体绑定感知（战队/选手）与真实发布时间保真
 import { guardedFetch } from "../../lib/http-fetch.ts";
+import { observedCounter } from "../../content/engagement.ts";
 import { collapseWhitespace, stripTags } from "../../lib/text.ts";
 import { decideTimeline, type MaterialInput, type TimelineDecision } from "../../content/materials.ts";
 import { ENTITIES } from "@aihot/industry/taxonomy";
@@ -116,7 +117,7 @@ export class WeiboVisitorSession {
     const subpMatch = text.match(/"subp"\s*:\s*"([^"]+)"/);
 
     if (!subMatch?.[1] || !subpMatch?.[1]) {
-      throw new Error(`Weibo visitor response did not yield SUB/SUBP tokens: ${text.slice(0, 150)}`);
+      throw new Error("Weibo visitor response did not yield required tokens");
     }
 
     return `SUB=${subMatch[1]}; SUBP=${subpMatch[1]}`;
@@ -202,19 +203,27 @@ export function parseWeiboDate(dateStr: string, now = new Date()): Date | null {
 export function cleanWeiboText(raw: string): string {
   if (!raw) return "";
   let s = raw;
-  // 1. 去除 HTML 链接形式的全文与跳转按钮
-  s = s.replace(/<a[^>]*href=["'][^"']*status[^"']*["'][^>]*>.*?全文.*?<\/a>/gi, "");
-  s = s.replace(/<a[^>]*>.*?全文.*?<\/a>/gi, "");
+  // Only remove a button's own label; a link that discusses 全文 is still content.
+  s = s.replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, (link, inner: string) =>
+    /^(?:展开全文|查看全文|阅读全文|全文|展开)$/.test(collapseWhitespace(inner.replace(/<[^>]+>/g, "")).trim()) ? "" : link);
   // 2. 换行与标签处理
   s = s.replace(/<br\s*\/?>/gi, "\n");
   s = s.replace(/<\/p>/gi, "\n");
   s = s.replace(/<[^>]+>/g, "");
   // 3. 常见 html 实体还原
   s = s.replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-  // 4. 清理末尾残留的 "... 全文"、"… 全文"、"...全文"、"……展开全文" 等
-  s = s.replace(/(?:\.{3,}|……|…|\s*)+(\s*(?:全文|展开|展开全文|查看全文|阅读全文))\s*$/gi, "");
-  // 5. 清理末尾悬空的省略号
-  s = s.replace(/(?:\.{3,}|……|…)\s*$/g, "");
+  // Find the finite label first. Nested nullable repetitions here used to freeze the worker on
+  // ordinary whitespace runs (verified by a live CPU profile); never repeat a nullable branch.
+  s = s.trimEnd();
+  const label = /(?:展开全文|查看全文|阅读全文|全文|展开)$/.exec(s);
+  if (label) {
+    const prefix = s.slice(0, label.index), trimmed = prefix.trimEnd();
+    if (prefix !== trimmed || trimmed.endsWith('…') || trimmed.endsWith('...')) s = trimmed;
+  }
+  // Linear backwards scan, preserving ordinary one/two-dot punctuation.
+  let end = s.length;
+  while (end > 0 && (s[end - 1] === '.' || s[end - 1] === '…')) end -= 1;
+  if (s.slice(end).includes('…') || s.length - end >= 3) s = s.slice(0, end);
   // 6. 折叠多余空白
   return collapseWhitespace(s).trim();
 }
@@ -324,6 +333,7 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
     let reachedEnd = false;
     let reachedTimeCutoff = false;
     let truncated = false;
+    let incompleteReason: string | undefined;
 
     for (;;) {
       if (pages >= maxPages) {
@@ -340,6 +350,7 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       if (!page.ok) {
         if (pages === 0) throw new Error(`WeiboAdapter: failed to fetch mblogs for UID ${uid}, response not ok (HTTP ${page.status ?? "?"})`);
         truncated = true;
+        incompleteReason = `Weibo profile page ${pages + 1} failed (HTTP ${page.status ?? "unknown"})`;
         break;
       }
       pages += 1;
@@ -397,7 +408,8 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         ...(caughtUp ? { pageSinceId: null } : { pageSinceId: token }),
         lastFetchAt: new Date().toISOString(),
       },
-      detail: { uid, pages, extractedMblogs: filteredItems.length, truncated, reachedEnd, reachedWatermark, reachedTimeCutoff },
+      detail: { capability: "account_posts", coverage: incompleteReason ? "partial" : truncated ? "bounded" : "complete", uid, pages, extractedMblogs: filteredItems.length, truncated, reachedEnd, reachedWatermark, reachedTimeCutoff },
+      incompleteReason,
     };
   }
 
@@ -416,31 +428,35 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
 
     const rawItems: WeiboRawMblog[] = [];
     const seen = new Set<string>();
+    let pages = 0;
+    let ended = false;
+    let incompleteReason: string | undefined;
 
     for (let p = 1; p <= maxPages; p++) {
       const searchUrl = `https://m.weibo.cn/api/container/getIndex?containerid=100103type%3D1%26q%3D${encodeURIComponent(query)}&page_type=searchall&page=${p}`;
-      const res = await fetch(searchUrl, {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
-          "Cookie": cookie,
-          "Accept": "application/json, text/plain, */*",
-          "MWeibo-Pwa": "1",
-        },
-        signal: AbortSignal.timeout(15_000),
-      });
-
-      if (res.status !== 200) break;
-      let json: any;
+      let blogs: WeiboRawMblog[];
       try {
-        json = await res.json();
-      } catch {
+        const res = await fetch(searchUrl, {
+          headers: {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+            "Cookie": cookie,
+            "Accept": "application/json, text/plain, */*",
+            "MWeibo-Pwa": "1",
+          },
+          signal: AbortSignal.timeout(15_000),
+        });
+        if (res.status !== 200) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json() as WeiboPageData;
+        if (json.ok !== 1 || !Array.isArray(json.data?.cards)) throw new Error("invalid or rejected search response");
+        blogs = extractMblogs(json.data.cards);
+        pages += 1;
+      } catch (error) {
+        const reason = error instanceof Error && /^HTTP \d+$/.test(error.message) ? error.message : "unavailable or invalid response";
+        incompleteReason = `Weibo keyword search page ${p} failed: ${reason}`;
+        if (p === 1) throw new Error(incompleteReason);
         break;
       }
-      if (!json?.ok) break;
-
-      const cards = json.data?.cards || [];
-      const blogs = extractMblogs(cards);
-      if (!blogs.length) break;
+      if (!blogs.length) { ended = true; break; }
 
       for (const m of blogs) {
         if (!m?.id || seen.has(String(m.id))) continue;
@@ -466,7 +482,8 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         ...cursor,
         lastFetchAt: new Date().toISOString(),
       },
-      detail: { query, totalRaw: rawItems.length, filteredCount: filtered.length },
+      detail: { capability: "keyword_search", coverage: incompleteReason ? "partial" : ended ? "complete" : "bounded", pages, query, totalRaw: rawItems.length, filteredCount: filtered.length },
+      incompleteReason,
     };
   }
 
@@ -661,9 +678,9 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         quoted,
       },
       engagement: {
-        likes: rawMblog?.attitudes_count ?? 0,
-        comments: rawMblog?.comments_count ?? 0,
-        shares: rawMblog?.reposts_count ?? 0,
+        likes: observedCounter(rawMblog?.attitudes_count),
+        comments: observedCounter(rawMblog?.comments_count),
+        shares: observedCounter(rawMblog?.reposts_count),
       },
       extraction: {
         extractor: "weibo",
@@ -688,6 +705,9 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       via: "fetch",
       raw,
       canonical,
+      engagementObservation: {
+        platform: "weibo", observedAt: new Date(), method: "source_api", metrics: canonical.engagement!,
+      },
       bodyStatus: "ok",
     };
   }

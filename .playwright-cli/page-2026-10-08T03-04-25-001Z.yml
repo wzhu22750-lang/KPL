@@ -1,0 +1,260 @@
+- generic [ref=e2]:
+  - link "跳到正文" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=e4]:
+    - link "KPL Intelligence 首页" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=e6]:
+        - generic [aria-hidden] [ref=e8]: KPL Intelligence
+    - navigation "主导航" [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: 内容
+        - generic [ref=e12]:
+          - link "精选" [ref=e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=e94]:
+        - generic [ref=e95]: 更多
+        - generic [ref=e96]:
+          - link "Agent 接入" [ref=e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=e107] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=e114] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=e120]:
+      - radio "深色" [ref=e122] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=e126] [cursor=pointer]
+      - radio "浅色" [ref=e131] [cursor=pointer]
+  - main [ref=e136]:
+    - generic [ref=e138]:
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - heading "2026-10-07 内容雷达" [level=1] [ref=e142]
+            - paragraph [ref=e143]: 追踪赛场动态，读懂每一次胜负。
+          - link "问问 KPL" [ref=e144] [cursor=pointer]:
+            - /url: /ask
+        - generic [ref=e150]:
+          - navigation "筛选" [ref=e152]:
+            - link "全部" [ref=e153] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07
+            - link "一手" [ref=e156] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&channel=firstParty
+            - link "赛果" [ref=e158] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=match-result
+            - link "阵容" [ref=e160] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=roster
+            - link "版本" [ref=e162] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=patch
+            - link "联盟" [ref=e164] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=league
+            - link "战术" [ref=e166] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=tactics
+            - link "观点" [ref=e168] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-07&category=opinion
+          - search [ref=e170]:
+            - generic [ref=e171]: 搜索标题、摘要与正文
+            - textbox "搜索标题、摘要与正文" [ref=e172]:
+              - /placeholder: 搜索标题、摘要…
+            - generic: /
+      - region "近期赛事" [ref=e173]:
+        - generic [ref=e174]:
+          - heading "近期赛事" [level=2] [ref=e175]
+          - link "全部赛程" [ref=e176] [cursor=pointer]:
+            - /url: /matches
+        - list [ref=e179]:
+          - listitem [ref=e180]:
+            - 'link "10/07 已赛 擂台赛 AG 2 : 3 LGD" [ref=e181] [cursor=pointer]':
+              - /url: /matches/kpl-20260004-2026100703
+              - generic [ref=e182]:
+                - generic [ref=e183]: 10/07 已赛
+                - generic [ref=e184]: 擂台赛
+              - generic [ref=e185]:
+                - generic [ref=e186]: AG
+                - generic [ref=e188]: "2 : 3"
+                - generic [ref=e189]: LGD
+          - listitem [ref=e191]:
+            - 'link "10/07 已赛 擂台赛 WB 1 : 3 EDG.M" [ref=e192] [cursor=pointer]':
+              - /url: /matches/kpl-20260004-2026100702
+              - generic [ref=e193]:
+                - generic [ref=e194]: 10/07 已赛
+                - generic [ref=e195]: 擂台赛
+              - generic [ref=e196]:
+                - generic [ref=e197]: WB
+                - generic [ref=e199]: "1 : 3"
+                - generic [ref=e200]: EDG.M
+          - listitem [ref=e202]:
+            - 'link "10/07 已赛 擂台赛 KSG 3 : 0 TES.A" [ref=e203] [cursor=pointer]':
+              - /url: /matches/kpl-20260004-2026100701
+              - generic [ref=e204]:
+                - generic [ref=e205]: 10/07 已赛
+                - generic [ref=e206]: 擂台赛
+              - generic [ref=e207]:
+                - generic [ref=e208]: KSG
+                - generic [ref=e210]: "3 : 0"
+                - generic [ref=e211]: TES.A
+          - listitem [ref=e213]:
+            - 'link "10/06 已赛 擂台赛 AG 3 : 1 DYG" [ref=e214] [cursor=pointer]':
+              - /url: /matches/kpl-20260004-2026100603
+              - generic [ref=e215]:
+                - generic [ref=e216]: 10/06 已赛
+                - generic [ref=e217]: 擂台赛
+              - generic [ref=e218]:
+                - generic [ref=e219]: AG
+                - generic [ref=e221]: "3 : 1"
+                - generic [ref=e222]: DYG
+          - listitem [ref=e224]:
+            - 'link "10/06 已赛 擂台赛 JDG 3 : 0 Hero" [ref=e225] [cursor=pointer]':
+              - /url: /matches/kpl-20260004-2026100602
+              - generic [ref=e226]:
+                - generic [ref=e227]: 10/06 已赛
+                - generic [ref=e228]: 擂台赛
+              - generic [ref=e229]:
+                - generic [ref=e230]: JDG
+                - generic [ref=e232]: "3 : 0"
+                - generic [ref=e233]: Hero
+      - region "战队" [ref=e235]:
+        - generic [ref=e236]:
+          - heading "战队" [level=2] [ref=e237]
+          - link "全部战队" [ref=e238] [cursor=pointer]:
+            - /url: /teams
+        - list [ref=e241]:
+          - listitem [ref=e242]:
+            - link "BOOM" [ref=e243] [cursor=pointer]:
+              - /url: /teams/t12407
+          - listitem [ref=e245]:
+            - link "BTR" [ref=e246] [cursor=pointer]:
+              - /url: /teams/t12408
+          - listitem [ref=e248]:
+            - link "GKE" [ref=e249] [cursor=pointer]:
+              - /url: /teams/t12405
+          - listitem [ref=e251]:
+            - link "KSG" [ref=e252] [cursor=pointer]:
+              - /url: /teams/ksg
+          - listitem [ref=e254]:
+            - link "LTG" [ref=e255] [cursor=pointer]:
+              - /url: /teams/t10905
+          - listitem [ref=e257]:
+            - link "SYG" [ref=e258] [cursor=pointer]:
+              - /url: /teams/t12202
+          - listitem [ref=e260]:
+            - link "WG" [ref=e261] [cursor=pointer]:
+              - /url: /teams/t12411
+          - listitem [ref=e263]:
+            - link "WST" [ref=e264] [cursor=pointer]:
+              - /url: /teams/t10910
+          - listitem [ref=e266]:
+            - link "ZDC" [ref=e267] [cursor=pointer]:
+              - /url: /teams/t12404
+          - listitem [ref=e269]:
+            - link "ZJQ" [ref=e270] [cursor=pointer]:
+              - /url: /teams/t12406
+          - listitem [ref=e272]:
+            - link "EDG.M" [ref=e273] [cursor=pointer]:
+              - /url: /teams/edgm
+          - listitem [ref=e275]:
+            - link "RNG.M" [ref=e276] [cursor=pointer]:
+              - /url: /teams/rngm
+          - listitem [ref=e278]:
+            - link "DRG" [ref=e279] [cursor=pointer]:
+              - /url: /teams/drg
+          - listitem [ref=e281]:
+            - link "JDG" [ref=e282] [cursor=pointer]:
+              - /url: /teams/jdg
+          - listitem [ref=e284]:
+            - link "WB" [ref=e285] [cursor=pointer]:
+              - /url: /teams/wb
+          - listitem [ref=e287]:
+            - link "Hero" [ref=e288] [cursor=pointer]:
+              - /url: /teams/hero
+          - listitem [ref=e290]:
+            - link "吵一吵" [ref=e291] [cursor=pointer]:
+              - /url: /teams/t12409
+          - listitem [ref=e293]:
+            - link "好厚米" [ref=e294] [cursor=pointer]:
+              - /url: /teams/t12410
+          - listitem [ref=e296]:
+            - link "TTG" [ref=e297] [cursor=pointer]:
+              - /url: /teams/ttg
+          - listitem [ref=e299]:
+            - link "AG" [ref=e300] [cursor=pointer]:
+              - /url: /teams/ag
+          - listitem [ref=e302]:
+            - link "TCG" [ref=e303] [cursor=pointer]:
+              - /url: /teams/tcg
+          - listitem [ref=e305]:
+            - link "LGD" [ref=e306] [cursor=pointer]:
+              - /url: /teams/lgd-nbw
+          - listitem [ref=e308]:
+            - link "情久" [ref=e309] [cursor=pointer]:
+              - /url: /teams/qingjiu
+          - listitem [ref=e311]:
+            - link "ES" [ref=e312] [cursor=pointer]:
+              - /url: /teams/estar
+          - listitem [ref=e314]:
+            - link "RW侠" [ref=e315] [cursor=pointer]:
+              - /url: /teams/rw
+          - listitem [ref=e317]:
+            - link "DYG" [ref=e318] [cursor=pointer]:
+              - /url: /teams/dyg
+          - listitem [ref=e320]:
+            - link "WE" [ref=e321] [cursor=pointer]:
+              - /url: /teams/we
+          - listitem [ref=e323]:
+            - link "狼队" [ref=e324] [cursor=pointer]:
+              - /url: /teams/wolves
+          - listitem [ref=e326]:
+            - link "重庆科技大学" [ref=e327] [cursor=pointer]:
+              - /url: /teams/t12402
+          - listitem [ref=e329]:
+            - link "TES.A" [ref=e330] [cursor=pointer]:
+              - /url: /teams/tes-a
+          - listitem [ref=e332]:
+            - link "阿里巴巴PKQ" [ref=e333] [cursor=pointer]:
+              - /url: /teams/t12403
+          - listitem [ref=e335]:
+            - link "青训潜渊" [ref=e336] [cursor=pointer]:
+              - /url: /teams/t12401
+          - listitem [ref=e338]:
+            - link "BOA" [ref=e339] [cursor=pointer]:
+              - /url: /teams/t10302
+          - listitem [ref=e341]:
+            - link "XYG" [ref=e342] [cursor=pointer]:
+              - /url: /teams/t10036
+          - listitem [ref=e344]:
+            - link "九江TKL" [ref=e345] [cursor=pointer]:
+              - /url: /teams/t10602
+          - listitem [ref=e347]:
+            - link [ref=e348] [cursor=pointer]:
+              - /url: /teams/t10101
+          - listitem [ref=e349]:
+            - link "深圳KLG" [ref=e350] [cursor=pointer]:
+              - /url: /teams/t10901
+          - listitem [ref=e352]:
+            - link "MTG" [ref=e353] [cursor=pointer]:
+              - /url: /teams/t10032
+  - button "回到顶部"

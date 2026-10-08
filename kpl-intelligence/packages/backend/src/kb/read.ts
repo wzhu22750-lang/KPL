@@ -283,8 +283,8 @@ export async function loadMatchDetail(id: string): Promise<MatchDetailResponse |
     WHERE g.match_id = ${id} ORDER BY g.game_no`;
   const gameIds = games.map((g) => g.id);
   const bp = gameIds.length
-    ? await sql<{ game_id: string; step_index: number; action_type: string; side: string; hero_id: string; hero_name: string; player: string | null; position: string | null }[]>`
-        SELECT b.game_id, b.step_index, b.action_type, b.side, b.hero_id, h.name AS hero_name, p.nickname AS player, b.position
+    ? await sql<{ game_id: string; step_index: number; action_type: string; side: string; hero_id: string; hero_name: string; hero_icon: string | null; player: string | null; position: string | null }[]>`
+        SELECT b.game_id, b.step_index, b.action_type, b.side, b.hero_id, h.name AS hero_name, h.portrait_url AS hero_icon, p.nickname AS player, b.position
         FROM bp_actions b JOIN heroes h ON h.id = b.hero_id LEFT JOIN players p ON p.id = b.player_id
         WHERE b.game_id IN ${sql(gameIds)} ORDER BY b.game_id, b.step_index`
     : [];
@@ -311,7 +311,7 @@ export async function loadMatchDetail(id: string): Promise<MatchDetailResponse |
   for (const b of bp) {
     const game = byGame.get(b.game_id);
     if (!game) continue;
-    game.bp.push({ step: b.step_index, type: b.action_type as BpStep["type"], side: b.side as BpStep["side"], hero: { id: b.hero_id, name: b.hero_name }, player: b.player, position: b.position });
+    game.bp.push({ step: b.step_index, type: b.action_type as BpStep["type"], side: b.side as BpStep["side"], hero: { id: b.hero_id, name: b.hero_name, icon: b.hero_icon }, player: b.player, position: b.position });
   }
   for (const s of stats) {
     const game = byGame.get(s.game_id);

@@ -1,0 +1,47 @@
+{
+  "sourceId": "weibo-kpl-official",
+  "checkedAt": "2026-10-07T17:59:52.146Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 11,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "6074356560",
+    "pages": 1,
+    "extractedMblogs": 11,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": false
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/6074356560/RlxSUbukQ",
+      "publishedAt": "2026-10-07T03:51:10.000Z",
+      "metrics": {
+        "likes": 2539,
+        "comments": 7001,
+        "shares": 24
+      }
+    },
+    {
+      "url": "https://weibo.com/6074356560/RlCCvoixu",
+      "publishedAt": "2026-10-07T15:54:29.000Z",
+      "metrics": {
+        "likes": 279,
+        "comments": 20,
+        "shares": 7
+      }
+    },
+    {
+      "url": "https://weibo.com/6074356560/RlCtiy7TA",
+      "publishedAt": "2026-10-07T15:31:49.000Z",
+      "metrics": {
+        "likes": 287,
+        "comments": 76,
+        "shares": 65
+      }
+    }
+  ]
+}

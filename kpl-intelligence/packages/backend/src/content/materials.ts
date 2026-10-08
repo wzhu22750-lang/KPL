@@ -8,6 +8,7 @@ import { publishArticleTx } from "../publication/publish.ts";
 import { canonicalToBody } from "./canonical.ts";
 import type { CanonicalContent } from "./extractors/types.ts";
 import { groupingReset, reconcileMaterialSource } from "./provenance.ts";
+import { recordEngagement, type EngagementObservationInput } from "./engagement.ts";
 
 export interface MediaItem {
   kind: "image" | "video";
@@ -46,6 +47,8 @@ export interface MaterialInput {
   media?: MediaItem[];
   /** CanonicalContent（内容智能管道的产物）：kind/质量/抽取元数据与它派生的 body 一起落列。 */
   canonical?: CanonicalContent | null;
+  /** Counters have their own timeline; they do not change the content revision or queue analysis. */
+  engagementObservation?: EngagementObservationInput;
   xPost?: XPostData | null;
   raw?: unknown;
   via: "fetch" | "ingest" | "import";
@@ -180,6 +183,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
       ${canonical ? db.json(canonical.extraction as never) : null}, ${canonical ? db.json(canonical as never) : null})
     ON CONFLICT (identity_key) DO NOTHING RETURNING id`;
   if (inserted) {
+    if (m.engagementObservation) await recordEngagement(db, newId, m.sourceId, m.engagementObservation);
     await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
              VALUES (${newId}, 1, ${hash}, ${title}, ${m.bodyText ?? null})`;
     await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
@@ -193,6 +197,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     FROM articles a JOIN sources s ON s.id = a.source_id WHERE a.identity_key = ${identityKey} FOR UPDATE OF a`;
   await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
            VALUES (${existing!.id}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
+  if (m.engagementObservation) await recordEngagement(db, existing!.id, m.sourceId, m.engagementObservation);
   const unchanged: MaterialResult = { articleId: existing!.id, created: false, revised: false, backfill: existing!.backfill };
   // Configuration may have gained a verified publisher since this same discovery channel last
   // saw the URL. Reconcile before accepting any of that channel's material changes.

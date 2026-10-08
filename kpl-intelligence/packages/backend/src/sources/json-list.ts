@@ -1,5 +1,6 @@
 // JSON sources: plain JSON APIs, JSON embedded in HTML (script tags, window variables).
 import { credential } from "../config.ts";
+import { ENGAGEMENT_METRICS, observedCounter } from "../content/engagement.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
@@ -187,6 +188,10 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
         bodyText: summaryIsBody ? stripTags(summary!) : null,
         bodyStatus: summaryIsBody ? "ok" : "pending",
         raw: { externalId: externalId ?? null },
+        ...(c.engagementPaths ? { engagementObservation: {
+          platform: String(c.engagementPaths.platform), observedAt: new Date(), method: c.mode?.startsWith('html_') ? 'page_dom' as const : 'source_api' as const,
+          metrics: Object.fromEntries(ENGAGEMENT_METRICS.map(key => [key, c.engagementPaths[key] ? observedCounter(getPath(item,c.engagementPaths[key])) : null])),
+        } } : {}),
       });
     }
     for (const candidate of pageOut) seenFromPriorPages.add(candidate.url);

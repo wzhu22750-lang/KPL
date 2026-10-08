@@ -1,0 +1,62 @@
+{
+  "sourceId": "weibo-wolves-club",
+  "checkedAt": "2026-10-07T18:00:28.842Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 10,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "6180100850",
+    "pages": 1,
+    "extractedMblogs": 10,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": false
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/6180100850/RlADhuL1D",
+      "publishedAt": "2026-10-07T10:50:55.000Z",
+      "author": {
+        "id": "6180100850",
+        "name": "狼队王者荣耀分部",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 1264,
+        "comments": 128,
+        "shares": 82
+      }
+    },
+    {
+      "url": "https://weibo.com/6180100850/RlzGehDjf",
+      "publishedAt": "2026-10-07T08:25:26.000Z",
+      "author": {
+        "id": "6180100850",
+        "name": "狼队王者荣耀分部",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 1480,
+        "comments": 141,
+        "shares": 61
+      }
+    },
+    {
+      "url": "https://weibo.com/6180100850/Rlybys5qG",
+      "publishedAt": "2026-10-07T04:37:07.000Z",
+      "author": {
+        "id": "6180100850",
+        "name": "狼队王者荣耀分部",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 2716,
+        "comments": 250,
+        "shares": 102
+      }
+    }
+  ]
+}

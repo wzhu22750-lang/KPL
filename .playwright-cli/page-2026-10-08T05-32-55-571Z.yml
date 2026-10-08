@@ -1,0 +1,242 @@
+- generic [ref=e2]:
+  - link "跳到正文" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=e4]:
+    - link "KPL Intelligence 首页" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=e6]:
+        - generic [aria-hidden] [ref=e8]: KPL Intelligence
+    - navigation "主导航" [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: 内容
+        - generic [ref=e12]:
+          - link "精选" [ref=e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=e94]:
+        - generic [ref=e95]: 更多
+        - generic [ref=e96]:
+          - link "Agent 接入" [ref=e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=e107] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=e114] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=e120]:
+      - radio "深色" [ref=e122] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=e126] [cursor=pointer]
+      - radio "浅色" [ref=e131] [cursor=pointer]
+  - main [ref=e136]:
+    - generic [ref=e138]:
+      - generic [ref=e139]:
+        - heading "内容回顾" [level=1] [ref=e140]
+        - link "返回精选" [ref=e141] [cursor=pointer]:
+          - /url: /
+      - region "KPL内容雷达" [ref=e144]:
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - text: 2026 / 10 / 07
+            - generic [ref=e147]: 2 个话题 · 3 场比赛
+          - navigation "内容雷达日期" [ref=e148]:
+            - link "前一天" [ref=e149] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-06
+            - link "后一天" [ref=e152] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-08
+            - link "今天" [ref=e155] [cursor=pointer]:
+              - /url: /
+        - region [ref=e156]:
+          - generic [ref=e157]:
+            - heading "圈内焦点" [level=2] [ref=e158]
+            - generic [ref=e159]: 先看大家在聊什么
+          - generic [ref=e160]:
+            - article [ref=e161]:
+              - generic [ref=e162]:
+                - generic [ref=e163]: 观点
+                - generic [ref=e164]: 1 条来源
+                - time [ref=e165]: 10/07 23:16
+              - heading "钟意谈被海月拉走：看到回家水晶没了，想着“死了算了”" [level=3] [ref=e166]
+              - paragraph [ref=e167]: 成都AG超玩会赛后采访中，钟意回顾一波被海月拉走的情形，称原本想回家，看到回家水晶没了便想着“死了算了”；他还表示队伍好打，并评价对手很强、前两局给了较大压力。材料未提供具体局次、赛果及完整比赛过程。
+              - group [ref=e168]:
+                - generic "查看来源与观点" [ref=e169] [cursor=pointer]
+            - article [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]: 观点
+                - generic [ref=e176]: 1 条来源
+                - time [ref=e177]: 10/07 23:16
+              - heading "九尾赛后谈团队状态，也转述小崽被庄周克制的吐槽" [level=3] [ref=e178]
+              - paragraph [ref=e179]: LGDNBW战胜AG后，九尾在赛后采访中谈到队伍会互相信任、打得开心，并转述小崽称巅峰赛玩钟馗时被庄周“恶心了”。这是轻松的对局感受分享，没有形成公开争议；片段未提供比赛细节或完整采访。
+              - group [ref=e180]:
+                - generic "查看来源与观点" [ref=e181] [cursor=pointer]
+        - region [ref=e184]:
+          - generic [ref=e185]:
+            - heading "比赛速览" [level=2] [ref=e186]
+            - link "全部赛程" [ref=e187] [cursor=pointer]:
+              - /url: /matches
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - group [ref=e192]:
+                - generic "已结束 BO5 KSG vs 长沙TES.A，3 比 0 展开时间线 · 7 条报道" [ref=e193] [cursor=pointer]:
+                  - generic [ref=e194]:
+                    - generic [ref=e195]: 已结束
+                    - generic [ref=e196]: BO5
+                  - heading "KSG vs 长沙TES.A，3 比 0" [level=3] [ref=e197]:
+                    - generic [ref=e198]:
+                      - generic [ref=e199]: KSG
+                      - generic [ref=e200]: "3"
+                    - generic [ref=e201]:
+                      - generic [ref=e202]: 长沙TES.A
+                      - generic [ref=e203]: "0"
+                  - generic [ref=e204]: 展开时间线 · 7 条报道
+              - link "比赛详情" [ref=e208] [cursor=pointer]:
+                - /url: /matches/kpl-20260004-2026100701
+            - generic [ref=e211]:
+              - group [ref=e212]:
+                - generic "已结束 BO5 北京WB vs 上海EDG.M，1 比 3 展开时间线 · 4 条报道" [ref=e213] [cursor=pointer]:
+                  - generic [ref=e214]:
+                    - generic [ref=e215]: 已结束
+                    - generic [ref=e216]: BO5
+                  - heading "北京WB vs 上海EDG.M，1 比 3" [level=3] [ref=e217]:
+                    - generic [ref=e218]:
+                      - generic [ref=e219]: 北京WB
+                      - generic [ref=e220]: "1"
+                    - generic [ref=e221]:
+                      - generic [ref=e222]: 上海EDG.M
+                      - generic [ref=e223]: "3"
+                  - generic [ref=e224]: 展开时间线 · 4 条报道
+              - link "比赛详情" [ref=e228] [cursor=pointer]:
+                - /url: /matches/kpl-20260004-2026100702
+            - generic [ref=e231]:
+              - group [ref=e232]:
+                - generic "已结束 BO5 成都AG超玩会 vs 杭州LGD.NBW，2 比 3 展开时间线 · 13 条报道" [ref=e233] [cursor=pointer]:
+                  - generic [ref=e234]:
+                    - generic [ref=e235]: 已结束
+                    - generic [ref=e236]: BO5
+                  - heading "成都AG超玩会 vs 杭州LGD.NBW，2 比 3" [level=3] [ref=e237]:
+                    - generic [ref=e238]:
+                      - generic [ref=e239]: 成都AG超玩会
+                      - generic [ref=e240]: "2"
+                    - generic [ref=e241]:
+                      - generic [ref=e242]: 杭州LGD.NBW
+                      - generic [ref=e243]: "3"
+                  - generic [ref=e244]: 展开时间线 · 13 条报道
+              - link "比赛详情" [ref=e248] [cursor=pointer]:
+                - /url: /matches/kpl-20260004-2026100703
+        - region [ref=e251]:
+          - heading "更多动态" [level=2] [ref=e252]
+          - generic [ref=e253]:
+            - article [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: 事实陈述
+                - generic [aria-hidden] [ref=e257]: ·
+                - generic [ref=e258]: KPL王者荣耀职业联赛（官方微博）
+              - link "2026KPL年度总决赛擂台赛W1D6赛果及积分榜" [ref=e259] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlCtg83yp
+              - paragraph [ref=e262]: 官方发布擂台赛W1D6赛果：KSG、上海EDGM、杭州LGDNBW获胜，并公布当日个人数据榜及积分信息。KSG以3胜0负、净胜分9分积3分，位列大师组榜首；上海EDGM以2胜1负、净胜分1分积2分，排名精英组第一。公告称后天17:00比赛继续，将进行两场BO5。
+              - group [ref=e263]:
+                - generic "来源与判断依据" [ref=e264] [cursor=pointer]
+            - article [ref=e267]:
+              - generic [ref=e268]:
+                - generic [ref=e269]: 事实陈述
+                - generic [aria-hidden] [ref=e270]: ·
+                - generic [ref=e271]: KPL王者荣耀职业联赛（官方微博）
+              - link "2026KPL年度总决赛擂台赛W1D6赛程公布" [ref=e272] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlxSUbukQ
+              - paragraph [ref=e275]: 内容公布擂台赛W1D6三场对阵及开赛时间：14:00 KSG对长沙TES.A，17:00北京WB对上海EDG.M，20:00成都AG超玩会对杭州LGD.NBW；并列出各队当时的连胜、积分或胜负背景。
+              - group [ref=e276]:
+                - generic "来源与判断依据" [ref=e277] [cursor=pointer]
+            - article [ref=e280]:
+              - generic [ref=e281]:
+                - generic [ref=e282]: 事实陈述
+                - generic [aria-hidden] [ref=e283]: ·
+                - generic [ref=e284]: 苏州KSG（官方微博）
+              - link "KSG年度总决赛BO5第三局公布赛中轮换与阵容" [ref=e285] [cursor=pointer]:
+                - /url: https://weibo.com/6134425922/RlzkPftqt
+              - paragraph [ref=e288]: 2026KPL年度总决赛擂台赛KSG对阵长沙TES.A的BO5第三局，KSG公布赛中轮换：发育路由梦岚换为小屿，游走由晚星换为烈峰峰；同时列出本局双方选手及英雄。材料未说明轮换原因或比赛结果。
+              - group [ref=e289]:
+                - generic "来源与判断依据" [ref=e290] [cursor=pointer]
+            - article [ref=e293]:
+              - generic [ref=e294]:
+                - generic [ref=e295]: 事实陈述
+                - generic [aria-hidden] [ref=e296]: ·
+                - generic [ref=e297]: 成都AG超玩会（微博关键词搜索，非超话全量）
+              - link "AG公告称首发五人组即日起解散，称调整基于选手规划、竞技状态与俱乐部长期发展" [ref=e298] [cursor=pointer]:
+                - /url: https://weibo.com/7789766198/RlCo8dfvZ
+              - paragraph [ref=e301]: 输入内容以俱乐部公告形式称，成都AG超玩会首发五人组轩染、钟意、长生、一诺、大帅即日起解散，并称决定经过俱乐部与选手本人沟通，综合考虑个人职业规划、竞技状态及俱乐部长期发展战略。公告未说明五名选手各自后续去向或具体调整安排；当前材料也无法独立核实公告真实性。
+              - group [ref=e302]:
+                - generic "来源与判断依据" [ref=e303] [cursor=pointer]
+            - article [ref=e306]:
+              - generic [ref=e307]:
+                - generic [ref=e308]: 事实陈述
+                - generic [aria-hidden] [ref=e309]: ·
+                - generic [ref=e310]: 北京WB（官方微博）
+              - link "北京WB暖阳达成KPL联赛300场里程碑" [ref=e311] [cursor=pointer]:
+                - /url: https://weibo.com/6528198786/RlB5mdi1W
+              - paragraph [ref=e314]: 内容祝贺北京WB暖阳（林恒）达成KPL联赛300场里程碑，并以“攀登计划”等宣传语表达祝贺。未提供更具体的比赛或后续信息。
+              - group [ref=e315]:
+                - generic "来源与判断依据" [ref=e316] [cursor=pointer]
+            - article [ref=e319]:
+              - generic [ref=e320]:
+                - generic [ref=e321]: 事实陈述
+                - generic [aria-hidden] [ref=e322]: ·
+                - generic [ref=e323]: 成都AG超玩会（官方微博）
+              - link "2026KPL年度总决赛擂台赛：成都AG超玩会与杭州LGD.NBW战至2:2" [ref=e324] [cursor=pointer]:
+                - /url: https://weibo.com/5878848794/RlC4VyddG
+              - paragraph [ref=e327]: 原文称，2026KPL年度总决赛擂台赛中，成都AG超玩会与杭州LGD.NBW战至2:2。材料未提供后续赛果或具体对局细节。
+              - group [ref=e328]:
+                - generic "来源与判断依据" [ref=e329] [cursor=pointer]
+            - article [ref=e332]:
+              - generic [ref=e333]:
+                - generic [ref=e334]: 事实陈述
+                - generic [aria-hidden] [ref=e335]: ·
+                - generic [ref=e336]: KPL王者荣耀职业联赛（官方微博）
+              - link "LGDNBW赛中语音记录团战沟通与推进指令" [ref=e337] [cursor=pointer]:
+                - /url: https://weibo.com/6074356560/RlCnPbV0e
+              - paragraph [ref=e340]: 材料标注为AG对战LGDNBW及2026KPL年度总决赛赛中语音，内容包括报对手技能、呼喊跟进与集火，并提到带线、点塔和“一波”。片段未交代具体局数、最终结果或完整比赛过程，不能据此判断战术成效。
+              - group [ref=e341]:
+                - generic "来源与判断依据" [ref=e342] [cursor=pointer]
+            - article [ref=e345]:
+              - generic [ref=e346]:
+                - generic [ref=e347]: 事实陈述
+                - generic [aria-hidden] [ref=e348]: ·
+                - generic [ref=e349]: 成都AG超玩会（官方微博）
+              - link "2026KPL年度总决赛擂台赛：成都AG超玩会2:1杭州LGD.NBW" [ref=e350] [cursor=pointer]:
+                - /url: https://weibo.com/5878848794/RlBU5kKev
+              - paragraph [ref=e353]: 原文称成都AG超玩会在2026KPL年度总决赛擂台赛中以2:1领先杭州LGD.NBW；未提供比赛细节或最终赛果。
+              - group [ref=e354]:
+                - generic "来源与判断依据" [ref=e355] [cursor=pointer]
+            - article [ref=e358]:
+              - generic [ref=e359]:
+                - generic [ref=e360]: 事实陈述
+                - generic [aria-hidden] [ref=e361]: ·
+                - generic [ref=e362]: 苏州KSG（官方微博）
+              - link "KSG年总三连胜后发布队员相机短视频" [ref=e363] [cursor=pointer]:
+                - /url: https://weibo.com/6134425922/RlA7FqqNC
+              - paragraph [ref=e366]: 材料以“KSG年总三连胜”为背景，发布队员“小飞砍”的相机短视频，并用“猜猜一会儿小砍们会拼什么单词呢”引出互动。没有提供比赛具体信息或更多视频内容。
+              - group [ref=e367]:
+                - generic "来源与判断依据" [ref=e368] [cursor=pointer]
+        - group [ref=e371]:
+          - generic "关于内容筛选与热度" [ref=e372] [cursor=pointer]
+  - button "回到顶部"

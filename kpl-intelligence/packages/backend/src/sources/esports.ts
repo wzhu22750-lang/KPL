@@ -124,6 +124,7 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
   if (!/^\d{8}$/.test(leagueId)) throw new Error("esports_api 需要 config.leagueId（8 位数字，如 20260001）");
   const battlesPerRun = Number(source.config.battlesPerRun ?? 12);
 
+  const observedAt = new Date();
   const payload = (await getJson(`${baseUrl}/leaguesite/matches/open?league_id=${leagueId}`)) as { results?: LeagueMatch[] } | null;
   const rows = payload?.results ?? [];
   const seasonId = await ensureSeason(sql, leagueId, rows[0]?.cc_match_id ?? null);
@@ -142,7 +143,7 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
     const finished = row.status === 2 || (row.win_camp === 1 || row.win_camp === 2);
     const winnerId = finished && row.win_camp ? campTeams[row.win_camp as 1 | 2] ?? null : null;
     const res = await upsertMatch(sql, {
-      leagueId, matchId: row.match_id, seasonId,
+      leagueId, matchId: row.match_id, seasonId, observedAt,
       ccKey: row.cc_match_id ?? null,
       stage: row.match_stage_desc || row.match_stage_name || null,
       bo: row.bo ?? null,
@@ -191,6 +192,12 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
         const data = detail?.data;
         // 空/临时缺字段响应：跳过，绝不清空已经取得的有效数据。
         if (!data) continue;
+        // Sides can swap between games. The league's camp order is not the battle's camp order.
+        const campTeams = { 1: teamOf.get(data.camp1?.team_id ?? '') ?? null, 2: teamOf.get(data.camp2?.team_id ?? '') ?? null };
+        const participants = new Set([matchRow.team_a_id,matchRow.team_b_id]);
+        if (!campTeams[1] || !campTeams[2] || campTeams[1]===campTeams[2] || !participants.has(campTeams[1]) || !participants.has(campTeams[2])) {
+          throw new Error('Battle camps missing or inconsistent with series participants');
+        }
         await upsertGame({
           matchId: match.id,
           bo: match.bo,
@@ -201,7 +208,7 @@ export async function syncEsportsSource(source: SourceRow): Promise<EsportsSyncR
           durationMs: data.game_duration ?? battle.game_duration,
           teamAId: matchRow.team_a_id,
           teamBId: matchRow.team_b_id,
-          campTeams: { 1: matchRow.team_a_id, 2: matchRow.team_b_id },
+          campTeams,
           kills: { 1: data.camp1?.kill_num ?? null, 2: data.camp2?.kill_num ?? null },
           golds: { 1: data.camp1?.gold ?? null, 2: data.camp2?.gold ?? null },
           bpList: data.bp_list ?? [],

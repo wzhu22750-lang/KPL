@@ -1,0 +1,321 @@
+- generic [ref=e2]:
+  - link "跳到正文" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=e4]:
+    - link "KPL Intelligence 首页" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "KPL Intelligence" [ref=e6]:
+        - generic [aria-hidden] [ref=e8]: KPL Intelligence
+    - navigation "主导航" [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: 内容
+        - generic [ref=e12]:
+          - link "精选" [ref=e13] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=e18] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=e26] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=e34] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=e43] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=e53] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=e59] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=e70] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=e75] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=e81] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=e89] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=e94]:
+        - generic [ref=e95]: 更多
+        - generic [ref=e96]:
+          - link "Agent 接入" [ref=e97] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=e102] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=e107] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=e114] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=e120]:
+      - radio "深色" [ref=e122] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=e126] [cursor=pointer]
+      - radio "浅色" [ref=e131] [cursor=pointer]
+  - main [ref=e136]:
+    - generic [ref=e138]:
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - heading "2026-10-07 内容雷达" [level=1] [ref=e142]
+          - paragraph [ref=e143]: 追踪赛场动态，读懂每一次胜负。
+        - link "问问 KPL" [ref=e144] [cursor=pointer]:
+          - /url: /ask
+      - region "KPL内容雷达" [ref=e150]:
+        - generic [ref=e151]:
+          - heading "圈里在聊什么" [level=2] [ref=e152]
+          - navigation "内容雷达日期" [ref=e153]:
+            - link "前一天" [ref=e154] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-06
+            - generic [ref=e155]: 2026-10-07
+            - link "后一天" [ref=e156] [cursor=pointer]:
+              - /url: /?radarDay=2026-10-08
+            - link "今天" [ref=e157] [cursor=pointer]:
+              - /url: /
+        - paragraph [ref=e158]: 热度是观测信号，不代表事实成立；未知指标不作零互动。局次待确认的材料单列。
+        - group [ref=e159]:
+          - generic "钟意谈被海月拉走：看到回家水晶没了，想着“死了算了” · 1份材料" [ref=e160] [cursor=pointer]:
+            - text: 钟意谈被海月拉走：看到回家水晶没了，想着“死了算了”
+            - generic [ref=e161]: · 1份材料
+        - group [ref=e162]:
+          - generic "九尾赛后谈团队状态，也转述小崽被庄周克制的吐槽 · 1份材料" [ref=e163] [cursor=pointer]:
+            - text: 九尾赛后谈团队状态，也转述小崽被庄周克制的吐槽
+            - generic [ref=e164]: · 1份材料
+        - heading "比赛日 · 一场一档" [level=2] [ref=e165]
+        - generic [ref=e166]:
+          - link "KSG vs 长沙TES.A" [ref=e167] [cursor=pointer]:
+            - /url: /matches/kpl-20260004-2026100701
+          - paragraph [ref=e168]: BO5 · 已结束 · 3:0
+          - group [ref=e169]:
+            - generic "展开比赛时间线 · 7份材料" [ref=e170] [cursor=pointer]
+        - generic [ref=e171]:
+          - link "北京WB vs 上海EDG.M" [ref=e172] [cursor=pointer]:
+            - /url: /matches/kpl-20260004-2026100702
+          - paragraph [ref=e173]: BO5 · 已结束 · 1:3
+          - group [ref=e174]:
+            - generic "展开比赛时间线 · 4份材料" [ref=e175] [cursor=pointer]
+        - generic [ref=e176]:
+          - link "成都AG超玩会 vs 杭州LGD.NBW" [ref=e177] [cursor=pointer]:
+            - /url: /matches/kpl-20260004-2026100703
+          - paragraph [ref=e178]: BO5 · 已结束 · 2:3
+          - group [ref=e179]:
+            - generic "展开比赛时间线 · 13份材料" [ref=e180] [cursor=pointer]
+        - generic [ref=e181]:
+          - heading "动态、观点与趣评" [level=2] [ref=e182]
+          - article [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: 事实陈述（分类非核实）
+              - generic [ref=e186]: KPL王者荣耀职业联赛（官方微博）
+              - generic [ref=e187]: 热度加分 +11
+              - generic [ref=e188]: 官方一手 +10
+            - link "2026KPL年度总决赛擂台赛W1D6赛果及积分榜 ↗" [ref=e189] [cursor=pointer]:
+              - /url: https://weibo.com/6074356560/RlCtg83yp
+            - paragraph [ref=e190]: 官方发布擂台赛W1D6赛果：KSG、上海EDGM、杭州LGDNBW获胜，并公布当日个人数据榜及积分信息。KSG以3胜0负、净胜分9分积3分，位列大师组榜首；上海EDGM以2胜1负、净胜分1分积2分，排名精英组第一。公告称后天17:00比赛继续，将进行两场BO5。
+            - group [ref=e191]:
+              - generic "查看评分与原文依据" [ref=e192]
+          - article [ref=e193]:
+            - generic [ref=e194]:
+              - generic [ref=e195]: 事实陈述（分类非核实）
+              - generic [ref=e196]: KPL王者荣耀职业联赛（官方微博）
+              - generic [ref=e197]: 热度加分 +14
+              - generic [ref=e198]: 官方一手 +10
+            - link "2026KPL年度总决赛擂台赛W1D6赛程公布 ↗" [ref=e199] [cursor=pointer]:
+              - /url: https://weibo.com/6074356560/RlxSUbukQ
+            - paragraph [ref=e200]: 内容公布擂台赛W1D6三场对阵及开赛时间：14:00 KSG对长沙TES.A，17:00北京WB对上海EDG.M，20:00成都AG超玩会对杭州LGD.NBW；并列出各队当时的连胜、积分或胜负背景。
+            - group [ref=e201]:
+              - generic "查看评分与原文依据" [ref=e202]
+          - article [ref=e203]:
+            - generic [ref=e204]:
+              - generic [ref=e205]: 事实陈述（分类非核实）
+              - generic [ref=e206]: 苏州KSG（官方微博）
+              - generic [ref=e207]: 热度加分 +10
+              - generic [ref=e208]: 官方一手 +10
+            - link "KSG年度总决赛BO5第三局公布赛中轮换与阵容 ↗" [ref=e209] [cursor=pointer]:
+              - /url: https://weibo.com/6134425922/RlzkPftqt
+            - paragraph [ref=e210]: 2026KPL年度总决赛擂台赛KSG对阵长沙TES.A的BO5第三局，KSG公布赛中轮换：发育路由梦岚换为小屿，游走由晚星换为烈峰峰；同时列出本局双方选手及英雄。材料未说明轮换原因或比赛结果。
+            - group [ref=e211]:
+              - generic "查看评分与原文依据" [ref=e212]
+          - article [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: 事实陈述（分类非核实）
+              - generic [ref=e216]: 成都AG超玩会（微博关键词搜索，非超话全量）
+              - generic [ref=e217]: 热度加分 +6
+            - link "AG公告称首发五人组即日起解散，称调整基于选手规划、竞技状态与俱乐部长期发展 ↗" [ref=e218] [cursor=pointer]:
+              - /url: https://weibo.com/7789766198/RlCo8dfvZ
+            - paragraph [ref=e219]: 输入内容以俱乐部公告形式称，成都AG超玩会首发五人组轩染、钟意、长生、一诺、大帅即日起解散，并称决定经过俱乐部与选手本人沟通，综合考虑个人职业规划、竞技状态及俱乐部长期发展战略。公告未说明五名选手各自后续去向或具体调整安排；当前材料也无法独立核实公告真实性。
+            - paragraph [ref=e220]: 立场：公告以致谢和祝福为主，表示五人组正式解散。
+            - group [ref=e221]:
+              - generic "查看评分与原文依据" [ref=e222]
+          - article [ref=e223]:
+            - generic [ref=e224]:
+              - generic [ref=e225]: 事实陈述（分类非核实）
+              - generic [ref=e226]: 北京WB（官方微博）
+              - generic [ref=e227]: 热度加分 +10
+              - generic [ref=e228]: 官方一手 +10
+            - link "北京WB暖阳达成KPL联赛300场里程碑 ↗" [ref=e229] [cursor=pointer]:
+              - /url: https://weibo.com/6528198786/RlB5mdi1W
+            - paragraph [ref=e230]: 内容祝贺北京WB暖阳（林恒）达成KPL联赛300场里程碑，并以“攀登计划”等宣传语表达祝贺。未提供更具体的比赛或后续信息。
+            - paragraph [ref=e231]: 立场：祝贺暖阳达成300场里程碑
+            - group [ref=e232]:
+              - generic "查看评分与原文依据" [ref=e233]
+          - article [ref=e234]:
+            - generic [ref=e235]:
+              - generic [ref=e236]: 事实陈述（分类非核实）
+              - generic [ref=e237]: 成都AG超玩会（官方微博）
+              - generic [ref=e238]: 热度加分 +13
+              - generic [ref=e239]: 官方一手 +10
+            - link "2026KPL年度总决赛擂台赛：成都AG超玩会与杭州LGD.NBW战至2:2 ↗" [ref=e240] [cursor=pointer]:
+              - /url: https://weibo.com/5878848794/RlC4VyddG
+            - paragraph [ref=e241]: 原文称，2026KPL年度总决赛擂台赛中，成都AG超玩会与杭州LGD.NBW战至2:2。材料未提供后续赛果或具体对局细节。
+            - group [ref=e242]:
+              - generic "查看评分与原文依据" [ref=e243]
+          - article [ref=e244]:
+            - generic [ref=e245]:
+              - generic [ref=e246]: 事实陈述（分类非核实）
+              - generic [ref=e247]: KPL王者荣耀职业联赛（官方微博）
+              - generic [ref=e248]: 热度加分 +12
+              - generic [ref=e249]: 官方一手 +10
+            - link "LGDNBW赛中语音记录团战沟通与推进指令 ↗" [ref=e250] [cursor=pointer]:
+              - /url: https://weibo.com/6074356560/RlCnPbV0e
+            - paragraph [ref=e251]: 材料标注为AG对战LGDNBW及2026KPL年度总决赛赛中语音，内容包括报对手技能、呼喊跟进与集火，并提到带线、点塔和“一波”。片段未交代具体局数、最终结果或完整比赛过程，不能据此判断战术成效。
+            - group [ref=e252]:
+              - generic "查看评分与原文依据" [ref=e253]
+          - article [ref=e254]:
+            - generic [ref=e255]:
+              - generic [ref=e256]: 事实陈述（分类非核实）
+              - generic [ref=e257]: 成都AG超玩会（官方微博）
+              - generic [ref=e258]: 热度加分 +10
+              - generic [ref=e259]: 官方一手 +10
+            - link "2026KPL年度总决赛擂台赛：成都AG超玩会2:1杭州LGD.NBW ↗" [ref=e260] [cursor=pointer]:
+              - /url: https://weibo.com/5878848794/RlBU5kKev
+            - paragraph [ref=e261]: 原文称成都AG超玩会在2026KPL年度总决赛擂台赛中以2:1领先杭州LGD.NBW；未提供比赛细节或最终赛果。
+            - group [ref=e262]:
+              - generic "查看评分与原文依据" [ref=e263]
+          - article [ref=e264]:
+            - generic [ref=e265]:
+              - generic [ref=e266]: 事实陈述（分类非核实）
+              - generic [ref=e267]: 苏州KSG（官方微博）
+              - generic [ref=e268]: 热度加分 +17
+              - generic [ref=e269]: 官方一手 +5
+            - link "KSG年总三连胜后发布队员相机短视频 ↗" [ref=e270] [cursor=pointer]:
+              - /url: https://weibo.com/6134425922/RlA7FqqNC
+            - paragraph [ref=e271]: 材料以“KSG年总三连胜”为背景，发布队员“小飞砍”的相机短视频，并用“猜猜一会儿小砍们会拼什么单词呢”引出互动。没有提供比赛具体信息或更多视频内容。
+            - group [ref=e272]:
+              - generic "查看评分与原文依据" [ref=e273]
+      - region "战队" [ref=e274]:
+        - generic [ref=e275]:
+          - heading "战队" [level=2] [ref=e276]
+          - link "全部战队" [ref=e277] [cursor=pointer]:
+            - /url: /teams
+        - list [ref=e280]:
+          - listitem [ref=e281]:
+            - link "BOOM" [ref=e282] [cursor=pointer]:
+              - /url: /teams/t12407
+          - listitem [ref=e284]:
+            - link "BTR" [ref=e285] [cursor=pointer]:
+              - /url: /teams/t12408
+          - listitem [ref=e287]:
+            - link "GKE" [ref=e288] [cursor=pointer]:
+              - /url: /teams/t12405
+          - listitem [ref=e290]:
+            - link "KSG" [ref=e291] [cursor=pointer]:
+              - /url: /teams/ksg
+          - listitem [ref=e293]:
+            - link "LTG" [ref=e294] [cursor=pointer]:
+              - /url: /teams/t10905
+          - listitem [ref=e296]:
+            - link "SYG" [ref=e297] [cursor=pointer]:
+              - /url: /teams/t12202
+          - listitem [ref=e299]:
+            - link "WG" [ref=e300] [cursor=pointer]:
+              - /url: /teams/t12411
+          - listitem [ref=e302]:
+            - link "WST" [ref=e303] [cursor=pointer]:
+              - /url: /teams/t10910
+          - listitem [ref=e305]:
+            - link "ZDC" [ref=e306] [cursor=pointer]:
+              - /url: /teams/t12404
+          - listitem [ref=e308]:
+            - link "ZJQ" [ref=e309] [cursor=pointer]:
+              - /url: /teams/t12406
+          - listitem [ref=e311]:
+            - link "EDG.M" [ref=e312] [cursor=pointer]:
+              - /url: /teams/edgm
+          - listitem [ref=e314]:
+            - link "RNG.M" [ref=e315] [cursor=pointer]:
+              - /url: /teams/rngm
+          - listitem [ref=e317]:
+            - link "DRG" [ref=e318] [cursor=pointer]:
+              - /url: /teams/drg
+          - listitem [ref=e320]:
+            - link "JDG" [ref=e321] [cursor=pointer]:
+              - /url: /teams/jdg
+          - listitem [ref=e323]:
+            - link "WB" [ref=e324] [cursor=pointer]:
+              - /url: /teams/wb
+          - listitem [ref=e326]:
+            - link "Hero" [ref=e327] [cursor=pointer]:
+              - /url: /teams/hero
+          - listitem [ref=e329]:
+            - link "吵一吵" [ref=e330] [cursor=pointer]:
+              - /url: /teams/t12409
+          - listitem [ref=e332]:
+            - link "好厚米" [ref=e333] [cursor=pointer]:
+              - /url: /teams/t12410
+          - listitem [ref=e335]:
+            - link "TTG" [ref=e336] [cursor=pointer]:
+              - /url: /teams/ttg
+          - listitem [ref=e338]:
+            - link "AG" [ref=e339] [cursor=pointer]:
+              - /url: /teams/ag
+          - listitem [ref=e341]:
+            - link "TCG" [ref=e342] [cursor=pointer]:
+              - /url: /teams/tcg
+          - listitem [ref=e344]:
+            - link "LGD" [ref=e345] [cursor=pointer]:
+              - /url: /teams/lgd-nbw
+          - listitem [ref=e347]:
+            - link "情久" [ref=e348] [cursor=pointer]:
+              - /url: /teams/qingjiu
+          - listitem [ref=e350]:
+            - link "ES" [ref=e351] [cursor=pointer]:
+              - /url: /teams/estar
+          - listitem [ref=e353]:
+            - link "RW侠" [ref=e354] [cursor=pointer]:
+              - /url: /teams/rw
+          - listitem [ref=e356]:
+            - link "DYG" [ref=e357] [cursor=pointer]:
+              - /url: /teams/dyg
+          - listitem [ref=e359]:
+            - link "WE" [ref=e360] [cursor=pointer]:
+              - /url: /teams/we
+          - listitem [ref=e362]:
+            - link "狼队" [ref=e363] [cursor=pointer]:
+              - /url: /teams/wolves
+          - listitem [ref=e365]:
+            - link "重庆科技大学" [ref=e366] [cursor=pointer]:
+              - /url: /teams/t12402
+          - listitem [ref=e368]:
+            - link "TES.A" [ref=e369] [cursor=pointer]:
+              - /url: /teams/tes-a
+          - listitem [ref=e371]:
+            - link "阿里巴巴PKQ" [ref=e372] [cursor=pointer]:
+              - /url: /teams/t12403
+          - listitem [ref=e374]:
+            - link "青训潜渊" [ref=e375] [cursor=pointer]:
+              - /url: /teams/t12401
+          - listitem [ref=e377]:
+            - link "BOA" [ref=e378] [cursor=pointer]:
+              - /url: /teams/t10302
+          - listitem [ref=e380]:
+            - link "XYG" [ref=e381] [cursor=pointer]:
+              - /url: /teams/t10036
+          - listitem [ref=e383]:
+            - link "九江TKL" [ref=e384] [cursor=pointer]:
+              - /url: /teams/t10602
+          - listitem [ref=e386]:
+            - link [ref=e387] [cursor=pointer]:
+              - /url: /teams/t10101
+          - listitem [ref=e388]:
+            - link "深圳KLG" [ref=e389] [cursor=pointer]:
+              - /url: /teams/t10901
+          - listitem [ref=e391]:
+            - link "MTG" [ref=e392] [cursor=pointer]:
+              - /url: /teams/t10032
+  - button "回到顶部"

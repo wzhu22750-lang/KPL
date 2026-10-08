@@ -1,0 +1,62 @@
+{
+  "sourceId": "weibo-ag-club",
+  "checkedAt": "2026-10-07T18:00:24.907Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 10,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "5878848794",
+    "pages": 1,
+    "extractedMblogs": 10,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": false
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/5878848794/RlCln2oFc",
+      "publishedAt": "2026-10-07T15:12:17.000Z",
+      "author": {
+        "id": "5878848794",
+        "name": "成都AG超玩会",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 12690,
+        "comments": 3753,
+        "shares": 516
+      }
+    },
+    {
+      "url": "https://weibo.com/5878848794/RlC9k14D3",
+      "publishedAt": "2026-10-07T14:42:36.000Z",
+      "author": {
+        "id": "5878848794",
+        "name": "成都AG超玩会",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 3179,
+        "comments": 1918,
+        "shares": 108
+      }
+    },
+    {
+      "url": "https://weibo.com/5878848794/RlC4VyddG",
+      "publishedAt": "2026-10-07T14:31:47.000Z",
+      "author": {
+        "id": "5878848794",
+        "name": "成都AG超玩会",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 3648,
+        "comments": 1429,
+        "shares": 138
+      }
+    }
+  ]
+}

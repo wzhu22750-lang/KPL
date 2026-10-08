@@ -1,0 +1,59 @@
+{
+  "sourceId": "weibo-topic-ag",
+  "checkedAt": "2026-10-07T18:00:33.559Z",
+  "capability": "keyword_search",
+  "status": "ok",
+  "count": 15,
+  "detail": {
+    "capability": "keyword_search",
+    "coverage": "bounded",
+    "pages": 1,
+    "query": "成都AG超玩会",
+    "totalRaw": 15,
+    "filteredCount": 15
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/5878848794/RlsExw7D6",
+      "publishedAt": "2026-10-06T14:32:03.000Z",
+      "author": {
+        "id": "5878848794",
+        "name": "成都AG超玩会",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 11730,
+        "comments": 1259,
+        "shares": 1236
+      }
+    },
+    {
+      "url": "https://weibo.com/6142572483/Rlt35Fgt6",
+      "publishedAt": "2026-10-06T15:32:32.000Z",
+      "author": {
+        "id": "6142572483",
+        "name": "成都AG丶轩染",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 5074,
+        "comments": 488,
+        "shares": 103
+      }
+    },
+    {
+      "url": "https://weibo.com/7784123688/Rlsys1NpM",
+      "publishedAt": "2026-10-06T14:17:02.000Z",
+      "author": {
+        "id": "7784123688",
+        "name": "骂我我就是你爹CS",
+        "platformVerified": false
+      },
+      "metrics": {
+        "likes": 1335,
+        "comments": 123,
+        "shares": 5
+      }
+    }
+  ]
+}

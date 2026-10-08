@@ -2,12 +2,14 @@
 // Reads through the same public read layer as v1; no cookies are read or set.
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { FEATURES } from "@aihot/industry/features";
+import { RADAR } from "@aihot/industry/radar";
 import { isCategoryKey, isChannelKey, type CategoryKey, type ChannelKey } from "@aihot/contracts/taxonomy";
 import type { ReportIndexResponse, ReportLatestPage, ReportNavigationResponse, SiteContact } from "@aihot/contracts/site";
 import { InvalidCursorError } from "@aihot/backend/lib/cursor";
 import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detail";
 import { loadPool, SearchBusyError } from "@aihot/backend/publication/pool";
 import { loadTimeline } from "@aihot/backend/publication/timeline";
+import { loadRadar } from "@aihot/backend/publication/radar";
 import { loadStoryFollowups } from "@aihot/backend/publication/followups";
 import { loadGroupReports } from "@aihot/backend/publication/groups";
 import { loadHotStrip } from "@aihot/backend/publication/hot";
@@ -238,6 +240,23 @@ export function registerSite(app: FastifyInstance) {
   }));
 
   registerFeedback(app);
+
+  app.get("/api/site/radar", siteHandler(async (req, reply) => {
+    if (!RADAR.enabled) return sendProblem(req, reply, { status: 503, code: "service_unavailable", detail: "content radar disabled" });
+    const q = req.query as { day?: string; match?: string; current?: string };
+    if ((q.current !== undefined && q.current !== 'true') || (q.current && (q.day || q.match))) {
+      return sendProblem(req, reply, { status: 400, code: "bad_request", detail: "current cannot be combined with day or match" });
+    }
+    if (q.day && (!/^\d{4}-\d{2}-\d{2}$/.test(q.day) || !Number.isFinite(Date.parse(q.day)) || new Date(q.day).toISOString().slice(0, 10) !== q.day)) {
+      return sendProblem(req, reply, { status: 400, code: "bad_request", detail: "invalid day" });
+    }
+    const data = await loadRadar(q.day, q.match, { current: q.current === 'true' });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "radar", cacheControl: "public, max-age=30, s-maxage=30" });
+  }));
+
+  app.get("/api/site/hot/strip", siteHandler(async (req, reply) => {
+    return sendJsonWithEtag(req, reply, { entries: await loadHotStrip() ?? [] }, { etagPrefix: "hot-strip", cacheControl: "public, max-age=30, s-maxage=30" });
+  }));
 
   app.get("/api/site/hot", siteHandler(async (req, reply) => {
     const data = await loadHot();

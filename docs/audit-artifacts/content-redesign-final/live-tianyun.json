@@ -1,0 +1,62 @@
+{
+  "sourceId": "weibo-caster-tianyun",
+  "checkedAt": "2026-10-07T18:34:37.258Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 4,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "2677652880",
+    "pages": 1,
+    "extractedMblogs": 4,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": true
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/2677652880/Rl9Nf2m4R",
+      "publishedAt": "2026-10-04T14:31:17.000Z",
+      "author": {
+        "id": "2677652880",
+        "name": "解说天云",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 64524,
+        "comments": 2152,
+        "shares": 1144
+      }
+    },
+    {
+      "url": "https://weibo.com/2677652880/Rl81k6k5t",
+      "publishedAt": "2026-10-04T10:00:28.000Z",
+      "author": {
+        "id": "2677652880",
+        "name": "解说天云",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 1788,
+        "comments": 63,
+        "shares": 20
+      }
+    },
+    {
+      "url": "https://weibo.com/2677652880/Rl5NaCbCw",
+      "publishedAt": "2026-10-04T04:20:07.000Z",
+      "author": {
+        "id": "2677652880",
+        "name": "解说天云",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 6072,
+        "comments": 323,
+        "shares": 52
+      }
+    }
+  ]
+}

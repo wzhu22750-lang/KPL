@@ -88,7 +88,7 @@ interface SourceClock {
 /** Scheduled sources and their last successful fetch (screenshot-reported and pushed sources cannot visibly fall behind). */
 export async function sourceClocks(): Promise<SourceClock[]> {
   const rows = await sql<{ id: string; last_ok_at: Date | null; interval_minutes: number }[]>`
-    SELECT id, last_ok_at, interval_minutes FROM sources WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search')`;
+    SELECT id, last_ok_at, interval_minutes FROM sources WHERE enabled AND kind IN ('rss', 'web_list', 'json_list', 'x_search', 'weibo', 'mp_account')`;
   return rows.map((r) => ({ id: r.id, lastOk: r.last_ok_at?.getTime() ?? null, graceMs: Math.max(r.interval_minutes * 3, 90) * 60_000 }));
 }
 

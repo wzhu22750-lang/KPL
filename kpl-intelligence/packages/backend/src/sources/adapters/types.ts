@@ -13,6 +13,8 @@ export interface AdapterCollectResult<TRaw = unknown> {
   nextCursor?: AdapterCursor;
   detail?: Record<string, unknown> | null;
   paidReceiptIds?: number[];
+  /** Some pages were retained, but the run must not advance source health/last_ok_at. */
+  incompleteReason?: string;
 }
 
 export interface EntityHint {

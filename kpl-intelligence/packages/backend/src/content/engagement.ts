@@ -1,0 +1,53 @@
+// Platform counters are observations, not edits to the article. Never trigger paid text analysis
+// just because a counter changed, and never merge a missing value with an older known value.
+import type { Db } from "../db.ts";
+import type { Engagement } from "./extractors/types.ts";
+
+export interface EngagementObservationInput {
+  platform: string;
+  observedAt: Date;
+  metrics: Engagement;
+  method: "source_api" | "page_dom";
+}
+
+export const ENGAGEMENT_METRICS = ["views", "likes", "comments", "shares", "favorites"] as const;
+
+/** Unknown, malformed, negative and imprecise counters remain null; a real zero remains zero. */
+export function observedCounter(value: unknown): number | null {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : null;
+}
+
+export function normalizeObservation(input: EngagementObservationInput) {
+  if (!/^[a-z][a-z0-9_-]{0,39}$/.test(input.platform)) throw new Error("invalid engagement platform");
+  if (!(input.observedAt instanceof Date) || !Number.isFinite(input.observedAt.getTime())) throw new Error("invalid engagement observation time");
+  if (input.method !== "source_api" && input.method !== "page_dom") throw new Error("invalid engagement observation method");
+  const metrics = Object.fromEntries(ENGAGEMENT_METRICS.map((key) => [key, observedCounter(input.metrics[key])])) as Required<Engagement>;
+  return { ...input, metrics, coverage: ENGAGEMENT_METRICS.some((key) => metrics[key] !== null) ? "observed" as const : "unknown" as const };
+}
+
+export async function recordEngagement(db: Db, articleId: string, sourceId: string, input: EngagementObservationInput): Promise<void> {
+  const o = normalizeObservation(input);
+  await db`INSERT INTO engagement_observations (article_id, source_id, platform, observed_at, method, metrics, coverage)
+    VALUES (${articleId}, ${sourceId}, ${o.platform}, ${o.observedAt}, ${o.method}, ${db.json(o.metrics)}, ${o.coverage})
+    ON CONFLICT (article_id, source_id, platform, observed_at, method) DO NOTHING`;
+}
+
+/** Keep 30 days of growth history plus the newest sample per source/platform for quiet articles. */
+export async function pruneEngagement(db: Db, now = new Date()): Promise<number> {
+  const removed = await db`DELETE FROM engagement_observations old
+    WHERE old.observed_at < ${new Date(now.getTime() - 30 * 86400_000)}
+      AND EXISTS (SELECT 1 FROM engagement_observations newer
+        WHERE newer.article_id = old.article_id AND newer.source_id = old.source_id AND newer.platform = old.platform
+          AND (newer.observed_at, newer.id) > (old.observed_at, old.id))`;
+  return removed.count;
+}
+
+/** Latest per collecting source and platform: never compare or add unlike platforms here.
+ * A later unknown snapshot stays unknown. The caller can inspect history explicitly for growth.
+ */
+export async function latestEngagement(db: Db, articleId: string) {
+  return db<{ source_id: string; platform: string; observed_at: Date; method: string; metrics: Engagement; coverage: "observed" | "unknown" }[]>`
+    SELECT DISTINCT ON (source_id, platform) source_id, platform, observed_at, method, metrics, coverage
+    FROM engagement_observations WHERE article_id = ${articleId}
+    ORDER BY source_id, platform, observed_at DESC, id DESC`;
+}

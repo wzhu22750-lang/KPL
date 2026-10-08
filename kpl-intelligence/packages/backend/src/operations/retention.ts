@@ -3,6 +3,7 @@ import { readdir, stat, unlink } from "node:fs/promises";
 import path from "node:path";
 import { config } from "../config.ts";
 import { sql } from "../db.ts";
+import { pruneEngagement } from "../content/engagement.ts";
 
 /** Removes files under `dir` last written more than `maxAgeMs` ago. */
 async function removeOlderThan(dir: string, maxAgeMs: number, now: number): Promise<number> {
@@ -33,5 +34,6 @@ export async function dailyRetention(now = new Date()) {
   const monthMs = 30 * 86400_000;
   // Derived caches (proxied images, share cards and posters) are rebuilt on demand.
   const prunedCache = (await removeOlderThan(path.join(config.dataDir, "imgcache"), monthMs, now.getTime())) + (await removeOlderThan(path.join(config.dataDir, "ogcache"), monthMs, now.getTime()));
-  return { deletedLeases: leases.count, deletedJobRuns: runs.count, prunedCache };
+  const deletedEngagementObservations = await pruneEngagement(sql, now);
+  return { deletedLeases: leases.count, deletedJobRuns: runs.count, prunedCache, deletedEngagementObservations };
 }

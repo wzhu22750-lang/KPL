@@ -1,0 +1,10 @@
+{
+  "applied": false,
+  "existing": [
+    "weibo-caster-lijiu",
+    "weibo-caster-tianyun",
+    "weibo-caster-yingkai",
+    "weibo-gemini"
+  ],
+  "missing": []
+}

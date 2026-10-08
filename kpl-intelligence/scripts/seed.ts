@@ -1,10 +1,11 @@
-// Seeds a fresh site from the industry pack: the demo sources (industry/sources.json, only the ones not
-// there yet, so admin edits are never undone) and, with the leaderboard on, its model directory (only
-// models, names and scales not there yet). Topics need no seeding: they are read from industry/topics.json.
+// Seeds a site from the industry pack. Source entries are UPSERTED, including admin-editable fields;
+// use apply-source-policy.ts (dry-run by default) to change only collection cadence on an existing site.
+// With leaderboard enabled, also seed its model directory. Topics are read from industry/topics.json.
 // Re-runnable:  node --env-file=.env scripts/seed.ts
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { FEATURES } from "@aihot/industry/features";
+import { collectionDefaults } from "@aihot/industry/collection";
 import { REPO_ROOT } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
 import { importModelDirectory } from "@aihot/backend/leaderboard/directory";
@@ -29,7 +30,10 @@ interface SeedSource {
 
 const { sources } = JSON.parse(readFileSync(path.join(REPO_ROOT, "industry/sources.json"), "utf8")) as { sources: SeedSource[] };
 let added = 0;
-for (const s of sources) {
+for (const entry of sources) {
+  const policy = collectionDefaults(entry);
+  const s = policy ? { ...entry, interval_minutes: policy.intervalMinutes,
+    config: { ...entry.config, collectionPolicy: { mode: policy.mode } } } : entry;
   assertSupportedConfig(s.kind, s.config);
   const tier = s.tier ?? "T2";
   // First-party means a T1 source, as the admin sets it.

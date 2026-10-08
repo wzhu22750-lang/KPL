@@ -1,0 +1,16 @@
+(node:16726) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ end to end: three series form three match cards; games and unknown operations remain distinct (224.303667ms)
+✔ community-first controversy creates a public topic with different stances and preserves unknown/zero (327.266083ms)
+✔ match observations reject stale scores but allow newer corrections and postponed status (10.370208ms)
+✔ unsafe material waits for review and stale/retracted material never leaks from new endpoint (247.017292ms)
+✔ default all channel suppresses radar duplicates while explicit news filtering retains its own feed (46.62175ms)
+✔ closed rollout gate stops radar exposure and does not enqueue judgment work (0.88525ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2679.4895

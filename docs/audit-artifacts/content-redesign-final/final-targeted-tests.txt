@@ -1,0 +1,53 @@
+✔ all WeChat transports get daily fixed cadence; account/search Weibo remain prioritized (3.533333ms)
+✔ policy rejects silent invalid modes, nested garbage and non-object values (0.248583ms)
+✔ cadence plan is idempotent, preserves cooldowns and has a before image (0.147166ms)
+✔ observations keep unknown separate from zero and do not invent precision (0.378958ms)
+✔ the 61st entry of a known feed is stored before its validator answers 304 (954.729625ms)
+✔ a regular JSON run keeps all 0 entries it was given (6.832375ms)
+✔ a regular JSON run keeps all 1 entries it was given (16.241167ms)
+✔ a regular JSON run keeps all 59 entries it was given (916.045083ms)
+✔ a regular JSON run keeps all 60 entries it was given (391.156ms)
+✔ a regular JSON run keeps all 61 entries it was given (344.140833ms)
+✔ a regular JSON run keeps all 100 entries it was given (765.5925ms)
+✔ a listing longer than a query's parameter limit is still deduplicated and its new tail stored (704.50475ms)
+✔ with the first 60 known, the tail is still created and revised, and queued for processing once (846.004917ms)
+✔ a web list of 100 entries loses none, newest first (608.498041ms)
+✔ a web list of 100 entries loses none, oldest first (804.298375ms)
+✔ the first import keeps its count and age limits; the next regular run fills in the rest before accepting 304 (425.064ms)
+✔ a long listing still keeps to the detail budget and to the detail titles already known (692.249083ms)
+✔ in the tail an alias of a known URL keeps the first record, and URL, category and noise filters still apply (351.756167ms)
+✔ a storage failure in the tail does not advance the feed's validator; the retry fills in without new revisions (397.43ms)
+(node:82589) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ end to end: three series form three match cards; games and unknown operations remain distinct (296.994ms)
+✔ community-first controversy creates a public topic with different stances and preserves unknown/zero (274.549667ms)
+✔ match observations reject stale scores but allow newer corrections and postponed status (15.017042ms)
+✔ unsafe material waits for review and stale/retracted material never leaks from new endpoint (245.330583ms)
+✔ closed rollout gate stops radar exposure and does not enqueue judgment work (0.519542ms)
+✔ same text stores new counters without resetting analysis, changing revision or adding publications (55.438417ms)
+✔ old observation history expires but keeps the latest snapshot of a quiet article (10.614583ms)
+✔ dry-run and apply change only cadence; fixed WeChat RSS survives daily adaptation (12.589834ms)
+✔ keyword search failure is not healthy empty; partial material is retained without advancing last_ok_at (69.809208ms)
+✔ Weibo and paid WeChat are included in heat coverage clocks (2.602959ms)
+✔ type-weighted base, official bonus and real heat are independently explainable (2.663417ms)
+✔ a platform name does not grant heat, zero is observed and unsupported platforms stay unknown (0.160917ms)
+✔ strict model contract does not coerce dimensions or execute injected instructions (2.3115ms)
+✔ match parent groups different games without merging their fact identity; ambiguous identity remains null (3.481708ms)
+✔ soft mix fills available content without manufacturing controversy (0.137875ms)
+✔ pure helpers: page token and numeric id order (0.998666ms)
+✔ collect: 多页增量追到水印后停止，不再翻旧页 (4.536583ms)
+✔ collect: 置顶旧帖不使水印倒退，重复 token 结束循环 (1.565459ms)
+✔ collect: 后一页失败保留已读页并保存断点游标，不整体失败 (1.170125ms)
+✔ collect: 第一页失败（含重试）后抛出，不伪造成空结果 (1.687917ms)
+✔ keyword search distinguishes valid empty results from HTTP, login and malformed failures (1.8705ms)
+✔ keyword search retains a good page but signals a failed tail (0.669958ms)
+✔ keyword search budget is bounded, not an invented full-coverage result (0.434166ms)
+✔ normalized observations carry source time and missing counters stay null (1.25925ms)
+ℹ tests 43
+ℹ suites 0
+ℹ pass 43
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9603.123042

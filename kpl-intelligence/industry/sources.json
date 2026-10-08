@@ -571,6 +571,7 @@
         "mode": "html_window_var",
         "windowVar": "$$data",
         "itemsPath": "topic.threads.list",
+        "engagementPaths": { "platform": "hupu", "views": "read", "likes": "lights", "comments": "replies" },
         "titlePaths": [
           "title"
         ],
@@ -866,8 +867,49 @@
       "enabled": true
     },
     {
+      "id": "weibo-caster-lijiu",
+      "name": "解说李九（解说与观点）",
+      "kind": "weibo",
+      "config": { "uid": "5687445105", "platform": "weibo", "collectionPolicy": { "mode": "fixed" } },
+      "tier": "T2", "owner_type": "media", "participation_mode": "editorial",
+      "interval_minutes": 30, "tags": ["解说", "观点", "微博"],
+      "site_fulltext": false, "syndicate_fulltext": false, "enabled": true
+    },
+    {
+      "id": "weibo-caster-tianyun",
+      "name": "解说天云（解说与观点）",
+      "kind": "weibo",
+      "config": { "uid": "2677652880", "platform": "weibo", "collectionPolicy": { "mode": "fixed" } },
+      "tier": "T2", "owner_type": "media", "participation_mode": "editorial",
+      "interval_minutes": 30, "tags": ["解说", "观点", "微博"],
+      "site_fulltext": false, "syndicate_fulltext": false, "enabled": true
+    },
+    {
+      "id": "weibo-caster-yingkai",
+      "name": "解说英凯（解说与观点）",
+      "kind": "weibo",
+      "config": { "uid": "3737696342", "platform": "weibo", "collectionPolicy": { "mode": "fixed" } },
+      "tier": "T2", "owner_type": "media", "participation_mode": "editorial",
+      "interval_minutes": 30, "tags": ["解说", "观点", "微博"],
+      "site_fulltext": false, "syndicate_fulltext": false, "enabled": true
+    },
+    {
+      "id": "weibo-gemini",
+      "name": "Gemini郭家毅（二路与观点）",
+      "kind": "weibo",
+      "config": { "uid": "2609737945", "platform": "weibo", "collectionPolicy": { "mode": "fixed" } },
+      "tier": "T2",
+      "owner_type": "media",
+      "participation_mode": "editorial",
+      "interval_minutes": 30,
+      "tags": ["二路", "主播", "观点", "微博"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
       "id": "weibo-topic-ag",
-      "name": "成都AG超玩会（微博超话与社区讨论）",
+      "name": "成都AG超玩会（微博关键词搜索，非超话全量）",
       "kind": "weibo",
       "config": {
         "mode": "topic",
@@ -885,7 +927,7 @@
       "interval_minutes": 60,
       "tags": [
         "社区",
-        "微博超话",
+        "微博搜索",
         "舆论",
         "AG"
       ],
@@ -895,7 +937,7 @@
     },
     {
       "id": "weibo-topic-wolves",
-      "name": "重庆狼队（微博超话与社区讨论）",
+      "name": "重庆狼队（微博关键词搜索，非超话全量）",
       "kind": "weibo",
       "config": {
         "mode": "topic",
@@ -913,7 +955,7 @@
       "interval_minutes": 60,
       "tags": [
         "社区",
-        "微博超话",
+        "微博搜索",
         "舆论",
         "狼队"
       ],

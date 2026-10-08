@@ -1,0 +1,48 @@
+{
+  "sourceId": "weibo-caster-yingkai",
+  "checkedAt": "2026-10-07T18:34:37.305Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 2,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "3737696342",
+    "pages": 1,
+    "extractedMblogs": 2,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": true
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/3737696342/RlCkOvaQk",
+      "publishedAt": "2026-10-07T15:10:55.000Z",
+      "author": {
+        "id": "3737696342",
+        "name": "解说英凯",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 6310,
+        "comments": 315,
+        "shares": 105
+      }
+    },
+    {
+      "url": "https://weibo.com/3737696342/Rl0YVfPZy",
+      "publishedAt": "2026-10-03T16:05:21.000Z",
+      "author": {
+        "id": "3737696342",
+        "name": "解说英凯",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 3613,
+        "comments": 62,
+        "shares": 5
+      }
+    }
+  ]
+}

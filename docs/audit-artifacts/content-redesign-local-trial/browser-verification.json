@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-08T04:02:00Z",
+  "source": "real local site, not fixture rendering",
+  "dateNavigation": {"from": "2026-10-07", "clicked": "前一天", "landedOn": "2026-10-06", "visibleRadarDate": "2026-10-06"},
+  "match": {"id": "kpl-20260004-2026100703", "score": "2:3", "winner": "杭州LGD.NBW", "games": 5, "officialReplayLinks": 5},
+  "checks": ["real match detail and MVP fields rendered", "all timeline details expanded", "expanded screenshot captured"],
+  "expandedScreenshot": "output/playwright/content-redesign/real-ag-lgd-expanded.png",
+  "browserSession": "kpl-final-check",
+  "cleanup": "explicit close, no session daemon left running"
+}

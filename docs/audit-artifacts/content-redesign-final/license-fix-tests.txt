@@ -1,0 +1,53 @@
+✔ the web reaches the backend only over HTTP (41.210083ms)
+✔ packages never import the apps, and nothing below the admin imports it (39.912625ms)
+✔ public routes read content only through the public read layer (6.080375ms)
+✔ the tables that carry a rule are written only by the module that owns it (14.367708ms)
+✔ the public scope and the composite rule are spelled once, in publication/scope.ts (14.990041ms)
+✔ every table and column is used by the code that reads and writes the database (95.0665ms)
+✔ every environment variable the code reads is listed in a template, and every listed one is read (55.581208ms)
+✔ every field of the website's own interfaces is read by the website (25.292375ms)
+(node:35080) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ relevance ranks all candidates, caps the public total at 2000 and keeps empty page totals (359.1495ms)
+✔ site cards omit unread payload while the detail retains its original body (61.293291ms)
+✔ stale full publication never overrides an unconfirmed body status (43.064917ms)
+✔ unfiltered single-term relevance combines direct/body scores and retains one-sided and empty matches (61.3105ms)
+✔ v1 search allows terms to match direct text and body, retaining time cursor order and public scope (42.051208ms)
+✔ RSS summary excludes bodies; full RSS includes only licensed items (7.34ms)
+✔ report directory projection preserves citation order, fallback headlines and absent historical citations (10.441667ms)
+﹣ minimal monitor polling version equals the full page across announcement/expiry/outage transitions (0.101416ms) # SKIP
+✔ unchanged pool and timeline revalidate with 304 while a content change returns a new body (62.65325ms)
+(node:35092) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ R01: X detail and original omit unlicensed text, translations, quotes and media (134.994125ms)
+✔ R02: Markdown exports only the licensed summary (41.526208ms)
+✔ R02: an unlicensed X post without a summary cannot enable Markdown (33.866166ms)
+✔ R03: every list projection retains the item without unlicensed X content (125.956625ms)
+✔ R04: revoking only site fulltext keeps editorial summaries after republishing (236.375625ms)
+✔ R05: revoking only syndication preserves licensed site reading and Markdown (200.454875ms)
+✔ R06/R07: x_search licence matrix site=false, syndicate=false (72.143666ms)
+✔ R06/R07: x_search licence matrix site=false, syndicate=true (102.71475ms)
+✔ R06/R07: x_search licence matrix site=true, syndicate=false (115.806125ms)
+✔ R06/R07: x_search licence matrix site=true, syndicate=true (42.702334ms)
+✔ R06/R07: rss licence matrix site=false, syndicate=false (28.260125ms)
+✔ R06/R07: rss licence matrix site=false, syndicate=true (41.123333ms)
+✔ R06/R07: rss licence matrix site=true, syndicate=false (36.768792ms)
+✔ R06/R07: rss licence matrix site=true, syndicate=true (30.133416ms)
+✔ R08: an unlicensed missing X structure does not restore content (33.482042ms)
+✔ R08: an unlicensed quote-only X structure does not restore content (21.018708ms)
+✔ R08: site permission does not override body status unconfirmed (20.044166ms)
+✔ R08: site permission does not override body status none (25.464542ms)
+✔ R09: missing translations retain existing licensed behavior and never bypass revocation (32.140958ms)
+✔ R09: stale translations retain existing licensed behavior and never bypass revocation (30.080125ms)
+✔ R09: same translations retain existing licensed behavior and never bypass revocation (29.899917ms)
+✔ R10: summary-only and withdrawn visibility retain stricter detail and export rules (19.719ms)
+✔ R10: hot_signal sources keep detail and Markdown unavailable (14.202375ms)
+✔ R10: isolated sources keep detail and Markdown unavailable (13.283125ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 3481.609166

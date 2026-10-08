@@ -163,7 +163,9 @@ export interface MatchInput {
   scoreA: number;
   scoreB: number;
   winnerId: string | null;
-  status: "scheduled" | "live" | "finished" | "cancelled";
+  status: "scheduled" | "live" | "finished" | "cancelled" | "postponed";
+  /** Time the source request started (or a source-provided revision timestamp), not response arrival. */
+  observedAt?: Date;
   scheduledAt: Date | null;
   playedAt: Date | null;
   sourceUrl?: string | null;
@@ -182,19 +184,22 @@ export function beijingTime(value: string | Date | null | undefined): Date | nul
 /** 比赛行：官方为真源，重复抓取更新比分与状态，不产生重复行。 */
 export async function upsertMatch(db: Db, m: MatchInput): Promise<{ id: string; created: boolean; revised: boolean }> {
   const id = ["kpl", m.leagueId, m.matchId].join("-");
+  const observedAt = m.observedAt ?? new Date();
+  if (!Number.isFinite(observedAt.getTime())) throw new Error("invalid match observation time");
   const rows = await db<{ id: string; inserted: boolean }[]>`
     INSERT INTO matches (id, season_id, stage, bo, team_a_id, team_b_id, score_a, score_b, winner_id,
-                         status, scheduled_at, played_at, source, source_key, cc_key, source_url, raw)
+                         status, scheduled_at, played_at, source, source_key, cc_key, source_url, raw, score_observed_at)
     VALUES (${id}, ${m.seasonId}, ${m.stage ?? null}, ${m.bo ?? null}, ${m.teamAId}, ${m.teamBId},
             ${m.scoreA}, ${m.scoreB}, ${m.winnerId}, ${m.status}, ${m.scheduledAt?.toISOString() ?? null},
             ${m.playedAt?.toISOString() ?? null}, 'smoba', ${m.matchId}, ${m.ccKey ?? null}, ${m.sourceUrl ?? null},
-            ${m.raw === undefined ? null : db.json(m.raw as never)})
+            ${m.raw === undefined ? null : db.json(m.raw as never)}, ${observedAt})
     ON CONFLICT (id) DO UPDATE SET
       stage = EXCLUDED.stage, bo = EXCLUDED.bo, score_a = EXCLUDED.score_a, score_b = EXCLUDED.score_b,
       winner_id = EXCLUDED.winner_id, status = EXCLUDED.status, scheduled_at = EXCLUDED.scheduled_at,
-      played_at = EXCLUDED.played_at, cc_key = EXCLUDED.cc_key, raw = EXCLUDED.raw, updated_at = now()
+      played_at = EXCLUDED.played_at, cc_key = EXCLUDED.cc_key, raw = EXCLUDED.raw, score_observed_at = EXCLUDED.score_observed_at, updated_at = now()
+    WHERE matches.score_observed_at IS NULL OR EXCLUDED.score_observed_at > matches.score_observed_at
     RETURNING id, (xmax = 0) AS inserted`;
-  return { id: rows[0]!.id, created: rows[0]!.inserted, revised: !rows[0]!.inserted };
+  return { id, created: rows[0]?.inserted ?? false, revised: rows.length > 0 && !rows[0]!.inserted };
 }
 
 export interface BattlePlayer {
@@ -252,7 +257,8 @@ const laneOf = (desc: string | null | undefined) => {
 
 /**
  * 一局完整数据：games 行 + 20 步 BP + 每名选手的单局数据。
- * camp 1/2 按 match 行的 camp1/camp2 队伍对齐（官方不暴露蓝红颜色，camp1 记为蓝方是站内稳定约定）；
+ * camp 1/2 按本小局的队伍映射，不沿用大场顺序；kills/gold 落库时再对齐大场 A/B。
+ * camp1 记为蓝方是站内稳定约定；
  * 巅峰对决（决胜局之后的盲选局）不产生 ban 记录，选取进 pinnacle_picks。
  *
  * 单事务 + 按对局 ID 的 advisory lock：worker 的自动同步与回灌脚本可能同时补同一局，
@@ -269,6 +275,8 @@ export async function upsertGame(g: GameInput): Promise<{ id: string }> {
 async function upsertGameTx(db: Tx, g: GameInput, id: string): Promise<{ id: string }> {
   const finished = g.status === 2;
   const winnerId = finished && g.winCamp ? g.campTeams[g.winCamp as 1 | 2] ?? null : null;
+  const aCamp = g.campTeams[1] === g.teamAId ? 1 : g.campTeams[2] === g.teamAId ? 2 : null;
+  const bCamp = g.campTeams[1] === g.teamBId ? 1 : g.campTeams[2] === g.teamBId ? 2 : null;
   const mode = g.bo !== null && g.bo !== undefined && g.battleSeq > g.bo ? "pinnacle" : "standard";
   const mvp = g.players.find((p) => p.is_mvp);
   const mvpId = mvp ? await ensurePlayer(db, { actualName: mvp.actual_player_name, teamId: await teamIdOf(db, mvp.team_id), seenAt: g.playedAt, iconUrl: mvp.player_icon ?? null }) : null;
@@ -277,7 +285,7 @@ async function upsertGameTx(db: Tx, g: GameInput, id: string): Promise<{ id: str
                        kills_a, kills_b, gold_a, gold_b, source, source_key, raw)
     VALUES (${id}, ${g.matchId}, ${g.battleSeq}, ${mode}, ${winnerId},
             ${g.durationMs !== null ? Math.round(g.durationMs / 1000) : null}, ${mvpId},
-            ${g.kills[1] ?? null}, ${g.kills[2] ?? null}, ${g.golds[1] ?? null}, ${g.golds[2] ?? null},
+            ${aCamp ? g.kills[aCamp] ?? null : null}, ${bCamp ? g.kills[bCamp] ?? null : null}, ${aCamp ? g.golds[aCamp] ?? null : null}, ${bCamp ? g.golds[bCamp] ?? null : null},
             'smoba', ${g.battleId}, ${db.json(g.raw as never)})
     ON CONFLICT (id) DO UPDATE SET
       mode = EXCLUDED.mode, winner_id = EXCLUDED.winner_id, duration_secs = EXCLUDED.duration_secs,

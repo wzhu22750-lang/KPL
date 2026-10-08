@@ -23,6 +23,8 @@ const MAX_EXTRACT_FAILURES = 3;
 /** An article queued this long ago is queued again, in case its job was lost. */
 const QUEUED_STALE = "30 minutes";
 
+import { queueRadar } from "./radar.ts";
+
 type Step = "extract" | "analyze";
 
 interface Route {
@@ -69,6 +71,8 @@ export async function queueProcessing(articleId: string, opts: { step?: Step; at
   const db = opts.db ?? sql;
   const r = await route(articleId, db);
   if (!r) return null;
+  // Parallel editorial projection shares materials/receipts, but does not alter legacy fact identity.
+  if (!r.historical) await queueRadar(articleId, opts.db);
   const step = opts.step ?? r.step;
   const [queued] = await db<{ processing_attempt_tag: string | null }[]>`
     UPDATE articles SET processing_queued_at = now(), processing_attempt_tag = coalesce(${opts.attemptTag ?? null}, processing_attempt_tag)

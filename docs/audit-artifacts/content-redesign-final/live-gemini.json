@@ -1,0 +1,62 @@
+{
+  "sourceId": "weibo-gemini",
+  "checkedAt": "2026-10-07T18:19:12.636Z",
+  "capability": "account_posts",
+  "status": "ok",
+  "count": 6,
+  "detail": {
+    "capability": "account_posts",
+    "coverage": "complete",
+    "uid": "2609737945",
+    "pages": 1,
+    "extractedMblogs": 6,
+    "truncated": false,
+    "reachedEnd": true,
+    "reachedWatermark": false,
+    "reachedTimeCutoff": true
+  },
+  "sample": [
+    {
+      "url": "https://weibo.com/2609737945/Rlyh43Ba2",
+      "publishedAt": "2026-10-07T04:50:40.000Z",
+      "author": {
+        "id": "2609737945",
+        "name": "Gemini郭家毅",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 1487,
+        "comments": 284,
+        "shares": 16
+      }
+    },
+    {
+      "url": "https://weibo.com/2609737945/RlnvQnm6f",
+      "publishedAt": "2026-10-06T01:26:53.000Z",
+      "author": {
+        "id": "2609737945",
+        "name": "Gemini郭家毅",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 2661,
+        "comments": 352,
+        "shares": 31
+      }
+    },
+    {
+      "url": "https://weibo.com/2609737945/RlfnH7Sjm",
+      "publishedAt": "2026-10-05T04:44:50.000Z",
+      "author": {
+        "id": "2609737945",
+        "name": "Gemini郭家毅",
+        "platformVerified": true
+      },
+      "metrics": {
+        "likes": 2012,
+        "comments": 305,
+        "shares": 19
+      }
+    }
+  ]
+}

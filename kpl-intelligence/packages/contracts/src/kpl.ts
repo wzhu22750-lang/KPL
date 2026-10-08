@@ -24,7 +24,7 @@ export interface ScheduleMatch {
   seasonName: string;
   stage: string | null;
   bo: number | null;
-  status: "scheduled" | "live" | "finished" | "cancelled";
+  status: "scheduled" | "live" | "finished" | "cancelled" | "postponed";
   scheduledAt: string | null;
   playedAt: string | null;
   gamesExpected: number | null;
@@ -91,7 +91,7 @@ export interface BpStep {
   step: number;
   type: "ban" | "pick";
   side: "blue" | "red";
-  hero: { id: string; name: string };
+  hero: { id: string; name: string; icon?: string | null };
   player: string | null;
   position: string | null;
 }

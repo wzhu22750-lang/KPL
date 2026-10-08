@@ -1,0 +1,87 @@
+✖ body cleanup cannot block the event loop on spaced ordinary comments (4008.9625ms)
+✖ body cleanup removes truncation buttons but preserves ordinary mentions of full text (0.447125ms)
+✔ pure helpers: page token and numeric id order (0.145166ms)
+✔ collect: 多页增量追到水印后停止，不再翻旧页 (8.821792ms)
+✔ collect: 置顶旧帖不使水印倒退，重复 token 结束循环 (0.640375ms)
+✔ collect: 后一页失败保留已读页并保存断点游标，不整体失败 (0.43625ms)
+✔ collect: 第一页失败（含重试）后抛出，不伪造成空结果 (0.640167ms)
+✔ keyword search distinguishes valid empty results from HTTP, login and malformed failures (0.631916ms)
+✔ keyword search retains a good page but signals a failed tail (0.246125ms)
+✔ keyword search budget is bounded, not an invented full-coverage result (0.161166ms)
+✔ normalized observations carry source time and missing counters stay null (0.391167ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4441.986917
+
+✖ failing tests:
+
+test at tests/weibo-collect.test.ts:10:1
+✖ body cleanup cannot block the event loop on spaced ordinary comments (4008.9625ms)
+  AssertionError [ERR_ASSERTION]: cleanup must finish, not hit the subprocess deadline
+  + actual - expected
+  
+  + Error: spawnSync /opt/homebrew/Cellar/node/25.9.0_3/bin/node ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1127:20)
+  +     at spawnSync (node:child_process:911:24)
+  +     at TestContext.<anonymous> (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/weibo-collect.test.ts:14:15)
+  +     at Test.runInAsyncScope (node:async_hooks:226:14)
+  +     at Test.run (node:internal/test_runner/test:1201:25)
+  +     at Test.start (node:internal/test_runner/test:1096:17)
+  +     at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -60,
+  +   path: '/opt/homebrew/Cellar/node/25.9.0_3/bin/node',
+  +   spawnargs: [
+  +     '--input-type=module',
+  +     '-e',
+  +     `const {cleanWeiboText}=await import("file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/packages/backend/src/sources/adapters/weibo.ts");console.log(cleanWeiboText('公开评论'+' '.repeat(64)+'不同意见'));`
+  +   ],
+  +   syscall: 'spawnSync /opt/homebrew/Cellar/node/25.9.0_3/bin/node'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/weibo-collect.test.ts:15:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /opt/homebrew/Cellar/node/25.9.0_3/bin/node ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1127:20)
+        at spawnSync (node:child_process:911:24)
+        at TestContext.<anonymous> (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/weibo-collect.test.ts:14:15)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1201:25)
+        at Test.start (node:internal/test_runner/test:1096:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17),
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/weibo-collect.test.ts:18:1
+✖ body cleanup removes truncation buttons but preserves ordinary mentions of full text (0.447125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '作者发布了' !== '作者发布了全文'
+  
+      at TestContext.<anonymous> (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/weibo-collect.test.ts:22:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '作者发布了',
+    expected: '作者发布了全文',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

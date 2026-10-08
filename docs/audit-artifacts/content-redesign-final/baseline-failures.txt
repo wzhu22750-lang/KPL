@@ -1,0 +1,391 @@
+✔ the web reaches the backend only over HTTP (55.287667ms)
+✔ packages never import the apps, and nothing below the admin imports it (84.117917ms)
+✔ public routes read content only through the public read layer (4.067083ms)
+✔ the tables that carry a rule are written only by the module that owns it (12.941542ms)
+✔ the public scope and the composite rule are spelled once, in publication/scope.ts (9.029791ms)
+✖ every table and column is used by the code that reads and writes the database (58.5865ms)
+✖ every environment variable the code reads is listed in a template, and every listed one is read (50.441375ms)
+✔ every field of the website's own interfaces is read by the website (24.063292ms)
+(node:35345) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ a folded card's other sources are those of the fact its representative reports (169.880875ms)
+✔ a query that names a company also finds the articles about it (82.932084ms)
+✔ bare addresses in post text become safe links (0.64525ms)
+(node:35346) [FSTDEP023] FastifyDeprecation: disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ R01: X detail and original omit unlicensed text, translations, quotes and media (124.337208ms)
+✔ R02: Markdown exports only the licensed summary (45.235833ms)
+✖ R02: an unlicensed X post without a summary cannot enable Markdown (37.603208ms)
+✔ R03: every list projection retains the item without unlicensed X content (48.687041ms)
+✖ R04: revoking only site fulltext keeps editorial summaries after republishing (91.480208ms)
+✔ R05: revoking only syndication preserves licensed site reading and Markdown (47.508375ms)
+✖ R06/R07: x_search licence matrix site=false, syndicate=false (18.833958ms)
+✖ R06/R07: x_search licence matrix site=false, syndicate=true (22.908291ms)
+✔ R06/R07: x_search licence matrix site=true, syndicate=false (24.436542ms)
+✔ R06/R07: x_search licence matrix site=true, syndicate=true (31.002459ms)
+✖ R06/R07: rss licence matrix site=false, syndicate=false (22.940791ms)
+✖ R06/R07: rss licence matrix site=false, syndicate=true (18.511458ms)
+✔ R06/R07: rss licence matrix site=true, syndicate=false (33.136458ms)
+✔ R06/R07: rss licence matrix site=true, syndicate=true (30.627583ms)
+✖ R08: an unlicensed missing X structure does not restore content (15.096458ms)
+✖ R08: an unlicensed quote-only X structure does not restore content (15.214916ms)
+✖ R08: site permission does not override body status unconfirmed (14.435917ms)
+✖ R08: site permission does not override body status none (14.281584ms)
+✖ R09: missing translations retain existing licensed behavior and never bypass revocation (33.537709ms)
+✖ R09: stale translations retain existing licensed behavior and never bypass revocation (26.168166ms)
+✖ R09: same translations retain existing licensed behavior and never bypass revocation (26.188708ms)
+✔ R10: summary-only and withdrawn visibility retain stricter detail and export rules (20.631167ms)
+✔ R10: hot_signal sources keep detail and Markdown unavailable (15.370625ms)
+✔ R10: isolated sources keep detail and Markdown unavailable (14.8485ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 19
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2586.310208
+
+✖ failing tests:
+
+test at tests/architecture.test.ts:127:1
+✖ every table and column is used by the code that reads and writes the database (58.5865ms)
+  AssertionError [ERR_ASSERTION]: drop it with a migration in the same change
+  + actual - expected
+  
+  + [
+  +   'table engagement_observations'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/architecture.test.ts:140:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'table engagement_observations' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/architecture.test.ts:156:1
+✖ every environment variable the code reads is listed in a template, and every listed one is read (50.441375ms)
+  AssertionError [ERR_ASSERTION]: list it in .env.example (or set it in docker-compose.yml), or stop reading it
+  + actual - expected
+  
+  + [
+  +   'PORT'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/architecture.test.ts:163:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'PORT' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:158:1
+✖ R01: X detail and original omit unlicensed text, translations, quotes and media (124.337208ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:159:3)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:166:1
+✖ R02: an unlicensed X post without a summary cannot enable Markdown (37.603208ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:168:3)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:176:1
+✖ R04: revoking only site fulltext keeps editorial summaries after republishing (91.480208ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:181:3)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:202:5
+✖ R06/R07: x_search licence matrix site=false, syndicate=false (18.833958ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:225:9)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:202:5
+✖ R06/R07: x_search licence matrix site=false, syndicate=true (22.908291ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:225:9)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:202:5
+✖ R06/R07: rss licence matrix site=false, syndicate=false (22.940791ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:225:9)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:202:5
+✖ R06/R07: rss licence matrix site=false, syndicate=true (18.511458ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:225:9)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:241:3
+✖ R08: an unlicensed missing X structure does not restore content (15.096458ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:243:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:241:3
+✖ R08: an unlicensed quote-only X structure does not restore content (15.214916ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:243:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:248:3
+✖ R08: site permission does not override body status unconfirmed (14.435917ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:250:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:248:3
+✖ R08: site permission does not override body status none (14.281584ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:250:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:256:3
+✖ R09: missing translations retain existing licensed behavior and never bypass revocation (33.537709ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:266:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:256:3
+✖ R09: stale translations retain existing licensed behavior and never bypass revocation (26.168166ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:266:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/x-fulltext-license.test.ts:256:3
+✖ R09: same translations retain existing licensed behavior and never bypass revocation (26.188708ms)
+  AssertionError [ERR_ASSERTION]: 全文许可不等于严格仅摘要的人工可见性
+  + actual - expected
+  
+  + 'summary-only'
+  - 'full'
+  
+      at summaryDetail (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:113:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/kpl-baseline/kpl-intelligence/tests/x-fulltext-license.test.ts:266:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'summary-only',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

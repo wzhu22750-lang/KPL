@@ -6,6 +6,7 @@ import { profileFor } from "../content/extractors/index.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { enqueue, QUEUES, shutdownSignal } from "../jobs/queue.ts";
 import { queueProcessing } from "../jobs/content.ts";
+import { queueRadar } from "../jobs/radar.ts";
 import { BudgetExceededError, completeReceipt } from "../providers/receipts.ts";
 import { fetchRss } from "./rss.ts";
 import { allowed, fetchDetail, fetchWebList, type DetailNeed } from "./web-list.ts";
@@ -112,6 +113,7 @@ async function store(
 
     // Extraction first when the source wants full text and none came with the listing, else analysis.
     if (res.created || res.revised || res.processingNeeded) await queueProcessing(res.articleId);
+    else if (material.engagementObservation && !res.backfill) await queueRadar(res.articleId);
   }
   return { created, revised };
 }
@@ -160,11 +162,9 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
   let found = 0;
   try {
     const adapter = findAdapter(source);
-    if (!adapter) {
-      // A config entry this kind does not implement fails the run, visibly, instead of being ignored.
-      const unsupported = unsupportedConfig(source.kind, source.config);
-      if (unsupported.length) throw new FetchError(`unsupported config: ${unsupported.join(", ")}`);
-    }
+    // Adapter sources obey the same config contract as the built-in readers.
+    const unsupported = unsupportedConfig(source.kind, source.config);
+    if (unsupported.length) throw new FetchError(`unsupported config: ${unsupported.join(", ")}`);
     // Structured esports data never becomes articles: matches, games, BP and player stats go to the
     // knowledge-base tables, then the run records health and cursor like every other source.
     if (source.kind === "esports_api") {
@@ -177,6 +177,7 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
     let paidReceiptIds: number[] = [];
     let nextCursor: Record<string, unknown> = { ...(source.cursor ?? {}) };
     let detail: Record<string, unknown> | null = null;
+    let incompleteReason: string | undefined;
     const rawItemsMap = new Map<string, unknown>();
 
     if (adapter) {
@@ -184,6 +185,7 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
       const adapterResult = await adapter.collect(source, source.cursor ?? undefined, opts);
       if (adapterResult.nextCursor) nextCursor = { ...nextCursor, ...adapterResult.nextCursor };
       if (adapterResult.detail) detail = adapterResult.detail;
+      incompleteReason = adapterResult.incompleteReason;
       if (adapterResult.paidReceiptIds) paidReceiptIds = adapterResult.paidReceiptIds;
 
       candidates = [];
@@ -304,6 +306,15 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
     ({ created, revised } = await store(source, candidates, firstImport ? "first-import" : null, adapter, rawItemsMap));
 
     if (firstImport) nextCursor.initializedAt = new Date().toISOString();
+    if (incompleteReason) {
+      // Keep the pages already stored, but a failed tail is not a successful coverage observation.
+      await sql.begin(async (tx) => {
+        await tx`UPDATE sources SET cursor = ${tx.json(nextCursor as never)} WHERE id = ${sourceId}`;
+        await recordFetch(tx, sourceId, run!.id, { found, created, detail, error: incompleteReason!, budget: false });
+        for (const receiptId of paidReceiptIds) await completeReceipt(tx, receiptId);
+      });
+      return { sourceId, status: "failed", found, created, revised, error: incompleteReason };
+    }
     nextCursor.lastOkAt = new Date().toISOString();
     await sql.begin(async (tx) => {
       await recordFetch(tx, sourceId, run!.id, { found, created, detail, cursor: nextCursor });
@@ -445,7 +456,8 @@ export async function adaptIntervals(): Promise<{ updated: number }> {
   const rows = await sql<Array<Pick<SourceRow, "id" | "participation_mode" | "kind" | "config" | "cursor"> & { paid_listing: boolean; per_day: number }>>`
     SELECT s.id, s.participation_mode, s.kind, s.config, s.cursor, coalesce(s.config->>'url', '') LIKE 'https://r.jina.ai/%' AS paid_listing,
       (SELECT count(*) FROM articles a WHERE a.source_id = s.id AND a.discovered_at > now() - interval '7 days' AND NOT a.backfill) / 7.0 AS per_day
-    FROM sources s WHERE s.enabled AND s.kind IN ('rss', 'web_list', 'json_list', 'x_search')`;
+    FROM sources s WHERE s.enabled AND s.kind IN ('rss', 'web_list', 'json_list', 'x_search')
+      AND coalesce(s.config->'collectionPolicy'->>'mode', 'adaptive') <> 'fixed'`;
   // weibo keeps its configured interval deliberately: per-output adaptation is unproven for an
   // adapter whose platform rate limits and long-text behaviour are still being verified.
   // esports_api sources keep their configured interval: they produce no articles, and match days

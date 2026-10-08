@@ -1,0 +1,30 @@
+- main [ref=e2]:
+  - region "KPL内容雷达" [ref=e3]:
+    - generic [ref=e4]:
+      - heading "圈里在聊什么" [level=2] [ref=e5]
+      - generic [ref=e6]: 2026-10-07
+    - paragraph [ref=e7]: 合成验收样本 · 热度未知不按零处理，分类不等于事实核实。
+    - group [ref=e8]:
+      - generic "首发调整：不同观点与当事人回应 · 2份材料" [ref=e9] [cursor=pointer]:
+        - text: 首发调整：不同观点与当事人回应
+        - generic [ref=e10]: · 2份材料
+    - heading "比赛日 · 一场一档" [level=2] [ref=e11]
+    - generic [ref=e12]:
+      - link "成都AG超玩会 vs 杭州LGD.NBW" [ref=e13] [cursor=pointer]:
+        - /url: /matches/match
+      - paragraph [ref=e14]: BO5 · 进行中 · 1:1
+      - group [ref=e15]:
+        - generic "展开比赛时间线 · 3份材料" [ref=e16] [cursor=pointer]
+    - generic [ref=e17]:
+      - heading "动态、观点与趣评" [level=2] [ref=e18]
+      - article [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e21]: 玩笑/二创（分类非核实）
+          - generic [ref=e22]: 合成测试来源
+          - generic [ref=e23]: 热度未知
+        - link "一个公开比赛梗 ↗" [ref=e24] [cursor=pointer]:
+          - /url: https://example.org/f
+        - paragraph [ref=e25]: 用于验证展示和折叠，不是实时赛果或真实争议报道。
+        - group [ref=e26]:
+          - generic "查看评分与原文依据" [ref=e27]
+    - paragraph [ref=e28]: 还有2份素材待评估；技术失败与待复核不会自动发布。

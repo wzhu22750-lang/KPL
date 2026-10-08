@@ -1,0 +1,13 @@
+✔ esports sync: league rows land, battle backfill respects the budget and resumes, re-runs are idempotent (720.809375ms)
+✔ esports sync: swapped battle camps preserve winner and align kills/gold to series teams (78.840208ms)
+✔ esports sync: missing, foreign or duplicate camp identities do not erase a valid game (32.612667ms)
+✔ esports sync: 小局存在但 BP/选手数据缺失时按字段补全 (137.781667ms)
+✔ esports sync: 单场持续失败不阻挡近期比赛，且每轮请求数受预算约束 (400.563708ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2319.943167

@@ -7,6 +7,8 @@ import { after, test } from "node:test";
 import { config } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
 import { QUEUES, stopBoss } from "@aihot/backend/jobs/queue";
+import { RADAR } from '@aihot/industry/radar';
+RADAR.enabled=true;
 import { collectSource } from "@aihot/backend/sources/collect";
 
 type Kind = "rss" | "json_list" | "web_list";
@@ -72,7 +74,8 @@ async function source(name: string, kind: Kind, rows: Item[], extra: Record<stri
 }
 const count = async (id: string) => (await sql`SELECT count(*)::int AS n FROM articles WHERE source_id=${id}`)[0]!.n as number;
 const cursor = async (id: string) => (await sql`SELECT cursor FROM sources WHERE id=${id}`)[0]!.cursor;
-const jobs = async (id: string) => (await sql`SELECT count(*)::int AS n FROM pgboss.job j JOIN articles a ON a.id=j.data->>'articleId' WHERE a.source_id=${id}`)[0]!.n as number;
+const jobs = async (id: string) => (await sql`SELECT count(*)::int AS n FROM pgboss.job j JOIN articles a ON a.id=j.data->>'articleId' WHERE a.source_id=${id} AND j.name<>${QUEUES.radar}`)[0]!.n as number;
+const radarJobs = async (id: string) => (await sql`SELECT count(*)::int AS n FROM pgboss.job j JOIN articles a ON a.id=j.data->>'articleId' WHERE a.source_id=${id} AND j.name=${QUEUES.radar}`)[0]!.n as number;
 const revisions = async (id: string) => (await sql`SELECT count(*)::int AS n FROM article_revisions r JOIN articles a ON a.id=r.article_id WHERE a.source_id=${id}`)[0]!.n as number;
 
 test("the 61st entry of a known feed is stored before its validator answers 304", async () => {
@@ -114,6 +117,7 @@ test("a listing longer than a query's parameter limit is still deduplicated and 
   assert.deepEqual(await collectSource(id), { sourceId: id, status: "ok", found: 65_536, created: 0, revised: 0 });
   assert.equal(await revisions(id), 2);
   assert.equal(await jobs(id), 2);
+  assert.equal(await radarJobs(id), 2, 'radar review is independently queued once per material');
 });
 
 test("with the first 60 known, the tail is still created and revised, and queued for processing once", async () => {
@@ -134,7 +138,7 @@ test("with the first 60 known, the tail is still created and revised, and queued
   const [saved] = await sql`SELECT title,body_text,revision,processing_queued_at FROM articles WHERE id=${tail!.id}`;
   assert.deepEqual([saved!.title, saved!.body_text, saved!.revision], [rows[60]!.title, rows[60]!.summary, 2]);
   assert.ok(saved!.processing_queued_at);
-  const [job] = await sql`SELECT name FROM pgboss.job WHERE data->>'articleId'=${tail!.id}`;
+  const [job] = await sql`SELECT name FROM pgboss.job WHERE data->>'articleId'=${tail!.id} AND name<>${QUEUES.radar}`;
   assert.equal(job!.name, QUEUES.analyze);
   const beforeJobs = await jobs(id);
   assert.deepEqual(await collectSource(id), { sourceId: id, status: "ok", found: 61, created: 0, revised: 0 });
@@ -239,6 +243,7 @@ test("a storage failure in the tail does not advance the feed's validator; the r
   assert.equal(await count(id), 61);
   assert.equal(await revisions(id), 61);
   assert.equal(await jobs(id), 61);
+  assert.equal(await radarJobs(id), 61);
   assert.equal((await collectSource(id)).found, 0);
   assert.equal(listing.requests.at(-1)!.status, 304);
 });

@@ -13,6 +13,8 @@ import { collectSource } from "@aihot/backend/sources/collect";
 const LEAGUE = "20990001";
 let battleDetailHits = 0;
 let failingMatch: string | null = null;
+let swapCamps = false;
+let invalidCamp: string | null = null;
 
 function matchRow(matchId: string, a: { id: string; name: string; score: number }, b: { id: string; name: string; score: number }, winCamp: number, endTime = "2099-01-10 16:44:21") {
   return {
@@ -94,9 +96,13 @@ const server = http.createServer((req, res) => {
     const [matchId, seqStr] = battleId.split("_");
     const match = matchId === MATCH1.id ? MATCH1 : MATCH2;
     const seq = Number(seqStr);
-    const camp1Team = match.a.id, camp2Team = match.b.id;
-    const winCamp = match.wins[seq - 1] as 1 | 2;
-    res.end(JSON.stringify({ data: battle(matchId, seq, winCamp, camp1Team, camp2Team) }));
+    const swapped = swapCamps && seq === 2;
+    const camp1Team = swapped ? match.b.id : match.a.id, camp2Team = swapped ? match.a.id : match.b.id;
+    const logicalWinner = match.wins[seq - 1] as 1 | 2;
+    const winCamp = (swapped ? 3 - logicalWinner : logicalWinner) as 1 | 2;
+    const data=battle(matchId, seq, winCamp, camp1Team, camp2Team);
+    if(invalidCamp!==null && seq===2) data.camp1.team_id=invalidCamp;
+    res.end(JSON.stringify({ data }));
   } else {
     res.end(JSON.stringify({}));
   }
@@ -172,6 +178,36 @@ test("esports sync: league rows land, battle backfill respects the budget and re
   const [stint] = await sql<{ stints: number }[]>`
     SELECT count(*) stints FROM player_stints ps JOIN players p ON p.id = ps.player_id WHERE p.nickname LIKE 'Fly%' AND ps.team_id IS NOT NULL`;
   assert.ok(stint!.stints >= 10, "first sight of a player starts a stint on their team");
+});
+
+test('esports sync: swapped battle camps preserve winner and align kills/gold to series teams',async()=>{
+  const gameId='kpl-'+LEAGUE+'-'+MATCH1.id+'-g2';
+  await sql`DELETE FROM bp_actions WHERE game_id=${gameId} AND step_index=1`;
+  swapCamps=true;
+  try {
+    await collectSource(await source(12));
+    const [g]=await sql`SELECT t.name AS winner,g.kills_a,g.kills_b,g.gold_a,g.gold_b FROM games g
+      LEFT JOIN teams t ON t.id=g.winner_id WHERE g.id=${gameId}`;
+    assert.equal(g.winner,TEAMS.A.name,'camp2 in this battle is team A, not team B');
+    assert.deepEqual([g.kills_a,g.kills_b,g.gold_a,g.gold_b],[8,12,46000,52000]);
+  } finally {swapCamps=false;}
+});
+
+test('esports sync: missing, foreign or duplicate camp identities do not erase a valid game',async()=>{
+  const gameId='kpl-'+LEAGUE+'-'+MATCH1.id+'-g2';
+  const [before]=await sql`SELECT winner_id,kills_a,kills_b,raw FROM games WHERE id=${gameId}`;
+  try {
+    for(const badId of ['',TEAMS.C.id,TEAMS.B.id]) {
+      await sql`DELETE FROM bp_actions WHERE game_id=${gameId} AND step_index=1`;
+      invalidCamp=badId;
+      const id=await source(12);
+      await collectSource(id);
+      const [after]=await sql`SELECT winner_id,kills_a,kills_b,raw FROM games WHERE id=${gameId}`;
+      assert.deepEqual(after,before);
+      const [run]=await sql`SELECT detail FROM fetch_runs WHERE source_id=${id} ORDER BY id DESC LIMIT 1`;
+      assert.equal(run.detail.failed,1);
+    }
+  } finally {invalidCamp=null;}
 });
 
 test("esports sync: 小局存在但 BP/选手数据缺失时按字段补全", async () => {
