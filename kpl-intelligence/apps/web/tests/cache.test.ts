@@ -7,7 +7,7 @@ import type { AddressInfo } from "node:net";
 import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import type { TimelineCard } from '@aihot/contracts/site';
-import { CATEGORY_KEYS } from "@aihot/contracts/taxonomy";
+import { CATEGORY_KEYS, SOURCE_GROUP_KEYS, SOURCE_GROUP_LABELS } from "@aihot/contracts/taxonomy";
 
 let web: ChildProcess;
 let origin: string;
@@ -42,7 +42,7 @@ const api = createServer((req, res) => {
   }
   if (url.pathname === "/api/site/timeline") {
     if (timelineUnavailable) { res.statusCode = 503; return res.end(JSON.stringify({ code: 'service_unavailable' })); }
-    const filters = { channel: "all", category: url.searchParams.get("category"), tag: null };
+    const filters = { channel: "all", category: url.searchParams.get("category"), tag: null, sourceGroup: url.searchParams.get('sourceGroup') };
     res.setHeader("X-Accel-Expires", `@${deadline + timelineDeadlineOffset}`);
     res.setHeader("Cache-Control", timelineNoStore ? 'private, no-store' : "public, max-age=30, s-maxage=30");
     return res.end(JSON.stringify({ filters, cards: timelineCards, nextCursor: null, dayCounts: { '2026-10-08': 1, '2026-10-07': 1 }, hot: hotUnavailable ? null : hotEntries }));
@@ -131,6 +131,23 @@ test('homepage keeps hot ranking above radar and restores the original selected 
   assert.equal(oldDay.headers.get('Location'),'/');
   const search=await fetch(origin+'/?q=all',{redirect:'manual'});
   assert.equal(search.headers.get('Location'),'/all?q=all');
+});
+
+test('homepage publisher boxes filter in place and preserve hot topics and radar', async () => {
+  for (const sourceGroup of SOURCE_GROUP_KEYS) {
+    const response = await fetch(`${origin}/?sourceGroup=${sourceGroup}`, { redirect: 'manual' });
+    assert.equal(response.status, 200, `must stay on homepage for ${sourceGroup}`);
+    const html = await response.text();
+    const nav = /<nav aria-label="按发布者筛选"[\s\S]*?<\/nav>/.exec(html)?.[0];
+    assert.ok(nav);
+    for (const key of SOURCE_GROUP_KEYS) assert.ok(nav.includes(SOURCE_GROUP_LABELS[key]));
+    assert.doesNotMatch(nav, /一手|赛果|阵容|版本|联盟|战术|观点/);
+    assert.match(nav, new RegExp(`href="/\\?sourceGroup=${sourceGroup}"[^>]*aria-current="page"`));
+    assert.ok(apiPaths.includes(`/api/site/timeline?sourceGroup=${sourceGroup}`));
+    assert.ok(html.includes('id="hot-topics"') && html.includes('aria-label="KPL内容雷达"'));
+    assert.match(html, /发现动态/);
+    assert.ok(html.includes(`/?sourceGroup=${sourceGroup}`), 'canonical URL carries the applied group');
+  }
 });
 
 test('no hot entries never hides radar or the original selected feed', async () => {
