@@ -1,0 +1,137 @@
+
+> build
+> react-router build
+
+Using Vite Environment API
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 731 modules transformed.
+rendering chunks...
+computing gzip size...
+build/client/assets/daily-BymySltl.svg                 2.52 kB │ gzip:   1.10 kB
+build/client/assets/monthly-D8-liJEq.svg               3.08 kB │ gzip:   1.34 kB
+build/client/assets/weekly-lZtLQUiY.svg                3.25 kB │ gzip:   1.37 kB
+build/client/assets/archive-DBCwyhNh.svg               4.71 kB │ gzip:   1.97 kB
+build/client/.vite/manifest.json                      26.12 kB │ gzip:   2.65 kB
+build/client/assets/home-CSBTTskM.css                  3.59 kB │ gzip:   1.03 kB
+build/client/assets/root-DCX7QZSc.css                134.19 kB │ gzip:  23.79 kB
+build/client/assets/features-DbRQZ5Mo.js               0.05 kB │ gzip:   0.07 kB
+build/client/assets/all-J3vsJWz6.js                    0.09 kB │ gzip:   0.09 kB
+build/client/assets/item-CTSTFg-P.js                   0.09 kB │ gzip:   0.09 kB
+build/client/assets/item-original-CTSTFg-P.js          0.09 kB │ gzip:   0.09 kB
+build/client/assets/item-client-loader-D2YcSZx5.js     0.18 kB │ gzip:   0.17 kB
+build/client/assets/search-busy-CWefRof0.js            0.29 kB │ gzip:   0.24 kB
+build/client/assets/labels-vA-4i93T.js                 0.54 kB │ gzip:   0.47 kB
+build/client/assets/rolldown-runtime-CbXtAM7H.js       0.58 kB │ gzip:   0.36 kB
+build/client/assets/StatusChip-Dx0VQ2Lt.js             0.62 kB │ gzip:   0.44 kB
+build/client/assets/curve-jUqyzcIU.js                  0.74 kB │ gzip:   0.40 kB
+build/client/assets/entry.client-CswNnITs.js           0.85 kB │ gzip:   0.56 kB
+build/client/assets/report-detail-dm7X7Uqa.js          0.92 kB │ gzip:   0.59 kB
+build/client/assets/report-latest-aL_SM8En.js          0.98 kB │ gzip:   0.67 kB
+build/client/assets/toast-CAvaegOU.js                  1.14 kB │ gzip:   0.70 kB
+build/client/assets/action-DL5Z3nJR.js                 1.24 kB │ gzip:   0.85 kB
+build/client/assets/Chrome-BLw7mR0h.js                 1.51 kB │ gzip:   0.86 kB
+build/client/assets/leaderboard-boards-CdNSTWVA.js     1.73 kB │ gzip:   0.86 kB
+build/client/assets/audit-BEk4IkY0.js                  1.90 kB │ gzip:   0.99 kB
+build/client/assets/admin-login-CYhu1CO5.js            2.00 kB │ gzip:   1.10 kB
+build/client/assets/terms-D0MCAHSd.js                  2.07 kB │ gzip:   1.39 kB
+build/client/assets/DayList-Br4t3ZZD.js                2.17 kB │ gzip:   1.05 kB
+build/client/assets/content-CshXl05T.js                2.19 kB │ gzip:   1.29 kB
+build/client/assets/PosterSheet-C5u4Fwl9.js            2.37 kB │ gzip:   1.22 kB
+build/client/assets/daily-archive-DHwASlgb.js          2.57 kB │ gzip:   1.16 kB
+build/client/assets/privacy-DEfMda7J.js                2.73 kB │ gzip:   1.78 kB
+build/client/assets/Faces-CrfXAIcz.js                  3.21 kB │ gzip:   1.43 kB
+build/client/assets/teams-JbLxazMa.js                  3.32 kB │ gzip:   1.39 kB
+build/client/assets/more-Ca1DO48z.js                   3.54 kB │ gzip:   1.53 kB
+build/client/assets/selectbench-Bc8hxmlU.js            3.72 kB │ gzip:   1.78 kB
+build/client/assets/sources-Dt9GSH-u.js                3.84 kB │ gzip:   1.83 kB
+build/client/assets/topics-CCR-wOWj.js                 3.97 kB │ gzip:   1.74 kB
+build/client/assets/coverage-BYu8nwDf.js               4.04 kB │ gzip:   1.78 kB
+build/client/assets/ask-BwgQo1Pu.js                    4.06 kB │ gzip:   2.01 kB
+build/client/assets/layout-BrYo-m1_.js                 4.49 kB │ gzip:   1.84 kB
+build/client/assets/leaderboard-sources-CyvdzZLf.js    4.55 kB │ gzip:   1.80 kB
+build/client/assets/Sidebar-BSKS7ubU.js                5.12 kB │ gzip:   2.35 kB
+build/client/assets/home-CPYI_a-j.js                   5.21 kB │ gzip:   2.10 kB
+build/client/assets/CopyPage-A1_UdEkh.js               5.38 kB │ gzip:   2.32 kB
+build/client/assets/changelog-DprSUdEC.js              5.55 kB │ gzip:   2.33 kB
+build/client/assets/all-D2freZCd.js                    5.60 kB │ gzip:   2.68 kB
+build/client/assets/source-new-BNtOv9OW.js             5.64 kB │ gzip:   2.61 kB
+build/client/assets/selectbench-run-CuEy485m.js        5.68 kB │ gzip:   2.26 kB
+build/client/assets/models-f_27LVr6.js                 5.69 kB │ gzip:   2.50 kB
+build/client/assets/settings-mRP5_luY.js               5.74 kB │ gzip:   2.52 kB
+build/client/assets/feedback-CcQ0C4f3.js               5.82 kB │ gzip:   2.67 kB
+build/client/assets/matches-Cig0_fG9.js                5.88 kB │ gzip:   2.20 kB
+build/client/assets/starred-CzJRpNKl.js                6.01 kB │ gzip:   2.89 kB
+build/client/assets/Filters-I9q80sfB.js                6.03 kB │ gzip:   2.59 kB
+build/client/assets/team-CA72fwm9.js                   6.11 kB │ gzip:   2.14 kB
+build/client/assets/leaderboard-source-DvZmlqjS.js     6.70 kB │ gzip:   2.38 kB
+build/client/assets/standings-Dw0LRARC.js              7.73 kB │ gzip:   2.57 kB
+build/client/assets/root-wnfyiCIi.js                   7.88 kB │ gzip:   3.52 kB
+build/client/assets/player-BLGoeOkk.js                 8.22 kB │ gzip:   2.49 kB
+build/client/assets/heroes-ZsEknPpJ.js                 8.66 kB │ gzip:   3.04 kB
+build/client/assets/index-D86jThE6.js                  8.94 kB │ gzip:   2.37 kB
+build/client/assets/h2h-aS_m1k9V.js                    9.09 kB │ gzip:   2.53 kB
+build/client/assets/feedback-CXmQqwzg.js               9.87 kB │ gzip:   4.30 kB
+build/client/assets/source-Co773IjR.js                10.37 kB │ gzip:   4.18 kB
+build/client/assets/ui-CO_Msxke.js                    11.51 kB │ gzip:   4.24 kB
+build/client/assets/hero-As1LyVc6.js                  12.19 kB │ gzip:   3.08 kB
+build/client/assets/monitor-ClHGQvHQ.js               13.32 kB │ gzip:   4.68 kB
+build/client/assets/runs-B_QF0Qu1.js                  13.76 kB │ gzip:   4.56 kB
+build/client/assets/topic-BMftk-KP.js                 14.07 kB │ gzip:   5.12 kB
+build/client/assets/match-DPLTk7dx.js                 14.95 kB │ gzip:   4.83 kB
+build/client/assets/leaderboard-rules-BlK9Gk4-.js     15.25 kB │ gzip:   6.67 kB
+build/client/assets/hot-ChcFK-W8.js                   16.03 kB │ gzip:   5.22 kB
+build/client/assets/leaderboard-1yAEr8Za.js           17.04 kB │ gzip:   5.93 kB
+build/client/assets/leaderboard-model-oaXxSTCI.js     17.83 kB │ gzip:   5.68 kB
+build/client/assets/about-MCd62bzZ.js                 18.80 kB │ gzip:   7.98 kB
+build/client/assets/ContentRadar-HxgBUn-2.js          18.94 kB │ gzip:   5.90 kB
+build/client/assets/content-item-TW07S4xw.js          19.46 kB │ gzip:   6.38 kB
+build/client/assets/story-kF-vsNih.js                 25.01 kB │ gzip:   8.67 kB
+build/client/assets/item-Cu9tfMGY.js                  26.89 kB │ gzip:   8.74 kB
+build/client/assets/codex-reset-BJZEbhOW.js           27.94 kB │ gzip:   9.59 kB
+build/client/assets/agent-CT92mTg_.js                 28.18 kB │ gzip:   9.84 kB
+build/client/assets/ReportPaper-C7LUgFQZ.js           36.90 kB │ gzip:  12.25 kB
+build/client/assets/highlight-BA1Ad04v.js             64.90 kB │ gzip:  21.72 kB
+build/client/assets/shared-BdFPHNUA.js               101.85 kB │ gzip:  32.35 kB
+build/client/assets/motion-D4t74uPO.js               127.74 kB │ gzip:  41.69 kB
+build/client/assets/framework-BxXkmXxm.js            347.99 kB │ gzip: 109.68 kB
+
+✓ built in 3.37s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 2.9s of this 3.3s build (88%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin react-router:route-exports transform (45%, 1.5s, 731 calls)
+  - plugin react-router:route-chunks-index transform (30%, 1.0s, 731 calls)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+3 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - plugin react-router:dot-server resolveId (2393 calls)
+  - plugin react-router:build-client-route transform (731 calls)
+  - plugin vite:asset load (6 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+vite v8.3.1 building ssr environment for production...
+transforming...
+✓ 170 modules transformed.
+rendering chunks...
+
+✓ 5 assets cleaned from React Router server build.
+build/client/assets/daily-BymySltl.svg
+build/client/assets/weekly-lZtLQUiY.svg
+build/client/assets/monthly-D8-liJEq.svg
+build/client/assets/archive-DBCwyhNh.svg
+build/server/assets/server-build-D63Us5Ol.css
+
+computing gzip size...
+build/server/.vite/manifest.json                      2.05 kB │ gzip:   0.50 kB
+build/server/assets/daily-BymySltl.svg                2.52 kB │ gzip:   1.10 kB
+build/server/assets/monthly-D8-liJEq.svg              3.08 kB │ gzip:   1.34 kB
+build/server/assets/weekly-lZtLQUiY.svg               3.25 kB │ gzip:   1.37 kB
+build/server/assets/archive-DBCwyhNh.svg              4.71 kB │ gzip:   1.97 kB
+build/server/assets/server-build-D63Us5Ol.css       137.78 kB │ gzip:  24.56 kB
+build/server/assets/rolldown-runtime-D7D4PA-g.js      0.36 kB │ gzip:   0.25 kB
+build/server/assets/highlight-B-T3fBmX.js             1.64 kB │ gzip:   0.70 kB
+build/server/assets/framework-DvgSLGWb.js             1.90 kB │ gzip:   0.84 kB
+build/server/assets/PosterSheet-NUNUyZDv.js           3.18 kB │ gzip:   1.42 kB
+build/server/assets/Sheet-CtUnD9Z8.js                25.85 kB │ gzip:   8.72 kB
+build/server/index.js                             1,083.29 kB │ gzip: 260.64 kB
+
+✓ built in 2.67s

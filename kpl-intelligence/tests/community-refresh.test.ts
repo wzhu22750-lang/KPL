@@ -211,6 +211,56 @@ test('shared platform budget defers refresh without requests, history mutation, 
   assert.equal(attempts!.n,0);
 });
 
+test('HTTP 200 API denial triggers shared backoff and the next forced job performs zero requests',async()=>{
+  process.env.COMMUNITY_COLLECTION_ENABLED='true';config.collectEnabled=true;
+  const id=`art-api-backoff-${T}`;
+  await sql`INSERT INTO articles (id,source_id,url,identity_key,title,content_hash,raw,discovered_at,timeline_at)
+    VALUES (${id},${BILI_SOURCE},'https://www.bilibili.com/video/BV1APIERROR',${id},'Offline denied API','stable',${sql.json({aid:12345})},now(),now())`;
+  let requests=0;
+  const first=await refreshArticleCommunity(id,{force:true,minIntervalMs:0,fetchJson:async()=>{requests++;return {code:-412,message:'Fixture API denial'};}});
+  assert.equal(first.status,'unavailable');assert.equal(first.requestCount,1);assert.equal(requests,1);
+  const [control]=await sql<{failure_count:number}[]>`SELECT failure_count FROM community_platform_controls WHERE platform='bilibili'`;
+  assert.equal(control!.failure_count,1);
+  const second=await refreshArticleCommunity(id,{force:true,minIntervalMs:0,fetchJson:async()=>{assert.fail('backoff must not call transport');}});
+  assert.equal(second.status,'skipped');assert.equal(second.requestCount,0);assert.match(second.error??'',/cooldown/);
+});
+
+test('first-page evidence and resume cursor survive later quota denial or shutdown without inflating requests/backoff',async()=>{
+  for(const mode of ['budget','shutdown']){
+    process.env.COMMUNITY_COLLECTION_ENABLED='true';config.collectEnabled=true;
+    await sql`UPDATE community_platform_controls SET request_limit=${mode==='budget'?1:1000},requests_reserved=0,next_allowed_at=now(),failure_count=0,lease_until=NULL WHERE platform='hupu'`;
+    const id=`art-platform-partial-${mode}-${T}`;
+    await sql`INSERT INTO articles (id,source_id,url,identity_key,title,content_hash,discovered_at,timeline_at)
+      VALUES (${id},${HUPU_SOURCE},${HUPU_URL},${id},'Offline partial test','stable',now(),now())`;
+    let requests=0;
+    const result=await refreshArticleCommunity(id,{force:true,minIntervalMs:0,fetchHtml:async()=>{
+      requests++;if(requests>1)assert.fail('second page must not request');
+      if(mode==='shutdown')process.env.COMMUNITY_COLLECTION_ENABLED='false';
+      return PAGE1_HTML;
+    }});
+    assert.equal(result.status,'partial');assert.equal(result.requestCount,1);assert.equal(requests,1);
+    assert.equal(result.nextCursor,HUPU_PAGE2_URL);assert.equal(result.fetchedReplies,2);
+    const [control]=await sql<{failure_count:number}[]>`SELECT failure_count FROM community_platform_controls WHERE platform='hupu'`;
+    assert.equal(control!.failure_count,0,'policy deferral is not a platform failure');
+    const [run]=await sql<{status:string;request_count:number}[]>`SELECT status,request_count FROM community_collection_runs WHERE article_id=${id}`;
+    assert.deepEqual(run,{status:'partial',request_count:1});
+  }
+});
+
+test('API validation uses the actual remaining sample budget, without inspecting malformed unsampled tail replies',async()=>{
+  process.env.COMMUNITY_COLLECTION_ENABLED='true';config.collectEnabled=true;
+  const source=`src-bounded-parse-${T}`,id=`art-bounded-parse-${T}`;
+  await sql`INSERT INTO sources (id,name,kind,tier,participation_mode,next_fetch_at,enabled,config)
+    VALUES (${source},'Offline bounded parse','json_list','T2','hot_signal','2100-01-01',true,${sql.json({communityComments:{enabled:true,maxComments:1,maxPages:1,endpointTemplate:'https://api.bilibili.com/x/v2/reply?oid={aid}&pn={pn}'}})})`;
+  await sql`INSERT INTO articles (id,source_id,url,identity_key,title,content_hash,raw,discovered_at,timeline_at)
+    VALUES (${id},${source},'https://www.bilibili.com/video/BV1BOUNDED',${id},'Offline bounded','stable',${sql.json({aid:54321})},now(),now())`;
+  const result=await refreshArticleCommunity(id,{minIntervalMs:0,fetchJson:async()=>({code:0,data:{page:{num:1,size:20,count:2},replies:[{rpid:111,member:{uname:'Offline fixture'},content:{message:'KPL BP 讨论'},like:1},null]}})});
+  assert.equal(result.requestCount,1);assert.equal(result.fetchedReplies,1);assert.equal(result.status,'partial');
+  assert.equal(result.error,undefined);
+  const [control]=await sql<{failure_count:number}[]>`SELECT failure_count FROM community_platform_controls WHERE platform='bilibili'`;
+  assert.equal(control!.failure_count,0,'unsampled tail is not a platform failure');
+});
+
 // ---------------------------------------------------------------------------
 // 1. URL Validation & Building Tests (TID Regex First, Not Greedy Page Suffix)
 // ---------------------------------------------------------------------------

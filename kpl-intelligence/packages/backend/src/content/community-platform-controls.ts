@@ -67,7 +67,7 @@ export function createCommunityRequestController(db: Db, platform: Platform) {
   return {
     get requestCount() { return requestCount; },
     get denial() { return denial; },
-    async run<T>(fetch:()=>Promise<T>): Promise<T> {
+    async run<T>(fetch:()=>Promise<T>, validate?:(value:T)=>void|Promise<void>): Promise<T> {
       let token:string;
       try {
         try { token=await reserve(); }
@@ -87,6 +87,7 @@ export function createCommunityRequestController(db: Db, platform: Platform) {
       requestCount++;
       try {
         const value=await fetch();
+        await validate?.(value); // Keep the lease through API validation, not just HTTP transport.
         await db`UPDATE community_platform_controls SET lease_until=NULL, updated_at=clock_timestamp()
           WHERE platform=${platform} AND last_request_id=${token}::uuid`;
         return value;
@@ -96,11 +97,10 @@ export function createCommunityRequestController(db: Db, platform: Platform) {
         throw error;
       }
     },
-    // Parsed API denial/invalid envelopes also back off, even when HTTP was 200.
-    async finish(error:string|null) {
+    // Called only for successfully parsed collection; errors must throw inside run/validate.
+    async finish() {
       if(!lastToken || lastFailed || denial) return;
-      if(error) await failure(lastToken,error);
-      else await db`UPDATE community_platform_controls SET failure_count=0,last_error=NULL,updated_at=clock_timestamp()
+      await db`UPDATE community_platform_controls SET failure_count=0,last_error=NULL,updated_at=clock_timestamp()
         WHERE platform=${platform} AND last_request_id=${lastToken}::uuid AND lease_until IS NULL`;
     },
   };

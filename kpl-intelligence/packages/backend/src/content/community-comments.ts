@@ -700,6 +700,7 @@ export interface FetchCommunityCommentsOptions {
   originalPost?: DiscussionPost;
   sourceConfig: Record<string, any> | null;
   fetchJson?: ((url: string) => Promise<unknown>) | null;
+  requestGate?: <T>(fetch: () => Promise<T>) => Promise<T>;
   highlightLimit?: number;
   resumeCursor?: string | null;
   minIntervalMs?: number;
@@ -832,38 +833,22 @@ export async function fetchCommunityComments(
     const currentUrl = urlResult.url;
     if (!firstUrl) firstUrl = currentUrl;
 
-    let responsePayload: unknown;
+    let parsedPage: ParsedReplyPage;
     try {
-      responsePayload = await executeSerializedPlatformFetch(
-        platform,
-        minIntervalMs,
-        () => fetchJson!(currentUrl),
+      const fetchAndParse = async () => {
+        const responsePayload = await fetchJson!(currentUrl);
+        return platform === "bilibili"
+          ? parseBilibiliReplyResponse(responsePayload, { oid: targetId, bvid, upMid: authorId, maxComments: maxComments - allPosts.length })
+          : parseWeiboCommentResponse(responsePayload, { originalUrl, postAuthorId: authorId, maxComments: maxComments - allPosts.length });
+      };
+      parsedPage = await executeSerializedPlatformFetch(
+        platform, minIntervalMs,
+        () => options.requestGate ? options.requestGate(fetchAndParse) : fetchAndParse(),
         options.sleep,
       );
     } catch (err: any) {
       lastError = err?.message ? String(err.message) : String(err);
-      // Partial results survive page failure!
-      break;
-    }
-
-    let parsedPage: ParsedReplyPage;
-    try {
-      if (platform === "bilibili") {
-        parsedPage = parseBilibiliReplyResponse(responsePayload, {
-          oid: targetId,
-          bvid,
-          upMid: authorId,
-          maxComments: maxComments - allPosts.length,
-        });
-      } else {
-        parsedPage = parseWeiboCommentResponse(responsePayload, {
-          originalUrl,
-          postAuthorId: authorId,
-          maxComments: maxComments - allPosts.length,
-        });
-      }
-    } catch (err: any) {
-      lastError = err?.message ? String(err.message) : String(err);
+      // Partial results survive page failure; validation shares the same sample budget.
       break;
     }
 
@@ -977,6 +962,7 @@ export async function fetchCommunityComments(
  * Handles numeric oid (aid from view API), bvid, and upMid.
  */
 export async function fetchBilibiliComments(params: {
+  requestGate?: <T>(fetch: () => Promise<T>) => Promise<T>;
   oid?: number | string | null;
   bvid?: string | null;
   upMid?: number | string | null;
@@ -991,6 +977,7 @@ export async function fetchBilibiliComments(params: {
   const targetId = params.oid ?? (params.bvid ? String(params.bvid) : "");
   return fetchCommunityComments({
     platform: "bilibili",
+    requestGate: params.requestGate,
     targetId,
     bvid: params.bvid ?? null,
     authorId: params.upMid ?? null,
@@ -1009,6 +996,7 @@ export async function fetchBilibiliComments(params: {
  * Exported so coordinator can invoke it on collection for Weibo items.
  */
 export async function fetchWeiboComments(params: {
+  requestGate?: <T>(fetch: () => Promise<T>) => Promise<T>;
   id: string | number;
   postAuthorId?: number | string | null;
   originalUrl?: string | null;
@@ -1022,6 +1010,7 @@ export async function fetchWeiboComments(params: {
 }): Promise<DiscussionContent | null> {
   return fetchCommunityComments({
     platform: "weibo",
+    requestGate: params.requestGate,
     targetId: params.id,
     authorId: params.postAuthorId ?? null,
     originalUrl: params.originalUrl ?? null,

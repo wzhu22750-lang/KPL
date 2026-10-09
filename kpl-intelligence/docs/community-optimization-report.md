@@ -38,6 +38,17 @@
 
 原帖本身仍可能是传言，**original-only 不是“事实已核实”**，来源归因与事实核验规则仍需保留。
 
+### 第三轮：共享请求预算、租约与失败退避
+
+- 新增 `content/community-platform-controls.ts` 与迁移 `0070_community_platform_controls.sql`。PostgreSQL 行锁只用于提交请求预约；网络期间不占用事务/连接。平台维度跨来源、跨 worker 共享配额与租约，来源配置/`force` 不能绕过。
+- 默认每平台 **120 次预约/1h、最小间隔 1s、单请求租约 90s**；网络错误或无效 API/页面指数退避 **60s、120s…，上限 24h**。这些是保守运维默认值，不是平台许可或真实校准。可信管理员可通过控制表调整；`request_limit=0` 暂停该平台，不会自动获得额度。
+- 预约先提交，进程崩溃不退还额度；租约到期恢复。生产 HTTP 传输上限 20s，90s 租约假设网络与解析在该时间内完成；不能声称在任意长期暂停/超时失效条件下仍严格无重叠。旧 token 不能释放新请求租约或清除新失败。
+- HTTP 200 也必须在持租约时解析验证，避免访客/非法响应让下一 worker 抢跑。评论页只解析一次，使用真实剩余采样预算；不因未采样尾部异常丢弃有效样本。
+- 首次预约被拒返回 `skipped`、0 transport attempts，不制造空评论或失败历史。已收到第一页后遇限额/关闭则保留 `partial` 与续抓游标，不把策略拒绝计为平台故障。
+- **范围仅为社区刷新请求**（包括为评论解析 aid 的 View API），未覆盖旧发现采集、普通正文提取、图片或其他供应商请求。重复分页游标保持 source-level partial/error 和既有文章冷却，**不触发整个平台退避**；分页异常的独立来源退避仍是后续项。
+
+运维只读核验：`SELECT platform, request_limit, requests_reserved, window_started_at, window_ms, lease_until, failure_count, next_allowed_at, last_error FROM community_platform_controls;`。`requests_reserved` 是预约数，进程崩溃可能没有实际发送；不能当作平台互动量或已送达请求数。
+
 回复选择是有限样本的点赞/内容/作者多样性启发式，**没有实现经验证的观点立场聚类**。本轮也没有新建完整的多平台事件合并模型。
 
 ## 3. 平台实测、权限与失败边界
@@ -73,12 +84,13 @@
 
 - `0068_community_collection_runs.sql`：尝试时间、请求数/耗时、采样条数、平台总数、失败/断点。
 - `0069_radar_evidence_hash.sql`：审核输入证据绑定；旧记录保持 null，必须重新审核，不能回填伪证据。
+- `0070_community_platform_controls.sql`：新增共享平台控制表；不删除历史采集/互动数据。启用第三轮 worker 前必须先在 staging 核验迁移；本轮仅在隔离测试库运行。
 
 没有删除原表/历史、没有自动回写历史内容修订。运行日志里的 fetched 总和仅代表多次采样工作量，不代表去重后的评论总数。
 
 **未执行生产迁移、部署、push 或生产数据库修改。** 上线前备份并在 staging 按现有 `npm run db:migrate` 执行，核验存量官方发布、社区待审、全文撤权、Markdown 和历史去重。
 
-默认 `COMMUNITY_COLLECTION_ENABLED=false`、`COMMUNITY_PUBLICATION_ENABLED=false`。还需要 `COLLECT_ENABLED`、来源 `enabled`、非 isolated、`communityComments.enabled` 及许可。`industry/radar.ts` 的 `RADAR.enabled` 原本也是 false，本轮没有擅自开启。
+默认 `COMMUNITY_COLLECTION_ENABLED=false`、`COMMUNITY_PUBLICATION_ENABLED=false`。还需要 `COLLECT_ENABLED`、来源 `enabled`、非 isolated、`communityComments.enabled` 及许可。`industry/radar.ts` 的 `RADAR.enabled` 原本为 false；第三轮期间另一个用户授权任务已将其开启并纳入 `490d615`，见根目录 `docs/radar-rollout-enable.md`。本轮没有覆盖该开关，也没有据此打开评论采集/公开详情阀门；实际生产环境变量未核验。
 
 授权 staging 的来源配置示例（不是已应用的生产配置）：
 
@@ -99,6 +111,10 @@ B站还需已验证的 `endpointTemplate`（`https://api.bilibili.com/x/v2/reply
 - `git diff --check`。
 
 第二轮最终执行（`tmp/community-phase2-*.log`）：**924 项，869 passed / 0 failed / 55 skipped**；全仓类型检查、Web build 通过；Web 显式测试 **44/44**。新增 `tests/community-fact-isolation.test.ts` 覆盖三平台原文、同作者回帖隔离、缺失原帖不得兜底、评论事实引用失效、旧翻译隔离、RAG 定向重建幂等和无 canonical 的旧文章兼容。预算回归验证抽取阶段无评论请求，独立评论采样仍保留原解析断言。先得到真实失败断言再修复，日志 `community-isolation-red.log`、`community-comment-budget-red.log`；fixture 建表约束修正前的失败不当作业务复现。
+
+第三轮最终执行（`tmp/community-phase3-*.log`）：**937 项，882 passed / 0 failed / 55 skipped**；类型检查、Web build 通过；Web 显式测试 **44/44**。总数包含同期其它测试变更，不将增长全部归于本轮。新增双 SQL 连接争抢、重建 controller 不重置配额、跨平台独立、HTTP/解析错误退避、崩溃预约保留、token fencing、窗口更新、默认策略、强制刷新仍被拒、部分页保留、按剩余预算解析等回归。测试调整控制表到零间隔只在各自隔离库，非生产默认。
+
+静态复审指出 HTTP-200 校验前释放租约的竞态，已修复并用交错测试验证；后续指出重复解析预算不一致，已改为持租约单次解析。复审是静态检查，不冒称独立执行全量测试或生产验收。
 
 浏览器检查详见根目录 [UI 验证](../../docs/community-ui-verification.md)，截图 `output/playwright/community/`。采用真实组件 + synthetic 本地 harness，桌面 1440×900 / 移动 390×844，**不是完整生产 API 页面验收**；浏览器与 harness 已显式关闭。最后新增的待审核提示文字只有类型/构建验证，没有重新截图。
 
@@ -124,12 +140,12 @@ B站还需已验证的 `endpointTemplate`（`https://api.bilibili.com/x/v2/reply
 
 本轮不能声称完成原目标的全部生产能力：微博真实超话/热点榜/评论；B站作者自身异常爆发；跨平台先进事件归并与观点聚类；人工金标及留出集；完整 staging 端到端；持续稳定性/授权；正式主排序切换均未完成。评论 AI 摘要的自动回填与逐观点证据映射也未完成，界面只能展示已有的真实提炼字段。原资料库/RAG 保留，没有新增评论直接入 RAG 路径；第二轮已隔离后续 editorial 分析及文章 RAG 重建输入。但既有 analyses/facts、摘要和未重建 chunks 不会自动撤回或重写，历史污染是否存在以及实际检索是否仍能命中这些旧块，仍需定向审计与 staging 验证；不能声称全库已清洁。
 
-评论刷新模块较大，应后续拆出平台刷新/调度/持久化边界。现有解析/刷新串行与冷却不等于分布式平台级全局限速；更严格的独立平台预算、429 熔断/指数退避、跨 worker 的全局预算、数据保留期/用户删除流程仍需完善；第二轮已去除 B站抽取阶段的内联评论预算旁路。公开高热来源、评论与媒体也需许可审查。
+评论刷新模块较大，应后续拆出平台刷新/调度/持久化边界。第二轮已去除 B站内联评论预算旁路，第三轮已加入社区刷新 lane 的共享配额、租约和网络/解析失败退避；但全平台发现/正文/图片请求的总配额、重复游标的独立来源退避、退避管理界面、数据保留期/用户删除流程仍需完善。公开高热来源、评论与媒体也需许可审查。
 
 ## 9. 后续优先级
 
-- **P0 上线前**：授权与许可；staging 迁移；小规模虎扑/B站真采集→存储→实际模型审核→详情/导出完整验收；核验原文-only 边界并定向审计旧 analyses/facts/chunks，审批后重建受影响索引；平台级总预算/限流/失败熔断；确认关闭后不再请求；禁止未经验证的微博评论开启。
+- **P0 上线前**：授权与许可；staging 迁移；小规模虎扑/B站真采集→存储→实际模型审核→详情/导出完整验收；核验原文-only 边界并定向审计旧 analyses/facts/chunks，审批后重建受影响索引；staging 验证共享控制表、数据库故障/进程重启与关闭场景，将发现/正文等其他 lane 纳入总预算；禁止未经验证的微博评论开启。
 - **P1 排序切换前**：真实金标/留出集、平台基线与小账号爆发、旧帖衰减校准；监控成功率、延迟、429、unknown 与审核等待；完整路由桌面/移动复测。
 - **P2 产品深化**：授权超话/榜单入口、观点多样性与同事件跨平台聚合、媒体原位置、模块拆分、审查后讨论 RAG。
 
-并行出现的根目录赛事档案/渲染修复文档属于其他工作，未覆盖或回滚。所有变更仍在工作区，未提交。
+并行出现的根目录赛事档案/渲染修复文档属于其他工作，未覆盖或回滚。本轮未执行 commit/push 或生产迁移/部署。期间仓库存在其它工作提交，`490d615` 已包含本轮早期控制实现；其后竞态与单次解析修复仍在工作区，**不能假定最新修复已经上线**。应审阅工作区后经授权发布，勿将早期提交等同最终验收版本。

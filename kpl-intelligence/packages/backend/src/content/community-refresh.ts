@@ -562,7 +562,7 @@ export async function refreshArticleCommunity(
     clearedSummary: false, preservedPrevious: true, error: controller.denial.message,
     requestCount: 0, latencyMs: Date.now() - startTime,
   };
-  await controller.finish(fetchError ?? incomingDiscussion?.collection?.error ?? null);
+  if (!fetchError && !incomingDiscussion?.collection?.error) await controller.finish();
 
   // If incomingDiscussion is null or fetch had a fatal crash, construct a failed incoming structure
   if (!incomingDiscussion) {
@@ -948,38 +948,24 @@ async function refreshHupuThread(params: {
     const parsedPageMeta = parseHupuPageUrl(pageUrl);
     currentPage = parsedPageMeta?.page ?? (startPage + p);
 
-    let html: string;
-    try {
-      requestCount++;
-      html = await executeSerializedPlatformFetch(
-        "hupu",
-        minIntervalMs,
-        () => params.requestGate(() => fetchHtml(pageUrl)),
-        params.sleep,
-      );
-    } catch (err: any) {
-      lastError = err?.message ? String(err.message) : String(err);
-      break;
-    }
-
     let parsedCanonical: CanonicalContent | null = null;
     try {
-      const extracted = await extractCanonical({
-        url: pageUrl,
-        html,
-        title: article.title ?? null,
-        author: article.author ?? null,
-        publishedAt: article.published_at ?? null,
-        profile: profileFor({ url: pageUrl, kind: "web_list", config: cfg as any }),
-        sourceConfig: params.config as any,
-        raw: null,
-        sourceId: null,
-        sourceKind: null,
-        excerpt: null,
-        xPost: null,
-        fetchJson: null,
-      });
-      parsedCanonical = extracted?.content ?? null;
+      requestCount++;
+      parsedCanonical = await executeSerializedPlatformFetch(
+        "hupu", minIntervalMs,
+        () => params.requestGate(async () => {
+          const html = await fetchHtml(pageUrl);
+          const extracted = await extractCanonical({
+            url: pageUrl, html, title: article.title ?? null, author: article.author ?? null,
+            publishedAt: article.published_at ?? null,
+            profile: profileFor({ url: pageUrl, kind: "web_list", config: cfg as any }),
+            sourceConfig: params.config as any, raw: null, sourceId: null, sourceKind: null,
+            excerpt: null, xPost: null, fetchJson: null,
+          });
+          if (!extracted?.content.discussion) throw new Error(`Failed to extract thread discussion from "${pageUrl}"`);
+          return extracted.content;
+        }), params.sleep,
+      );
     } catch (err: any) {
       lastError = err?.message ? String(err.message) : String(err);
       break;
@@ -1199,10 +1185,11 @@ async function refreshWeiboPost(params: {
   const effectiveFetchJson = params.fetchJson ?? defaultGuardedFetchJson;
   const wrappedFetchJson = async (url: string) => {
     requestCount++;
-    return params.requestGate(() => effectiveFetchJson(url));
+    return effectiveFetchJson(url);
   };
 
   const rawDiscussion = await fetchWeiboComments({
+    requestGate: params.requestGate,
     id: rawId,
     postAuthorId: raw?.user?.id ?? null,
     originalUrl: article.url,
@@ -1312,9 +1299,12 @@ async function refreshBilibiliVideo(params: {
   if (!aid && bvid) {
     try {
       requestCount++;
-      const viewData = (await params.requestGate(() => effectiveFetchJson(
-        `https://api.bilibili.com/x/web-interface/view?bvid=${encodeURIComponent(bvid)}`,
-      ))) as any;
+      const viewData = (await params.requestGate(async () => {
+        const value = await effectiveFetchJson(`https://api.bilibili.com/x/web-interface/view?bvid=${encodeURIComponent(bvid)}`) as any;
+        if (value?.code !== 0 || !Number.isSafeInteger(value?.data?.aid) || value.data.aid <= 0)
+          throw new Error('Invalid or denied Bilibili view API response');
+        return value;
+      })) as any;
       if (viewData?.code === 0 && viewData?.data) {
         const resolvedAid = Number(viewData.data.aid);
         if (Number.isFinite(resolvedAid) && resolvedAid > 0) {
@@ -1373,10 +1363,11 @@ async function refreshBilibiliVideo(params: {
 
   const wrappedFetchJson = async (url: string) => {
     requestCount++;
-    return params.requestGate(() => effectiveFetchJson(url));
+    return effectiveFetchJson(url);
   };
 
   const rawDiscussion = await fetchBilibiliComments({
+    requestGate: params.requestGate,
     oid: aid ?? null,
     bvid,
     upMid,

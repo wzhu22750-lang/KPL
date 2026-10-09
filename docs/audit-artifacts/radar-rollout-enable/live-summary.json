@@ -1,0 +1,13 @@
+{
+  "url": "https://kpl-intelligence.onrender.com/api/site/radar?current=true",
+  "status": 200,
+  "day": "2026-10-09",
+  "matches": 5,
+  "topics": 0,
+  "standalone": 0,
+  "coverage": {
+    "reviewed": 0,
+    "pending": 1331,
+    "note": "热度是观测信号，不代表事实成立；未知指标不作零互动。局次待确认的材料单列。"
+  }
+}
