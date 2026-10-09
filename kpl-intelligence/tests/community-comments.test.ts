@@ -935,7 +935,7 @@ test("容灾鲁棒性：第 1 页抓取直接报错时，标记 unavailable 且�
 // 13. Bilibili Extractor Integration
 // ---------------------------------------------------------------------------
 
-test("Bilibili Extractor：解析 view API 的 aid，填入 template 抓取评论，注入真实 coins 与 danmaku", async () => {
+test("Bilibili metadata extraction never spends comment budget; explicit bounded collection uses real aid and preserves metrics",  async () => {
   const viewApiData = {
     code: 0,
     data: {
@@ -1021,20 +1021,29 @@ test("Bilibili Extractor：解析 view API 的 aid，填入 template 抓取评�
   assert.equal(extracted.engagement?.likes, 180000);
   assert.equal(extracted.video?.transcriptSummary, null, "transcriptSummary must strictly be null");
 
+  assert.equal(extracted.discussion, null, "listing extraction must not bypass per-source comment scheduling");
+  assert.ok(requestedUrls.every((u) => !u.includes("/x/v2/reply")));
+  const discussion = await fetchBilibiliComments({
+    oid: viewApiData.data.aid,
+    bvid: viewApiData.data.bvid,
+    upMid: viewApiData.data.owner.mid,
+    sourceConfig: input.sourceConfig,
+    fetchJson: fakeFetchJson,
+  });
   const replyCall = requestedUrls.find((u) => u.includes("/x/v2/reply"));
   assert.ok(replyCall, "must have called reply API");
   assert.ok(replyCall.includes("oid=888777"), "must pass actual aid 888777 to reply API template");
 
-  assert.ok(extracted.discussion, "discussion must be populated");
-  assert.equal(extracted.discussion.fetchedReplies, 2);
+  assert.ok(discussion, "explicit bounded collection must populate discussion");
+  assert.equal(discussion.fetchedReplies, 2);
   // Conservative coverage: 12000 total comments, only 2 fetched -> partial!
-  assert.equal(extracted.discussion.collection?.coverage, "partial", "conservative coverage: only fetched 2 out of 12000 replies");
-  assert.equal(extracted.discussion.collection?.sourceUrl, replyCall);
+  assert.equal(discussion.collection?.coverage, "partial", "conservative coverage: only fetched 2 out of 12000 replies");
+  assert.equal(discussion.collection?.sourceUrl, replyCall);
 
-  assert.equal(extracted.discussion.authorFollowups.length, 1);
-  assert.equal(extracted.discussion.authorFollowups[0]!.author.name, "KPL赛事官方");
-  assert.equal(extracted.discussion.highlightedReplies.length, 1);
-  assert.equal(extracted.discussion.highlightedReplies[0]!.author.name, "战术分析师老李");
+  assert.equal(discussion.authorFollowups.length, 1);
+  assert.equal(discussion.authorFollowups[0]!.author.name, "KPL赛事官方");
+  assert.equal(discussion.highlightedReplies.length, 1);
+  assert.equal(discussion.highlightedReplies[0]!.author.name, "战术分析师老李");
 });
 
 test("Bilibili Extractor：评论抓取失败 (unavailable) 不导致原视频提取失败", async () => {

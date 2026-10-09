@@ -2,8 +2,8 @@
 // 数据链：页面 __INITIAL_STATE__（videoData / readInfo）→ view API（fetchJson 受限回调）→ meta 标签。
 // 产出的 CanonicalContent：video_post，main 为空（视频没有"正文"），简介放 video.description。
 import { metaContent, type ContentExtractor, type ExtractionInput } from "./base.ts";
-import type { CanonicalContent, DiscussionContent, DiscussionPost } from "./types.ts";
-import { fetchBilibiliComments, isCommunityCollectionEnabled, defaultGuardedFetchJson } from "../community-comments.ts";
+import type { CanonicalContent } from "./types.ts";
+import { defaultGuardedFetchJson } from "../community-comments.ts";
 
 const BV = /\/video\/(BV[\w]+)|bvid=(BV[\w]+)/i;
 
@@ -143,40 +143,8 @@ export const bilibiliExtractor: ContentExtractor = {
     if (!video && !/\/read\/cv|\/opus\//.test(input.url)) return null;
     if (!video) return null;
 
-    let discussion: DiscussionContent | null = null;
-    if (isCommunityCollectionEnabled() && input.sourceConfig?.communityComments?.enabled === true) {
-      try {
-        const op: DiscussionPost = {
-          id: video.aid ? String(video.aid) : (video.bvid || bvid),
-          author: {
-            name: video.owner.name ?? input.author,
-            avatarUrl: video.owner.avatar,
-          },
-          text: video.desc || video.title || "",
-          publishedAt: video.publishedAt ?? input.publishedAt?.toISOString() ?? null,
-          likes: video.stat.like,
-          floor: 0,
-          isOriginalAuthor: true,
-          platform: "bilibili",
-          parentCommentId: null,
-          replyCount: video.stat.comment,
-          originalUrl: (video.bvid || bvid) ? `https://www.bilibili.com/video/${video.bvid || bvid}` : null,
-          quote: null,
-        };
-        discussion = await fetchBilibiliComments({
-          oid: video.aid ?? null,
-          bvid: video.bvid || bvid,
-          upMid: video.owner.mid,
-          originalPost: op,
-          sourceConfig: input.sourceConfig,
-          fetchJson: input.fetchJson,
-          highlightLimit: input.profile.highlightLimit,
-        });
-      } catch {
-        // Fail state unavailable does not fail original extraction
-        discussion = null;
-      }
-    }
+    // Comment requests belong exclusively to the budgeted community worker, not every
+    // listing extraction. Metadata and original description remain independently available.
 
     const content: CanonicalContent = {
       kind: "video_post",
@@ -192,7 +160,7 @@ export const bilibiliExtractor: ContentExtractor = {
       // 视频没有正文：main 恒空，简介在 video.description，UI 明确标"视频简介"。
       main: [],
       media: video.cover ? [{ type: "image", url: video.cover, caption: null, alt: video.title, width: null, height: null }] : [],
-      discussion,
+      discussion: null,
       video: {
         description: video.desc || null,
         cover: video.cover,
