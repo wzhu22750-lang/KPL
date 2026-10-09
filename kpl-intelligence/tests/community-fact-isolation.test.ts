@@ -27,8 +27,9 @@ before(async()=>{
 after(async()=>{config.modelCallsEnabled=enabled;await stopBoss();await closeDb();});
 async function article(suffix:string, c:unknown=canonical) {
   const id=`${source}-${suffix}`;
+  const kind=(c as {kind?:string}|null)?.kind ?? 'forum_thread';
   await sql`INSERT INTO articles (id,source_id,identity_key,url,title,content_hash,body_text,body_status,content_kind,content_quality_score,canonical_content,discovered_at,timeline_at)
-    VALUES (${id},${source},${id},${`https://example.com/${id}`},'KPL 赛后讨论',${id},${original+'\n\n'+rumor},'ok','forum_thread',90,${c?sql.json(c as never):null},now(),now())`;
+    VALUES (${id},${source},${id},${`https://example.com/${id}`},'KPL 赛后讨论',${id},${original+'\n\n'+rumor},'ok',${kind},90,${c?sql.json(c as never):null},now(),now())`;
   return id;
 }
 test('editorial fact/score/writing inputs exclude even same-author replies and cached translations; stored evidence remains intact',async()=>{
@@ -53,6 +54,25 @@ test('article RAG rebuild removes comment-contaminated chunks, keeps original, a
   const rows=await sql<{content:string}[]>`SELECT content FROM chunks WHERE source_type='article' AND ref_id=${id}`;
   assert.deepEqual(rows.map(r=>r.content),[original]);
 });
+test('video/social original text stays available; missing OP never falls back to comments or excerpt',async()=>{
+  const cases=[
+    {suffix:'video',expected:'KPL 视频原始简介。',c:{...canonical,kind:'video_post',video:{description:'KPL 视频原始简介。'}}},
+    {suffix:'social',expected:'KPL 微博原帖。',c:{...canonical,kind:'social_post',social:{postText:'KPL 微博原帖。',quoted:null}}},
+    {suffix:'missing',expected:'',c:{...canonical,discussion:{...canonical.discussion,originalPost:{text:''}}}},
+  ];
+  for(const fixture of cases){
+    const id=await article(fixture.suffix,fixture.c);
+    await sql`UPDATE articles SET excerpt=${rumor} WHERE id=${id}`;
+    const input=(await loadAnalyzeInput(id))!;
+    assert.equal(input.bodyText,fixture.expected);
+    assert.equal(input.excerpt,null);
+    assert.ok(!buildMaterial(input).includes(rumor));
+    await rebuildArticleChunks(id);
+    const rows=await sql<{content:string}[]>`SELECT content FROM chunks WHERE source_type='article' AND ref_id=${id}`;
+    assert.deepEqual(rows.map(r=>r.content),fixture.expected?[fixture.expected]:[]);
+  }
+});
+
 test('legacy articles without canonical discussion are unchanged, even when their main text quotes a discussion marker',async()=>{
   const id=await article('legacy',null);
   assert.equal((await loadAnalyzeInput(id))!.bodyText,original+'\n\n'+rumor);

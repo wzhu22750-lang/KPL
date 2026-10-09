@@ -1,0 +1,9 @@
+{
+  "site": "https://kpl-intelligence.onrender.com/",
+  "access": "public read-only HTTP and browser; no admin, collection or model requests",
+  "homepage": { "status": 200, "matchSection": true, "matchRail": true, "matchLinks": 5, "empty": false, "error": false },
+  "matchOverview": { "status": 200, "count": 5, "ids": ["kpl-20260004-2026100901", "kpl-20260004-2026100902", "kpl-20260004-2026100703", "kpl-20260004-2026100702", "kpl-20260004-2026100701"] },
+  "radar": { "status": 503, "detail": "content radar disabled", "expectedClosedGate": true },
+  "legacySchedule": { "status": 200, "count": 5 },
+  "browser": { "viewports": [390, 1160], "matchSectionVisible": true, "cards": 5, "mobileHorizontalScroll": true, "mobilePageOverflow": false, "styles": [{ "path": "/assets/root-BlGq_WzG.css", "status": 200 }, { "path": "/assets/home-CSBTTskM.css", "status": 200 }], "sessionClosed": true }
+}

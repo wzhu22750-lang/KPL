@@ -13,7 +13,7 @@ cd kpl-intelligence
 node --test --test-name-pattern='closed radar never hides' apps/web/tests/cache.test.ts
 ```
 
-这是已确认的代码缺陷；尚未收到实际 Render URL，没有声称已核实线上部署版本、HTTP 状态或生产数据库内容。
+这是已确认的代码缺陷。用户随后提供站点 URL，线上公开接口与浏览器核验已完成，见下方“线上验收”；没有登录 Render 控制台或读取生产库凭据。
 
 ## 修复
 
@@ -32,9 +32,22 @@ node --test --test-name-pattern='closed radar never hides' apps/web/tests/cache.
 - 后端回归验证 `RADAR.enabled=false` 时雷达仍为 503、赛程概览为 200、有真实数据库夹具中的比赛、无雷达报道，并且 provider 调用计数不增加。
 - 另覆盖赛程空数据/接口故障的 UI、来源筛选、缓存最早失效时间与 `no-store`。
 - 第一轮完整测试因原本地临时数据库被停止而中断；没有将其记为通过。改用独立的 `kpl-render-schedule-test-db` / `kpl_render_schedule_test` 后重跑通过，测试容器已停止。未重启当前用户服务、未操作生产数据库。
-- 默认端口 3000 的 smoke 没有运行中的服务，未能验证；实际 Render HTTP smoke 等待站点 URL。没有以模拟 HTTP 测试代替线上验收。
+- 默认端口 3000 的 smoke 没有运行中的服务，未能验证；实际 Render 的首页/赛程接口/样式与浏览器专项验收现已完成；没有声称执行了全站 30 项线上 smoke，也没有以模拟 HTTP 测试代替线上验收。
 
 证据：[audit-artifacts/render-match-overview-fix](audit-artifacts/render-match-overview-fix/)。
+
+## 线上验收
+
+站点：`https://kpl-intelligence.onrender.com/`。仅读取公开页面/接口；没有触发采集、模型或管理操作。
+
+- 首页 HTTP 200，HTML 已包含比赛速览、横向轨道和 5 个比赛档案入口，无赛程空数据/失败提示。
+- `/api/site/match-overview` HTTP 200，返回 5 场：狼队–Hero、JDG–DYG，及 AG–LGD、WB–EDG.M、KSG–TES 最近赛果。
+- `/api/site/radar?current=true` HTTP 503，`content radar disabled`；预期关闭门禁仍有效，赛程不受其影响。
+- 既有 `/api/site/kb/schedule?limit=5` HTTP 200，生产公开数据中确有赛程，不是因为生产库空导致当前缺失。
+- 真实浏览器：390px 手机与 1160px 桌面比赛速览可见，5 张卡片，手机右移有效且无页面级溢出；两份首页 CSS 均 HTTP 200。
+- 自动化浏览器已关闭。若读者仍看到旧页面，应先刷新/新开窗口验证，不直接把个别客户端状态认定为生产接口故障。
+
+截图：[线上手机](../output/playwright/content-redesign/render-match-overview-mobile.png)、[线上桌面](../output/playwright/content-redesign/render-match-overview-desktop.png)。
 
 ## 部署后只读核验
 

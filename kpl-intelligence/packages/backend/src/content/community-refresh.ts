@@ -22,6 +22,7 @@ import { guardedFetch } from "../lib/http-fetch.ts";
 import { canonicalToBody, mergeCanonicalForRefresh, canonicalEvidenceHash } from "./canonical.ts";
 import { queueRadar } from "../jobs/radar.ts";
 import { publishArticleTx } from "../publication/publish.ts";
+import { createCommunityRequestController } from "./community-platform-controls.ts";
 import {
   executeSerializedPlatformFetch,
   fetchBilibiliComments,
@@ -216,7 +217,7 @@ export function mergeDiscussionReplies(
 export function detectPlatform(
   article: { url: string; source_kind: string },
   canonical: CanonicalContent | null,
-): string {
+): "hupu" | "weibo" | "bilibili" | "unknown" {
   const extractor = canonical?.extraction?.extractor?.toLowerCase();
   if (extractor === "hupu" || extractor === "weibo" || extractor === "bilibili") return extractor;
 
@@ -486,6 +487,7 @@ export async function refreshArticleCommunity(
   }
 
   const minIntervalMs = options.minIntervalMs ?? communityCfg.minIntervalMs ?? 1000;
+  const controller = createCommunityRequestController(db, platform);
 
   let requestCount = 0;
   let incomingDiscussion: DiscussionContent | null = null;
@@ -497,6 +499,7 @@ export async function refreshArticleCommunity(
   try {
     if (platform === "hupu") {
       const hupuRes = await refreshHupuThread({
+        requestGate: (fetch) => controller.run(fetch),
         article: row,
         existingCanonical,
         config: communityCfg,
@@ -516,6 +519,7 @@ export async function refreshArticleCommunity(
       extractionFail = hupuRes.extractionFail;
     } else if (platform === "weibo") {
       const weiboRes = await refreshWeiboPost({
+        requestGate: (fetch) => controller.run(fetch),
         article: row,
         existingCanonical,
         sourceConfig,
@@ -530,6 +534,7 @@ export async function refreshArticleCommunity(
       extractionFail = weiboRes.extractionFail;
     } else if (platform === "bilibili") {
       const biliRes = await refreshBilibiliVideo({
+        requestGate: (fetch) => controller.run(fetch),
         article: row,
         existingCanonical,
         sourceConfig,
@@ -548,6 +553,16 @@ export async function refreshArticleCommunity(
     fetchError = err?.message ? String(err.message) : String(err);
     extractionFail = true;
   }
+
+  requestCount = controller.requestCount; // Denied reservations are not network requests.
+  if (controller.denial && requestCount === 0) return {
+    articleId, platform, status: "skipped", fetchedReplies: 0,
+    totalReplies: existingCanonical?.discussion?.totalReplies ?? null,
+    nextCursor: existingCanonical?.discussion?.collection?.nextCursor ?? null,
+    clearedSummary: false, preservedPrevious: true, error: controller.denial.message,
+    requestCount: 0, latencyMs: Date.now() - startTime,
+  };
+  await controller.finish(fetchError ?? incomingDiscussion?.collection?.error ?? null);
 
   // If incomingDiscussion is null or fetch had a fatal crash, construct a failed incoming structure
   if (!incomingDiscussion) {
@@ -809,6 +824,7 @@ export async function refreshArticleCommunity(
 // ---------------------------------------------------------------------------
 
 async function refreshHupuThread(params: {
+  requestGate: <T>(fetch: () => Promise<T>) => Promise<T>;
   article: { id: string; url: string; title: string; author: string | null; published_at: Date | null };
   existingCanonical: CanonicalContent | null;
   config: CommunityRefreshConfig;
@@ -938,7 +954,7 @@ async function refreshHupuThread(params: {
       html = await executeSerializedPlatformFetch(
         "hupu",
         minIntervalMs,
-        () => fetchHtml(pageUrl),
+        () => params.requestGate(() => fetchHtml(pageUrl)),
         params.sleep,
       );
     } catch (err: any) {
@@ -1129,6 +1145,7 @@ async function refreshHupuThread(params: {
 // ---------------------------------------------------------------------------
 
 async function refreshWeiboPost(params: {
+  requestGate: <T>(fetch: () => Promise<T>) => Promise<T>;
   article: { id: string; url: string; title: string; author: string | null; body_text: string | null; raw: any; published_at: Date | null };
   existingCanonical: CanonicalContent | null;
   sourceConfig: Record<string, any>;
@@ -1182,7 +1199,7 @@ async function refreshWeiboPost(params: {
   const effectiveFetchJson = params.fetchJson ?? defaultGuardedFetchJson;
   const wrappedFetchJson = async (url: string) => {
     requestCount++;
-    return effectiveFetchJson(url);
+    return params.requestGate(() => effectiveFetchJson(url));
   };
 
   const rawDiscussion = await fetchWeiboComments({
@@ -1262,6 +1279,7 @@ function extractWeiboIdFromUrl(url: string): string | null {
 // ---------------------------------------------------------------------------
 
 async function refreshBilibiliVideo(params: {
+  requestGate: <T>(fetch: () => Promise<T>) => Promise<T>;
   article: { id: string; url: string; title: string; author: string | null; body_text: string | null; raw: any; published_at: Date | null };
   existingCanonical: CanonicalContent | null;
   sourceConfig: Record<string, any>;
@@ -1294,9 +1312,9 @@ async function refreshBilibiliVideo(params: {
   if (!aid && bvid) {
     try {
       requestCount++;
-      const viewData = (await effectiveFetchJson(
+      const viewData = (await params.requestGate(() => effectiveFetchJson(
         `https://api.bilibili.com/x/web-interface/view?bvid=${encodeURIComponent(bvid)}`,
-      )) as any;
+      ))) as any;
       if (viewData?.code === 0 && viewData?.data) {
         const resolvedAid = Number(viewData.data.aid);
         if (Number.isFinite(resolvedAid) && resolvedAid > 0) {
@@ -1355,7 +1373,7 @@ async function refreshBilibiliVideo(params: {
 
   const wrappedFetchJson = async (url: string) => {
     requestCount++;
-    return effectiveFetchJson(url);
+    return params.requestGate(() => effectiveFetchJson(url));
   };
 
   const rawDiscussion = await fetchBilibiliComments({

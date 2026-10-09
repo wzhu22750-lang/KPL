@@ -14,7 +14,7 @@
 // 12. Monitoring runs table: appends actual attempts to community_collection_runs without swallowing errors.
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";
-import { after, before, test } from "node:test";
+import { after, before, beforeEach, test } from "node:test";
 import { MockAgent, getGlobalDispatcher, setGlobalDispatcher } from "undici";
 import { config } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
@@ -117,6 +117,15 @@ window.__INITIAL_STATE__ = {
 </script>
 </html>`;
 
+// Test-only administrative policy: no wall-clock waits between local fixture requests.
+beforeEach(async () => {
+  for (const platform of ['hupu','weibo','bilibili']) await sql`
+    INSERT INTO community_platform_controls (platform,min_interval_ms,request_limit)
+    VALUES (${platform},0,1000) ON CONFLICT (platform) DO UPDATE SET
+      min_interval_ms=0,request_limit=1000,requests_reserved=0,failure_count=0,
+      next_allowed_at=now(),lease_until=NULL,last_error=NULL`;
+});
+
 // Setup and Teardown
 before(async () => {
   // Ensure monitoring table exists in test DB
@@ -185,6 +194,21 @@ after(async () => {
   delete process.env.COLLECT_ENABLED;
   await stopBoss();
   await closeDb();
+});
+
+test('shared platform budget defers refresh without requests, history mutation, or fake failed collection; force cannot bypass',async()=>{
+  process.env.COMMUNITY_COLLECTION_ENABLED='true';config.collectEnabled=true;
+  const id=`art-platform-denied-${T}`;
+  await sql`INSERT INTO articles (id,source_id,url,identity_key,title,content_hash,body_text,body_status,discovered_at,timeline_at)
+    VALUES (${id},${HUPU_SOURCE},${HUPU_URL},${id},'Offline budget test','stable','Original retained','ok',now(),now())`;
+  await sql`UPDATE community_platform_controls SET request_limit=0 WHERE platform='hupu'`;
+  const result=await refreshArticleCommunity(id,{force:true,minIntervalMs:0,fetchHtml:async()=>{assert.fail('no budget, no network');}});
+  assert.equal(result.status,'skipped');assert.equal(result.requestCount,0);assert.equal(result.preservedPrevious,true);
+  assert.match(result.error??'',/budget/);
+  const [row]=await sql<{body_text:string;body_status:string;revision:number}[]>`SELECT body_text,body_status,revision FROM articles WHERE id=${id}`;
+  assert.deepEqual(row,{body_text:'Original retained',body_status:'ok',revision:1});
+  const [attempts]=await sql<{n:number}[]>`SELECT count(*)::int AS n FROM community_collection_runs WHERE article_id=${id}`;
+  assert.equal(attempts!.n,0);
 });
 
 // ---------------------------------------------------------------------------

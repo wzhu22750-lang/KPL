@@ -11,7 +11,7 @@ import { buildApp } from '../apps/api/src/app.ts';
 import { upsertMatch } from '@aihot/backend/kb/upsert';
 import { RADAR } from '@aihot/industry/radar';
 import { queueRadar } from '@aihot/backend/jobs/radar';
-RADAR.enabled=true;
+test('approved radar rollout is enabled by default',()=>assert.equal(RADAR.enabled,true));
 
 const t=tag(),official=`official-${t}`,community=`community-${t}`;
 const day='2026-10-07',at=new Date(`${day}T12:00:00+08:00`);

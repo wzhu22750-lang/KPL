@@ -1,8 +1,8 @@
 // Versioned initial settings. Real-model accuracy and traffic impact require a labelled holdout.
 export const RADAR = {
-  // Keep rollout closed until a user-labelled holdout calibrates the proposed threshold/weights.
-  // Tests explicitly enable the complete pipeline; enabling adds one budget-protected judgment per new revision.
-  enabled: false,
+  // User-approved rollout. Threshold/weights remain provisional pending labelled holdout calibration.
+  // New judgments still require MODEL_CALLS_ENABLED and pass receipt/budget gates; reads never call models.
+  enabled: true,
   version: 'radar-v1-70-10-20',
   admissionThreshold: 45,
   weights: {
