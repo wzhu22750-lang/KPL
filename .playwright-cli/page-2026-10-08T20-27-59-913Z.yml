@@ -1,0 +1,66 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 5: SocialPost (Metrics & Unbroken URL)"
+        - heading "社交互动指标 / 引用帖 / 超长无空格URL自动换行防溢出" [level=1] [ref=e19]
+      - generic [ref=e20]:
+        - region "动态" [ref=e21]:
+          - generic [ref=e22]:
+            - paragraph [ref=e23]: 【赛后发布会现场】 恭喜队伍斩获今晚胜者组对决的胜利！全员状态拉满，决胜局展现了极致的韧性。 感谢所有在现场和直播间守候支持的粉丝朋友们，下周总决赛见！ 超长链接测试：https://weibo.com/detail/synthetic_fixture_social_post_very_long_url_with_no_whitespace_to_ensure_zero_overflow_wrap_anywhere_compliance
+            - blockquote [ref=e24]:
+              - generic [ref=e25]: 引用 KPL赛事官方[合成]
+              - text: 【全场最佳选手公布】本场MVP选手在决胜局输出占比高达38.5%，多次在关键团战打出毁灭性伤害。
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - generic [ref=e28]: 52.0万
+                - generic [ref=e29]: 阅读
+              - generic [ref=e30]:
+                - generic [ref=e31]: 2.3万
+                - generic [ref=e32]: 点赞
+              - generic [ref=e33]:
+                - generic [ref=e34]: "1450"
+                - generic [ref=e35]: 评论
+              - generic [ref=e36]:
+                - generic [ref=e37]: "320"
+                - generic [ref=e38]: 转发
+              - generic [ref=e39]:
+                - generic [ref=e40]: "890"
+                - generic [ref=e41]: 收藏
+        - region "动态评论" [ref=e42]:
+          - heading "动态评论" [level=2] [ref=e43]
+          - paragraph [ref=e44]:
+            - text: 采集于
+            - time [ref=e45]: 2026-10-09 19:45
+            - text: · 覆盖有限，不代表全部观众
+          - generic [ref=e46]:
+            - generic [ref=e47]: AI 整理
+            - text: 社交平台讨论以祝贺晋级和盛赞选手决胜局大心脏表现为主。
+          - generic [ref=e49]:
+            - generic [aria-hidden] [ref=e50]: 忠
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]: "回复评论 #s-op"
+                - generic [ref=e54]: 忠实粉丝小王[合成]
+                - generic [ref=e55]: 微博
+                - generic [ref=e56]: "#2楼"
+                - time [ref=e57]: 2026-10-09 19:40
+                - generic [ref=e58]: 👍 77
+                - generic [ref=e59]: 💬 4 条回复
+              - paragraph [ref=e60]: 满分不怕骄傲！特别是最后一局逆风翻盘，心态太沉稳了。
+          - generic [ref=e61]:
+            - generic [ref=e62]: 共 1450 条评论 · 已采集 30 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e63] [cursor=pointer]:
+              - /url: https://weibo.com/detail/fixtureSyntheticSocial005

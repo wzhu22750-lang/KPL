@@ -1,0 +1,77 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 4: VideoContent (Missing Transcript)"
+        - heading "视频缺失字幕：简介独立呈现，禁止伪造正文与AI视频总结" [level=1] [ref=e19]
+      - generic [ref=e20]:
+        - region "视频内容" [ref=e21]:
+          - generic [ref=e22]:
+            - link "视频封面 7:15":
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004
+              - img "视频封面"
+              - generic [ref=e23] [cursor=pointer]: 7:15
+            - generic [ref=e24]:
+              - generic [ref=e25]: 视频信息
+              - generic [ref=e26]:
+                - generic [ref=e27]: 7:15
+                - generic [ref=e28]: 时长
+              - generic [ref=e29]:
+                - generic [ref=e30]: 18.5万
+                - generic [ref=e31]: 播放
+              - generic [ref=e32]:
+                - generic [ref=e33]: 1.2万
+                - generic [ref=e34]: 点赞
+              - generic [ref=e35]:
+                - generic [ref=e36]: "890"
+                - generic [ref=e37]: 评论
+              - generic [ref=e38]:
+                - generic [ref=e39]: "4300"
+                - generic [ref=e40]: 收藏
+              - generic [ref=e41]:
+                - generic [ref=e42]: "2100"
+                - generic [ref=e43]: 投币
+              - generic [ref=e44]:
+                - generic [ref=e45]: "1560"
+                - generic [ref=e46]: 弹幕
+            - generic [ref=e47]:
+              - heading "视频简介" [level=2] [ref=e48]
+              - paragraph [ref=e49]: 【总决赛深度复盘】第五局关键团战逐帧解析： 从红区视野争夺到后排绕后切入的完整战术路径拆解。 （声明：本段文字为创作者投稿原始简介，非AI正文，且视频未提取到逐字字幕）。
+            - link "打开原视频 ↗" [ref=e51] [cursor=pointer]:
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004
+        - region "视频讨论" [ref=e52]:
+          - heading "视频讨论" [level=2] [ref=e53]
+          - paragraph [ref=e54]:
+            - text: 采集于
+            - time [ref=e55]: 2026-10-09 19:00
+          - generic [ref=e56]:
+            - generic [ref=e57]: AI 整理
+            - text: 观众普遍赞赏视频中对龙王团战绕后走位的拆解，认为辅助排眼时机是胜负手。
+          - generic [ref=e59]:
+            - generic [aria-hidden] [ref=e60]: 弹
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: "回复评论 #v-op"
+                - generic [ref=e64]: 弹幕课代表[合成]
+                - generic [ref=e65]: B站
+                - generic [ref=e66]: "#2楼"
+                - time [ref=e67]: 2026-10-09 18:45
+                - generic [ref=e68]: 👍 92
+                - generic [ref=e69]: 💬 7 条回复
+              - paragraph [ref=e70]: 3分15秒那个绕后视野卡得太漂亮了，完全避开了对方辅助探草的范围。
+          - generic [ref=e71]:
+            - generic [ref=e72]: 共 890 条评论 · 已采集 40 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e73] [cursor=pointer]:
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004

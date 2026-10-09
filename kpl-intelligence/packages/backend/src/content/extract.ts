@@ -13,7 +13,9 @@ import { onlyXArticleLink, xArticleText } from "../sources/x.ts";
 import { sanitizeBody, trimTrailingChrome } from "./sanitize.ts";
 import { contentHash, reviseMaterial } from "./materials.ts";
 import { markdownBody } from "./markdown.ts";
-import { canonicalToBody } from "./canonical.ts";
+import { canonicalIdentityText, canonicalToBody, mergeCanonicalForRefresh } from "./canonical.ts";
+import { recordCanonicalEngagement } from "./engagement.ts";
+import type { CanonicalContent } from "./extractors/types.ts";
 import { extractCanonical, profileFor, type ExtractionInput } from "./extractors/index.ts";
 import { socialExtractor } from "./extractors/social.ts";
 
@@ -151,7 +153,7 @@ export async function extractArticleBody(articleId: string): Promise<"ok" | "unc
   const html = await fetchPageHtml(a.url);
   const input = extractionInput(a, html);
   const got = await extractCanonical(input);
-  if (got) return storeCanonical(articleId, a, got);
+  if (got) return storeCanonical(articleId, { ...a, source_id: a.source_id }, got);
   if (!html) return markUnconfirmed(articleId, a.revision);
 
   // generic 也失败：Readability（generic 内部）已经试过，Jina 是最后 fallback。
@@ -160,7 +162,7 @@ export async function extractArticleBody(articleId: string): Promise<"ok" | "unc
     const jhtml = markdownBody(page.markdown, a.url);
     if (stripTags(jhtml).length < MIN_BODY_CHARS) return markUnconfirmed(articleId, a.revision);
     const rebuilt = await extractCanonical({ ...input, html: jhtml });
-    if (rebuilt) return storeCanonical(articleId, a, rebuilt);
+    if (rebuilt) return storeCanonical(articleId, { ...a, source_id: a.source_id }, rebuilt);
     return markUnconfirmed(articleId, a.revision);
   } catch (error) {
     if (error instanceof BudgetExceededError) return markUnconfirmed(articleId, a.revision);
@@ -169,21 +171,39 @@ export async function extractArticleBody(articleId: string): Promise<"ok" | "unc
 }
 
 /** canonical + 派生 body 的一次性落库（新 revision，分析重新开始）。 */
-async function storeCanonical(articleId: string, a: { title: string; excerpt: string | null; revision: number }, got: { content: Parameters<typeof canonicalToBody>[0]; body: ReturnType<typeof canonicalToBody> }): Promise<"ok" | "skipped"> {
+async function storeCanonical(
+  articleId: string,
+  a: { title: string; excerpt: string | null; revision: number; source_id?: string },
+  got: { content: Parameters<typeof canonicalToBody>[0]; body: ReturnType<typeof canonicalToBody> }
+): Promise<"ok" | "skipped"> {
   const { content, body } = got;
   return sql.begin(async (tx) => {
-    const [row] = await tx<{ title: string; excerpt: string | null; content_hash: string | null }[]>`
-      SELECT title, excerpt, content_hash FROM articles
+    const [row] = await tx<{ title: string; excerpt: string | null; content_hash: string | null; source_id: string; canonical_content: CanonicalContent | null }[]>`
+      SELECT title, excerpt, content_hash, source_id, canonical_content FROM articles
       WHERE id = ${articleId} AND revision = ${a.revision} AND body_status <> 'ok' FOR UPDATE`;
     if (!row) return "skipped";
-    const text = body.text;
-    const hash = contentHash({ title: row.title, bodyText: text, excerpt: row.excerpt });
+
+    if (content.engagement) {
+      await recordCanonicalEngagement(tx, articleId, row.source_id, content);
+    }
+
+    const identityText = canonicalIdentityText(content);
+    const hash = contentHash({ title: row.title, bodyText: identityText, excerpt: row.excerpt });
     if (hash === row.content_hash) {
-      await tx`UPDATE articles SET body_status = ${content.quality.completeness === "failed" ? "unconfirmed" : "ok"}, updated_at = now() WHERE id = ${articleId}`;
+      const existingCanonical = row.canonical_content;
+      const { canonical: mergedCanonical } = mergeCanonicalForRefresh(existingCanonical, content);
+      const derived = canonicalToBody(mergedCanonical);
+      await tx`UPDATE articles SET
+        body_status = ${mergedCanonical.quality.completeness === "failed" ? "unconfirmed" : "ok"},
+        canonical_content = ${tx.json(mergedCanonical as never)},
+        body_html = ${derived.html || null},
+        body_text = ${derived.text || null},
+        updated_at = now()
+      WHERE id = ${articleId}`;
       return "ok";
     }
     await reviseMaterial(tx, articleId, {
-      set: sql`body_html = ${body.html}, body_text = ${text},
+      set: sql`body_html = ${body.html}, body_text = ${body.text},
         body_status = ${content.quality.completeness === "failed" ? "unconfirmed" : "ok"},
         media = CASE WHEN jsonb_array_length(media) = 0 THEN ${sql.json(body.images as never)}::jsonb ELSE media END,
         content_kind = ${content.kind},
@@ -191,7 +211,7 @@ async function storeCanonical(articleId: string, a: { title: string; excerpt: st
         content_completeness = ${content.quality.completeness},
         content_extraction_meta = ${sql.json(content.extraction as never)},
         canonical_content = ${sql.json(content as never)}`,
-      hash, title: row.title, bodyText: text,
+      hash, title: row.title, bodyText: identityText,
     });
     return "ok";
   });
@@ -220,7 +240,7 @@ async function extractXArticle(articleId: string, tweetId: string, revision: num
     if (row?.x_post && !onlyXArticleLink(String(row.x_post.text ?? ""))) {
       const input = extractionInput(row, null);
       const social = await socialExtractor.extract(input);
-      if (social) return storeCanonical(articleId, { title: row.title, excerpt: row.excerpt, revision }, { content: social, body: canonicalToBody(social) });
+      if (social) return storeCanonical(articleId, { title: row.title, excerpt: row.excerpt, revision, source_id: row.source_id }, { content: social, body: canonicalToBody(social) });
     }
     return markUnconfirmed(articleId, revision);
   }

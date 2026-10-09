@@ -2,25 +2,37 @@
 // 数据链：页面 __INITIAL_STATE__（videoData / readInfo）→ view API（fetchJson 受限回调）→ meta 标签。
 // 产出的 CanonicalContent：video_post，main 为空（视频没有"正文"），简介放 video.description。
 import { metaContent, type ContentExtractor, type ExtractionInput } from "./base.ts";
-import type { CanonicalContent } from "./types.ts";
+import type { CanonicalContent, DiscussionContent, DiscussionPost } from "./types.ts";
+import { fetchBilibiliComments, isCommunityCollectionEnabled, defaultGuardedFetchJson } from "../community-comments.ts";
 
 const BV = /\/video\/(BV[\w]+)|bvid=(BV[\w]+)/i;
 
 interface BiliVideo {
   bvid: string;
+  aid: number | null;
   title: string;
   desc: string;
   cover: string | null;
   durationSeconds: number | null;
   publishedAt: string | null;
   owner: { name: string | null; avatar: string | null; mid: number | null };
-  stat: { view: number | null; like: number | null; comment: number | null; favorite: number | null; share: number | null; coin: number | null };
+  stat: {
+    view: number | null;
+    like: number | null;
+    comment: number | null;
+    favorite: number | null;
+    share: number | null;
+    coin: number | null;
+    danmaku: number | null;
+  };
 }
 
 function fromViewApi(v: any): BiliVideo | null {
   if (!v || typeof v !== "object" || !v.bvid || typeof v.title !== "string") return null;
+  const aid = Number.isFinite(v.aid) && Number(v.aid) > 0 ? Number(v.aid) : null;
   return {
     bvid: String(v.bvid),
+    aid,
     title: String(v.title),
     desc: String(v.desc ?? ""),
     cover: typeof v.pic === "string" ? v.pic.replace(/^http:/, "https:") : null,
@@ -29,11 +41,16 @@ function fromViewApi(v: any): BiliVideo | null {
     owner: {
       name: v.owner?.name ?? null,
       avatar: v.owner?.face ? String(v.owner.face).replace(/^http:/, "https:") : null,
-      mid: v.owner?.mid ?? null,
+      mid: Number.isFinite(v.owner?.mid) ? Number(v.owner.mid) : null,
     },
     stat: {
-      view: v.stat?.view ?? null, like: v.stat?.like ?? null, comment: v.stat?.reply ?? null,
-      favorite: v.stat?.favorite ?? null, share: v.stat?.share ?? null, coin: v.stat?.coin ?? null,
+      view: Number.isFinite(v.stat?.view) ? Number(v.stat.view) : null,
+      like: Number.isFinite(v.stat?.like) ? Number(v.stat.like) : null,
+      comment: Number.isFinite(v.stat?.reply) ? Number(v.stat.reply) : null,
+      favorite: Number.isFinite(v.stat?.favorite) ? Number(v.stat.favorite) : null,
+      share: Number.isFinite(v.stat?.share) ? Number(v.stat.share) : null,
+      coin: Number.isFinite(v.stat?.coin) ? Number(v.stat.coin) : null,
+      danmaku: Number.isFinite(v.stat?.danmaku) ? Number(v.stat.danmaku) : null,
     },
   };
 }
@@ -60,7 +77,13 @@ function fromInitialState(html: string): BiliVideo | null {
       if (depth === 0) {
         try {
           const state = JSON.parse(html.slice(start, i + 1)) as Record<string, any>;
-          if (state.videoData) return fromViewApi(state.videoData);
+          if (state.videoData) {
+            const vid = fromViewApi(state.videoData);
+            if (vid && !vid.aid && Number.isFinite(state.aid)) {
+              vid.aid = Number(state.aid);
+            }
+            return vid;
+          }
         } catch {
           // not pure JSON
         }
@@ -72,9 +95,9 @@ function fromInitialState(html: string): BiliVideo | null {
 }
 
 async function fromViewApiFetch(bvid: string, input: ExtractionInput): Promise<BiliVideo | null> {
-  if (!input.fetchJson) return null;
+  const fetcher = input.fetchJson ?? defaultGuardedFetchJson;
   try {
-    const data = await input.fetchJson(`https://api.bilibili.com/x/web-interface/view?bvid=${bvid}`) as Record<string, any> | null;
+    const data = await fetcher(`https://api.bilibili.com/x/web-interface/view?bvid=${bvid}`) as Record<string, any> | null;
     if (data?.code === 0 && data.data) return fromViewApi(data.data);
   } catch {
     // offline / blocked: fall through to meta
@@ -86,15 +109,17 @@ function fromMeta(html: string): BiliVideo | null {
   const title = metaContent(html, "og:title") ?? metaContent(html, "title");
   if (!title) return null;
   const bvid = html.match(BV)?.[1] ?? html.match(BV)?.[2] ?? null;
+  const aidMatch = html.match(/\/video\/av(\d+)/i) ?? html.match(/aid=(\d+)/i);
   return {
     bvid: bvid ?? "",
+    aid: aidMatch ? Number(aidMatch[1]) : null,
     title,
     desc: metaContent(html, "description") ?? "",
     cover: metaContent(html, "og:image") ?? metaContent(html, "image") ?? null,
     durationSeconds: null,
     publishedAt: metaContent(html, "uploadDate") ?? null,
     owner: { name: metaContent(html, "author") ?? null, avatar: null, mid: null },
-    stat: { view: null, like: null, comment: null, favorite: null, share: null, coin: null },
+    stat: { view: null, like: null, comment: null, favorite: null, share: null, coin: null, danmaku: null },
   };
 }
 
@@ -118,6 +143,41 @@ export const bilibiliExtractor: ContentExtractor = {
     if (!video && !/\/read\/cv|\/opus\//.test(input.url)) return null;
     if (!video) return null;
 
+    let discussion: DiscussionContent | null = null;
+    if (isCommunityCollectionEnabled() && input.sourceConfig?.communityComments?.enabled === true) {
+      try {
+        const op: DiscussionPost = {
+          id: video.aid ? String(video.aid) : (video.bvid || bvid),
+          author: {
+            name: video.owner.name ?? input.author,
+            avatarUrl: video.owner.avatar,
+          },
+          text: video.desc || video.title || "",
+          publishedAt: video.publishedAt ?? input.publishedAt?.toISOString() ?? null,
+          likes: video.stat.like,
+          floor: 0,
+          isOriginalAuthor: true,
+          platform: "bilibili",
+          parentCommentId: null,
+          replyCount: video.stat.comment,
+          originalUrl: (video.bvid || bvid) ? `https://www.bilibili.com/video/${video.bvid || bvid}` : null,
+          quote: null,
+        };
+        discussion = await fetchBilibiliComments({
+          oid: video.aid ?? null,
+          bvid: video.bvid || bvid,
+          upMid: video.owner.mid,
+          originalPost: op,
+          sourceConfig: input.sourceConfig,
+          fetchJson: input.fetchJson,
+          highlightLimit: input.profile.highlightLimit,
+        });
+      } catch {
+        // Fail state unavailable does not fail original extraction
+        discussion = null;
+      }
+    }
+
     const content: CanonicalContent = {
       kind: "video_post",
       title: video.title || input.title,
@@ -132,7 +192,7 @@ export const bilibiliExtractor: ContentExtractor = {
       // 视频没有正文：main 恒空，简介在 video.description，UI 明确标"视频简介"。
       main: [],
       media: video.cover ? [{ type: "image", url: video.cover, caption: null, alt: video.title, width: null, height: null }] : [],
-      discussion: null,
+      discussion,
       video: {
         description: video.desc || null,
         cover: video.cover,
@@ -147,6 +207,8 @@ export const bilibiliExtractor: ContentExtractor = {
         comments: video.stat.comment,
         shares: video.stat.share,
         favorites: video.stat.favorite,
+        coins: video.stat.coin,
+        danmaku: video.stat.danmaku,
       },
       extraction: {
         extractor: "bilibili",
@@ -155,7 +217,7 @@ export const bilibiliExtractor: ContentExtractor = {
         sourceFamily: input.profile.contentFamily,
         fallbackUsed: false,
         bodyProvenance: video.owner.name && video.durationSeconds != null ? "source_api" : "page_dom",
-        sourceAuthority: "official",
+        sourceAuthority: "community",
       },
       quality: { score: 0, completeness: video.desc ? "summary_only" : "partial", warnings: [] },
     };

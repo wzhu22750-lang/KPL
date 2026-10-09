@@ -1,0 +1,64 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 6: Fallback Community Null"
+        - 'heading "community: null 时必须呈现空状态提示与原文直达锚点" [level=1] [ref=e19]'
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - 'heading "论坛帖子形式 (forum_thread with community: null)" [level=2] [ref=e22]'
+          - region "社区讨论" [ref=e23]:
+            - heading "社区讨论" [level=2] [ref=e24]
+            - generic [ref=e25]:
+              - paragraph [ref=e26]: 评论暂不可用，未生成替代评论。
+              - link "前往原文查看讨论 ↗" [ref=e27] [cursor=pointer]:
+                - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+        - generic [ref=e28]:
+          - 'heading "视频形式 (video_post with community: null)" [level=2] [ref=e29]'
+          - generic [ref=e30]:
+            - region "视频内容" [ref=e31]:
+              - generic [ref=e32]:
+                - link "视频封面 3:00":
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+                  - img "视频封面"
+                  - generic [ref=e33] [cursor=pointer]: 3:00
+                - generic [ref=e34]:
+                  - generic [ref=e35]: 视频信息
+                  - generic [ref=e36]:
+                    - generic [ref=e37]: 3:00
+                    - generic [ref=e38]: 时长
+                  - generic [ref=e39]:
+                    - generic [ref=e40]: 1.2万
+                    - generic [ref=e41]: 播放
+                  - generic [ref=e42]:
+                    - generic [ref=e43]: "800"
+                    - generic [ref=e44]: 点赞
+                  - generic [ref=e45]:
+                    - generic [ref=e46]: "60"
+                    - generic [ref=e47]: 评论
+                  - generic [ref=e48]:
+                    - generic [ref=e49]: "120"
+                    - generic [ref=e50]: 收藏
+                - generic [ref=e51]:
+                  - heading "视频简介" [level=2] [ref=e52]
+                  - paragraph [ref=e53]: 短视频集锦 [合成测试]
+                - link "打开原视频 ↗" [ref=e55] [cursor=pointer]:
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+            - region "视频讨论" [ref=e56]:
+              - heading "视频讨论" [level=2] [ref=e57]
+              - generic [ref=e58]:
+                - paragraph [ref=e59]: 评论暂不可用，未生成替代评论。
+                - link "前往原文查看讨论 ↗" [ref=e60] [cursor=pointer]:
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006

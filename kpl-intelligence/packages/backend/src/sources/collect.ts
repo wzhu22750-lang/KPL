@@ -114,6 +114,9 @@ async function store(
     // Extraction first when the source wants full text and none came with the listing, else analysis.
     if (res.created || res.revised || res.processingNeeded) await queueProcessing(res.articleId);
     else if (material.engagementObservation && !res.backfill) await queueRadar(res.articleId);
+
+    // The periodic community sweep allocates a per-source post budget by observed heat and
+    // cooldown. Enqueuing every listing here would bypass that budget and buy all comments.
   }
   return { created, revised };
 }

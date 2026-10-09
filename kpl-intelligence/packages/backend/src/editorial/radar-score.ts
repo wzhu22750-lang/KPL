@@ -29,11 +29,15 @@ export function radarScore(j: RadarJudgmentData, verifiedOfficial: boolean, late
     if (saturation) {
       heat = Math.min(12, Math.round(12 * Math.log1p(total) / Math.log1p(saturation)));
       // Only comparable consecutive snapshots can demonstrate growth; missing counters stay unknown.
+      const keys = (['likes','comments','shares'] as const).filter(k =>
+        typeof latest.metrics[k] === 'number' && typeof previous?.metrics[k] === 'number');
       const comparable = previous && previous.platform === latest.platform && latest.observedAt > previous.observedAt
-        && ['likes','comments','shares'].every(k => typeof latest.metrics[k as keyof Engagement] === 'number' && typeof previous.metrics[k as keyof Engagement] === 'number');
+        && keys.length > 0 && keys.every(k => latest.metrics[k]! >= previous.metrics[k]!);
       if (comparable && previous) {
         const hours = (latest.observedAt.getTime()-previous.observedAt.getTime()) / 3600000;
-        const growth = Math.max(0, total-interactions(previous.metrics)) / Math.max(hours, 0.25);
+        const weights = { likes: 1, comments: 2, shares: 3 };
+        const delta = keys.reduce((sum,k) => sum + weights[k] * (latest.metrics[k]! - previous.metrics[k]!), 0);
+        const growth = delta / Math.max(hours, 0.25);
         heat += Math.min(8, Math.round(8 * Math.log1p(growth) / Math.log1p(saturation / 4)));
       }
     }

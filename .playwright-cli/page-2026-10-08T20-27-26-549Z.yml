@@ -1,0 +1,28 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 3: CommunityFeedback (No Comments)"
+        - heading "零评论 / 采集部分覆盖 · 必须保留原文链接与空状态提示" [level=1] [ref=e19]
+      - region "高亮讨论" [ref=e20]:
+        - heading "高亮讨论" [level=2] [ref=e21]
+        - paragraph [ref=e22]:
+          - text: 采集于
+          - time [ref=e23]: 2026-10-09 18:05
+          - text: · 覆盖有限，不代表全部观众
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: 仅采集部分讨论，暂无高价值评论入选。
+          - link "前往原文查看全部评论 ↗" [ref=e26] [cursor=pointer]:
+            - /url: https://bbs.hupu.com/synthetic-fixture-zero-replies-003

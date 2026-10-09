@@ -1,0 +1,18 @@
+node:internal/test_runner/harness:122
+      throw err;
+      ^
+
+Error: connect ECONNREFUSED 127.0.0.1:55440
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+    at cachedError (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/node_modules/postgres/src/query.js:170:23)
+    at new Query (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/node_modules/postgres/src/query.js:36:24)
+    at sql (file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/node_modules/postgres/src/index.js:112:11)
+    at file:///Users/kuangqie/Documents/VibeCoding/KPL/kpl-intelligence/tests/databases.ts:45:18 {
+  errno: -61,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 55440
+}
+
+Node.js v25.9.0

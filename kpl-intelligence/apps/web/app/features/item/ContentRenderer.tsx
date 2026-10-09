@@ -5,6 +5,7 @@ import { MediaGallery } from "./MediaGallery";
 import { ForumThread } from "./ForumThread";
 import { VideoContent } from "./VideoContent";
 import { SocialPost } from "./SocialPost";
+import { CommunityFeedback } from "./CommunityFeedback";
 
 export const CONTENT_KIND_LABEL: Record<SiteContentKind, string> = {
   news: "报道",
@@ -49,18 +50,27 @@ export function QualityNotice({ content }: { content: ContentView }) {
 export function ContentRenderer({ content, originalUrl }: { content: ContentView; originalUrl: string }) {
   switch (content.kind) {
     case "forum_thread":
-      return content.community ? (
+      return (
         <>
-          <ForumThread community={content.community} originalUrl={originalUrl} />
+          {content.community ? (
+            <ForumThread community={content.community} originalUrl={originalUrl} />
+          ) : (
+            <CommunityFeedback community={null} originalUrl={originalUrl} />
+          )}
+          {content.gallery && content.gallery.length > 0 && <MediaGallery media={content.gallery} postUrl={originalUrl} />}
+        </>
+      );
+    case "video_post":
+      return content.video ? (
+        <>
+          <VideoContent video={content.video} community={content.community} originalUrl={originalUrl} />
           {content.gallery && content.gallery.length > 0 && <MediaGallery media={content.gallery} postUrl={originalUrl} />}
         </>
       ) : null;
-    case "video_post":
-      return content.video ? <VideoContent video={content.video} originalUrl={originalUrl} /> : null;
     case "social_post":
       return content.social ? (
         <>
-          <SocialPost social={content.social} />
+          <SocialPost social={content.social} community={content.community} originalUrl={originalUrl} />
           {content.gallery && content.gallery.length > 0 && <MediaGallery media={content.gallery} postUrl={originalUrl} />}
         </>
       ) : null;

@@ -56,6 +56,7 @@ export interface ContentQualityView {
 }
 
 export interface DiscussionPostView {
+  id?: string | null;
   author: string | null;
   avatarUrl: string | null;
   text: string;
@@ -63,7 +64,20 @@ export interface DiscussionPostView {
   likes: number | null;
   floor: number | null;
   isOriginalAuthor: boolean;
+  platform?: "weibo" | "bilibili" | "hupu" | null;
+  parentCommentId?: string | null;
+  replyCount?: number | null;
+  originalUrl?: string | null;
   quote: { author: string | null; text: string } | null;
+}
+
+export interface CommunityCollection {
+  collectedAt: string;
+  coverage: "partial" | "complete" | "unavailable";
+  sourceUrl?: string | null;
+  provenance?: string | null;
+  nextCursor?: string | null;
+  error?: string | null;
 }
 
 /** 论坛/社区的 thread 视图：主帖、楼主补充与高价值讨论分离，评论绝不混入正文。 */
@@ -72,6 +86,8 @@ export interface CommunityView {
   authorFollowups: DiscussionPostView[];
   highlightedReplies: DiscussionPostView[];
   totalReplies: number | null;
+  fetchedReplies?: number | null;
+  collection?: CommunityCollection | null;
   /** AI 整理的社区讨论焦点（唯一允许 AI 生成的讨论字段，UI 标注 AI 整理）。 */
   communitySummary: string | null;
 }
@@ -86,6 +102,8 @@ export interface VideoView {
   comments: number | null;
   favorites: number | null;
   shares: number | null;
+  coins?: number | null;
+  danmaku?: number | null;
   /** 已有字幕/transcript 时才有；没有就禁止根据标题/简介推断视频内容。 */
   transcriptSummary: string | null;
 }
@@ -93,6 +111,11 @@ export interface VideoView {
 export interface SocialView {
   postText: string;
   quoted: { author: string | null; text: string } | null;
+  views?: number | null;
+  likes?: number | null;
+  comments?: number | null;
+  shares?: number | null;
+  favorites?: number | null;
 }
 
 /** 一条内容的类型化视图：article 族沿用 body；其余形态各有专属结构。 */
@@ -130,6 +153,7 @@ export interface ItemSummary {
 export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "source" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel"> {
   /** 轻度类型标签（报道/官方/社区/视频…），卡片只取 kind，不做视觉过载。 */
   contentKind?: SiteContentKind | null;
+  commentPreview?: DiscussionPostView | null;
   x: (Pick<XPostView, "authorName" | "handle" | "avatarUrl" | "avatarSrcSet" | "media"> & {
     quoted: Omit<NonNullable<XPostView["quoted"]>, "url"> | null;
   }) | null;

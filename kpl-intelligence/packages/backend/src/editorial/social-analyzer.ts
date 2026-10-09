@@ -2,7 +2,7 @@
 // 解决传统长文章评分（selection-score）对短动态误杀的痛点：
 // 1. 结合账号权威度、事件价值、时效性、互动量、社区价值与噪声惩罚 6 维打分
 // 2. 区分高价值官方/转会/赛果动态与粉丝玩梗/引战内容
-// 3. 作为 RAG 准入与事件流准入的核心过滤器
+// 3. 兼容旧启发式评估；生产社区准入使用证据绑定的 radar，不将此分数当讨论热度
 import type { MaterialInput } from "../content/materials.ts";
 import type { SourceRow } from "../sources/types.ts";
 
@@ -12,7 +12,7 @@ export interface SocialScoreBreakdown {
   timeliness: number;      // 0~100: 时效性
   engagement: number;      // 0~100: 点赞评论转发热度
   community_value: number; // 0~100: 社区探讨与专业价值
-  noise_penalty: number;   // 0~100: 广告/抽奖/饭圈/引战扣分
+  noise_penalty: number;   // 0~100: 广告/抽奖/明确刷量交易扣分（不按社区用语扣分）
 }
 
 export interface SocialEvaluationResult {
@@ -36,7 +36,7 @@ const HIGH_VALUE_PATTERNS = [
 const NOISE_PATTERNS = [
   /抽奖|转评赞抽|送出.*Q币|中奖|领奖|包邮送/i,
   /福利|红包|优惠券|带货|购买链接|专属折扣/i,
-  /超话打榜|饭圈|控评|撕逼|买热搜/i,
+  /(?:购买|出售|付费).*(?:控评|热搜)|(?:控评|热搜).*(?:购买|出售|付费)/i,
 ];
 
 /**

@@ -1,7 +1,7 @@
 // Platform counters are observations, not edits to the article. Never trigger paid text analysis
 // just because a counter changed, and never merge a missing value with an older known value.
 import type { Db } from "../db.ts";
-import type { Engagement } from "./extractors/types.ts";
+import type { CanonicalContent, Engagement } from "./extractors/types.ts";
 
 export interface EngagementObservationInput {
   platform: string;
@@ -10,7 +10,15 @@ export interface EngagementObservationInput {
   method: "source_api" | "page_dom";
 }
 
-export const ENGAGEMENT_METRICS = ["views", "likes", "comments", "shares", "favorites"] as const;
+export const ENGAGEMENT_METRICS = [
+  "views",
+  "likes",
+  "comments",
+  "shares",
+  "favorites",
+  "coins",
+  "danmaku",
+] as const;
 
 /** Unknown, malformed, negative and imprecise counters remain null; a real zero remains zero. */
 export function observedCounter(value: unknown): number | null {
@@ -30,6 +38,43 @@ export async function recordEngagement(db: Db, articleId: string, sourceId: stri
   await db`INSERT INTO engagement_observations (article_id, source_id, platform, observed_at, method, metrics, coverage)
     VALUES (${articleId}, ${sourceId}, ${o.platform}, ${o.observedAt}, ${o.method}, ${db.json(o.metrics)}, ${o.coverage})
     ON CONFLICT (article_id, source_id, platform, observed_at, method) DO NOTHING`;
+}
+
+/**
+ * 从 CanonicalContent 中安全识别平台标识（如 hupu, bilibili, weibo）。
+ */
+export function resolvePlatformFromCanonical(c: CanonicalContent): string | null {
+  const extractor = c.extraction?.extractor?.toLowerCase();
+  if (extractor === "hupu" || extractor === "bilibili" || extractor === "weibo") return extractor;
+  const postPlatform = c.discussion?.originalPost?.platform?.toLowerCase();
+  if (postPlatform === "hupu" || postPlatform === "bilibili" || postPlatform === "weibo") return postPlatform;
+  if (extractor && /^[a-z][a-z0-9_-]{0,39}$/.test(extractor)) return extractor;
+  return null;
+}
+
+/**
+ * 记录来自 extractor 的互动指标（若存在）。
+ * 即使内容哈希相同（samehash），只要抽取成功且包含指标，如实记录当前时间戳观察。
+ * coins / danmaku 允许为 null。
+ */
+export async function recordCanonicalEngagement(
+  db: Db,
+  articleId: string,
+  sourceId: string,
+  canonical: CanonicalContent,
+  observedAt: Date = new Date(),
+): Promise<boolean> {
+  if (!canonical.engagement) return false;
+  const platform = resolvePlatformFromCanonical(canonical);
+  if (!platform) return false;
+  const method = canonical.extraction?.bodyProvenance === "source_api" ? "source_api" : "page_dom";
+  await recordEngagement(db, articleId, sourceId, {
+    platform,
+    observedAt,
+    metrics: canonical.engagement,
+    method,
+  });
+  return true;
 }
 
 /** Keep 30 days of growth history plus the newest sample per source/platform for quiet articles. */

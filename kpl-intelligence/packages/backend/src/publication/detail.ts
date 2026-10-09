@@ -2,16 +2,19 @@
 import type { OutlineEntry, SiteItemDetail, StoryRef } from "@aihot/contracts/site";
 import { SITE } from "@aihot/industry/site";
 import { bodyToMarkdown } from "../content/markdown.ts";
+import { canonicalToBody } from "../content/canonical.ts";
 import { sql } from "../db.ts";
 import { proxyBodyImages } from "../media/imgproxy.ts";
 import { textToHtml } from "../content/sanitize.ts";
 import { exportTranslation, isChineseBody, ITEM_COLUMNS, ITEM_FROM, seatHolders, toContentView, toItemSummary, xView, type ItemRow } from "./items.ts";
 import { listedCondition } from "./scope.ts";
 import { itemUrl } from "./links.ts";
-import { hasItemPage, publicSourceName } from "./rules.ts";
+import { canPublishSignalDetail, hasItemPage, isCommunityFeedbackApproved, isCommunityPublicationEnabled, publicSourceName } from "./rules.ts";
 import { topicLinks, topicMembership } from "./topics.ts";
+import { sourceGroupExpression } from "./source-groups.ts";
 
 interface DetailRow extends ItemRow {
+  enabled?: boolean;
   body_html: string | null;
   body_text: string | null;
   body_status: string;
@@ -21,6 +24,7 @@ interface DetailRow extends ItemRow {
   canonical_content: Record<string, any> | null;
   content_quality_score: number | null;
   content_completeness: string | null;
+  article_revision?: number;
 }
 
 export type DetailResult =
@@ -42,13 +46,55 @@ function withOutline(html: string): { html: string; outline: OutlineEntry[] } {
 }
 
 async function loadRow(id: string): Promise<DetailRow | null> {
-  const [row] = await sql<DetailRow[]>`
-    SELECT ${ITEM_COLUMNS}, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete,
-      a.canonical_content, a.content_quality_score, a.content_completeness,
+  let [row] = await sql<DetailRow[]>`
+    SELECT ${ITEM_COLUMNS}, s.enabled, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete,
+      a.content_quality_score, a.content_completeness, a.revision AS article_revision,
       ${topicMembership()} AS topics
     ${ITEM_FROM}
     WHERE p.article_id = ${id}`;
+  if (!row) {
+    const [aRow] = await sql<any[]>`
+      SELECT a.id, a.title, a.title AS original_title, a.excerpt AS summary, NULL AS reason,
+        NULL AS category, '{}'::text[] AS tags, NULL AS score, false AS selected, false AS seat,
+        'news' AS channel, a.url, a.published_at, a.discovered_at, a.timeline_at,
+        coalesce(eo.visibility, 'public') AS visibility,
+        CASE WHEN s.site_fulltext THEN 'full' ELSE 'summary' END AS body_mode,
+        false AS indexable, NULL AS fact_id, s.name AS source_name, s.participation_mode AS source_mode,
+        s.enabled,
+        ${sourceGroupExpression} AS source_group,
+        a.x_post, a.author, a.language, a.content_kind, a.body_status, a.canonical_content,
+        NULL AS story_public_id, NULL AS story_title, NULL AS zh_text, NULL AS quoted_zh,
+        a.body_html, a.body_text, NULL AS tr_html, NULL AS tr_complete,
+        a.content_quality_score, a.content_completeness, a.revision AS article_revision,
+        '{}'::text[] AS topics
+      FROM articles a
+      JOIN sources s ON s.id = a.source_id
+      LEFT JOIN editorial_overrides eo ON eo.article_id = a.id
+      WHERE a.id = ${id}`;
+    if (aRow) row = aRow as DetailRow;
+  }
   return row ?? null;
+}
+
+export async function loadAcceptedRadarMaterial(articleId: string): Promise<{
+  state: string;
+  inputRevision: number;
+  scoreVersion: string;
+  inputEvidenceHash: string | null;
+  judgment: any;
+} | null> {
+  const [rm] = await sql<{ state: string; input_revision: number; score_version: string; judgment: any; input_evidence_hash: string | null }[]>`
+    SELECT state, input_revision, score_version, judgment, input_evidence_hash
+    FROM radar_materials
+    WHERE article_id = ${articleId} AND state = 'accepted'`;
+  if (!rm) return null;
+  return {
+    state: rm.state,
+    inputRevision: rm.input_revision,
+    scoreVersion: rm.score_version,
+    inputEvidenceHash: rm.input_evidence_hash,
+    judgment: rm.judgment,
+  };
 }
 
 /**
@@ -74,6 +120,39 @@ function readingBody(
   };
 }
 
+function requiresFeedbackSafetyGate(row: DetailRow): boolean {
+  if (row.source_mode !== "editorial") return true;
+  return Boolean(row.canonical_content?.discussion?.collection);
+}
+
+function sanitizeUnapprovedBody(row: DetailRow): void {
+  const canonical = row.canonical_content;
+  if (!canonical) return;
+  const kind = canonical.kind ?? row.content_kind;
+  if (kind === "social_post" || canonical.social || kind === "video_post" || canonical.video) {
+    const cloned = { ...canonical, discussion: null };
+    const derived = canonicalToBody(cloned as any);
+    row.body_html = derived.html;
+    row.body_text = derived.text;
+  } else if (kind === "forum_thread" || canonical.discussion) {
+    const opText = canonical.discussion?.originalPost?.text ?? "";
+    const mainBlocks = Array.isArray(canonical.main) && canonical.main.length > 0
+      ? canonical.main
+      : (opText ? [{ type: "paragraph" as const, text: opText }] : []);
+    const cloned = {
+      ...canonical,
+      discussion: null,
+      social: null,
+      video: null,
+      main: mainBlocks,
+      bodyHtmlSource: undefined,
+    };
+    const derived = canonicalToBody(cloned as any);
+    row.body_html = derived.html;
+    row.body_text = derived.text;
+  }
+}
+
 /**
  * Public detail (rules.hasItemPage) in one language, Chinese unless the original is asked for: items the
  * lists leave out (low relevance, merged duplicates, no Chinese summary yet) keep a noindex page;
@@ -81,7 +160,64 @@ function readingBody(
  */
 export async function loadItemDetail(id: string, language: "zh" | "original" = "zh", now = new Date()): Promise<DetailResult> {
   const row = await loadRow(id);
-  if (!row || !hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode })) return { kind: "not_found" };
+  if (!row) return { kind: "not_found" };
+
+  let radarMat: {
+    state: string;
+    inputRevision: number;
+    scoreVersion: string;
+    inputEvidenceHash: string | null;
+    judgment: any;
+  } | null = null;
+
+  if (row.source_mode === "editorial") {
+    if (!hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode })) return { kind: "not_found" };
+    radarMat = await loadAcceptedRadarMaterial(id);
+  } else {
+    // Signal item detail: strictly gated by COMMUNITY_PUBLICATION_ENABLED, current accepted radar judgment, and nonfailed sufficient quality
+    if (!isCommunityPublicationEnabled() || row.visibility === "withdrawn") return { kind: "not_found" };
+    radarMat = await loadAcceptedRadarMaterial(id);
+    if (!radarMat) return { kind: "not_found" };
+    const canPublish = canPublishSignalDetail({
+      visibility: row.visibility,
+      sourceMode: row.source_mode,
+      enabled: row.enabled,
+      articleRevision: row.article_revision ?? 1,
+      radarMaterial: radarMat,
+      quality: {
+        completeness: row.content_completeness ?? row.canonical_content?.quality?.completeness ?? null,
+        score: row.content_quality_score ?? row.canonical_content?.quality?.score ?? null,
+      },
+      canonical: row.canonical_content,
+      contentKind: row.content_kind ?? row.canonical_content?.kind ?? null,
+      fallbackBody: { title: row.title, bodyText: row.body_text, excerpt: (row as any).summary },
+    });
+    if (!canPublish) return { kind: "not_found" };
+  }
+
+  if (radarMat) {
+    row.radar_state = radarMat.state;
+    row.radar_input_revision = radarMat.inputRevision;
+    row.radar_score_version = radarMat.scoreVersion;
+    row.radar_input_evidence_hash = radarMat.inputEvidenceHash;
+    row.radar_judgment = radarMat.judgment;
+  }
+
+  const needsGate = requiresFeedbackSafetyGate(row);
+  const feedbackApproved = needsGate
+    ? isCommunityFeedbackApproved({
+        articleRevision: row.article_revision ?? 1,
+        radarMaterial: radarMat,
+        canonical: row.canonical_content,
+        fallbackBody: { title: row.title, bodyText: row.body_text, excerpt: (row as any).summary },
+      })
+    : true;
+  row.feedback_approved = feedbackApproved;
+  row.feedbackApproved = feedbackApproved;
+
+  if (needsGate && !feedbackApproved) {
+    sanitizeUnapprovedBody(row);
+  }
 
   const summary = toItemSummary(row);
   if (row.visibility === "summary-only") {
@@ -158,13 +294,13 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     // An ordinary public page still allows summary export/navigation when its body is withheld.
     readingMode: "full",
     author: row.author,
-    content: toContentView(row),
+    content: toContentView(row, feedbackApproved),
     body: reading.body,
     outline: reading.outline,
     relatedStories: related,
     topics: topicLinks(row.topics),
     indexable: row.indexable,
-    markdownAvailable: markdownAvailable(row),
+    markdownAvailable: markdownAvailable(row, radarMat),
     group,
     hasTranslation: reading.hasTranslation,
     bodyLanguage: reading.bodyLanguage,
@@ -178,15 +314,84 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
  */
 export function markdownAvailable(row: {
   visibility: string; source_mode: string; summary: string | null; body_mode: string; body_html?: string | null; channel: string; x_post: Record<string, any> | null; body_status?: string | null;
-}): boolean {
-  if (row.visibility !== "public" || !hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode })) return false;
+  enabled?: boolean;
+  article_revision?: number;
+  canonical_content?: Record<string, any> | null;
+  content_completeness?: string | null;
+  content_quality_score?: number | null;
+  content_kind?: string | null;
+  body_text?: string | null;
+  title?: string | null;
+}, radarMat?: {
+  state: string;
+  inputRevision?: number;
+  scoreVersion?: string;
+  input_revision?: number;
+  score_version?: string;
+  inputEvidenceHash?: string | null;
+  input_evidence_hash?: string | null;
+  judgment?: any;
+} | null): boolean {
+  if (row.visibility !== "public") return false;
+  let hasPage = false;
+  if (row.source_mode === "editorial") {
+    hasPage = hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode });
+  } else if (isCommunityPublicationEnabled()) {
+    hasPage = canPublishSignalDetail({
+      visibility: row.visibility,
+      sourceMode: row.source_mode,
+      enabled: row.enabled,
+      articleRevision: row.article_revision ?? 1,
+      radarMaterial: radarMat ? {
+        state: radarMat.state,
+        inputRevision: radarMat.inputRevision ?? radarMat.input_revision,
+        scoreVersion: radarMat.scoreVersion ?? radarMat.score_version,
+        inputEvidenceHash: radarMat.inputEvidenceHash ?? radarMat.input_evidence_hash ?? null,
+        judgment: radarMat.judgment,
+      } : null,
+      quality: {
+        completeness: row.content_completeness ?? row.canonical_content?.quality?.completeness ?? null,
+        score: row.content_quality_score ?? row.canonical_content?.quality?.score ?? null,
+      },
+      canonical: row.canonical_content,
+      contentKind: row.content_kind ?? row.canonical_content?.kind ?? null,
+      fallbackBody: { title: row.summary, bodyText: row.body_text, excerpt: row.summary },
+    });
+  }
+  if (!hasPage) return false;
   const isFull = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
-  return !!row.summary || (isFull && ((row.channel === "x" && !!row.x_post?.text) || !!row.body_html));
+  return !!row.summary || (isFull && ((row.channel === "x" && !!row.x_post?.text) || !!row.body_html || !!row.canonical_content?.discussion?.originalPost?.text));
 }
 
 export async function exportMarkdown(id: string): Promise<{ filename: string; body: string } | null> {
   const row = await loadRow(id);
-  if (!row || !markdownAvailable(row)) return null;
+  if (!row) return null;
+  const radarMat = await loadAcceptedRadarMaterial(id);
+  if (!markdownAvailable(row, radarMat)) return null;
+
+  if (radarMat) {
+    row.radar_state = radarMat.state;
+    row.radar_input_revision = radarMat.inputRevision;
+    row.radar_score_version = radarMat.scoreVersion;
+    row.radar_input_evidence_hash = radarMat.inputEvidenceHash;
+    row.radar_judgment = radarMat.judgment;
+  }
+
+  const needsGate = requiresFeedbackSafetyGate(row);
+  const feedbackApproved = needsGate
+    ? isCommunityFeedbackApproved({
+        articleRevision: row.article_revision ?? 1,
+        radarMaterial: radarMat,
+        canonical: row.canonical_content,
+        fallbackBody: { title: row.title, bodyText: row.body_text, excerpt: (row as any).summary },
+      })
+    : true;
+  row.feedback_approved = feedbackApproved;
+  row.feedbackApproved = feedbackApproved;
+
+  if (needsGate && !feedbackApproved) {
+    sanitizeUnapprovedBody(row);
+  }
   const lines: string[] = [];
   lines.push(`# ${row.title}`, "");
   if (row.original_title) lines.push(`> 原标题：${row.original_title}`, "");
@@ -207,6 +412,9 @@ export async function exportMarkdown(id: string): Promise<{ filename: string; bo
     const translation = exportTranslation(row);
     if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(translation, row.url), "");
     lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(row.body_html, row.url), "");
+  } else if (isFull && (row.canonical_content?.discussion?.originalPost?.text || row.body_text)) {
+    const text = row.canonical_content?.discussion?.originalPost?.text ?? row.body_text;
+    if (text) lines.push("## 正文", "", String(text), "");
   }
   return { filename: `${SITE.mcpPrefix}-${row.id}.md`, body: lines.join("\n").replace(/\n{3,}/g, "\n\n") };
 }

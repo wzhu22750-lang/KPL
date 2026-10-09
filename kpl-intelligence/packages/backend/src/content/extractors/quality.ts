@@ -50,7 +50,7 @@ export function discussionValue(d: DiscussionContent | null): { count: number; s
   const posts = [d.originalPost, ...d.authorFollowups, ...d.highlightedReplies];
   const substantial = posts.filter((p) => {
     const t = p.text.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]/gu, "");
-    if (t.length < 8) return false;
+    if (t.length < 5) return false;
     if (/^(哈+|呵+|6+|草|牛|好|行|哦|嗯|是的?|同意|支持|顶|不错|厉害|强)$/.test(t)) return false;
     return true;
   }).length;
@@ -98,7 +98,8 @@ export function evaluateContentQuality(input: QualityInput): ContentQuality {
   // 讨论价值（20 分）：论坛/视频评论区是内容的一部分，不是污染。
   if (input.canonical.discussion) {
     score += Math.min(20, discussion.substantial * 4);
-    if (input.canonical.discussion.totalReplies && input.canonical.discussion.totalReplies > (input.canonical.discussion.highlightedReplies.length + input.canonical.discussion.authorFollowups.length)) {
+    const tr = input.canonical.discussion.totalReplies;
+    if (typeof tr === "number" && tr > (input.canonical.discussion.highlightedReplies.length + input.canonical.discussion.authorFollowups.length)) {
       score += 4;
     }
   } else if (input.kind === "forum_thread") {
@@ -135,19 +136,56 @@ export function evaluateContentQuality(input: QualityInput): ContentQuality {
   score = Math.max(0, Math.min(100, score));
 
   const completeness = completenessOf(input, chars, rule, discussion);
-  if (completeness === "partial") warnings.push("body_may_be_incomplete");
+  if (hasExplicitTruncation(input)) warnings.push("body_truncated");
+  if (completeness === "partial" && !warnings.includes("body_truncated")) warnings.push("body_may_be_incomplete");
   if (completeness === "summary_only") warnings.push("summary_only_content");
   if (completeness === "failed") warnings.push("unusable_body");
   return { score, completeness, warnings };
 }
 
+function hasExplicitTruncation(input: QualityInput): boolean {
+  const c = input.canonical as any;
+  if (!c) return false;
+  if (c.extraction?.bodyCompleteness === "partial") return true;
+  if (c.extraction?.truncated === true) return true;
+  if (c.isTruncated === true || c.truncated === true) return true;
+  if (c.discussion?.originalPost?.truncated === true || c.discussion?.originalPost?.isTruncated === true) return true;
+  if (Array.isArray(c.extraction?.warnings) && c.extraction.warnings.some((w: string) => /truncat/i.test(w))) return true;
+  return false;
+}
+
+function hasValidForumStructure(canonical: QualityInput["canonical"]): boolean {
+  const d = canonical.discussion;
+  if (!d || typeof d !== "object") return false;
+  const op = d.originalPost;
+  if (!op || typeof op !== "object") return false;
+  if (typeof op.text !== "string" || !op.text.trim()) return false;
+  if (!op.author || typeof op.author !== "object") return false;
+  return true;
+}
+
 function completenessOf(input: QualityInput, chars: number, rule: KindRule, discussion: { substantial: number }): ContentCompleteness {
+  if (hasExplicitTruncation(input)) {
+    return "partial";
+  }
+
   if (input.kind === "forum_thread") {
-    if (chars >= rule.failChars || discussion.substantial >= 3) {
-      // 主帖在场即算完整；回帖缺失不是"正文不完整"。
-      return chars >= rule.failChars ? "full" : "partial";
+    const hasValidStructure = hasValidForumStructure(input.canonical);
+    if (!hasValidStructure) {
+      return (chars >= rule.failChars || discussion.substantial > 0) ? "partial" : "failed";
     }
-    return discussion.substantial > 0 ? "partial" : "failed";
+
+    // 严谨判定完整度：必须具备明确有效结构，严禁仅以 char>=15 判定为 full
+    if (chars >= rule.fullChars) {
+      return "full";
+    }
+    if (discussion.substantial >= 3 && chars >= rule.failChars) {
+      return "full";
+    }
+    if (chars >= rule.summaryChars) {
+      return "partial";
+    }
+    return chars >= rule.failChars ? "partial" : "failed";
   }
   // 官方公告/社交帖：达到最短完整字数即完整（宁少勿错）。
   if (input.kind === "official_announcement" || input.kind === "social_post") {

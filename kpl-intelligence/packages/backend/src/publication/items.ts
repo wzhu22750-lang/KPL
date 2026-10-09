@@ -44,6 +44,14 @@ export interface ItemRow {
   /** Chinese translation of the post an X post quotes. */
   quoted_zh: string | null;
   body_status?: string | null;
+  canonical_content?: Record<string, any> | null;
+  radar_state?: string | null;
+  radar_input_revision?: number | null;
+  radar_score_version?: string | null;
+  radar_input_evidence_hash?: string | null;
+  radar_judgment?: any | null;
+  feedback_approved?: boolean | null;
+  feedbackApproved?: boolean | null;
 }
 
 /** Columns every item listing selects. Internal judgement details never leave this layer. */
@@ -51,7 +59,7 @@ export const ITEM_COLUMNS = sql`
   p.article_id AS id, p.title, p.original_title, p.summary, p.reason, p.category, p.tags, p.score,
   p.selected, p.seat, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.visibility,
   p.body_mode, p.indexable, p.fact_id, s.name AS source_name, s.participation_mode AS source_mode, ${sourceGroupExpression} AS source_group,
-  a.x_post, a.author, a.language, a.content_kind, a.body_status,
+  a.x_post, a.author, a.language, a.content_kind, a.body_status, a.canonical_content,
   st.public_id::text AS story_public_id, st.title AS story_title,
   CASE WHEN p.channel = 'x' THEN tr.body_text END AS zh_text, qt.text_zh AS quoted_zh`;
 
@@ -155,16 +163,32 @@ export function toItemSummary(row: ItemRow): ItemSummary {
 }
 
 /** Project the shared public article into the exact fields a site card renders. */
-export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
+export function toFeedItemSummary(row: ItemRow, feedbackApproved?: boolean | unknown): FeedItemSummary {
   const item = toItemSummary(row);
   // An X post's own text and media are its body: shown only where the source allows full text.
   const isFull = row.body_mode === "full" && (!row.body_status || row.body_status === "ok");
   const x = row.channel === "x" && isFull ? xView(row, true) : null;
+  const canonical = row.canonical_content;
+  const replies = canonical?.discussion?.highlightedReplies;
+  const firstReply = Array.isArray(replies) && replies.length > 0 ? replies[0] : null;
+  const collection = canonical?.discussion?.collection;
+  const hasCollection = Boolean(collection);
+  const isApproved = hasCollection
+    ? (feedbackApproved !== undefined
+        ? Boolean(feedbackApproved)
+        : (row.feedback_approved !== undefined
+            ? Boolean(row.feedback_approved)
+            : (row.feedbackApproved !== undefined
+                ? Boolean(row.feedbackApproved)
+                : false)))
+    : true;
+  const commentPreview = isFull && firstReply && isApproved ? postView(firstReply) : null;
   return {
     id: item.id, title: item.title, summary: item.summary, reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,
     category: item.category, tags: item.tags, score: item.score, selected: item.selected, channel: item.channel,
     contentKind: contentKindOf(row),
+    commentPreview,
     x: x ? {
       authorName: x.authorName, handle: x.handle, avatarUrl: x.avatarUrl,
       ...(x.avatarSrcSet ? { avatarSrcSet: x.avatarSrcSet } : {}), media: x.media,
@@ -212,15 +236,20 @@ export function contentKindOf(row: Pick<ItemRow, "channel" | "content_kind">): S
 
 const ARTICLE_KINDS = new Set<string>(["article", "news", "official_announcement", "interview", "analysis", "unknown"]);
 
-const postView = (p: Record<string, any>): DiscussionPostView => ({
-  author: p.author?.name ?? null,
-  avatarUrl: proxiedImage(p.author?.avatarUrl, "avatar"),
+export const postView = (p: Record<string, any>): DiscussionPostView => ({
+  id: p.id ?? null,
+  author: typeof p.author === "string" ? p.author : (p.author?.name ?? null),
+  avatarUrl: p.avatarUrl ?? proxiedImage(p.author?.avatarUrl, "avatar"),
   text: String(p.text ?? ""),
   publishedAt: p.publishedAt ?? null,
   likes: typeof p.likes === "number" ? p.likes : null,
   floor: typeof p.floor === "number" ? p.floor : null,
   isOriginalAuthor: !!p.isOriginalAuthor,
-  quote: p.quote?.text ? { author: p.quote.author ?? null, text: String(p.quote.text) } : null,
+  platform: p.platform ?? null,
+  parentCommentId: p.parentCommentId ?? null,
+  replyCount: typeof p.replyCount === "number" ? p.replyCount : null,
+  originalUrl: p.originalUrl ?? null,
+  quote: p.quote?.text ? { author: typeof p.quote.author === "string" ? p.quote.author : (p.quote.author?.name ?? null), text: String(p.quote.text) } : null,
 });
 
 /**
@@ -232,7 +261,14 @@ export function toContentView(row: ItemRow & {
   content_quality_score?: number | null;
   content_completeness?: string | null;
   body_status?: string | null;
-}): ContentView | null {
+  radar_state?: string | null;
+  radar_input_revision?: number | null;
+  radar_score_version?: string | null;
+  radar_input_evidence_hash?: string | null;
+  radar_judgment?: any | null;
+  feedback_approved?: boolean | null;
+  feedbackApproved?: boolean | null;
+}, feedbackApproved?: boolean): ContentView | null {
   const canonical = row.canonical_content ?? null;
   const kind = canonical?.kind ?? contentKindOf(row);
   if (!kind) return null;
@@ -268,14 +304,70 @@ export function toContentView(row: ItemRow & {
 
   const content: ContentView = { kind, quality, community: null, video: null, social: null, gallery: null };
   const discussion = canonical?.discussion;
-  if (kind === "forum_thread" && discussion?.originalPost) {
-    content.community = {
-      originalPost: postView(discussion.originalPost),
-      authorFollowups: (discussion.authorFollowups ?? []).map(postView),
-      highlightedReplies: (discussion.highlightedReplies ?? []).map(postView),
-      totalReplies: discussion.totalReplies ?? null,
-      communitySummary: discussion.communitySummary ?? null,
+
+  const hasCollection = Boolean(discussion?.collection);
+  const isApproved = hasCollection
+    ? (feedbackApproved !== undefined
+        ? feedbackApproved
+        : (row.feedback_approved !== undefined
+            ? Boolean(row.feedback_approved)
+            : (row.feedbackApproved !== undefined
+                ? Boolean(row.feedbackApproved)
+                : false)))
+    : true;
+
+  const buildCommunity = (d: Record<string, any>): NonNullable<ContentView["community"]> => {
+    const op = d.originalPost ? postView(d.originalPost) : {
+      id: null,
+      author: null,
+      avatarUrl: null,
+      text: "",
+      publishedAt: null,
+      likes: null,
+      floor: null,
+      isOriginalAuthor: false,
+      quote: null,
     };
+
+    if (hasCollection && !isApproved) {
+      return {
+        originalPost: op,
+        authorFollowups: [],
+        highlightedReplies: [],
+        totalReplies: typeof d.totalReplies === "number" ? d.totalReplies : null,
+        fetchedReplies: typeof d.fetchedReplies === "number" ? d.fetchedReplies : null,
+        collection: {
+          collectedAt: "",
+          coverage: "unavailable",
+          sourceUrl: d.collection?.sourceUrl ?? null,
+          provenance: d.collection?.provenance ?? null,
+          nextCursor: null,
+          error: d.collection?.error ?? "pendingSafetyReview",
+        },
+        communitySummary: null,
+      };
+    }
+
+    return {
+      originalPost: op,
+      authorFollowups: (d.authorFollowups ?? []).map(postView),
+      highlightedReplies: (d.highlightedReplies ?? []).map(postView),
+      totalReplies: typeof d.totalReplies === "number" ? d.totalReplies : null,
+      fetchedReplies: typeof d.fetchedReplies === "number" ? d.fetchedReplies : null,
+      collection: d.collection ? {
+        collectedAt: d.collection.collectedAt,
+        coverage: d.collection.coverage,
+        sourceUrl: d.collection.sourceUrl ?? null,
+        provenance: d.collection.provenance ?? null,
+        nextCursor: d.collection.nextCursor ?? null,
+        error: d.collection.error ?? null,
+      } : null,
+      communitySummary: d.communitySummary ?? null,
+    };
+  };
+
+  if (kind === "forum_thread" && discussion) {
+    content.community = buildCommunity(discussion);
     content.gallery = ((canonical?.media ?? []) as Array<Record<string, any>>)
       .map((m) => mediaView({ kind: "image", ...m }, "full", true))
       .filter((m): m is MediaView => m !== null);
@@ -291,14 +383,27 @@ export function toContentView(row: ItemRow & {
       comments: canonical.engagement?.comments ?? null,
       favorites: canonical.engagement?.favorites ?? null,
       shares: canonical.engagement?.shares ?? null,
+      coins: canonical.engagement?.coins ?? null,
+      danmaku: canonical.engagement?.danmaku ?? null,
       transcriptSummary: canonical.video.transcriptSummary ?? null,
     };
+    if (discussion) {
+      content.community = buildCommunity(discussion);
+    }
   }
   if (kind === "social_post" && canonical?.social && row.channel !== "x") {
     content.social = {
       postText: String(canonical.social.postText ?? ""),
       quoted: canonical.social.quoted?.text ? { author: canonical.social.quoted.author ?? null, text: String(canonical.social.quoted.text) } : null,
+      views: canonical.engagement?.views ?? null,
+      likes: canonical.engagement?.likes ?? null,
+      comments: canonical.engagement?.comments ?? null,
+      shares: canonical.engagement?.shares ?? null,
+      favorites: canonical.engagement?.favorites ?? null,
     };
+    if (discussion) {
+      content.community = buildCommunity(discussion);
+    }
   }
   return content;
 }

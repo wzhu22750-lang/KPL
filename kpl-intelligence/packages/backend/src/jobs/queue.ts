@@ -14,6 +14,7 @@ export interface JobData {
   "content.analyze": { articleId: string; attemptTag?: string };
   "content.radar": { articleId: string };
   "content.extract-body": { articleId: string };
+  "content.community": { articleId: string; sourceId?: string; force?: boolean };
   "events.group": { articleId: string; signalOnly?: boolean };
   "events.digest": { storyId: number };
   "sources.fetch": { sourceId: string; force?: boolean };
@@ -29,6 +30,7 @@ export const QUEUES = {
   analyze: "content.analyze",
   radar: "content.radar",
   extractBody: "content.extract-body",
+  community: "content.community",
   group: "events.group",
   digest: "events.digest",
   fetchSource: "sources.fetch",
@@ -46,6 +48,7 @@ const QUEUE_OPTIONS: Record<QueueName, QueueOptions> = {
   [QUEUES.radar]: { policy: "short", retryLimit: 3, retryDelay: 60, retryBackoff: true, expireInSeconds: 300 },
   [QUEUES.analyze]: { policy: "short", retryLimit: 4, retryDelay: 30, retryBackoff: true, expireInSeconds: 600 },
   [QUEUES.extractBody]: { policy: "short", retryLimit: 2, retryDelay: 120, expireInSeconds: 300 },
+  [QUEUES.community]: { policy: "short", retryLimit: 2, retryDelay: 60, retryBackoff: true, expireInSeconds: 300 },
   [QUEUES.group]: { policy: "short", retryLimit: 4, retryDelay: 20, retryBackoff: true, expireInSeconds: 600 },
   [QUEUES.digest]: { policy: "short", retryLimit: 3, retryDelay: 60, retryBackoff: true, expireInSeconds: 900 },
   [QUEUES.fetchSource]: { policy: "short", retryLimit: 0, expireInSeconds: 600 },

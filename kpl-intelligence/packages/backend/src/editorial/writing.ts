@@ -129,7 +129,7 @@ export function renderContext(a: AnalyzeInputArticle, opts: { annotateQuoted?: b
   lines.push("");
   const isVideo = a.contentKind === "video_post";
   const isForum = a.contentKind === "forum_thread";
-  lines.push(opts.annotateQuoted && quoted ? "【正文（作者自己的内容）】" : isVideo ? "【视频简介（不是完整视频内容）】" : isForum ? "【主帖与高价值回复（社区讨论）】" : "【正文】");
+  lines.push(opts.annotateQuoted && quoted ? "【正文（作者自己的内容）】" : isVideo ? "【视频简介（不是完整视频内容）】" : isForum ? (a.discussionExcluded ? "【主帖原文（评论未纳入事实材料）】" : "【主帖与高价值回复（社区讨论）】") : "【正文】");
   lines.push(capBody(a.xPost ? String(a.xPost.text ?? a.title) : (a.bodyText ?? a.excerpt ?? "(无正文)")));
   lines.push("");
   lines.push(`【材料质量】${materialQuality(a)}`);

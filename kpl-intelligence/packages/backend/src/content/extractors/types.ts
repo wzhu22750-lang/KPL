@@ -101,6 +101,10 @@ export interface DiscussionPost {
   /** 楼层号（论坛从 1 开始；主帖为 0 时可空）。 */
   floor?: number | null;
   isOriginalAuthor: boolean;
+  platform?: "weibo" | "bilibili" | "hupu";
+  parentCommentId?: string | null;
+  replyCount?: number | null;
+  originalUrl?: string | null;
   quote?: {
     author?: string | null;
     text: string;
@@ -113,7 +117,19 @@ export interface DiscussionContent {
   authorFollowups: DiscussionPost[];
   /** 按 Comment Ranking 选出的高价值回复，默认 5～10 条。 */
   highlightedReplies: DiscussionPost[];
+  /** 实际抓取并归一化的所有解析回复（未受展示上限裁剪的稳定回帖集合）。 */
+  collectedReplies?: DiscussionPost[];
   totalReplies: number | null;
+  /** Actual collected replies, not the platform total or the selected preview count. */
+  fetchedReplies?: number;
+  collection?: {
+    collectedAt: string;
+    coverage: "partial" | "complete" | "unavailable";
+    provenance: BodyProvenance;
+    sourceUrl: string;
+    nextCursor?: string | null;
+    error?: string | null;
+  };
   /** AI 整理的社区讨论焦点（唯一允许 AI 生成的讨论字段）。 */
   communitySummary?: string | null;
 }
@@ -147,6 +163,8 @@ export interface Engagement {
   comments?: number | null;
   shares?: number | null;
   favorites?: number | null;
+  coins?: number | null;
+  danmaku?: number | null;
 }
 
 export type ContentCompleteness = "full" | "partial" | "summary_only" | "failed";
@@ -169,6 +187,9 @@ export interface ExtractionMeta {
   fallbackUsed: boolean;
   bodyProvenance: BodyProvenance;
   sourceAuthority: SourceAuthority | null;
+  bodyCompleteness?: ContentCompleteness;
+  mediaCompleteness?: "unknown" | "partial" | "complete";
+  confidence?: number | null;
   rawHash?: string | null;
   canonicalHash?: string | null;
 }
@@ -204,25 +225,86 @@ export interface CanonicalContent {
   quality: ContentQuality;
 }
 
+/**
+ * Discussion post formatted into searchable/evidence text.
+ * Includes displayed quote text and authors, OP, followups, and highlighted replies.
+ * Counters (likes, floor, replyCount) are strictly excluded.
+ */
+export function formatDiscussionPost(p: DiscussionPost): string {
+  if (!p || typeof p !== "object") return "";
+  const parts: string[] = [];
+  if (p.quote?.text) {
+    const rawAuthor = p.quote.author?.trim();
+    const qAuthor = rawAuthor ? (rawAuthor.startsWith("@") ? rawAuthor : `@${rawAuthor}`) : "";
+    parts.push(qAuthor ? `[引用 ${qAuthor}]：${p.quote.text}` : `[引用]：${p.quote.text}`);
+  }
+  const rawAuthor = p.author?.name?.trim();
+  const authorName = rawAuthor ? (rawAuthor.startsWith("@") ? rawAuthor : `@${rawAuthor}`) : "";
+  if (authorName && p.text) {
+    parts.push(`${authorName}：${p.text}`);
+  } else if (p.text) {
+    parts.push(p.text);
+  } else if (authorName) {
+    parts.push(authorName);
+  }
+  return parts.join("\n");
+}
+
 /** 正文的可检索文本（AI 输入、全文搜索、body_text 的共同上游）。 */
 export function canonicalSearchText(c: CanonicalContent): string {
+  if (!c || typeof c !== "object") return "";
   const parts: string[] = [];
   if (c.lead) parts.push(c.lead);
-  for (const b of c.main) {
-    if (b.type === "paragraph" || b.type === "quote" || b.type === "heading") parts.push(b.text);
-    else if (b.type === "list") parts.push(b.items.join("\n"));
-    else if (b.type === "table") parts.push(b.rows.map((r) => r.join(" ")).join("\n"));
+  if (Array.isArray(c.main)) {
+    for (const b of c.main) {
+      if (!b || typeof b !== "object") continue;
+      if (b.type === "paragraph" || b.type === "heading") {
+        if (b.text) parts.push(b.text);
+      } else if (b.type === "quote") {
+        if (b.text) {
+          parts.push(b.attribution ? `${b.text} — ${b.attribution}` : b.text);
+        }
+      } else if (b.type === "list") {
+        if (Array.isArray(b.items)) parts.push(b.items.filter(Boolean).join("\n"));
+      } else if (b.type === "table") {
+        if (Array.isArray(b.rows)) parts.push(b.rows.map((r) => Array.isArray(r) ? r.join(" ") : String(r)).join("\n"));
+      }
+    }
   }
-  if (c.discussion) {
-    parts.push(c.discussion.originalPost.text);
-    for (const p of [...c.discussion.authorFollowups, ...c.discussion.highlightedReplies]) parts.push(p.text);
+  if (c.discussion && typeof c.discussion === "object") {
+    if (c.discussion.originalPost) {
+      const opText = formatDiscussionPost(c.discussion.originalPost);
+      if (opText) parts.push(opText);
+    }
+    const followups = Array.isArray(c.discussion.authorFollowups) ? c.discussion.authorFollowups : [];
+    for (const p of followups) {
+      const fText = formatDiscussionPost(p);
+      if (fText) parts.push(fText);
+    }
+    const replies = Array.isArray(c.discussion.highlightedReplies) ? c.discussion.highlightedReplies : [];
+    for (const p of replies) {
+      const rText = formatDiscussionPost(p);
+      if (rText) parts.push(rText);
+    }
   }
-  if (c.social) {
-    parts.push(c.social.postText);
-    if (c.social.quoted?.text) parts.push(c.social.quoted.text);
+  if (c.social && typeof c.social === "object") {
+    if (c.social.postText) parts.push(c.social.postText);
+    if (c.social.quoted?.text) {
+      const rawAuthor = (c.social.quoted.author ?? c.social.quoted.handle)?.trim();
+      const qAuthor = rawAuthor ? (rawAuthor.startsWith("@") ? rawAuthor : `@${rawAuthor}`) : "";
+      parts.push(qAuthor ? `[引用 ${qAuthor}]：${c.social.quoted.text}` : `[引用]：${c.social.quoted.text}`);
+    }
   }
-  if (c.video?.description) parts.push(c.video.description);
+  if (c.video && typeof c.video === "object") {
+    if (c.video.description) parts.push(c.video.description);
+    if (c.video.transcriptSummary) parts.push(c.video.transcriptSummary);
+  }
   return parts.filter((p) => p && p.trim()).join("\n\n");
+}
+
+/** 完整证据链文本（包含社区高亮回复与评论流，供 AI 分析输入与证据检索使用）。 */
+export function canonicalEvidenceText(c: CanonicalContent): string {
+  return canonicalSearchText(c);
 }
 
 /** 主文本长度（段落字数 + 讨论原帖），供质量引擎与派生逻辑使用。 */

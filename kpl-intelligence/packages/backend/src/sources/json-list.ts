@@ -135,6 +135,44 @@ function embeddedJson(html: string, source: SourceRow): unknown {
   throw new FetchError(`embedded key ${key} not found`);
 }
 
+/**
+ * 校验上游 JSON 业务错误包裹（如 B站 code !== 0、通用 status/error、ok === false 等）。
+ * 遇到业务报错时抛出包含上游真实原因的 FetchError，避免静默失败或被当成空数据。
+ */
+export function validateBusinessErrors(data: unknown, _source?: SourceRow): void {
+  if (!data || typeof data !== "object") return;
+  const obj = data as Record<string, unknown>;
+
+  // 1. 数字错误码（B站等标准响应：code === 0 为成功，非 0 且非 200 为业务异常）
+  if (typeof obj.code === "number" && obj.code !== 0 && obj.code !== 200) {
+    const msg = String(obj.message || obj.msg || `code ${obj.code}`);
+    throw new FetchError(`upstream business error: ${msg}`, obj.code);
+  }
+
+  // 2. ok === false 或 ok === 0（微博或通用接口）
+  if (obj.ok === 0 || obj.ok === false) {
+    const msg = String(obj.msg || obj.message || obj.error || "ok is false");
+    throw new FetchError(`upstream business error: ${msg}`);
+  }
+
+  // 3. status 显式声明错误状态（如 status: "error" | "fail" | "failed"）
+  if (typeof obj.status === "string" && ["error", "fail", "failed"].includes(obj.status.toLowerCase())) {
+    const msg = String(obj.message || obj.msg || obj.error || `status ${obj.status}`);
+    throw new FetchError(`upstream business error: ${msg}`);
+  }
+
+  // 4. 数字 status 非 200/0（如 { status: 404, message: "not found" }）
+  if (typeof obj.status === "number" && obj.status !== 200 && obj.status !== 0) {
+    const msg = String(obj.message || obj.msg || `status ${obj.status}`);
+    throw new FetchError(`upstream business error: ${msg}`, obj.status);
+  }
+
+  // 5. 显式 error 字符串字段且未包含常规数据列表容器
+  if (obj.error && typeof obj.error === "string" && !obj.data && !obj.items && !obj.list && !obj.result) {
+    throw new FetchError(`upstream business error: ${obj.error}`);
+  }
+}
+
 export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
   const c = source.config;
   const baseUrl = String(c.url ?? "");
@@ -198,6 +236,15 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
     out.push(...pageOut);
   }
   if (totalItems > 0 && out.length === 0 && !c.requireBoolean && !c.minNumeric) throw new FetchError("no items mapped (check title/url paths)");
+  // 样本页内可选按评论互动量降序排序（注意：仅针对已取得的采样页重排，绝不混淆为真实全量热点接口）
+  if (c.prioritizeObservedReplies || c.sortByObservedReplies) {
+    out.sort((a, b) => {
+      const aReplies = a.engagementObservation?.metrics?.comments ?? 0;
+      const bReplies = b.engagementObservation?.metrics?.comments ?? 0;
+      if (bReplies !== aReplies) return bReplies - aReplies;
+      return (b.publishedAt?.getTime() ?? 0) - (a.publishedAt?.getTime() ?? 0);
+    });
+  }
   return out;
 }
 
@@ -225,10 +272,16 @@ async function readJson(url: string, source: SourceRow): Promise<unknown> {
     timeoutMs: 25_000,
   });
   if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
-  if (c.mode === "html_json_key" || c.mode === "html_window_var") return embeddedJson(res.text(), source);
-  try {
-    return JSON.parse(res.text());
-  } catch {
-    throw new FetchError("response is not JSON");
+  let parsed: unknown;
+  if (c.mode === "html_json_key" || c.mode === "html_window_var") {
+    parsed = embeddedJson(res.text(), source);
+  } else {
+    try {
+      parsed = JSON.parse(res.text());
+    } catch {
+      throw new FetchError("response is not JSON");
+    }
   }
+  validateBusinessErrors(parsed, source);
+  return parsed;
 }

@@ -1,0 +1,32 @@
+✗ /  TypeError: fetch failed
+✗ /all  TypeError: fetch failed
+✗ /hot  TypeError: fetch failed
+✗ /daily  TypeError: fetch failed
+✗ /daily/archive  TypeError: fetch failed
+✗ /topics  TypeError: fetch failed
+✗ /starred  TypeError: fetch failed
+✗ /agent  TypeError: fetch failed
+✗ /about  TypeError: fetch failed
+✗ /changelog  TypeError: fetch failed
+✗ /feedback  TypeError: fetch failed
+✗ /terms  TypeError: fetch failed
+✗ /privacy  TypeError: fetch failed
+✗ /more  TypeError: fetch failed
+✗ /admin/login  TypeError: fetch failed
+✗ /api/health  TypeError: fetch failed
+✗ /api/v1/items  TypeError: fetch failed
+✗ /api/v1/hot-topics  TypeError: fetch failed
+✗ /api/v1/selected/snapshot  TypeError: fetch failed
+✗ /feed.xml  TypeError: fetch failed
+✗ /feed/all.xml  TypeError: fetch failed
+✗ /llms.txt  TypeError: fetch failed
+✗ /robots.txt  TypeError: fetch failed
+✗ /sitemap.xml  TypeError: fetch failed
+✗ /manifest.webmanifest  TypeError: fetch failed
+✗ /openapi-v1.json  TypeError: fetch failed
+✗ /og/site.png  TypeError: fetch failed
+✗ /icon.png  TypeError: fetch failed
+✗ /favicon.ico  TypeError: fetch failed
+✗ /api/mcp initialize  TypeError: fetch failed
+
+30 check(s) failed

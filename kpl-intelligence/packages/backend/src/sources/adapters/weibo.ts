@@ -95,7 +95,7 @@ export class WeiboVisitorSession {
 
   private async negotiateVisitorCookie(): Promise<string> {
     const url = "https://visitor.passport.weibo.cn/visitor/genvisitor2";
-    const body = `cb=visitor_gray_callback&ver=20250916&request_id=3a68e657c02b556afd832759fde330f0&tid=&from=weibo&webdriver=false&rid=${Date.now()}&return_url=https%3A%2F%2Fm.weibo.cn%2F`;
+    const body = `cb=visitor_gray_callback&ver=20250916&request_id=3a68e657c02b556afd832759fde330f0&tid=&from=weibo&rid=${Date.now()}&return_url=https%3A%2F%2Fm.weibo.cn%2F`;
 
     const res = await fetch(url, {
       method: "POST",
@@ -251,6 +251,15 @@ export interface WeiboPageData {
   data?: { cards?: unknown[]; cardlistInfo?: { since_id?: unknown }; since_id?: unknown };
 }
 
+/**
+ * 校验 m.weibo.cn 接口分页 Envelope：
+ * 严格要求 ok === 1（数字 1，拒绝真值字符串或布尔值等其他类型），且 cards 必须为显式数组。
+ * 缺失 cards 数组（如畸形 { ok: 1, data: {} }）视为结构性异常。
+ */
+export function isValidMblogPage(page: WeiboPageData | null | undefined): page is WeiboPageData & { data: { cards: unknown[] } } {
+  return page?.ok === 1 && typeof page?.data === "object" && page.data !== null && Array.isArray(page.data.cards);
+}
+
 /** 从 cards 里取出博文（含 card_group 子卡片）。 */
 export function extractMblogs(cards: unknown[] | undefined): WeiboRawMblog[] {
   const out: WeiboRawMblog[] = [];
@@ -276,6 +285,37 @@ export function weiboIdGreater(id: string, watermark: string | null): boolean {
   } catch {
     return false;
   }
+}
+
+/** 返回一组微博 ID 中的最大值（按数值大小比较） */
+export function maxWeiboId(...ids: (string | null | undefined)[]): string | null {
+  let max: string | null = null;
+  for (const id of ids) {
+    if (!id) continue;
+    const s = String(id).trim();
+    if (!s) continue;
+    if (!max || weiboIdGreater(s, max)) {
+      max = s;
+    }
+  }
+  return max;
+}
+
+/**
+ * 解析当前稳定水位线：
+ * 1. 显式为 null 的 stableWatermark（例如尚未建立稳定水位线的 bootstrap 或重置状态），必须严格解析为 null，
+ *    绝不能回退到 lastMid！否则会导致断点续扫或多轮冷启动误把局部头部 mid 当作历史覆盖底线。
+ * 2. 仅当 stableWatermark 未在游标中提供（undefined，旧游标向前兼容）时，才回退到 lastMid。
+ */
+export function resolveWatermark(cursor?: AdapterCursor): string | null {
+  if (cursor?.stableWatermark === null) {
+    return null;
+  }
+  if (cursor?.stableWatermark !== undefined && cursor?.stableWatermark !== null) {
+    const sw = String(cursor.stableWatermark).trim();
+    return sw.length > 0 ? sw : null;
+  }
+  return cursor?.lastMid ? String(cursor.lastMid).trim() || null : null;
 }
 
 /** 每轮最多读几页（配置 maxPages 可覆盖）：过去一周回溯默认允许翻到 10 页。 */
@@ -320,7 +360,21 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
     const maxPages = Math.max(1, Number(source.config?.maxPages ?? WEIBO_PAGE_BUDGET));
     const timeWindowDays = Math.max(1, Number(source.config?.timeWindowDays ?? 7)); // 默认过去 7 天
     const cutoffMs = Date.now() - timeWindowDays * 24 * 3600 * 1000;
-    const watermark = cursor?.lastMid ? String(cursor.lastMid) : null;
+
+    // 稳定水位线：历史博文完整回溯覆盖到的位置；在积压未追平（中途出错/达页预算）前绝不向前推进。
+    // 显式为 null 的 stableWatermark 绝不回退为 lastMid。
+    const watermark = resolveWatermark(cursor);
+
+    // 前序中断轮次留下的待续分页 token
+    const savedToken: string | null = cursor?.pageSinceId ? String(cursor.pageSinceId).trim() || null : null;
+    const isResumingBacklog = Boolean(savedToken);
+
+    // 待追平水位：
+    // - 若处于断点续扫模式（isResumingBacklog），保留前序记录的 pendingWatermark（若无则取 lastMid）
+    // - 若处于头部正常巡检模式，初始化为已有 pendingWatermark
+    let pendingWatermark: string | null = cursor?.pendingWatermark !== undefined && cursor?.pendingWatermark !== null
+      ? (String(cursor.pendingWatermark).trim() || null)
+      : (isResumingBacklog && cursor?.lastMid ? String(cursor.lastMid).trim() || null : null);
 
     let cookie = await this.session.getCookie();
     let containerid = source.config?.containerid || (await this.fetchUserContainerId(uid, cookie));
@@ -340,14 +394,30 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         truncated = true;
         break;
       }
-      const requested: string | null = pages === 0 ? null : token;
+
+      // 分页请求策略：
+      // 1. 保守断点续扫（isResumingBacklog）：第一页直接消费 savedToken 续扫历史积压，
+      //    不请求头部（requested = null），不更新 pendingWatermark。
+      //    彻底解决 head-gap 问题：旧逻辑先扫 1 页头部再跳回 savedToken 会丢弃中间累积的新博文页，
+      //    并在积压追平后直接跃进至新头部，导致中间博文永久遗漏。
+      //    保守策略先排空旧积压，待排空后将稳定水位推进至前序 pendingWatermark，下一轮头部重扫自然完整覆盖所有新页面。
+      // 2. 正常头部巡检（!isResumingBacklog）：第 0 页做头部重扫 (requested = null)，捕获最新发布的博文；第 1+ 页沿服务端 token 翻页。
+      let requested: string | null = null;
+      if (pages === 0) {
+        requested = isResumingBacklog ? savedToken : null;
+      } else {
+        requested = token;
+      }
+
       let page = await this.fetchMblogPage(uid, containerid, cookie, requested);
-      if (!page.ok && pages === 0) {
+      let valid = isValidMblogPage(page);
+      if (!valid && pages === 0) {
         cookie = await this.session.getCookie(true);
         containerid = source.config?.containerid || (await this.fetchUserContainerId(uid, cookie));
         page = await this.fetchMblogPage(uid, containerid, cookie, requested);
+        valid = isValidMblogPage(page);
       }
-      if (!page.ok) {
+      if (!valid) {
         if (pages === 0) throw new Error(`WeiboAdapter: failed to fetch mblogs for UID ${uid}, response not ok (HTTP ${page.status ?? "?"})`);
         truncated = true;
         incompleteReason = `Weibo profile page ${pages + 1} failed (HTTP ${page.status ?? "unknown"})`;
@@ -361,13 +431,26 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         // 若博文标记为长文本，自动请求展开后的完整原文
         if (m.isLongText) {
           const fullText = await this.fetchLongText(String(m.id), cookie);
-          if (fullText) m.text = fullText;
+          if (fullText) {
+            m.text = fullText;
+            m.isLongText = false; // 全文实际拉取成功后，解除截断标记
+          }
         }
         if (m.retweeted_status?.isLongText && m.retweeted_status?.id) {
           const fullRt = await this.fetchLongText(String(m.retweeted_status.id), cookie);
-          if (fullRt) m.retweeted_status.text = fullRt;
+          if (fullRt) {
+            m.retweeted_status.text = fullRt;
+            m.retweeted_status.isLongText = false;
+          }
         }
         rawItems.push(m);
+
+        // 仅在正常头部巡检轮次中更新待追平水位；断点续扫轮次不更新 pendingWatermark
+        if (!isResumingBacklog) {
+          if (weiboIdGreater(String(m.id), pendingWatermark)) {
+            pendingWatermark = String(m.id);
+          }
+        }
       }
 
       // 时间窗口检查：如果本页最旧的一条博文时间已经早于 7 天前截止时间，停止翻页
@@ -383,8 +466,16 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       }
 
       const next = weiboPageToken(page.data);
-      if (!next || next === requested) {
+      if (!next) {
         reachedEnd = true;
+        break;
+      }
+      if (next === requested) {
+        truncated = true;
+        token = requested;
+        incompleteReason = pageBlogs.length === 0
+          ? `Weibo profile page ${pages} returned repeated pagination token ${next} with no items`
+          : `Weibo profile page ${pages} returned repeated pagination token ${next}`;
         break;
       }
       token = next;
@@ -397,18 +488,53 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       return !pub || pub.getTime() >= cutoffMs;
     });
 
-    const newest = filteredItems.reduce<string | null>((max, m) => (weiboIdGreater(String(m.id), max) ? String(m.id) : max), watermark);
-    const caughtUp = reachedWatermark || reachedEnd || reachedTimeCutoff;
+    const caughtUp = !incompleteReason && (reachedWatermark || reachedEnd || reachedTimeCutoff);
+    const highestSeenInRun = filteredItems.reduce<string | null>(
+      (max, m) => (weiboIdGreater(String(m.id), max) ? String(m.id) : max),
+      null,
+    );
+
+    const cursorLastMid = cursor?.lastMid ? String(cursor.lastMid).trim() || null : null;
+    const nextLastMid = maxWeiboId(
+      cursorLastMid,
+      cursor?.pendingWatermark ? String(cursor.pendingWatermark).trim() || null : null,
+      pendingWatermark,
+      highestSeenInRun,
+    );
+
+    const finalStableWatermark = caughtUp
+      ? maxWeiboId(pendingWatermark, highestSeenInRun, watermark)
+      : watermark;
+
+    const nextPendingWatermark = caughtUp
+      ? null
+      : (pendingWatermark ?? highestSeenInRun);
+
+    const resumeToken = caughtUp ? null : (token ?? savedToken);
+
     return {
       rawItems: filteredItems,
       nextCursor: {
         ...cursor,
         containerid,
-        lastMid: newest ?? cursor?.lastMid,
-        ...(caughtUp ? { pageSinceId: null } : { pageSinceId: token }),
+        lastMid: nextLastMid,
+        stableWatermark: finalStableWatermark,
+        pendingWatermark: nextPendingWatermark,
+        pageSinceId: resumeToken,
         lastFetchAt: new Date().toISOString(),
       },
-      detail: { capability: "account_posts", coverage: incompleteReason ? "partial" : truncated ? "bounded" : "complete", uid, pages, extractedMblogs: filteredItems.length, truncated, reachedEnd, reachedWatermark, reachedTimeCutoff },
+      detail: {
+        capability: "account_posts",
+        coverage: incompleteReason ? "partial" : truncated ? "bounded" : "complete",
+        uid,
+        pages,
+        extractedMblogs: filteredItems.length,
+        truncated,
+        reachedEnd: !incompleteReason && reachedEnd,
+        reachedWatermark,
+        reachedTimeCutoff,
+        isResumingBacklog,
+      },
       incompleteReason,
     };
   }
@@ -464,7 +590,17 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
         // 自动展开长文
         if (m.isLongText) {
           const fullText = await this.fetchLongText(String(m.id), cookie);
-          if (fullText) m.text = fullText;
+          if (fullText) {
+            m.text = fullText;
+            m.isLongText = false; // 全文实际拉取成功后，解除截断标记
+          }
+        }
+        if (m.retweeted_status?.isLongText && m.retweeted_status?.id) {
+          const fullRt = await this.fetchLongText(String(m.retweeted_status.id), cookie);
+          if (fullRt) {
+            m.retweeted_status.text = fullRt;
+            m.retweeted_status.isLongText = false;
+          }
         }
         rawItems.push(m);
       }
@@ -565,9 +701,16 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       return { ok: 0, status: res.status };
     }
     try {
-      return (await res.json()) as WeiboPageData;
+      const json = (await res.json()) as Record<string, unknown>;
+      if (!json || typeof json !== "object") {
+        return { ok: 0, status: res.status };
+      }
+      return {
+        ...json,
+        status: typeof json.status === "number" ? json.status : res.status,
+      } as WeiboPageData;
     } catch {
-      return { ok: 0, status: -1 };
+      return { ok: 0, status: res.status };
     }
   }
 
@@ -580,9 +723,9 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
     const cleanText = cleanWeiboText(raw.text);
     if (!cleanText) return null;
 
-    const uid = raw.user?.id ? String(raw.user.id) : (source.config?.uid || "");
+    const uid = raw.user?.id ? String(raw.user.id) : (source.config?.uid ? String(source.config.uid) : "");
     const bid = raw.bid || raw.id;
-    const url = `https://weibo.com/${uid}/${bid}`;
+    const url = uid ? `https://weibo.com/${uid}/${bid}` : `https://weibo.com/detail/${bid}`;
     const title = extractWeiboHeadline(cleanText);
     // 解析不出的发布时间保持 null，由 decideTimeline 区分发布时间与发现时间。
     const publishedAt = parseWeiboDate(raw.created_at);
@@ -596,12 +739,12 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
       alt: "微博配图",
     }));
 
-    // 针对官方微博动态打上显式的 "微博官方" 标签；针对社区讨论打上 "微博超话" 标签
+    // 针对官方微博动态打上显式的 "微博官方" 标签；针对社区讨论打上 "微博搜索" 标签（非超话全量）
     const categories: string[] = ["社交", "微博"];
     if (source.owner_type === "league" || source.owner_type === "club") {
       categories.push("微博官方", "官方");
     } else if (source.owner_type === "community") {
-      categories.push("微博超话", "社区", "舆论");
+      categories.push("微博搜索", "社区", "舆论");
     }
     const sourceTags = source.tags || source.config?.tags;
     if (sourceTags && Array.isArray(sourceTags)) {
@@ -629,7 +772,7 @@ export class WeiboAdapter extends BaseSourceAdapter<WeiboRawMblog> {
   normalize(candidate: Candidate, raw: WeiboRawMblog, source: SourceRow): MaterialInput {
     const cleanText = candidate.bodyText || "";
     const rawMblog = raw as WeiboRawMblog;
-    const uid = rawMblog?.user?.id ? String(rawMblog.user.id) : (source.config?.uid || "");
+    const uid = rawMblog?.user?.id ? String(rawMblog.user.id) : (source.config?.uid ? String(source.config.uid) : "");
 
     // 转发/原博引用结构
     let quoted: { author: string | null; handle?: string | null; text: string } | null = null;

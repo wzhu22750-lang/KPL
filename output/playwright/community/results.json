@@ -1,0 +1,74 @@
+[
+  {
+    "scenario": "forum-rich",
+    "description": "ForumThread: long newline comments / quote OP followup / unbroken URL / parentCommentId / collectedAt",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 1,\n  \"aiBadges\": 1,\n  \"parentCommentRefs\": 23,\n  \"collectedAtRefs\": 9\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "forum-thread-desktop.png",
+    "mobileShot": "forum-thread-mobile.png"
+  },
+  {
+    "scenario": "media",
+    "description": "ContentRenderer + MediaGallery: image tiles & video preview",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 2,\n  \"aiBadges\": 1,\n  \"parentCommentRefs\": 23,\n  \"collectedAtRefs\": 9\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "media-gallery-desktop.png",
+    "mobileShot": "media-gallery-mobile.png"
+  },
+  {
+    "scenario": "no-comments",
+    "description": "CommunityFeedback: zero comments / empty notice with original anchor",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 1,\n  \"aiBadges\": 0,\n  \"parentCommentRefs\": 0,\n  \"collectedAtRefs\": 8\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "no-comments-desktop.png",
+    "mobileShot": "no-comments-mobile.png"
+  },
+  {
+    "scenario": "video-missing-transcript",
+    "description": "VideoContent: missing transcript -> description distinct from body, no AI transcript fabricated",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 3,\n  \"aiBadges\": 1,\n  \"parentCommentRefs\": 13,\n  \"collectedAtRefs\": 9\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "video-missing-transcript-desktop.png",
+    "mobileShot": "video-missing-transcript-mobile.png"
+  },
+  {
+    "scenario": "social-metrics",
+    "description": "SocialPost: social metrics (views, likes, comments, shares, favorites) & unbroken URLs",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 1,\n  \"aiBadges\": 1,\n  \"parentCommentRefs\": 13,\n  \"collectedAtRefs\": 9\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "social-metrics-desktop.png",
+    "mobileShot": "social-metrics-mobile.png"
+  },
+  {
+    "scenario": "fallback-null",
+    "description": "Fallback community null: must empty notice original link across Forum & Video & Social",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 4,\n  \"aiBadges\": 0,\n  \"parentCommentRefs\": 0,\n  \"collectedAtRefs\": 0\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "fallback-null-desktop.png",
+    "mobileShot": "fallback-null-mobile.png"
+  },
+  {
+    "scenario": "content-radar",
+    "description": "ContentRadar: topics, match carousel, community discussions, comment previews, evidence",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 4,\n  \"aiBadges\": 0,\n  \"parentCommentRefs\": 0,\n  \"collectedAtRefs\": 0\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "content-radar-desktop.png",
+    "mobileShot": "content-radar-mobile.png"
+  },
+  {
+    "scenario": "all",
+    "description": "All components side-by-side overview",
+    "desktopMetrics": "### Result\n{\n  \"scrollW\": 1440,\n  \"clientW\": 1440,\n  \"overflow\": false,\n  \"anchorCount\": 16,\n  \"aiBadges\": 4,\n  \"parentCommentRefs\": 57,\n  \"collectedAtRefs\": 24\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  const originalAnchors = Array.from(document.querySelectorAll(\\'a[href^=\"http\"]\\')).map(a => ({\\n    href: a.href,\\n    target: a.target,\\n    rel: a.rel,\\n    text: a.textContent.trim()\\n  }));\\n  const aiBadges = Array.from(document.querySelectorAll(\\'*\\')).filter(el => el.textContent.trim() === \\'AI 整理\\').length;\\n  const parentCommentRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /回复评论\\\\s*#/.test(el.textContent)).length;\\n  const collectedAtRefs = Array.from(document.querySelectorAll(\\'*\\')).filter(el => /采集于/.test(el.textContent)).length;\\n  return { scrollW, clientW, overflow, anchorCount: originalAnchors.length, aiBadges, parentCommentRefs, collectedAtRefs };\\n}');\n```\n",
+    "mobileMetrics": "### Result\n{\n  \"scrollW\": 390,\n  \"clientW\": 390,\n  \"overflow\": false\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {\\n  const scrollW = document.documentElement.scrollWidth;\\n  const clientW = document.documentElement.clientWidth;\\n  const overflow = scrollW > clientW;\\n  return { scrollW, clientW, overflow };\\n}');\n```\n",
+    "consoleErrors": "### Result\nTotal messages: 0 (Errors: 0, Warnings: 0)\n\n",
+    "desktopShot": "all-scenarios-desktop.png",
+    "mobileShot": "all-scenarios-mobile.png"
+  }
+]

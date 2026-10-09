@@ -1,0 +1,108 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 7: ContentRadar"
+        - heading "内容雷达：焦点话题、比赛速览横向轮播、社区热议与观点依据" [level=1] [ref=e19]
+      - region "KPL内容雷达" [ref=e20]:
+        - region [ref=e21]:
+          - generic [ref=e22]:
+            - heading "圈内焦点" [level=2] [ref=e23]
+            - generic [ref=e24]: 近期最值得关注的讨论
+          - generic [ref=e25]:
+            - article [ref=e26]:
+              - generic [ref=e27]:
+                - generic [ref=e28]: 观点
+                - generic [ref=e29]: 1 条来源
+                - time [ref=e30]: 10/10 02:30
+              - heading "【合成测试】胜者组决赛第七局巅峰对决预测与双方选手状态讨论" [level=3] [ref=e31]
+              - paragraph [ref=e32]: 双方近期交手记录互有胜负，打野英雄池重叠度极高。若战至巅峰对决，中野联动将成为胜负关键手。
+              - group [ref=e33]:
+                - generic "查看来源与观点" [ref=e34] [cursor=pointer]
+            - article [ref=e38]:
+              - generic [ref=e39]:
+                - generic [ref=e40]: 事实陈述
+                - generic [ref=e41]: 1 条来源
+                - time [ref=e42]: 10/10 01:00
+              - heading "【合成测试】版本热门打野梯度变动与BP优先级演化" [level=3] [ref=e43]
+              - paragraph [ref=e44]: 随着防御装备微调，重装打野在团战承伤方面表现出色，但也牺牲了一定切后排能力。
+              - group [ref=e45]:
+                - generic "查看来源与观点" [ref=e46] [cursor=pointer]
+        - region [ref=e49]:
+          - generic [ref=e50]:
+            - heading "比赛速览" [level=2] [ref=e51]
+            - link "全部赛程" [ref=e53] [cursor=pointer]:
+              - /url: /matches
+          - region "比赛卡片，可横向滑动" [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e59]:
+                  - generic [ref=e60]: 进行中
+                  - generic [ref=e61]: 10/10 03:00 · BO7
+                - heading "成都AG超玩会 vs 重庆狼队，3 比 2" [level=3] [ref=e62]:
+                  - generic [ref=e63]:
+                    - generic [ref=e64]:
+                      - generic [aria-hidden] [ref=e65]: 成都
+                      - generic [ref=e66]: 成都AG
+                    - generic [ref=e67]: "3"
+                  - generic [ref=e68]:
+                    - generic [ref=e69]:
+                      - generic [aria-hidden] [ref=e70]: 重庆
+                      - generic [ref=e71]: 重庆狼队
+                    - generic [ref=e72]: "2"
+                - button "展开 成都AG超玩会 vs 重庆狼队 时间线" [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74]: 展开时间线 · 1 条报道
+              - link "比赛档案与报道" [ref=e77] [cursor=pointer]:
+                - /url: /matches/match-fixture-101
+        - region [ref=e80]:
+          - region [ref=e81]:
+            - generic [ref=e83]:
+              - heading "社区声音与热议" [level=2] [ref=e84]
+              - text: 玩家观点、二创趣评与圈内讨论优先呈现
+            - article [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]: 观点
+                - generic [aria-hidden] [ref=e89]: ·
+                - generic [ref=e90]: 虎扑王者荣耀社区[合成]
+                - generic [ref=e91]: hupu
+                - generic [ref=e92]: 第 1 局
+                - time [ref=e93]: 10/10 03:30
+              - link "【合成测试】网友热议教练赛后BP选择：大乔体系放得是否太冒险？" [ref=e94] [cursor=pointer]:
+                - /url: https://bbs.hupu.com/synthetic-radar-standalone-001
+              - paragraph [ref=e97]: 部分网友认为首局BP过于自负，另一部分球迷则认为旨在探寻对方底牌，争论热度较高。
+              - blockquote [ref=e98]:
+                - generic [ref=e99]: 精选讨论预览
+                - generic [ref=e100]: 虎扑JRs_合成：
+                - text: 第一局真的不能这么轻易放大乔，哪怕自己不拿也应该送上Ban位。
+              - group [ref=e101]:
+                - generic "来源与判断依据" [ref=e102] [cursor=pointer]
+          - region [ref=e105]:
+            - generic [ref=e106]:
+              - heading "重要事实与赛事实报" [level=2] [ref=e107]
+              - text: 官方公告、赛况简报与已核实资讯独立收录
+            - article [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: 事实陈述
+                - generic [aria-hidden] [ref=e112]: ·
+                - generic [ref=e113]: 王者荣耀职业联赛官方[合成]
+                - generic [ref=e114]: other
+                - time [ref=e115]: 10/09 23:00
+              - link "【合成测试】总决赛门票预售开启与场馆交通指南" [ref=e116] [cursor=pointer]:
+                - /url: https://example.com/official-ticket-notice
+              - paragraph [ref=e119]: 官方发布2026KPL春季赛总决赛购票须知与观众进场安检提示。
+              - group [ref=e120]:
+                - generic "来源与判断依据" [ref=e121] [cursor=pointer]
+        - group [ref=e124]:
+          - generic "关于内容筛选与热度" [ref=e125] [cursor=pointer]

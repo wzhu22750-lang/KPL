@@ -7,7 +7,7 @@ import type { SourceRow } from "./types.ts";
 const PUBLISHER = ["publisherRole", "publisherUrlPrefixes"];
 // Content intelligence：来源的内容形态声明（SourceContentProfile 的选择与覆盖）。
 const CONTENT_PROFILE = ["contentProfile", "contentFamily", "threadSelectors"];
-const COLLECTED = [...PUBLISHER, ...CONTENT_PROFILE, "collectionPolicy", "_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent"];
+const COLLECTED = [...PUBLISHER, ...CONTENT_PROFILE, "collectionPolicy", "_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent", "communityComments"];
 
 const KEYS: Record<SourceRow["kind"], string[]> = {
   rss: [...COLLECTED, "feedUrl", "summaryIsBody", "preserveUrlFragment", "allowCategories", "denyCategories"],
@@ -19,6 +19,7 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
     ...COLLECTED, "url", "mode", "method", "headers", "bodyJson", "jsonKey", "windowVar", "itemsPath", "itemsObjectValues",
     "titlePaths", "summaryPaths", "summaryIsBody", "authorPaths", "publishedAtPath", "publishedAtUnit", "externalIdPath",
     "urlTemplate", "urlTemplateFallback", "rawDropKeys", "engagementPaths", "requireBoolean", "requireString", "minNumeric", "pagination",
+    "prioritizeObservedReplies",
   ],
   // X accounts are mostly read in shards, which apply only these.
   x_search: [...PUBLISHER, ...CONTENT_PROFILE, "collectionPolicy", "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
@@ -38,13 +39,17 @@ const NESTED: Record<string, string[]> = {
   requireBoolean: ["path", "equals"],
   requireString: ["path", "equals"],
   minNumeric: ["path", "min"],
-  engagementPaths: ["platform", "views", "likes", "comments", "shares", "favorites"],
+  engagementPaths: ["platform", "views", "likes", "comments", "shares", "favorites", "coins", "danmaku"],
   pagination: ["pageParam", "startPage", "maxPages", "itemsPath"],
   detail: [
     "maxFetches", "publishedAtSelector", "publishedAtRegex", "publishedAtUtcOffset", "publishedAtAuthoritative", "upgradeDatePrecision",
     "titleSelector", "titleRegex", "titleAuthoritative", "summarySelector",
   ],
-  threadSelectors: ["post", "author", "content", "time", "likes", "floor", "quote", "title", "avatar"],
+  threadSelectors: ["post", "author", "content", "time", "likes", "floor", "quote", "title", "avatar", "totalReplies"],
+  communityComments: [
+    "enabled", "endpointTemplate", "endpoint", "maxPages", "maxComments", "pageSize", "minIntervalMs", "maxPostsPerRun",
+    "refreshMinutes", "normalRefreshMinutes", "hotRefreshMinutes",
+  ],
 };
 
 const VALUES: Record<string, string[]> = {

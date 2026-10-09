@@ -1,0 +1,439 @@
+- generic [ref=e3]:
+  - banner [ref=e4]: 【测试专用 / 合成数据 - SYNTHETIC FIXTURE - NO DB WRITE - NO LIVE CLAIM】
+  - navigation "测试视图切换" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 测试用例：
+      - button "全部预览 (All)" [ref=e8] [cursor=pointer]
+      - button "1. 论坛帖/长换行/引文/楼主补充 (ForumThread)" [ref=e9] [cursor=pointer]
+      - button "2. 多媒体画廊 (MediaGallery)" [ref=e10] [cursor=pointer]
+      - button "3. 零评论/部分覆盖 (No Comments)" [ref=e11] [cursor=pointer]
+      - button "4. 视频无字幕/简介非正文 (Video Missing Transcript)" [ref=e12] [cursor=pointer]
+      - button "5. 社交指标/超长URL防溢出 (Social Metrics)" [ref=e13] [cursor=pointer]
+      - button "6. community:null 回退通知 (Fallback Null)" [ref=e14] [cursor=pointer]
+      - button "7. 内容雷达/热议/比赛轮播 (ContentRadar)" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - text: "SCENARIO 1: ForumThread"
+        - heading "长换行评论 / 引文 / 楼主补充 / 超长无空格URL / 架构字段" [level=1] [ref=e19]
+      - generic "社区帖子" [ref=e20]:
+        - region "社区主帖" [ref=e21]:
+          - heading "原帖" [level=2] [ref=e22]
+          - generic [ref=e24]:
+            - generic [ref=e25]:
+              - generic [ref=e26]: 战术复盘老将[合成]
+              - generic [ref=e27]: 虎扑
+              - generic [ref=e28]: "#1楼"
+              - time [ref=e29]: 2026-10-09 16:15
+              - generic [ref=e30]: 👍 218
+              - generic [ref=e31]: 💬 42 条回复
+            - paragraph [ref=e32]: 总决赛首发阵容与首战失利深度复盘： 第一局BP阶段直接放出了对面的招牌大乔体系，但自身前期野区防守视野没有布好，导致开局两分钟直接被对方连续入侵反红。 第二局做出紧急调整变阵，选用鲁班大师搭配狄仁杰打出压制效果，但在14分钟主宰逼团阶段发生脱节失误。 大家如何评价今晚教练组的BP选择和临场执行？ 超长长链防溢出验证测试：https://bbs.hupu.com/synthetic-fixture-long-unbroken-url-query-parameter-scenario-0123456789abcdefghijklmnopqrstuvwxyz?verify=overflow_wrap_anywhere_test_anchor_check
+          - heading "楼主补充" [level=2] [ref=e34]
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - generic [ref=e39]: "回复评论 #op-1"
+              - generic [ref=e40]: 战术复盘老将[合成]
+              - generic [ref=e41]: 虎扑
+              - generic [ref=e42]: "#4楼"
+              - generic [ref=e43]: 楼主
+              - time [ref=e44]: 2026-10-09 16:45
+              - generic [ref=e45]: 👍 67
+              - generic [ref=e46]: 💬 9 条回复
+            - blockquote [ref=e47]:
+              - generic [ref=e48]: 前线观察员[合成]：
+              - text: 第一局打野在红区被抓那波太伤了，直接丢了第一条暗影暴君节奏。
+            - paragraph [ref=e49]: 【楼主赛后补充说明】： 看了官方放出的胜者组赛后麦克风回放，第一局在野区失守时队内沟通出现了判断冲突： 辅助位原本指挥撤退保蓝区，但打野误判了对方进野的速度。 后续第三局队伍的士气虽然有回暖，但细节处理仍需提升。
+        - region "高亮讨论" [ref=e50]:
+          - heading "高亮讨论" [level=2] [ref=e51]
+          - paragraph [ref=e52]:
+            - text: 采集于
+            - time [ref=e53]: 2026-10-09 17:30
+            - text: · 覆盖有限，不代表全部观众
+          - generic [ref=e54]:
+            - generic [ref=e55]: AI 整理
+            - text: 多数观众认为第一局野区失守为整场定下基调，后续变阵虽有亮点但执行力不足，鲁大体系逆风乏力。
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [aria-hidden] [ref=e58]: 资
+              - generic [ref=e59]:
+                - generic [ref=e60]:
+                  - generic [ref=e61]: "回复评论 #op-1"
+                  - generic [ref=e62]: 资深分析师_合成
+                  - generic [ref=e63]: 虎扑
+                  - generic [ref=e64]: "#2楼"
+                  - time [ref=e65]: 2026-10-09 17:00
+                  - generic [ref=e66]: 👍 135
+                  - generic [ref=e67]: 💬 16 条回复
+                - blockquote [ref=e68]:
+                  - generic [ref=e69]: 阵容研究员[合成]：
+                  - text: 鲁班大师配狄仁杰必须前期滚雪球，一旦陷入逆风局面守高地会异常被动。
+                - paragraph [ref=e70]: 非常认同楼主对第二局的分析。 中期鲁班大师其实拉到了两次非常关键的开团机会，但双C由于走位过于靠后导致伤害完全脱节。 在现版本快节奏对抗中，一旦前中期没有打出绝对经济差，大乔体系后期的拉扯容错率确实太高了。
+            - generic [ref=e71]:
+              - generic [aria-hidden] [ref=e72]: 边
+              - generic [ref=e73]:
+                - generic [ref=e74]:
+                  - generic [ref=e75]: "回复评论 #rep-1"
+                  - generic [ref=e76]: 边路抗压王_合成
+                  - generic [ref=e77]: 虎扑
+                  - generic [ref=e78]: "#6楼"
+                  - time [ref=e79]: 2026-10-09 17:12
+                  - generic [ref=e80]: 👍 58
+                  - generic [ref=e81]: 💬 5 条回复
+                - paragraph [ref=e82]: 同意楼上分析。中路法师的支援路线被对方辅助完全卡死，每次边路碰撞都少一个人。 移动端极长无空格字符串溢出测试：https://bbs.hupu.com/fixture/test/very_long_unbroken_string_with_no_spaces_or_breaks_abcdefghijklmnopqrstuvwxyz0123456789_end
+          - generic [ref=e83]:
+            - generic [ref=e84]: 共 384 条评论 · 已采集 25 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e85] [cursor=pointer]:
+              - /url: https://bbs.hupu.com/synthetic-fixture-thread-001
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - text: "SCENARIO 2: ContentRenderer + MediaGallery"
+        - heading "多媒体图片与视频海报网格呈现" [level=1] [ref=e88]
+      - generic "社区帖子" [ref=e89]:
+        - region "社区主帖" [ref=e90]:
+          - heading "原帖" [level=2] [ref=e91]
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - generic [ref=e95]: 战术复盘老将[合成]
+              - generic [ref=e96]: 虎扑
+              - generic [ref=e97]: "#1楼"
+              - time [ref=e98]: 2026-10-09 16:15
+              - generic [ref=e99]: 👍 218
+              - generic [ref=e100]: 💬 42 条回复
+            - paragraph [ref=e101]: 总决赛首发阵容与首战失利深度复盘： 第一局BP阶段直接放出了对面的招牌大乔体系，但自身前期野区防守视野没有布好，导致开局两分钟直接被对方连续入侵反红。 第二局做出紧急调整变阵，选用鲁班大师搭配狄仁杰打出压制效果，但在14分钟主宰逼团阶段发生脱节失误。 大家如何评价今晚教练组的BP选择和临场执行？ 超长长链防溢出验证测试：https://bbs.hupu.com/synthetic-fixture-long-unbroken-url-query-parameter-scenario-0123456789abcdefghijklmnopqrstuvwxyz?verify=overflow_wrap_anywhere_test_anchor_check
+          - heading "楼主补充" [level=2] [ref=e103]
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]: "回复评论 #op-1"
+              - generic [ref=e109]: 战术复盘老将[合成]
+              - generic [ref=e110]: 虎扑
+              - generic [ref=e111]: "#4楼"
+              - generic [ref=e112]: 楼主
+              - time [ref=e113]: 2026-10-09 16:45
+              - generic [ref=e114]: 👍 67
+              - generic [ref=e115]: 💬 9 条回复
+            - blockquote [ref=e116]:
+              - generic [ref=e117]: 前线观察员[合成]：
+              - text: 第一局打野在红区被抓那波太伤了，直接丢了第一条暗影暴君节奏。
+            - paragraph [ref=e118]: 【楼主赛后补充说明】： 看了官方放出的胜者组赛后麦克风回放，第一局在野区失守时队内沟通出现了判断冲突： 辅助位原本指挥撤退保蓝区，但打野误判了对方进野的速度。 后续第三局队伍的士气虽然有回暖，但细节处理仍需提升。
+        - region "高亮讨论" [ref=e119]:
+          - heading "高亮讨论" [level=2] [ref=e120]
+          - paragraph [ref=e121]:
+            - text: 采集于
+            - time [ref=e122]: 2026-10-09 17:30
+            - text: · 覆盖有限，不代表全部观众
+          - generic [ref=e123]:
+            - generic [ref=e124]: AI 整理
+            - text: 多数观众认为第一局野区失守为整场定下基调，后续变阵虽有亮点但执行力不足，鲁大体系逆风乏力。
+          - generic [ref=e125]:
+            - generic [ref=e126]:
+              - generic [aria-hidden] [ref=e127]: 资
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - generic [ref=e130]: "回复评论 #op-1"
+                  - generic [ref=e131]: 资深分析师_合成
+                  - generic [ref=e132]: 虎扑
+                  - generic [ref=e133]: "#2楼"
+                  - time [ref=e134]: 2026-10-09 17:00
+                  - generic [ref=e135]: 👍 135
+                  - generic [ref=e136]: 💬 16 条回复
+                - blockquote [ref=e137]:
+                  - generic [ref=e138]: 阵容研究员[合成]：
+                  - text: 鲁班大师配狄仁杰必须前期滚雪球，一旦陷入逆风局面守高地会异常被动。
+                - paragraph [ref=e139]: 非常认同楼主对第二局的分析。 中期鲁班大师其实拉到了两次非常关键的开团机会，但双C由于走位过于靠后导致伤害完全脱节。 在现版本快节奏对抗中，一旦前中期没有打出绝对经济差，大乔体系后期的拉扯容错率确实太高了。
+            - generic [ref=e140]:
+              - generic [aria-hidden] [ref=e141]: 边
+              - generic [ref=e142]:
+                - generic [ref=e143]:
+                  - generic [ref=e144]: "回复评论 #rep-1"
+                  - generic [ref=e145]: 边路抗压王_合成
+                  - generic [ref=e146]: 虎扑
+                  - generic [ref=e147]: "#6楼"
+                  - time [ref=e148]: 2026-10-09 17:12
+                  - generic [ref=e149]: 👍 58
+                  - generic [ref=e150]: 💬 5 条回复
+                - paragraph [ref=e151]: 同意楼上分析。中路法师的支援路线被对方辅助完全卡死，每次边路碰撞都少一个人。 移动端极长无空格字符串溢出测试：https://bbs.hupu.com/fixture/test/very_long_unbroken_string_with_no_spaces_or_breaks_abcdefghijklmnopqrstuvwxyz0123456789_end
+          - generic [ref=e152]:
+            - generic [ref=e153]: 共 384 条评论 · 已采集 25 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e154] [cursor=pointer]:
+              - /url: https://weibo.com/synthetic-fixture-media-002
+      - generic [ref=e155]:
+        - button "查看大图：赛后战术热图 [合成测试]" [ref=e156]:
+          - img "赛后战术热图 [合成测试]" [ref=e157]
+        - button "查看大图：决胜团关键装备面板 [合成测试]" [ref=e158]:
+          - img "决胜团关键装备面板 [合成测试]" [ref=e159]
+        - link "打开原推播放视频" [ref=e160] [cursor=pointer]:
+          - /url: https://weibo.com/synthetic-fixture-media-002
+          - img "团战高光片段预览 [合成测试]" [ref=e161]
+    - generic [ref=e166]:
+      - generic [ref=e167]:
+        - text: "SCENARIO 3: CommunityFeedback (No Comments)"
+        - heading "零评论 / 采集部分覆盖 · 必须保留原文链接与空状态提示" [level=1] [ref=e168]
+      - region "高亮讨论" [ref=e169]:
+        - heading "高亮讨论" [level=2] [ref=e170]
+        - paragraph [ref=e171]:
+          - text: 采集于
+          - time [ref=e172]: 2026-10-09 18:05
+          - text: · 覆盖有限，不代表全部观众
+        - generic [ref=e173]:
+          - paragraph [ref=e174]: 仅采集部分讨论，暂无高价值评论入选。
+          - link "前往原文查看全部评论 ↗" [ref=e175] [cursor=pointer]:
+            - /url: https://bbs.hupu.com/synthetic-fixture-zero-replies-003
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - text: "SCENARIO 4: VideoContent (Missing Transcript)"
+        - heading "视频缺失字幕：简介独立呈现，禁止伪造正文与AI视频总结" [level=1] [ref=e178]
+      - generic [ref=e179]:
+        - region "视频内容" [ref=e180]:
+          - generic [ref=e181]:
+            - link "视频封面 7:15":
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004
+              - img "视频封面"
+              - generic [ref=e182] [cursor=pointer]: 7:15
+            - generic [ref=e183]:
+              - generic [ref=e184]: 视频信息
+              - generic [ref=e185]:
+                - generic [ref=e186]: 7:15
+                - generic [ref=e187]: 时长
+              - generic [ref=e188]:
+                - generic [ref=e189]: 18.5万
+                - generic [ref=e190]: 播放
+              - generic [ref=e191]:
+                - generic [ref=e192]: 1.2万
+                - generic [ref=e193]: 点赞
+              - generic [ref=e194]:
+                - generic [ref=e195]: "890"
+                - generic [ref=e196]: 评论
+              - generic [ref=e197]:
+                - generic [ref=e198]: "4300"
+                - generic [ref=e199]: 收藏
+              - generic [ref=e200]:
+                - generic [ref=e201]: "2100"
+                - generic [ref=e202]: 投币
+              - generic [ref=e203]:
+                - generic [ref=e204]: "1560"
+                - generic [ref=e205]: 弹幕
+            - generic [ref=e206]:
+              - heading "视频简介" [level=2] [ref=e207]
+              - paragraph [ref=e208]: 【总决赛深度复盘】第五局关键团战逐帧解析： 从红区视野争夺到后排绕后切入的完整战术路径拆解。 （声明：本段文字为创作者投稿原始简介，非AI正文，且视频未提取到逐字字幕）。
+            - link "打开原视频 ↗" [ref=e210] [cursor=pointer]:
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004
+        - region "视频讨论" [ref=e211]:
+          - heading "视频讨论" [level=2] [ref=e212]
+          - paragraph [ref=e213]:
+            - text: 采集于
+            - time [ref=e214]: 2026-10-09 19:00
+          - generic [ref=e215]:
+            - generic [ref=e216]: AI 整理
+            - text: 观众普遍赞赏视频中对龙王团战绕后走位的拆解，认为辅助排眼时机是胜负手。
+          - generic [ref=e218]:
+            - generic [aria-hidden] [ref=e219]: 弹
+            - generic [ref=e220]:
+              - generic [ref=e221]:
+                - generic [ref=e222]: "回复评论 #v-op"
+                - generic [ref=e223]: 弹幕课代表[合成]
+                - generic [ref=e224]: B站
+                - generic [ref=e225]: "#2楼"
+                - time [ref=e226]: 2026-10-09 18:45
+                - generic [ref=e227]: 👍 92
+                - generic [ref=e228]: 💬 7 条回复
+              - paragraph [ref=e229]: 3分15秒那个绕后视野卡得太漂亮了，完全避开了对方辅助探草的范围。
+          - generic [ref=e230]:
+            - generic [ref=e231]: 共 890 条评论 · 已采集 40 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e232] [cursor=pointer]:
+              - /url: https://www.bilibili.com/video/BV1fixtureSyntheticVideo004
+    - generic [ref=e233]:
+      - generic [ref=e234]:
+        - text: "SCENARIO 5: SocialPost (Metrics & Unbroken URL)"
+        - heading "社交互动指标 / 引用帖 / 超长无空格URL自动换行防溢出" [level=1] [ref=e235]
+      - generic [ref=e236]:
+        - region "动态" [ref=e237]:
+          - generic [ref=e238]:
+            - paragraph [ref=e239]: 【赛后发布会现场】 恭喜队伍斩获今晚胜者组对决的胜利！全员状态拉满，决胜局展现了极致的韧性。 感谢所有在现场和直播间守候支持的粉丝朋友们，下周总决赛见！ 超长链接测试：https://weibo.com/detail/synthetic_fixture_social_post_very_long_url_with_no_whitespace_to_ensure_zero_overflow_wrap_anywhere_compliance
+            - blockquote [ref=e240]:
+              - generic [ref=e241]: 引用 KPL赛事官方[合成]
+              - text: 【全场最佳选手公布】本场MVP选手在决胜局输出占比高达38.5%，多次在关键团战打出毁灭性伤害。
+            - generic [ref=e242]:
+              - generic [ref=e243]:
+                - generic [ref=e244]: 52.0万
+                - generic [ref=e245]: 阅读
+              - generic [ref=e246]:
+                - generic [ref=e247]: 2.3万
+                - generic [ref=e248]: 点赞
+              - generic [ref=e249]:
+                - generic [ref=e250]: "1450"
+                - generic [ref=e251]: 评论
+              - generic [ref=e252]:
+                - generic [ref=e253]: "320"
+                - generic [ref=e254]: 转发
+              - generic [ref=e255]:
+                - generic [ref=e256]: "890"
+                - generic [ref=e257]: 收藏
+        - region "动态评论" [ref=e258]:
+          - heading "动态评论" [level=2] [ref=e259]
+          - paragraph [ref=e260]:
+            - text: 采集于
+            - time [ref=e261]: 2026-10-09 19:45
+            - text: · 覆盖有限，不代表全部观众
+          - generic [ref=e262]:
+            - generic [ref=e263]: AI 整理
+            - text: 社交平台讨论以祝贺晋级和盛赞选手决胜局大心脏表现为主。
+          - generic [ref=e265]:
+            - generic [aria-hidden] [ref=e266]: 忠
+            - generic [ref=e267]:
+              - generic [ref=e268]:
+                - generic [ref=e269]: "回复评论 #s-op"
+                - generic [ref=e270]: 忠实粉丝小王[合成]
+                - generic [ref=e271]: 微博
+                - generic [ref=e272]: "#2楼"
+                - time [ref=e273]: 2026-10-09 19:40
+                - generic [ref=e274]: 👍 77
+                - generic [ref=e275]: 💬 4 条回复
+              - paragraph [ref=e276]: 满分不怕骄傲！特别是最后一局逆风翻盘，心态太沉稳了。
+          - generic [ref=e277]:
+            - generic [ref=e278]: 共 1450 条评论 · 已采集 30 条 · 仅展示精选讨论
+            - link "查看完整讨论 ↗" [ref=e279] [cursor=pointer]:
+              - /url: https://weibo.com/detail/fixtureSyntheticSocial005
+    - generic [ref=e280]:
+      - generic [ref=e281]:
+        - text: "SCENARIO 6: Fallback Community Null"
+        - 'heading "community: null 时必须呈现空状态提示与原文直达锚点" [level=1] [ref=e282]'
+      - generic [ref=e283]:
+        - generic [ref=e284]:
+          - 'heading "论坛帖子形式 (forum_thread with community: null)" [level=2] [ref=e285]'
+          - region "社区讨论" [ref=e286]:
+            - heading "社区讨论" [level=2] [ref=e287]
+            - generic [ref=e288]:
+              - paragraph [ref=e289]: 评论暂不可用，未生成替代评论。
+              - link "前往原文查看讨论 ↗" [ref=e290] [cursor=pointer]:
+                - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+        - generic [ref=e291]:
+          - 'heading "视频形式 (video_post with community: null)" [level=2] [ref=e292]'
+          - generic [ref=e293]:
+            - region "视频内容" [ref=e294]:
+              - generic [ref=e295]:
+                - link "视频封面 3:00":
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+                  - img "视频封面"
+                  - generic [ref=e296] [cursor=pointer]: 3:00
+                - generic [ref=e297]:
+                  - generic [ref=e298]: 视频信息
+                  - generic [ref=e299]:
+                    - generic [ref=e300]: 3:00
+                    - generic [ref=e301]: 时长
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: 1.2万
+                    - generic [ref=e304]: 播放
+                  - generic [ref=e305]:
+                    - generic [ref=e306]: "800"
+                    - generic [ref=e307]: 点赞
+                  - generic [ref=e308]:
+                    - generic [ref=e309]: "60"
+                    - generic [ref=e310]: 评论
+                  - generic [ref=e311]:
+                    - generic [ref=e312]: "120"
+                    - generic [ref=e313]: 收藏
+                - generic [ref=e314]:
+                  - heading "视频简介" [level=2] [ref=e315]
+                  - paragraph [ref=e316]: 短视频集锦 [合成测试]
+                - link "打开原视频 ↗" [ref=e318] [cursor=pointer]:
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+            - region "视频讨论" [ref=e319]:
+              - heading "视频讨论" [level=2] [ref=e320]
+              - generic [ref=e321]:
+                - paragraph [ref=e322]: 评论暂不可用，未生成替代评论。
+                - link "前往原文查看讨论 ↗" [ref=e323] [cursor=pointer]:
+                  - /url: https://bbs.hupu.com/synthetic-fixture-fallback-null-006
+    - generic [ref=e324]:
+      - generic [ref=e325]:
+        - text: "SCENARIO 7: ContentRadar"
+        - heading "内容雷达：焦点话题、比赛速览横向轮播、社区热议与观点依据" [level=1] [ref=e326]
+      - region "KPL内容雷达" [ref=e327]:
+        - region [ref=e328]:
+          - generic [ref=e329]:
+            - heading "圈内焦点" [level=2] [ref=e330]
+            - generic [ref=e331]: 近期最值得关注的讨论
+          - generic [ref=e332]:
+            - article [ref=e333]:
+              - generic [ref=e334]:
+                - generic [ref=e335]: 观点
+                - generic [ref=e336]: 1 条来源
+                - time [ref=e337]: 10/10 02:30
+              - heading "【合成测试】胜者组决赛第七局巅峰对决预测与双方选手状态讨论" [level=3] [ref=e338]
+              - paragraph [ref=e339]: 双方近期交手记录互有胜负，打野英雄池重叠度极高。若战至巅峰对决，中野联动将成为胜负关键手。
+              - group [ref=e340]:
+                - generic "查看来源与观点" [ref=e341] [cursor=pointer]
+            - article [ref=e345]:
+              - generic [ref=e346]:
+                - generic [ref=e347]: 事实陈述
+                - generic [ref=e348]: 1 条来源
+                - time [ref=e349]: 10/10 01:00
+              - heading "【合成测试】版本热门打野梯度变动与BP优先级演化" [level=3] [ref=e350]
+              - paragraph [ref=e351]: 随着防御装备微调，重装打野在团战承伤方面表现出色，但也牺牲了一定切后排能力。
+              - group [ref=e352]:
+                - generic "查看来源与观点" [ref=e353] [cursor=pointer]
+        - region [ref=e356]:
+          - generic [ref=e357]:
+            - heading "比赛速览" [level=2] [ref=e358]
+            - link "全部赛程" [ref=e360] [cursor=pointer]:
+              - /url: /matches
+          - region "比赛卡片，可横向滑动" [ref=e363]:
+            - generic [ref=e364]:
+              - generic [ref=e365]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]: 进行中
+                  - generic [ref=e368]: 10/10 03:00 · BO7
+                - heading "成都AG超玩会 vs 重庆狼队，3 比 2" [level=3] [ref=e369]:
+                  - generic [ref=e370]:
+                    - generic [ref=e371]:
+                      - generic [aria-hidden] [ref=e372]: 成都
+                      - generic [ref=e373]: 成都AG
+                    - generic [ref=e374]: "3"
+                  - generic [ref=e375]:
+                    - generic [ref=e376]:
+                      - generic [aria-hidden] [ref=e377]: 重庆
+                      - generic [ref=e378]: 重庆狼队
+                    - generic [ref=e379]: "2"
+                - button "展开 成都AG超玩会 vs 重庆狼队 时间线" [ref=e380] [cursor=pointer]:
+                  - generic [ref=e381]: 展开时间线 · 1 条报道
+              - link "比赛档案与报道" [ref=e384] [cursor=pointer]:
+                - /url: /matches/match-fixture-101
+        - region [ref=e387]:
+          - region [ref=e388]:
+            - generic [ref=e390]:
+              - heading "社区声音与热议" [level=2] [ref=e391]
+              - text: 玩家观点、二创趣评与圈内讨论优先呈现
+            - article [ref=e393]:
+              - generic [ref=e394]:
+                - generic [ref=e395]: 观点
+                - generic [aria-hidden] [ref=e396]: ·
+                - generic [ref=e397]: 虎扑王者荣耀社区[合成]
+                - generic [ref=e398]: hupu
+                - generic [ref=e399]: 第 1 局
+                - time [ref=e400]: 10/10 03:30
+              - link "【合成测试】网友热议教练赛后BP选择：大乔体系放得是否太冒险？" [ref=e401] [cursor=pointer]:
+                - /url: https://bbs.hupu.com/synthetic-radar-standalone-001
+              - paragraph [ref=e404]: 部分网友认为首局BP过于自负，另一部分球迷则认为旨在探寻对方底牌，争论热度较高。
+              - blockquote [ref=e405]:
+                - generic [ref=e406]: 精选讨论预览
+                - generic [ref=e407]: 虎扑JRs_合成：
+                - text: 第一局真的不能这么轻易放大乔，哪怕自己不拿也应该送上Ban位。
+              - group [ref=e408]:
+                - generic "来源与判断依据" [ref=e409] [cursor=pointer]
+          - region [ref=e412]:
+            - generic [ref=e413]:
+              - heading "重要事实与赛事实报" [level=2] [ref=e414]
+              - text: 官方公告、赛况简报与已核实资讯独立收录
+            - article [ref=e416]:
+              - generic [ref=e417]:
+                - generic [ref=e418]: 事实陈述
+                - generic [aria-hidden] [ref=e419]: ·
+                - generic [ref=e420]: 王者荣耀职业联赛官方[合成]
+                - generic [ref=e421]: other
+                - time [ref=e422]: 10/09 23:00
+              - link "【合成测试】总决赛门票预售开启与场馆交通指南" [ref=e423] [cursor=pointer]:
+                - /url: https://example.com/official-ticket-notice
+              - paragraph [ref=e426]: 官方发布2026KPL春季赛总决赛购票须知与观众进场安检提示。
+              - group [ref=e427]:
+                - generic "来源与判断依据" [ref=e428] [cursor=pointer]
+        - group [ref=e431]:
+          - generic "关于内容筛选与热度" [ref=e432] [cursor=pointer]

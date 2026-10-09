@@ -1,3 +1,5 @@
+import type { DiscussionPostView } from "./site.ts";
+
 export type RadarKind = 'official' | 'match' | 'controversy' | 'analysis' | 'fun' | 'activity';
 export interface RadarScore {
   version: string; base: number; official: number; heat: number | null; noise: number; total: number;
@@ -6,9 +8,12 @@ export interface RadarScore {
 }
 export interface RadarMaterial {
   id: string; title: string; summary: string; source: string; url: string;
+  itemUrl?: string | null;
   publishedAt: string | null; kind: RadarKind; score: RadarScore;
   claimStatus: 'fact' | 'opinion' | 'rumor' | 'joke';
   stance: string | null; evidence: string[]; matchId: string | null; gameNo: number | null;
+  commentPreview?: DiscussionPostView | null;
+  platform?: 'weibo' | 'bilibili' | 'hupu' | string | null;
 }
 export interface RadarTopic {
   id: number; title: string; updatedAt: string; score: number; materials: RadarMaterial[];

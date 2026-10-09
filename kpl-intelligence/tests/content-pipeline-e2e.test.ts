@@ -10,9 +10,11 @@ import { config } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
 import { stopBoss } from "@aihot/backend/jobs/queue";
 import { collectSource } from "@aihot/backend/sources/collect";
-import { loadItemDetail } from "@aihot/backend/publication/detail";
+import { exportMarkdown, loadItemDetail } from "@aihot/backend/publication/detail";
 import { publishArticle } from "@aihot/backend/publication/publish";
+import { canonicalEvidenceHash } from "@aihot/backend/publication/rules";
 import { toContentView } from "@aihot/backend/publication/items";
+import { RADAR } from "@aihot/industry/radar";
 
 const T = tag();
 const HUPU_THREAD = `<!DOCTYPE html><html><body>
@@ -78,14 +80,59 @@ test("collect 的 detail 路径把论坛帖抽成 forum_thread 并落 canonical 
 
   // Site Contract：详情页携带内容视图，评论在 community 里、不在正文里。
   await publishArticle(row!.id);
-  const detail = await loadItemDetail(row!.id);
-  assert.equal(detail.kind, "found");
-  const item = (detail as { kind: "found"; item: { content: ReturnType<typeof toContentView>; body: { zh: string | null } | null } }).item;
+
+  // 1. 未经审核状态（Pending）：
+  // 详情页 200 可访问，主帖与作者保留，评论因待安全审核而扣留，body 与 Markdown 绝不泄露未审核评论。
+  const detailPending = await loadItemDetail(row!.id);
+  assert.equal(detailPending.kind, "found");
+  const itemPending = detailPending.item;
+  assert.equal(itemPending.content?.kind, "forum_thread");
+  assert.equal(itemPending.content?.community?.originalPost.author, "数据帝");
+  assert.ok(itemPending.content?.community?.originalPost.text.includes("第一条大龙的争夺"));
+  assert.ok(!itemPending.content?.community?.originalPost.text.includes("路人乙"));
+  assert.deepEqual(itemPending.content?.community?.highlightedReplies, [], "未审核评论应扣留");
+  assert.equal(itemPending.content?.community?.collection?.coverage, "unavailable");
+  assert.equal(itemPending.content?.community?.collection?.error, "pendingSafetyReview");
+  assert.ok(!itemPending.body?.zh?.includes("路人乙"), "正文 HTML 绝不泄露未审核社区讨论");
+  const mdPending = await exportMarkdown(row!.id);
+  assert.ok(mdPending && !mdPending.body.includes("路人乙"), "Markdown 导出绝不泄露未审核讨论");
+
+  // 2. 真实审核通过状态（Approved Assessment）：
+  // 经 Radar 审核认定 safe 并写入 accepted 评估及匹配证据哈希后，社区回复安全展示。
+  const hash = canonicalEvidenceHash(canonical);
+  const safeJudgment = {
+    relevant: true,
+    safe: true,
+    kind: "controversy",
+    title: canonical.title,
+    summary: "决赛中野对决讨论",
+    claimStatus: "opinion",
+    stance: "中立",
+    evidence: [canonical.title],
+    topicKey: null,
+    information: 80,
+    interpretation: 80,
+    distinctiveness: 80,
+    timeliness: 85,
+    interest: 85,
+    noise: 5,
+    newDevelopment: false,
+    reason: "赛前前瞻讨论",
+  };
+  await sql`INSERT INTO radar_materials (article_id, input_revision, state, kind, title, summary, claim_status, stance, evidence, judgment,
+    base_score, official_bonus, noise, score_version, reason, input_evidence_hash)
+    VALUES (${row!.id}, 1, 'accepted', 'controversy', ${canonical.title}, '决赛中野对决讨论', 'opinion', '中立',
+      ${sql.json([canonical.title])}, ${sql.json(safeJudgment)}, 80, 0, 0, ${RADAR.version}, '赛前前瞻讨论', ${hash})`;
+
+  const detailApproved = await loadItemDetail(row!.id);
+  assert.equal(detailApproved.kind, "found");
+  const item = detailApproved.item;
   assert.equal(item.content?.kind, "forum_thread");
   assert.equal(item.content?.community?.originalPost.author, "数据帝");
-  assert.ok(item.content!.community!.highlightedReplies.some((r) => r.author === "路人乙"));
+  assert.ok(item.content!.community!.highlightedReplies.some((r) => r.author === "路人乙"), "审核通过后展示高亮评论");
   assert.ok(item.content!.community!.originalPost.likes === 188);
   assert.ok(!item.content!.community!.originalPost.text.includes("路人乙"));
+  assert.equal(item.content!.community!.collection?.coverage, "partial");
 
   // 安全与授权约束：当未授权全文 (body_mode !== 'full') 或正文未确认时，toContentView 绝不泄露社区全文
   const [pubRow] = await sql<any[]>`SELECT * FROM publications WHERE article_id = ${row!.id}`;

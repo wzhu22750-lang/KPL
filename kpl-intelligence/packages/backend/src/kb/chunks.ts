@@ -5,6 +5,8 @@
 import { createHash } from "node:crypto";
 import { beijingDate } from "@aihot/contracts/time";
 import { sql } from "../db.ts";
+import { canonicalOriginalText } from "../content/canonical.ts";
+import type { CanonicalContent } from "../content/extractors/types.ts";
 import { ensureEmbeddings, embeddingsAvailable } from "../providers/embeddings.ts";
 
 const CHUNK_TARGET = 800; // 组块目标大小（字符，中文）
@@ -82,8 +84,9 @@ export async function rebuildArticleChunks(articleId: string): Promise<number> {
     body_text: string | null;
     content_kind: string | null;
     content_quality_score: number | null;
+    canonical_content: CanonicalContent | null;
   }[]>`
-    SELECT title, body_text, content_kind, content_quality_score FROM articles WHERE id = ${articleId}`;
+    SELECT title, body_text, content_kind, content_quality_score, canonical_content FROM articles WHERE id = ${articleId}`;
   if (!article) return 0;
 
   // 社交动态 (social_post) 准入守卫：仅当质量分 >= 70 时方可切块入库
@@ -95,7 +98,10 @@ export async function rebuildArticleChunks(articleId: string): Promise<number> {
     }
   }
 
-  return writeChunks("article", articleId, article.title, article.body_text ? chunkText(article.body_text) : []);
+  const text = article.canonical_content?.discussion
+    ? canonicalOriginalText(article.canonical_content)
+    : article.body_text;
+  return writeChunks("article", articleId, article.title, text ? chunkText(text) : []);
 }
 
 interface MatchRow {

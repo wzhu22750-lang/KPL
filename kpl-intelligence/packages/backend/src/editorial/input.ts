@@ -1,6 +1,8 @@
 // What the judging steps read about an article: loaded once per analysis and rendered per step.
 import { beijingDate, beijingTime } from "@aihot/contracts/time";
 import { sql } from "../db.ts";
+import { canonicalOriginalText } from "../content/canonical.ts";
+import type { CanonicalContent } from "../content/extractors/types.ts";
 import { collapseWhitespace, truncate } from "../lib/text.ts";
 import { produceImage } from "../media/images.ts";
 import type { ContentPart } from "../providers/llm.ts";
@@ -37,6 +39,8 @@ export interface AnalyzeInputArticle {
   };
   /** Stored Chinese translation of the body (e.g. a full post whose original was truncated). */
   translationZh?: string | null;
+  /** Replies remain discussion evidence, not original factual material. */
+  discussionExcluded?: boolean;
 }
 
 /**
@@ -54,23 +58,29 @@ export async function loadAnalyzeInput(articleId: string): Promise<AnalyzeInputA
     id: string; revision: number; title: string; url: string; author: string | null; published_at: Date | null; discovered_at: Date;
     body_text: string | null; excerpt: string | null; body_status: string; content_kind: string | null; x_post: Record<string, any> | null; x_article: { title?: string; text?: string } | null;
     media: Array<Record<string, any>>; source_name: string; source_kind: string; tier: string; first_party: boolean; source_tags: string[]; owner_entity_id: string | null; owner_type: string | null;
-    config: Record<string, any>; translation_zh: string | null;
+    config: Record<string, any>; translation_zh: string | null; canonical_content: CanonicalContent | null;
   }[]>`
-    SELECT a.id, a.revision, a.title, a.url, a.author, a.published_at, a.discovered_at, a.body_text, a.excerpt, a.body_status, a.content_kind, a.x_post, a.x_article, a.media,
+    SELECT a.id, a.revision, a.title, a.url, a.author, a.published_at, a.discovered_at, a.body_text, a.excerpt, a.body_status, a.content_kind, a.x_post, a.x_article, a.media, a.canonical_content,
            s.name AS source_name, s.kind AS source_kind, s.tier, s.first_party, s.tags AS source_tags, s.owner_entity_id, s.owner_type, s.config,
            tr.body_text AS translation_zh
     FROM articles a JOIN sources s ON s.id = a.source_id
     LEFT JOIN translations tr ON tr.article_id = a.id AND tr.lang = 'zh' AND tr.revision >= a.revision
     WHERE a.id = ${articleId}`;
   if (!row) return null;
+  const discussionExcluded = Boolean(row.canonical_content?.discussion);
   return {
     id: row.id, revision: row.revision, title: row.title, url: row.url, author: row.author, publishedAt: row.published_at, discoveredAt: row.discovered_at,
-    bodyText: row.body_text, excerpt: row.excerpt, bodyStatus: row.body_status, contentKind: row.content_kind, xPost: withXArticle(row.x_post, row.x_article), media: row.media,
+    bodyText: discussionExcluded ? canonicalOriginalText(row.canonical_content!) : row.body_text,
+    excerpt: discussionExcluded ? null : row.excerpt,
+    bodyStatus: row.body_status, contentKind: row.content_kind,
+    xPost: discussionExcluded ? null : withXArticle(row.x_post, row.x_article), media: row.media,
+    discussionExcluded,
     source: {
       name: row.source_name, kind: row.source_kind, tier: row.tier, firstParty: row.tier === "T1", tags: row.source_tags, ownerEntityId: row.owner_entity_id, ownerType: row.owner_type,
       fetchesBody: row.config?.fetchPublicContent === true || !!row.config?.detail || row.source_kind === "web_list",
     },
-    translationZh: row.translation_zh,
+    // A cached translation may contain flattened replies and shares the article revision.
+    translationZh: discussionExcluded ? null : row.translation_zh,
   };
 }
 

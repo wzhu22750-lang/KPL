@@ -287,7 +287,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
   const typedContent = item.content ?? null;
   const renderTyped = !!(
     typedContent && (
-      (typedContent.kind === "forum_thread" && !!typedContent.community) ||
+      (typedContent.kind === "forum_thread") ||
       (typedContent.kind === "video_post" && !!typedContent.video) ||
       (typedContent.kind === "social_post" && !isX && !!typedContent.social)
     )

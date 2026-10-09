@@ -154,7 +154,10 @@ test("虎扑帖子：主帖与评论分离，楼主补充成组，纯水回复�
   // 主帖正文不含评论文本
   const opHtml = c.main.map((b) => ("text" in b ? b.text : "")).join("");
   assert.ok(!opHtml.includes("狼队铁粉"), "replies never mix into the original post");
-  assert.equal(c.engagement?.comments, 4);
+  assert.equal(c.engagement?.comments, null, "fixture declares no platform-wide count; sample is not the total");
+  assert.equal(c.discussion?.totalReplies, null);
+  assert.equal(c.discussion?.fetchedReplies, 4);
+  assert.equal(c.discussion?.collection?.coverage, "partial");
 });
 
 // ---------------------------------------------------------------------------

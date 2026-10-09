@@ -97,7 +97,69 @@ test("collect: 置顶旧帖不使水印倒退，重复 token 结束循环", asyn
   assert.equal(res.nextCursor?.lastMid, "106", "置顶的旧帖 102 不能把水印从 106 拖回旧值");
   assert.equal(seen.length, 3);
   assert.deepEqual(seen, ["page1", "T1", "T2"], "服务端重复返回同一 token 时结束，不死循环");
-  assert.equal(res.nextCursor?.pageSinceId, null);
+  assert.equal(res.detail?.coverage, "partial", "重复 token 判定为 partial 失败而非到达终点");
+  assert.equal(res.detail?.reachedEnd, false, "重复 token 不是到达终点的证据");
+  assert.match(String(res.incompleteReason), /repeated pagination token/, "提供管理员/诊断原因");
+  assert.equal(res.nextCursor?.stableWatermark, "100", "重复 token 绝不推进稳定水位线");
+  assert.equal(res.nextCursor?.pendingWatermark, "106", "保留待追平水位线");
+  assert.equal(res.nextCursor?.pageSinceId, "T2", "保留断点游标，防止跳页漏抓");
+});
+
+test("reviewer example regression: resuming backlog { ok: 1, data: {} } malformed response fails first page without advancing watermark or erasing cursor", async () => {
+  stub(() => json({ ok: 1, data: {} }));
+  const resumeCursor = {
+    lastMid: "106",
+    stableWatermark: "100",
+    pendingWatermark: "106",
+    pageSinceId: "TOKEN_P1",
+  };
+  await assert.rejects(
+    () => new WeiboAdapter().collect(source(), resumeCursor),
+    /failed to fetch mblogs/,
+    "回溯积压第 1 页遇到缺失 cards 的畸形响应必须抛出异常，触发 collectSource 捕获并保留原有数据库游标"
+  );
+});
+
+test("strict API envelope: truthy ok of other types (ok: true, ok: '1') is rejected", async () => {
+  for (const badOk of [true, "1", "true", 2]) {
+    stub(() => json({ ok: badOk, data: { cards: [card("106")] } }));
+    await assert.rejects(
+      () => new WeiboAdapter().collect(source(), { lastMid: "100" }),
+      /failed to fetch mblogs/,
+      `ok: ${JSON.stringify(badOk)} 必须被严格拒绝`
+    );
+  }
+});
+
+test("collect: repeated token with no items preserves cursor, prevents skip, and sets admin reason", async () => {
+  stub((url) => {
+    const since = new URL(url).searchParams.get("since_id");
+    if (!since) return json({ ok: 1, data: { cards: [card("106")], cardlistInfo: { since_id: "T1" } } });
+    return json({ ok: 1, data: { cards: [], cardlistInfo: { since_id: "T1" } } });
+  });
+  const res = await new WeiboAdapter().collect(source(), { lastMid: "100" });
+  assert.deepEqual(res.rawItems.map((m) => m.id), ["106"]);
+  assert.equal(res.detail?.coverage, "partial");
+  assert.equal(res.detail?.reachedEnd, false);
+  assert.match(String(res.incompleteReason), /repeated pagination token T1 with no items/);
+  assert.equal(res.nextCursor?.stableWatermark, "100");
+  assert.equal(res.nextCursor?.pendingWatermark, "106");
+  assert.equal(res.nextCursor?.pageSinceId, "T1", "preserve cursor to prevent skipping");
+});
+
+test("collect: later page malformed { ok: 1, data: {} } keeps good raw items and returns incompleteReason without advancing watermark", async () => {
+  stub((url) => {
+    const since = new URL(url).searchParams.get("since_id");
+    if (!since) return json({ ok: 1, data: { cards: [card("106")], cardlistInfo: { since_id: "T1" } } });
+    return json({ ok: 1, data: {} });
+  });
+  const res = await new WeiboAdapter().collect(source(), { lastMid: "100" });
+  assert.deepEqual(res.rawItems.map((m) => m.id), ["106"]);
+  assert.equal(res.detail?.coverage, "partial");
+  assert.equal(res.nextCursor?.stableWatermark, "100", "后页畸形绝不推进稳定水位");
+  assert.equal(res.nextCursor?.pendingWatermark, "106");
+  assert.equal(res.nextCursor?.pageSinceId, "T1", "保留已读页之后的分页游标");
+  assert.match(String(res.incompleteReason), /page 2 failed/);
 });
 
 test("collect: 后一页失败保留已读页并保存断点游标，不整体失败", async () => {

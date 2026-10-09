@@ -5,10 +5,10 @@ import { newArticleId, sha256 } from "../lib/ids.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { collapseWhitespace } from "../lib/text.ts";
 import { publishArticleTx } from "../publication/publish.ts";
-import { canonicalToBody } from "./canonical.ts";
+import { canonicalIdentityText, canonicalToBody, mergeCanonicalForRefresh } from "./canonical.ts";
 import type { CanonicalContent } from "./extractors/types.ts";
 import { groupingReset, reconcileMaterialSource } from "./provenance.ts";
-import { recordEngagement, type EngagementObservationInput } from "./engagement.ts";
+import { recordCanonicalEngagement, recordEngagement, type EngagementObservationInput } from "./engagement.ts";
 
 export interface MediaItem {
   kind: "image" | "video";
@@ -168,7 +168,8 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
 
   const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill);
   const newId = m.id ?? newArticleId();
-  const hash = contentHash({ title, bodyText: m.bodyText, excerpt: m.excerpt });
+  const identityText = canonical ? canonicalIdentityText(canonical) : m.bodyText;
+  const hash = contentHash({ title, bodyText: identityText, excerpt: m.excerpt });
   const [inserted] = await db<{ id: string }[]>`
     INSERT INTO articles (id, source_id, identity_key, url, title, author, language, published_at, published_at_claim,
       discovered_at, source_updated_at, timeline_at, backfill, backfill_reason, revision, content_hash, excerpt,
@@ -183,7 +184,11 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
       ${canonical ? db.json(canonical.extraction as never) : null}, ${canonical ? db.json(canonical as never) : null})
     ON CONFLICT (identity_key) DO NOTHING RETURNING id`;
   if (inserted) {
-    if (m.engagementObservation) await recordEngagement(db, newId, m.sourceId, m.engagementObservation);
+    if (m.engagementObservation) {
+      await recordEngagement(db, newId, m.sourceId, m.engagementObservation);
+    } else if (canonical?.engagement) {
+      await recordCanonicalEngagement(db, newId, m.sourceId, canonical, discoveredAt);
+    }
     await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
              VALUES (${newId}, 1, ${hash}, ${title}, ${m.bodyText ?? null})`;
     await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
@@ -192,12 +197,16 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     return { articleId: newId, created: true, revised: false, backfill: t.backfill };
   }
 
-  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; title: string; body_text: string | null; excerpt: string | null; participation_mode: string }[]>`
-    SELECT a.id, a.source_id, a.revision, a.content_hash, a.backfill, a.title, a.body_text, a.excerpt, s.participation_mode
+  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; title: string; body_text: string | null; excerpt: string | null; participation_mode: string; canonical_content: CanonicalContent | null }[]>`
+    SELECT a.id, a.source_id, a.revision, a.content_hash, a.backfill, a.title, a.body_text, a.excerpt, s.participation_mode, a.canonical_content
     FROM articles a JOIN sources s ON s.id = a.source_id WHERE a.identity_key = ${identityKey} FOR UPDATE OF a`;
   await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
            VALUES (${existing!.id}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
-  if (m.engagementObservation) await recordEngagement(db, existing!.id, m.sourceId, m.engagementObservation);
+  if (m.engagementObservation) {
+    await recordEngagement(db, existing!.id, m.sourceId, m.engagementObservation);
+  } else if (canonical?.engagement) {
+    await recordCanonicalEngagement(db, existing!.id, m.sourceId, canonical, discoveredAt);
+  }
   const unchanged: MaterialResult = { articleId: existing!.id, created: false, revised: false, backfill: existing!.backfill };
   // Configuration may have gained a verified publisher since this same discovery channel last
   // saw the URL. Reconcile before accepting any of that channel's material changes.
@@ -217,10 +226,31 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     return unchanged;
   }
   // What the row will hold after this report: a listing without body keeps the stored (extracted) body.
-  const bodyText = m.bodyText ?? existing!.body_text;
+  const priorIdentityText = existing!.canonical_content ? canonicalIdentityText(existing!.canonical_content) : existing!.body_text;
+  const nextIdentityText = canonical ? canonicalIdentityText(canonical) : (m.bodyText ?? priorIdentityText);
   const excerpt = m.excerpt ?? existing!.excerpt;
-  const next = contentHash({ title, bodyText, excerpt });
-  if (existing!.content_hash === next) return unchanged;
+  const next = contentHash({ title, bodyText: nextIdentityText, excerpt });
+  // Upgrade legacy comment-inclusive hash in place only when both the incoming and stored
+  // original content are identical. Preserve revisions/history; a listing is not an edit.
+  const legacyBodyHash = contentHash({ title: existing!.title, bodyText: existing!.body_text, excerpt: existing!.excerpt });
+  const priorMainHash = contentHash({ title: existing!.title, bodyText: priorIdentityText, excerpt: existing!.excerpt });
+  const unchangedLegacyMain = !!existing!.canonical_content && existing!.content_hash === legacyBodyHash && next === priorMainHash;
+  if (existing!.content_hash === next || unchangedLegacyMain) {
+    if (unchangedLegacyMain) await db`UPDATE articles SET content_hash=${next} WHERE id=${existing!.id}`;
+    if (canonical) {
+      const existingCanonical = existing!.canonical_content;
+      const { canonical: mergedCanonical } = mergeCanonicalForRefresh(existingCanonical, canonical);
+      const derived = canonicalToBody(mergedCanonical);
+      await db`UPDATE articles SET
+        canonical_content = ${db.json(mergedCanonical as never)},
+        body_html = coalesce(${derived.html || null}, body_html),
+        body_text = coalesce(${derived.text || null}, body_text),
+        body_status = ${mergedCanonical.quality.completeness === "failed" ? "unconfirmed" : "ok"},
+        updated_at = now()
+      WHERE id = ${existing!.id}`;
+    }
+    return unchanged;
+  }
   if (existing!.content_hash === null) {
     // Imported history carries no hash of this form (its collectors normalised differently): the
     // first report here records the baseline instead of a revision, so an import does not send
@@ -228,7 +258,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     // a later return to it is recognised as a version seen before.
     await db`UPDATE articles SET content_hash = ${next}, excerpt = coalesce(excerpt, ${m.excerpt ?? null}) WHERE id = ${existing!.id}`;
     await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
-             VALUES (${existing!.id}, ${existing!.revision}, ${next}, ${title}, ${bodyText}) ON CONFLICT DO NOTHING`;
+             VALUES (${existing!.id}, ${existing!.revision}, ${next}, ${title}, ${nextIdentityText ?? null}) ON CONFLICT DO NOTHING`;
     return unchanged;
   }
   // A version this article already had is no new material (listings that alternate between two
@@ -238,9 +268,10 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   const [seen] = await db`SELECT 1 FROM article_revisions WHERE article_id = ${existing!.id} AND content_hash = ${next} LIMIT 1`;
   if (seen) return unchanged;
   // Nor is the stored version with other characters lost in transit, or with them restored.
-  if (sameBarringLoss(existing!.title, title) && sameBarringLoss(existing!.body_text, bodyText) && sameBarringLoss(existing!.excerpt, excerpt)) return unchanged;
+  if (sameBarringLoss(existing!.title, title) && sameBarringLoss(existing!.body_text, nextIdentityText) && sameBarringLoss(existing!.excerpt, excerpt)) return unchanged;
 
   const media = m.media ? sql.json(m.media as never) : null;
+  const bodyTextToStore = m.bodyText ?? existing!.body_text;
   await reviseMaterial(db, existing!.id, {
     set: sql`title = ${title}, author = coalesce(${m.author ?? null}, author), language = coalesce(${m.language ?? null}, language),
       source_updated_at = ${m.sourceUpdatedAt ?? null}, excerpt = coalesce(${m.excerpt ?? null}, excerpt),
@@ -253,7 +284,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
       content_completeness = coalesce(${canonical?.quality.completeness ?? null}, content_completeness),
       content_extraction_meta = coalesce(${canonical ? sql.json(canonical.extraction as never) : null}, content_extraction_meta),
       canonical_content = coalesce(${canonical ? sql.json(canonical as never) : null}, canonical_content)`,
-    hash: next, title, bodyText,
+    hash: next, title, bodyText: bodyTextToStore,
   });
   return { articleId: existing!.id, created: false, revised: true, backfill: existing!.backfill };
 }

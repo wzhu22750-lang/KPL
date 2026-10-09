@@ -5,6 +5,7 @@ import { CODEX_RESET_SCAN_MINUTES } from "@aihot/contracts/monitor";
 import { credential } from "@aihot/backend/config";
 import { ensureQueue, recordRun } from "@aihot/backend/jobs/queue";
 import { sweepUnprocessed } from "@aihot/backend/jobs/content";
+import { sweepCommunityRefresh } from "@aihot/backend/jobs/community";
 import { translatePending } from "@aihot/backend/editorial/translate";
 import { adaptIntervals, scheduleDueSources } from "@aihot/backend/sources/collect";
 import { scheduleMpReconcile } from "@aihot/backend/sources/mp";
@@ -77,6 +78,8 @@ export const SCHEDULES: Scheduled[] = [
         { name: "sources.mp-reconcile", cron: "*/15 * * * *", run: () => scheduleMpReconcile() },
         // KPL 战队发现与账号缺口队列：活跃战队清单跟着官方赛事数据滚动，缺口天天对齐（kb/discover.ts）。
         { name: "sources.discover-teams", cron: "30 4 * * *", missed: "once" as const, run: () => discoverTeamsDaily() },
+        // 社区高价值讨论巡检与增量续扫（受控配额与并发限速）。
+        { name: "community.sweep", cron: "*/10 * * * *", run: () => sweepCommunityRefresh() },
       ]
     : []),
   // Codex reset monitor: every ten minutes as the pages state, and the last 48 hours read again once a day;

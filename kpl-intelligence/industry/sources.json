@@ -133,35 +133,12 @@
         "externalIdPath": "bvid",
         "sortByPublishedAt": true,
         "ingestNoiseFilter": {
-          "keepIfMatches": [
-            "复盘",
-            "深度",
-            "战术",
-            "赛后",
-            "分析",
-            "bp",
-            "评分",
-            "打法",
-            "教学",
-            "转会",
-            "大名单",
-            "纪录片",
-            "专访",
-            "体系"
-          ],
           "dropMarkersTitleOnly": [
             "红包",
             "抽奖",
             "福利",
             "领奖",
-            "门票",
-            "cos",
-            "配音",
-            "日常",
-            "集锦",
-            "搞笑",
-            "整活",
-            "饭圈"
+            "门票"
           ]
         }
       },
@@ -176,6 +153,64 @@
       "site_fulltext": true,
       "syndicate_fulltext": false,
       "enabled": true
+    },
+    {
+      "id": "bili-kpl-community-hot",
+      "name": "B站 KPL 社区热门讨论（关键词）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://api.bilibili.com/x/web-interface/wbi/search/type?search_type=video&keyword=KPL&order=totalrank&page=1",
+        "mode": "json_api",
+        "headers": {
+          "Referer": "https://www.bilibili.com/"
+        },
+        "itemsPath": "data.result",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.bilibili.com/video/{bvid}",
+        "summaryPaths": [
+          "description",
+          "tag"
+        ],
+        "summaryIsBody": true,
+        "authorPaths": [
+          "author"
+        ],
+        "publishedAtPath": "pubdate",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "bvid",
+        "sortByPublishedAt": false,
+        "engagementPaths": {
+          "platform": "bilibili",
+          "views": "play",
+          "likes": "like",
+          "comments": "review",
+          "favorites": "favorites",
+          "danmaku": "danmaku"
+        },
+        "ingestNoiseFilter": {
+          "dropMarkersTitleOnly": [
+            "红包",
+            "抽奖",
+            "福利",
+            "领奖",
+            "门票"
+          ]
+        }
+      },
+      "tier": "T2",
+      "owner_type": "community",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 60,
+      "tags": [
+        "社区",
+        "B站",
+        "热门"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
       "id": "mp-ag",
@@ -602,6 +637,46 @@
       "enabled": true
     },
     {
+      "id": "hupu-kog-hot",
+      "name": "虎扑 王者荣耀版 24小时榜（高热讨论）",
+      "kind": "json_list",
+      "config": {
+        "url": "https://bbs.hupu.com/kog-hot",
+        "mode": "html_window_var",
+        "windowVar": "$$data",
+        "itemsPath": "topic.threads.list",
+        "engagementPaths": { "platform": "hupu", "views": "read", "likes": "lights", "comments": "replies" },
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://bbs.hupu.com{raw:url}",
+        "authorPaths": [
+          "author.puname"
+        ],
+        "publishedAtPath": "createdAt",
+        "publishedAtUnit": "epoch_ms",
+        "externalIdPath": "tid",
+        "sortByPublishedAt": false,
+        "ingestNoiseFilter": {
+          "dropMarkersTitleOnly": [
+            "合成康平路"
+          ]
+        }
+      },
+      "tier": "T2",
+      "owner_type": "community",
+      "participation_mode": "hot_signal",
+      "interval_minutes": 30,
+      "tags": [
+        "社区",
+        "虎扑",
+        "热点"
+      ],
+      "site_fulltext": true,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
       "id": "weibo-kpl-official",
       "name": "KPL王者荣耀职业联赛（官方微博）",
       "kind": "weibo",
@@ -912,7 +987,7 @@
       "name": "成都AG超玩会（微博关键词搜索，非超话全量）",
       "kind": "weibo",
       "config": {
-        "mode": "topic",
+        "mode": "search",
         "query": "成都AG超玩会",
         "platform": "weibo",
         "owner_type": "community",
@@ -940,7 +1015,7 @@
       "name": "重庆狼队（微博关键词搜索，非超话全量）",
       "kind": "weibo",
       "config": {
-        "mode": "topic",
+        "mode": "search",
         "query": "重庆狼队",
         "platform": "weibo",
         "owner_type": "community",

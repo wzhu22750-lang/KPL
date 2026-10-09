@@ -37,10 +37,11 @@ export function extractInput(input: Omit<ExtractionInput, "profile"> & { profile
  */
 export async function extractCanonical(input: ExtractionInput): Promise<ExtractResult | null> {
   const preferred = input.profile.preferredExtractor;
+  const isHupu = hupuExtractor.canHandle(input);
   const ordered = [
     ...EXTRACTORS.filter((e) => e.id === preferred && e.id !== "generic-article"),
     ...EXTRACTORS.filter((e) => e.id !== preferred && e.id !== "generic-article" && e.canHandle(input)),
-    ...EXTRACTORS.filter((e) => e.id === "generic-article"),
+    ...EXTRACTORS.filter((e) => e.id === "generic-article" && !isHupu),
   ];
   for (const extractor of ordered) {
     if (!extractor.canHandle(input)) continue;

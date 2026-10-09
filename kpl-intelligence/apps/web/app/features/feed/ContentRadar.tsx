@@ -35,12 +35,40 @@ export function RadarMaterialArticle({ item, omitTitle = false, omitSummary = fa
   return <article className="min-w-0 py-4">
     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-ink-3">
       <ClaimLabel item={item} /><span aria-hidden="true">·</span><span>{item.source}</span>
+      {item.platform && <span className="rounded bg-bg-sunk px-1 py-0.2 text-[10.5px] text-ink-4">{item.platform}</span>}
       {item.gameNo && <span>第 {item.gameNo} 局</span>}
       {item.publishedAt && <time dateTime={item.publishedAt}>{timeOf(item.publishedAt)}</time>}
     </div>
-    {!omitTitle && <a href={item.url} target="_blank" rel="noopener noreferrer" className="mt-2 block text-[15px] font-semibold leading-relaxed text-ink hover:text-accent">{item.title} <IconArrowUpRight size={14} className="inline align-baseline text-ink-3" /></a>}
-    {!omitSummary && <p className="mt-2 max-w-[72ch] text-[14px] leading-[1.85] text-ink-2">{item.summary}</p>}
-    {omitTitle && <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 text-[12px] text-accent">阅读原文 <IconArrowUpRight size={14} /></a>}
+    {!omitTitle && (
+      item.itemUrl ? (
+        <IntentLink to={item.itemUrl} className="mt-2 block text-[15px] font-semibold leading-relaxed text-ink hover:text-accent break-words [overflow-wrap:anywhere]">
+          {item.title} <IconArrowUpRight size={14} className="inline align-baseline text-ink-3" />
+        </IntentLink>
+      ) : (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="mt-2 block text-[15px] font-semibold leading-relaxed text-ink hover:text-accent break-words [overflow-wrap:anywhere]">
+          {item.title} <IconArrowUpRight size={14} className="inline align-baseline text-ink-3" />
+        </a>
+      )
+    )}
+    {!omitSummary && <p className="mt-2 max-w-[72ch] text-[14px] leading-[1.85] text-ink-2 break-words [overflow-wrap:anywhere]">{item.summary}</p>}
+    {omitTitle && (
+      item.itemUrl ? (
+        <IntentLink to={item.itemUrl} className="inline-flex min-h-11 items-center gap-1 text-[12px] text-accent">
+          查看详情 <IconArrowUpRight size={14} />
+        </IntentLink>
+      ) : (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 text-[12px] text-accent">
+          阅读原文 <IconArrowUpRight size={14} />
+        </a>
+      )
+    )}
+    {item.commentPreview && (
+      <blockquote className="mt-2.5 rounded border-l-2 border-accent/40 bg-bg-sunk/50 px-3 py-2 text-[12.5px] leading-relaxed text-ink-2 break-words [overflow-wrap:anywhere]">
+        <span className="mb-0.5 block text-[11px] font-semibold text-accent">精选讨论预览</span>
+        {item.commentPreview.author && <span className="font-semibold text-ink">{item.commentPreview.author}：</span>}
+        <span className="whitespace-pre-line">{item.commentPreview.text}</span>
+      </blockquote>
+    )}
     <Evidence item={item} />
   </article>;
 }
@@ -161,9 +189,101 @@ function MatchCarousel({ matches, unavailable }: { matches: RadarMatch[]; unavai
   </section>;
 }
 
+function StandaloneRadar({ standalone }: { standalone: RadarMaterial[] }) {
+  const [platformFilter, setPlatformFilter] = useState<string>("all");
+
+  const isCommunity = (m: RadarMaterial) =>
+    m.kind === "controversy" || m.kind === "fun" || m.kind === "analysis" ||
+    m.claimStatus === "opinion" || m.claimStatus === "rumor" || m.claimStatus === "joke";
+
+  const communityDiscussions = standalone.filter(isCommunity);
+  const factualItems = standalone.filter((m) => !isCommunity(m));
+
+  const resolvePlatform = (m: RadarMaterial): string => {
+    if (m.platform) return m.platform;
+    if (m.source.includes("微博") || m.url.includes("weibo.com")) return "weibo";
+    if (m.source.includes("B站") || m.source.includes("bilibili") || m.url.includes("bilibili.com")) return "bilibili";
+    if (m.source.includes("虎扑") || m.url.includes("hupu.com")) return "hupu";
+    return "other";
+  };
+
+  const platforms = Array.from(new Set(communityDiscussions.map(resolvePlatform)));
+  const filteredCommunity = platformFilter === "all"
+    ? communityDiscussions
+    : communityDiscussions.filter((m) => resolvePlatform(m) === platformFilter);
+
+  const platformLabels: Record<string, string> = {
+    all: "全部",
+    hupu: "虎扑",
+    weibo: "微博",
+    bilibili: "B站",
+    other: "其他",
+  };
+
+  return (
+    <section aria-labelledby="radar-standalone" className="space-y-6">
+      {communityDiscussions.length > 0 && (
+        <section aria-labelledby="radar-community" className="rounded-card border border-line bg-surface p-5 sm:p-6">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+            <div>
+              <h2 id="radar-community" className="text-[18px] font-semibold text-ink">社区声音与热议</h2>
+              <span className="text-[12px] text-ink-3">玩家观点、二创趣评与圈内讨论优先呈现</span>
+            </div>
+            {platforms.length > 1 && (
+              <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="按平台筛选">
+                <button
+                  type="button"
+                  onClick={() => setPlatformFilter("all")}
+                  className={`min-h-8 rounded-full px-3 text-[12px] font-medium transition ${
+                    platformFilter === "all" ? "bg-accent text-white" : "bg-bg-sunk text-ink-3 hover:text-ink"
+                  }`}
+                >
+                  全部
+                </button>
+                {platforms.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => setPlatformFilter(p)}
+                    className={`min-h-8 rounded-full px-3 text-[12px] font-medium transition ${
+                      platformFilter === p ? "bg-accent text-white" : "bg-bg-sunk text-ink-3 hover:text-ink"
+                    }`}
+                  >
+                    {platformLabels[p] ?? p}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="divide-y divide-line-soft">
+            {filteredCommunity.map((item) => (
+              <RadarMaterialArticle key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {factualItems.length > 0 && (
+        <section aria-labelledby="radar-factual" className="rounded-card border border-line bg-surface p-5 sm:p-6">
+          <div className="mb-4 border-b border-line pb-3">
+            <h2 id="radar-factual" className="text-[17px] font-semibold text-ink">重要事实与赛事实报</h2>
+            <span className="text-[12px] text-ink-3">官方公告、赛况简报与已核实资讯独立收录</span>
+          </div>
+          <div className="divide-y divide-line-soft">
+            {factualItems.map((item) => (
+              <RadarMaterialArticle key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
+    </section>
+  );
+}
+
 export function ContentRadar({ radar, matches, matchesUnavailable }: { radar: RadarResponse | null; matches: RadarMatch[]; matchesUnavailable: boolean }) {
   const [lead, ...topics] = radar?.topics ?? [];
-  const empty = radar && !lead && !matches.length;
+  const hasStandalone = Boolean(radar?.standalone && radar.standalone.length > 0);
+  const empty = radar && !lead && !matches.length && !hasStandalone;
   return <section aria-label="KPL内容雷达" className="radar-overview my-6 space-y-7 sm:space-y-8">
 
     {lead && <section aria-labelledby="radar-focus">
@@ -175,6 +295,8 @@ export function ContentRadar({ radar, matches, matchesUnavailable }: { radar: Ra
     </section>}
 
     <MatchCarousel matches={matches} unavailable={matchesUnavailable} />
+
+    {hasStandalone && radar && <StandaloneRadar standalone={radar.standalone} />}
 
     {empty && <div className="rounded-card border border-dashed border-line-strong px-5 py-8 sm:px-8">
       <h2 className="text-[20px] font-semibold text-ink">暂时没有新焦点</h2>
