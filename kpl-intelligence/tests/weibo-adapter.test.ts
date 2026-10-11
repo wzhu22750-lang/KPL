@@ -247,7 +247,9 @@ test("cleanWeiboText(): 彻底消除 '... 全文'、'……全文' 与末尾截�
   assert.equal(cleanWeiboText(dotCase), "选手赛后采访透露了新赛季的战术调整");
 });
 
-test("evaluateSocialPost(): 官方赛程轮换动态 vs 粉丝玩梗/抽奖噪声评估", () => {
+test("evaluateSocialPost(): 官方赛程轮换动态 vs 粉丝玩梗/抽奖噪声评估", (t) => {
+  // This fixture describes fresh news; wall-clock ageing must not change the expected admission.
+  t.mock.timers.enable({ apis: ['Date'], now: new Date('2026-10-07T07:30:00Z') });
   const adapter = new WeiboAdapter();
 
   // 1. 官方轮换动态 -> 高价值，允许进入 RAG 知识库

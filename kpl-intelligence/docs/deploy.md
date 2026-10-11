@@ -1,5 +1,13 @@
 # 部署
 
+## Render 单容器更新：先迁移，再启动
+
+镜像默认命令现在先执行 `node scripts/migrate.ts`，成功后才启动 API、worker 和 Web；迁移失败时容器退出，不再让新代码访问旧结构。Render 若设置了自定义启动命令，应清空以使用 Dockerfile CMD，或保留同样的迁移门禁。Compose 独立服务仍按下文停服务、setup、启动流程操作。
+
+2026-10-11 修复：生产曾缺少0068–0070迁移，导致圈内焦点因缺失 `radar_materials.input_evidence_hash` 全部评估失败。0071将新增社区运行记录/平台控制表设为后端私有（RLS且撤销公共API角色权限），不删除业务数据。更新后先检查迁移记录，再用 `scripts/review-radar.ts --article ID --apply` 有限重试；不要清空队列或全量重评。该脚本仅入队，必须确认worker正在消费。
+
+不要为部署重跑全量seed覆盖后台信源设置。发布成功必须同时验证 `/api/health`、`/api/site/radar?current=true` 的评估结果和首页 `radar-focus` 栏目；HTTP 200 本身不代表内容链路健康。
+
 > ⚠️ **上线前必做**：Supabase Dashboard → Settings → API → 关闭 Data API（PostgREST），
 > 或给所有表加 deny-all RLS。本项目的数据库表没有 RLS 设计，anon key 暴露即全库泄露。
 

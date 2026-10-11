@@ -283,26 +283,21 @@ function StandaloneRadar({ standalone }: { standalone: RadarMaterial[] }) {
 export function ContentRadar({ radar, matches, matchesUnavailable }: { radar: RadarResponse | null; matches: RadarMatch[]; matchesUnavailable: boolean }) {
   const [lead, ...topics] = radar?.topics ?? [];
   const hasStandalone = Boolean(radar?.standalone && radar.standalone.length > 0);
-  const empty = radar && !lead && !matches.length && !hasStandalone;
   return <section aria-label="KPL内容雷达" className="radar-overview my-6 space-y-7 sm:space-y-8">
 
-    {lead && <section aria-labelledby="radar-focus">
+    <section aria-labelledby="radar-focus">
       <div className="focus-heading mb-4 flex items-baseline gap-3"><h2 id="radar-focus" className="text-[18px] font-semibold text-ink">圈内焦点</h2><span className="text-[12px] text-ink-3">近期最值得关注的讨论</span></div>
-      <div className={topics.length ? 'grid items-start gap-6 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-8' : ''}>
+      {lead ? <div className={topics.length ? 'grid items-start gap-6 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)] lg:gap-8' : ''}>
         <Topic topic={lead} lead />
         {topics.length > 0 && <div className="focus-list divide-y divide-line">{topics.map(topic => <Topic key={topic.id} topic={topic} />)}</div>}
-      </div>
-    </section>}
+      </div> : <p className="rounded-card border border-dashed border-line px-5 py-6 text-[14px] leading-relaxed text-ink-3">
+        {!radar ? '圈内焦点暂不可用，请稍后重试。' : radar.coverage.pending > 0 ? `尚无通过评估的话题，${radar.coverage.pending} 份素材待评估。` : '暂无新焦点。'}
+      </p>}
+    </section>
 
     <MatchCarousel matches={matches} unavailable={matchesUnavailable} />
 
     {hasStandalone && radar && <StandaloneRadar standalone={radar.standalone} />}
-
-    {empty && <div className="rounded-card border border-dashed border-line-strong px-5 py-8 sm:px-8">
-      <h2 className="text-[20px] font-semibold text-ink">暂时没有新焦点</h2>
-      <p className="mt-2 text-[14px] leading-relaxed text-ink-3">近期暂无通过评估的话题或动态，可前往全部动态查看已收录内容。</p>
-      <IntentLink to="/all" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-control bg-accent px-4 text-[13px] font-medium text-accent-contrast hover:bg-accent-ink">全部动态<IconChevronRight size={15} /></IntentLink>
-    </div>}
 
     {radar && <details className="disclosure border-t border-line pt-2 text-[12px] text-ink-3">
       <summary className="flex min-h-11 w-fit items-center gap-2">关于内容筛选与热度<IconChevronDown size={14} /></summary>

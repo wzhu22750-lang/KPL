@@ -26,4 +26,5 @@ COPY --from=build --chown=node:node /app /app
 RUN mkdir -p /data && chown node:node /data
 USER node
 EXPOSE 3000
-CMD ["sh", "-c", "node apps/api/src/main.ts & node apps/worker/src/main.ts & exec node apps/web/server.ts"]
+# Render uses the image command without Compose's setup service. Never start new code on an old schema.
+CMD ["sh", "-c", "node scripts/migrate.ts || exit $?; node apps/api/src/main.ts & node apps/worker/src/main.ts & exec node apps/web/server.ts"]
