@@ -1,0 +1,524 @@
+{
+  "status": "PASS",
+  "totalChecks": 100,
+  "checks": [
+    {
+      "test": "default sample is summer80",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "default win rates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/all/all",
+      "pass": true,
+      "detail": "80 games"
+    },
+    {
+      "test": "rate summer/all/all/0",
+      "pass": true,
+      "detail": "59.46%"
+    },
+    {
+      "test": "rate summer/all/all/1",
+      "pass": true,
+      "detail": "53.49%"
+    },
+    {
+      "test": "filtered CI not invented summer/all/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/all/win",
+      "pass": true,
+      "detail": "45 games"
+    },
+    {
+      "test": "rate summer/all/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate summer/all/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/all/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/all/loss",
+      "pass": true,
+      "detail": "35 games"
+    },
+    {
+      "test": "rate summer/all/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate summer/all/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/all/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/blue/all",
+      "pass": true,
+      "detail": "38 games"
+    },
+    {
+      "test": "rate summer/blue/all/0",
+      "pass": true,
+      "detail": "58.82%"
+    },
+    {
+      "test": "rate summer/blue/all/1",
+      "pass": true,
+      "detail": "61.90%"
+    },
+    {
+      "test": "filtered CI not invented summer/blue/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/blue/win",
+      "pass": true,
+      "detail": "23 games"
+    },
+    {
+      "test": "rate summer/blue/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate summer/blue/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/blue/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/blue/loss",
+      "pass": true,
+      "detail": "15 games"
+    },
+    {
+      "test": "rate summer/blue/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate summer/blue/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/blue/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/red/all",
+      "pass": true,
+      "detail": "42 games"
+    },
+    {
+      "test": "rate summer/red/all/0",
+      "pass": true,
+      "detail": "60.00%"
+    },
+    {
+      "test": "rate summer/red/all/1",
+      "pass": true,
+      "detail": "45.45%"
+    },
+    {
+      "test": "filtered CI not invented summer/red/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/red/win",
+      "pass": true,
+      "detail": "22 games"
+    },
+    {
+      "test": "rate summer/red/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate summer/red/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/red/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter summer/red/loss",
+      "pass": true,
+      "detail": "20 games"
+    },
+    {
+      "test": "rate summer/red/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate summer/red/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented summer/red/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/all/all",
+      "pass": true,
+      "detail": "211 games"
+    },
+    {
+      "test": "rate year/all/all/0",
+      "pass": true,
+      "detail": "57.50%"
+    },
+    {
+      "test": "rate year/all/all/1",
+      "pass": true,
+      "detail": "58.82%"
+    },
+    {
+      "test": "filtered CI not invented year/all/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/all/win",
+      "pass": true,
+      "detail": "122 games"
+    },
+    {
+      "test": "rate year/all/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate year/all/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented year/all/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/all/loss",
+      "pass": true,
+      "detail": "89 games"
+    },
+    {
+      "test": "rate year/all/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate year/all/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented year/all/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/blue/all",
+      "pass": true,
+      "detail": "107 games"
+    },
+    {
+      "test": "rate year/blue/all/0",
+      "pass": true,
+      "detail": "56.79%"
+    },
+    {
+      "test": "rate year/blue/all/1",
+      "pass": true,
+      "detail": "69.23%"
+    },
+    {
+      "test": "filtered CI not invented year/blue/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/blue/win",
+      "pass": true,
+      "detail": "64 games"
+    },
+    {
+      "test": "rate year/blue/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate year/blue/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented year/blue/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/blue/loss",
+      "pass": true,
+      "detail": "43 games"
+    },
+    {
+      "test": "rate year/blue/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate year/blue/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented year/blue/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/red/all",
+      "pass": true,
+      "detail": "104 games"
+    },
+    {
+      "test": "rate year/red/all/0",
+      "pass": true,
+      "detail": "58.23%"
+    },
+    {
+      "test": "rate year/red/all/1",
+      "pass": true,
+      "detail": "48.00%"
+    },
+    {
+      "test": "filtered CI not invented year/red/all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/red/win",
+      "pass": true,
+      "detail": "58 games"
+    },
+    {
+      "test": "rate year/red/win/0",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "rate year/red/win/1",
+      "pass": true,
+      "detail": "100.00%"
+    },
+    {
+      "test": "filtered CI not invented year/red/win",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "filter year/red/loss",
+      "pass": true,
+      "detail": "46 games"
+    },
+    {
+      "test": "rate year/red/loss/0",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "rate year/red/loss/1",
+      "pass": true,
+      "detail": "0.00%"
+    },
+    {
+      "test": "filtered CI not invented year/red/loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "same hero sample and output",
+      "pass": true,
+      "detail": "沈梦溪 · 清融 9局 / 3胜 / DPM 9,514　昊昊 8局 / 2胜 / DPM 9,515\n同英雄不等于同对手、同版本或同全局BP。小样本100%不代表命中率或确定优势。"
+    },
+    {
+      "test": "Nuwa case BP20",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "both lineups10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "Nuwa output rebuttal",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "quote exact from payload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "evidence opens details",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "source matching reason visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "empty search honest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "draft source count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "pagination",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "partial BP not made up",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "out-of-sample detail warning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "export actual211 rows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "export filename",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "mobile390 no page overflow",
+      "pass": true,
+      "detail": "{\"viewport\":390,\"scroll\":390}"
+    },
+    {
+      "test": "mobile roster rendered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "tablet768 no page overflow",
+      "pass": true,
+      "detail": "{\"viewport\":768,\"scroll\":768}"
+    },
+    {
+      "test": "theme keyboard activation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "theme persists reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "mobile360 no page overflow",
+      "pass": true,
+      "detail": "{\"viewport\":360,\"scroll\":360}"
+    },
+    {
+      "test": "reduced motion honored",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "print hides sticky controls",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "dark theme prints on white",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "no runtime JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "no failed requests",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "test": "no external requests",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "networkRequests": 2,
+  "screenshots": [
+    "desktop-light.png",
+    "desktop-dark.png",
+    "desktop-structure.png",
+    "mobile-light.png",
+    "mobile-dark.png",
+    "mobile-structure.png",
+    "mobile-case.png"
+  ],
+  "export": "export-year.csv",
+  "testedViewports": [
+    "1440x1000",
+    "768x1024",
+    "390x844",
+    "360x800"
+  ]
+}

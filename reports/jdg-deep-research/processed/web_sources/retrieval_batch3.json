@@ -1,0 +1,70 @@
+[
+  {
+    "id": "match_report",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "35",
+      "https://r.jina.ai/http://www.5asj.com/games/wzry/20261003/5287.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:50.295585+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/match_report.txt",
+    "stderr": "processed/web_sources/match_report.stderr"
+  },
+  {
+    "id": "renata_full",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "35",
+      "https://r.jina.ai/https://www.sina.cn/news/detail/5350996910801176.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:50.296596+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/renata_full.txt",
+    "stderr": "processed/web_sources/renata_full.stderr"
+  },
+  {
+    "id": "rules_club",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "35",
+      "https://r.jina.ai/https://www.sina.cn/news/detail/5348461071566734.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:50.297066+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/rules_club.txt",
+    "stderr": "processed/web_sources/rules_club.stderr"
+  },
+  {
+    "id": "rules_direct",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "35",
+      "https://news.qq.com/rain/a/20261001A0ASAJ00"
+    ],
+    "retrieved_at": "2026-10-09T17:18:50.297186+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/rules_direct.txt",
+    "stderr": "processed/web_sources/rules_direct.stderr"
+  },
+  {
+    "id": "update",
+    "command": [
+      "agent-reach",
+      "check-update"
+    ],
+    "retrieved_at": "2026-10-09T17:18:50.297277+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/update.txt",
+    "stderr": "processed/web_sources/update.stderr"
+  }
+]

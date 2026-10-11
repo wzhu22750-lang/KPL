@@ -1,0 +1,155 @@
+/* Modern esports editorial analytics, scoped to existing competition routes.
+   Brand/shape/theme tokens remain owned by app.css; no external fonts or imagery. */
+.esports-page {
+  --es-blue: #286a9e; --es-red: #b3402a;
+  max-width: 1280px; margin-inline: auto; min-width: 0; padding-bottom: 56px;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="dark"] .esports-page { --es-blue: #89caff; --es-red: #ef9c8e; }
+.esports-nav { display: flex; align-items: center; gap: 4px; overflow-x: auto; margin: 0 0 24px; border-bottom: 1px solid var(--line); scrollbar-width: thin; }
+.esports-nav a { display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-height: 44px; padding: 10px 16px; border-bottom: 2px solid transparent; font-size: 13px; color: var(--ink-3); font-weight: 600; white-space: nowrap; }
+.esports-nav a[aria-current] { color: var(--accent-ink); border-bottom-color: var(--accent); background: var(--accent-softer); }
+.esports-nav[aria-busy="true"] { border-bottom-color: var(--accent); }
+.esports-heading { display: flex; gap: 20px; align-items: center; justify-content: space-between; min-width: 0; }
+.esports-heading-copy { min-width: 0; }
+.esports-heading h1 { font-size: clamp(26px, 2.8vw, 40px); line-height: 1.25; font-weight: 800; letter-spacing: -.04em; color: var(--ink); overflow-wrap: anywhere; }
+.esports-kicker { margin-bottom: 8px; font-size: 11px; font-weight: 650; letter-spacing: .09em; color: var(--accent-ink); }
+.esports-description { max-width: 65ch; margin-top: 10px; font-size: 13px; line-height: 1.75; color: var(--ink-3); }
+.esports-heading-actions { min-width: 0; flex-shrink: 0; }
+.esports-portrait { display: inline-flex; align-items: center; justify-content: center; width: var(--portrait-size); height: var(--portrait-size); flex-shrink: 0; border-radius: var(--radius-panel); overflow: hidden; background: var(--bg-sunk); }
+.esports-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.esports-portrait-team { background: #f3f3ef; padding: 5px; }
+.esports-portrait-team img { object-fit: contain; }
+/* Team crests need a neutral plate in either theme (many official assets are dark transparent marks). */
+[data-theme="dark"] .esports-portrait-team { background: #dfe4e1; }
+.esports-portrait-player img { object-position: center top; }
+.esports-portrait-fallback { display: grid; place-items: center; width: 100%; height: 100%; color: var(--ink-3); font-size: clamp(9px, calc(var(--portrait-size) * .24), 16px); font-weight: 700; }
+.esports-portrait-team .esports-portrait-fallback { color: #303c42; }
+.esports-tier { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 8px; border-radius: var(--radius-mark); font: 700 12px var(--font-mono); color: var(--ink-3); background: var(--bg-sunk); }
+.esports-tier[data-tier="T0"], .esports-tier[data-tier="T0.5"] { background: var(--amber-soft); color: var(--amber-ink); }
+.esports-tier[data-tier="T1"] { background: var(--accent-soft); color: var(--accent-ink); }
+.esports-metric { min-width: 0; padding: 18px; border-radius: var(--radius-card); background: var(--surface); }
+.esports-metric-primary { background: var(--accent-softer); }
+.esports-metric-label { font-size: 12px; color: var(--ink-3); }
+.esports-metric-value { font-size: clamp(24px, 2.6vw, 34px); font-weight: 750; line-height: 1.2; letter-spacing: -.035em; color: var(--ink); margin-top: 8px; overflow-wrap: anywhere; }
+.esports-metric-primary .esports-metric-value { color: var(--accent-ink); }
+.esports-metric-note { margin-top: 8px; color: var(--ink-3); font-size: 11px; line-height: 1.65; }
+.esports-rate { --rate-tone: var(--accent); min-width: 0; }
+.esports-rate[data-tone="blue"] { --rate-tone: var(--es-blue); }
+.esports-rate[data-tone="red"] { --rate-tone: var(--es-red); }
+.esports-rate-label { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--ink-2); }
+.esports-rate-label strong { font-weight: 700; color: var(--rate-tone); }
+.esports-rate-track { height: 7px; margin-top: 8px; overflow: hidden; border-radius: 3px; background: var(--bg-muted); }
+.esports-rate-track > span { display: block; height: 100%; background: var(--rate-tone); border-radius: inherit; }
+.esports-rate-scale { display: flex; justify-content: space-between; gap: 10px; font-size: 10px; color: var(--ink-3); margin-top: 5px; }
+.esports-empty { display: grid; justify-items: center; gap: 12px; padding: 44px 20px; text-align: center; border-radius: var(--radius-panel); background: var(--surface); border: 1px dashed var(--line-strong); }
+.esports-empty h2 { font-size: 20px; font-weight: 700; }
+.esports-empty p { color: var(--ink-3); font-size: 13px; }
+.esports-button { min-height: 44px; padding: 10px 16px; background: var(--accent); color: var(--accent-contrast); border-radius: var(--radius-control); font-weight: 650; font-size: 13px; }
+.esports-page :is(a,button,input,select,summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.esports-page :is(button,summary):active { background-color: var(--accent-soft); color: var(--accent-ink); }
+.esports-match-row { display: grid; grid-template-columns: minmax(140px,.7fr) minmax(0,2fr) auto; align-items: center; gap: 20px; min-height: 88px; padding: 16px 20px; border-radius: var(--radius-control); }
+.esports-match-meta { display: flex; flex-direction: column; gap: 4px; font-size: 11px; line-height: 1.65; color: var(--ink-3); }
+.esports-match-status { color: var(--ink-2); font-weight: 700; }
+.esports-match-status[data-status="live"] { color: var(--accent-ink); }
+.esports-match-status[data-status="finished"] { color: var(--ok-ink); }
+.esports-match-pair { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 12px; align-items: center; }
+.esports-match-side { display: flex; gap: 10px; align-items: center; min-width: 0; font-size: 13px; font-weight: 650; }
+.esports-match-side > span:last-child { overflow-wrap: anywhere; }
+.esports-match-side:last-child { flex-direction: row-reverse; text-align: right; }
+.esports-match-score { white-space: nowrap; font-size: 24px; line-height: 1.25; font-weight: 800; letter-spacing: -.04em; }
+.esports-match-open { font-size: 11px; color: var(--accent-ink); white-space: nowrap; }
+@media (hover:hover) {
+  .esports-nav a:hover { color: var(--accent-ink); background: var(--accent-softer); }
+  .esports-match-row:hover { background: var(--accent-softer); }
+}
+.esports-match-row:active { background: var(--accent-soft); }
+/* P0: one confident default view; a portrait-led ranking rather than stacked progress meters. */
+.heroes-intro { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 32px; padding: 26px 28px; border-radius: var(--radius-sheet); border-top: 3px solid var(--accent); background: linear-gradient(110deg, var(--surface), var(--accent-softer)); }
+.heroes-intro .esports-heading { padding-right: 10px; }
+.heroes-sample { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; color: var(--ink-3); font-size: 12px; }
+.heroes-sample strong { color: var(--ink); font-weight: 800; letter-spacing: -.05em; font-size: 40px; line-height: 1.2; }
+.heroes-sample small { font-size: 11px; margin-top: 4px; }
+.heroes-intro-portraits { display: flex; gap: 10px; }
+.heroes-intro-portraits .esports-portrait { border-radius: var(--radius-control); }
+.heroes-filter { margin-top: 24px; }
+.heroes-lanes { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 12px; border-bottom: 1px solid var(--line); scrollbar-width: thin; }
+.heroes-lanes button { flex-shrink: 0; min-height: 44px; padding: 10px 20px; color: var(--ink-3); font-size: 13px; font-weight: 650; border-radius: var(--radius-control); }
+.heroes-lanes button[aria-pressed="true"] { background: var(--accent); color: var(--accent-contrast); }
+.heroes-tools { display: grid; grid-template-columns: minmax(0,1fr) 190px; gap: 16px; margin-top: 16px; }
+.heroes-tools label { display: block; font-size: 11px; color: var(--ink-3); margin-bottom: 6px; }
+.heroes-search { position: relative; display: flex; align-items: center; gap: 10px; padding-left: 14px; border: 1px solid var(--line-strong); border-radius: var(--radius-control); background: var(--surface); color: var(--ink-3); }
+.heroes-search input { width: 100%; min-width: 0; min-height: 44px; color: var(--ink); background: transparent; padding: 10px 12px 10px 0; font-size: 13px; }
+.heroes-search input::placeholder { color: var(--ink-3); }
+.heroes-search input::-webkit-search-cancel-button { display: none; }
+.heroes-search button { flex-shrink: 0; min-height: 44px; min-width: 44px; padding: 8px; font-size: 12px; color: var(--accent-ink); }
+.heroes-sort select { min-height: 44px; width: 100%; min-width: 0; border-radius: var(--radius-control); border: 1px solid var(--line-strong); padding: 10px 12px; background: var(--surface); color: var(--ink); font-size: 13px; }
+.heroes-results-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--ink-3); padding: 20px 0 14px; }
+.heroes-results-heading p { overflow-wrap: anywhere; min-width: 0; }
+.heroes-results-heading strong { color: var(--ink); font-weight: 700; }
+.heroes-results-heading > span { font-size: 11px; }
+.heroes-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.heroes-grid > li { min-width: 0; }
+.hero-rank-card { display: flex; flex-direction: column; height: 100%; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 20px; transition: border-color 150ms, box-shadow 150ms; }
+.hero-rank-card[data-leading="true"] { border-top: 3px solid var(--accent); padding-top: 18px; background: linear-gradient(135deg, var(--accent-softer), var(--surface) 75%); }
+.hero-rank-identity { display: flex; gap: 14px; align-items: center; position: relative; min-height: 88px; }
+.hero-rank-name { min-width: 0; align-self: center; padding-right: 12px; }
+.hero-rank-name h2 { font-size: 22px; font-weight: 800; line-height: 1.35; color: var(--ink); }
+.hero-rank-position { color: var(--ink-3); font-size: 11px; margin-bottom: 3px; }
+.hero-rank-tags { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 6px; color: var(--ink-3); font-size: 11px; }
+.hero-rank-number { position: absolute; right: -8px; top: -12px; font-size: 15px; color: var(--ink-4); font-weight: 700; letter-spacing: -.03em; }
+.hero-rank-card[data-leading="true"] .hero-rank-number { color: var(--accent-ink); }
+.hero-rank-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+.hero-rank-stats p { color: var(--ink-3); font-size: 11px; margin-bottom: 4px; }
+.hero-rank-stats strong { display: block; font-size: 30px; font-weight: 800; line-height: 1.2; letter-spacing: -.05em; color: var(--accent-ink); }
+.hero-rank-win { text-align: right; }
+.hero-rank-win strong { font-size: 24px; color: var(--ink); }
+.hero-rank-win small { display: block; font-size: 10px; color: var(--ink-3); margin-top: 5px; }
+.hero-rank-card .esports-rate { margin-top: 12px; }
+.hero-rank-card .esports-rate-label, .hero-rank-card .esports-rate-scale { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.hero-rank-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; border-top: 1px solid var(--line-soft); margin-top: 16px; padding-top: 12px; font-size: 10px; color: var(--ink-3); }
+.hero-rank-tier { display: flex; align-items: center; gap: 6px; }
+.hero-rank-signature strong { font-weight: 650; color: var(--ink-2); }
+.heroes-method { color: var(--ink-3); font-size: 12px; margin-top: 24px; padding: 12px 16px; background: var(--bg-sunk); border-radius: var(--radius-card); }
+.heroes-method summary { min-height: 44px; display: list-item; align-content: center; font-weight: 650; cursor: pointer; }
+.heroes-method p { margin-top: 10px; line-height: 1.8; }
+@media (hover:hover) {
+  .hero-rank-card:hover { border-color: var(--accent); box-shadow: var(--shadow-card-hover); }
+  .hero-rank-card:hover h2 { color: var(--accent-ink); }
+  .heroes-lanes button:hover:not([aria-pressed="true"]) { background: var(--accent-soft); color: var(--accent-ink); }
+}
+.hero-rank-card:active { background: var(--accent-soft); border-color: var(--accent); }
+@media (max-width: 1199px) { .heroes-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 960px) {
+  .esports-nav { margin-top: 12px; gap: 0; }
+  .esports-nav a { padding-inline: 12px; }
+  .esports-nav { margin-bottom: 16px; }
+  .esports-match-row { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .esports-match-meta { flex-direction: row; flex-wrap: wrap; gap: 5px 12px; }
+  .esports-match-open { text-align: right; }
+}
+@media (max-width: 640px) {
+  .esports-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .esports-heading-actions { width: 100%; }
+  .esports-heading h1 { font-size: 28px; }
+  .heroes-intro { padding: 20px; grid-template-columns: minmax(0,1fr) auto; gap: 16px; }
+  .heroes-intro .esports-heading { grid-column: 1 / -1; }
+  .heroes-sample { align-items: flex-start; min-width: 0; }
+  .heroes-sample strong { font-size: 28px; }
+  .heroes-sample small { max-width: 150px; }
+  .heroes-intro-portraits { position: static; gap: 4px; align-self: end; }
+  .heroes-intro-portraits .esports-portrait { width: 28px; height: 28px; }
+  .heroes-lanes button { padding-inline: 16px; }
+  .heroes-tools { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .heroes-sort { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 12px; align-items: center; }
+  .heroes-sort label { margin: 0; }
+  .heroes-grid { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .hero-rank-card { padding: 18px; }
+  .hero-rank-card[data-leading="true"] { padding-top: 16px; }
+  .hero-rank-name h2 { font-size: 23px; }
+  .esports-match-row { padding: 16px; }
+  .esports-match-side { flex-direction: column; text-align: center; gap: 7px; font-size: 12px; }
+  .esports-match-side:last-child { flex-direction: column; text-align: center; }
+  .esports-match-pair { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-rank-card { transition: none; } }

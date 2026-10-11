@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./esports.css";
 
 /* ---------------------------------------------------------------------------
    Design tokens: warm off-white paper, ink text, one teal accent (cyan in

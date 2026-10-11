@@ -1,0 +1,80 @@
+/* P1: club directory, club profile and a single responsive standings table. */
+.esports-page .teams-control { min-height: 44px; max-width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); padding: 10px 16px; font-size: 13px; font-weight: 600; }
+.esports-page .teams-control:hover { border-color: var(--accent); }
+.esports-page .teams-control:focus-visible, .esports-page .team-directory-card:focus-visible, .esports-page .team-roster-card:focus-visible, .esports-page .team-historic-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.esports-page .teams-control[aria-pressed="true"] { background: var(--accent); color: var(--accent-contrast); border-color: var(--accent); }
+.esports-page .standings-stages { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.esports-page .standings-rules { padding: 16px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink-3); background: var(--surface); font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.esports-page .standings-rules summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 650; color: var(--ink-2); }
+.esports-page .standings-rules p { margin-top: 8px; }
+.esports-page .standings-rules p + p { margin-top: 6px; }
+.esports-page .standings-rules a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent-ink); text-decoration: underline; }
+.esports-page .standings-groups { display: grid; gap: 24px; margin-top: 24px; }
+.esports-page .standings-group { min-width: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+.esports-page .standings-group-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; padding: 18px; border-bottom: 1px solid var(--line); }
+.esports-page .standings-group-header h2 { color: var(--ink); font-size: 18px; font-weight: 750; }
+.esports-page .standings-group-header h2 span { margin-left: 6px; color: var(--ink-3); font-size: 13px; font-weight: 500; }
+.esports-page .standings-group-header p { color: var(--ink-3); font-size: 12px; }
+.esports-page .standings-table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.esports-page .standings-table th { color: var(--ink-3); font-size: 11px; font-weight: 500; padding: 12px 8px; white-space: nowrap; }
+.esports-page .standings-table td { padding: 10px 8px; text-align: center; color: var(--ink-2); border-top: 1px solid var(--line-soft); }
+.esports-page .standings-table .standing-team { text-align: left; }
+.esports-page .standing-team a { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 650; color: var(--ink); }
+.esports-page .standing-team a:hover { color: var(--accent-ink); }
+.esports-page .standing-team a span { overflow-wrap: anywhere; }
+.esports-page .standing-rank span { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--bg-sunk); font-weight: 700; }
+.esports-page .standing-points strong { font-size: 18px; color: var(--accent-ink); }
+.esports-page .teams-empty { padding: 24px 16px; font-size: 13px; color: var(--ink-3); }
+.esports-page .teams-directory { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.esports-page .team-directory-card { height: 100%; display: flex; flex-direction: column; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: border-color 150ms; }
+.esports-page .team-directory-card:hover, .esports-page .team-roster-card:hover { border-color: var(--accent); }
+.esports-page .team-directory-logo { position: relative; display: flex; align-items: center; justify-content: center; min-height: 140px; margin: -4px -4px 16px; border-radius: 10px; background: var(--bg-sunk); }
+.esports-page .team-directory-arrow { position: absolute; top: 12px; right: 12px; color: var(--ink-3); }
+.esports-page .team-historic-link { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink-3); background: var(--surface); font-size: 13px; }
+.esports-page .team-historic-link:hover { color: var(--accent-ink); border-color: var(--accent); }
+.esports-page .team-profile { display: flex; gap: 28px; align-items: center; margin-top: 24px; }
+.esports-page .team-profile-logo { display: grid; place-items: center; flex-shrink: 0; width: 192px; height: 192px; border: 1px solid var(--line); border-radius: var(--radius-sheet); background: var(--surface); }
+.esports-page .team-profile-copy { min-width: 0; flex: 1; }
+.esports-page .team-history { margin-top: 10px; color: var(--ink-3); font-size: 12px; overflow-wrap: anywhere; }
+.esports-page .team-record-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.esports-page .team-record-note { color: var(--ink-3); font-size: 12px; line-height: 1.6; margin-top: 10px; }
+.esports-page .team-h2h { display: inline-flex; align-items: center; gap: 8px; }
+.esports-page .team-roster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.esports-page .team-roster-card { display: flex; align-items: center; gap: 16px; min-height: 112px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow-wrap: anywhere; }
+.esports-page .team-match-list { margin-top: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.esports-page .team-match-list > li + li { border-top: 1px solid var(--line-soft); }
+.esports-page .team-news-title { overflow-wrap: anywhere; }
+@media (max-width: 1023px) {
+  .esports-page .teams-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .esports-page .team-roster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  /* Same table/row/cell DOM; explicit roles retain table semantics when grid replaces layout. */
+  .esports-page .standings-table { display: block; }
+  .esports-page .standings-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .esports-page .standings-table tbody { display: grid; gap: 12px; padding: 12px; }
+  .esports-page .standings-table tbody tr { display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1fr) 48px; border: 1px solid var(--line); border-radius: 10px; padding: 12px; gap: 14px 6px; }
+  .esports-page .standings-table td { display: block; min-width: 0; border: 0; padding: 0; text-align: left; overflow-wrap: anywhere; }
+  .esports-page .standings-table td::before { content: attr(data-label); display: block; color: var(--ink-3); font-size: 10px; font-weight: 500; margin-bottom: 4px; }
+  .esports-page .standings-table .standing-rank { grid-column: 1; grid-row: 1; align-self: center; }
+  .esports-page .standings-table .standing-team { grid-column: 2 / 4; grid-row: 1; align-self: center; }
+  .esports-page .standings-table .standing-rank::before, .esports-page .standings-table .standing-team::before { content: none; }
+  .esports-page .standing-team a { gap: 8px; font-size: 13px; }
+  .esports-page .standings-table .standing-points { grid-column: 4; grid-row: 1; text-align: right; align-self: center; }
+  .esports-page .standings-table .standing-played { grid-column: 1 / 3; grid-row: 2; }
+  .esports-page .standings-table .standing-record { grid-column: 3 / 5; grid-row: 2; }
+  .esports-page .standings-table .standing-diff { grid-column: 1 / 3; grid-row: 3; }
+  .esports-page .standings-table .standing-rate { grid-column: 3 / 5; grid-row: 3; }
+  .esports-page .standings-table .standing-streak { grid-column: 1 / 5; grid-row: 4; border-top: 1px solid var(--line-soft); padding-top: 10px; }
+  .esports-page .teams-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .esports-page .team-profile { gap: 16px; flex-direction: column; align-items: flex-start; }
+  .esports-page .team-profile-logo { width: 176px; height: 176px; }
+  .esports-page .team-record-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .esports-page .team-roster { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 359px) {
+  .esports-page .teams-directory { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esports-page .team-directory-card { transition: none; }
+}

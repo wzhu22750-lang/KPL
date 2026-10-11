@@ -1,0 +1,73 @@
+- generic [ref=e2]:
+  - link "跳到正文" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=e4]:
+    - link "康平路情报站 首页" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "康平路情报站" [ref=e6]
+    - navigation "主导航" [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]: 内容
+        - generic [ref=e18]:
+          - link "发现" [ref=e19] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=e24] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=e31] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=e38] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=e46] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=e55] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=e60] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=e64] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=e69] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=e73] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=e78] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=e85] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=e89]:
+        - generic [ref=e90]: 更多
+        - generic [ref=e91]:
+          - link "Agent 接入" [ref=e92] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=e96] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=e100] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=e106] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=e111]:
+      - radio "深色" [ref=e112]
+      - radio "跟随系统" [checked] [ref=e115]
+      - radio "浅色" [ref=e119]
+  - main [ref=e123]:
+    - generic [ref=e126]:
+      - generic [ref=e131]: "503"
+      - heading "暂时无法加载" [level=1] [ref=e132]
+      - paragraph [ref=e133]: 页面暂时无法显示，请重新加载后再试。
+      - generic [ref=e134]:
+        - link "重新加载" [ref=e135] [cursor=pointer]:
+          - /url: /heroes
+        - link "回到发现" [ref=e136] [cursor=pointer]:
+          - /url: /
+        - link "浏览全部动态" [ref=e137] [cursor=pointer]:
+          - /url: /all
+  - navigation "底部导航" [ref=e138]:
+    - generic [ref=e139]:
+      - link "发现" [ref=e140] [cursor=pointer]:
+        - /url: /
+      - link "热点" [ref=e144] [cursor=pointer]:
+        - /url: /hot
+      - link "日报" [ref=e147] [cursor=pointer]:
+        - /url: /daily
+      - link "我的" [ref=e151] [cursor=pointer]:
+        - /url: /more
+  - button "回到顶部" [ref=e155]

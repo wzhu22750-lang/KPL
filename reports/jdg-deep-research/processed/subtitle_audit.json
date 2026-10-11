@@ -1,0 +1,319 @@
+{
+  "source_root": "/Users/kuangqie/Documents/VibeCoding/B站字幕提取/KPL解说",
+  "parsed_cache_path": "/Users/kuangqie/Documents/VibeCoding/KPL/data/commentary_parsed.jsonl",
+  "cached_records": 7839,
+  "duplicate_cache_ids": 0,
+  "source_md_count": 7891,
+  "source_subtitle_lines": 6109608,
+  "source_unique_sha256": 7891,
+  "duplicate_files": [],
+  "part_id_collisions": {},
+  "cache_metadata_differences": {
+    "homeTeamSlug": 411,
+    "awayTeamSlug": 618,
+    "contentType": 14,
+    "source_text_digest": 11,
+    "gameNo": 1
+  },
+  "asr_surface_counts_2026_jdg": {
+    "昊昊": 0,
+    "浩浩": 325,
+    "豪豪": 1,
+    "小寒": 53,
+    "小韩": 677,
+    "小孩": 70,
+    "清融": 546,
+    "金融": 19,
+    "花缘": 0,
+    "花园": 151
+  },
+  "cache_text_disagreement_paths": [
+    "2022夏季赛/2022-06-16_【KPL夏季赛】6月16日 广州TTG vs 杭州LGD大鹅_BV1wB4y1D7s7/P03_第三局.md",
+    "2022春季赛/2022-03-25_【KPL春季赛】3月25日 济南RW侠 vs 厦门VG_BV1Wi4y1k7af/P03_第三局.md",
+    "2024夏季赛/2024-07-19_【2024KPL夏季赛】7月19日 武汉eStarPro vs 广州TTG_BV1Qy411e73X/P02_第一局.md",
+    "2024夏季赛/2024-09-01_【2024KPL夏季赛】9月1日 成都AG超玩会 vs 重庆狼队_BV1Zr421K79T/P07_第六局.md",
+    "2024春季赛/2024-02-25_【2024KPL春季赛】2月25日 重庆狼队 vs BOA_BV1fW421A7dR/P02_第一局.md",
+    "2025夏季赛/2025-07-19_【2025KPL夏季赛】7月19日 武汉eStarPro vs 上海RNG.M_BV1wnuozBEL6/P02_第一局.md",
+    "2025年度总决赛/2025-10-20_【2025KPL年度总决赛】10月20日 北京JDG vs 苏州KSG_BV1SrW1zsErJ/P04_第三局.md",
+    "2025春季赛/2025-02-22_【2025KPL春季赛】2月22日 苏州KSG vs 广州TTG_BV1FDPTeoEp9/P04_第三局.md",
+    "2026夏季赛/2026-07-02_【2026KPL夏季赛】7月2日 广州TTG VS 长沙TES.A_BV1nET76zEa5/P07_赛后采访.md",
+    "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P04_第四局.md",
+    "2026夏季赛/2026-08-21_【2026KPL夏季赛】8月21日 成都AG超玩会 VS 广州TTG_BV1rH8z6xEj3/P01_第一局.md"
+  ],
+  "legacy_parts": 7891,
+  "source_parts_absent_from_legacy": [],
+  "legacy_parts_absent_from_source": [],
+  "source_seasons": {
+    "kpl-2022-worlds": 225,
+    "kpl-2022-summer": 608,
+    "kpl-2022-challenger": 172,
+    "kpl-2022-spring": 584,
+    "kpl-2023-worlds": 325,
+    "kpl-2023-summer": 634,
+    "kpl-2023-challenger": 134,
+    "kpl-2023-spring": 609,
+    "kpl-2024-summer": 715,
+    "kpl-2024-annual": 291,
+    "kpl-2024-challenger": 250,
+    "kpl-2024-spring": 689,
+    "kpl-2025-summer": 711,
+    "kpl-2025-annual": 385,
+    "kpl-2025-challenger": 3,
+    "kpl-2025-spring": 412,
+    "kpl-2026-summer": 763,
+    "kpl-2026-annual": 102,
+    "kpl-2026-challenger": 201,
+    "kpl-2026-spring": 78
+  },
+  "match_confidence_counts": {
+    "unmatched": 2285,
+    "high": 3940,
+    "high_bo": 1666
+  },
+  "fts_status": "contentless verified FTS updated: 6109608 source rows; retrieval joins subtitles",
+  "cache_digest_rule": "timeSecs + text stripped at edges only; exact source bytes covered by source_manifest SHA256",
+  "bp_boundary_rejected_example": {
+    "path": "2022世界冠军杯/2022-12-10_【2022王者世冠】 南京Hero vs Isurus 12月10日小组赛_BV1wD4y1a7ky/P01_第一局.md",
+    "source_line": 328,
+    "reason": "全军出击 occurs in sponsor advertising; naive battle-cry boundary rejected by nearby launch-context requirement"
+  },
+  "bp_boundary_samples": [
+    {
+      "path": "2022挑战者杯/2022-01-05_【挑战者杯淘汰赛Day 1】1月5日 武汉eStarPro vs 火豹_BV1mT4y1275q/P02_第二局.md",
+      "season": "kpl-2022-challenger",
+      "source_sha256": "e7d73f66154f36590f783346e7bdc6ba17a66420233533a1c182ae671286ff06",
+      "source_line": 265,
+      "estimated_start_seconds": 535,
+      "context": "- [08:52] 红色方武汉estarpro\n- [08:53] 我是瓶子\n- [08:54] 我是黄大仙\n- [08:55] 请做好准备\n- [08:55] 全军出击\n- [09:00] 这把看看清融怎么游起来\n- [09:05] 清融这局的西施游泳游不起来\n- [09:09] 有一种感觉\n- [09:09] 他反正是首先就是一个纯输出装",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2022春季赛/2022-02-09_【KPL春季赛】2月9日 武汉eStarPro vs 广州TTG_BV1i44y1H76s/P02_第二局.md",
+      "season": "kpl-2022-spring",
+      "source_sha256": "c24ac523eab836183a702cbcbe082040ba64beb56f9651f058c5fd1be7db21f0",
+      "source_line": 170,
+      "estimated_start_seconds": 371,
+      "context": "- [06:03] 武汉estarpro拿下就追平进入比赛\n- [06:05] 蓝色方欢迎萨pro\n- [06:06] 红色方还有机会到达战场\n- [06:09] 请做好准备\n- [06:11] 全军出击\n- [06:14] 马超夏侯惇坦然上个赛季的新人\n- [06:19] 一男也是上个赛季的新人\n- [06:20] 两位新人之间的交锋\n- [06:23] 这一场是战边对坦边",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2022夏季赛/2022-06-12_【KPL夏季赛】6月12日 XYG VS 武汉eStarPro_BV18S4y1e7f1/P01_第一局.md",
+      "season": "kpl-2022-summer",
+      "source_sha256": "bcc578e16151121067dada7fbaa7a5dbd92ee1f9f96f0b0fbd3563ef9e3e21ce",
+      "source_line": 458,
+      "estimated_start_seconds": 983,
+      "context": "- [16:19] 黄色方武汉estar pro\n- [16:20] 我是dj\n- [16:21] 我是王超\n- [16:21] 我们进入双方第一局比赛\n- [16:23] 全军出击\n- [16:24] 哇天这个皮肤看起来感觉伤害特别高\n- [16:28] 你知道吗\n- [16:29] 是不是太华丽了\n- [16:30] 黑金配色",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2023挑战者杯/2023-10-20_【2023王者挑杯瑞士轮】10月20日 北京WB vs 武汉eStarPro_BV1Be411R7en/P01_第一局.md",
+      "season": "kpl-2023-challenger",
+      "source_sha256": "dc0045d137b693d1c0c81301b3cb360e7778da665bd52fd386ae02560abfdf03",
+      "source_line": 481,
+      "estimated_start_seconds": 1013,
+      "context": "- [16:44] 我是北岛\n- [16:45] 同时也希望现场的观众可以\n- [16:47] 给自己最最喜爱的战队\n- [16:50] 送上最最诚挚的祝福和呐喊\n- [16:53] 全军出击进入比赛\n- [17:04] 北京微博加油加油\n- [17:08] 中国加油\n- [17:13] 湖面集团\n- [17:16] 湖面集成",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2023春季赛/2023-02-10_【2023KPL春季赛】2月10日 武汉eStarPro vs 北京WB_BV1i84y1V7Fx/P03_第三局.md",
+      "season": "kpl-2023-spring",
+      "source_sha256": "1b544412ccc0fcc7f510dd54f8a5057c43bd4e46c307b8a915b6613a6eab9c20",
+      "source_line": 248,
+      "estimated_start_seconds": 449,
+      "context": "- [07:22] 现在是战士王的战野王来吧\n- [07:25] 让我们一起期待一下双方的第三局比赛\n- [07:26] 蓝色方北京微博\n- [07:27] 红色方武汉一大pro的瓶子\n- [07:29] 我是重庆狼队hurt全军出击\n- [07:32] 哎呀这皮肤帅呀\n- [07:35] 猪八戒这个一对比哎呀怎么了\n- [07:37] 猪八戒这潮玩也帅啊\n- [07:39] 他不是帅啊",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2023夏季赛/2023-06-16_【2023KPL夏季赛】6月16日 济南RW侠 vs 武汉eStarPro_BV1vV4y117k6/P02_第一局.md",
+      "season": "kpl-2023-summer",
+      "source_sha256": "ecf93fc0bd96d47e30bea6ac2bc73f2ab28bb5bbbe42804c2784b131d69e546a",
+      "source_line": 314,
+      "estimated_start_seconds": 635,
+      "context": "- [10:28] 蓝色方武汉estar pro\n- [10:30] 红色方济南rw侠\n- [10:31] 五秒到达战场\n- [10:33] 请做好准备\n- [10:35] 全军出击\n- [10:37] 不起不灭\n- [10:40] 星辰姑娘\n- [10:43] 气球进步\n- [10:49] 左车进一步向前一步",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2024年度总决赛/2024-10-06_【2024KPL年度总决赛】10月6日 武汉eStarPro vs 长沙TES.A_BV1xH1iYeEvx/P02_第一局.md",
+      "season": "kpl-2024-annual",
+      "source_sha256": "8a566b1a012e0bcf950fec41578d182f8810bd802a023838a4190db450012f1d",
+      "source_line": 322,
+      "estimated_start_seconds": 711,
+      "context": "- [11:44] 状态有所回升\n- [11:46] 武汉ESTARPRO现在也是迫切的需要\n- [11:48] 积分进入双方的第一局对抗\n- [11:50] 蓝色方长沙滔博\n- [11:51] 红色方武汉estar pro全军出击\n- [12:03] 锐不可挡不怕锐不可挡\n- [12:08] 何势不怕\n- [12:10] 锐不可挡\n- [12:12] 好啊",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2024挑战者杯/2024-12-08_【2024年王者荣耀挑战者杯】12月8日 武汉eStarPro vs 北京WB_BV1mMqWYLEvm/P03_第三局.md",
+      "season": "kpl-2024-challenger",
+      "source_sha256": "0eb9008174902b7d087bf45534f482880d7abcae82dcb4230ff1a97e8174601b",
+      "source_line": 202,
+      "estimated_start_seconds": 407,
+      "context": "- [06:43] 只要船开的够快\n- [06:44] 钩子还没勾回来\n- [06:45] 就应该带着跑\n- [06:46] 你知道吗\n- [06:47] 全军出击进入比赛\n- [06:49] 双方的第三局是决胜局\n- [06:50] 蓝色方5ESTARPRO\n- [06:51] 红色方北京微博\n- [06:55] 好可永恒",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2024春季赛/2024-01-31_【2024KPL春季赛】1月31日 武汉eStarPro vs 重庆狼队_BV1RH4y1a7mQ/P02_第一局.md",
+      "season": "kpl-2024-spring",
+      "source_sha256": "92b32c4b73a63183748f7def6559d256dadb9e3e117dcee3a044dcf0426ee07f",
+      "source_line": 275,
+      "estimated_start_seconds": 644,
+      "context": "- [10:38] 进入比赛\n- [10:39] 我是解说名字\n- [10:40] 到达战场\n- [10:42] 请做好准备\n- [10:44] 全军出击\n- [10:47] 互抢节奏\n- [10:48] 互相要拼\n- [10:49] 比拼一个打野速度\n- [10:51] 然后在四级的那一波看看他们各自的动向",
+      "review_status": "本次文本上下文复核；边界仍为估计，非音视频核验"
+    },
+    {
+      "path": "2024夏季赛/2024-06-12_【2024KPL夏季赛】6月12日 北京WB vs 武汉eStarPro_BV1yn4y197mo/P05_第四局.md",
+      "season": "kpl-2024-summer",
+      "source_sha256": "d1589c28417c77cd7763911d5c020eb04d054c72ac5d78cc87e8a99456450067",
+      "source_line": 249,
+      "estimated_start_seconds": 568,
+      "context": "- [09:21] 进入到双方的第四小局比赛\n- [09:23] 蓝色方北京微博\n- [09:24] 红色方武汉ESTARPRO\n- [09:26] 依旧还是微博的赛点\n- [09:28] 全军出击\n- [09:31] 这把两边的打野好像都准备对抗路开起来\n- [09:37] 但是感觉大司令更占优势啊\n- [09:40] 哦梦奇是让自家野区开了\n- [09:43] 那估计狂铁看到大司命应该会帮梦奇速刷野怪",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2025年度总决赛/2025-09-28_【2025KPL年度总决赛】9月28日 佛山DRG vs 北京JDG_BV126nRzKE7c/P02_第一局.md",
+      "season": "kpl-2025-annual",
+      "source_sha256": "d6afc553b52679f8e10ec4afb7a628863160294cec18e9bfe07ed0da20f22341",
+      "source_line": 470,
+      "estimated_start_seconds": 1055,
+      "context": "- [17:29] 对为什么后面打的全是打满\n- [17:31] 就是因为没有运气成分在里面了\n- [17:32] 来吧进入双方的第一局比赛\n- [17:34] 蓝色方北京京东\n- [17:35] 红色方佛山DRG全军出击\n- [17:40] 看一下开局\n- [17:41] 裴擒虎应该是先抢一边草\n- [17:43] 一人我倒TDLT\n- [17:48] 这边是做了一个双边换线",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2025春季赛/2025-02-12_【2025KPL春季赛】2月12日 北京JDG vs Hero久竞_BV136K5eeEcg/P02_第一局.md",
+      "season": "kpl-2025-spring",
+      "source_sha256": "5f139f2f317d9d9f2e724cac015e18dfd0a2d8ab68ceb75a896a1fcff1559048",
+      "source_line": 387,
+      "estimated_start_seconds": 734,
+      "context": "- [12:05] 也是我们新场馆的揭幕战\n- [12:07] 蓝色方hero久竞\n- [12:09] 红色方北京JDG到达战场\n- [12:11] 请做好准备\n- [12:14] 全军出击\n- [12:24] 坚定所信\n- [12:26] 一人所向\n- [12:28] 坚定所信\n- [12:32] 坚定走向",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 桐乡情久 vs 武汉eStarPro_BV1ymTKzFEDg/P04_第三局.md",
+      "season": "kpl-2025-summer",
+      "source_sha256": "087b6c66b834d47833d894ef0cdb94b9c3e8fad5ba773e075ed53e240d34f3b6",
+      "source_line": 187,
+      "estimated_start_seconds": 422,
+      "context": "- [07:00] 大家好\n- [07:00] 我是小鹿\n- [07:01] 大家好\n- [07:01] 我是黄超\n- [07:02] 全军出击\n- [07:06] 守恒荣耀\n- [07:10] 永恒荣耀ESTAR摇旗的是景晚\n- [07:14] 也是在这个赛季通过转会\n- [07:16] 有南通hero久竞来到武汉ESTARPRO",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "season": "kpl-2026-annual",
+      "source_sha256": "e6fd5a1948c4b8bdaca6460604ead2bc9048d92c3f6df6c73dd68b37a27917e4",
+      "source_line": 210,
+      "estimated_start_seconds": 476,
+      "context": "- [07:51] 红色方南通hero久竞\n- [07:53] 我是李九\n- [07:53] 我是潇洒\n- [07:54] 进入比赛\n- [07:56] 全军出击\n- [07:57] 看钟馗的动向\n- [08:00] 还有盾山选择从哪边开\n- [08:08] 这样中左中右全部被京东占住了\n- [08:12] 要防一下",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2026挑战者杯/2026-04-28_【2026王者荣耀挑战者杯】4月28日 西安WE VS 北京JDG_BV1oZ96BVEx7/P05_第五局.md",
+      "season": "kpl-2026-challenger",
+      "source_sha256": "13d2aa98555683f704ad7adc088936e8259cbd99ed7044fd69c856a82c3b0305",
+      "source_line": 157,
+      "estimated_start_seconds": 377,
+      "context": "- [06:04] 或者是西安we能够突破队史\n- [06:09] 目前双方战至二比二平五秒到达战场\n- [06:13] 蓝色方北京JDG\n- [06:15] 红色方西安we时间交给现场\n- [06:17] 各位全军出击\n- [06:22] 军人破降\n- [06:25] 军人破降\n- [06:33] 打工打到\n- [06:37] 打后打到",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P03_第三局.md",
+      "season": "kpl-2026-spring",
+      "source_sha256": "9c60466f6d8634fc1241daea00f35a8936d547976fb0dace08e04c315a1c8ebe",
+      "source_line": 204,
+      "estimated_start_seconds": 478,
+      "context": "- [07:54] 红色方北京微博\n- [07:55] 我是解说\n- [07:56] 我是解说\n- [07:57] 潇洒是解说\n- [07:58] 杭州lg d nbw米苏全军出击\n- [08:03] 坚定所信\n- [08:04] 敌人所强\n- [08:06] 坚定所进敌强\n- [08:09] 坚定从心",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 上海RNG.M VS 武汉eStarPro_BV1mHjb6BEbV/P01_第一局.md",
+      "season": "kpl-2026-summer",
+      "source_sha256": "f3a3749b3f49a4846a71bfa5d77997efba8e39b75c69d7df814dc8f7c1663691",
+      "source_line": 336,
+      "estimated_start_seconds": 709,
+      "context": "- [11:45] 红色方上海RNGM\n- [11:47] 我是李九\n- [11:47] 我是北岛\n- [11:48] 进入比赛\n- [11:49] 全军出击\n- [11:52] 看一下关羽的一个动向\n- [11:54] 正常的还是抢中多草\n- [11:55] 探个视野\n- [11:56] 火舞抢右草",
+      "review_status": "自动候选边界；尚未逐条人工文本复核"
+    }
+  ],
+  "old_quote_audit": [
+    {
+      "id": "SUB-ROT-20261003-G4-01",
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-ROT-20261003-G1-02",
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-BP-20261003-PRE-03",
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-ADC-20260830-PRE-04",
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-CASE-20260830-G5-05",
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-CASE-20261003-G4-06",
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-ADC-20261006-G2-07",
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-COUNTER-20261006-G2-08",
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-COUNTER-20260621-G1-09",
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-COUNTER-20260704-G1-10",
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-HIST-20261003-G1-11",
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "status": "not_literal_contiguous_source_quote_rejected",
+      "literal_found": false
+    },
+    {
+      "id": "SUB-HIST-2022-ESTAR-12",
+      "path": "2022世界冠军杯/2022-12-16_【2022王者世冠】武汉eStarPro vs 上海EDG.M 12月16日淘汰赛_BV1Ye4y1M7Q8/P02_第二局.md",
+      "status": "missing_source",
+      "literal_found": false
+    }
+  ],
+  "legacy_quotes_status": "deprecated; hand-written strings rejected, including silently corrected/composite quotes",
+  "matching_rule": "unique source calendar date + season + team pair; games additionally unique game_no; upload date unused; pre-show BO-only",
+  "source_index": {
+    "rows": 6109608,
+    "fts_rows": 6109608,
+    "repaired_this_run": [],
+    "legacy_override_parts": 11,
+    "digest_verified_parts": 7891,
+    "backup": "processed/legacy_subtitle_overrides.jsonl"
+  }
+}

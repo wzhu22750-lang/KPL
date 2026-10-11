@@ -6,6 +6,9 @@ import { pageMeta } from "../lib/seo";
 import { PhoneBar } from "../components/shell/PhoneBar";
 import { IntentLink } from "../components/ui/IntentLink";
 import type { Screen } from "../components/shell/screens";
+import { EsportsNav, PageHeader, Portrait, Metric } from "../components/esports/Esports";
+import { formatNumber, formatRate } from "../lib/esports";
+import "../esports-matches.css";
 
 export const handle: Screen = { name: "选手" };
 
@@ -18,171 +21,76 @@ export function meta({ loaderData, params }: Route.MetaArgs) {
   return pageMeta({ title: `${name}：职业履历、荣誉与数据`, description: `${name}的真实姓名、个人荣誉、转会履历、赛季数据变化、英雄池与相关赛事动态。`, path: `/players/${params.slug}` });
 }
 
-export function headers() {
-  return edgeTtl(60);
-}
+export function headers() { return edgeTtl(60); }
 
 const HONOR_LABEL: Record<string, string> = { fmvp: "总决赛FMVP", regular_mvp: "常规赛MVP", annual_mvp: "年度最佳选手", best_lineup: "最佳阵容一阵", champion: "冠军成员", finals_mvp: "总决赛FMVP" };
-const HONOR_MEDAL: Record<string, string> = { fmvp: "🏅", regular_mvp: "⭐", annual_mvp: "🌟", best_lineup: "🎖️", champion: "🏆", finals_mvp: "🏅" };
-
-const fmtDate = (d: string | null) => (d ? d.slice(0, 7).replace("-", ".") : "?");
+const fmtDate = (d: string | null) => d ? d.slice(0, 7).replace("-", ".") : "日期待补充";
 
 export default function PlayerPage() {
   const { player, stints, seasons, heroes, honors, news } = useLoaderData<typeof loader>();
   const totals = seasons.reduce((acc, s) => ({ games: acc.games + s.games, mvps: acc.mvps + s.mvps, wins: acc.wins + s.wins }), { games: 0, mvps: 0, wins: 0 });
-  return (
-    <div className="pb-10">
-      <PhoneBar title={player.nickname} />
-      <header className="pt-3 lg:pt-1">
-        <div className="flex items-center gap-4">
-          {player.portrait && <img src={player.portrait} alt="" width={64} height={64} className="h-16 w-16 rounded-full object-cover" />}
-          <div className="min-w-0">
-            <h1 data-page-title="" className="text-[24px] font-semibold leading-[1.3] text-ink">
-              {player.nickname}
-              {player.realName && <span className="ml-2 text-[15px] font-medium text-ink-3">{player.realName}</span>}
-            </h1>
-            <p className="mt-1 text-[13px] text-ink-3">
-              {player.position ?? "—"}
-              {player.team && (
-                <>
-                  {" · "}
-                  {player.teamSlug ? <IntentLink to={`/teams/${player.teamSlug}`} className="font-medium text-accent">{player.team}</IntentLink> : player.team}
-                </>
-              )}
-              {player.debutAt && <span className="text-ink-4"> · {player.debutAt.slice(0, 4)} 年出道</span>}
-            </p>
-          </div>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-          <div className="rounded-card border border-line bg-surface px-3 py-3">
-            <span className="num block text-[20px] font-bold text-ink">{totals.games}</span>
-            <span className="text-[11.5px] text-ink-4">场次</span>
-          </div>
-          <div className="rounded-card border border-line bg-surface px-3 py-3">
-            <span className="num block text-[20px] font-bold text-accent">{totals.mvps}</span>
-            <span className="text-[11.5px] text-ink-4">单局 MVP</span>
-          </div>
-          <div className="rounded-card border border-line bg-surface px-3 py-3">
-            <span className="num block text-[20px] font-bold text-ink">{totals.games > 0 ? Math.round((totals.wins / totals.games) * 100) : 0}%</span>
-            <span className="text-[11.5px] text-ink-4">胜率</span>
-          </div>
-        </div>
-      </header>
-
-      {player.bio && (
-        <p className="mt-3 rounded-card border border-line bg-surface px-4 py-3 text-[13px] leading-relaxed text-ink-2">{player.bio}</p>
-      )}
-
-      {honors.length > 0 && (
-        <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">个人荣誉</h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {honors.map((h, i) => (
-              <li key={i} className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12.5px] ${h.kind === "fmvp" || h.kind === "finals_mvp" ? "border-amber/40 bg-amber/10" : "border-line bg-surface"}`}>
-                <span aria-hidden>{HONOR_MEDAL[h.kind] ?? "🎖️"}</span>
-                <span className={`font-semibold ${h.kind === "fmvp" || h.kind === "finals_mvp" ? "text-ink" : "text-ink-2"}`}>{h.title ?? h.season ?? HONOR_LABEL[h.kind]}</span>
-                <span className="text-ink-4">{HONOR_LABEL[h.kind] ?? h.kind}{h.note ? ` · ${h.note}` : ""}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {stints.length > 0 && (
-        <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">职业转会履历</h2>
-          <ol className="mt-4">
-            {[...stints].reverse().map((s, i) => (
-              <li key={i} className="relative flex gap-3 pb-5 last:pb-0">
-                {i < stints.length - 1 && <span aria-hidden className="absolute left-[5px] top-4 h-[calc(100%-16px)] w-px bg-line" />}
-                <span aria-hidden className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${s.leftAt ? "bg-line" : "bg-accent"}`} />
-                <span className="min-w-0">
-                  <span className="block text-[13.5px] font-semibold text-ink">
-                    {s.teamSlug ? <IntentLink to={`/teams/${s.teamSlug}`} className="hover:text-accent">{s.team ?? "未知战队"}</IntentLink> : s.team ?? "未知战队"}
-                  </span>
-                  <span className="num block text-[12px] text-ink-4">
-                    {fmtDate(s.joinedAt)} – {s.leftAt ? fmtDate(s.leftAt) : "至今"}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      {seasons.length > 0 && (
-        <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">赛季数据</h2>
-          <div className="mt-3 overflow-x-auto">
-            <table className="w-full min-w-[440px] text-[12.5px]">
-              <thead>
-                <tr className="border-b border-line text-left text-ink-4">
-                  <th className="py-1.5 pr-2 font-medium">赛季</th>
-                  <th className="py-1.5 pr-2 text-right font-medium">场次</th>
-                  <th className="py-1.5 pr-2 text-right font-medium">胜率</th>
-                  <th className="py-1.5 pr-2 text-right font-medium">MVP</th>
-                  <th className="py-1.5 text-right font-medium">场均 K/D/A</th>
-                </tr>
-              </thead>
-              <tbody>
-                {seasons.map((s) => (
-                  <tr key={s.seasonId} className="border-b border-line-soft/60 last:border-0">
-                    <td className="py-1.5 pr-2 font-medium text-ink">{s.seasonName}</td>
-                    <td className="py-1.5 pr-2 text-right tabular-nums text-ink-2">{s.games}</td>
-                    <td className="py-1.5 pr-2 text-right tabular-nums text-ink-2">{s.games > 0 ? Math.round((s.wins / s.games) * 100) : 0}%</td>
-                    <td className="py-1.5 pr-2 text-right tabular-nums font-semibold text-amber">{s.mvps}</td>
-                    <td className="py-1.5 text-right tabular-nums text-ink-3">{s.avgKills ?? "-"}/{s.avgDeaths ?? "-"}/{s.avgAssists ?? "-"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-
-      {heroes.length > 0 && (
-        <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">英雄池</h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {heroes.map((h) => (
-              <li key={h.hero} className="flex items-center gap-2 rounded-full border border-line bg-surface py-1 pl-1.5 pr-3 text-[12.5px]">
-                {h.heroIcon && <img src={h.heroIcon} alt="" width={24} height={24} loading="lazy" className="h-6 w-6 rounded-full object-cover" />}
-                <span className="font-medium text-ink">{h.hero}</span>
-                <span className="num text-ink-4">{h.games} 场</span>
-                <span className="num font-semibold text-accent">{h.games > 0 ? Math.round((h.wins / h.games) * 100) : 0}%</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {news.length > 0 && (
-        <section className="pt-7">
-          <h2 className="text-[15px] font-bold text-ink">相关赛事动态</h2>
-          <ul className="mt-3 divide-y divide-line-soft overflow-hidden rounded-card border border-line bg-surface">
-            {news.map((n) => (
-              <li key={n.id}>
-                <IntentLink to={`/items/${n.id}`} className="block px-4 py-3 transition-colors hover:text-accent">
-                  <span className="flex items-baseline gap-2">
-                    <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{n.title}</span>
-                    {n.kind === "social_post" && (
-                      <span className="shrink-0 rounded bg-bg-sunk px-1.5 py-0.5 text-[10.5px] font-medium text-ink-3 border border-line-soft">
-                        动态
-                      </span>
-                    )}
-                    {n.selected && <span className="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-[10.5px] font-semibold text-accent">精选</span>}
-                  </span>
-                  {n.summary && <span className="mt-1 line-clamp-2 block text-[12.5px] leading-relaxed text-ink-3">{n.summary}</span>}
-                </IntentLink>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {stints.length === 0 && seasons.length === 0 && heroes.length === 0 && (
-        <p className="mt-6 text-[13px] text-ink-4">该选手暂无对局数据（数据自 2026 春季赛起累积）。</p>
-      )}
+  return <div className="esports-page esports-player pb-10">
+    <PhoneBar title={player.nickname} />
+    <EsportsNav />
+    <div className="ep-athlete ep-panel">
+      <Portrait src={player.portrait} name={player.nickname} kind="player" size={144} eager />
+      <div className="ep-athlete-copy">
+        <PageHeader kicker="PLAYER / 选手档案" title={player.nickname} description={[player.realName, player.position, player.debutAt ? `${player.debutAt.slice(0, 4)} 年出道` : null].filter(Boolean).join(" · ")} />
+        {player.team && <p className="ep-affiliation">效力战队 · {player.teamSlug ? <IntentLink to={`/teams/${player.teamSlug}`}>{player.team}</IntentLink> : player.team}</p>}
+        <p className="ep-muted">以下统计来自已收录赛季，不代表完整职业生涯。</p>
+      </div>
     </div>
-  );
+    <div className="ep-metrics">
+      <Metric label="收录小局" value={formatNumber(totals.games)} note={`${seasons.length} 个赛季样本`} primary />
+      <Metric label="小局胜率" value={formatRate(totals.games ? totals.wins / totals.games : null, totals.games)} note={`${formatNumber(totals.wins)} 胜 / ${formatNumber(totals.games)} 局`} />
+      <Metric label="单局 MVP" value={formatNumber(totals.mvps)} note="官方对局记录" />
+    </div>
+    {player.bio && <p className="ep-bio ep-panel">{player.bio}</p>}
+    <div className="ep-career-grid">
+      <section className="ep-section">
+        <div className="ep-section-heading"><h2>职业履历</h2><span>CAREER</span></div>
+        {stints.length ? <ol className="ep-timeline">{[...stints].reverse().map((s, i) => <li key={`${s.teamSlug}-${i}`}>
+          <p className="ep-muted">{fmtDate(s.joinedAt)} — {s.leftAt ? fmtDate(s.leftAt) : "至今"}</p>
+          <h3>{s.teamSlug ? <IntentLink to={`/teams/${s.teamSlug}`}>{s.team ?? "未知战队"}</IntentLink> : s.team ?? "未知战队"}</h3>
+          {!s.leftAt && <span className="ep-tag">当前履历</span>}
+        </li>)}</ol> : <p className="ep-empty">职业转会记录待补充。</p>}
+      </section>
+      <section className="ep-section">
+        <div className="ep-section-heading"><h2>个人荣誉</h2><span>{honors.length} 项记录</span></div>
+        {honors.length ? <ul className="ep-honors">{honors.map((h, i) => <li key={i}>
+          <span className="ep-kicker">{h.year ?? h.season ?? "赛季待补充"}</span>
+          <h3>{h.title ?? HONOR_LABEL[h.kind] ?? h.kind}</h3>
+          <p className="ep-muted">{h.season} · {HONOR_LABEL[h.kind] ?? h.kind}{h.note ? ` · ${h.note}` : ""}</p>
+        </li>)}</ul> : <p className="ep-empty">暂无已收录荣誉。</p>}
+      </section>
+    </div>
+    <section className="ep-section">
+      <div className="ep-section-heading"><h2>赛季表现</h2><span>真实场均 K / D / A</span></div>
+      {seasons.length ? <ul className="ep-season-list">{seasons.map(s => <li key={s.seasonId} className="ep-panel ep-season-card">
+        <h3>{s.seasonName}</h3>
+        <dl className="ep-stat-grid">
+          <div><dt>小局</dt><dd>{formatNumber(s.games)}</dd></div>
+          <div><dt>胜率</dt><dd>{formatRate(s.games ? s.wins / s.games : null, s.games)}</dd></div>
+          <div><dt>MVP</dt><dd>{formatNumber(s.mvps)}</dd></div>
+          <div><dt>场均 K / D / A</dt><dd>{formatNumber(s.avgKills, 1)} / {formatNumber(s.avgDeaths, 1)} / {formatNumber(s.avgAssists, 1)}</dd></div>
+        </dl>
+      </li>)}</ul> : <p className="ep-empty">暂无赛季对局数据。</p>}
+    </section>
+    <section className="ep-section">
+      <div className="ep-section-heading"><h2>英雄池</h2><span>出场样本与胜率</span></div>
+      {heroes.length ? <ul className="ep-hero-grid">{heroes.map(h => <li key={h.hero} className="ep-panel ep-hero-card">
+        <Portrait src={h.heroIcon} name={h.hero} kind="hero" size={48} />
+        <div><h3>{h.hero}</h3><p className="ep-muted">{formatNumber(h.wins)} 胜 / {formatNumber(h.games)} 局</p></div>
+        <strong>{formatRate(h.games ? h.wins / h.games : null, h.games)}</strong>
+      </li>)}</ul> : <p className="ep-empty">英雄池数据待补充。</p>}
+    </section>
+    {news.length > 0 && <section className="ep-section">
+      <div className="ep-section-heading"><h2>相关赛事动态</h2><span>{news.length} 条</span></div>
+      <ul className="ep-news-list ep-panel">{news.map(n => <li key={n.id}><IntentLink to={`/items/${n.id}`}>
+        <div className="ep-news-meta">{n.publishedAt && <time dateTime={n.publishedAt}>{n.publishedAt.slice(0, 10)}</time>}{n.kind === "social_post" && <span>动态</span>}{n.selected && <span className="ep-tag">精选</span>}</div>
+        <h3>{n.title}</h3>{n.summary && <p className="ep-muted">{n.summary}</p>}
+      </IntentLink></li>)}</ul>
+    </section>}
+    {stints.length === 0 && seasons.length === 0 && heroes.length === 0 && <p className="ep-empty">该选手暂无对局数据（数据自 2026 春季赛起累积）。</p>}
+  </div>;
 }

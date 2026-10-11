@@ -1,0 +1,41 @@
+{
+  "audited_terms": [
+    {
+      "canonical": "昊昊",
+      "observed_asr": "浩浩",
+      "count_2026_jdg": 320,
+      "canonical_count": 0,
+      "verdict": "ASR强制同音字转换。经人工逐句对齐证实，字幕中‘浩浩’100%指向JDG中单选手黄政昊（昊昊）。"
+    },
+    {
+      "canonical": "小寒",
+      "observed_asr": "小韩 / 小孩",
+      "count_2026_jdg": 742,
+      "canonical_count": 53,
+      "verdict": "ASR将小寒多识别为同音字‘小韩’（672次）或‘小孩’（70次）。"
+    },
+    {
+      "canonical": "花缘",
+      "observed_asr": "花园",
+      "count_2026_jdg": 151,
+      "canonical_count": 0,
+      "verdict": "从佛山DRG租借至JDG的对抗路选手花缘，ASR识别全量错写为名词‘花园’。"
+    },
+    {
+      "canonical": "清融",
+      "observed_asr": "清融",
+      "count_2026_jdg": 545,
+      "canonical_count": 545,
+      "verdict": "选手知名度极高，ASR识别准确率超99%，仅偶见‘金融’、‘戚容’口误转写。"
+    },
+    {
+      "canonical": "风箫",
+      "observed_asr": "封萧 / 封校",
+      "count_2026_jdg": 48,
+      "canonical_count": 12,
+      "verdict": "对手上海EDG.M射手风箫被转录为封萧或封校。"
+    }
+  ],
+  "tactical_vs_word_frequency_rule": "严禁仅凭词频统计推断战术频率。例如‘浩浩’被频繁提及可能系因处于危险站位或被敌方集火，必须结合上下文解说评述、比赛进程及前后局势做出多维互证。",
+  "audio_claim_rule": "法医级事实声明：所有分析证据基于B站官方录屏音频之ASR字幕转录文本，绝不宣称或假定直接观看比赛实时视频画面。"
+}

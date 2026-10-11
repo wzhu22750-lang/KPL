@@ -1,0 +1,539 @@
+{
+  "sources": [
+    {
+      "id": "VC-HUPU-824518",
+      "url": "https://bbs.hupu.com/642824518.html",
+      "title": "[JR热议]瓜主爆料：北京JDG明日中上首发为昊昊/花缘，你是否看好？",
+      "published_at": "2026-10-08 08:41:37（页面原值，时区未注明）",
+      "retrieved_at": "2026-10-09T17:17:30.637254+00:00",
+      "platform": "Hupu",
+      "author": "竹山堂（回帖）；断线流老庄周（楼主）",
+      "exact_quote": "jdg真是幸福的烦恼啊，不过清融和昊昊也都够努力的",
+      "metrics": {
+        "views": 18759,
+        "comments": 74,
+        "lights": 28,
+        "recommendations": 32,
+        "quote_lights": 47,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "2e712db3f88fc5b49d502b1c4b06dec1710586a196c7caa4d1e68367b3cae1e9",
+        "quote_char_start": 1242,
+        "quote_char_end": 1267,
+        "line_start": 44,
+        "line_end": 44
+      },
+      "local_artifact": "processed/web_sources/hupu_discussion.txt",
+      "classification": "fan_comment",
+      "interpretation": "双中单同时被肯定的个案；不能据此认定多数队粉支持轮换。"
+    },
+    {
+      "id": "VC-HUPU-839424",
+      "url": "https://bbs.hupu.com/642839424.html",
+      "title": "[前瞻]JDG冲击大场三连胜，狼队能否拿下关键积分脱离危险区？",
+      "published_at": null,
+      "retrieved_at": "2026-10-09T17:17:30.636298+00:00",
+      "platform": "Hupu",
+      "author": null,
+      "exact_quote": "只能说两位选手风格正好互补，也难怪化学反应这么好。当然，变成替补的清融表现也同样不差",
+      "metrics": {
+        "views": null,
+        "comments": null,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "991a41d83c92a18de72cf815f1fe1fed9666c81abb697adccd8c0ff8663187c1",
+        "quote_char_start": 1861,
+        "quote_char_end": 1903,
+        "line_start": 56,
+        "line_end": 56
+      },
+      "local_artifact": "processed/web_sources/hupu_preview.txt",
+      "classification": "editorial_opinion",
+      "interpretation": "作者以互补/化学反应解释表现，是媒体观点而非控制变量后的协同因果结论。页面无可核作者/发布时间/互动，均不继承旧值。"
+    },
+    {
+      "id": "VC-WEIBO-099691",
+      "url": "https://www.sina.cn/news/detail/5350996910801176.html",
+      "title": "粉丝不想闹只想公平：清融的 BP 环境，真的只是运气吗",
+      "published_at": "2026-10-06 12:22（页面原值）",
+      "retrieved_at": "2026-10-09T17:18:50.296596+00:00",
+      "platform": "Weibo via Sina mirror",
+      "author": "qov2u",
+      "exact_quote": "清融粉丝不想闹，只想为他争取一个公平竞争的机会",
+      "metrics": {
+        "views": null,
+        "comments": null,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "ce7711f5e3e50d083f64be067e846e608b522bc3cbf6d7b59a2d677440f17292",
+        "quote_char_start": 1226,
+        "quote_char_end": 1249,
+        "line_start": 29,
+        "line_end": 29
+      },
+      "local_artifact": "processed/web_sources/renata_full.txt",
+      "classification": "fan_opinion",
+      "interpretation": "公平竞争诉求可核；BP偏心、热搜打压、教练嫡系等为博主指控，未获事实确认。搜索结果曾误将相关推荐后援会当本文作者。"
+    },
+    {
+      "id": "VC-BILI-PERR",
+      "url": "https://www.bilibili.com/video/BV1tDpt6pERR",
+      "title": "北京JDG 3-0 深圳DYG 赛后数据雷达图+虎扑热评",
+      "published_at": null,
+      "retrieved_at": "2026-10-09T17:18:17.000487+00:00",
+      "platform": "Bilibili",
+      "author": null,
+      "exact_quote": "零封！北京JDG 3-0 深圳DYG 赛后数据雷达图+虎扑热评丨KPL年度总决赛",
+      "metrics": {
+        "views": null,
+        "comments": null,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "954ce59a3f4952642ddd715cc4d4d8850704f7d1aa48414fec8f37a6fda41af6",
+        "quote_char_start": 33,
+        "quote_char_end": 73,
+        "line_start": 1,
+        "line_end": 1
+      },
+      "local_artifact": "processed/web_sources/bili_jina.txt",
+      "classification": "video_title_only",
+      "interpretation": "只核页面标题/列表出现该标题，未读到视频说明、评论、弹幕或观看视频。不能确认5.8万人评分、作者及发布日期。Jina Published Time 2024与赛事语境冲突，不用作视频发布日期。"
+    },
+    {
+      "id": "VC-CLUB-SUMMER",
+      "url": "https://bbs.hupu.com/642306823.html",
+      "title": "[流言板]JDG长文：夏季赛一路走来，我们打破队史，冲破外界的质疑",
+      "published_at": null,
+      "retrieved_at": "2026-10-09T17:18:16.998229+00:00",
+      "platform": "Hupu repost of club statement",
+      "author": null,
+      "exact_quote": "七月的尾巴，我们让二追三锁定第三轮S组。那是阿融去集训前，能参与的最后一场夏季赛。",
+      "metrics": {
+        "views": 13709,
+        "comments": 25,
+        "lights": 11,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "499e7808c1740b3306ffb81003de1cfe59f286c340015fac5d7e240b3abd90ce",
+        "quote_char_start": 3193,
+        "quote_char_end": 3234,
+        "line_start": 104,
+        "line_end": 104
+      },
+      "local_artifact": "processed/web_sources/summer_club.txt",
+      "classification": "club_statement_repost",
+      "interpretation": "正文标来源微博，为俱乐部长文转载；支持清融夏季赛末进入集训的背景，不能证明集训日程/金牌或国家队完整公告。"
+    },
+    {
+      "id": "VC-MATCH-1003",
+      "url": "https://www.988zbw.com/dianjingzhanbaoba/446620.html",
+      "title": "EDG五局拉满战胜JDG EDG 3-2 JDG",
+      "published_at": "2026-10-03（页面赛事日）",
+      "retrieved_at": "2026-10-09T17:19:44.214150+00:00",
+      "platform": "988直播",
+      "author": null,
+      "exact_quote": "第四局：EDG 2-2 JDG【赛后数据】",
+      "metrics": {
+        "views": null,
+        "comments": null,
+        "likes": null,
+        "reposts": null
+      },
+      "verification": {
+        "status": "retrieved_text_quote_checked",
+        "scope": "仅核对保存文本中的引文；不验证作者评价或指控属实",
+        "source_sha256": "0957253b25828fb8fe0d34390d304b7166e5f50bceed4bccaf3ae04a20484aaa",
+        "quote_char_start": 4931,
+        "quote_char_end": 4952,
+        "line_start": 125,
+        "line_end": 125,
+        "supporting_artifacts": [
+          {
+            "path": "processed/web_sources/match_report.txt",
+            "sha256": "8bf06655ee5908f37839bc22a7305fb917f845b5580e145a80f858816c2cc1b7",
+            "scope": "另一个二手正文确认EDGM 3:2及G4昊昊安琪拉"
+          },
+          {
+            "path": "processed/web_sources/weibo_rotation.txt",
+            "sha256": "e3247ede736e180e8cde753c00dc9bd6914edf2aa7845f5b2331b3b87f5f9a16",
+            "scope": "JDG认证官博镜像正文确认第四局中上换人，不证明该局输赢"
+          }
+        ]
+      },
+      "local_artifact": "processed/web_sources/match_scores.txt",
+      "classification": "secondary_match_report",
+      "interpretation": "正文逐局累计EDG比分1-0、1-1、2-1、2-2、3-2：JDG G1负/G2胜/G3负/G4胜/G5负。与中国电竞网大比分一致，仍为非官方二手战报；需比赛数据库/官方原始记录终审。"
+    }
+  ],
+  "retrieval_log": [
+    {
+      "id": "exa_rotation",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"JDG 清融 昊昊 2026 10月 轮换 site:bbs.hupu.com\", numResults: 5)"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.634806+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_rotation.txt",
+      "stderr": "processed/web_sources/exa_rotation.stderr",
+      "sha256": "eb9fb3a3590f83ab5c9eb86606c5bf04db752065d9f47b0f8c9f1dc257fe5d23",
+      "content_status": "search_excerpts_only_not_full_body"
+    },
+    {
+      "id": "exa_official",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"2026 KPL 年度总决赛 大师轮换 规则 清融 亚运 10月3日 EDGM 2 3\", numResults: 6)"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.635146+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_official.txt",
+      "stderr": "processed/web_sources/exa_official.stderr",
+      "sha256": "093e67f74a5af64811d51163dc24d419ee4451d4ac074e088f115cb9a9af269b",
+      "content_status": "search_excerpts_only_not_full_body"
+    },
+    {
+      "id": "hupu_preview",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "45",
+        "https://r.jina.ai/https://bbs.hupu.com/642839424.html"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.636298+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/hupu_preview.txt",
+      "stderr": "processed/web_sources/hupu_preview.stderr",
+      "sha256": "991a41d83c92a18de72cf815f1fe1fed9666c81abb697adccd8c0ff8663187c1",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "hupu_discussion",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "45",
+        "https://r.jina.ai/https://bbs.hupu.com/642824518.html"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.637254+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/hupu_discussion.txt",
+      "stderr": "processed/web_sources/hupu_discussion.stderr",
+      "sha256": "2e712db3f88fc5b49d502b1c4b06dec1710586a196c7caa4d1e68367b3cae1e9",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "weibo_statement",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "45",
+        "https://r.jina.ai/https://weibo.com/a/hot/39256900f2e4fb40_0.html?type=grab"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.637966+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/weibo_statement.txt",
+      "stderr": "processed/web_sources/weibo_statement.stderr",
+      "sha256": "0523d0b3964256ac93bb472ce317c55f60a1eadd50e7a1c7fdff5ed3204eeb2c",
+      "content_status": "login_wall_no_body"
+    },
+    {
+      "id": "bili_video",
+      "command": [
+        "bili",
+        "video",
+        "BV1tDpt6pERR"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.639760+00:00",
+      "exit_code": -1,
+      "artifact": "processed/web_sources/bili_video.txt",
+      "stderr": "processed/web_sources/bili_video.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content_status": "command_failed"
+    },
+    {
+      "id": "bili_search",
+      "command": [
+        "bili",
+        "search",
+        "JDG 清融 昊昊 轮换",
+        "--type",
+        "video",
+        "-n",
+        "5"
+      ],
+      "retrieved_at": "2026-10-09T17:17:30.640078+00:00",
+      "exit_code": -1,
+      "artifact": "processed/web_sources/bili_search.txt",
+      "stderr": "processed/web_sources/bili_search.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content_status": "command_failed"
+    },
+    {
+      "id": "rules_official",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "40",
+        "https://r.jina.ai/https://news.qq.com/rain/a/20261001A0ASAJ00"
+      ],
+      "retrieved_at": "2026-10-09T17:18:16.993172+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/rules_official.txt",
+      "stderr": "processed/web_sources/rules_official.stderr",
+      "sha256": "87317b1259bfb86affb0a51cc7e02aeea1e02c276b06a734cae1a6d303f54f4f",
+      "content_status": "blocked_no_body"
+    },
+    {
+      "id": "weibo_coaches",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "40",
+        "https://r.jina.ai/https://www.sina.cn/news/detail/5350017357317094.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:16.993454+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/weibo_coaches.txt",
+      "stderr": "processed/web_sources/weibo_coaches.stderr",
+      "sha256": "a5b727ea271ca6b547ea46e1b28449ef9258f39fb062d285978d45b52fce2b00",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "weibo_rotation",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "40",
+        "https://r.jina.ai/https://www.sina.cn/news/detail/5350016793185805.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:16.994636+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/weibo_rotation.txt",
+      "stderr": "processed/web_sources/weibo_rotation.stderr",
+      "sha256": "e3247ede736e180e8cde753c00dc9bd6914edf2aa7845f5b2331b3b87f5f9a16",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "summer_club",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "40",
+        "https://r.jina.ai/https://bbs.hupu.com/642306823.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:16.998229+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/summer_club.txt",
+      "stderr": "processed/web_sources/summer_club.stderr",
+      "sha256": "499e7808c1740b3306ffb81003de1cfe59f286c340015fac5d7e240b3abd90ce",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "bili_jina",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "40",
+        "https://r.jina.ai/https://www.bilibili.com/video/BV1tDpt6pERR"
+      ],
+      "retrieved_at": "2026-10-09T17:18:17.000487+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/bili_jina.txt",
+      "stderr": "processed/web_sources/bili_jina.stderr",
+      "sha256": "954ce59a3f4952642ddd715cc4d4d8850704f7d1aa48414fec8f37a6fda41af6",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "exa_match",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"2026年10月3日 北京JDG 上海EDGM 第四局 2-2 2-3 安琪拉\", numResults: 5)"
+      ],
+      "retrieved_at": "2026-10-09T17:18:17.000779+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_match.txt",
+      "stderr": "processed/web_sources/exa_match.stderr",
+      "sha256": "b2af3ae977cf0ec23da32b77d7530652f52a023b920764ab1853e607d038d9d2",
+      "content_status": "search_excerpts_only_not_full_body"
+    },
+    {
+      "id": "exa_renata",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"Renata 清融 粉丝后援会 忘本俱乐部 2026 10月6日\", numResults: 3)"
+      ],
+      "retrieved_at": "2026-10-09T17:18:17.002499+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_renata.txt",
+      "stderr": "processed/web_sources/exa_renata.stderr",
+      "sha256": "d8009494fc977dbd197f587e410bdb553456a40c9338b63fef08cb3c4ff573be",
+      "content_status": "search_excerpts_only_not_full_body"
+    },
+    {
+      "id": "match_report",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "35",
+        "https://r.jina.ai/http://www.5asj.com/games/wzry/20261003/5287.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:50.295585+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/match_report.txt",
+      "stderr": "processed/web_sources/match_report.stderr",
+      "sha256": "8bf06655ee5908f37839bc22a7305fb917f845b5580e145a80f858816c2cc1b7",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "renata_full",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "35",
+        "https://r.jina.ai/https://www.sina.cn/news/detail/5350996910801176.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:50.296596+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/renata_full.txt",
+      "stderr": "processed/web_sources/renata_full.stderr",
+      "sha256": "ce7711f5e3e50d083f64be067e846e608b522bc3cbf6d7b59a2d677440f17292",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "rules_club",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "35",
+        "https://r.jina.ai/https://www.sina.cn/news/detail/5348461071566734.html"
+      ],
+      "retrieved_at": "2026-10-09T17:18:50.297066+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/rules_club.txt",
+      "stderr": "processed/web_sources/rules_club.stderr",
+      "sha256": "6c00088f1a627ab22cb8c0a9006db3382f0a431eb696ee716566e8b95825fa08",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "rules_direct",
+      "command": [
+        "curl",
+        "-sS",
+        "-L",
+        "--max-time",
+        "35",
+        "https://news.qq.com/rain/a/20261001A0ASAJ00"
+      ],
+      "retrieved_at": "2026-10-09T17:18:50.297186+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/rules_direct.txt",
+      "stderr": "processed/web_sources/rules_direct.stderr",
+      "sha256": "55d3a774b316bd26fcff5cfa86703d3b14100354ff5878d1cfc4619fd8941dae",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "update",
+      "command": [
+        "agent-reach",
+        "check-update"
+      ],
+      "retrieved_at": "2026-10-09T17:18:50.297277+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/update.txt",
+      "stderr": "processed/web_sources/update.stderr",
+      "sha256": "a38043ddf8ca4adb7c33a1d696f44e802782eadc226b1e3f029c6af0ffb4209a",
+      "content_status": "retrieved_not_automatically_verified"
+    },
+    {
+      "id": "exa_g4",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"2026 10月3日 EDGM JDG 2:2 风箫 卢雅娜 第四局\", numResults: 4)"
+      ],
+      "retrieved_at": "2026-10-09T17:19:18.776371+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_g4.txt",
+      "stderr": "processed/web_sources/exa_g4.stderr",
+      "sha256": "efbc11ed8ccd2a7740d8051ba6b9173651cd0e88992dd24ee6f0a14a5925651d",
+      "content_status": "search_excerpts_only_not_full_body"
+    },
+    {
+      "id": "exa_asian",
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa(query: \"清融 2026 亚运会 集训 国家集训队 王者荣耀 官方\", numResults: 4)"
+      ],
+      "retrieved_at": "2026-10-09T17:19:18.777474+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/exa_asian.txt",
+      "stderr": "processed/web_sources/exa_asian.stderr",
+      "sha256": "08c83ef876db33ac67a2c1452d5f519b3b0fc55d3095c37ef8228b55a45fc79f",
+      "content_status": "irrelevant_search_results_no_official_confirmation"
+    },
+    {
+      "id": "match_scores",
+      "command": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "30",
+        "https://r.jina.ai/https://www.988zbw.com/dianjingzhanbaoba/446620.html"
+      ],
+      "retrieved_at": "2026-10-09T17:19:44.214150+00:00",
+      "exit_code": 0,
+      "artifact": "processed/web_sources/match_scores.txt",
+      "stderr": "processed/web_sources/match_scores.stderr",
+      "sha256": "0957253b25828fb8fe0d34390d304b7166e5f50bceed4bccaf3ae04a20484aaa",
+      "content_status": "retrieved_not_automatically_verified"
+    }
+  ],
+  "limitations": [
+    "六条登记中五条取得正文/原始文字，一条B站仅标题；未完成微博原站或B站评论/弹幕覆盖。bili命令未安装；未启用浏览器。",
+    "互动数字只来自抓取页面显示，并非独立用户人数或实时API；虎扑页头28亮与推荐32为不同字段，不强行统一。其余未知均null。",
+    "微博/Sina正文后的推荐流不能归入主帖；旧5350017357317094实际是多樂的10月3日轮换动态，不是旧稿声称的10月4日教练信任/七冠超话贴。",
+    "后援会原微博被访客系统阻挡；10740赞/425评没有重新核实，删除。B站58000参与者、dense_danmaku、thousands均删除。",
+    "不外推全平台性别、人数、支持率、主流阵营或粉圈动机；粉丝指控不能解释教练真实动机、合约、薪资或不续约。",
+    "10月3日JDG 2:3已由两份二手正文确认；G4二手累计比分为JDG胜，旧2-0领先叙事错误。尚未取得官方逐局胜负原始公告，不把二手战报包装为官方终审。",
+    "规则辅助：Exa命中署名王者荣耀赛事的腾讯新闻20261001A0ASAJ00，摘录“擂台赛每一轮BO5对局里，大师组7人大名单全部选手，都需要至少登场一小局。”Jina被403阻挡，直连未取得正文；此为官方候选检索摘录，不是完成官方正文验证。",
+    "亚运官方查询返回无关体育赛程，失败已存；仅俱乐部长文转载可核集训背景，不独立确认亚运名单、金牌或集训具体日期。",
+    "未访问本地articles/comments数据库；原community.json仅作待审输入，不是原始抓取缓存。UTC抓取日2026-10-09，对应北京时间2026-10-10。"
+  ]
+}

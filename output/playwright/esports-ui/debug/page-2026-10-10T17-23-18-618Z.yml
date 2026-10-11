@@ -1,0 +1,3591 @@
+- generic [ref=e2]:
+  - link "跳到正文" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - complementary [ref=e4]:
+    - link "康平路情报站 首页" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "康平路情报站" [ref=e6]:
+        - generic [aria-hidden] [ref=e15]: 康平路情报站
+    - navigation "主导航" [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]: 内容
+        - generic [ref=e19]:
+          - link "发现" [ref=e20] [cursor=pointer]:
+            - /url: /
+          - link "全部 KPL 动态" [ref=e26] [cursor=pointer]:
+            - /url: /all
+          - link "英雄榜" [ref=e34] [cursor=pointer]:
+            - /url: /heroes
+          - link "积分榜" [ref=e42] [cursor=pointer]:
+            - /url: /standings
+          - link "战队对决" [ref=e51] [cursor=pointer]:
+            - /url: /h2h
+          - link "AI 问答" [ref=e61] [cursor=pointer]:
+            - /url: /ask
+          - link "赛程赛果" [ref=e67] [cursor=pointer]:
+            - /url: /matches
+          - link "战队" [ref=e72] [cursor=pointer]:
+            - /url: /teams
+          - link "热点榜" [ref=e78] [cursor=pointer]:
+            - /url: /hot
+          - link "KPL 日报" [ref=e83] [cursor=pointer]:
+            - /url: /daily
+          - link "主题" [ref=e89] [cursor=pointer]:
+            - /url: /topics
+          - link "收藏" [ref=e97] [cursor=pointer]:
+            - /url: /starred
+      - generic [ref=e102]:
+        - generic [ref=e103]: 更多
+        - generic [ref=e104]:
+          - link "Agent 接入" [ref=e105] [cursor=pointer]:
+            - /url: /agent
+          - link "关于" [ref=e110] [cursor=pointer]:
+            - /url: /about
+          - link "更新日志" [ref=e115] [cursor=pointer]:
+            - /url: /changelog
+          - link "反馈" [ref=e122] [cursor=pointer]:
+            - /url: /feedback
+    - radiogroup "外观" [ref=e128]:
+      - radio "深色" [ref=e130] [cursor=pointer]
+      - radio "跟随系统" [checked] [ref=e134] [cursor=pointer]
+      - radio "浅色" [ref=e139] [cursor=pointer]
+  - main [ref=e144]:
+    - generic [ref=e146]:
+      - generic [ref=e147]:
+        - generic [ref=e149]:
+          - heading [level=1] [ref=e150]
+          - paragraph [ref=e157]: 聚合全职业联赛 BP 登场率、胜率分布、红蓝方优势与选手招牌英雄（统计样本 10,185 局）
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - button "全部" [ref=e161] [cursor=pointer]
+              - button "对抗路" [ref=e162] [cursor=pointer]
+              - button "打野" [ref=e163] [cursor=pointer]
+              - button "中路" [ref=e164] [cursor=pointer]
+              - button "发育路" [ref=e165] [cursor=pointer]
+              - button "游走" [ref=e166] [cursor=pointer]
+            - combobox "排序规则" [ref=e168]:
+              - option "BP率最高" [selected]
+              - option "胜率最高"
+              - option "出场最多"
+              - option "版本强势(T0)"
+          - textbox "搜索英雄名称、定位或战术标签（如：不知火舞、爆发射手）..." [ref=e170]
+      - generic [ref=e172]:
+        - link "鲁班大师 游走 T0 鲁班大师 保护 拆火 BP 参与率 70.3% 胜率 (1605场) 51.4% 招牌选手 子阳 (54%)" [ref=e173] [cursor=pointer]:
+          - /url: /heroes/lubandashi
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]:
+                - img "鲁班大师" [ref=e177]
+                - generic [ref=e178]: 游走
+              - generic [ref=e179]: T0
+            - generic [ref=e180]:
+              - heading "鲁班大师" [level=2] [ref=e181]
+              - generic [ref=e182]:
+                - generic [ref=e183]: 保护
+                - generic [ref=e184]: 拆火
+          - generic [ref=e185]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: BP 参与率
+              - generic [ref=e189]: 70.3%
+            - generic [ref=e193]:
+              - generic [ref=e194]:
+                - text: 胜率
+                - generic [ref=e195]: (1605场)
+              - generic [ref=e196]: 51.4%
+            - generic [ref=e199]:
+              - generic [ref=e200]: 招牌选手
+              - generic [ref=e201]:
+                - generic [ref=e202]: 子阳
+                - generic [ref=e203]: (54%)
+        - link "沈梦溪 中路 T0.5 沈梦溪 爆发 消耗 BP 参与率 52.4% 胜率 (2444场) 51.1% 招牌选手 清融 (52%)" [ref=e204] [cursor=pointer]:
+          - /url: /heroes/shenmengxi
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - generic [ref=e207]:
+                - img "沈梦溪" [ref=e208]
+                - generic [ref=e209]: 中路
+              - generic [ref=e210]: T0.5
+            - generic [ref=e211]:
+              - heading "沈梦溪" [level=2] [ref=e212]
+              - generic [ref=e213]:
+                - generic [ref=e214]: 爆发
+                - generic [ref=e215]: 消耗
+          - generic [ref=e216]:
+            - generic [ref=e218]:
+              - generic [ref=e219]: BP 参与率
+              - generic [ref=e220]: 52.4%
+            - generic [ref=e224]:
+              - generic [ref=e225]:
+                - text: 胜率
+                - generic [ref=e226]: (2444场)
+              - generic [ref=e227]: 51.1%
+            - generic [ref=e230]:
+              - generic [ref=e231]: 招牌选手
+              - generic [ref=e232]:
+                - generic [ref=e233]: 清融
+                - generic [ref=e234]: (52%)
+        - link "公孙离 发育路 T0.5 公孙离 爆发 消耗 BP 参与率 46.3% 胜率 (2165场) 48.5% 招牌选手 妖刀 (48%)" [ref=e235] [cursor=pointer]:
+          - /url: /heroes/gongsunli
+          - generic [ref=e236]:
+            - generic [ref=e237]:
+              - generic [ref=e238]:
+                - img "公孙离" [ref=e239]
+                - generic [ref=e240]: 发育路
+              - generic [ref=e241]: T0.5
+            - generic [ref=e242]:
+              - heading "公孙离" [level=2] [ref=e243]
+              - generic [ref=e244]:
+                - generic [ref=e245]: 爆发
+                - generic [ref=e246]: 消耗
+          - generic [ref=e247]:
+            - generic [ref=e249]:
+              - generic [ref=e250]: BP 参与率
+              - generic [ref=e251]: 46.3%
+            - generic [ref=e255]:
+              - generic [ref=e256]:
+                - text: 胜率
+                - generic [ref=e257]: (2165场)
+              - generic [ref=e258]: 48.5%
+            - generic [ref=e261]:
+              - generic [ref=e262]: 招牌选手
+              - generic [ref=e263]:
+                - generic [ref=e264]: 妖刀
+                - generic [ref=e265]: (48%)
+        - link "大乔 游走 T0 大乔 消耗 点控 BP 参与率 45.7% 胜率 (980场) 53.3% 招牌选手 子阳 (74%)" [ref=e266] [cursor=pointer]:
+          - /url: /heroes/daqiao
+          - generic [ref=e267]:
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - img "大乔" [ref=e270]
+                - generic [ref=e271]: 游走
+              - generic [ref=e272]: T0
+            - generic [ref=e273]:
+              - heading "大乔" [level=2] [ref=e274]
+              - generic [ref=e275]:
+                - generic [ref=e276]: 消耗
+                - generic [ref=e277]: 点控
+          - generic [ref=e278]:
+            - generic [ref=e280]:
+              - generic [ref=e281]: BP 参与率
+              - generic [ref=e282]: 45.7%
+            - generic [ref=e286]:
+              - generic [ref=e287]:
+                - text: 胜率
+                - generic [ref=e288]: (980场)
+              - generic [ref=e289]: 53.3%
+            - generic [ref=e292]:
+              - generic [ref=e293]: 招牌选手
+              - generic [ref=e294]:
+                - generic [ref=e295]: 子阳
+                - generic [ref=e296]: (74%)
+        - link "关羽 对抗路 T0.5 关羽 突进 团控 BP 参与率 39.1% 胜率 (1364场) 47.1% 招牌选手 清清 (47%)" [ref=e297] [cursor=pointer]:
+          - /url: /heroes/guanyu
+          - generic [ref=e298]:
+            - generic [ref=e299]:
+              - generic [ref=e300]:
+                - img "关羽" [ref=e301]
+                - generic [ref=e302]: 对抗路
+              - generic [ref=e303]: T0.5
+            - generic [ref=e304]:
+              - heading "关羽" [level=2] [ref=e305]
+              - generic [ref=e306]:
+                - generic [ref=e307]: 突进
+                - generic [ref=e308]: 团控
+          - generic [ref=e309]:
+            - generic [ref=e311]:
+              - generic [ref=e312]: BP 参与率
+              - generic [ref=e313]: 39.1%
+            - generic [ref=e317]:
+              - generic [ref=e318]:
+                - text: 胜率
+                - generic [ref=e319]: (1364场)
+              - generic [ref=e320]: 47.1%
+            - generic [ref=e323]:
+              - generic [ref=e324]: 招牌选手
+              - generic [ref=e325]:
+                - generic [ref=e326]: 清清
+                - generic [ref=e327]: (47%)
+        - link "不知火舞 中路 T1 不知火舞 爆发 消耗 BP 参与率 38.0% 胜率 (1474场) 47.0% 招牌选手 清融 (55%)" [ref=e328] [cursor=pointer]:
+          - /url: /heroes/buzhihuowu
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - img "不知火舞" [ref=e332]
+                - generic [ref=e333]: 中路
+              - generic [ref=e334]: T1
+            - generic [ref=e335]:
+              - heading "不知火舞" [level=2] [ref=e336]
+              - generic [ref=e337]:
+                - generic [ref=e338]: 爆发
+                - generic [ref=e339]: 消耗
+          - generic [ref=e340]:
+            - generic [ref=e342]:
+              - generic [ref=e343]: BP 参与率
+              - generic [ref=e344]: 38.0%
+            - generic [ref=e348]:
+              - generic [ref=e349]:
+                - text: 胜率
+                - generic [ref=e350]: (1474场)
+              - generic [ref=e351]: 47.0%
+            - generic [ref=e354]:
+              - generic [ref=e355]: 招牌选手
+              - generic [ref=e356]:
+                - generic [ref=e357]: 清融
+                - generic [ref=e358]: (55%)
+        - link "盾山 游走 T0.5 盾山 保护 团控 BP 参与率 34.9% 胜率 (759场) 50.1% 招牌选手 一笙 (56%)" [ref=e359] [cursor=pointer]:
+          - /url: /heroes/dunshan
+          - generic [ref=e360]:
+            - generic [ref=e361]:
+              - generic [ref=e362]:
+                - img "盾山" [ref=e363]
+                - generic [ref=e364]: 游走
+              - generic [ref=e365]: T0.5
+            - generic [ref=e366]:
+              - heading "盾山" [level=2] [ref=e367]
+              - generic [ref=e368]:
+                - generic [ref=e369]: 保护
+                - generic [ref=e370]: 团控
+          - generic [ref=e371]:
+            - generic [ref=e373]:
+              - generic [ref=e374]: BP 参与率
+              - generic [ref=e375]: 34.9%
+            - generic [ref=e379]:
+              - generic [ref=e380]:
+                - text: 胜率
+                - generic [ref=e381]: (759场)
+              - generic [ref=e382]: 50.1%
+            - generic [ref=e385]:
+              - generic [ref=e386]: 招牌选手
+              - generic [ref=e387]:
+                - generic [ref=e388]: 一笙
+                - generic [ref=e389]: (56%)
+        - link "镜 打野 T0.5 镜 爆发 点控 BP 参与率 32.9% 胜率 (1389场) 48.7% 招牌选手 FMVP 暖阳 (52%)" [ref=e390] [cursor=pointer]:
+          - /url: /heroes/jing
+          - generic [ref=e391]:
+            - generic [ref=e392]:
+              - generic [ref=e393]:
+                - img "镜" [ref=e394]
+                - generic [ref=e395]: 打野
+              - generic [ref=e396]: T0.5
+            - generic [ref=e397]:
+              - heading "镜" [level=2] [ref=e398]
+              - generic [ref=e399]:
+                - generic [ref=e400]: 爆发
+                - generic [ref=e401]: 点控
+          - generic [ref=e402]:
+            - generic [ref=e404]:
+              - generic [ref=e405]: BP 参与率
+              - generic [ref=e406]: 32.9%
+            - generic [ref=e410]:
+              - generic [ref=e411]:
+                - text: 胜率
+                - generic [ref=e412]: (1389场)
+              - generic [ref=e413]: 48.7%
+            - generic [ref=e416]:
+              - generic [ref=e417]: 招牌选手
+              - generic [ref=e418]:
+                - generic [ref=e419]: FMVP
+                - generic [ref=e420]: 暖阳
+                - generic [ref=e421]: (52%)
+        - link "夏侯惇 打野 T1 夏侯惇 团控 承伤 BP 参与率 27.0% 胜率 (1961场) 50.3% 招牌选手 钟意 (48%)" [ref=e422] [cursor=pointer]:
+          - /url: /heroes/xiahoudun
+          - generic [ref=e423]:
+            - generic [ref=e424]:
+              - generic [ref=e425]:
+                - img "夏侯惇" [ref=e426]
+                - generic [ref=e427]: 打野
+              - generic [ref=e428]: T1
+            - generic [ref=e429]:
+              - heading "夏侯惇" [level=2] [ref=e430]
+              - generic [ref=e431]:
+                - generic [ref=e432]: 团控
+                - generic [ref=e433]: 承伤
+          - generic [ref=e434]:
+            - generic [ref=e436]:
+              - generic [ref=e437]: BP 参与率
+              - generic [ref=e438]: 27.0%
+            - generic [ref=e442]:
+              - generic [ref=e443]:
+                - text: 胜率
+                - generic [ref=e444]: (1961场)
+              - generic [ref=e445]: 50.3%
+            - generic [ref=e448]:
+              - generic [ref=e449]: 招牌选手
+              - generic [ref=e450]:
+                - generic [ref=e451]: 钟意
+                - generic [ref=e452]: (48%)
+        - link "狂铁 对抗路 T0.5 狂铁 视野 承伤 BP 参与率 26.1% 胜率 (1569场) 49.6% 招牌选手 梓墨 (53%)" [ref=e453] [cursor=pointer]:
+          - /url: /heroes/kuangtie
+          - generic [ref=e454]:
+            - generic [ref=e455]:
+              - generic [ref=e456]:
+                - img "狂铁" [ref=e457]
+                - generic [ref=e458]: 对抗路
+              - generic [ref=e459]: T0.5
+            - generic [ref=e460]:
+              - heading "狂铁" [level=2] [ref=e461]
+              - generic [ref=e462]:
+                - generic [ref=e463]: 视野
+                - generic [ref=e464]: 承伤
+          - generic [ref=e465]:
+            - generic [ref=e467]:
+              - generic [ref=e468]: BP 参与率
+              - generic [ref=e469]: 26.1%
+            - generic [ref=e473]:
+              - generic [ref=e474]:
+                - text: 胜率
+                - generic [ref=e475]: (1569场)
+              - generic [ref=e476]: 49.6%
+            - generic [ref=e479]:
+              - generic [ref=e480]: 招牌选手
+              - generic [ref=e481]:
+                - generic [ref=e482]: 梓墨
+                - generic [ref=e483]: (53%)
+        - link "太乙真人 游走 T0.5 太乙真人 点控 保护 BP 参与率 25.9% 胜率 (1687场) 47.4% 招牌选手 星宇 (52%)" [ref=e484] [cursor=pointer]:
+          - /url: /heroes/taiyizhenren
+          - generic [ref=e485]:
+            - generic [ref=e486]:
+              - generic [ref=e487]:
+                - img "太乙真人" [ref=e488]
+                - generic [ref=e489]: 游走
+              - generic [ref=e490]: T0.5
+            - generic [ref=e491]:
+              - heading "太乙真人" [level=2] [ref=e492]
+              - generic [ref=e493]:
+                - generic [ref=e494]: 点控
+                - generic [ref=e495]: 保护
+          - generic [ref=e496]:
+            - generic [ref=e498]:
+              - generic [ref=e499]: BP 参与率
+              - generic [ref=e500]: 25.9%
+            - generic [ref=e504]:
+              - generic [ref=e505]:
+                - text: 胜率
+                - generic [ref=e506]: (1687场)
+              - generic [ref=e507]: 47.4%
+            - generic [ref=e510]:
+              - generic [ref=e511]: 招牌选手
+              - generic [ref=e512]:
+                - generic [ref=e513]: 星宇
+                - generic [ref=e514]: (52%)
+        - link "海月 中路 T1 海月 消耗 点控 BP 参与率 25.0% 胜率 (810场) 49.9% 招牌选手 长生 (42%)" [ref=e515] [cursor=pointer]:
+          - /url: /heroes/haiyue
+          - generic [ref=e516]:
+            - generic [ref=e517]:
+              - generic [ref=e518]:
+                - img "海月" [ref=e519]
+                - generic [ref=e520]: 中路
+              - generic [ref=e521]: T1
+            - generic [ref=e522]:
+              - heading "海月" [level=2] [ref=e523]
+              - generic [ref=e524]:
+                - generic [ref=e525]: 消耗
+                - generic [ref=e526]: 点控
+          - generic [ref=e527]:
+            - generic [ref=e529]:
+              - generic [ref=e530]: BP 参与率
+              - generic [ref=e531]: 25.0%
+            - generic [ref=e535]:
+              - generic [ref=e536]:
+                - text: 胜率
+                - generic [ref=e537]: (810场)
+              - generic [ref=e538]: 49.9%
+            - generic [ref=e541]:
+              - generic [ref=e542]: 招牌选手
+              - generic [ref=e543]:
+                - generic [ref=e544]: 长生
+                - generic [ref=e545]: (42%)
+        - link "张飞 游走 T1 张飞 点控 保护 BP 参与率 24.9% 胜率 (1722场) 48.9% 招牌选手 帆帆 (48%)" [ref=e546] [cursor=pointer]:
+          - /url: /heroes/zhangfei
+          - generic [ref=e547]:
+            - generic [ref=e548]:
+              - generic [ref=e549]:
+                - img "张飞" [ref=e550]
+                - generic [ref=e551]: 游走
+              - generic [ref=e552]: T1
+            - generic [ref=e553]:
+              - heading "张飞" [level=2] [ref=e554]
+              - generic [ref=e555]:
+                - generic [ref=e556]: 点控
+                - generic [ref=e557]: 保护
+          - generic [ref=e558]:
+            - generic [ref=e560]:
+              - generic [ref=e561]: BP 参与率
+              - generic [ref=e562]: 24.9%
+            - generic [ref=e566]:
+              - generic [ref=e567]:
+                - text: 胜率
+                - generic [ref=e568]: (1722场)
+              - generic [ref=e569]: 48.9%
+            - generic [ref=e572]:
+              - generic [ref=e573]: 招牌选手
+              - generic [ref=e574]:
+                - generic [ref=e575]: 帆帆
+                - generic [ref=e576]: (48%)
+        - link "阿古朵 打野 T1 阿古朵 消耗 突进 BP 参与率 24.8% 胜率 (1115场) 47.4% 招牌选手 暖阳 (62%)" [ref=e577] [cursor=pointer]:
+          - /url: /heroes/aguduo
+          - generic [ref=e578]:
+            - generic [ref=e579]:
+              - generic [ref=e580]:
+                - img "阿古朵" [ref=e581]
+                - generic [ref=e582]: 打野
+              - generic [ref=e583]: T1
+            - generic [ref=e584]:
+              - heading "阿古朵" [level=2] [ref=e585]
+              - generic [ref=e586]:
+                - generic [ref=e587]: 消耗
+                - generic [ref=e588]: 突进
+          - generic [ref=e589]:
+            - generic [ref=e591]:
+              - generic [ref=e592]: BP 参与率
+              - generic [ref=e593]: 24.8%
+            - generic [ref=e597]:
+              - generic [ref=e598]:
+                - text: 胜率
+                - generic [ref=e599]: (1115场)
+              - generic [ref=e600]: 47.4%
+            - generic [ref=e603]:
+              - generic [ref=e604]: 招牌选手
+              - generic [ref=e605]:
+                - generic [ref=e606]: 暖阳
+                - generic [ref=e607]: (62%)
+        - link "孙尚香 发育路 T0.5 孙尚香 爆发 核心 BP 参与率 23.6% 胜率 (1585场) 47.9% 招牌选手 梦岚 (50%)" [ref=e608] [cursor=pointer]:
+          - /url: /heroes/sunshangxiang
+          - generic [ref=e609]:
+            - generic [ref=e610]:
+              - generic [ref=e611]:
+                - img "孙尚香" [ref=e612]
+                - generic [ref=e613]: 发育路
+              - generic [ref=e614]: T0.5
+            - generic [ref=e615]:
+              - heading "孙尚香" [level=2] [ref=e616]
+              - generic [ref=e617]:
+                - generic [ref=e618]: 爆发
+                - generic [ref=e619]: 核心
+          - generic [ref=e620]:
+            - generic [ref=e622]:
+              - generic [ref=e623]: BP 参与率
+              - generic [ref=e624]: 23.6%
+            - generic [ref=e628]:
+              - generic [ref=e629]:
+                - text: 胜率
+                - generic [ref=e630]: (1585场)
+              - generic [ref=e631]: 47.9%
+            - generic [ref=e634]:
+              - generic [ref=e635]: 招牌选手
+              - generic [ref=e636]:
+                - generic [ref=e637]: 梦岚
+                - generic [ref=e638]: (50%)
+        - link "铠 打野 T1 铠 爆发 点控 BP 参与率 23.2% 胜率 (1333场) 49.9% 招牌选手 暖阳 (55%)" [ref=e639] [cursor=pointer]:
+          - /url: /heroes/kai
+          - generic [ref=e640]:
+            - generic [ref=e641]:
+              - generic [ref=e642]:
+                - img "铠" [ref=e643]
+                - generic [ref=e644]: 打野
+              - generic [ref=e645]: T1
+            - generic [ref=e646]:
+              - heading "铠" [level=2] [ref=e647]
+              - generic [ref=e648]:
+                - generic [ref=e649]: 爆发
+                - generic [ref=e650]: 点控
+          - generic [ref=e651]:
+            - generic [ref=e653]:
+              - generic [ref=e654]: BP 参与率
+              - generic [ref=e655]: 23.2%
+            - generic [ref=e659]:
+              - generic [ref=e660]:
+                - text: 胜率
+                - generic [ref=e661]: (1333场)
+              - generic [ref=e662]: 49.9%
+            - generic [ref=e665]:
+              - generic [ref=e666]: 招牌选手
+              - generic [ref=e667]:
+                - generic [ref=e668]: 暖阳
+                - generic [ref=e669]: (55%)
+        - link "戈娅 发育路 T0.5 戈娅 爆发 消耗 BP 参与率 23.0% 胜率 (1593场) 49.5% 招牌选手 道崽 (55%)" [ref=e670] [cursor=pointer]:
+          - /url: /heroes/geya
+          - generic [ref=e671]:
+            - generic [ref=e672]:
+              - generic [ref=e673]:
+                - img "戈娅" [ref=e674]
+                - generic [ref=e675]: 发育路
+              - generic [ref=e676]: T0.5
+            - generic [ref=e677]:
+              - heading "戈娅" [level=2] [ref=e678]
+              - generic [ref=e679]:
+                - generic [ref=e680]: 爆发
+                - generic [ref=e681]: 消耗
+          - generic [ref=e682]:
+            - generic [ref=e684]:
+              - generic [ref=e685]: BP 参与率
+              - generic [ref=e686]: 23.0%
+            - generic [ref=e690]:
+              - generic [ref=e691]:
+                - text: 胜率
+                - generic [ref=e692]: (1593场)
+              - generic [ref=e693]: 49.5%
+            - generic [ref=e696]:
+              - generic [ref=e697]: 招牌选手
+              - generic [ref=e698]:
+                - generic [ref=e699]: 道崽
+                - generic [ref=e700]: (55%)
+        - link "夏洛特 对抗路 T0.5 夏洛特 消耗 突进 BP 参与率 22.5% 胜率 (1558场) 49.3% 招牌选手 轩染 (47%)" [ref=e701] [cursor=pointer]:
+          - /url: /heroes/xialuote
+          - generic [ref=e702]:
+            - generic [ref=e703]:
+              - generic [ref=e704]:
+                - img "夏洛特" [ref=e705]
+                - generic [ref=e706]: 对抗路
+              - generic [ref=e707]: T0.5
+            - generic [ref=e708]:
+              - heading "夏洛特" [level=2] [ref=e709]
+              - generic [ref=e710]:
+                - generic [ref=e711]: 消耗
+                - generic [ref=e712]: 突进
+          - generic [ref=e713]:
+            - generic [ref=e715]:
+              - generic [ref=e716]: BP 参与率
+              - generic [ref=e717]: 22.5%
+            - generic [ref=e721]:
+              - generic [ref=e722]:
+                - text: 胜率
+                - generic [ref=e723]: (1558场)
+              - generic [ref=e724]: 49.3%
+            - generic [ref=e727]:
+              - generic [ref=e728]: 招牌选手
+              - generic [ref=e729]:
+                - generic [ref=e730]: 轩染
+                - generic [ref=e731]: (47%)
+        - link "蒙恬 对抗路 T0.5 蒙恬 爆发 保护 BP 参与率 22.4% 胜率 (991场) 52.9% 招牌选手 梓墨 (58%)" [ref=e732] [cursor=pointer]:
+          - /url: /heroes/mengtian
+          - generic [ref=e733]:
+            - generic [ref=e734]:
+              - generic [ref=e735]:
+                - img "蒙恬" [ref=e736]
+                - generic [ref=e737]: 对抗路
+              - generic [ref=e738]: T0.5
+            - generic [ref=e739]:
+              - heading "蒙恬" [level=2] [ref=e740]
+              - generic [ref=e741]:
+                - generic [ref=e742]: 爆发
+                - generic [ref=e743]: 保护
+          - generic [ref=e744]:
+            - generic [ref=e746]:
+              - generic [ref=e747]: BP 参与率
+              - generic [ref=e748]: 22.4%
+            - generic [ref=e752]:
+              - generic [ref=e753]:
+                - text: 胜率
+                - generic [ref=e754]: (991场)
+              - generic [ref=e755]: 52.9%
+            - generic [ref=e758]:
+              - generic [ref=e759]: 招牌选手
+              - generic [ref=e760]:
+                - generic [ref=e761]: 梓墨
+                - generic [ref=e762]: (58%)
+        - link "敖隐 发育路 T0.5 敖隐 爆发 消耗 BP 参与率 22.2% 胜率 (1206场) 48.3% 招牌选手 道崽 (44%)" [ref=e763] [cursor=pointer]:
+          - /url: /heroes/aoyin
+          - generic [ref=e764]:
+            - generic [ref=e765]:
+              - generic [ref=e766]:
+                - img "敖隐" [ref=e767]
+                - generic [ref=e768]: 发育路
+              - generic [ref=e769]: T0.5
+            - generic [ref=e770]:
+              - heading "敖隐" [level=2] [ref=e771]
+              - generic [ref=e772]:
+                - generic [ref=e773]: 爆发
+                - generic [ref=e774]: 消耗
+          - generic [ref=e775]:
+            - generic [ref=e777]:
+              - generic [ref=e778]: BP 参与率
+              - generic [ref=e779]: 22.2%
+            - generic [ref=e783]:
+              - generic [ref=e784]:
+                - text: 胜率
+                - generic [ref=e785]: (1206场)
+              - generic [ref=e786]: 48.3%
+            - generic [ref=e789]:
+              - generic [ref=e790]: 招牌选手
+              - generic [ref=e791]:
+                - generic [ref=e792]: 道崽
+                - generic [ref=e793]: (44%)
+        - link "狄仁杰 发育路 T1 狄仁杰 对线 推进 BP 参与率 21.8% 胜率 (1356场) 51.8% 招牌选手 妖刀 (56%)" [ref=e794] [cursor=pointer]:
+          - /url: /heroes/direnjie
+          - generic [ref=e795]:
+            - generic [ref=e796]:
+              - generic [ref=e797]:
+                - img "狄仁杰" [ref=e798]
+                - generic [ref=e799]: 发育路
+              - generic [ref=e800]: T1
+            - generic [ref=e801]:
+              - heading "狄仁杰" [level=2] [ref=e802]
+              - generic [ref=e803]:
+                - generic [ref=e804]: 对线
+                - generic [ref=e805]: 推进
+          - generic [ref=e806]:
+            - generic [ref=e808]:
+              - generic [ref=e809]: BP 参与率
+              - generic [ref=e810]: 21.8%
+            - generic [ref=e814]:
+              - generic [ref=e815]:
+                - text: 胜率
+                - generic [ref=e816]: (1356场)
+              - generic [ref=e817]: 51.8%
+            - generic [ref=e820]:
+              - generic [ref=e821]: 招牌选手
+              - generic [ref=e822]:
+                - generic [ref=e823]: 妖刀
+                - generic [ref=e824]: (56%)
+        - link "马超 对抗路 T0.5 马超 突进 带线 BP 参与率 21.8% 胜率 (1120场) 50.4% 招牌选手 FMVP Fly (59%)" [ref=e825] [cursor=pointer]:
+          - /url: /heroes/machao
+          - generic [ref=e826]:
+            - generic [ref=e827]:
+              - generic [ref=e828]:
+                - img "马超" [ref=e829]
+                - generic [ref=e830]: 对抗路
+              - generic [ref=e831]: T0.5
+            - generic [ref=e832]:
+              - heading "马超" [level=2] [ref=e833]
+              - generic [ref=e834]:
+                - generic [ref=e835]: 突进
+                - generic [ref=e836]: 带线
+          - generic [ref=e837]:
+            - generic [ref=e839]:
+              - generic [ref=e840]: BP 参与率
+              - generic [ref=e841]: 21.8%
+            - generic [ref=e845]:
+              - generic [ref=e846]:
+                - text: 胜率
+                - generic [ref=e847]: (1120场)
+              - generic [ref=e848]: 50.4%
+            - generic [ref=e851]:
+              - generic [ref=e852]: 招牌选手
+              - generic [ref=e853]:
+                - generic [ref=e854]: FMVP
+                - generic [ref=e855]: Fly
+                - generic [ref=e856]: (59%)
+        - link "王昭君 中路 T2 王昭君 消耗 保护 BP 参与率 20.7% 胜率 (1371场) 52.1% 招牌选手 长生 (46%)" [ref=e857] [cursor=pointer]:
+          - /url: /heroes/wangzhaojun
+          - generic [ref=e858]:
+            - generic [ref=e859]:
+              - generic [ref=e860]:
+                - img "王昭君" [ref=e861]
+                - generic [ref=e862]: 中路
+              - generic [ref=e863]: T2
+            - generic [ref=e864]:
+              - heading "王昭君" [level=2] [ref=e865]
+              - generic [ref=e866]:
+                - generic [ref=e867]: 消耗
+                - generic [ref=e868]: 保护
+          - generic [ref=e869]:
+            - generic [ref=e871]:
+              - generic [ref=e872]: BP 参与率
+              - generic [ref=e873]: 20.7%
+            - generic [ref=e877]:
+              - generic [ref=e878]:
+                - text: 胜率
+                - generic [ref=e879]: (1371场)
+              - generic [ref=e880]: 52.1%
+            - generic [ref=e883]:
+              - generic [ref=e884]: 招牌选手
+              - generic [ref=e885]:
+                - generic [ref=e886]: 长生
+                - generic [ref=e887]: (46%)
+        - link "孙膑 游走 T2 孙膑 团控 转线 BP 参与率 20.6% 胜率 (867场) 52.5% 招牌选手 星宇 (66%)" [ref=e888] [cursor=pointer]:
+          - /url: /heroes/sunbin
+          - generic [ref=e889]:
+            - generic [ref=e890]:
+              - generic [ref=e891]:
+                - img "孙膑" [ref=e892]
+                - generic [ref=e893]: 游走
+              - generic [ref=e894]: T2
+            - generic [ref=e895]:
+              - heading "孙膑" [level=2] [ref=e896]
+              - generic [ref=e897]:
+                - generic [ref=e898]: 团控
+                - generic [ref=e899]: 转线
+          - generic [ref=e900]:
+            - generic [ref=e902]:
+              - generic [ref=e903]: BP 参与率
+              - generic [ref=e904]: 20.6%
+            - generic [ref=e908]:
+              - generic [ref=e909]:
+                - text: 胜率
+                - generic [ref=e910]: (867场)
+              - generic [ref=e911]: 52.5%
+            - generic [ref=e914]:
+              - generic [ref=e915]: 招牌选手
+              - generic [ref=e916]:
+                - generic [ref=e917]: 星宇
+                - generic [ref=e918]: (66%)
+        - link "大司命 打野 T1 大司命 消耗 带线 BP 参与率 20.4% 胜率 (1002场) 50.9% 招牌选手 钟意 (58%)" [ref=e919] [cursor=pointer]:
+          - /url: /heroes/dasiming
+          - generic [ref=e920]:
+            - generic [ref=e921]:
+              - generic [ref=e922]:
+                - img "大司命" [ref=e923]
+                - generic [ref=e924]: 打野
+              - generic [ref=e925]: T1
+            - generic [ref=e926]:
+              - heading "大司命" [level=2] [ref=e927]
+              - generic [ref=e928]:
+                - generic [ref=e929]: 消耗
+                - generic [ref=e930]: 带线
+          - generic [ref=e931]:
+            - generic [ref=e933]:
+              - generic [ref=e934]: BP 参与率
+              - generic [ref=e935]: 20.4%
+            - generic [ref=e939]:
+              - generic [ref=e940]:
+                - text: 胜率
+                - generic [ref=e941]: (1002场)
+              - generic [ref=e942]: 50.9%
+            - generic [ref=e945]:
+              - generic [ref=e946]: 招牌选手
+              - generic [ref=e947]:
+                - generic [ref=e948]: 钟意
+                - generic [ref=e949]: (58%)
+        - link "西施 中路 T2 西施 消耗 点控 BP 参与率 19.6% 胜率 (664场) 51.1% 招牌选手 FMVP 清融 (53%)" [ref=e950] [cursor=pointer]:
+          - /url: /heroes/xishi
+          - generic [ref=e951]:
+            - generic [ref=e952]:
+              - generic [ref=e953]:
+                - img "西施" [ref=e954]
+                - generic [ref=e955]: 中路
+              - generic [ref=e956]: T2
+            - generic [ref=e957]:
+              - heading "西施" [level=2] [ref=e958]
+              - generic [ref=e959]:
+                - generic [ref=e960]: 消耗
+                - generic [ref=e961]: 点控
+          - generic [ref=e962]:
+            - generic [ref=e964]:
+              - generic [ref=e965]: BP 参与率
+              - generic [ref=e966]: 19.6%
+            - generic [ref=e970]:
+              - generic [ref=e971]:
+                - text: 胜率
+                - generic [ref=e972]: (664场)
+              - generic [ref=e973]: 51.1%
+            - generic [ref=e976]:
+              - generic [ref=e977]: 招牌选手
+              - generic [ref=e978]:
+                - generic [ref=e979]: FMVP
+                - generic [ref=e980]: 清融
+                - generic [ref=e981]: (53%)
+        - link "裴擒虎 打野 T0.5 裴擒虎 爆发 消耗 BP 参与率 18.3% 胜率 (895场) 49.7% 招牌选手 FMVP 小胖 (55%)" [ref=e982] [cursor=pointer]:
+          - /url: /heroes/peiqinhu
+          - generic [ref=e983]:
+            - generic [ref=e984]:
+              - generic [ref=e985]:
+                - img "裴擒虎" [ref=e986]
+                - generic [ref=e987]: 打野
+              - generic [ref=e988]: T0.5
+            - generic [ref=e989]:
+              - heading "裴擒虎" [level=2] [ref=e990]
+              - generic [ref=e991]:
+                - generic [ref=e992]: 爆发
+                - generic [ref=e993]: 消耗
+          - generic [ref=e994]:
+            - generic [ref=e996]:
+              - generic [ref=e997]: BP 参与率
+              - generic [ref=e998]: 18.3%
+            - generic [ref=e1002]:
+              - generic [ref=e1003]:
+                - text: 胜率
+                - generic [ref=e1004]: (895场)
+              - generic [ref=e1005]: 49.7%
+            - generic [ref=e1008]:
+              - generic [ref=e1009]: 招牌选手
+              - generic [ref=e1010]:
+                - generic [ref=e1011]: FMVP
+                - generic [ref=e1012]: 小胖
+                - generic [ref=e1013]: (55%)
+        - link "朵莉亚 游走 T0 朵莉亚 消耗 回复 BP 参与率 17.9% 胜率 (816场) 51.6% 招牌选手 无畏 (67%)" [ref=e1014] [cursor=pointer]:
+          - /url: /heroes/duoliya
+          - generic [ref=e1015]:
+            - generic [ref=e1016]:
+              - generic [ref=e1017]:
+                - img "朵莉亚" [ref=e1018]
+                - generic [ref=e1019]: 游走
+              - generic [ref=e1020]: T0
+            - generic [ref=e1021]:
+              - heading "朵莉亚" [level=2] [ref=e1022]
+              - generic [ref=e1023]:
+                - generic [ref=e1024]: 消耗
+                - generic [ref=e1025]: 回复
+          - generic [ref=e1026]:
+            - generic [ref=e1028]:
+              - generic [ref=e1029]: BP 参与率
+              - generic [ref=e1030]: 17.9%
+            - generic [ref=e1034]:
+              - generic [ref=e1035]:
+                - text: 胜率
+                - generic [ref=e1036]: (816场)
+              - generic [ref=e1037]: 51.6%
+            - generic [ref=e1040]:
+              - generic [ref=e1041]: 招牌选手
+              - generic [ref=e1042]:
+                - generic [ref=e1043]: 无畏
+                - generic [ref=e1044]: (67%)
+        - link "弈星 中路 T2 弈星 消耗 保护 BP 参与率 17.8% 胜率 (1248场) 49.8% 招牌选手 清融 (48%)" [ref=e1045] [cursor=pointer]:
+          - /url: /heroes/yixing
+          - generic [ref=e1046]:
+            - generic [ref=e1047]:
+              - generic [ref=e1048]:
+                - img "弈星" [ref=e1049]
+                - generic [ref=e1050]: 中路
+              - generic [ref=e1051]: T2
+            - generic [ref=e1052]:
+              - heading "弈星" [level=2] [ref=e1053]
+              - generic [ref=e1054]:
+                - generic [ref=e1055]: 消耗
+                - generic [ref=e1056]: 保护
+          - generic [ref=e1057]:
+            - generic [ref=e1059]:
+              - generic [ref=e1060]: BP 参与率
+              - generic [ref=e1061]: 17.8%
+            - generic [ref=e1065]:
+              - generic [ref=e1066]:
+                - text: 胜率
+                - generic [ref=e1067]: (1248场)
+              - generic [ref=e1068]: 49.8%
+            - generic [ref=e1071]:
+              - generic [ref=e1072]: 招牌选手
+              - generic [ref=e1073]:
+                - generic [ref=e1074]: 清融
+                - generic [ref=e1075]: (48%)
+        - link "张良 游走 T2 张良 点控 转线 BP 参与率 17.4% 胜率 (531场) 46.3% 招牌选手 大帅 (55%)" [ref=e1076] [cursor=pointer]:
+          - /url: /heroes/zhangliang
+          - generic [ref=e1077]:
+            - generic [ref=e1078]:
+              - generic [ref=e1079]:
+                - img "张良" [ref=e1080]
+                - generic [ref=e1081]: 游走
+              - generic [ref=e1082]: T2
+            - generic [ref=e1083]:
+              - heading "张良" [level=2] [ref=e1084]
+              - generic [ref=e1085]:
+                - generic [ref=e1086]: 点控
+                - generic [ref=e1087]: 转线
+          - generic [ref=e1088]:
+            - generic [ref=e1090]:
+              - generic [ref=e1091]: BP 参与率
+              - generic [ref=e1092]: 17.4%
+            - generic [ref=e1096]:
+              - generic [ref=e1097]:
+                - text: 胜率
+                - generic [ref=e1098]: (531场)
+              - generic [ref=e1099]: 46.3%
+            - generic [ref=e1102]:
+              - generic [ref=e1103]: 招牌选手
+              - generic [ref=e1104]:
+                - generic [ref=e1105]: 大帅
+                - generic [ref=e1106]: (55%)
+        - link "曹操 对抗路 T1 曹操 爆发 带线 BP 参与率 17.1% 胜率 (1195场) 50.0% 招牌选手 轩染 (53%)" [ref=e1107] [cursor=pointer]:
+          - /url: /heroes/caocao
+          - generic [ref=e1108]:
+            - generic [ref=e1109]:
+              - generic [ref=e1110]:
+                - img "曹操" [ref=e1111]
+                - generic [ref=e1112]: 对抗路
+              - generic [ref=e1113]: T1
+            - generic [ref=e1114]:
+              - heading "曹操" [level=2] [ref=e1115]
+              - generic [ref=e1116]:
+                - generic [ref=e1117]: 爆发
+                - generic [ref=e1118]: 带线
+          - generic [ref=e1119]:
+            - generic [ref=e1121]:
+              - generic [ref=e1122]: BP 参与率
+              - generic [ref=e1123]: 17.1%
+            - generic [ref=e1127]:
+              - generic [ref=e1128]:
+                - text: 胜率
+                - generic [ref=e1129]: (1195场)
+              - generic [ref=e1130]: 50.0%
+            - generic [ref=e1133]:
+              - generic [ref=e1134]: 招牌选手
+              - generic [ref=e1135]:
+                - generic [ref=e1136]: 轩染
+                - generic [ref=e1137]: (53%)
+        - link "苏烈 游走 T0.5 苏烈 保护 团控 BP 参与率 16.4% 胜率 (1106场) 51.4% 招牌选手 梦溪 (62%)" [ref=e1138] [cursor=pointer]:
+          - /url: /heroes/sulie
+          - generic [ref=e1139]:
+            - generic [ref=e1140]:
+              - generic [ref=e1141]:
+                - img "苏烈" [ref=e1142]
+                - generic [ref=e1143]: 游走
+              - generic [ref=e1144]: T0.5
+            - generic [ref=e1145]:
+              - heading "苏烈" [level=2] [ref=e1146]
+              - generic [ref=e1147]:
+                - generic [ref=e1148]: 保护
+                - generic [ref=e1149]: 团控
+          - generic [ref=e1150]:
+            - generic [ref=e1152]:
+              - generic [ref=e1153]: BP 参与率
+              - generic [ref=e1154]: 16.4%
+            - generic [ref=e1158]:
+              - generic [ref=e1159]:
+                - text: 胜率
+                - generic [ref=e1160]: (1106场)
+              - generic [ref=e1161]: 51.4%
+            - generic [ref=e1164]:
+              - generic [ref=e1165]: 招牌选手
+              - generic [ref=e1166]:
+                - generic [ref=e1167]: 梦溪
+                - generic [ref=e1168]: (62%)
+        - link "嬴政 中路 T2 嬴政 消耗 推进 BP 参与率 16.3% 胜率 (995场) 50.4% 招牌选手 清融 (58%)" [ref=e1169] [cursor=pointer]:
+          - /url: /heroes/yingzheng
+          - generic [ref=e1170]:
+            - generic [ref=e1171]:
+              - generic [ref=e1172]:
+                - img "嬴政" [ref=e1173]
+                - generic [ref=e1174]: 中路
+              - generic [ref=e1175]: T2
+            - generic [ref=e1176]:
+              - heading "嬴政" [level=2] [ref=e1177]
+              - generic [ref=e1178]:
+                - generic [ref=e1179]: 消耗
+                - generic [ref=e1180]: 推进
+          - generic [ref=e1181]:
+            - generic [ref=e1183]:
+              - generic [ref=e1184]: BP 参与率
+              - generic [ref=e1185]: 16.3%
+            - generic [ref=e1189]:
+              - generic [ref=e1190]:
+                - text: 胜率
+                - generic [ref=e1191]: (995场)
+              - generic [ref=e1192]: 50.4%
+            - generic [ref=e1195]:
+              - generic [ref=e1196]: 招牌选手
+              - generic [ref=e1197]:
+                - generic [ref=e1198]: 清融
+                - generic [ref=e1199]: (58%)
+        - link "少司缘 游走 T0.5 少司缘 点控 突进 BP 参与率 16.2% 胜率 (908场) 51.7% 招牌选手 大帅 (50%)" [ref=e1200] [cursor=pointer]:
+          - /url: /heroes/shaosiyuan
+          - generic [ref=e1201]:
+            - generic [ref=e1202]:
+              - generic [ref=e1203]:
+                - img "少司缘" [ref=e1204]
+                - generic [ref=e1205]: 游走
+              - generic [ref=e1206]: T0.5
+            - generic [ref=e1207]:
+              - heading "少司缘" [level=2] [ref=e1208]
+              - generic [ref=e1209]:
+                - generic [ref=e1210]: 点控
+                - generic [ref=e1211]: 突进
+          - generic [ref=e1212]:
+            - generic [ref=e1214]:
+              - generic [ref=e1215]: BP 参与率
+              - generic [ref=e1216]: 16.2%
+            - generic [ref=e1220]:
+              - generic [ref=e1221]:
+                - text: 胜率
+                - generic [ref=e1222]: (908场)
+              - generic [ref=e1223]: 51.7%
+            - generic [ref=e1226]:
+              - generic [ref=e1227]: 招牌选手
+              - generic [ref=e1228]:
+                - generic [ref=e1229]: 大帅
+                - generic [ref=e1230]: (50%)
+        - link "兰陵王 打野 T3 兰陵王 突进 爆发 BP 参与率 16.2% 胜率 (321场) 53.9% 招牌选手 小胖 (60%)" [ref=e1231] [cursor=pointer]:
+          - /url: /heroes/lanlingwang
+          - generic [ref=e1232]:
+            - generic [ref=e1233]:
+              - generic [ref=e1234]:
+                - img "兰陵王" [ref=e1235]
+                - generic [ref=e1236]: 打野
+              - generic [ref=e1237]: T3
+            - generic [ref=e1238]:
+              - heading "兰陵王" [level=2] [ref=e1239]
+              - generic [ref=e1240]:
+                - generic [ref=e1241]: 突进
+                - generic [ref=e1242]: 爆发
+          - generic [ref=e1243]:
+            - generic [ref=e1245]:
+              - generic [ref=e1246]: BP 参与率
+              - generic [ref=e1247]: 16.2%
+            - generic [ref=e1251]:
+              - generic [ref=e1252]:
+                - text: 胜率
+                - generic [ref=e1253]: (321场)
+              - generic [ref=e1254]: 53.9%
+            - generic [ref=e1257]:
+              - generic [ref=e1258]: 招牌选手
+              - generic [ref=e1259]:
+                - generic [ref=e1260]: 小胖
+                - generic [ref=e1261]: (60%)
+        - link "猪八戒 对抗路 T2 猪八戒 团控 视野 BP 参与率 15.5% 胜率 (893场) 49.5% 招牌选手 啊泽 (46%)" [ref=e1262] [cursor=pointer]:
+          - /url: /heroes/zhubajie
+          - generic [ref=e1263]:
+            - generic [ref=e1264]:
+              - generic [ref=e1265]:
+                - img "猪八戒" [ref=e1266]
+                - generic [ref=e1267]: 对抗路
+              - generic [ref=e1268]: T2
+            - generic [ref=e1269]:
+              - heading "猪八戒" [level=2] [ref=e1270]
+              - generic [ref=e1271]:
+                - generic [ref=e1272]: 团控
+                - generic [ref=e1273]: 视野
+          - generic [ref=e1274]:
+            - generic [ref=e1276]:
+              - generic [ref=e1277]: BP 参与率
+              - generic [ref=e1278]: 15.5%
+            - generic [ref=e1282]:
+              - generic [ref=e1283]:
+                - text: 胜率
+                - generic [ref=e1284]: (893场)
+              - generic [ref=e1285]: 49.5%
+            - generic [ref=e1288]:
+              - generic [ref=e1289]: 招牌选手
+              - generic [ref=e1290]:
+                - generic [ref=e1291]: 啊泽
+                - generic [ref=e1292]: (46%)
+        - link "澜 打野 T0.5 澜 保护 团控 BP 参与率 15.4% 胜率 (661场) 49.9% 招牌选手 FMVP 花海 (52%)" [ref=e1293] [cursor=pointer]:
+          - /url: /heroes/lan
+          - generic [ref=e1294]:
+            - generic [ref=e1295]:
+              - generic [ref=e1296]:
+                - img "澜" [ref=e1297]
+                - generic [ref=e1298]: 打野
+              - generic [ref=e1299]: T0.5
+            - generic [ref=e1300]:
+              - heading "澜" [level=2] [ref=e1301]
+              - generic [ref=e1302]:
+                - generic [ref=e1303]: 保护
+                - generic [ref=e1304]: 团控
+          - generic [ref=e1305]:
+            - generic [ref=e1307]:
+              - generic [ref=e1308]: BP 参与率
+              - generic [ref=e1309]: 15.4%
+            - generic [ref=e1313]:
+              - generic [ref=e1314]:
+                - text: 胜率
+                - generic [ref=e1315]: (661场)
+              - generic [ref=e1316]: 49.9%
+            - generic [ref=e1319]:
+              - generic [ref=e1320]: 招牌选手
+              - generic [ref=e1321]:
+                - generic [ref=e1322]: FMVP
+                - generic [ref=e1323]: 花海
+                - generic [ref=e1324]: (52%)
+        - link "马可波罗 发育路 T3 马可波罗 爆发 消耗 BP 参与率 14.7% 胜率 (667场) 51.1% 招牌选手 乔兮 (50%)" [ref=e1325] [cursor=pointer]:
+          - /url: /heroes/makeboluo
+          - generic [ref=e1326]:
+            - generic [ref=e1327]:
+              - generic [ref=e1328]:
+                - img "马可波罗" [ref=e1329]
+                - generic [ref=e1330]: 发育路
+              - generic [ref=e1331]: T3
+            - generic [ref=e1332]:
+              - heading "马可波罗" [level=2] [ref=e1333]
+              - generic [ref=e1334]:
+                - generic [ref=e1335]: 爆发
+                - generic [ref=e1336]: 消耗
+          - generic [ref=e1337]:
+            - generic [ref=e1339]:
+              - generic [ref=e1340]: BP 参与率
+              - generic [ref=e1341]: 14.7%
+            - generic [ref=e1345]:
+              - generic [ref=e1346]:
+                - text: 胜率
+                - generic [ref=e1347]: (667场)
+              - generic [ref=e1348]: 51.1%
+            - generic [ref=e1351]:
+              - generic [ref=e1352]: 招牌选手
+              - generic [ref=e1353]:
+                - generic [ref=e1354]: 乔兮
+                - generic [ref=e1355]: (50%)
+        - link "姬小满 对抗路 T3 姬小满 保护 回复 BP 参与率 14.2% 胜率 (842场) 51.8% 招牌选手 轻语 (63%)" [ref=e1356] [cursor=pointer]:
+          - /url: /heroes/jixiaoman
+          - generic [ref=e1357]:
+            - generic [ref=e1358]:
+              - generic [ref=e1359]:
+                - img "姬小满" [ref=e1360]
+                - generic [ref=e1361]: 对抗路
+              - generic [ref=e1362]: T3
+            - generic [ref=e1363]:
+              - heading "姬小满" [level=2] [ref=e1364]
+              - generic [ref=e1365]:
+                - generic [ref=e1366]: 保护
+                - generic [ref=e1367]: 回复
+          - generic [ref=e1368]:
+            - generic [ref=e1370]:
+              - generic [ref=e1371]: BP 参与率
+              - generic [ref=e1372]: 14.2%
+            - generic [ref=e1376]:
+              - generic [ref=e1377]:
+                - text: 胜率
+                - generic [ref=e1378]: (842场)
+              - generic [ref=e1379]: 51.8%
+            - generic [ref=e1382]:
+              - generic [ref=e1383]: 招牌选手
+              - generic [ref=e1384]:
+                - generic [ref=e1385]: 轻语
+                - generic [ref=e1386]: (63%)
+        - link "宫本武藏 对抗路 T1 宫本武藏 点控 突进 BP 参与率 13.5% 胜率 (589场) 49.4% 招牌选手 暖阳 (46%)" [ref=e1387] [cursor=pointer]:
+          - /url: /heroes/gongbenwuzang
+          - generic [ref=e1388]:
+            - generic [ref=e1389]:
+              - generic [ref=e1390]:
+                - img "宫本武藏" [ref=e1391]
+                - generic [ref=e1392]: 对抗路
+              - generic [ref=e1393]: T1
+            - generic [ref=e1394]:
+              - heading "宫本武藏" [level=2] [ref=e1395]
+              - generic [ref=e1396]:
+                - generic [ref=e1397]: 点控
+                - generic [ref=e1398]: 突进
+          - generic [ref=e1399]:
+            - generic [ref=e1401]:
+              - generic [ref=e1402]: BP 参与率
+              - generic [ref=e1403]: 13.5%
+            - generic [ref=e1407]:
+              - generic [ref=e1408]:
+                - text: 胜率
+                - generic [ref=e1409]: (589场)
+              - generic [ref=e1410]: 49.4%
+            - generic [ref=e1413]:
+              - generic [ref=e1414]: 招牌选手
+              - generic [ref=e1415]:
+                - generic [ref=e1416]: 暖阳
+                - generic [ref=e1417]: (46%)
+        - link "司空震 对抗路 T1 司空震 带线 核心 BP 参与率 13.3% 胜率 (682场) 49.4% 招牌选手 梓墨 (53%)" [ref=e1418] [cursor=pointer]:
+          - /url: /heroes/sikongzhen
+          - generic [ref=e1419]:
+            - generic [ref=e1420]:
+              - generic [ref=e1421]:
+                - img "司空震" [ref=e1422]
+                - generic [ref=e1423]: 对抗路
+              - generic [ref=e1424]: T1
+            - generic [ref=e1425]:
+              - heading "司空震" [level=2] [ref=e1426]
+              - generic [ref=e1427]:
+                - generic [ref=e1428]: 带线
+                - generic [ref=e1429]: 核心
+          - generic [ref=e1430]:
+            - generic [ref=e1432]:
+              - generic [ref=e1433]: BP 参与率
+              - generic [ref=e1434]: 13.3%
+            - generic [ref=e1438]:
+              - generic [ref=e1439]:
+                - text: 胜率
+                - generic [ref=e1440]: (682场)
+              - generic [ref=e1441]: 49.4%
+            - generic [ref=e1444]:
+              - generic [ref=e1445]: 招牌选手
+              - generic [ref=e1446]:
+                - generic [ref=e1447]: 梓墨
+                - generic [ref=e1448]: (53%)
+        - link "甄姬 中路 T1 甄姬 消耗 团控 BP 参与率 13.1% 胜率 (631场) 50.1% 招牌选手 流浪 (60%)" [ref=e1449] [cursor=pointer]:
+          - /url: /heroes/zhenji
+          - generic [ref=e1450]:
+            - generic [ref=e1451]:
+              - generic [ref=e1452]:
+                - img "甄姬" [ref=e1453]
+                - generic [ref=e1454]: 中路
+              - generic [ref=e1455]: T1
+            - generic [ref=e1456]:
+              - heading "甄姬" [level=2] [ref=e1457]
+              - generic [ref=e1458]:
+                - generic [ref=e1459]: 消耗
+                - generic [ref=e1460]: 团控
+          - generic [ref=e1461]:
+            - generic [ref=e1463]:
+              - generic [ref=e1464]: BP 参与率
+              - generic [ref=e1465]: 13.1%
+            - generic [ref=e1469]:
+              - generic [ref=e1470]:
+                - text: 胜率
+                - generic [ref=e1471]: (631场)
+              - generic [ref=e1472]: 50.1%
+            - generic [ref=e1475]:
+              - generic [ref=e1476]: 招牌选手
+              - generic [ref=e1477]:
+                - generic [ref=e1478]: 流浪
+                - generic [ref=e1479]: (60%)
+        - link "橘右京 打野 T1 橘右京 爆发 点控 BP 参与率 12.8% 胜率 (752场) 51.7% 招牌选手 暖阳 (53%)" [ref=e1480] [cursor=pointer]:
+          - /url: /heroes/jvyoujing
+          - generic [ref=e1481]:
+            - generic [ref=e1482]:
+              - generic [ref=e1483]:
+                - img "橘右京" [ref=e1484]
+                - generic [ref=e1485]: 打野
+              - generic [ref=e1486]: T1
+            - generic [ref=e1487]:
+              - heading "橘右京" [level=2] [ref=e1488]
+              - generic [ref=e1489]:
+                - generic [ref=e1490]: 爆发
+                - generic [ref=e1491]: 点控
+          - generic [ref=e1492]:
+            - generic [ref=e1494]:
+              - generic [ref=e1495]: BP 参与率
+              - generic [ref=e1496]: 12.8%
+            - generic [ref=e1500]:
+              - generic [ref=e1501]:
+                - text: 胜率
+                - generic [ref=e1502]: (752场)
+              - generic [ref=e1503]: 51.7%
+            - generic [ref=e1506]:
+              - generic [ref=e1507]: 招牌选手
+              - generic [ref=e1508]:
+                - generic [ref=e1509]: 暖阳
+                - generic [ref=e1510]: (53%)
+        - link "元流之子(坦克) 打野 T0.5 元流之子(坦克) 爆发 保护 BP 参与率 12.8% 胜率 (696场) 46.3% 招牌选手 皖皖 (60%)" [ref=e1511] [cursor=pointer]:
+          - /url: /heroes/yuanliuzhizi_tank
+          - generic [ref=e1512]:
+            - generic [ref=e1513]:
+              - generic [ref=e1514]:
+                - img "元流之子(坦克)" [ref=e1515]
+                - generic [ref=e1516]: 打野
+              - generic [ref=e1517]: T0.5
+            - generic [ref=e1518]:
+              - heading "元流之子(坦克)" [level=2] [ref=e1519]
+              - generic [ref=e1520]:
+                - generic [ref=e1521]: 爆发
+                - generic [ref=e1522]: 保护
+          - generic [ref=e1523]:
+            - generic [ref=e1525]:
+              - generic [ref=e1526]: BP 参与率
+              - generic [ref=e1527]: 12.8%
+            - generic [ref=e1531]:
+              - generic [ref=e1532]:
+                - text: 胜率
+                - generic [ref=e1533]: (696场)
+              - generic [ref=e1534]: 46.3%
+            - generic [ref=e1537]:
+              - generic [ref=e1538]: 招牌选手
+              - generic [ref=e1539]:
+                - generic [ref=e1540]: 皖皖
+                - generic [ref=e1541]: (60%)
+        - link "虞姬 发育路 T1 虞姬 消耗 核心 BP 参与率 12.5% 胜率 (785场) 49.7% 招牌选手 妖刀 (62%)" [ref=e1542] [cursor=pointer]:
+          - /url: /heroes/yuji
+          - generic [ref=e1543]:
+            - generic [ref=e1544]:
+              - generic [ref=e1545]:
+                - img "虞姬" [ref=e1546]
+                - generic [ref=e1547]: 发育路
+              - generic [ref=e1548]: T1
+            - generic [ref=e1549]:
+              - heading "虞姬" [level=2] [ref=e1550]
+              - generic [ref=e1551]:
+                - generic [ref=e1552]: 消耗
+                - generic [ref=e1553]: 核心
+          - generic [ref=e1554]:
+            - generic [ref=e1556]:
+              - generic [ref=e1557]: BP 参与率
+              - generic [ref=e1558]: 12.5%
+            - generic [ref=e1562]:
+              - generic [ref=e1563]:
+                - text: 胜率
+                - generic [ref=e1564]: (785场)
+              - generic [ref=e1565]: 49.7%
+            - generic [ref=e1568]:
+              - generic [ref=e1569]: 招牌选手
+              - generic [ref=e1570]:
+                - generic [ref=e1571]: 妖刀
+                - generic [ref=e1572]: (62%)
+        - link "亚连 对抗路 T3 亚连 保护 团控 BP 参与率 12.3% 胜率 (593场) 46.7% 招牌选手 轩染 (61%)" [ref=e1573] [cursor=pointer]:
+          - /url: /heroes/yalian
+          - generic [ref=e1574]:
+            - generic [ref=e1575]:
+              - generic [ref=e1576]:
+                - img "亚连" [ref=e1577]
+                - generic [ref=e1578]: 对抗路
+              - generic [ref=e1579]: T3
+            - generic [ref=e1580]:
+              - heading "亚连" [level=2] [ref=e1581]
+              - generic [ref=e1582]:
+                - generic [ref=e1583]: 保护
+                - generic [ref=e1584]: 团控
+          - generic [ref=e1585]:
+            - generic [ref=e1587]:
+              - generic [ref=e1588]: BP 参与率
+              - generic [ref=e1589]: 12.3%
+            - generic [ref=e1593]:
+              - generic [ref=e1594]:
+                - text: 胜率
+                - generic [ref=e1595]: (593场)
+              - generic [ref=e1596]: 46.7%
+            - generic [ref=e1599]:
+              - generic [ref=e1600]: 招牌选手
+              - generic [ref=e1601]:
+                - generic [ref=e1602]: 轩染
+                - generic [ref=e1603]: (61%)
+        - link "明世隐 游走 T3 明世隐 保护 团控 BP 参与率 12.2% 胜率 (482场) 48.1% 招牌选手 阿豆 (60%)" [ref=e1604] [cursor=pointer]:
+          - /url: /heroes/mingshiyin
+          - generic [ref=e1605]:
+            - generic [ref=e1606]:
+              - generic [ref=e1607]:
+                - img "明世隐" [ref=e1608]
+                - generic [ref=e1609]: 游走
+              - generic [ref=e1610]: T3
+            - generic [ref=e1611]:
+              - heading "明世隐" [level=2] [ref=e1612]
+              - generic [ref=e1613]:
+                - generic [ref=e1614]: 保护
+                - generic [ref=e1615]: 团控
+          - generic [ref=e1616]:
+            - generic [ref=e1618]:
+              - generic [ref=e1619]: BP 参与率
+              - generic [ref=e1620]: 12.2%
+            - generic [ref=e1624]:
+              - generic [ref=e1625]:
+                - text: 胜率
+                - generic [ref=e1626]: (482场)
+              - generic [ref=e1627]: 48.1%
+            - generic [ref=e1630]:
+              - generic [ref=e1631]: 招牌选手
+              - generic [ref=e1632]:
+                - generic [ref=e1633]: 阿豆
+                - generic [ref=e1634]: (60%)
+        - link "老夫子 对抗路 T1 老夫子 点控 带线 BP 参与率 12.0% 胜率 (591场) 57.0% 招牌选手 清清 (57%)" [ref=e1635] [cursor=pointer]:
+          - /url: /heroes/laofuzi
+          - generic [ref=e1636]:
+            - generic [ref=e1637]:
+              - generic [ref=e1638]:
+                - img "老夫子" [ref=e1639]
+                - generic [ref=e1640]: 对抗路
+              - generic [ref=e1641]: T1
+            - generic [ref=e1642]:
+              - heading "老夫子" [level=2] [ref=e1643]
+              - generic [ref=e1644]:
+                - generic [ref=e1645]: 点控
+                - generic [ref=e1646]: 带线
+          - generic [ref=e1647]:
+            - generic [ref=e1649]:
+              - generic [ref=e1650]: BP 参与率
+              - generic [ref=e1651]: 12.0%
+            - generic [ref=e1655]:
+              - generic [ref=e1656]:
+                - text: 胜率
+                - generic [ref=e1657]: (591场)
+              - generic [ref=e1658]: 57.0%
+            - generic [ref=e1661]:
+              - generic [ref=e1662]: 招牌选手
+              - generic [ref=e1663]:
+                - generic [ref=e1664]: 清清
+                - generic [ref=e1665]: (57%)
+        - link "周瑜 中路 T3 周瑜 爆发 团控 BP 参与率 11.9% 胜率 (699场) 47.8% 招牌选手 清融 (57%)" [ref=e1666] [cursor=pointer]:
+          - /url: /heroes/zhouyv
+          - generic [ref=e1667]:
+            - generic [ref=e1668]:
+              - generic [ref=e1669]:
+                - img "周瑜" [ref=e1670]
+                - generic [ref=e1671]: 中路
+              - generic [ref=e1672]: T3
+            - generic [ref=e1673]:
+              - heading "周瑜" [level=2] [ref=e1674]
+              - generic [ref=e1675]:
+                - generic [ref=e1676]: 爆发
+                - generic [ref=e1677]: 团控
+          - generic [ref=e1678]:
+            - generic [ref=e1680]:
+              - generic [ref=e1681]: BP 参与率
+              - generic [ref=e1682]: 11.9%
+            - generic [ref=e1686]:
+              - generic [ref=e1687]:
+                - text: 胜率
+                - generic [ref=e1688]: (699场)
+              - generic [ref=e1689]: 47.8%
+            - generic [ref=e1692]:
+              - generic [ref=e1693]: 招牌选手
+              - generic [ref=e1694]:
+                - generic [ref=e1695]: 清融
+                - generic [ref=e1696]: (57%)
+        - link "女娲 中路 T0.5 女娲 爆发 消耗 BP 参与率 11.9% 胜率 (600场) 52.0% 招牌选手 听悦 (56%)" [ref=e1697] [cursor=pointer]:
+          - /url: /heroes/nvwa
+          - generic [ref=e1698]:
+            - generic [ref=e1699]:
+              - generic [ref=e1700]:
+                - img "女娲" [ref=e1701]
+                - generic [ref=e1702]: 中路
+              - generic [ref=e1703]: T0.5
+            - generic [ref=e1704]:
+              - heading "女娲" [level=2] [ref=e1705]
+              - generic [ref=e1706]:
+                - generic [ref=e1707]: 爆发
+                - generic [ref=e1708]: 消耗
+          - generic [ref=e1709]:
+            - generic [ref=e1711]:
+              - generic [ref=e1712]: BP 参与率
+              - generic [ref=e1713]: 11.9%
+            - generic [ref=e1717]:
+              - generic [ref=e1718]:
+                - text: 胜率
+                - generic [ref=e1719]: (600场)
+              - generic [ref=e1720]: 52.0%
+            - generic [ref=e1723]:
+              - generic [ref=e1724]: 招牌选手
+              - generic [ref=e1725]:
+                - generic [ref=e1726]: 听悦
+                - generic [ref=e1727]: (56%)
+        - link "吕布 对抗路 T2 吕布 团控 核心 BP 参与率 11.8% 胜率 (803场) 51.8% 招牌选手 FMVP 坦然 (52%)" [ref=e1728] [cursor=pointer]:
+          - /url: /heroes/lvbu
+          - generic [ref=e1729]:
+            - generic [ref=e1730]:
+              - generic [ref=e1731]:
+                - img "吕布" [ref=e1732]
+                - generic [ref=e1733]: 对抗路
+              - generic [ref=e1734]: T2
+            - generic [ref=e1735]:
+              - heading "吕布" [level=2] [ref=e1736]
+              - generic [ref=e1737]:
+                - generic [ref=e1738]: 团控
+                - generic [ref=e1739]: 核心
+          - generic [ref=e1740]:
+            - generic [ref=e1742]:
+              - generic [ref=e1743]: BP 参与率
+              - generic [ref=e1744]: 11.8%
+            - generic [ref=e1748]:
+              - generic [ref=e1749]:
+                - text: 胜率
+                - generic [ref=e1750]: (803场)
+              - generic [ref=e1751]: 51.8%
+            - generic [ref=e1754]:
+              - generic [ref=e1755]: 招牌选手
+              - generic [ref=e1756]:
+                - generic [ref=e1757]: FMVP
+                - generic [ref=e1758]: 坦然
+                - generic [ref=e1759]: (52%)
+        - link "梦奇 打野 T2 梦奇 反野 承伤 BP 参与率 11.5% 胜率 (782场) 49.1% 招牌选手 钟意 (56%)" [ref=e1760] [cursor=pointer]:
+          - /url: /heroes/mengqi
+          - generic [ref=e1761]:
+            - generic [ref=e1762]:
+              - generic [ref=e1763]:
+                - img "梦奇" [ref=e1764]
+                - generic [ref=e1765]: 打野
+              - generic [ref=e1766]: T2
+            - generic [ref=e1767]:
+              - heading "梦奇" [level=2] [ref=e1768]
+              - generic [ref=e1769]:
+                - generic [ref=e1770]: 反野
+                - generic [ref=e1771]: 承伤
+          - generic [ref=e1772]:
+            - generic [ref=e1774]:
+              - generic [ref=e1775]: BP 参与率
+              - generic [ref=e1776]: 11.5%
+            - generic [ref=e1780]:
+              - generic [ref=e1781]:
+                - text: 胜率
+                - generic [ref=e1782]: (782场)
+              - generic [ref=e1783]: 49.1%
+            - generic [ref=e1786]:
+              - generic [ref=e1787]: 招牌选手
+              - generic [ref=e1788]:
+                - generic [ref=e1789]: 钟意
+                - generic [ref=e1790]: (56%)
+        - link "娜可露露 打野 T1 娜可露露 爆发 突进 BP 参与率 11.2% 胜率 (610场) 50.2% 招牌选手 花海 (54%)" [ref=e1791] [cursor=pointer]:
+          - /url: /heroes/nakelulu
+          - generic [ref=e1792]:
+            - generic [ref=e1793]:
+              - generic [ref=e1794]:
+                - img "娜可露露" [ref=e1795]
+                - generic [ref=e1796]: 打野
+              - generic [ref=e1797]: T1
+            - generic [ref=e1798]:
+              - heading "娜可露露" [level=2] [ref=e1799]
+              - generic [ref=e1800]:
+                - generic [ref=e1801]: 爆发
+                - generic [ref=e1802]: 突进
+          - generic [ref=e1803]:
+            - generic [ref=e1805]:
+              - generic [ref=e1806]: BP 参与率
+              - generic [ref=e1807]: 11.2%
+            - generic [ref=e1811]:
+              - generic [ref=e1812]:
+                - text: 胜率
+                - generic [ref=e1813]: (610场)
+              - generic [ref=e1814]: 50.2%
+            - generic [ref=e1817]:
+              - generic [ref=e1818]: 招牌选手
+              - generic [ref=e1819]:
+                - generic [ref=e1820]: 花海
+                - generic [ref=e1821]: (54%)
+        - link "廉颇 游走 T2 廉颇 保护 团控 BP 参与率 11.1% 胜率 (891场) 49.3% 招牌选手 坦然 (69%)" [ref=e1822] [cursor=pointer]:
+          - /url: /heroes/lianpo
+          - generic [ref=e1823]:
+            - generic [ref=e1824]:
+              - generic [ref=e1825]:
+                - img "廉颇" [ref=e1826]
+                - generic [ref=e1827]: 游走
+              - generic [ref=e1828]: T2
+            - generic [ref=e1829]:
+              - heading "廉颇" [level=2] [ref=e1830]
+              - generic [ref=e1831]:
+                - generic [ref=e1832]: 保护
+                - generic [ref=e1833]: 团控
+          - generic [ref=e1834]:
+            - generic [ref=e1836]:
+              - generic [ref=e1837]: BP 参与率
+              - generic [ref=e1838]: 11.1%
+            - generic [ref=e1842]:
+              - generic [ref=e1843]:
+                - text: 胜率
+                - generic [ref=e1844]: (891场)
+              - generic [ref=e1845]: 49.3%
+            - generic [ref=e1848]:
+              - generic [ref=e1849]: 招牌选手
+              - generic [ref=e1850]:
+                - generic [ref=e1851]: 坦然
+                - generic [ref=e1852]: (69%)
+        - link "鲁班七号 发育路 T2 鲁班七号 爆发 视野 BP 参与率 10.9% 胜率 (847场) 51.9% 招牌选手 妖刀 (45%)" [ref=e1853] [cursor=pointer]:
+          - /url: /heroes/lubanqihao
+          - generic [ref=e1854]:
+            - generic [ref=e1855]:
+              - generic [ref=e1856]:
+                - img "鲁班七号" [ref=e1857]
+                - generic [ref=e1858]: 发育路
+              - generic [ref=e1859]: T2
+            - generic [ref=e1860]:
+              - heading "鲁班七号" [level=2] [ref=e1861]
+              - generic [ref=e1862]:
+                - generic [ref=e1863]: 爆发
+                - generic [ref=e1864]: 视野
+          - generic [ref=e1865]:
+            - generic [ref=e1867]:
+              - generic [ref=e1868]: BP 参与率
+              - generic [ref=e1869]: 10.9%
+            - generic [ref=e1873]:
+              - generic [ref=e1874]:
+                - text: 胜率
+                - generic [ref=e1875]: (847场)
+              - generic [ref=e1876]: 51.9%
+            - generic [ref=e1879]:
+              - generic [ref=e1880]: 招牌选手
+              - generic [ref=e1881]:
+                - generic [ref=e1882]: 妖刀
+                - generic [ref=e1883]: (45%)
+        - link "姜子牙 中路 T2 姜子牙 消耗 点控 BP 参与率 10.9% 胜率 (526场) 52.1% 招牌选手 紫幻 (61%)" [ref=e1884] [cursor=pointer]:
+          - /url: /heroes/jiangziya
+          - generic [ref=e1885]:
+            - generic [ref=e1886]:
+              - generic [ref=e1887]:
+                - img "姜子牙" [ref=e1888]
+                - generic [ref=e1889]: 中路
+              - generic [ref=e1890]: T2
+            - generic [ref=e1891]:
+              - heading "姜子牙" [level=2] [ref=e1892]
+              - generic [ref=e1893]:
+                - generic [ref=e1894]: 消耗
+                - generic [ref=e1895]: 点控
+          - generic [ref=e1896]:
+            - generic [ref=e1898]:
+              - generic [ref=e1899]: BP 参与率
+              - generic [ref=e1900]: 10.9%
+            - generic [ref=e1904]:
+              - generic [ref=e1905]:
+                - text: 胜率
+                - generic [ref=e1906]: (526场)
+              - generic [ref=e1907]: 52.1%
+            - generic [ref=e1910]:
+              - generic [ref=e1911]: 招牌选手
+              - generic [ref=e1912]:
+                - generic [ref=e1913]: 紫幻
+                - generic [ref=e1914]: (61%)
+        - link "伽罗 发育路 T3 伽罗 消耗 核心 BP 参与率 10.8% 胜率 (508场) 46.1% 招牌选手 妖刀 (47%)" [ref=e1915] [cursor=pointer]:
+          - /url: /heroes/jialuo
+          - generic [ref=e1916]:
+            - generic [ref=e1917]:
+              - generic [ref=e1918]:
+                - img "伽罗" [ref=e1919]
+                - generic [ref=e1920]: 发育路
+              - generic [ref=e1921]: T3
+            - generic [ref=e1922]:
+              - heading "伽罗" [level=2] [ref=e1923]
+              - generic [ref=e1924]:
+                - generic [ref=e1925]: 消耗
+                - generic [ref=e1926]: 核心
+          - generic [ref=e1927]:
+            - generic [ref=e1929]:
+              - generic [ref=e1930]: BP 参与率
+              - generic [ref=e1931]: 10.8%
+            - generic [ref=e1935]:
+              - generic [ref=e1936]:
+                - text: 胜率
+                - generic [ref=e1937]: (508场)
+              - generic [ref=e1938]: 46.1%
+            - generic [ref=e1941]:
+              - generic [ref=e1942]: 招牌选手
+              - generic [ref=e1943]:
+                - generic [ref=e1944]: 妖刀
+                - generic [ref=e1945]: (47%)
+        - link "露娜 打野 T3 露娜 突进 爆发 BP 参与率 10.7% 胜率 (415场) 52.0% 招牌选手 花海 (63%)" [ref=e1946] [cursor=pointer]:
+          - /url: /heroes/luna
+          - generic [ref=e1947]:
+            - generic [ref=e1948]:
+              - generic [ref=e1949]:
+                - img "露娜" [ref=e1950]
+                - generic [ref=e1951]: 打野
+              - generic [ref=e1952]: T3
+            - generic [ref=e1953]:
+              - heading "露娜" [level=2] [ref=e1954]
+              - generic [ref=e1955]:
+                - generic [ref=e1956]: 突进
+                - generic [ref=e1957]: 爆发
+          - generic [ref=e1958]:
+            - generic [ref=e1960]:
+              - generic [ref=e1961]: BP 参与率
+              - generic [ref=e1962]: 10.7%
+            - generic [ref=e1966]:
+              - generic [ref=e1967]:
+                - text: 胜率
+                - generic [ref=e1968]: (415场)
+              - generic [ref=e1969]: 52.0%
+            - generic [ref=e1972]:
+              - generic [ref=e1973]: 招牌选手
+              - generic [ref=e1974]:
+                - generic [ref=e1975]: 花海
+                - generic [ref=e1976]: (63%)
+        - link "杨玉环 游走 T1 杨玉环 承伤 对线 BP 参与率 10.4% 胜率 (699场) 50.4% 招牌选手 今屿 (54%)" [ref=e1977] [cursor=pointer]:
+          - /url: /heroes/yangyuhuan
+          - generic [ref=e1978]:
+            - generic [ref=e1979]:
+              - generic [ref=e1980]:
+                - img "杨玉环" [ref=e1981]
+                - generic [ref=e1982]: 游走
+              - generic [ref=e1983]: T1
+            - generic [ref=e1984]:
+              - heading "杨玉环" [level=2] [ref=e1985]
+              - generic [ref=e1986]:
+                - generic [ref=e1987]: 承伤
+                - generic [ref=e1988]: 对线
+          - generic [ref=e1989]:
+            - generic [ref=e1991]:
+              - generic [ref=e1992]: BP 参与率
+              - generic [ref=e1993]: 10.4%
+            - generic [ref=e1997]:
+              - generic [ref=e1998]:
+                - text: 胜率
+                - generic [ref=e1999]: (699场)
+              - generic [ref=e2000]: 50.4%
+            - generic [ref=e2003]:
+              - generic [ref=e2004]: 招牌选手
+              - generic [ref=e2005]:
+                - generic [ref=e2006]: 今屿
+                - generic [ref=e2007]: (54%)
+        - link "杨戬 打野 T1 杨戬 突进 团控 BP 参与率 10.4% 胜率 (463场) 51.2% 招牌选手 钟意 (50%)" [ref=e2008] [cursor=pointer]:
+          - /url: /heroes/yangjian
+          - generic [ref=e2009]:
+            - generic [ref=e2010]:
+              - generic [ref=e2011]:
+                - img "杨戬" [ref=e2012]
+                - generic [ref=e2013]: 打野
+              - generic [ref=e2014]: T1
+            - generic [ref=e2015]:
+              - heading "杨戬" [level=2] [ref=e2016]
+              - generic [ref=e2017]:
+                - generic [ref=e2018]: 突进
+                - generic [ref=e2019]: 团控
+          - generic [ref=e2020]:
+            - generic [ref=e2022]:
+              - generic [ref=e2023]: BP 参与率
+              - generic [ref=e2024]: 10.4%
+            - generic [ref=e2028]:
+              - generic [ref=e2029]:
+                - text: 胜率
+                - generic [ref=e2030]: (463场)
+              - generic [ref=e2031]: 51.2%
+            - generic [ref=e2034]:
+              - generic [ref=e2035]: 招牌选手
+              - generic [ref=e2036]:
+                - generic [ref=e2037]: 钟意
+                - generic [ref=e2038]: (50%)
+        - link "苍 发育路 T1 苍 消耗 视野 BP 参与率 10.3% 胜率 (794场) 48.0% 招牌选手 道崽 (55%)" [ref=e2039] [cursor=pointer]:
+          - /url: /heroes/cang
+          - generic [ref=e2040]:
+            - generic [ref=e2041]:
+              - generic [ref=e2042]:
+                - img "苍" [ref=e2043]
+                - generic [ref=e2044]: 发育路
+              - generic [ref=e2045]: T1
+            - generic [ref=e2046]:
+              - heading "苍" [level=2] [ref=e2047]
+              - generic [ref=e2048]:
+                - generic [ref=e2049]: 消耗
+                - generic [ref=e2050]: 视野
+          - generic [ref=e2051]:
+            - generic [ref=e2053]:
+              - generic [ref=e2054]: BP 参与率
+              - generic [ref=e2055]: 10.3%
+            - generic [ref=e2059]:
+              - generic [ref=e2060]:
+                - text: 胜率
+                - generic [ref=e2061]: (794场)
+              - generic [ref=e2062]: 48.0%
+            - generic [ref=e2065]:
+              - generic [ref=e2066]: 招牌选手
+              - generic [ref=e2067]:
+                - generic [ref=e2068]: 道崽
+                - generic [ref=e2069]: (55%)
+        - link "空空儿 游走 T2 空空儿 突进 团控 BP 参与率 10.1% 胜率 (386场) 49.7% 招牌选手 一笙 (35%)" [ref=e2070] [cursor=pointer]:
+          - /url: /heroes/kongkonger
+          - generic [ref=e2071]:
+            - generic [ref=e2072]:
+              - generic [ref=e2073]:
+                - img "空空儿" [ref=e2074]
+                - generic [ref=e2075]: 游走
+              - generic [ref=e2076]: T2
+            - generic [ref=e2077]:
+              - heading "空空儿" [level=2] [ref=e2078]
+              - generic [ref=e2079]:
+                - generic [ref=e2080]: 突进
+                - generic [ref=e2081]: 团控
+          - generic [ref=e2082]:
+            - generic [ref=e2084]:
+              - generic [ref=e2085]: BP 参与率
+              - generic [ref=e2086]: 10.1%
+            - generic [ref=e2090]:
+              - generic [ref=e2091]:
+                - text: 胜率
+                - generic [ref=e2092]: (386场)
+              - generic [ref=e2093]: 49.7%
+            - generic [ref=e2096]:
+              - generic [ref=e2097]: 招牌选手
+              - generic [ref=e2098]:
+                - generic [ref=e2099]: 一笙
+                - generic [ref=e2100]: (35%)
+        - link "哪吒 打野 T1 哪吒 爆发 突进 BP 参与率 9.7% 胜率 (357场) 53.5% 招牌选手 皖皖 (46%)" [ref=e2101] [cursor=pointer]:
+          - /url: /heroes/nezha
+          - generic [ref=e2102]:
+            - generic [ref=e2103]:
+              - generic [ref=e2104]:
+                - img "哪吒" [ref=e2105]
+                - generic [ref=e2106]: 打野
+              - generic [ref=e2107]: T1
+            - generic [ref=e2108]:
+              - heading "哪吒" [level=2] [ref=e2109]
+              - generic [ref=e2110]:
+                - generic [ref=e2111]: 爆发
+                - generic [ref=e2112]: 突进
+          - generic [ref=e2113]:
+            - generic [ref=e2115]:
+              - generic [ref=e2116]: BP 参与率
+              - generic [ref=e2117]: 9.7%
+            - generic [ref=e2121]:
+              - generic [ref=e2122]:
+                - text: 胜率
+                - generic [ref=e2123]: (357场)
+              - generic [ref=e2124]: 53.5%
+            - generic [ref=e2127]:
+              - generic [ref=e2128]: 招牌选手
+              - generic [ref=e2129]:
+                - generic [ref=e2130]: 皖皖
+                - generic [ref=e2131]: (46%)
+        - link "百里守约 发育路 T2 百里守约 消耗 视野 BP 参与率 9.4% 胜率 (493场) 55.2% 招牌选手 道崽 (58%)" [ref=e2132] [cursor=pointer]:
+          - /url: /heroes/bailishouyue
+          - generic [ref=e2133]:
+            - generic [ref=e2134]:
+              - generic [ref=e2135]:
+                - img "百里守约" [ref=e2136]
+                - generic [ref=e2137]: 发育路
+              - generic [ref=e2138]: T2
+            - generic [ref=e2139]:
+              - heading "百里守约" [level=2] [ref=e2140]
+              - generic [ref=e2141]:
+                - generic [ref=e2142]: 消耗
+                - generic [ref=e2143]: 视野
+          - generic [ref=e2144]:
+            - generic [ref=e2146]:
+              - generic [ref=e2147]: BP 参与率
+              - generic [ref=e2148]: 9.4%
+            - generic [ref=e2152]:
+              - generic [ref=e2153]:
+                - text: 胜率
+                - generic [ref=e2154]: (493场)
+              - generic [ref=e2155]: 55.2%
+            - generic [ref=e2158]:
+              - generic [ref=e2159]: 招牌选手
+              - generic [ref=e2160]:
+                - generic [ref=e2161]: 道崽
+                - generic [ref=e2162]: (58%)
+        - link "墨子 游走 T2 墨子 消耗 点控 BP 参与率 9.4% 胜率 (488场) 46.1% 招牌选手 小A (44%)" [ref=e2163] [cursor=pointer]:
+          - /url: /heroes/mozi
+          - generic [ref=e2164]:
+            - generic [ref=e2165]:
+              - generic [ref=e2166]:
+                - img "墨子" [ref=e2167]
+                - generic [ref=e2168]: 游走
+              - generic [ref=e2169]: T2
+            - generic [ref=e2170]:
+              - heading "墨子" [level=2] [ref=e2171]
+              - generic [ref=e2172]:
+                - generic [ref=e2173]: 消耗
+                - generic [ref=e2174]: 点控
+          - generic [ref=e2175]:
+            - generic [ref=e2177]:
+              - generic [ref=e2178]: BP 参与率
+              - generic [ref=e2179]: 9.4%
+            - generic [ref=e2183]:
+              - generic [ref=e2184]:
+                - text: 胜率
+                - generic [ref=e2185]: (488场)
+              - generic [ref=e2186]: 46.1%
+            - generic [ref=e2189]:
+              - generic [ref=e2190]: 招牌选手
+              - generic [ref=e2191]:
+                - generic [ref=e2192]: 小A
+                - generic [ref=e2193]: (44%)
+        - link "安琪拉 中路 T1 安琪拉 爆发 点控 BP 参与率 9.3% 胜率 (607场) 49.4% 招牌选手 紫幻 (71%)" [ref=e2194] [cursor=pointer]:
+          - /url: /heroes/anqila
+          - generic [ref=e2195]:
+            - generic [ref=e2196]:
+              - generic [ref=e2197]:
+                - img "安琪拉" [ref=e2198]
+                - generic [ref=e2199]: 中路
+              - generic [ref=e2200]: T1
+            - generic [ref=e2201]:
+              - heading "安琪拉" [level=2] [ref=e2202]
+              - generic [ref=e2203]:
+                - generic [ref=e2204]: 爆发
+                - generic [ref=e2205]: 点控
+          - generic [ref=e2206]:
+            - generic [ref=e2208]:
+              - generic [ref=e2209]: BP 参与率
+              - generic [ref=e2210]: 9.3%
+            - generic [ref=e2214]:
+              - generic [ref=e2215]:
+                - text: 胜率
+                - generic [ref=e2216]: (607场)
+              - generic [ref=e2217]: 49.4%
+            - generic [ref=e2220]:
+              - generic [ref=e2221]: 招牌选手
+              - generic [ref=e2222]:
+                - generic [ref=e2223]: 紫幻
+                - generic [ref=e2224]: (71%)
+        - link "东皇太一 游走 T2 东皇太一 点控 反野 BP 参与率 9.3% 胜率 (398场) 49.7% 招牌选手 FMVP 子阳 (42%)" [ref=e2225] [cursor=pointer]:
+          - /url: /heroes/donghuangtaiyi
+          - generic [ref=e2226]:
+            - generic [ref=e2227]:
+              - generic [ref=e2228]:
+                - img "东皇太一" [ref=e2229]
+                - generic [ref=e2230]: 游走
+              - generic [ref=e2231]: T2
+            - generic [ref=e2232]:
+              - heading "东皇太一" [level=2] [ref=e2233]
+              - generic [ref=e2234]:
+                - generic [ref=e2235]: 点控
+                - generic [ref=e2236]: 反野
+          - generic [ref=e2237]:
+            - generic [ref=e2239]:
+              - generic [ref=e2240]: BP 参与率
+              - generic [ref=e2241]: 9.3%
+            - generic [ref=e2245]:
+              - generic [ref=e2246]:
+                - text: 胜率
+                - generic [ref=e2247]: (398场)
+              - generic [ref=e2248]: 49.7%
+            - generic [ref=e2251]:
+              - generic [ref=e2252]: 招牌选手
+              - generic [ref=e2253]:
+                - generic [ref=e2254]: FMVP
+                - generic [ref=e2255]: 子阳
+                - generic [ref=e2256]: (42%)
+        - link "赵怀真 游走 T1 赵怀真 点控 保护 BP 参与率 9.2% 胜率 (460场) 48.9% 招牌选手 小胖 (50%)" [ref=e2257] [cursor=pointer]:
+          - /url: /heroes/zhaohuaizhen
+          - generic [ref=e2258]:
+            - generic [ref=e2259]:
+              - generic [ref=e2260]:
+                - img "赵怀真" [ref=e2261]
+                - generic [ref=e2262]: 游走
+              - generic [ref=e2263]: T1
+            - generic [ref=e2264]:
+              - heading "赵怀真" [level=2] [ref=e2265]
+              - generic [ref=e2266]:
+                - generic [ref=e2267]: 点控
+                - generic [ref=e2268]: 保护
+          - generic [ref=e2269]:
+            - generic [ref=e2271]:
+              - generic [ref=e2272]: BP 参与率
+              - generic [ref=e2273]: 9.2%
+            - generic [ref=e2277]:
+              - generic [ref=e2278]:
+                - text: 胜率
+                - generic [ref=e2279]: (460场)
+              - generic [ref=e2280]: 48.9%
+            - generic [ref=e2283]:
+              - generic [ref=e2284]: 招牌选手
+              - generic [ref=e2285]:
+                - generic [ref=e2286]: 小胖
+                - generic [ref=e2287]: (50%)
+        - link "蒙犽 发育路 T3 蒙犽 消耗 推进 BP 参与率 8.9% 胜率 (552场) 52.0% 招牌选手 妖刀 (60%)" [ref=e2288] [cursor=pointer]:
+          - /url: /heroes/mengya
+          - generic [ref=e2289]:
+            - generic [ref=e2290]:
+              - generic [ref=e2291]:
+                - img "蒙犽" [ref=e2292]
+                - generic [ref=e2293]: 发育路
+              - generic [ref=e2294]: T3
+            - generic [ref=e2295]:
+              - heading "蒙犽" [level=2] [ref=e2296]
+              - generic [ref=e2297]:
+                - generic [ref=e2298]: 消耗
+                - generic [ref=e2299]: 推进
+          - generic [ref=e2300]:
+            - generic [ref=e2302]:
+              - generic [ref=e2303]: BP 参与率
+              - generic [ref=e2304]: 8.9%
+            - generic [ref=e2308]:
+              - generic [ref=e2309]:
+                - text: 胜率
+                - generic [ref=e2310]: (552场)
+              - generic [ref=e2311]: 52.0%
+            - generic [ref=e2314]:
+              - generic [ref=e2315]: 招牌选手
+              - generic [ref=e2316]:
+                - generic [ref=e2317]: 妖刀
+                - generic [ref=e2318]: (60%)
+        - link "干将莫邪 中路 T2 干将莫邪 爆发 消耗 BP 参与率 8.4% 胜率 (506场) 48.8% 招牌选手 长生 (62%)" [ref=e2319] [cursor=pointer]:
+          - /url: /heroes/ganjiangmoye
+          - generic [ref=e2320]:
+            - generic [ref=e2321]:
+              - generic [ref=e2322]:
+                - img "干将莫邪" [ref=e2323]
+                - generic [ref=e2324]: 中路
+              - generic [ref=e2325]: T2
+            - generic [ref=e2326]:
+              - heading "干将莫邪" [level=2] [ref=e2327]
+              - generic [ref=e2328]:
+                - generic [ref=e2329]: 爆发
+                - generic [ref=e2330]: 消耗
+          - generic [ref=e2331]:
+            - generic [ref=e2333]:
+              - generic [ref=e2334]: BP 参与率
+              - generic [ref=e2335]: 8.4%
+            - generic [ref=e2339]:
+              - generic [ref=e2340]:
+                - text: 胜率
+                - generic [ref=e2341]: (506场)
+              - generic [ref=e2342]: 48.8%
+            - generic [ref=e2345]:
+              - generic [ref=e2346]: 招牌选手
+              - generic [ref=e2347]:
+                - generic [ref=e2348]: 长生
+                - generic [ref=e2349]: (62%)
+        - link "李元芳 发育路 T3 李元芳 爆发 消耗 BP 参与率 8.3% 胜率 (515场) 53.2% 招牌选手 乔兮 (65%)" [ref=e2350] [cursor=pointer]:
+          - /url: /heroes/liyuanfang
+          - generic [ref=e2351]:
+            - generic [ref=e2352]:
+              - generic [ref=e2353]:
+                - img "李元芳" [ref=e2354]
+                - generic [ref=e2355]: 发育路
+              - generic [ref=e2356]: T3
+            - generic [ref=e2357]:
+              - heading "李元芳" [level=2] [ref=e2358]
+              - generic [ref=e2359]:
+                - generic [ref=e2360]: 爆发
+                - generic [ref=e2361]: 消耗
+          - generic [ref=e2362]:
+            - generic [ref=e2364]:
+              - generic [ref=e2365]: BP 参与率
+              - generic [ref=e2366]: 8.3%
+            - generic [ref=e2370]:
+              - generic [ref=e2371]:
+                - text: 胜率
+                - generic [ref=e2372]: (515场)
+              - generic [ref=e2373]: 53.2%
+            - generic [ref=e2376]:
+              - generic [ref=e2377]: 招牌选手
+              - generic [ref=e2378]:
+                - generic [ref=e2379]: 乔兮
+                - generic [ref=e2380]: (65%)
+        - link "小乔 中路 T1 小乔 爆发 消耗 BP 参与率 8.2% 胜率 (562场) 47.0% 招牌选手 紫幻 (46%)" [ref=e2381] [cursor=pointer]:
+          - /url: /heroes/xiaoqiao
+          - generic [ref=e2382]:
+            - generic [ref=e2383]:
+              - generic [ref=e2384]:
+                - img "小乔" [ref=e2385]
+                - generic [ref=e2386]: 中路
+              - generic [ref=e2387]: T1
+            - generic [ref=e2388]:
+              - heading "小乔" [level=2] [ref=e2389]
+              - generic [ref=e2390]:
+                - generic [ref=e2391]: 爆发
+                - generic [ref=e2392]: 消耗
+          - generic [ref=e2393]:
+            - generic [ref=e2395]:
+              - generic [ref=e2396]: BP 参与率
+              - generic [ref=e2397]: 8.2%
+            - generic [ref=e2401]:
+              - generic [ref=e2402]:
+                - text: 胜率
+                - generic [ref=e2403]: (562场)
+              - generic [ref=e2404]: 47.0%
+            - generic [ref=e2407]:
+              - generic [ref=e2408]: 招牌选手
+              - generic [ref=e2409]:
+                - generic [ref=e2410]: 紫幻
+                - generic [ref=e2411]: (46%)
+        - link "牛魔 游走 T3 牛魔 团控 保护 BP 参与率 8.1% 胜率 (639场) 52.6% 招牌选手 子阳 (53%)" [ref=e2412] [cursor=pointer]:
+          - /url: /heroes/niumo
+          - generic [ref=e2413]:
+            - generic [ref=e2414]:
+              - generic [ref=e2415]:
+                - img "牛魔" [ref=e2416]
+                - generic [ref=e2417]: 游走
+              - generic [ref=e2418]: T3
+            - generic [ref=e2419]:
+              - heading "牛魔" [level=2] [ref=e2420]
+              - generic [ref=e2421]:
+                - generic [ref=e2422]: 团控
+                - generic [ref=e2423]: 保护
+          - generic [ref=e2424]:
+            - generic [ref=e2426]:
+              - generic [ref=e2427]: BP 参与率
+              - generic [ref=e2428]: 8.1%
+            - generic [ref=e2432]:
+              - generic [ref=e2433]:
+                - text: 胜率
+                - generic [ref=e2434]: (639场)
+              - generic [ref=e2435]: 52.6%
+            - generic [ref=e2438]:
+              - generic [ref=e2439]: 招牌选手
+              - generic [ref=e2440]:
+                - generic [ref=e2441]: 子阳
+                - generic [ref=e2442]: (53%)
+        - link "达摩 对抗路 T2 达摩 团控 视野 BP 参与率 7.7% 胜率 (512场) 50.2% 招牌选手 清清 (69%)" [ref=e2443] [cursor=pointer]:
+          - /url: /heroes/damo
+          - generic [ref=e2444]:
+            - generic [ref=e2445]:
+              - generic [ref=e2446]:
+                - img "达摩" [ref=e2447]
+                - generic [ref=e2448]: 对抗路
+              - generic [ref=e2449]: T2
+            - generic [ref=e2450]:
+              - heading "达摩" [level=2] [ref=e2451]
+              - generic [ref=e2452]:
+                - generic [ref=e2453]: 团控
+                - generic [ref=e2454]: 视野
+          - generic [ref=e2455]:
+            - generic [ref=e2457]:
+              - generic [ref=e2458]: BP 参与率
+              - generic [ref=e2459]: 7.7%
+            - generic [ref=e2463]:
+              - generic [ref=e2464]:
+                - text: 胜率
+                - generic [ref=e2465]: (512场)
+              - generic [ref=e2466]: 50.2%
+            - generic [ref=e2469]:
+              - generic [ref=e2470]: 招牌选手
+              - generic [ref=e2471]:
+                - generic [ref=e2472]: 清清
+                - generic [ref=e2473]: (69%)
+        - link "孙策 对抗路 T2 孙策 团控 带线 BP 参与率 7.7% 胜率 (427场) 51.3% 招牌选手 坦然 (53%)" [ref=e2474] [cursor=pointer]:
+          - /url: /heroes/sunce
+          - generic [ref=e2475]:
+            - generic [ref=e2476]:
+              - generic [ref=e2477]:
+                - img "孙策" [ref=e2478]
+                - generic [ref=e2479]: 对抗路
+              - generic [ref=e2480]: T2
+            - generic [ref=e2481]:
+              - heading "孙策" [level=2] [ref=e2482]
+              - generic [ref=e2483]:
+                - generic [ref=e2484]: 团控
+                - generic [ref=e2485]: 带线
+          - generic [ref=e2486]:
+            - generic [ref=e2488]:
+              - generic [ref=e2489]: BP 参与率
+              - generic [ref=e2490]: 7.7%
+            - generic [ref=e2494]:
+              - generic [ref=e2495]:
+                - text: 胜率
+                - generic [ref=e2496]: (427场)
+              - generic [ref=e2497]: 51.3%
+            - generic [ref=e2500]:
+              - generic [ref=e2501]: 招牌选手
+              - generic [ref=e2502]:
+                - generic [ref=e2503]: 坦然
+                - generic [ref=e2504]: (53%)
+        - link "上官婉儿 中路 T3 上官婉儿 突进 爆发 BP 参与率 7.5% 胜率 (245场) 48.2% 招牌选手 NBW.九尾 (25%)" [ref=e2505] [cursor=pointer]:
+          - /url: /heroes/shangguanwaner
+          - generic [ref=e2506]:
+            - generic [ref=e2507]:
+              - generic [ref=e2508]:
+                - img "上官婉儿" [ref=e2509]
+                - generic [ref=e2510]: 中路
+              - generic [ref=e2511]: T3
+            - generic [ref=e2512]:
+              - heading "上官婉儿" [level=2] [ref=e2513]
+              - generic [ref=e2514]:
+                - generic [ref=e2515]: 突进
+                - generic [ref=e2516]: 爆发
+          - generic [ref=e2517]:
+            - generic [ref=e2519]:
+              - generic [ref=e2520]: BP 参与率
+              - generic [ref=e2521]: 7.5%
+            - generic [ref=e2525]:
+              - generic [ref=e2526]:
+                - text: 胜率
+                - generic [ref=e2527]: (245场)
+              - generic [ref=e2528]: 48.2%
+            - generic [ref=e2531]:
+              - generic [ref=e2532]: 招牌选手
+              - generic [ref=e2533]:
+                - generic [ref=e2534]: NBW.九尾
+                - generic [ref=e2535]: (25%)
+        - link "后羿 发育路 T1 后羿 点控 呆射 BP 参与率 7.4% 胜率 (321场) 49.5% 招牌选手 妖刀 (50%)" [ref=e2536] [cursor=pointer]:
+          - /url: /heroes/houyi
+          - generic [ref=e2537]:
+            - generic [ref=e2538]:
+              - generic [ref=e2539]:
+                - img "后羿" [ref=e2540]
+                - generic [ref=e2541]: 发育路
+              - generic [ref=e2542]: T1
+            - generic [ref=e2543]:
+              - heading "后羿" [level=2] [ref=e2544]
+              - generic [ref=e2545]:
+                - generic [ref=e2546]: 点控
+                - generic [ref=e2547]: 呆射
+          - generic [ref=e2548]:
+            - generic [ref=e2550]:
+              - generic [ref=e2551]: BP 参与率
+              - generic [ref=e2552]: 7.4%
+            - generic [ref=e2556]:
+              - generic [ref=e2557]:
+                - text: 胜率
+                - generic [ref=e2558]: (321场)
+              - generic [ref=e2559]: 49.5%
+            - generic [ref=e2562]:
+              - generic [ref=e2563]: 招牌选手
+              - generic [ref=e2564]:
+                - generic [ref=e2565]: 妖刀
+                - generic [ref=e2566]: (50%)
+        - link "海诺 中路 T2 海诺 消耗 视野 BP 参与率 6.9% 胜率 (312场) 51.6% 招牌选手 长生 (43%)" [ref=e2567] [cursor=pointer]:
+          - /url: /heroes/hainuo
+          - generic [ref=e2568]:
+            - generic [ref=e2569]:
+              - generic [ref=e2570]:
+                - img "海诺" [ref=e2571]
+                - generic [ref=e2572]: 中路
+              - generic [ref=e2573]: T2
+            - generic [ref=e2574]:
+              - heading "海诺" [level=2] [ref=e2575]
+              - generic [ref=e2576]:
+                - generic [ref=e2577]: 消耗
+                - generic [ref=e2578]: 视野
+          - generic [ref=e2579]:
+            - generic [ref=e2581]:
+              - generic [ref=e2582]: BP 参与率
+              - generic [ref=e2583]: 6.9%
+            - generic [ref=e2587]:
+              - generic [ref=e2588]:
+                - text: 胜率
+                - generic [ref=e2589]: (312场)
+              - generic [ref=e2590]: 51.6%
+            - generic [ref=e2593]:
+              - generic [ref=e2594]: 招牌选手
+              - generic [ref=e2595]:
+                - generic [ref=e2596]: 长生
+                - generic [ref=e2597]: (43%)
+        - link "赵云 打野 T1 赵云 爆发 突进 BP 参与率 6.5% 胜率 (348场) 48.0% 招牌选手 皖皖 (48%)" [ref=e2598] [cursor=pointer]:
+          - /url: /heroes/zhaoyun
+          - generic [ref=e2599]:
+            - generic [ref=e2600]:
+              - generic [ref=e2601]:
+                - img "赵云" [ref=e2602]
+                - generic [ref=e2603]: 打野
+              - generic [ref=e2604]: T1
+            - generic [ref=e2605]:
+              - heading "赵云" [level=2] [ref=e2606]
+              - generic [ref=e2607]:
+                - generic [ref=e2608]: 爆发
+                - generic [ref=e2609]: 突进
+          - generic [ref=e2610]:
+            - generic [ref=e2612]:
+              - generic [ref=e2613]: BP 参与率
+              - generic [ref=e2614]: 6.5%
+            - generic [ref=e2618]:
+              - generic [ref=e2619]:
+                - text: 胜率
+                - generic [ref=e2620]: (348场)
+              - generic [ref=e2621]: 48.0%
+            - generic [ref=e2624]:
+              - generic [ref=e2625]: 招牌选手
+              - generic [ref=e2626]:
+                - generic [ref=e2627]: 皖皖
+                - generic [ref=e2628]: (48%)
+        - link "蚩奼 发育路 T0.5 蚩奼 爆发 消耗 BP 参与率 6.3% 胜率 (363场) 49.9% 招牌选手 道崽 (73%)" [ref=e2629] [cursor=pointer]:
+          - /url: /heroes/chicha
+          - generic [ref=e2630]:
+            - generic [ref=e2631]:
+              - generic [ref=e2632]:
+                - img "蚩奼" [ref=e2633]
+                - generic [ref=e2634]: 发育路
+              - generic [ref=e2635]: T0.5
+            - generic [ref=e2636]:
+              - heading "蚩奼" [level=2] [ref=e2637]
+              - generic [ref=e2638]:
+                - generic [ref=e2639]: 爆发
+                - generic [ref=e2640]: 消耗
+          - generic [ref=e2641]:
+            - generic [ref=e2643]:
+              - generic [ref=e2644]: BP 参与率
+              - generic [ref=e2645]: 6.3%
+            - generic [ref=e2649]:
+              - generic [ref=e2650]:
+                - text: 胜率
+                - generic [ref=e2651]: (363场)
+              - generic [ref=e2652]: 49.9%
+            - generic [ref=e2655]:
+              - generic [ref=e2656]: 招牌选手
+              - generic [ref=e2657]:
+                - generic [ref=e2658]: 道崽
+                - generic [ref=e2659]: (73%)
+        - link "刘邦 游走 T3 刘邦 团控 保护 BP 参与率 6.3% 胜率 (297场) 49.8% 招牌选手 坦然 (88%)" [ref=e2660] [cursor=pointer]:
+          - /url: /heroes/liubang
+          - generic [ref=e2661]:
+            - generic [ref=e2662]:
+              - generic [ref=e2663]:
+                - img "刘邦" [ref=e2664]
+                - generic [ref=e2665]: 游走
+              - generic [ref=e2666]: T3
+            - generic [ref=e2667]:
+              - heading "刘邦" [level=2] [ref=e2668]
+              - generic [ref=e2669]:
+                - generic [ref=e2670]: 团控
+                - generic [ref=e2671]: 保护
+          - generic [ref=e2672]:
+            - generic [ref=e2674]:
+              - generic [ref=e2675]: BP 参与率
+              - generic [ref=e2676]: 6.3%
+            - generic [ref=e2680]:
+              - generic [ref=e2681]:
+                - text: 胜率
+                - generic [ref=e2682]: (297场)
+              - generic [ref=e2683]: 49.8%
+            - generic [ref=e2686]:
+              - generic [ref=e2687]: 招牌选手
+              - generic [ref=e2688]:
+                - generic [ref=e2689]: 坦然
+                - generic [ref=e2690]: (88%)
+        - link "暃 打野 T1 暃 爆发 突进 BP 参与率 6.0% 胜率 (305场) 51.1% 招牌选手 暖阳 (55%)" [ref=e2691] [cursor=pointer]:
+          - /url: /heroes/fei
+          - generic [ref=e2692]:
+            - generic [ref=e2693]:
+              - generic [ref=e2694]:
+                - img "暃" [ref=e2695]
+                - generic [ref=e2696]: 打野
+              - generic [ref=e2697]: T1
+            - generic [ref=e2698]:
+              - heading "暃" [level=2] [ref=e2699]
+              - generic [ref=e2700]:
+                - generic [ref=e2701]: 爆发
+                - generic [ref=e2702]: 突进
+          - generic [ref=e2703]:
+            - generic [ref=e2705]:
+              - generic [ref=e2706]: BP 参与率
+              - generic [ref=e2707]: 6.0%
+            - generic [ref=e2711]:
+              - generic [ref=e2712]:
+                - text: 胜率
+                - generic [ref=e2713]: (305场)
+              - generic [ref=e2714]: 51.1%
+            - generic [ref=e2717]:
+              - generic [ref=e2718]: 招牌选手
+              - generic [ref=e2719]:
+                - generic [ref=e2720]: 暖阳
+                - generic [ref=e2721]: (55%)
+        - link "白起 对抗路 T2 白起 团控 视野 BP 参与率 6.0% 胜率 (266场) 53.4% 招牌选手 清清 (57%)" [ref=e2722] [cursor=pointer]:
+          - /url: /heroes/baiqi
+          - generic [ref=e2723]:
+            - generic [ref=e2724]:
+              - generic [ref=e2725]:
+                - img "白起" [ref=e2726]
+                - generic [ref=e2727]: 对抗路
+              - generic [ref=e2728]: T2
+            - generic [ref=e2729]:
+              - heading "白起" [level=2] [ref=e2730]
+              - generic [ref=e2731]:
+                - generic [ref=e2732]: 团控
+                - generic [ref=e2733]: 视野
+          - generic [ref=e2734]:
+            - generic [ref=e2736]:
+              - generic [ref=e2737]: BP 参与率
+              - generic [ref=e2738]: 6.0%
+            - generic [ref=e2742]:
+              - generic [ref=e2743]:
+                - text: 胜率
+                - generic [ref=e2744]: (266场)
+              - generic [ref=e2745]: 53.4%
+            - generic [ref=e2748]:
+              - generic [ref=e2749]: 招牌选手
+              - generic [ref=e2750]:
+                - generic [ref=e2751]: 清清
+                - generic [ref=e2752]: (57%)
+        - link "蔡文姬 游走 T2 蔡文姬 点控 保护 BP 参与率 5.9% 胜率 (295场) 45.8% 招牌选手 小A (48%)" [ref=e2753] [cursor=pointer]:
+          - /url: /heroes/caiwenji
+          - generic [ref=e2754]:
+            - generic [ref=e2755]:
+              - generic [ref=e2756]:
+                - img "蔡文姬" [ref=e2757]
+                - generic [ref=e2758]: 游走
+              - generic [ref=e2759]: T2
+            - generic [ref=e2760]:
+              - heading "蔡文姬" [level=2] [ref=e2761]
+              - generic [ref=e2762]:
+                - generic [ref=e2763]: 点控
+                - generic [ref=e2764]: 保护
+          - generic [ref=e2765]:
+            - generic [ref=e2767]:
+              - generic [ref=e2768]: BP 参与率
+              - generic [ref=e2769]: 5.9%
+            - generic [ref=e2773]:
+              - generic [ref=e2774]:
+                - text: 胜率
+                - generic [ref=e2775]: (295场)
+              - generic [ref=e2776]: 45.8%
+            - generic [ref=e2779]:
+              - generic [ref=e2780]: 招牌选手
+              - generic [ref=e2781]:
+                - generic [ref=e2782]: 小A
+                - generic [ref=e2783]: (48%)
+        - link "桑启 游走 T3 桑启 保护 团控 BP 参与率 5.8% 胜率 (400场) 52.8% 招牌选手 子阳 (53%)" [ref=e2784] [cursor=pointer]:
+          - /url: /heroes/sangqi
+          - generic [ref=e2785]:
+            - generic [ref=e2786]:
+              - generic [ref=e2787]:
+                - img "桑启" [ref=e2788]
+                - generic [ref=e2789]: 游走
+              - generic [ref=e2790]: T3
+            - generic [ref=e2791]:
+              - heading "桑启" [level=2] [ref=e2792]
+              - generic [ref=e2793]:
+                - generic [ref=e2794]: 保护
+                - generic [ref=e2795]: 团控
+          - generic [ref=e2796]:
+            - generic [ref=e2798]:
+              - generic [ref=e2799]: BP 参与率
+              - generic [ref=e2800]: 5.8%
+            - generic [ref=e2804]:
+              - generic [ref=e2805]:
+                - text: 胜率
+                - generic [ref=e2806]: (400场)
+              - generic [ref=e2807]: 52.8%
+            - generic [ref=e2810]:
+              - generic [ref=e2811]: 招牌选手
+              - generic [ref=e2812]:
+                - generic [ref=e2813]: 子阳
+                - generic [ref=e2814]: (53%)
+        - link "武则天 中路 T1 武则天 团控 视野 BP 参与率 5.8% 胜率 (362场) 47.8% 招牌选手 紫幻 (60%)" [ref=e2815] [cursor=pointer]:
+          - /url: /heroes/wuzetian
+          - generic [ref=e2816]:
+            - generic [ref=e2817]:
+              - generic [ref=e2818]:
+                - img "武则天" [ref=e2819]
+                - generic [ref=e2820]: 中路
+              - generic [ref=e2821]: T1
+            - generic [ref=e2822]:
+              - heading "武则天" [level=2] [ref=e2823]
+              - generic [ref=e2824]:
+                - generic [ref=e2825]: 团控
+                - generic [ref=e2826]: 视野
+          - generic [ref=e2827]:
+            - generic [ref=e2829]:
+              - generic [ref=e2830]: BP 参与率
+              - generic [ref=e2831]: 5.8%
+            - generic [ref=e2835]:
+              - generic [ref=e2836]:
+                - text: 胜率
+                - generic [ref=e2837]: (362场)
+              - generic [ref=e2838]: 47.8%
+            - generic [ref=e2841]:
+              - generic [ref=e2842]: 招牌选手
+              - generic [ref=e2843]:
+                - generic [ref=e2844]: 紫幻
+                - generic [ref=e2845]: (60%)
+        - link "艾琳 发育路 T1 艾琳 消耗 对线 BP 参与率 5.6% 胜率 (433场) 49.9% 招牌选手 小雪 (45%)" [ref=e2846] [cursor=pointer]:
+          - /url: /heroes/ailin
+          - generic [ref=e2847]:
+            - generic [ref=e2848]:
+              - generic [ref=e2849]:
+                - img "艾琳" [ref=e2850]
+                - generic [ref=e2851]: 发育路
+              - generic [ref=e2852]: T1
+            - generic [ref=e2853]:
+              - heading "艾琳" [level=2] [ref=e2854]
+              - generic [ref=e2855]:
+                - generic [ref=e2856]: 消耗
+                - generic [ref=e2857]: 对线
+          - generic [ref=e2858]:
+            - generic [ref=e2860]:
+              - generic [ref=e2861]: BP 参与率
+              - generic [ref=e2862]: 5.6%
+            - generic [ref=e2866]:
+              - generic [ref=e2867]:
+                - text: 胜率
+                - generic [ref=e2868]: (433场)
+              - generic [ref=e2869]: 49.9%
+            - generic [ref=e2872]:
+              - generic [ref=e2873]: 招牌选手
+              - generic [ref=e2874]:
+                - generic [ref=e2875]: 小雪
+                - generic [ref=e2876]: (45%)
+        - link "黄忠 发育路 T3 黄忠 爆发 团控 BP 参与率 5.5% 胜率 (346场) 52.6% 招牌选手 傲寒 (62%)" [ref=e2877] [cursor=pointer]:
+          - /url: /heroes/huangzhong
+          - generic [ref=e2878]:
+            - generic [ref=e2879]:
+              - generic [ref=e2880]:
+                - img "黄忠" [ref=e2881]
+                - generic [ref=e2882]: 发育路
+              - generic [ref=e2883]: T3
+            - generic [ref=e2884]:
+              - heading "黄忠" [level=2] [ref=e2885]
+              - generic [ref=e2886]:
+                - generic [ref=e2887]: 爆发
+                - generic [ref=e2888]: 团控
+          - generic [ref=e2889]:
+            - generic [ref=e2891]:
+              - generic [ref=e2892]: BP 参与率
+              - generic [ref=e2893]: 5.5%
+            - generic [ref=e2897]:
+              - generic [ref=e2898]:
+                - text: 胜率
+                - generic [ref=e2899]: (346场)
+              - generic [ref=e2900]: 52.6%
+            - generic [ref=e2903]:
+              - generic [ref=e2904]: 招牌选手
+              - generic [ref=e2905]:
+                - generic [ref=e2906]: 傲寒
+                - generic [ref=e2907]: (62%)
+        - link "嫦娥 中路 T1 嫦娥 爆发 消耗 BP 参与率 5.5% 胜率 (271场) 52.4% 招牌选手 听悦 (35%)" [ref=e2908] [cursor=pointer]:
+          - /url: /heroes/change
+          - generic [ref=e2909]:
+            - generic [ref=e2910]:
+              - generic [ref=e2911]:
+                - img "嫦娥" [ref=e2912]
+                - generic [ref=e2913]: 中路
+              - generic [ref=e2914]: T1
+            - generic [ref=e2915]:
+              - heading "嫦娥" [level=2] [ref=e2916]
+              - generic [ref=e2917]:
+                - generic [ref=e2918]: 爆发
+                - generic [ref=e2919]: 消耗
+          - generic [ref=e2920]:
+            - generic [ref=e2922]:
+              - generic [ref=e2923]: BP 参与率
+              - generic [ref=e2924]: 5.5%
+            - generic [ref=e2928]:
+              - generic [ref=e2929]:
+                - text: 胜率
+                - generic [ref=e2930]: (271场)
+              - generic [ref=e2931]: 52.4%
+            - generic [ref=e2934]:
+              - generic [ref=e2935]: 招牌选手
+              - generic [ref=e2936]:
+                - generic [ref=e2937]: 听悦
+                - generic [ref=e2938]: (35%)
+        - link "曜 打野 T3 曜 爆发 突进 BP 参与率 5.0% 胜率 (361场) 51.8% 招牌选手 花海 (64%)" [ref=e2939] [cursor=pointer]:
+          - /url: /heroes/dongfangyao
+          - generic [ref=e2940]:
+            - generic [ref=e2941]:
+              - generic [ref=e2942]:
+                - img "曜" [ref=e2943]
+                - generic [ref=e2944]: 打野
+              - generic [ref=e2945]: T3
+            - generic [ref=e2946]:
+              - heading "曜" [level=2] [ref=e2947]
+              - generic [ref=e2948]:
+                - generic [ref=e2949]: 爆发
+                - generic [ref=e2950]: 突进
+          - generic [ref=e2951]:
+            - generic [ref=e2953]:
+              - generic [ref=e2954]: BP 参与率
+              - generic [ref=e2955]: 5.0%
+            - generic [ref=e2959]:
+              - generic [ref=e2960]:
+                - text: 胜率
+                - generic [ref=e2961]: (361场)
+              - generic [ref=e2962]: 51.8%
+            - generic [ref=e2965]:
+              - generic [ref=e2966]: 招牌选手
+              - generic [ref=e2967]:
+                - generic [ref=e2968]: 花海
+                - generic [ref=e2969]: (64%)
+        - link "项羽 对抗路 T2 项羽 保护 团控 BP 参与率 4.9% 胜率 (391场) 47.8% 招牌选手 清清 (64%)" [ref=e2970] [cursor=pointer]:
+          - /url: /heroes/xiangyu
+          - generic [ref=e2971]:
+            - generic [ref=e2972]:
+              - generic [ref=e2973]:
+                - img "项羽" [ref=e2974]
+                - generic [ref=e2975]: 对抗路
+              - generic [ref=e2976]: T2
+            - generic [ref=e2977]:
+              - heading "项羽" [level=2] [ref=e2978]
+              - generic [ref=e2979]:
+                - generic [ref=e2980]: 保护
+                - generic [ref=e2981]: 团控
+          - generic [ref=e2982]:
+            - generic [ref=e2984]:
+              - generic [ref=e2985]: BP 参与率
+              - generic [ref=e2986]: 4.9%
+            - generic [ref=e2990]:
+              - generic [ref=e2991]:
+                - text: 胜率
+                - generic [ref=e2992]: (391场)
+              - generic [ref=e2993]: 47.8%
+            - generic [ref=e2996]:
+              - generic [ref=e2997]: 招牌选手
+              - generic [ref=e2998]:
+                - generic [ref=e2999]: 清清
+                - generic [ref=e3000]: (64%)
+        - link "影 对抗路 T1 影 爆发 突进 BP 参与率 4.6% 胜率 (331场) 50.5% 招牌选手 NBW.小落 (43%)" [ref=e3001] [cursor=pointer]:
+          - /url: /heroes/ying
+          - generic [ref=e3002]:
+            - generic [ref=e3003]:
+              - generic [ref=e3004]:
+                - img "影" [ref=e3005]
+                - generic [ref=e3006]: 对抗路
+              - generic [ref=e3007]: T1
+            - generic [ref=e3008]:
+              - heading "影" [level=2] [ref=e3009]
+              - generic [ref=e3010]:
+                - generic [ref=e3011]: 爆发
+                - generic [ref=e3012]: 突进
+          - generic [ref=e3013]:
+            - generic [ref=e3015]:
+              - generic [ref=e3016]: BP 参与率
+              - generic [ref=e3017]: 4.6%
+            - generic [ref=e3021]:
+              - generic [ref=e3022]:
+                - text: 胜率
+                - generic [ref=e3023]: (331场)
+              - generic [ref=e3024]: 50.5%
+            - generic [ref=e3027]:
+              - generic [ref=e3028]: 招牌选手
+              - generic [ref=e3029]:
+                - generic [ref=e3030]: NBW.小落
+                - generic [ref=e3031]: (43%)
+        - link "云缨 打野 T0.5 云缨 爆发 消耗 BP 参与率 4.6% 胜率 (317场) 53.3% 招牌选手 NBW.米苏 (64%)" [ref=e3032] [cursor=pointer]:
+          - /url: /heroes/yunying
+          - generic [ref=e3033]:
+            - generic [ref=e3034]:
+              - generic [ref=e3035]:
+                - img "云缨" [ref=e3036]
+                - generic [ref=e3037]: 打野
+              - generic [ref=e3038]: T0.5
+            - generic [ref=e3039]:
+              - heading "云缨" [level=2] [ref=e3040]
+              - generic [ref=e3041]:
+                - generic [ref=e3042]: 爆发
+                - generic [ref=e3043]: 消耗
+          - generic [ref=e3044]:
+            - generic [ref=e3046]:
+              - generic [ref=e3047]: BP 参与率
+              - generic [ref=e3048]: 4.6%
+            - generic [ref=e3052]:
+              - generic [ref=e3053]:
+                - text: 胜率
+                - generic [ref=e3054]: (317场)
+              - generic [ref=e3055]: 53.3%
+            - generic [ref=e3058]:
+              - generic [ref=e3059]: 招牌选手
+              - generic [ref=e3060]:
+                - generic [ref=e3061]: NBW.米苏
+                - generic [ref=e3062]: (64%)
+        - link "钟馗 游走 T2 钟馗 点控 团控 BP 参与率 4.5% 胜率 (183场) 52.5% 招牌选手 信 (63%)" [ref=e3063] [cursor=pointer]:
+          - /url: /heroes/zhongkui
+          - generic [ref=e3064]:
+            - generic [ref=e3065]:
+              - generic [ref=e3066]:
+                - img "钟馗" [ref=e3067]
+                - generic [ref=e3068]: 游走
+              - generic [ref=e3069]: T2
+            - generic [ref=e3070]:
+              - heading "钟馗" [level=2] [ref=e3071]
+              - generic [ref=e3072]:
+                - generic [ref=e3073]: 点控
+                - generic [ref=e3074]: 团控
+          - generic [ref=e3075]:
+            - generic [ref=e3077]:
+              - generic [ref=e3078]: BP 参与率
+              - generic [ref=e3079]: 4.5%
+            - generic [ref=e3083]:
+              - generic [ref=e3084]:
+                - text: 胜率
+                - generic [ref=e3085]: (183场)
+              - generic [ref=e3086]: 52.5%
+            - generic [ref=e3089]:
+              - generic [ref=e3090]: 招牌选手
+              - generic [ref=e3091]:
+                - generic [ref=e3092]: 信
+                - generic [ref=e3093]: (63%)
+        - link "鬼谷子 游走 T3 鬼谷子 团控 保护 BP 参与率 4.4% 胜率 (188场) 39.4% 招牌选手 子阳 (55%)" [ref=e3094] [cursor=pointer]:
+          - /url: /heroes/guiguzi
+          - generic [ref=e3095]:
+            - generic [ref=e3096]:
+              - generic [ref=e3097]:
+                - img "鬼谷子" [ref=e3098]
+                - generic [ref=e3099]: 游走
+              - generic [ref=e3100]: T3
+            - generic [ref=e3101]:
+              - heading "鬼谷子" [level=2] [ref=e3102]
+              - generic [ref=e3103]:
+                - generic [ref=e3104]: 团控
+                - generic [ref=e3105]: 保护
+          - generic [ref=e3106]:
+            - generic [ref=e3108]:
+              - generic [ref=e3109]: BP 参与率
+              - generic [ref=e3110]: 4.4%
+            - generic [ref=e3114]:
+              - generic [ref=e3115]:
+                - text: 胜率
+                - generic [ref=e3116]: (188场)
+              - generic [ref=e3117]: 39.4%
+            - generic [ref=e3120]:
+              - generic [ref=e3121]: 招牌选手
+              - generic [ref=e3122]:
+                - generic [ref=e3123]: 子阳
+                - generic [ref=e3124]: (55%)
+        - link "金蝉 中路 T2 金蝉 点控 拆火 BP 参与率 4.1% 胜率 (208场) 45.2% 招牌选手 向鱼 (60%)" [ref=e3125] [cursor=pointer]:
+          - /url: /heroes/jinchan
+          - generic [ref=e3126]:
+            - generic [ref=e3127]:
+              - generic [ref=e3128]:
+                - img "金蝉" [ref=e3129]
+                - generic [ref=e3130]: 中路
+              - generic [ref=e3131]: T2
+            - generic [ref=e3132]:
+              - heading "金蝉" [level=2] [ref=e3133]
+              - generic [ref=e3134]:
+                - generic [ref=e3135]: 点控
+                - generic [ref=e3136]: 拆火
+          - generic [ref=e3137]:
+            - generic [ref=e3139]:
+              - generic [ref=e3140]: BP 参与率
+              - generic [ref=e3141]: 4.1%
+            - generic [ref=e3145]:
+              - generic [ref=e3146]:
+                - text: 胜率
+                - generic [ref=e3147]: (208场)
+              - generic [ref=e3148]: 45.2%
+            - generic [ref=e3151]:
+              - generic [ref=e3152]: 招牌选手
+              - generic [ref=e3153]:
+                - generic [ref=e3154]: 向鱼
+                - generic [ref=e3155]: (60%)
+        - link "庄周 游走 T1 庄周 保护 视野 BP 参与率 3.9% 胜率 (208场) 46.2% 招牌选手 一笙 (50%)" [ref=e3156] [cursor=pointer]:
+          - /url: /heroes/zhuangzhou
+          - generic [ref=e3157]:
+            - generic [ref=e3158]:
+              - generic [ref=e3159]:
+                - img "庄周" [ref=e3160]
+                - generic [ref=e3161]: 游走
+              - generic [ref=e3162]: T1
+            - generic [ref=e3163]:
+              - heading "庄周" [level=2] [ref=e3164]
+              - generic [ref=e3165]:
+                - generic [ref=e3166]: 保护
+                - generic [ref=e3167]: 视野
+          - generic [ref=e3168]:
+            - generic [ref=e3170]:
+              - generic [ref=e3171]: BP 参与率
+              - generic [ref=e3172]: 3.9%
+            - generic [ref=e3176]:
+              - generic [ref=e3177]:
+                - text: 胜率
+                - generic [ref=e3178]: (208场)
+              - generic [ref=e3179]: 46.2%
+            - generic [ref=e3182]:
+              - generic [ref=e3183]: 招牌选手
+              - generic [ref=e3184]:
+                - generic [ref=e3185]: 一笙
+                - generic [ref=e3186]: (50%)
+        - link "元流之子(辅助) 游走 T1 元流之子(辅助) 保护 视野 BP 参与率 3.8% 胜率 (71场) 45.1% 招牌选手 大帅 (88%)" [ref=e3187] [cursor=pointer]:
+          - /url: /heroes/yuanliuzhizi_support
+          - generic [ref=e3188]:
+            - generic [ref=e3189]:
+              - generic [ref=e3190]:
+                - img "元流之子(辅助)" [ref=e3191]
+                - generic [ref=e3192]: 游走
+              - generic [ref=e3193]: T1
+            - generic [ref=e3194]:
+              - heading "元流之子(辅助)" [level=2] [ref=e3195]
+              - generic [ref=e3196]:
+                - generic [ref=e3197]: 保护
+                - generic [ref=e3198]: 视野
+          - generic [ref=e3199]:
+            - generic [ref=e3201]:
+              - generic [ref=e3202]: BP 参与率
+              - generic [ref=e3203]: 3.8%
+            - generic [ref=e3207]:
+              - generic [ref=e3208]:
+                - text: 胜率
+                - generic [ref=e3209]: (71场)
+              - generic [ref=e3210]: 45.1%
+            - generic [ref=e3213]:
+              - generic [ref=e3214]: 招牌选手
+              - generic [ref=e3215]:
+                - generic [ref=e3216]: 大帅
+                - generic [ref=e3217]: (88%)
+        - link "芈月 对抗路 T3 芈月 带线 反野 BP 参与率 3.3% 胜率 (123场) 51.2% 招牌选手 轻语 (20%)" [ref=e3218] [cursor=pointer]:
+          - /url: /heroes/miyue
+          - generic [ref=e3219]:
+            - generic [ref=e3220]:
+              - generic [ref=e3221]:
+                - img "芈月" [ref=e3222]
+                - generic [ref=e3223]: 对抗路
+              - generic [ref=e3224]: T3
+            - generic [ref=e3225]:
+              - heading "芈月" [level=2] [ref=e3226]
+              - generic [ref=e3227]:
+                - generic [ref=e3228]: 带线
+                - generic [ref=e3229]: 反野
+          - generic [ref=e3230]:
+            - generic [ref=e3232]:
+              - generic [ref=e3233]: BP 参与率
+              - generic [ref=e3234]: 3.3%
+            - generic [ref=e3238]:
+              - generic [ref=e3239]:
+                - text: 胜率
+                - generic [ref=e3240]: (123场)
+              - generic [ref=e3241]: 51.2%
+            - generic [ref=e3244]:
+              - generic [ref=e3245]: 招牌选手
+              - generic [ref=e3246]:
+                - generic [ref=e3247]: 轻语
+                - generic [ref=e3248]: (20%)
+        - link "孙权 发育路 T1 孙权 爆发 突进 BP 参与率 2.2% 胜率 (159场) 57.9% 招牌选手 NBW.小久 (60%)" [ref=e3249] [cursor=pointer]:
+          - /url: /heroes/sunquan
+          - generic [ref=e3250]:
+            - generic [ref=e3251]:
+              - generic [ref=e3252]:
+                - img "孙权" [ref=e3253]
+                - generic [ref=e3254]: 发育路
+              - generic [ref=e3255]: T1
+            - generic [ref=e3256]:
+              - heading "孙权" [level=2] [ref=e3257]
+              - generic [ref=e3258]:
+                - generic [ref=e3259]: 爆发
+                - generic [ref=e3260]: 突进
+          - generic [ref=e3261]:
+            - generic [ref=e3263]:
+              - generic [ref=e3264]: BP 参与率
+              - generic [ref=e3265]: 2.2%
+            - generic [ref=e3269]:
+              - generic [ref=e3270]:
+                - text: 胜率
+                - generic [ref=e3271]: (159场)
+              - generic [ref=e3272]: 57.9%
+            - generic [ref=e3275]:
+              - generic [ref=e3276]: 招牌选手
+              - generic [ref=e3277]:
+                - generic [ref=e3278]: NBW.小久
+                - generic [ref=e3279]: (60%)
+        - link "元流之子(射手) 发育路 T1 元流之子(射手) 消耗 核心 BP 参与率 2.2% 胜率 (133场) 49.6% 招牌选手 小雪 (38%)" [ref=e3280] [cursor=pointer]:
+          - /url: /heroes/yuanliuzhizi_archer
+          - generic [ref=e3281]:
+            - generic [ref=e3282]:
+              - generic [ref=e3283]:
+                - img "元流之子(射手)" [ref=e3284]
+                - generic [ref=e3285]: 发育路
+              - generic [ref=e3286]: T1
+            - generic [ref=e3287]:
+              - heading "元流之子(射手)" [level=2] [ref=e3288]
+              - generic [ref=e3289]:
+                - generic [ref=e3290]: 消耗
+                - generic [ref=e3291]: 核心
+          - generic [ref=e3292]:
+            - generic [ref=e3294]:
+              - generic [ref=e3295]: BP 参与率
+              - generic [ref=e3296]: 2.2%
+            - generic [ref=e3300]:
+              - generic [ref=e3301]:
+                - text: 胜率
+                - generic [ref=e3302]: (133场)
+              - generic [ref=e3303]: 49.6%
+            - generic [ref=e3306]:
+              - generic [ref=e3307]: 招牌选手
+              - generic [ref=e3308]:
+                - generic [ref=e3309]: 小雪
+                - generic [ref=e3310]: (38%)
+        - link "盘古 打野 T3 盘古 突进 团控 BP 参与率 2.0% 胜率 (95场) 47.4% 招牌选手 九月 (29%)" [ref=e3311] [cursor=pointer]:
+          - /url: /heroes/pangu
+          - generic [ref=e3312]:
+            - generic [ref=e3313]:
+              - generic [ref=e3314]:
+                - img "盘古" [ref=e3315]
+                - generic [ref=e3316]: 打野
+              - generic [ref=e3317]: T3
+            - generic [ref=e3318]:
+              - heading "盘古" [level=2] [ref=e3319]
+              - generic [ref=e3320]:
+                - generic [ref=e3321]: 突进
+                - generic [ref=e3322]: 团控
+          - generic [ref=e3323]:
+            - generic [ref=e3325]:
+              - generic [ref=e3326]: BP 参与率
+              - generic [ref=e3327]: 2.0%
+            - generic [ref=e3331]:
+              - generic [ref=e3332]:
+                - text: 胜率
+                - generic [ref=e3333]: (95场)
+              - generic [ref=e3334]: 47.4%
+            - generic [ref=e3337]:
+              - generic [ref=e3338]: 招牌选手
+              - generic [ref=e3339]:
+                - generic [ref=e3340]: 九月
+                - generic [ref=e3341]: (29%)
+        - link "莱西奥 发育路 T3 莱西奥 爆发 消耗 BP 参与率 1.9% 胜率 (161场) 44.7% 招牌选手 小俞 (25%)" [ref=e3342] [cursor=pointer]:
+          - /url: /heroes/laixiao
+          - generic [ref=e3343]:
+            - generic [ref=e3344]:
+              - generic [ref=e3345]:
+                - img "莱西奥" [ref=e3346]
+                - generic [ref=e3347]: 发育路
+              - generic [ref=e3348]: T3
+            - generic [ref=e3349]:
+              - heading "莱西奥" [level=2] [ref=e3350]
+              - generic [ref=e3351]:
+                - generic [ref=e3352]: 爆发
+                - generic [ref=e3353]: 消耗
+          - generic [ref=e3354]:
+            - generic [ref=e3356]:
+              - generic [ref=e3357]: BP 参与率
+              - generic [ref=e3358]: 1.9%
+            - generic [ref=e3362]:
+              - generic [ref=e3363]:
+                - text: 胜率
+                - generic [ref=e3364]: (161场)
+              - generic [ref=e3365]: 44.7%
+            - generic [ref=e3368]:
+              - generic [ref=e3369]: 招牌选手
+              - generic [ref=e3370]:
+                - generic [ref=e3371]: 小俞
+                - generic [ref=e3372]: (25%)
+        - link "瑶 游走 T3 瑶 保护 团控 BP 参与率 1.6% 胜率 (44场) 47.7% 招牌选手 阿改 (50%)" [ref=e3373] [cursor=pointer]:
+          - /url: /heroes/yao
+          - generic [ref=e3374]:
+            - generic [ref=e3375]:
+              - generic [ref=e3376]:
+                - img "瑶" [ref=e3377]
+                - generic [ref=e3378]: 游走
+              - generic [ref=e3379]: T3
+            - generic [ref=e3380]:
+              - heading "瑶" [level=2] [ref=e3381]
+              - generic [ref=e3382]:
+                - generic [ref=e3383]: 保护
+                - generic [ref=e3384]: 团控
+          - generic [ref=e3385]:
+            - generic [ref=e3387]:
+              - generic [ref=e3388]: BP 参与率
+              - generic [ref=e3389]: 1.6%
+            - generic [ref=e3393]:
+              - generic [ref=e3394]:
+                - text: 胜率
+                - generic [ref=e3395]: (44场)
+              - generic [ref=e3396]: 47.7%
+            - generic [ref=e3399]:
+              - generic [ref=e3400]: 招牌选手
+              - generic [ref=e3401]:
+                - generic [ref=e3402]: 阿改
+                - generic [ref=e3403]: (50%)
+        - link "花木兰 对抗路 T3 花木兰 爆发 突进 BP 参与率 1.4% 胜率 (110场) 50.0% 招牌选手 FMVP Fly (80%)" [ref=e3404] [cursor=pointer]:
+          - /url: /heroes/huamulan
+          - generic [ref=e3405]:
+            - generic [ref=e3406]:
+              - generic [ref=e3407]:
+                - img "花木兰" [ref=e3408]
+                - generic [ref=e3409]: 对抗路
+              - generic [ref=e3410]: T3
+            - generic [ref=e3411]:
+              - heading "花木兰" [level=2] [ref=e3412]
+              - generic [ref=e3413]:
+                - generic [ref=e3414]: 爆发
+                - generic [ref=e3415]: 突进
+          - generic [ref=e3416]:
+            - generic [ref=e3418]:
+              - generic [ref=e3419]: BP 参与率
+              - generic [ref=e3420]: 1.4%
+            - generic [ref=e3424]:
+              - generic [ref=e3425]:
+                - text: 胜率
+                - generic [ref=e3426]: (110场)
+              - generic [ref=e3427]: 50.0%
+            - generic [ref=e3430]:
+              - generic [ref=e3431]: 招牌选手
+              - generic [ref=e3432]:
+                - generic [ref=e3433]: FMVP
+                - generic [ref=e3434]: Fly
+                - generic [ref=e3435]: (80%)
+        - link "貂蝉 中路 T3 貂蝉 爆发 团控 BP 参与率 1.2% 胜率 (63场) 50.8% 招牌选手 一曲 (55%)" [ref=e3436] [cursor=pointer]:
+          - /url: /heroes/diaochan
+          - generic [ref=e3437]:
+            - generic [ref=e3438]:
+              - generic [ref=e3439]:
+                - img "貂蝉" [ref=e3440]
+                - generic [ref=e3441]: 中路
+              - generic [ref=e3442]: T3
+            - generic [ref=e3443]:
+              - heading "貂蝉" [level=2] [ref=e3444]
+              - generic [ref=e3445]:
+                - generic [ref=e3446]: 爆发
+                - generic [ref=e3447]: 团控
+          - generic [ref=e3448]:
+            - generic [ref=e3450]:
+              - generic [ref=e3451]: BP 参与率
+              - generic [ref=e3452]: 1.2%
+            - generic [ref=e3456]:
+              - generic [ref=e3457]:
+                - text: 胜率
+                - generic [ref=e3458]: (63场)
+              - generic [ref=e3459]: 50.8%
+            - generic [ref=e3462]:
+              - generic [ref=e3463]: 招牌选手
+              - generic [ref=e3464]:
+                - generic [ref=e3465]: 一曲
+                - generic [ref=e3466]: (55%)
+        - link "典韦 打野 T3 典韦 爆发 核心 BP 参与率 1.1% 胜率 (74场) 45.9% 招牌选手 小胖 (67%)" [ref=e3467] [cursor=pointer]:
+          - /url: /heroes/dianwei
+          - generic [ref=e3468]:
+            - generic [ref=e3469]:
+              - generic [ref=e3470]:
+                - img "典韦" [ref=e3471]
+                - generic [ref=e3472]: 打野
+              - generic [ref=e3473]: T3
+            - generic [ref=e3474]:
+              - heading "典韦" [level=2] [ref=e3475]
+              - generic [ref=e3476]:
+                - generic [ref=e3477]: 爆发
+                - generic [ref=e3478]: 核心
+          - generic [ref=e3479]:
+            - generic [ref=e3481]:
+              - generic [ref=e3482]: BP 参与率
+              - generic [ref=e3483]: 1.1%
+            - generic [ref=e3487]:
+              - generic [ref=e3488]:
+                - text: 胜率
+                - generic [ref=e3489]: (74场)
+              - generic [ref=e3490]: 45.9%
+            - generic [ref=e3493]:
+              - generic [ref=e3494]: 招牌选手
+              - generic [ref=e3495]:
+                - generic [ref=e3496]: 小胖
+                - generic [ref=e3497]: (67%)
+        - link "扁鹊 发育路 T2 扁鹊 爆发 消耗 BP 参与率 0.9% 胜率 (46场) 54.3% 招牌选手 铃铛 (50%)" [ref=e3498] [cursor=pointer]:
+          - /url: /heroes/bianque
+          - generic [ref=e3499]:
+            - generic [ref=e3500]:
+              - generic [ref=e3501]:
+                - img "扁鹊" [ref=e3502]
+                - generic [ref=e3503]: 发育路
+              - generic [ref=e3504]: T2
+            - generic [ref=e3505]:
+              - heading "扁鹊" [level=2] [ref=e3506]
+              - generic [ref=e3507]:
+                - generic [ref=e3508]: 爆发
+                - generic [ref=e3509]: 消耗
+          - generic [ref=e3510]:
+            - generic [ref=e3512]:
+              - generic [ref=e3513]: BP 参与率
+              - generic [ref=e3514]: 0.9%
+            - generic [ref=e3518]:
+              - generic [ref=e3519]:
+                - text: 胜率
+                - generic [ref=e3520]: (46场)
+              - generic [ref=e3521]: 54.3%
+            - generic [ref=e3524]:
+              - generic [ref=e3525]: 招牌选手
+              - generic [ref=e3526]:
+                - generic [ref=e3527]: 铃铛
+                - generic [ref=e3528]: (50%)
+        - link "大禹 游走 T1 大禹 保护 团控 BP 参与率 0.8% 胜率 (68场) 52.9% 招牌选手 一笙 (100%)" [ref=e3529] [cursor=pointer]:
+          - /url: /heroes/dayu
+          - generic [ref=e3530]:
+            - generic [ref=e3531]:
+              - generic [ref=e3532]:
+                - img "大禹" [ref=e3533]
+                - generic [ref=e3534]: 游走
+              - generic [ref=e3535]: T1
+            - generic [ref=e3536]:
+              - heading "大禹" [level=2] [ref=e3537]
+              - generic [ref=e3538]:
+                - generic [ref=e3539]: 保护
+                - generic [ref=e3540]: 团控
+          - generic [ref=e3541]:
+            - generic [ref=e3543]:
+              - generic [ref=e3544]: BP 参与率
+              - generic [ref=e3545]: 0.8%
+            - generic [ref=e3549]:
+              - generic [ref=e3550]:
+                - text: 胜率
+                - generic [ref=e3551]: (68场)
+              - generic [ref=e3552]: 52.9%
+            - generic [ref=e3555]:
+              - generic [ref=e3556]: 招牌选手
+              - generic [ref=e3557]:
+                - generic [ref=e3558]: 一笙
+                - generic [ref=e3559]: (100%)
+        - link "元歌 对抗路 T3 元歌 突进 反野 BP 参与率 0.8% 胜率 (46场) 41.3% 招牌选手 NBW.小落 (20%)" [ref=e3560] [cursor=pointer]:
+          - /url: /heroes/yuange
+          - generic [ref=e3561]:
+            - generic [ref=e3562]:
+              - generic [ref=e3563]:
+                - img "元歌" [ref=e3564]
+                - generic [ref=e3565]: 对抗路
+              - generic [ref=e3566]: T3
+            - generic [ref=e3567]:
+              - heading "元歌" [level=2] [ref=e3568]
+              - generic [ref=e3569]:
+                - generic [ref=e3570]: 突进
+                - generic [ref=e3571]: 反野
+          - generic [ref=e3572]:
+            - generic [ref=e3574]:
+              - generic [ref=e3575]: BP 参与率
+              - generic [ref=e3576]: 0.8%
+            - generic [ref=e3580]:
+              - generic [ref=e3581]:
+                - text: 胜率
+                - generic [ref=e3582]: (46场)
+              - generic [ref=e3583]: 41.3%
+            - generic [ref=e3586]:
+              - generic [ref=e3587]: 招牌选手
+              - generic [ref=e3588]:
+                - generic [ref=e3589]: NBW.小落
+                - generic [ref=e3590]: (20%)
+        - link "元流之子(法师) 中路 T3 元流之子(法师) 爆发 团控 BP 参与率 0.6% 胜率 (48场) 50.0% 招牌选手 NBW.九尾 (100%)" [ref=e3591] [cursor=pointer]:
+          - /url: /heroes/yuanliuzhizi_magic
+          - generic [ref=e3592]:
+            - generic [ref=e3593]:
+              - generic [ref=e3594]:
+                - img "元流之子(法师)" [ref=e3595]
+                - generic [ref=e3596]: 中路
+              - generic [ref=e3597]: T3
+            - generic [ref=e3598]:
+              - heading "元流之子(法师)" [level=2] [ref=e3599]
+              - generic [ref=e3600]:
+                - generic [ref=e3601]: 爆发
+                - generic [ref=e3602]: 团控
+          - generic [ref=e3603]:
+            - generic [ref=e3605]:
+              - generic [ref=e3606]: BP 参与率
+              - generic [ref=e3607]: 0.6%
+            - generic [ref=e3611]:
+              - generic [ref=e3612]:
+                - text: 胜率
+                - generic [ref=e3613]: (48场)
+              - generic [ref=e3614]: 50.0%
+            - generic [ref=e3617]:
+              - generic [ref=e3618]: 招牌选手
+              - generic [ref=e3619]:
+                - generic [ref=e3620]: NBW.九尾
+                - generic [ref=e3621]: (100%)
+        - link "心魔六耳 对抗路 T2 心魔六耳 突进 团控 BP 参与率 0.6% 胜率 (29场) 65.5% 招牌选手 皖皖 (86%)" [ref=e3622] [cursor=pointer]:
+          - /url: /heroes/xinmoliuer
+          - generic [ref=e3623]:
+            - generic [ref=e3624]:
+              - generic [ref=e3625]:
+                - img "心魔六耳" [ref=e3626]
+                - generic [ref=e3627]: 对抗路
+              - generic [ref=e3628]: T2
+            - generic [ref=e3629]:
+              - heading "心魔六耳" [level=2] [ref=e3630]
+              - generic [ref=e3631]:
+                - generic [ref=e3632]: 突进
+                - generic [ref=e3633]: 团控
+          - generic [ref=e3634]:
+            - generic [ref=e3636]:
+              - generic [ref=e3637]: BP 参与率
+              - generic [ref=e3638]: 0.6%
+            - generic [ref=e3642]:
+              - generic [ref=e3643]:
+                - text: 胜率
+                - generic [ref=e3644]: (29场)
+              - generic [ref=e3645]: 65.5%
+            - generic [ref=e3648]:
+              - generic [ref=e3649]: 招牌选手
+              - generic [ref=e3650]:
+                - generic [ref=e3651]: 皖皖
+                - generic [ref=e3652]: (86%)
+        - link "李信 打野 T3 李信 突进 爆发 BP 参与率 0.4% 胜率 (36场) 55.6% 招牌选手 归期 (100%)" [ref=e3653] [cursor=pointer]:
+          - /url: /heroes/lixin
+          - generic [ref=e3654]:
+            - generic [ref=e3655]:
+              - generic [ref=e3656]:
+                - img "李信" [ref=e3657]
+                - generic [ref=e3658]: 打野
+              - generic [ref=e3659]: T3
+            - generic [ref=e3660]:
+              - heading "李信" [level=2] [ref=e3661]
+              - generic [ref=e3662]:
+                - generic [ref=e3663]: 突进
+                - generic [ref=e3664]: 爆发
+          - generic [ref=e3665]:
+            - generic [ref=e3667]:
+              - generic [ref=e3668]: BP 参与率
+              - generic [ref=e3669]: 0.4%
+            - generic [ref=e3673]:
+              - generic [ref=e3674]:
+                - text: 胜率
+                - generic [ref=e3675]: (36场)
+              - generic [ref=e3676]: 55.6%
+            - generic [ref=e3679]:
+              - generic [ref=e3680]: 招牌选手
+              - generic [ref=e3681]:
+                - generic [ref=e3682]: 归期
+                - generic [ref=e3683]: (100%)
+        - link "百里玄策 打野 T3 百里玄策 突进 爆发 BP 参与率 0.4% 胜率 (31场) 41.9%" [ref=e3684] [cursor=pointer]:
+          - /url: /heroes/bailixuance
+          - generic [ref=e3685]:
+            - generic [ref=e3686]:
+              - generic [ref=e3687]:
+                - img "百里玄策" [ref=e3688]
+                - generic [ref=e3689]: 打野
+              - generic [ref=e3690]: T3
+            - generic [ref=e3691]:
+              - heading "百里玄策" [level=2] [ref=e3692]
+              - generic [ref=e3693]:
+                - generic [ref=e3694]: 突进
+                - generic [ref=e3695]: 爆发
+          - generic [ref=e3696]:
+            - generic [ref=e3698]:
+              - generic [ref=e3699]: BP 参与率
+              - generic [ref=e3700]: 0.4%
+            - generic [ref=e3704]:
+              - generic [ref=e3705]:
+                - text: 胜率
+                - generic [ref=e3706]: (31场)
+              - generic [ref=e3707]: 41.9%
+        - link "程咬金 对抗路 T3 程咬金 带线 视野 BP 参与率 0.2% 胜率 (14场) 42.9%" [ref=e3710] [cursor=pointer]:
+          - /url: /heroes/chengyaojin
+          - generic [ref=e3711]:
+            - generic [ref=e3712]:
+              - generic [ref=e3713]:
+                - img "程咬金" [ref=e3714]
+                - generic [ref=e3715]: 对抗路
+              - generic [ref=e3716]: T3
+            - generic [ref=e3717]:
+              - heading "程咬金" [level=2] [ref=e3718]
+              - generic [ref=e3719]:
+                - generic [ref=e3720]: 带线
+                - generic [ref=e3721]: 视野
+          - generic [ref=e3722]:
+            - generic [ref=e3724]:
+              - generic [ref=e3725]: BP 参与率
+              - generic [ref=e3726]: 0.2%
+            - generic [ref=e3730]:
+              - generic [ref=e3731]:
+                - text: 胜率
+                - generic [ref=e3732]: (14场)
+              - generic [ref=e3733]: 42.9%
+        - link "卢雅那 游走 T2 卢雅那 保护 消耗 BP 参与率 0.2% 胜率 (14场) 50.0% 招牌选手 道崽 (33%)" [ref=e3736] [cursor=pointer]:
+          - /url: /heroes/luyana
+          - generic [ref=e3737]:
+            - generic [ref=e3738]:
+              - generic [ref=e3739]:
+                - img "卢雅那" [ref=e3740]
+                - generic [ref=e3741]: 游走
+              - generic [ref=e3742]: T2
+            - generic [ref=e3743]:
+              - heading "卢雅那" [level=2] [ref=e3744]
+              - generic [ref=e3745]:
+                - generic [ref=e3746]: 保护
+                - generic [ref=e3747]: 消耗
+          - generic [ref=e3748]:
+            - generic [ref=e3750]:
+              - generic [ref=e3751]: BP 参与率
+              - generic [ref=e3752]: 0.2%
+            - generic [ref=e3756]:
+              - generic [ref=e3757]:
+                - text: 胜率
+                - generic [ref=e3758]: (14场)
+              - generic [ref=e3759]: 50.0%
+            - generic [ref=e3762]:
+              - generic [ref=e3763]: 招牌选手
+              - generic [ref=e3764]:
+                - generic [ref=e3765]: 道崽
+                - generic [ref=e3766]: (33%)
+        - link "王维 对抗路 T2 王维 消耗 团控 BP 参与率 0.2% 胜率 (12场) 83.3%" [ref=e3767] [cursor=pointer]:
+          - /url: /heroes/wangwei
+          - generic [ref=e3768]:
+            - generic [ref=e3769]:
+              - generic [ref=e3770]:
+                - img "王维" [ref=e3771]
+                - generic [ref=e3772]: 对抗路
+              - generic [ref=e3773]: T2
+            - generic [ref=e3774]:
+              - heading "王维" [level=2] [ref=e3775]
+              - generic [ref=e3776]:
+                - generic [ref=e3777]: 消耗
+                - generic [ref=e3778]: 团控
+          - generic [ref=e3779]:
+            - generic [ref=e3781]:
+              - generic [ref=e3782]: BP 参与率
+              - generic [ref=e3783]: 0.2%
+            - generic [ref=e3787]:
+              - generic [ref=e3788]:
+                - text: 胜率
+                - generic [ref=e3789]: (12场)
+              - generic [ref=e3790]: 83.3%
+        - link "云中君 打野 T1 云中君 爆发 突进 BP 参与率 0.2% 胜率 (10场) 50.0%" [ref=e3793] [cursor=pointer]:
+          - /url: /heroes/yunzhongjun
+          - generic [ref=e3794]:
+            - generic [ref=e3795]:
+              - generic [ref=e3796]:
+                - img "云中君" [ref=e3797]
+                - generic [ref=e3798]: 打野
+              - generic [ref=e3799]: T1
+            - generic [ref=e3800]:
+              - heading "云中君" [level=2] [ref=e3801]
+              - generic [ref=e3802]:
+                - generic [ref=e3803]: 爆发
+                - generic [ref=e3804]: 突进
+          - generic [ref=e3805]:
+            - generic [ref=e3807]:
+              - generic [ref=e3808]: BP 参与率
+              - generic [ref=e3809]: 0.2%
+            - generic [ref=e3813]:
+              - generic [ref=e3814]:
+                - text: 胜率
+                - generic [ref=e3815]: (10场)
+              - generic [ref=e3816]: 50.0%
+        - link "诸葛亮 中路 T3 诸葛亮 对线 带线 BP 参与率 0.1% 胜率 (14场) 57.1% 招牌选手 染详 (25%)" [ref=e3819] [cursor=pointer]:
+          - /url: /heroes/zhugeliang
+          - generic [ref=e3820]:
+            - generic [ref=e3821]:
+              - generic [ref=e3822]:
+                - img "诸葛亮" [ref=e3823]
+                - generic [ref=e3824]: 中路
+              - generic [ref=e3825]: T3
+            - generic [ref=e3826]:
+              - heading "诸葛亮" [level=2] [ref=e3827]
+              - generic [ref=e3828]:
+                - generic [ref=e3829]: 对线
+                - generic [ref=e3830]: 带线
+          - generic [ref=e3831]:
+            - generic [ref=e3833]:
+              - generic [ref=e3834]: BP 参与率
+              - generic [ref=e3835]: 0.1%
+            - generic [ref=e3839]:
+              - generic [ref=e3840]:
+                - text: 胜率
+                - generic [ref=e3841]: (14场)
+              - generic [ref=e3842]: 57.1%
+            - generic [ref=e3845]:
+              - generic [ref=e3846]: 招牌选手
+              - generic [ref=e3847]:
+                - generic [ref=e3848]: 染详
+                - generic [ref=e3849]: (25%)
+        - link "韩信 打野 T3 韩信 突进 爆发 BP 参与率 0.1% 胜率 (11场) 27.3% 招牌选手 暖阳 (0%)" [ref=e3850] [cursor=pointer]:
+          - /url: /heroes/hanxin
+          - generic [ref=e3851]:
+            - generic [ref=e3852]:
+              - generic [ref=e3853]:
+                - img "韩信" [ref=e3854]
+                - generic [ref=e3855]: 打野
+              - generic [ref=e3856]: T3
+            - generic [ref=e3857]:
+              - heading "韩信" [level=2] [ref=e3858]
+              - generic [ref=e3859]:
+                - generic [ref=e3860]: 突进
+                - generic [ref=e3861]: 爆发
+          - generic [ref=e3862]:
+            - generic [ref=e3864]:
+              - generic [ref=e3865]: BP 参与率
+              - generic [ref=e3866]: 0.1%
+            - generic [ref=e3870]:
+              - generic [ref=e3871]:
+                - text: 胜率
+                - generic [ref=e3872]: (11场)
+              - generic [ref=e3873]: 27.3%
+            - generic [ref=e3876]:
+              - generic [ref=e3877]: 招牌选手
+              - generic [ref=e3878]:
+                - generic [ref=e3879]: 暖阳
+                - generic [ref=e3880]: (0%)
+        - link "钟无艳 对抗路 T3 钟无艳 硬控前排 坦边 BP 参与率 0.1% 胜率 (9场) 55.6%" [ref=e3881] [cursor=pointer]:
+          - /url: /heroes/zhongwuyan
+          - generic [ref=e3882]:
+            - generic [ref=e3883]:
+              - generic [ref=e3884]:
+                - img "钟无艳" [ref=e3885]
+                - generic [ref=e3886]: 对抗路
+              - generic [ref=e3887]: T3
+            - generic [ref=e3888]:
+              - heading "钟无艳" [level=2] [ref=e3889]
+              - generic [ref=e3890]:
+                - generic [ref=e3891]: 硬控前排
+                - generic [ref=e3892]: 坦边
+          - generic [ref=e3893]:
+            - generic [ref=e3895]:
+              - generic [ref=e3896]: BP 参与率
+              - generic [ref=e3897]: 0.1%
+            - generic [ref=e3901]:
+              - generic [ref=e3902]:
+                - text: 胜率
+                - generic [ref=e3903]: (9场)
+              - generic [ref=e3904]: 55.6%
+        - link "刘禅 游走 T3 刘禅 保护 回复 BP 参与率 0.1% 胜率 (8场) 50.0%" [ref=e3907] [cursor=pointer]:
+          - /url: /heroes/liushan
+          - generic [ref=e3908]:
+            - generic [ref=e3909]:
+              - generic [ref=e3910]:
+                - img "刘禅" [ref=e3911]
+                - generic [ref=e3912]: 游走
+              - generic [ref=e3913]: T3
+            - generic [ref=e3914]:
+              - heading "刘禅" [level=2] [ref=e3915]
+              - generic [ref=e3916]:
+                - generic [ref=e3917]: 保护
+                - generic [ref=e3918]: 回复
+          - generic [ref=e3919]:
+            - generic [ref=e3921]:
+              - generic [ref=e3922]: BP 参与率
+              - generic [ref=e3923]: 0.1%
+            - generic [ref=e3927]:
+              - generic [ref=e3928]:
+                - text: 胜率
+                - generic [ref=e3929]: (8场)
+              - generic [ref=e3930]: 50.0%
+        - link "李白 打野 T3 李白 突进 爆发 BP 参与率 0.1% 胜率 (5场) 40.0% 招牌选手 暖阳 (0%)" [ref=e3933] [cursor=pointer]:
+          - /url: /heroes/libai
+          - generic [ref=e3934]:
+            - generic [ref=e3935]:
+              - generic [ref=e3936]:
+                - img "李白" [ref=e3937]
+                - generic [ref=e3938]: 打野
+              - generic [ref=e3939]: T3
+            - generic [ref=e3940]:
+              - heading "李白" [level=2] [ref=e3941]
+              - generic [ref=e3942]:
+                - generic [ref=e3943]: 突进
+                - generic [ref=e3944]: 爆发
+          - generic [ref=e3945]:
+            - generic [ref=e3947]:
+              - generic [ref=e3948]: BP 参与率
+              - generic [ref=e3949]: 0.1%
+            - generic [ref=e3953]:
+              - generic [ref=e3954]:
+                - text: 胜率
+                - generic [ref=e3955]: (5场)
+              - generic [ref=e3956]: 40.0%
+            - generic [ref=e3959]:
+              - generic [ref=e3960]: 招牌选手
+              - generic [ref=e3961]:
+                - generic [ref=e3962]: 暖阳
+                - generic [ref=e3963]: (0%)
+        - link "雅典娜 打野 T1 雅典娜 突进 带线 BP 参与率 0.1% 胜率 (5场) 60.0%" [ref=e3964] [cursor=pointer]:
+          - /url: /heroes/yadianna
+          - generic [ref=e3965]:
+            - generic [ref=e3966]:
+              - generic [ref=e3967]:
+                - img "雅典娜" [ref=e3968]
+                - generic [ref=e3969]: 打野
+              - generic [ref=e3970]: T1
+            - generic [ref=e3971]:
+              - heading "雅典娜" [level=2] [ref=e3972]
+              - generic [ref=e3973]:
+                - generic [ref=e3974]: 突进
+                - generic [ref=e3975]: 带线
+          - generic [ref=e3976]:
+            - generic [ref=e3978]:
+              - generic [ref=e3979]: BP 参与率
+              - generic [ref=e3980]: 0.1%
+            - generic [ref=e3984]:
+              - generic [ref=e3985]:
+                - text: 胜率
+                - generic [ref=e3986]: (5场)
+              - generic [ref=e3987]: 60.0%
+        - link "元流之子(刺客) 打野 T3 元流之子(刺客) 突进 爆发 BP 参与率 0.1% 胜率 (4场) 100.0%" [ref=e3990] [cursor=pointer]:
+          - /url: /heroes/yuanliuzhizi_assassin
+          - generic [ref=e3991]:
+            - generic [ref=e3992]:
+              - generic [ref=e3993]:
+                - img "元流之子(刺客)" [ref=e3994]
+                - generic [ref=e3995]: 打野
+              - generic [ref=e3996]: T3
+            - generic [ref=e3997]:
+              - heading "元流之子(刺客)" [level=2] [ref=e3998]
+              - generic [ref=e3999]:
+                - generic [ref=e4000]: 突进
+                - generic [ref=e4001]: 爆发
+          - generic [ref=e4002]:
+            - generic [ref=e4004]:
+              - generic [ref=e4005]: BP 参与率
+              - generic [ref=e4006]: 0.1%
+            - generic [ref=e4010]:
+              - generic [ref=e4011]:
+                - text: 胜率
+                - generic [ref=e4012]: (4场)
+              - generic [ref=e4013]: 100.0%
+        - link "妲己 中路 T3 妲己 爆发 团控 BP 参与率 0.0% 胜率 (5场) 0.0%" [ref=e4016] [cursor=pointer]:
+          - /url: /heroes/daji
+          - generic [ref=e4017]:
+            - generic [ref=e4018]:
+              - generic [ref=e4019]:
+                - img "妲己" [ref=e4020]
+                - generic [ref=e4021]: 中路
+              - generic [ref=e4022]: T3
+            - generic [ref=e4023]:
+              - heading "妲己" [level=2] [ref=e4024]
+              - generic [ref=e4025]:
+                - generic [ref=e4026]: 爆发
+                - generic [ref=e4027]: 团控
+          - generic [ref=e4028]:
+            - generic [ref=e4030]:
+              - generic [ref=e4031]: BP 参与率
+              - generic [ref=e4032]: 0.0%
+            - generic [ref=e4036]:
+              - generic [ref=e4037]:
+                - text: 胜率
+                - generic [ref=e4038]: (5场)
+              - generic [ref=e4039]: 0.0%
+        - link "高渐离 中路 T3 高渐离 爆发 团控 BP 参与率 0.0% 胜率 (5场) 40.0%" [ref=e4042] [cursor=pointer]:
+          - /url: /heroes/gaojianli
+          - generic [ref=e4043]:
+            - generic [ref=e4044]:
+              - generic [ref=e4045]:
+                - img "高渐离" [ref=e4046]
+                - generic [ref=e4047]: 中路
+              - generic [ref=e4048]: T3
+            - generic [ref=e4049]:
+              - heading "高渐离" [level=2] [ref=e4050]
+              - generic [ref=e4051]:
+                - generic [ref=e4052]: 爆发
+                - generic [ref=e4053]: 团控
+          - generic [ref=e4054]:
+            - generic [ref=e4056]:
+              - generic [ref=e4057]: BP 参与率
+              - generic [ref=e4058]: 0.0%
+            - generic [ref=e4062]:
+              - generic [ref=e4063]:
+                - text: 胜率
+                - generic [ref=e4064]: (5场)
+              - generic [ref=e4065]: 40.0%
+        - link "司马懿 中路 T3 司马懿 消耗 带线 BP 参与率 0.0% 胜率 (5场) 60.0%" [ref=e4068] [cursor=pointer]:
+          - /url: /heroes/simayi
+          - generic [ref=e4069]:
+            - generic [ref=e4070]:
+              - generic [ref=e4071]:
+                - img "司马懿" [ref=e4072]
+                - generic [ref=e4073]: 中路
+              - generic [ref=e4074]: T3
+            - generic [ref=e4075]:
+              - heading "司马懿" [level=2] [ref=e4076]
+              - generic [ref=e4077]:
+                - generic [ref=e4078]: 消耗
+                - generic [ref=e4079]: 带线
+          - generic [ref=e4080]:
+            - generic [ref=e4082]:
+              - generic [ref=e4083]: BP 参与率
+              - generic [ref=e4084]: 0.0%
+            - generic [ref=e4088]:
+              - generic [ref=e4089]:
+                - text: 胜率
+                - generic [ref=e4090]: (5场)
+              - generic [ref=e4091]: 60.0%
+        - link "孙悟空 打野 T3 孙悟空 爆发 突进 BP 参与率 0.0% 胜率 (4场) 100.0%" [ref=e4094] [cursor=pointer]:
+          - /url: /heroes/sunwukong
+          - generic [ref=e4095]:
+            - generic [ref=e4096]:
+              - generic [ref=e4097]:
+                - img "孙悟空" [ref=e4098]
+                - generic [ref=e4099]: 打野
+              - generic [ref=e4100]: T3
+            - generic [ref=e4101]:
+              - heading "孙悟空" [level=2] [ref=e4102]
+              - generic [ref=e4103]:
+                - generic [ref=e4104]: 爆发
+                - generic [ref=e4105]: 突进
+          - generic [ref=e4106]:
+            - generic [ref=e4108]:
+              - generic [ref=e4109]: BP 参与率
+              - generic [ref=e4110]: 0.0%
+            - generic [ref=e4114]:
+              - generic [ref=e4115]:
+                - text: 胜率
+                - generic [ref=e4116]: (4场)
+              - generic [ref=e4117]: 100.0%
+        - link "米莱狄 中路 T3 米莱狄 爆发 消耗 BP 参与率 0.0% 胜率 (3场) 33.3%" [ref=e4120] [cursor=pointer]:
+          - /url: /heroes/milaidi
+          - generic [ref=e4121]:
+            - generic [ref=e4122]:
+              - generic [ref=e4123]:
+                - img "米莱狄" [ref=e4124]
+                - generic [ref=e4125]: 中路
+              - generic [ref=e4126]: T3
+            - generic [ref=e4127]:
+              - heading "米莱狄" [level=2] [ref=e4128]
+              - generic [ref=e4129]:
+                - generic [ref=e4130]: 爆发
+                - generic [ref=e4131]: 消耗
+          - generic [ref=e4132]:
+            - generic [ref=e4134]:
+              - generic [ref=e4135]: BP 参与率
+              - generic [ref=e4136]: 0.0%
+            - generic [ref=e4140]:
+              - generic [ref=e4141]:
+                - text: 胜率
+                - generic [ref=e4142]: (3场)
+              - generic [ref=e4143]: 33.3%
+        - link "刘备 打野 T3 刘备 爆发 护盾 BP 参与率 0.0% 胜率 (2场) 50.0%" [ref=e4146] [cursor=pointer]:
+          - /url: /heroes/liubei
+          - generic [ref=e4147]:
+            - generic [ref=e4148]:
+              - generic [ref=e4149]:
+                - img "刘备" [ref=e4150]
+                - generic [ref=e4151]: 打野
+              - generic [ref=e4152]: T3
+            - generic [ref=e4153]:
+              - heading "刘备" [level=2] [ref=e4154]
+              - generic [ref=e4155]:
+                - generic [ref=e4156]: 爆发
+                - generic [ref=e4157]: 护盾
+          - generic [ref=e4158]:
+            - generic [ref=e4160]:
+              - generic [ref=e4161]: BP 参与率
+              - generic [ref=e4162]: 0.0%
+            - generic [ref=e4166]:
+              - generic [ref=e4167]:
+                - text: 胜率
+                - generic [ref=e4168]: (2场)
+              - generic [ref=e4169]: 50.0%
+        - link "阿轲 打野 T3 阿轲 爆发 对线 BP 参与率 0.0% 胜率 (0场) 0.0%" [ref=e4172] [cursor=pointer]:
+          - /url: /heroes/ake
+          - generic [ref=e4173]:
+            - generic [ref=e4174]:
+              - generic [ref=e4175]:
+                - img "阿轲" [ref=e4176]
+                - generic [ref=e4177]: 打野
+              - generic [ref=e4178]: T3
+            - generic [ref=e4179]:
+              - heading "阿轲" [level=2] [ref=e4180]
+              - generic [ref=e4181]:
+                - generic [ref=e4182]: 爆发
+                - generic [ref=e4183]: 对线
+          - generic [ref=e4184]:
+            - generic [ref=e4186]:
+              - generic [ref=e4187]: BP 参与率
+              - generic [ref=e4188]: 0.0%
+            - generic [ref=e4192]:
+              - generic [ref=e4193]:
+                - text: 胜率
+                - generic [ref=e4194]: (0场)
+              - generic [ref=e4195]: 0.0%
+        - link "亚瑟 对抗路 T3 亚瑟 点控 BP 参与率 0.0% 胜率 (0场) 0.0%" [ref=e4198] [cursor=pointer]:
+          - /url: /heroes/yase
+          - generic [ref=e4199]:
+            - generic [ref=e4200]:
+              - generic [ref=e4201]:
+                - img "亚瑟" [ref=e4202]
+                - generic [ref=e4203]: 对抗路
+              - generic [ref=e4204]: T3
+            - generic [ref=e4205]:
+              - heading "亚瑟" [level=2] [ref=e4206]
+              - generic [ref=e4207]: 点控
+          - generic [ref=e4209]:
+            - generic [ref=e4211]:
+              - generic [ref=e4212]: BP 参与率
+              - generic [ref=e4213]: 0.0%
+            - generic [ref=e4217]:
+              - generic [ref=e4218]:
+                - text: 胜率
+                - generic [ref=e4219]: (0场)
+              - generic [ref=e4220]: 0.0%
+  - button "回到顶部"

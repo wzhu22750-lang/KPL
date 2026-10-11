@@ -1,0 +1,3984 @@
+{
+  "coverage": {
+    "source_md_count": 7891,
+    "source_subtitle_lines": 6109608,
+    "source_seasons": {
+      "kpl-2022-worlds": 225,
+      "kpl-2022-summer": 608,
+      "kpl-2022-challenger": 172,
+      "kpl-2022-spring": 584,
+      "kpl-2023-worlds": 325,
+      "kpl-2023-summer": 634,
+      "kpl-2023-challenger": 134,
+      "kpl-2023-spring": 609,
+      "kpl-2024-summer": 715,
+      "kpl-2024-annual": 291,
+      "kpl-2024-challenger": 250,
+      "kpl-2024-spring": 689,
+      "kpl-2025-summer": 711,
+      "kpl-2025-annual": 385,
+      "kpl-2025-challenger": 3,
+      "kpl-2025-spring": 412,
+      "kpl-2026-summer": 763,
+      "kpl-2026-annual": 102,
+      "kpl-2026-challenger": 201,
+      "kpl-2026-spring": 78
+    },
+    "2026_jdg_high_confidence_game_parts": 110,
+    "2026_jdg_unique_game_ids": 110,
+    "verified_jdg_games_denominator": 211,
+    "complete_bo_match_ids": [
+      "kpl-20260001-2026032801",
+      "kpl-20260001-2026040101",
+      "kpl-20260003-2026070203",
+      "kpl-20260003-2026070403",
+      "kpl-20260003-2026071003",
+      "kpl-20260003-2026071201",
+      "kpl-20260003-2026071603",
+      "kpl-20260003-2026072501",
+      "kpl-20260003-2026073001",
+      "kpl-20260003-2026081502",
+      "kpl-20260003-2026081602",
+      "kpl-20260003-2026081902",
+      "kpl-20260003-2026082203",
+      "kpl-20260003-2026083001",
+      "kpl-20260003-2026090401",
+      "kpl-20260004-2026100302",
+      "kpl-20260004-2026100502",
+      "kpl-20260004-2026100602"
+    ],
+    "high_confidence_game_ids": [
+      "kpl-20260003-2026062102-g1",
+      "kpl-20260003-2026062102-g3",
+      "kpl-20260003-2026062102-g5",
+      "kpl-20260003-2026062603-g1",
+      "kpl-20260003-2026062603-g2",
+      "kpl-20260003-2026062603-g3",
+      "kpl-20260003-2026062603-g5",
+      "kpl-20260003-2026070203-g1",
+      "kpl-20260003-2026070203-g2",
+      "kpl-20260003-2026070203-g3",
+      "kpl-20260003-2026070203-g4",
+      "kpl-20260003-2026070403-g1",
+      "kpl-20260003-2026070403-g2",
+      "kpl-20260003-2026070403-g3",
+      "kpl-20260003-2026071003-g1",
+      "kpl-20260003-2026071003-g2",
+      "kpl-20260003-2026071003-g3",
+      "kpl-20260003-2026071003-g4",
+      "kpl-20260003-2026071201-g1",
+      "kpl-20260003-2026071201-g2",
+      "kpl-20260003-2026071201-g3",
+      "kpl-20260003-2026071603-g1",
+      "kpl-20260003-2026071603-g2",
+      "kpl-20260003-2026071603-g3",
+      "kpl-20260003-2026071902-g1",
+      "kpl-20260003-2026071902-g2",
+      "kpl-20260003-2026071902-g4",
+      "kpl-20260003-2026072501-g1",
+      "kpl-20260003-2026072501-g2",
+      "kpl-20260003-2026072501-g3",
+      "kpl-20260003-2026072501-g4",
+      "kpl-20260003-2026072501-g5",
+      "kpl-20260003-2026073001-g1",
+      "kpl-20260003-2026073001-g2",
+      "kpl-20260003-2026073001-g3",
+      "kpl-20260003-2026073001-g4",
+      "kpl-20260003-2026073001-g5",
+      "kpl-20260003-2026081502-g1",
+      "kpl-20260003-2026081502-g2",
+      "kpl-20260003-2026081502-g3",
+      "kpl-20260003-2026081502-g4",
+      "kpl-20260003-2026081502-g5",
+      "kpl-20260003-2026081602-g1",
+      "kpl-20260003-2026081602-g2",
+      "kpl-20260003-2026081602-g3",
+      "kpl-20260003-2026081602-g4",
+      "kpl-20260003-2026081902-g1",
+      "kpl-20260003-2026081902-g2",
+      "kpl-20260003-2026081902-g3",
+      "kpl-20260003-2026082203-g1",
+      "kpl-20260003-2026082203-g2",
+      "kpl-20260003-2026082203-g3",
+      "kpl-20260003-2026082203-g4",
+      "kpl-20260003-2026082203-g5",
+      "kpl-20260003-2026083001-g1",
+      "kpl-20260003-2026083001-g2",
+      "kpl-20260003-2026083001-g3",
+      "kpl-20260003-2026083001-g4",
+      "kpl-20260003-2026083001-g5",
+      "kpl-20260003-2026083001-g6",
+      "kpl-20260003-2026090401-g1",
+      "kpl-20260003-2026090401-g2",
+      "kpl-20260003-2026090401-g3",
+      "kpl-20260003-2026090401-g4",
+      "kpl-20260003-2026090401-g5",
+      "kpl-20260004-2026100302-g1",
+      "kpl-20260004-2026100302-g2",
+      "kpl-20260004-2026100302-g3",
+      "kpl-20260004-2026100302-g4",
+      "kpl-20260004-2026100302-g5",
+      "kpl-20260004-2026100502-g1",
+      "kpl-20260004-2026100502-g2",
+      "kpl-20260004-2026100502-g3",
+      "kpl-20260004-2026100602-g1",
+      "kpl-20260004-2026100602-g2",
+      "kpl-20260004-2026100602-g3",
+      "kpl-20260002-2026042802-g2",
+      "kpl-20260002-2026042802-g4",
+      "kpl-20260002-2026042802-g5",
+      "kpl-20260002-2026050302-g1",
+      "kpl-20260002-2026050302-g2",
+      "kpl-20260002-2026050302-g3",
+      "kpl-20260002-2026050302-g4",
+      "kpl-20260002-2026050302-g5",
+      "kpl-20260002-2026050801-g2",
+      "kpl-20260002-2026050801-g4",
+      "kpl-20260002-2026050801-g5",
+      "kpl-20260002-2026051101-g2",
+      "kpl-20260002-2026051101-g4",
+      "kpl-20260002-2026051101-g5",
+      "kpl-20260002-2026051101-g6",
+      "kpl-20260002-2026051601-g1",
+      "kpl-20260002-2026051601-g2",
+      "kpl-20260002-2026051601-g4",
+      "kpl-20260002-2026051601-g6",
+      "kpl-20260002-2026051601-g7",
+      "kpl-20260002-2026051701-g2",
+      "kpl-20260002-2026051701-g3",
+      "kpl-20260002-2026051701-g4",
+      "kpl-20260002-2026051701-g5",
+      "kpl-20260002-2026051701-g6",
+      "kpl-20260001-2026032801-g1",
+      "kpl-20260001-2026032801-g2",
+      "kpl-20260001-2026032801-g3",
+      "kpl-20260001-2026032801-g4",
+      "kpl-20260001-2026040101-g1",
+      "kpl-20260001-2026040101-g2",
+      "kpl-20260001-2026040101-g3",
+      "kpl-20260001-2026040101-g4",
+      "kpl-20260001-2026040101-g5"
+    ]
+  },
+  "quality": {
+    "quote_generation": "physical source line slicing, SHA256 verified",
+    "fts_status": "contentless verified FTS updated: 6109608 source rows; retrieval joins subtitles",
+    "phase": "pre_show/bp_estimated/game_estimated/unknown",
+    "matching_rule": "unique source calendar date + season + team pair; games additionally unique game_no; upload date unused; pre-show BO-only",
+    "field_conflicts": [
+      {
+        "evidence_id": "VS-18",
+        "game_id": "kpl-20260003-2026062102-g1",
+        "field": "MVP",
+        "subtitle_claim": "清融王昭君MVP",
+        "verified_analysis_mid_stats_mvp": false,
+        "status": "冲突未解决；字幕不是MVP认证"
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "season_id": "kpl-2026-summer",
+      "mid_player": "清融",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [
+        "kpl-20260003-2026070203-g1",
+        "kpl-20260003-2026070203-g2",
+        "kpl-20260003-2026070203-g3",
+        "kpl-20260003-2026070203-g4",
+        "kpl-20260003-2026071003-g1",
+        "kpl-20260003-2026071003-g2",
+        "kpl-20260003-2026071003-g3",
+        "kpl-20260003-2026071003-g4",
+        "kpl-20260003-2026071201-g1",
+        "kpl-20260003-2026071201-g2",
+        "kpl-20260003-2026071201-g3",
+        "kpl-20260003-2026071603-g1",
+        "kpl-20260003-2026071603-g2",
+        "kpl-20260003-2026071603-g3",
+        "kpl-20260003-2026072501-g1",
+        "kpl-20260003-2026072501-g2",
+        "kpl-20260003-2026072501-g3",
+        "kpl-20260003-2026072501-g4",
+        "kpl-20260003-2026072501-g5"
+      ],
+      "verified_game_duration_seconds": 29225,
+      "game_ids": [
+        "kpl-20260003-2026062102-g1",
+        "kpl-20260003-2026062102-g3",
+        "kpl-20260003-2026062102-g5",
+        "kpl-20260003-2026062603-g1",
+        "kpl-20260003-2026062603-g2",
+        "kpl-20260003-2026062603-g3",
+        "kpl-20260003-2026062603-g5",
+        "kpl-20260003-2026070203-g1",
+        "kpl-20260003-2026070203-g2",
+        "kpl-20260003-2026070203-g3",
+        "kpl-20260003-2026070203-g4",
+        "kpl-20260003-2026071003-g1",
+        "kpl-20260003-2026071003-g2",
+        "kpl-20260003-2026071003-g3",
+        "kpl-20260003-2026071003-g4",
+        "kpl-20260003-2026071201-g1",
+        "kpl-20260003-2026071201-g2",
+        "kpl-20260003-2026071201-g3",
+        "kpl-20260003-2026071603-g1",
+        "kpl-20260003-2026071603-g2",
+        "kpl-20260003-2026071603-g3",
+        "kpl-20260003-2026071902-g1",
+        "kpl-20260003-2026071902-g2",
+        "kpl-20260003-2026071902-g4",
+        "kpl-20260003-2026072501-g1",
+        "kpl-20260003-2026072501-g2",
+        "kpl-20260003-2026072501-g3",
+        "kpl-20260003-2026072501-g4",
+        "kpl-20260003-2026072501-g5"
+      ],
+      "paths": [
+        "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+        "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P03_第三局.md",
+        "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P05_第五局.md",
+        "2026夏季赛/2026-06-26_【2026KPL夏季赛】6月26日 北京JDG VS 广州TTG_BV1ZH7V6jEbf/P01_第一局.md",
+        "2026夏季赛/2026-06-26_【2026KPL夏季赛】6月26日 北京JDG VS 广州TTG_BV1ZH7V6jEbf/P02_第二局.md",
+        "2026夏季赛/2026-06-26_【2026KPL夏季赛】6月26日 北京JDG VS 广州TTG_BV1ZH7V6jEbf/P03_第三局.md",
+        "2026夏季赛/2026-06-26_【2026KPL夏季赛】6月26日 北京JDG VS 广州TTG_BV1ZH7V6jEbf/P05_第五局.md",
+        "2026夏季赛/2026-07-02_【2026KPL夏季赛】7月2日 北京JDG VS 西安WE_BV12hTE6JEUu/P01_第一局.md",
+        "2026夏季赛/2026-07-02_【2026KPL夏季赛】7月2日 北京JDG VS 西安WE_BV12hTE6JEUu/P02_第二局.md",
+        "2026夏季赛/2026-07-02_【2026KPL夏季赛】7月2日 北京JDG VS 西安WE_BV12hTE6JEUu/P03_第三局.md",
+        "2026夏季赛/2026-07-02_【2026KPL夏季赛】7月2日 北京JDG VS 西安WE_BV12hTE6JEUu/P04_第四局.md",
+        "2026夏季赛/2026-07-10_【2026KPL夏季赛】7月10日 北京JDG VS 成都AG超玩会_BV1PrNJ6yEuP/P01_第一局.md",
+        "2026夏季赛/2026-07-10_【2026KPL夏季赛】7月10日 北京JDG VS 成都AG超玩会_BV1PrNJ6yEuP/P02_第二局.md",
+        "2026夏季赛/2026-07-10_【2026KPL夏季赛】7月10日 北京JDG VS 成都AG超玩会_BV1PrNJ6yEuP/P03_第三局.md",
+        "2026夏季赛/2026-07-10_【2026KPL夏季赛】7月10日 北京JDG VS 成都AG超玩会_BV1PrNJ6yEuP/P04_第四局.md",
+        "2026夏季赛/2026-07-12_【2026KPL夏季赛】7月12日 北京JDG VS KSG_BV1S2NT6QEp7/P01_第一局.md",
+        "2026夏季赛/2026-07-12_【2026KPL夏季赛】7月12日 北京JDG VS KSG_BV1S2NT6QEp7/P02_第二局.md",
+        "2026夏季赛/2026-07-12_【2026KPL夏季赛】7月12日 北京JDG VS KSG_BV1S2NT6QEp7/P03_第三局.md",
+        "2026夏季赛/2026-07-16_【2026KPL夏季赛】7月16日 北京JDG VS 广州TTG_BV1qgK56WEdb/P01_第一局.md",
+        "2026夏季赛/2026-07-16_【2026KPL夏季赛】7月16日 北京JDG VS 广州TTG_BV1qgK56WEdb/P02_第二局.md",
+        "2026夏季赛/2026-07-16_【2026KPL夏季赛】7月16日 北京JDG VS 广州TTG_BV1qgK56WEdb/P03_第三局.md",
+        "2026夏季赛/2026-07-19_【2026KPL夏季赛】7月19日 杭州LGD.NBW VS 北京JDG_BV1HDKz6PErz/P01_第一局.md",
+        "2026夏季赛/2026-07-19_【2026KPL夏季赛】7月19日 杭州LGD.NBW VS 北京JDG_BV1HDKz6PErz/P02_第二局.md",
+        "2026夏季赛/2026-07-19_【2026KPL夏季赛】7月19日 杭州LGD.NBW VS 北京JDG_BV1HDKz6PErz/P04_第四局.md",
+        "2026夏季赛/2026-07-25_【2026KPL夏季赛】7月25日 北京JDG VS 北京WB_BV1iK3u6JEam/P01_第一局.md",
+        "2026夏季赛/2026-07-25_【2026KPL夏季赛】7月25日 北京JDG VS 北京WB_BV1iK3u6JEam/P02_第二局.md",
+        "2026夏季赛/2026-07-25_【2026KPL夏季赛】7月25日 北京JDG VS 北京WB_BV1iK3u6JEam/P03_第三局.md",
+        "2026夏季赛/2026-07-25_【2026KPL夏季赛】7月25日 北京JDG VS 北京WB_BV1iK3u6JEam/P04_第四局.md",
+        "2026夏季赛/2026-07-25_【2026KPL夏季赛】7月25日 北京JDG VS 北京WB_BV1iK3u6JEam/P05_第五局.md"
+      ],
+      "characters": 258277,
+      "observed_video_seconds": 57496,
+      "cached_game_duration_seconds": 29225,
+      "mentions": {
+        "mid_jungle_support": 583,
+        "bp": 941,
+        "adc_protection": 65,
+        "resources": 627
+      },
+      "phase_mentions": {
+        "bp_estimated": {
+          "mid_jungle_support": 91,
+          "bp": 362,
+          "adc_protection": 11,
+          "resources": 73
+        },
+        "game_estimated": {
+          "resources": 358,
+          "mid_jungle_support": 291,
+          "bp": 232,
+          "adc_protection": 33
+        },
+        "unknown": {
+          "resources": 196,
+          "bp": 347,
+          "mid_jungle_support": 201,
+          "adc_protection": 21
+        }
+      },
+      "phase_characters": {
+        "bp_estimated": 52605,
+        "game_estimated": 120961,
+        "unknown": 84711
+      },
+      "games": 29,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 22.573,
+        "bp": 36.434,
+        "adc_protection": 2.517,
+        "resources": 24.276
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 36.503,
+        "bp": 58.919,
+        "adc_protection": 4.07,
+        "resources": 39.258
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "resources": 44.099,
+        "mid_jungle_support": 35.846,
+        "bp": 28.578,
+        "adc_protection": 4.065
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "season_id": "kpl-2026-summer",
+      "mid_player": "昊昊",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [
+        "kpl-20260003-2026070403-g1",
+        "kpl-20260003-2026070403-g2",
+        "kpl-20260003-2026070403-g3",
+        "kpl-20260003-2026073001-g1",
+        "kpl-20260003-2026073001-g2",
+        "kpl-20260003-2026073001-g3",
+        "kpl-20260003-2026073001-g4",
+        "kpl-20260003-2026073001-g5",
+        "kpl-20260003-2026081502-g1",
+        "kpl-20260003-2026081502-g2",
+        "kpl-20260003-2026081502-g3",
+        "kpl-20260003-2026081502-g4",
+        "kpl-20260003-2026081502-g5",
+        "kpl-20260003-2026081602-g1",
+        "kpl-20260003-2026081602-g2",
+        "kpl-20260003-2026081602-g3",
+        "kpl-20260003-2026081602-g4",
+        "kpl-20260003-2026081902-g1",
+        "kpl-20260003-2026081902-g2",
+        "kpl-20260003-2026081902-g3",
+        "kpl-20260003-2026082203-g1",
+        "kpl-20260003-2026082203-g2",
+        "kpl-20260003-2026082203-g3",
+        "kpl-20260003-2026082203-g4",
+        "kpl-20260003-2026082203-g5",
+        "kpl-20260003-2026083001-g1",
+        "kpl-20260003-2026083001-g2",
+        "kpl-20260003-2026083001-g3",
+        "kpl-20260003-2026083001-g4",
+        "kpl-20260003-2026083001-g5",
+        "kpl-20260003-2026083001-g6",
+        "kpl-20260003-2026090401-g1",
+        "kpl-20260003-2026090401-g2",
+        "kpl-20260003-2026090401-g3",
+        "kpl-20260003-2026090401-g4",
+        "kpl-20260003-2026090401-g5"
+      ],
+      "verified_game_duration_seconds": 35301,
+      "game_ids": [
+        "kpl-20260003-2026070403-g1",
+        "kpl-20260003-2026070403-g2",
+        "kpl-20260003-2026070403-g3",
+        "kpl-20260003-2026073001-g1",
+        "kpl-20260003-2026073001-g2",
+        "kpl-20260003-2026073001-g3",
+        "kpl-20260003-2026073001-g4",
+        "kpl-20260003-2026073001-g5",
+        "kpl-20260003-2026081502-g1",
+        "kpl-20260003-2026081502-g2",
+        "kpl-20260003-2026081502-g3",
+        "kpl-20260003-2026081502-g4",
+        "kpl-20260003-2026081502-g5",
+        "kpl-20260003-2026081602-g1",
+        "kpl-20260003-2026081602-g2",
+        "kpl-20260003-2026081602-g3",
+        "kpl-20260003-2026081602-g4",
+        "kpl-20260003-2026081902-g1",
+        "kpl-20260003-2026081902-g2",
+        "kpl-20260003-2026081902-g3",
+        "kpl-20260003-2026082203-g1",
+        "kpl-20260003-2026082203-g2",
+        "kpl-20260003-2026082203-g3",
+        "kpl-20260003-2026082203-g4",
+        "kpl-20260003-2026082203-g5",
+        "kpl-20260003-2026083001-g1",
+        "kpl-20260003-2026083001-g2",
+        "kpl-20260003-2026083001-g3",
+        "kpl-20260003-2026083001-g4",
+        "kpl-20260003-2026083001-g5",
+        "kpl-20260003-2026083001-g6",
+        "kpl-20260003-2026090401-g1",
+        "kpl-20260003-2026090401-g2",
+        "kpl-20260003-2026090401-g3",
+        "kpl-20260003-2026090401-g4",
+        "kpl-20260003-2026090401-g5"
+      ],
+      "paths": [
+        "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+        "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P02_第二局.md",
+        "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P03_第三局.md",
+        "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P01_第一局.md",
+        "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P02_第二局.md",
+        "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P03_第三局.md",
+        "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P04_第四局.md",
+        "2026夏季赛/2026-07-30_【2026KPL夏季赛】7月30日 成都AG超玩会 VS 北京JDG_BV1Lj3s6ZEcu/P05_第五局.md",
+        "2026夏季赛/2026-08-15_【2026KPL夏季赛】8月15日 北京JDG VS 广州TTG_BV1tPbk6rE4m/P01_第一局.md",
+        "2026夏季赛/2026-08-15_【2026KPL夏季赛】8月15日 北京JDG VS 广州TTG_BV1tPbk6rE4m/P02_第二局.md",
+        "2026夏季赛/2026-08-15_【2026KPL夏季赛】8月15日 北京JDG VS 广州TTG_BV1tPbk6rE4m/P03_第三局.md",
+        "2026夏季赛/2026-08-15_【2026KPL夏季赛】8月15日 北京JDG VS 广州TTG_BV1tPbk6rE4m/P04_第四局.md",
+        "2026夏季赛/2026-08-15_【2026KPL夏季赛】8月15日 北京JDG VS 广州TTG_BV1tPbk6rE4m/P05_第五局.md",
+        "2026夏季赛/2026-08-16_【2026KPL夏季赛】8月16日 北京WB VS 北京JDG_BV1Kgb96TEAj/P01_第一局.md",
+        "2026夏季赛/2026-08-16_【2026KPL夏季赛】8月16日 北京WB VS 北京JDG_BV1Kgb96TEAj/P02_第二局.md",
+        "2026夏季赛/2026-08-16_【2026KPL夏季赛】8月16日 北京WB VS 北京JDG_BV1Kgb96TEAj/P03_第三局.md",
+        "2026夏季赛/2026-08-16_【2026KPL夏季赛】8月16日 北京WB VS 北京JDG_BV1Kgb96TEAj/P04_第四局.md",
+        "2026夏季赛/2026-08-19_【2026KPL夏季赛】8月19日 北京JDG VS 长沙TES.A_BV1mY8J6jEQu/P01_第一局.md",
+        "2026夏季赛/2026-08-19_【2026KPL夏季赛】8月19日 北京JDG VS 长沙TES.A_BV1mY8J6jEQu/P02_第二局.md",
+        "2026夏季赛/2026-08-19_【2026KPL夏季赛】8月19日 北京JDG VS 长沙TES.A_BV1mY8J6jEQu/P03_第三局.md",
+        "2026夏季赛/2026-08-22_【2026KPL夏季赛】8月22日 重庆狼队 VS 北京JDG_BV1iK8m6zEU7/P01_第一局.md",
+        "2026夏季赛/2026-08-22_【2026KPL夏季赛】8月22日 重庆狼队 VS 北京JDG_BV1iK8m6zEU7/P02_第二局.md",
+        "2026夏季赛/2026-08-22_【2026KPL夏季赛】8月22日 重庆狼队 VS 北京JDG_BV1iK8m6zEU7/P03_第三局.md",
+        "2026夏季赛/2026-08-22_【2026KPL夏季赛】8月22日 重庆狼队 VS 北京JDG_BV1iK8m6zEU7/P04_第四局.md",
+        "2026夏季赛/2026-08-22_【2026KPL夏季赛】8月22日 重庆狼队 VS 北京JDG_BV1iK8m6zEU7/P05_第五局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P01_第一局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P02_第二局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P03_第三局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P04_第四局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+        "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P06_第六局.md",
+        "2026夏季赛/2026-09-04_【2026KPL夏季赛】9月4日 重庆狼队 VS 北京JDG_BV1wHtB6DEha/P01_第一局.md",
+        "2026夏季赛/2026-09-04_【2026KPL夏季赛】9月4日 重庆狼队 VS 北京JDG_BV1wHtB6DEha/P02_第二局.md",
+        "2026夏季赛/2026-09-04_【2026KPL夏季赛】9月4日 重庆狼队 VS 北京JDG_BV1wHtB6DEha/P03_第三局.md",
+        "2026夏季赛/2026-09-04_【2026KPL夏季赛】9月4日 重庆狼队 VS 北京JDG_BV1wHtB6DEha/P04_第四局.md",
+        "2026夏季赛/2026-09-04_【2026KPL夏季赛】9月4日 重庆狼队 VS 北京JDG_BV1wHtB6DEha/P05_第五局.md"
+      ],
+      "characters": 329218,
+      "observed_video_seconds": 70745,
+      "cached_game_duration_seconds": 35301,
+      "mentions": {
+        "mid_jungle_support": 660,
+        "resources": 741,
+        "bp": 1154,
+        "adc_protection": 97
+      },
+      "phase_mentions": {
+        "unknown": {
+          "mid_jungle_support": 315,
+          "resources": 337,
+          "bp": 519,
+          "adc_protection": 49
+        },
+        "bp_estimated": {
+          "mid_jungle_support": 71,
+          "bp": 381,
+          "adc_protection": 13,
+          "resources": 69
+        },
+        "game_estimated": {
+          "resources": 335,
+          "mid_jungle_support": 274,
+          "bp": 254,
+          "adc_protection": 35
+        }
+      },
+      "phase_characters": {
+        "unknown": 155765,
+        "bp_estimated": 52407,
+        "game_estimated": 121046
+      },
+      "games": 36,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 20.048,
+        "resources": 22.508,
+        "bp": 35.053,
+        "adc_protection": 2.946
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 33.585,
+        "resources": 37.707,
+        "bp": 58.724,
+        "adc_protection": 4.936
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "resources": 34.163,
+        "mid_jungle_support": 27.943,
+        "bp": 25.903,
+        "adc_protection": 3.569
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "season_id": "kpl-2026-annual",
+      "mid_player": "清融",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [
+        "kpl-20260004-2026100302-g1",
+        "kpl-20260004-2026100302-g2",
+        "kpl-20260004-2026100302-g3",
+        "kpl-20260004-2026100502-g3",
+        "kpl-20260004-2026100602-g3"
+      ],
+      "verified_game_duration_seconds": 4408,
+      "game_ids": [
+        "kpl-20260004-2026100302-g1",
+        "kpl-20260004-2026100302-g2",
+        "kpl-20260004-2026100302-g3",
+        "kpl-20260004-2026100502-g3",
+        "kpl-20260004-2026100602-g3"
+      ],
+      "paths": [
+        "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+        "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P02_第二局.md",
+        "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P03_第三局.md",
+        "2026年度总决赛/2026-10-05_【2026KPL年度总决赛】10月5日 北京JDG VS 杭州LGD.NBW_BV1ZeHW6XE3Z/P03_第三局.md",
+        "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P03_第三局.md"
+      ],
+      "characters": 44894,
+      "observed_video_seconds": 9495,
+      "cached_game_duration_seconds": 4408,
+      "mentions": {
+        "mid_jungle_support": 98,
+        "resources": 87,
+        "bp": 150,
+        "adc_protection": 17
+      },
+      "phase_mentions": {
+        "unknown": {
+          "mid_jungle_support": 85,
+          "resources": 78,
+          "bp": 128,
+          "adc_protection": 15
+        },
+        "bp_estimated": {
+          "bp": 17,
+          "resources": 1,
+          "mid_jungle_support": 1
+        },
+        "game_estimated": {
+          "mid_jungle_support": 12,
+          "resources": 8,
+          "adc_protection": 2,
+          "bp": 5
+        }
+      },
+      "phase_characters": {
+        "unknown": 38854,
+        "bp_estimated": 2206,
+        "game_estimated": 3834
+      },
+      "games": 5,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 21.829,
+        "resources": 19.379,
+        "bp": 33.412,
+        "adc_protection": 3.787
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 37.156,
+        "resources": 32.986,
+        "bp": 56.872,
+        "adc_protection": 6.445
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "mid_jungle_support": 9.8,
+        "resources": 6.534,
+        "adc_protection": 1.633,
+        "bp": 4.083
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "season_id": "kpl-2026-annual",
+      "mid_player": "昊昊",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [
+        "kpl-20260004-2026100302-g4",
+        "kpl-20260004-2026100302-g5",
+        "kpl-20260004-2026100502-g1",
+        "kpl-20260004-2026100502-g2",
+        "kpl-20260004-2026100602-g1",
+        "kpl-20260004-2026100602-g2"
+      ],
+      "verified_game_duration_seconds": 6162,
+      "game_ids": [
+        "kpl-20260004-2026100302-g4",
+        "kpl-20260004-2026100302-g5",
+        "kpl-20260004-2026100502-g1",
+        "kpl-20260004-2026100502-g2",
+        "kpl-20260004-2026100602-g1",
+        "kpl-20260004-2026100602-g2"
+      ],
+      "paths": [
+        "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+        "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P05_第五局.md",
+        "2026年度总决赛/2026-10-05_【2026KPL年度总决赛】10月5日 北京JDG VS 杭州LGD.NBW_BV1ZeHW6XE3Z/P01_第一局.md",
+        "2026年度总决赛/2026-10-05_【2026KPL年度总决赛】10月5日 北京JDG VS 杭州LGD.NBW_BV1ZeHW6XE3Z/P02_第二局.md",
+        "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P01_第一局.md",
+        "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md"
+      ],
+      "characters": 55575,
+      "observed_video_seconds": 12180,
+      "cached_game_duration_seconds": 6162,
+      "mentions": {
+        "bp": 178,
+        "mid_jungle_support": 127,
+        "resources": 103,
+        "adc_protection": 16
+      },
+      "phase_mentions": {
+        "unknown": {
+          "bp": 149,
+          "mid_jungle_support": 106,
+          "resources": 87,
+          "adc_protection": 14
+        },
+        "bp_estimated": {
+          "mid_jungle_support": 5,
+          "resources": 4,
+          "bp": 15,
+          "adc_protection": 1
+        },
+        "game_estimated": {
+          "bp": 14,
+          "resources": 12,
+          "mid_jungle_support": 16,
+          "adc_protection": 1
+        }
+      },
+      "phase_characters": {
+        "unknown": 47482,
+        "bp_estimated": 2071,
+        "game_estimated": 6022
+      },
+      "games": 6,
+      "discussion_lines_per_10000_chars": {
+        "bp": 32.029,
+        "mid_jungle_support": 22.852,
+        "resources": 18.534,
+        "adc_protection": 2.879
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "bp": 52.611,
+        "mid_jungle_support": 37.537,
+        "resources": 30.443,
+        "adc_protection": 4.729
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "bp": 8.179,
+        "resources": 7.011,
+        "mid_jungle_support": 9.348,
+        "adc_protection": 0.584
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "season_id": "kpl-2026-challenger",
+      "mid_player": "清融",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [],
+      "verified_game_duration_seconds": 23893,
+      "game_ids": [
+        "kpl-20260002-2026042802-g2",
+        "kpl-20260002-2026042802-g4",
+        "kpl-20260002-2026042802-g5",
+        "kpl-20260002-2026050302-g1",
+        "kpl-20260002-2026050302-g2",
+        "kpl-20260002-2026050302-g3",
+        "kpl-20260002-2026050302-g4",
+        "kpl-20260002-2026050302-g5",
+        "kpl-20260002-2026050801-g2",
+        "kpl-20260002-2026050801-g4",
+        "kpl-20260002-2026050801-g5",
+        "kpl-20260002-2026051101-g2",
+        "kpl-20260002-2026051101-g4",
+        "kpl-20260002-2026051101-g5",
+        "kpl-20260002-2026051101-g6",
+        "kpl-20260002-2026051601-g1",
+        "kpl-20260002-2026051601-g2",
+        "kpl-20260002-2026051601-g4",
+        "kpl-20260002-2026051601-g6",
+        "kpl-20260002-2026051601-g7",
+        "kpl-20260002-2026051701-g2",
+        "kpl-20260002-2026051701-g3",
+        "kpl-20260002-2026051701-g4",
+        "kpl-20260002-2026051701-g5",
+        "kpl-20260002-2026051701-g6"
+      ],
+      "paths": [
+        "2026挑战者杯/2026-04-28_【2026王者荣耀挑战者杯】4月28日 西安WE VS 北京JDG_BV1oZ96BVEx7/P02_第二局.md",
+        "2026挑战者杯/2026-04-28_【2026王者荣耀挑战者杯】4月28日 西安WE VS 北京JDG_BV1oZ96BVEx7/P04_第四局.md",
+        "2026挑战者杯/2026-04-28_【2026王者荣耀挑战者杯】4月28日 西安WE VS 北京JDG_BV1oZ96BVEx7/P05_第五局.md",
+        "2026挑战者杯/2026-05-03_【2026王者荣耀挑战者杯】5月3日 深圳DYG vs 北京JDG_BV1eG9fBoEva/P01_第一局.md",
+        "2026挑战者杯/2026-05-03_【2026王者荣耀挑战者杯】5月3日 深圳DYG vs 北京JDG_BV1eG9fBoEva/P02_第二局.md",
+        "2026挑战者杯/2026-05-03_【2026王者荣耀挑战者杯】5月3日 深圳DYG vs 北京JDG_BV1eG9fBoEva/P03_第三局.md",
+        "2026挑战者杯/2026-05-03_【2026王者荣耀挑战者杯】5月3日 深圳DYG vs 北京JDG_BV1eG9fBoEva/P04_第四局.md",
+        "2026挑战者杯/2026-05-03_【2026王者荣耀挑战者杯】5月3日 深圳DYG vs 北京JDG_BV1eG9fBoEva/P05_第五局.md",
+        "2026挑战者杯/2026-05-08_【2026王者荣耀挑战者杯】5月8日 北京JDG VS 佛山DRG_BV1CKd3BVESd/P02_第二局.md",
+        "2026挑战者杯/2026-05-08_【2026王者荣耀挑战者杯】5月8日 北京JDG VS 佛山DRG_BV1CKd3BVESd/P04_第四局.md",
+        "2026挑战者杯/2026-05-08_【2026王者荣耀挑战者杯】5月8日 北京JDG VS 佛山DRG_BV1CKd3BVESd/P05_第五局.md",
+        "2026挑战者杯/2026-05-11_【2026王者荣耀挑战者杯】5月11日 北京JDG VS 杭州LGD.NBW_BV1wL5b6dEEY/P02_第二局.md",
+        "2026挑战者杯/2026-05-11_【2026王者荣耀挑战者杯】5月11日 北京JDG VS 杭州LGD.NBW_BV1wL5b6dEEY/P04_第四局.md",
+        "2026挑战者杯/2026-05-11_【2026王者荣耀挑战者杯】5月11日 北京JDG VS 杭州LGD.NBW_BV1wL5b6dEEY/P05_第五局.md",
+        "2026挑战者杯/2026-05-11_【2026王者荣耀挑战者杯】5月11日 北京JDG VS 杭州LGD.NBW_BV1wL5b6dEEY/P06_第六局.md",
+        "2026挑战者杯/2026-05-16_【2026王者荣耀挑战者杯】5月16日 北京JDG VS 成都AG超玩会_BV1gqLG6bEjm/P01_第一局.md",
+        "2026挑战者杯/2026-05-16_【2026王者荣耀挑战者杯】5月16日 北京JDG VS 成都AG超玩会_BV1gqLG6bEjm/P02_第二局.md",
+        "2026挑战者杯/2026-05-16_【2026王者荣耀挑战者杯】5月16日 北京JDG VS 成都AG超玩会_BV1gqLG6bEjm/P04_第四局.md",
+        "2026挑战者杯/2026-05-16_【2026王者荣耀挑战者杯】5月16日 北京JDG VS 成都AG超玩会_BV1gqLG6bEjm/P06_第六局.md",
+        "2026挑战者杯/2026-05-16_【2026王者荣耀挑战者杯】5月16日 北京JDG VS 成都AG超玩会_BV1gqLG6bEjm/P07_第七局.md",
+        "2026挑战者杯/2026-05-17_【2026王者荣耀挑战者杯】5月17日 重庆狼队 VS 北京JDG_BV11HLn6kE44/P02_第二局.md",
+        "2026挑战者杯/2026-05-17_【2026王者荣耀挑战者杯】5月17日 重庆狼队 VS 北京JDG_BV11HLn6kE44/P03_第三局.md",
+        "2026挑战者杯/2026-05-17_【2026王者荣耀挑战者杯】5月17日 重庆狼队 VS 北京JDG_BV11HLn6kE44/P04_第四局.md",
+        "2026挑战者杯/2026-05-17_【2026王者荣耀挑战者杯】5月17日 重庆狼队 VS 北京JDG_BV11HLn6kE44/P05_第五局.md",
+        "2026挑战者杯/2026-05-17_【2026王者荣耀挑战者杯】5月17日 重庆狼队 VS 北京JDG_BV11HLn6kE44/P06_第六局.md"
+      ],
+      "characters": 204635,
+      "observed_video_seconds": 44441,
+      "cached_game_duration_seconds": 23893,
+      "mentions": {
+        "resources": 504,
+        "bp": 835,
+        "mid_jungle_support": 469,
+        "adc_protection": 79
+      },
+      "phase_mentions": {
+        "unknown": {
+          "resources": 469,
+          "bp": 785,
+          "mid_jungle_support": 430,
+          "adc_protection": 73
+        },
+        "bp_estimated": {
+          "bp": 22,
+          "mid_jungle_support": 4,
+          "adc_protection": 1,
+          "resources": 5
+        },
+        "game_estimated": {
+          "bp": 28,
+          "resources": 30,
+          "mid_jungle_support": 35,
+          "adc_protection": 5
+        }
+      },
+      "phase_characters": {
+        "unknown": 191774,
+        "bp_estimated": 3646,
+        "game_estimated": 9215
+      },
+      "games": 25,
+      "discussion_lines_per_10000_chars": {
+        "resources": 24.629,
+        "bp": 40.804,
+        "mid_jungle_support": 22.919,
+        "adc_protection": 3.861
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "resources": 40.827,
+        "bp": 67.64,
+        "mid_jungle_support": 37.992,
+        "adc_protection": 6.399
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "bp": 4.219,
+        "resources": 4.52,
+        "mid_jungle_support": 5.274,
+        "adc_protection": 0.753
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "season_id": "kpl-2026-spring",
+      "mid_player": "清融",
+      "scope": "all_observed_high_confidence",
+      "complete_bo_game_ids": [
+        "kpl-20260001-2026032801-g1",
+        "kpl-20260001-2026032801-g2",
+        "kpl-20260001-2026032801-g3",
+        "kpl-20260001-2026032801-g4",
+        "kpl-20260001-2026040101-g1",
+        "kpl-20260001-2026040101-g2",
+        "kpl-20260001-2026040101-g3",
+        "kpl-20260001-2026040101-g4",
+        "kpl-20260001-2026040101-g5"
+      ],
+      "verified_game_duration_seconds": 8654,
+      "game_ids": [
+        "kpl-20260001-2026032801-g1",
+        "kpl-20260001-2026032801-g2",
+        "kpl-20260001-2026032801-g3",
+        "kpl-20260001-2026032801-g4",
+        "kpl-20260001-2026040101-g1",
+        "kpl-20260001-2026040101-g2",
+        "kpl-20260001-2026040101-g3",
+        "kpl-20260001-2026040101-g4",
+        "kpl-20260001-2026040101-g5"
+      ],
+      "paths": [
+        "2026春季赛/2026-03-28_【2026KPL春季赛】3月28日 北京JDG VS 成都AG超玩会_BV1yyXVB5ENq/P01_第一局.md",
+        "2026春季赛/2026-03-28_【2026KPL春季赛】3月28日 北京JDG VS 成都AG超玩会_BV1yyXVB5ENq/P02_第二局.md",
+        "2026春季赛/2026-03-28_【2026KPL春季赛】3月28日 北京JDG VS 成都AG超玩会_BV1yyXVB5ENq/P03_第三局.md",
+        "2026春季赛/2026-03-28_【2026KPL春季赛】3月28日 北京JDG VS 成都AG超玩会_BV1yyXVB5ENq/P04_第四局.md",
+        "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P01_第一局.md",
+        "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P02_第二局.md",
+        "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P03_第三局.md",
+        "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P04_第四局.md",
+        "2026春季赛/2026-04-01_【2026KPL春季赛】4月1日 北京JDG VS 北京WB_BV1rs9jBUEJa/P05_第五局.md"
+      ],
+      "characters": 88525,
+      "observed_video_seconds": 18264,
+      "cached_game_duration_seconds": 8654,
+      "mentions": {
+        "mid_jungle_support": 165,
+        "resources": 221,
+        "bp": 303,
+        "adc_protection": 38
+      },
+      "phase_mentions": {
+        "unknown": {
+          "mid_jungle_support": 151,
+          "resources": 196,
+          "bp": 268,
+          "adc_protection": 34
+        },
+        "bp_estimated": {
+          "bp": 18,
+          "resources": 8,
+          "mid_jungle_support": 6,
+          "adc_protection": 2
+        },
+        "game_estimated": {
+          "bp": 17,
+          "resources": 17,
+          "mid_jungle_support": 8,
+          "adc_protection": 2
+        }
+      },
+      "phase_characters": {
+        "unknown": 78878,
+        "bp_estimated": 2323,
+        "game_estimated": 7324
+      },
+      "games": 9,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 18.639,
+        "resources": 24.965,
+        "bp": 34.228,
+        "adc_protection": 4.293
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 32.523,
+        "resources": 43.561,
+        "bp": 59.724,
+        "adc_protection": 7.49
+      },
+      "game_estimated_discussion_lines_per_verified_game_hour": {
+        "bp": 7.072,
+        "resources": 7.072,
+        "mid_jungle_support": 3.328,
+        "adc_protection": 0.832
+      },
+      "method": "keyword-bearing subtitle lines, not actions; video span includes draft/postgame; verified_analysis game duration calibrates game_estimated discussion only (estimated segment still may include postgame)"
+    },
+    {
+      "scope": "complete_bo_high_confidence",
+      "season_id": "kpl-2026-summer",
+      "mid_player": "清融",
+      "game_ids": [
+        "kpl-20260003-2026070203-g1",
+        "kpl-20260003-2026070203-g2",
+        "kpl-20260003-2026070203-g3",
+        "kpl-20260003-2026070203-g4",
+        "kpl-20260003-2026071003-g1",
+        "kpl-20260003-2026071003-g2",
+        "kpl-20260003-2026071003-g3",
+        "kpl-20260003-2026071003-g4",
+        "kpl-20260003-2026071201-g1",
+        "kpl-20260003-2026071201-g2",
+        "kpl-20260003-2026071201-g3",
+        "kpl-20260003-2026071603-g1",
+        "kpl-20260003-2026071603-g2",
+        "kpl-20260003-2026071603-g3",
+        "kpl-20260003-2026072501-g1",
+        "kpl-20260003-2026072501-g2",
+        "kpl-20260003-2026072501-g3",
+        "kpl-20260003-2026072501-g4",
+        "kpl-20260003-2026072501-g5"
+      ],
+      "characters": 166254,
+      "observed_video_seconds": 36883,
+      "verified_game_duration_seconds": 19127,
+      "mentions": {
+        "resources": 413,
+        "mid_jungle_support": 387,
+        "bp": 686,
+        "adc_protection": 48
+      },
+      "games": 19,
+      "discussion_lines_per_10000_chars": {
+        "resources": 24.842,
+        "mid_jungle_support": 23.278,
+        "bp": 41.262,
+        "adc_protection": 2.887
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "resources": 40.311,
+        "mid_jungle_support": 37.773,
+        "bp": 66.958,
+        "adc_protection": 4.685
+      },
+      "method": "complete series source coverage; keyword-bearing lines across full part, not execution frequency"
+    },
+    {
+      "scope": "complete_bo_high_confidence",
+      "season_id": "kpl-2026-summer",
+      "mid_player": "昊昊",
+      "game_ids": [
+        "kpl-20260003-2026070403-g1",
+        "kpl-20260003-2026070403-g2",
+        "kpl-20260003-2026070403-g3",
+        "kpl-20260003-2026073001-g1",
+        "kpl-20260003-2026073001-g2",
+        "kpl-20260003-2026073001-g3",
+        "kpl-20260003-2026073001-g4",
+        "kpl-20260003-2026073001-g5",
+        "kpl-20260003-2026081502-g1",
+        "kpl-20260003-2026081502-g2",
+        "kpl-20260003-2026081502-g3",
+        "kpl-20260003-2026081502-g4",
+        "kpl-20260003-2026081502-g5",
+        "kpl-20260003-2026081602-g1",
+        "kpl-20260003-2026081602-g2",
+        "kpl-20260003-2026081602-g3",
+        "kpl-20260003-2026081602-g4",
+        "kpl-20260003-2026081902-g1",
+        "kpl-20260003-2026081902-g2",
+        "kpl-20260003-2026081902-g3",
+        "kpl-20260003-2026082203-g1",
+        "kpl-20260003-2026082203-g2",
+        "kpl-20260003-2026082203-g3",
+        "kpl-20260003-2026082203-g4",
+        "kpl-20260003-2026082203-g5",
+        "kpl-20260003-2026083001-g1",
+        "kpl-20260003-2026083001-g2",
+        "kpl-20260003-2026083001-g3",
+        "kpl-20260003-2026083001-g4",
+        "kpl-20260003-2026083001-g5",
+        "kpl-20260003-2026083001-g6",
+        "kpl-20260003-2026090401-g1",
+        "kpl-20260003-2026090401-g2",
+        "kpl-20260003-2026090401-g3",
+        "kpl-20260003-2026090401-g4",
+        "kpl-20260003-2026090401-g5"
+      ],
+      "characters": 329218,
+      "observed_video_seconds": 70745,
+      "verified_game_duration_seconds": 35301,
+      "mentions": {
+        "mid_jungle_support": 660,
+        "resources": 741,
+        "bp": 1154,
+        "adc_protection": 97
+      },
+      "games": 36,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 20.048,
+        "resources": 22.508,
+        "bp": 35.053,
+        "adc_protection": 2.946
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 33.585,
+        "resources": 37.707,
+        "bp": 58.724,
+        "adc_protection": 4.936
+      },
+      "method": "complete series source coverage; keyword-bearing lines across full part, not execution frequency"
+    },
+    {
+      "scope": "complete_bo_high_confidence",
+      "season_id": "kpl-2026-annual",
+      "mid_player": "清融",
+      "game_ids": [
+        "kpl-20260004-2026100302-g1",
+        "kpl-20260004-2026100302-g2",
+        "kpl-20260004-2026100302-g3",
+        "kpl-20260004-2026100502-g3",
+        "kpl-20260004-2026100602-g3"
+      ],
+      "characters": 44894,
+      "observed_video_seconds": 9495,
+      "verified_game_duration_seconds": 4408,
+      "mentions": {
+        "mid_jungle_support": 98,
+        "resources": 87,
+        "bp": 150,
+        "adc_protection": 17
+      },
+      "games": 5,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 21.829,
+        "resources": 19.379,
+        "bp": 33.412,
+        "adc_protection": 3.787
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 37.156,
+        "resources": 32.986,
+        "bp": 56.872,
+        "adc_protection": 6.445
+      },
+      "method": "complete series source coverage; keyword-bearing lines across full part, not execution frequency"
+    },
+    {
+      "scope": "complete_bo_high_confidence",
+      "season_id": "kpl-2026-annual",
+      "mid_player": "昊昊",
+      "game_ids": [
+        "kpl-20260004-2026100302-g4",
+        "kpl-20260004-2026100302-g5",
+        "kpl-20260004-2026100502-g1",
+        "kpl-20260004-2026100502-g2",
+        "kpl-20260004-2026100602-g1",
+        "kpl-20260004-2026100602-g2"
+      ],
+      "characters": 55575,
+      "observed_video_seconds": 12180,
+      "verified_game_duration_seconds": 6162,
+      "mentions": {
+        "bp": 178,
+        "mid_jungle_support": 127,
+        "resources": 103,
+        "adc_protection": 16
+      },
+      "games": 6,
+      "discussion_lines_per_10000_chars": {
+        "bp": 32.029,
+        "mid_jungle_support": 22.852,
+        "resources": 18.534,
+        "adc_protection": 2.879
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "bp": 52.611,
+        "mid_jungle_support": 37.537,
+        "resources": 30.443,
+        "adc_protection": 4.729
+      },
+      "method": "complete series source coverage; keyword-bearing lines across full part, not execution frequency"
+    },
+    {
+      "scope": "complete_bo_high_confidence",
+      "season_id": "kpl-2026-spring",
+      "mid_player": "清融",
+      "game_ids": [
+        "kpl-20260001-2026032801-g1",
+        "kpl-20260001-2026032801-g2",
+        "kpl-20260001-2026032801-g3",
+        "kpl-20260001-2026032801-g4",
+        "kpl-20260001-2026040101-g1",
+        "kpl-20260001-2026040101-g2",
+        "kpl-20260001-2026040101-g3",
+        "kpl-20260001-2026040101-g4",
+        "kpl-20260001-2026040101-g5"
+      ],
+      "characters": 88525,
+      "observed_video_seconds": 18264,
+      "verified_game_duration_seconds": 8654,
+      "mentions": {
+        "mid_jungle_support": 165,
+        "resources": 221,
+        "bp": 303,
+        "adc_protection": 38
+      },
+      "games": 9,
+      "discussion_lines_per_10000_chars": {
+        "mid_jungle_support": 18.639,
+        "resources": 24.965,
+        "bp": 34.228,
+        "adc_protection": 4.293
+      },
+      "discussion_lines_per_observed_video_hour": {
+        "mid_jungle_support": 32.523,
+        "resources": 43.561,
+        "bp": 59.724,
+        "adc_protection": 7.49
+      },
+      "method": "complete series source coverage; keyword-bearing lines across full part, not execution frequency"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-01",
+      "start_seconds": 86,
+      "end_seconds": 111,
+      "timestamp_kind": "video_part",
+      "line_start": 55,
+      "line_end": 65,
+      "quote": "- [01:26] 他其实也是一名节奏型中单\n- [01:28] 他更多的还是为去放线时候给到双边的一个支援\n- [01:31] 他的这个GANK成功率特别高\n- [01:33] 而且我觉得他是一个比较大心脏的选手啊\n- [01:36] 这一点对于目前他们是被迫进行大师轮换的情况底下\n- [01:40] 我觉得也是一个新的帮助\n- [01:41] 是因为他的心性很强\n- [01:43] 所以接下来浩浩和光明登场之后\n- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的",
+      "context": "- [01:18] 中单第二\n- [01:19] 然后同时场均的野怪数也是在中单第二\n- [01:23] 这是他没有打完全程的情况底下打出来的数据\n- [01:26] 他其实也是一名节奏型中单\n- [01:28] 他更多的还是为去放线时候给到双边的一个支援\n- [01:31] 他的这个GANK成功率特别高\n- [01:33] 而且我觉得他是一个比较大心脏的选手啊\n- [01:36] 这一点对于目前他们是被迫进行大师轮换的情况底下\n- [01:40] 我觉得也是一个新的帮助\n- [01:41] 是因为他的心性很强\n- [01:43] 所以接下来浩浩和光明登场之后\n- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的\n- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山",
+      "type": "commentator_opinion",
+      "category": "rotation_counter",
+      "interpretation": "评论称昊昊也有放线双边支援；不是纯后排刷子定论。GANK成功率为解说观点，未验证数字。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-02",
+      "start_seconds": 1482,
+      "end_seconds": 1497,
+      "timestamp_kind": "video_part",
+      "line_start": 603,
+      "line_end": 611,
+      "quote": "- [24:42] 回头再给一下控制\n- [24:43] 小安活着\n- [24:44] 中路兵线进来\n- [24:45] 团灭之后点掉\n- [24:46] 谁\n- [24:46] 让我们恭喜北京JDG\n- [24:51] 随着北京JDG扳回一局之后\n- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满",
+      "context": "- [24:39] 他这一飞飞到是对面那一手太乙真人\n- [24:41] 太乙真人闪现\n- [24:41] 拉开了身位\n- [24:42] 回头再给一下控制\n- [24:43] 小安活着\n- [24:44] 中路兵线进来\n- [24:45] 团灭之后点掉\n- [24:46] 谁\n- [24:46] 让我们恭喜北京JDG\n- [24:51] 随着北京JDG扳回一局之后\n- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满\n- [25:02] 我们将会有6分钟的时间去给到双方的选手做调整\n- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面",
+      "type": "commentary_event",
+      "category": "result",
+      "interpretation": "字幕明确恭喜JDG、扳回一局至2:2；本源G4为JDG胜，不支持G4败猜测。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-03",
+      "start_seconds": 736,
+      "end_seconds": 769,
+      "timestamp_kind": "video_part",
+      "line_start": 280,
+      "line_end": 294,
+      "quote": "- [12:16] 一条暴君直接被无双拿到比较的稳妥\n- [12:21] 然后EDGM依旧还是先以发育为主\n- [12:24] 因为夏林这边第一件直接是三级刀\n- [12:26] 而无双这边是准备第一件黄盾的\n- [12:29] 冲过来一飞\n- [12:30] 但安琪拉回头一个二技能接大招互换血量\n- [12:35] 看到时预测上面这把非常的平衡啊\n- [12:38] 17位嘉宾看好了北京JDG\n- [12:39] 16位看好了上海BGM亮眼诶\n- [12:42] 安琪拉这个二技能打到了\n- [12:43] 然后下路的一个位置\n- [12:44] 张飞大招碰到了对面的一个戈亚\n- [12:46] 戈亚交了一个闪现\n- [12:47] 但是风潇在侧面直接追上\n- [12:49] 拿到第一滴血",
+      "context": "- [12:09] 直接不来了\n- [12:10] 因为蓝区马上刷了下流星都没过来\n- [12:13] 反了一组小野抓了一个空隙\n- [12:16] 一条暴君直接被无双拿到比较的稳妥\n- [12:21] 然后EDGM依旧还是先以发育为主\n- [12:24] 因为夏林这边第一件直接是三级刀\n- [12:26] 而无双这边是准备第一件黄盾的\n- [12:29] 冲过来一飞\n- [12:30] 但安琪拉回头一个二技能接大招互换血量\n- [12:35] 看到时预测上面这把非常的平衡啊\n- [12:38] 17位嘉宾看好了北京JDG\n- [12:39] 16位看好了上海BGM亮眼诶\n- [12:42] 安琪拉这个二技能打到了\n- [12:43] 然后下路的一个位置\n- [12:44] 张飞大招碰到了对面的一个戈亚\n- [12:46] 戈亚交了一个闪现\n- [12:47] 但是风潇在侧面直接追上\n- [12:49] 拿到第一滴血\n- [12:50] 虽然说第一波小韩这边是躲掉了小飞的一个大招\n- [12:53] 但是后续封校的一个大闪直接致盲\n- [12:56] 补上控制",
+      "type": "commentary_event",
+      "category": "counter_old_quote",
+      "interpretation": "旧12:15绝活融化前排引文不存在；该时间实际有互换血量与风潇一血，不能改写成昊昊救主。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-04",
+      "start_seconds": 1507,
+      "end_seconds": 1545,
+      "timestamp_kind": "video_part",
+      "line_start": 613,
+      "line_end": 630,
+      "quote": "- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面\n- [25:09] 其实EDGM已经拿下优势之后\n- [25:11] 后续的京东的几波野区的处理非常的完美\n- [25:15] 而且他们真的是把自己中野辅的控制打的非常的不错\n- [25:19] 包括浩浩\n- [25:20] 他在面临到这样的一个压力\n- [25:23] 轮换上来之后\n- [25:24] 包括看到光明对吧\n- [25:25] 面对这样一个压力\n- [25:27] 轮换上来之后\n- [25:28] 他们很快的找到了自己下赛那种状态\n- [25:31] 然后把这个节奏给稳住了\n- [25:34] 无论是这把安琪拉前面的中期的几波213\n- [25:37] 他的二技能的一个准度\n- [25:39] 包括光明在又是回归到了夏季赛\n- [25:41] 他那个状态的对于兵线的理解再一次展现了出来\n- [25:45] 就他边线一直在做牵制",
+      "context": "- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满\n- [25:02] 我们将会有6分钟的时间去给到双方的选手做调整\n- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面\n- [25:09] 其实EDGM已经拿下优势之后\n- [25:11] 后续的京东的几波野区的处理非常的完美\n- [25:15] 而且他们真的是把自己中野辅的控制打的非常的不错\n- [25:19] 包括浩浩\n- [25:20] 他在面临到这样的一个压力\n- [25:23] 轮换上来之后\n- [25:24] 包括看到光明对吧\n- [25:25] 面对这样一个压力\n- [25:27] 轮换上来之后\n- [25:28] 他们很快的找到了自己下赛那种状态\n- [25:31] 然后把这个节奏给稳住了\n- [25:34] 无论是这把安琪拉前面的中期的几波213\n- [25:37] 他的二技能的一个准度\n- [25:39] 包括光明在又是回归到了夏季赛\n- [25:41] 他那个状态的对于兵线的理解再一次展现了出来\n- [25:45] 就他边线一直在做牵制\n- [25:47] 然后包括当我觉得最关键的一波可能到后面非常焦灼的情况\n- [25:51] 底下就是他的那个额开大进去了以后一打四\n- [25:55] 然后对把卢安娜给打掉了",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "赛后解说评价中野辅控制与边线牵制；不能单归功中单。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "source_sha256": "0a3a8b9e728c0f09c54458ee784d6451159d68b711cce5fee2c31000ffc73340",
+      "part_id": "BV19FHv61Efx_P01",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=1",
+      "id": "VS-05",
+      "start_seconds": 347,
+      "end_seconds": 369,
+      "timestamp_kind": "video_part",
+      "line_start": 141,
+      "line_end": 149,
+      "quote": "- [05:47] 好消息就是浩浩和光明之前都是跟其他的选手有过配合的\n- [05:52] 有过比赛的经验\n- [05:53] 还有就是京东他们的这个大师轮换\n- [05:56] 因为他们会是光明和浩浩嘛\n- [05:58] 然后他们的中野辅在夏季赛都是一起打过的对吧\n- [06:03] 他们两套中野辅\n- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的",
+      "context": "- [05:41] 作为精英组的队伍\n- [05:42] 而今年大师组的队伍\n- [05:44] 这就可以足以证明现在京东的一个强度了\n- [05:47] 好消息就是浩浩和光明之前都是跟其他的选手有过配合的\n- [05:52] 有过比赛的经验\n- [05:53] 还有就是京东他们的这个大师轮换\n- [05:56] 因为他们会是光明和浩浩嘛\n- [05:58] 然后他们的中野辅在夏季赛都是一起打过的对吧\n- [06:03] 他们两套中野辅\n- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的\n- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚",
+      "type": "commentator_opinion",
+      "category": "rotation",
+      "interpretation": "两套中野辅是解说评价；换的是对抗路光明和中路浩浩，不是更换辅助。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "source_sha256": "0a3a8b9e728c0f09c54458ee784d6451159d68b711cce5fee2c31000ffc73340",
+      "part_id": "BV19FHv61Efx_P01",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=1",
+      "id": "VS-06",
+      "start_seconds": 371,
+      "end_seconds": 397,
+      "timestamp_kind": "video_part",
+      "line_start": 150,
+      "line_end": 159,
+      "quote": "- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚\n- [06:18] 毫无保留的教了他中路的很多一些东西和细节\n- [06:21] 其实这种毫无保留\n- [06:23] 我觉得是和京东整体的队内氛围有关的\n- [06:25] 因为大家会发现京东他们有非常多的新人选手\n- [06:28] 对光明浩浩小韩都是今年新出来的选手\n- [06:31] 但是他们好像都是能够在队伍当中发挥出非常好的一个作用出来\n- [06:37] 我觉得这和清融还有无畏他们队内给予到的那种氛围",
+      "context": "- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的\n- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚\n- [06:18] 毫无保留的教了他中路的很多一些东西和细节\n- [06:21] 其实这种毫无保留\n- [06:23] 我觉得是和京东整体的队内氛围有关的\n- [06:25] 因为大家会发现京东他们有非常多的新人选手\n- [06:28] 对光明浩浩小韩都是今年新出来的选手\n- [06:31] 但是他们好像都是能够在队伍当中发挥出非常好的一个作用出来\n- [06:37] 我觉得这和清融还有无畏他们队内给予到的那种氛围\n- [06:41] 那种包容是离开的\n- [06:43] 就作为队伍的一个老人\n- [06:44] 去迅速的把一个信任",
+      "type": "commentator_opinion",
+      "category": "rotation_context",
+      "interpretation": "解说转述纪录片中清融教新人细节，证据层级是转述，不是队内原始语音。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+      "source_sha256": "a2322e17cfc0e6b2386ac15213d2206561215c2c291e6a350290bf3a019b9c6e",
+      "part_id": "BV19FHv61Efx_P06",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=6",
+      "id": "VS-07",
+      "start_seconds": 201,
+      "end_seconds": 228,
+      "timestamp_kind": "video_part",
+      "line_start": 97,
+      "line_end": 108,
+      "quote": "- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中\n- [03:29] 数据里面能看得出来他的支援率高且成功率又高\n- [03:33] 而浩浩呢就是偏向于大法师\n- [03:35] 你给到拿拿到一些像嬴政啊\n- [03:37] 沈梦溪之类的英雄\n- [03:38] 他总是能够把自己的分均伤害啊\n- [03:40] 或者对双C的伤害拉的非常高\n- [03:43] 所以两名选手有自己风格\n- [03:45] 我觉得所以今天可能京东在大师轮换的机制下\n- [03:48] 会启用两套完全不一样的这BP风格",
+      "context": "- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点\n- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中\n- [03:29] 数据里面能看得出来他的支援率高且成功率又高\n- [03:33] 而浩浩呢就是偏向于大法师\n- [03:35] 你给到拿拿到一些像嬴政啊\n- [03:37] 沈梦溪之类的英雄\n- [03:38] 他总是能够把自己的分均伤害啊\n- [03:40] 或者对双C的伤害拉的非常高\n- [03:43] 所以两名选手有自己风格\n- [03:45] 我觉得所以今天可能京东在大师轮换的机制下\n- [03:48] 会启用两套完全不一样的这BP风格\n- [03:51] 然后对抗路呢光明以及花园无分\n- [03:53] 你觉得他们两个分别是属于什么样风格的边路\n- [03:56] 我觉得花园他其实刚出道的时候也是站边为主",
+      "type": "commentator_opinion",
+      "category": "bp_opinion",
+      "interpretation": "赛前评论区分支援型与大法师倾向，属于预测且phase=pre_show，不能is_bp=1。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+      "source_sha256": "a2322e17cfc0e6b2386ac15213d2206561215c2c291e6a350290bf3a019b9c6e",
+      "part_id": "BV19FHv61Efx_P06",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=6",
+      "id": "VS-08",
+      "start_seconds": 185,
+      "end_seconds": 198,
+      "timestamp_kind": "video_part",
+      "line_start": 91,
+      "line_end": 96,
+      "quote": "- [03:05] 然后包括他们中单金融以及浩浩浩浩给我的印象\n- [03:09] 他一开始最初是在ESTAR的时候\n- [03:12] 就是他是一个偏向指挥型的中单\n- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点",
+      "context": "- [02:57] 两位怎么看待这个配置呢\n- [02:59] 呃我觉得应该是根据训练赛的效果来匹配\n- [03:02] 现在目前我们看到的这套首发的\n- [03:05] 然后包括他们中单金融以及浩浩浩浩给我的印象\n- [03:09] 他一开始最初是在ESTAR的时候\n- [03:12] 就是他是一个偏向指挥型的中单\n- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点\n- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中",
+      "type": "commentator_opinion",
+      "category": "haohao_background",
+      "interpretation": "评论回忆ESTAR时期指挥型中单，金融等ASR原样保留。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+      "source_sha256": "6aec04d6a7c00980af256c5522d6fa6c3831c74b903688ea9c1c28b2131e27a2",
+      "part_id": "BV1PttH6rEwH_P07",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=7",
+      "id": "VS-09",
+      "start_seconds": 652,
+      "end_seconds": 674,
+      "timestamp_kind": "video_part",
+      "line_start": 314,
+      "line_end": 325,
+      "quote": "- [10:52] 就是中单的浩浩\n- [10:53] 浩浩在第三轮的比赛得以首发了之后\n- [10:55] 因为青龙区的亚运会嘛\n- [10:56] 而这位年轻的选手\n- [10:58] 他目前在场上的个人表现\n- [11:00] 他其实给我的感觉是游刃有余嗯\n- [11:04] 他是不像是一个年轻的新人\n- [11:06] 在场上打出的这种中路贯穿三线的这种画面\n- [11:09] 因为他中单的这名选手就是浩浩\n- [11:11] 他上场了之后\n- [11:12] 他也带有一点的指挥属性\n- [11:14] 我觉得这一点是能够帮助京东提升他们整体节奏的一个衔接了",
+      "context": "- [10:47] TTGTTG再去接团\n- [10:49] 那总是会出问题对\n- [10:51] 而且还有一位年轻的选手\n- [10:52] 就是中单的浩浩\n- [10:53] 浩浩在第三轮的比赛得以首发了之后\n- [10:55] 因为青龙区的亚运会嘛\n- [10:56] 而这位年轻的选手\n- [10:58] 他目前在场上的个人表现\n- [11:00] 他其实给我的感觉是游刃有余嗯\n- [11:04] 他是不像是一个年轻的新人\n- [11:06] 在场上打出的这种中路贯穿三线的这种画面\n- [11:09] 因为他中单的这名选手就是浩浩\n- [11:11] 他上场了之后\n- [11:12] 他也带有一点的指挥属性\n- [11:14] 我觉得这一点是能够帮助京东提升他们整体节奏的一个衔接了\n- [11:19] 对这个他在ESTAR的时候\n- [11:20] 当时跟明做出轮换的时候\n- [11:22] 当时我们有放过他一次",
+      "type": "commentator_opinion",
+      "category": "rotation_context",
+      "interpretation": "评论谈第三轮首发、指挥衔接；青龙区的亚运会是ASR原文，不静默改成清融去了亚运会。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+      "source_sha256": "6aec04d6a7c00980af256c5522d6fa6c3831c74b903688ea9c1c28b2131e27a2",
+      "part_id": "BV1PttH6rEwH_P07",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=7",
+      "id": "VS-10",
+      "start_seconds": 688,
+      "end_seconds": 704,
+      "timestamp_kind": "video_part",
+      "line_start": 331,
+      "line_end": 339,
+      "quote": "- [11:28] 是的还有就是小韩了\n- [11:29] 小韩其实也算是新人\n- [11:31] 哎嗯小韩在今天的比赛还是比较期待他的发挥的\n- [11:35] 因为我看了一下他的团战输出能力上啊\n- [11:37] 他其实跟小雪\n- [11:39] 尤其是在后期的团战输出能力上有点不相上下哦\n- [11:41] 这个是后续会讲的\n- [11:43] 就是他们队伍的风格改变\n- [11:44] 让小寒整个选手在队伍当中的地位变得非常的高对好",
+      "context": "- [11:22] 当时我们有放过他一次\n- [11:23] 他听过语音啊\n- [11:24] 他确实是一个很敢去做指挥判断的一名年轻选手\n- [11:28] 是的还有就是小韩了\n- [11:29] 小韩其实也算是新人\n- [11:31] 哎嗯小韩在今天的比赛还是比较期待他的发挥的\n- [11:35] 因为我看了一下他的团战输出能力上啊\n- [11:37] 他其实跟小雪\n- [11:39] 尤其是在后期的团战输出能力上有点不相上下哦\n- [11:41] 这个是后续会讲的\n- [11:43] 就是他们队伍的风格改变\n- [11:44] 让小寒整个选手在队伍当中的地位变得非常的高对好\n- [11:48] 那么刚刚说完了两支队伍\n- [11:51] 他们在这个赛季我们说的这个第一讲和第二讲\n- [11:54] 那么还是要期待一下双方在今天的这个首发名单啊",
+      "type": "commentator_opinion",
+      "category": "adc_opinion",
+      "interpretation": "评论称风格变化提高小寒队内地位；不是昊昊导致射手均值变化的因果证明。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-11",
+      "start_seconds": 1456,
+      "end_seconds": 1485,
+      "timestamp_kind": "video_part",
+      "line_start": 703,
+      "line_end": 716,
+      "quote": "- [24:16] 无畏他的墨子\n- [24:17] 我们印象当中一直都是很准的\n- [24:19] 但这个赛季他在常规赛用的两把墨子都没有赢\n- [24:22] 不过季后赛这一把墨子命中率极高极高\n- [24:25] 而且大招的拆火也很及时\n- [24:27] 对他和浩浩的女娲两个人的话就形成了一个非常完美的combo闭环\n- [24:33] 对的中路那一波是的\n- [24:35] 直接把那个虞姬秒掉嗯\n- [24:37] 墨子先二技能泡到一闪\n- [24:39] 直接控住\n- [24:40] 然后逼出一级闪现之后\n- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制",
+      "context": "- [24:11] 这是这样的操作\n- [24:13] 永远是TTG可对\n- [24:14] 但是我们要知道的一点是\n- [24:16] 无畏他的墨子\n- [24:17] 我们印象当中一直都是很准的\n- [24:19] 但这个赛季他在常规赛用的两把墨子都没有赢\n- [24:22] 不过季后赛这一把墨子命中率极高极高\n- [24:25] 而且大招的拆火也很及时\n- [24:27] 对他和浩浩的女娲两个人的话就形成了一个非常完美的combo闭环\n- [24:33] 对的中路那一波是的\n- [24:35] 直接把那个虞姬秒掉嗯\n- [24:37] 墨子先二技能泡到一闪\n- [24:39] 直接控住\n- [24:40] 然后逼出一级闪现之后\n- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制\n- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "解说复盘女娲墨子控制闭环与拆火，保留女王/一级等ASR，不拼接另一时间段。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-12",
+      "start_seconds": 1488,
+      "end_seconds": 1512,
+      "timestamp_kind": "video_part",
+      "line_start": 717,
+      "line_end": 726,
+      "quote": "- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期\n- [24:57] 那京东他的优势就是在于我手长\n- [24:59] 我机会多啊\n- [25:00] 但你如果中期没给我压很大的压力的话\n- [25:03] 我们看到两边其实一血爆发的非常的晚\n- [25:06] 两边一直在拉扯拉扯的过程当中\n- [25:09] 运营着这个京东经济就已经优于你了\n- [25:12] 因为他光明每一波都把兵线处理完了",
+      "context": "- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制\n- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期\n- [24:57] 那京东他的优势就是在于我手长\n- [24:59] 我机会多啊\n- [25:00] 但你如果中期没给我压很大的压力的话\n- [25:03] 我们看到两边其实一血爆发的非常的晚\n- [25:06] 两边一直在拉扯拉扯的过程当中\n- [25:09] 运营着这个京东经济就已经优于你了\n- [25:12] 因为他光明每一波都把兵线处理完了\n- [25:14] 哎光明这一点做的实在是太棒了\n- [25:15] 对就他总是能够把边线丢出去\n- [25:17] 是的他这把玩的我感觉更像马超",
+      "type": "commentator_opinion",
+      "category": "resources",
+      "interpretation": "评论指出手长与光明处理兵线；经济优势不应全部归中单。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-13",
+      "start_seconds": 1129,
+      "end_seconds": 1151,
+      "timestamp_kind": "video_part",
+      "line_start": 537,
+      "line_end": 544,
+      "quote": "- [18:49] 但是从京东的视角\n- [18:50] 他这把C也多\n- [18:53] 关键是光明跟浩浩两个点的经济有点超前\n- [18:57] 主要是海月太肥\n- [18:58] 大家可以看一眼海月的经济\n- [18:59] 海月的经济几乎快追上夏洛特了\n- [19:03] 只能说京东非常的照顾这边新上场的队友给的钱真不少\n- [19:11] 这5800的凯越拉人谁受得了",
+      "context": "- [18:39] 但也顶不住另一面光明残血从你当中窜了出来\n- [18:42] 打野位的互换\n- [18:46] 但无双说实话单换小羊不亏\n- [18:49] 但是从京东的视角\n- [18:50] 他这把C也多\n- [18:53] 关键是光明跟浩浩两个点的经济有点超前\n- [18:57] 主要是海月太肥\n- [18:58] 大家可以看一眼海月的经济\n- [18:59] 海月的经济几乎快追上夏洛特了\n- [19:03] 只能说京东非常的照顾这边新上场的队友给的钱真不少\n- [19:11] 这5800的凯越拉人谁受得了\n- [19:14] 来回看一下这波一脚\n- [19:15] 赵云是交一交大\n- [19:17] 然后想打梦奇当中吃到减速了",
+      "type": "commentator_opinion",
+      "category": "resources_counter",
+      "interpretation": "新上场中单海月经济高，为昊昊恒定让钱保射刻板印象提供反例，不能推断长期资源分配。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-14",
+      "start_seconds": 1185,
+      "end_seconds": 1192,
+      "timestamp_kind": "video_part",
+      "line_start": 558,
+      "line_end": 561,
+      "quote": "- [19:45] 还有一点就是小韩经济其实也挺高的\n- [19:47] 但是对他来讲\n- [19:49] 花园跟小小杨这两个点其实没有那么打的动\n- [19:52] 倒相对还好",
+      "context": "- [19:28] 然后自己全身而退\n- [19:31] 他真的是在四个人中间\n- [19:42] 还有30秒刷暗影暴君\n- [19:45] 还有一点就是小韩经济其实也挺高的\n- [19:47] 但是对他来讲\n- [19:49] 花园跟小小杨这两个点其实没有那么打的动\n- [19:52] 倒相对还好\n- [19:53] 对于第二季来说\n- [19:55] 就以前的梦奇啊\n- [19:57] 狂铁啊",
+      "type": "commentator_opinion",
+      "category": "adc_resources",
+      "interpretation": "同局小韩经济也高；不能把上一证据解释为独占资源。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-15",
+      "start_seconds": 1004,
+      "end_seconds": 1021,
+      "timestamp_kind": "video_part",
+      "line_start": 460,
+      "line_end": 468,
+      "quote": "- [16:44] 但是在无双无畏清融这个中野辅的眼里\n- [16:48] 他们肯定是不能接受的\n- [16:49] 就光明这边可以稍微拖一拖\n- [16:51] 但下路四个人前面要着急\n- [16:53] 事情要搞事情\n- [16:55] 现在就是看无畏跟清融两个点\n- [16:57] 这个政府组合被的狼魂发现了\n- [17:00] 是的\n- [17:01] 他们怎么样去开点节奏",
+      "context": "- [16:37] 梦奇刷的肥肥的\n- [16:39] 就等到梦奇中期能顶住两件套出来之后\n- [16:42] 可以硬吃对方一整套对\n- [16:44] 但是在无双无畏清融这个中野辅的眼里\n- [16:48] 他们肯定是不能接受的\n- [16:49] 就光明这边可以稍微拖一拖\n- [16:51] 但下路四个人前面要着急\n- [16:53] 事情要搞事情\n- [16:55] 现在就是看无畏跟清融两个点\n- [16:57] 这个政府组合被的狼魂发现了\n- [17:00] 是的\n- [17:01] 他们怎么样去开点节奏\n- [17:02] 这就是苍打张良的一个好处啊\n- [17:05] 在你判断你可能要经过的草丛里面放陷阱\n- [17:11] 就可以提前找到你的人的一个位置",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "清融无双无畏中野辅被解说描述为前期需做事；下路四人表述不支持总在上半区叙事。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-16",
+      "start_seconds": 1115,
+      "end_seconds": 1138,
+      "timestamp_kind": "video_part",
+      "line_start": 511,
+      "line_end": 523,
+      "quote": "- [18:35] 主要张良这波是要留大招的\n- [18:37] 留武则天的大这位置非要碰滔博也能碰碰\n- [18:40] 看他这波应该就是\n- [18:41] 如果梦奇敢用大招抢龙\n- [18:43] 他直接大招捏住\n- [18:44] 对不想放王昭君大招分割一下\n- [18:47] 这个龙要被抢了\n- [18:48] 河道卡双抢到无双\n- [18:50] 稳稳的把龙拿了下来\n- [18:52] 这确实没办法\n- [18:54] 那个大招啊\n- [18:56] 王老师一个大把整个河道盖住了\n- [18:58] 分割了",
+      "context": "- [18:28] 来了五个\n- [18:30] 但梦奇这边在叠质量\n- [18:32] 但这种正面碰撞不好预估啊\n- [18:35] 主要张良这波是要留大招的\n- [18:37] 留武则天的大这位置非要碰滔博也能碰碰\n- [18:40] 看他这波应该就是\n- [18:41] 如果梦奇敢用大招抢龙\n- [18:43] 他直接大招捏住\n- [18:44] 对不想放王昭君大招分割一下\n- [18:47] 这个龙要被抢了\n- [18:48] 河道卡双抢到无双\n- [18:50] 稳稳的把龙拿了下来\n- [18:52] 这确实没办法\n- [18:54] 那个大招啊\n- [18:56] 王老师一个大把整个河道盖住了\n- [18:58] 分割了\n- [18:58] 对你过不去\n- [18:59] 没办法趟着\n- [19:00] 导致树源只能在龙坑里面留个大招",
+      "type": "commentary_event",
+      "category": "resources_counter",
+      "interpretation": "王昭君河道分割与无双拿龙，是控区事件；不等于旧假引文中小寒随意输出。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-17",
+      "start_seconds": 1295,
+      "end_seconds": 1304,
+      "timestamp_kind": "video_part",
+      "line_start": 600,
+      "line_end": 606,
+      "quote": "- [21:35] 能留住夏洛特吗\n- [21:36] 一闪曹操过来\n- [21:38] 但是在空中被冻住\n- [21:39] 我的天哪\n- [21:41] 清融就是在留这个技能\n- [21:43] 等待着后续无望的一个进场\n- [21:44] 哎这个真没脾气啊",
+      "context": "- [21:31] 但另一边夏洛特光明绕后了\n- [21:33] 光明杀进来\n- [21:34] 跟了一套\n- [21:35] 能留住夏洛特吗\n- [21:36] 一闪曹操过来\n- [21:38] 但是在空中被冻住\n- [21:39] 我的天哪\n- [21:41] 清融就是在留这个技能\n- [21:43] 等待着后续无望的一个进场\n- [21:44] 哎这个真没脾气啊\n- [21:47] 这个纯日选手自己的反应跟放技能的位置主要是第一波\n- [21:51] 滔博这边想去挤中国视野\n- [21:53] 第一个露头的是少四元",
+      "type": "commentary_event",
+      "category": "control_counter",
+      "interpretation": "留技能冻住进场者，展示防突进事件；不足独立证明保射频率。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-18",
+      "start_seconds": 1849,
+      "end_seconds": 1869,
+      "timestamp_kind": "video_part",
+      "line_start": 862,
+      "line_end": 871,
+      "quote": "- [30:49] 本局的IQMVP也是给到了清融的王昭君\n- [30:52] 无论是和无畏的张良的配合\n- [30:54] 无双的杨戬的配合\n- [30:55] 还是他自己的预判\n- [30:57] 这一局真的是只要出手就一定能够控到人\n- [31:00] 把王昭君这个英雄的性价比拉满了\n- [31:03] 拉满了就是不吃钱\n- [31:04] 也能做很多很多的事情\n- [31:06] 对清融他在一秒钟可以做出的决定非常多\n- [31:09] 他是一个效率很高的选手",
+      "context": "- [30:43] 包括那波闪现\n- [30:44] 下路也是互换的\n- [30:45] 但是很多的小动作真的都是很精心的设计\n- [30:49] 本局的IQMVP也是给到了清融的王昭君\n- [30:52] 无论是和无畏的张良的配合\n- [30:54] 无双的杨戬的配合\n- [30:55] 还是他自己的预判\n- [30:57] 这一局真的是只要出手就一定能够控到人\n- [31:00] 把王昭君这个英雄的性价比拉满了\n- [31:03] 拉满了就是不吃钱\n- [31:04] 也能做很多很多的事情\n- [31:06] 对清融他在一秒钟可以做出的决定非常多\n- [31:09] 他是一个效率很高的选手\n- [31:11] 就是他中路那一波互相都在互相打\n- [31:14] 就是王昭君和武武则天是在互相打血量的\n- [31:17] 他马上就意识到这波抢线抢不过马上就往上走了",
+      "type": "commentator_opinion",
+      "category": "resources_counter",
+      "interpretation": "字幕称清融MVP、不吃钱做事多，缓存MVP字段可能冲突；不凭此证明整个赛季四局零死。 字段冲突：字幕称清融王昭君MVP，但raw记录is_mvp=False；仅登记冲突，不认证MVP归属。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "source_sha256": "e6fd5a1948c4b8bdaca6460604ead2bc9048d92c3f6df6c73dd68b37a27917e4",
+      "part_id": "BV1i1pw6fEvK_P02",
+      "match_id": "kpl-20260004-2026100602",
+      "game_id": "kpl-20260004-2026100602-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1i1pw6fEvK?p=2",
+      "id": "VS-19",
+      "start_seconds": 577,
+      "end_seconds": 585,
+      "timestamp_kind": "video_part",
+      "line_start": 259,
+      "line_end": 262,
+      "quote": "- [09:37] 有钩子浩浩是真不怕啊\n- [09:40] 上来卖这个感觉有点拿命留人的意思\n- [09:44] 扑上去补一下\n- [09:45] 他真感觉想拿命留人",
+      "context": "- [09:28] 这有点夸张了\n- [09:30] 假装裴擒虎已经过来了\n- [09:32] 真吓人\n- [09:37] 有钩子浩浩是真不怕啊\n- [09:40] 上来卖这个感觉有点拿命留人的意思\n- [09:44] 扑上去补一下\n- [09:45] 他真感觉想拿命留人\n- [09:47] 那这个位置坦然大招落地往里震\n- [09:50] 一杀两个两个\n- [09:51] 但另一边的老虎",
+      "type": "commentator_opinion",
+      "category": "aggression_counter",
+      "interpretation": "解说形容浩浩拿命留人，能反驳只在后排的绝对说法；不能解释平均承伤。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "source_sha256": "e6fd5a1948c4b8bdaca6460604ead2bc9048d92c3f6df6c73dd68b37a27917e4",
+      "part_id": "BV1i1pw6fEvK_P02",
+      "match_id": "kpl-20260004-2026100602",
+      "game_id": "kpl-20260004-2026100602-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1i1pw6fEvK?p=2",
+      "id": "VS-20",
+      "start_seconds": 520,
+      "end_seconds": 544,
+      "timestamp_kind": "video_part",
+      "line_start": 225,
+      "line_end": 243,
+      "quote": "- [08:40] 武则天过来要交闪吗\n- [08:42] 没交闪\n- [08:43] 控住再闪\n- [08:44] 这个时候推到墙上\n- [08:45] 再给球\n- [08:46] 大球跟上调角度\n- [08:47] 一血到手\n- [08:49] 哎呦真是斗智斗勇啊\n- [08:51] 你有张良计\n- [08:52] 我有过墙梯\n- [08:53] 就是第一时间\n- [08:54] 其实过来\n- [08:54] 浩浩当时直接就可以闪现推了\n- [08:56] 但是他留了一手\n- [08:58] 他对面也有技能吗\n- [09:00] 他想用自己的强化球\n- [09:01] 看看能不能中白清\n- [09:02] 也怕他怕被闪现推\n- [09:04] 所以他只能先交闪等等",
+      "context": "- [08:34] 是我的魔兵\n- [08:37] 贵神速\n- [08:38] 顶两个送到墙上推\n- [08:40] 武则天过来要交闪吗\n- [08:42] 没交闪\n- [08:43] 控住再闪\n- [08:44] 这个时候推到墙上\n- [08:45] 再给球\n- [08:46] 大球跟上调角度\n- [08:47] 一血到手\n- [08:49] 哎呦真是斗智斗勇啊\n- [08:51] 你有张良计\n- [08:52] 我有过墙梯\n- [08:53] 就是第一时间\n- [08:54] 其实过来\n- [08:54] 浩浩当时直接就可以闪现推了\n- [08:56] 但是他留了一手\n- [08:58] 他对面也有技能吗\n- [09:00] 他想用自己的强化球\n- [09:01] 看看能不能中白清\n- [09:02] 也怕他怕被闪现推\n- [09:04] 所以他只能先交闪等等\n- [09:07] 小韩黏过去打出妖刀的闪下路差点单杀\n- [09:09] 但是另外一边上路打赢了之后\n- [09:11] 直接顺势就进了赵云的野区",
+      "type": "commentary_event",
+      "category": "mid_jungle_support",
+      "interpretation": "武则天前期留技能与一血的解说事件链。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-21",
+      "start_seconds": 99,
+      "end_seconds": 122,
+      "timestamp_kind": "video_part",
+      "line_start": 54,
+      "line_end": 62,
+      "quote": "- [01:39] 京东四个小局前三局的一血都是跟清融有关\n- [01:42] 就是在春季赛的时候开始啊\n- [01:45] 其实10分钟前清融的击杀参与率跟伤害量就排在中路位置的第一了\n- [01:50] 其实这证明了一个点\n- [01:51] 就是其实他们的中野辅三个点\n- [01:54] 对于中路的这个线权的欲望是非常强烈的\n- [01:58] 他们会尽可能的让自己的中路快点动起来\n- [02:01] 然后能够辐射到两条边路去\n- [02:02] 尽可能帮两条边路创造优势",
+      "context": "- [01:30] 但是北京京东的这条中轴线在整个联盟当中都是相当豪华的\n- [01:34] 就是他们一直对于中轴的控制度非常高额\n- [01:37] 上一上一场的话\n- [01:39] 京东四个小局前三局的一血都是跟清融有关\n- [01:42] 就是在春季赛的时候开始啊\n- [01:45] 其实10分钟前清融的击杀参与率跟伤害量就排在中路位置的第一了\n- [01:50] 其实这证明了一个点\n- [01:51] 就是其实他们的中野辅三个点\n- [01:54] 对于中路的这个线权的欲望是非常强烈的\n- [01:58] 他们会尽可能的让自己的中路快点动起来\n- [02:01] 然后能够辐射到两条边路去\n- [02:02] 尽可能帮两条边路创造优势\n- [02:04] 因为最早的时候他们更多的是用到那种中路大核\n- [02:07] 有一段时间我记得清风用到像是甄姬之类的英雄\n- [02:09] 其实用的特别多",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "赛前对清融中路线权、双边辐射的评价，BP仅为估计时段。",
+      "review_status": "本次文本上下文复核",
+      "phase": "bp_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-07-03_【2026KPL夏季赛】7月3日 上海EDG.M VS 武汉eStarPro_BV16fT46AEtD/P04_赛前评论席.md",
+      "source_sha256": "7ace8ebaf88ca401211d65d9e3a35a48f0d6ab7f4cc47d7c1896fd37f847eb8f",
+      "part_id": "BV16fT46AEtD_P04",
+      "match_id": "kpl-20260003-2026070302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV16fT46AEtD?p=4",
+      "id": "VS-22",
+      "start_seconds": 132,
+      "end_seconds": 154,
+      "timestamp_kind": "video_part",
+      "line_start": 73,
+      "line_end": 81,
+      "quote": "- [02:12] 这个点又是在做轮换上\n- [02:14] 跟上赛季ESTAR在同时期那个时候也是做轮换\n- [02:18] 那个时候我印象中是下掉了名\n- [02:19] 然后换上了浩浩然\n- [02:21] 还是说整个队伍在做更多的尝试\n- [02:24] 但跟那个时候的ESTAR也有不同\n- [02:27] 不同点在于在那个时候\n- [02:29] ESTAR他们的没有什么人能够太多的打出来很多高光的一个画面啊\n- [02:34] 也没有太多的方向和头绪",
+      "context": "- [02:06] 而且也没有能够赢下来\n- [02:07] 所以对于我们来讲是一个样本参考非常少的一个组合\n- [02:10] 是的嗯\n- [02:12] 这个点又是在做轮换上\n- [02:14] 跟上赛季ESTAR在同时期那个时候也是做轮换\n- [02:18] 那个时候我印象中是下掉了名\n- [02:19] 然后换上了浩浩然\n- [02:21] 还是说整个队伍在做更多的尝试\n- [02:24] 但跟那个时候的ESTAR也有不同\n- [02:27] 不同点在于在那个时候\n- [02:29] ESTAR他们的没有什么人能够太多的打出来很多高光的一个画面啊\n- [02:34] 也没有太多的方向和头绪\n- [02:36] 但是在这赛季有一名选手我觉得是ESTAR\n- [02:40] 我们不得不提的就是亮宇宇\n- [02:43] 亮宇在这个赛季确实展现出了非常强的射手的兜底能力",
+      "type": "commentator_opinion",
+      "category": "history_2026_haohao_estar",
+      "interpretation": "2026解说回顾上赛季ESTAR下掉名换浩浩；仅回顾来源，不当作2026昊昊代表ESTAR出场。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2022世界冠军杯/2022-12-08_【2022王者世冠】拉美ISG vs 中国武汉eStarPro 12月8日小组赛_BV1Ce411A79r/P01_第一局.md",
+      "source_sha256": "e9902a64578dc342dc1b4c16809225d36c1ad0a10d1ef5a43467243980dd6e06",
+      "part_id": "BV1Ce411A79r_P01",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1Ce411A79r?p=1",
+      "id": "VS-H22A",
+      "start_seconds": 1439,
+      "end_seconds": 1452,
+      "timestamp_kind": "video_part",
+      "line_start": 655,
+      "line_end": 660,
+      "quote": "- [23:59] 开局isg抢中抢的还不错啊\n- [24:02] 直接先把清融的火舞打残\n- [24:05] 但是易峥的公孙离已经来到了中路\n- [24:08] 所以他们estar也想好了吗\n- [24:10] 中路就让公孙离来\n- [24:12] 只要公孙离往中一站",
+      "context": "- [23:50] 双方尤其是sg在前期会如何利用这三成不变\n- [23:54] 虚传永恒荣耀不灭\n- [23:57] 虚传永恒荣耀\n- [23:59] 开局isg抢中抢的还不错啊\n- [24:02] 直接先把清融的火舞打残\n- [24:05] 但是易峥的公孙离已经来到了中路\n- [24:08] 所以他们estar也想好了吗\n- [24:10] 中路就让公孙离来\n- [24:12] 只要公孙离往中一站\n- [24:13] 你的周瑜\n- [24:14] 你的线权就是五五开\n- [24:15] 但是有一说一哦哟看看这烧的真的很舒服啊",
+      "type": "commentary_event",
+      "category": "history_2022",
+      "interpretation": "火舞被打残、公孙离中路补位事件，不支持旧世冠完美刺杀假引文。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2022世界冠军杯/2022-12-09_【2022王者世冠】武汉eStarPro vs Gen.G Esports 12月9日小组赛_BV1Te411P7rW/P02_第二局+赛后采访.md",
+      "source_sha256": "24a2255c2fa1d1cf9a6f0ad9824c27cc028b0acd9ae6651f4f923c490e1926da",
+      "part_id": "BV1Te411P7rW_P02",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1Te411P7rW?p=2",
+      "id": "VS-H22B",
+      "start_seconds": 921,
+      "end_seconds": 931,
+      "timestamp_kind": "video_part",
+      "line_start": 434,
+      "line_end": 440,
+      "quote": "- [15:21] 能够跟上vestar pro的节奏\n- [15:23] 看两个大招\n- [15:24] 喷两个坦然和清融的伤害不少\n- [15:26] 先带走了一个蓝张飞过去\n- [15:29] 然后再砸一下\n- [15:29] 被公孙离大招给推开了\n- [15:31] 沈梦溪狙击再给了这波兵线",
+      "context": "- [15:15] 你看一下这把jy的出装\n- [15:17] 他疾步之靴\n- [15:18] 为了保证支援的够快\n- [15:21] 能够跟上vestar pro的节奏\n- [15:23] 看两个大招\n- [15:24] 喷两个坦然和清融的伤害不少\n- [15:26] 先带走了一个蓝张飞过去\n- [15:29] 然后再砸一下\n- [15:29] 被公孙离大招给推开了\n- [15:31] 沈梦溪狙击再给了这波兵线\n- [15:32] 已经进去了\n- [15:33] 这个超级兵清掉了花海的状态不是很好\n- [15:36] 这波要选择往后撤一撤",
+      "type": "commentary_event",
+      "category": "history_2022",
+      "interpretation": "坦然清融伤害与沈梦溪兵线事件。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P02_第一局.md",
+      "source_sha256": "a352836cd71141f9ff16e40b9f0ae6876e9c93fe60745e921f95d911be8d355c",
+      "part_id": "BV1394y1G7RW_P02",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1394y1G7RW?p=2",
+      "id": "VS-H23A",
+      "start_seconds": 838,
+      "end_seconds": 850,
+      "timestamp_kind": "video_part",
+      "line_start": 442,
+      "line_end": 448,
+      "quote": "- [13:58] 一闪一闪给一套直接动手\n- [14:02] 抓到了乔西\n- [14:04] 清融清清的节奏还是带的比较好的\n- [14:06] 清完第三波线之后\n- [14:07] 直接来下路打了一波三包二\n- [14:09] 这下手太快了\n- [14:10] 乔西这边的话闪现都没机会交",
+      "context": "- [13:53] 他的一技能是有两段\n- [13:55] 二技能是往前位移一下\n- [13:56] 如果命中到英雄可以有一个护盾哦\n- [13:58] 一闪一闪给一套直接动手\n- [14:02] 抓到了乔西\n- [14:04] 清融清清的节奏还是带的比较好的\n- [14:06] 清完第三波线之后\n- [14:07] 直接来下路打了一波三包二\n- [14:09] 这下手太快了\n- [14:10] 乔西这边的话闪现都没机会交\n- [14:14] Stepping through\n- [14:16] 看下莫拉\n- [14:17] 直接帮洛里昂抢线镜头",
+      "type": "commentary_event",
+      "category": "history_2023",
+      "interpretation": "清完第三波中线后下路三包二，是历史双边支援实例。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P05_第四局.md",
+      "source_sha256": "3282488b07af613079c7f0e066eff9d94e66c07dc5687c484e8bf711b21e5101",
+      "part_id": "BV1394y1G7RW_P05",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1394y1G7RW?p=5",
+      "id": "VS-H23B",
+      "start_seconds": 1268,
+      "end_seconds": 1284,
+      "timestamp_kind": "video_part",
+      "line_start": 590,
+      "line_end": 596,
+      "quote": "- [21:08] 但是像子阳这把的张飞那个关键的几波团战\n- [21:13] 包括大招交的又非常漂亮\n- [21:15] 清融的输出打的又很满\n- [21:17] 对青龙的莉莉安又有非常亮眼的发挥\n- [21:19] 总之就是这个三人组\n- [21:20] 给到正面团战的压力太大了\n- [21:24] 撑不住",
+      "context": "- [20:56] 恭喜武汉ESTARPRO扳平比分\n- [21:01] 今天第一场BO7打的就非常的焦灼\n- [21:04] 这局的这个MVP不给星葵玩的真的很好\n- [21:08] 但是像子阳这把的张飞那个关键的几波团战\n- [21:13] 包括大招交的又非常漂亮\n- [21:15] 清融的输出打的又很满\n- [21:17] 对青龙的莉莉安又有非常亮眼的发挥\n- [21:19] 总之就是这个三人组\n- [21:20] 给到正面团战的压力太大了\n- [21:24] 撑不住\n- [21:24] 真的撑不住了\n- [21:27] 我们把时间交还给评论区\n- [21:32] 我们跟解说席的看法是一样的",
+      "type": "commentator_opinion",
+      "category": "history_2023",
+      "interpretation": "子阳开团清融输出的三人组评价，不能概括全年。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2024夏季赛/2024-06-12_【2024KPL夏季赛】6月12日 北京WB vs 武汉eStarPro_BV1yn4y197mo/P03_第二局.md",
+      "source_sha256": "a41c9c671d32211721fca648e9448d7dab83d334ca19b58a5d61a8983f95dcda",
+      "part_id": "BV1yn4y197mo_P03",
+      "match_id": "kpl-20240002-2024061202",
+      "game_id": "kpl-20240002-2024061202-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1yn4y197mo?p=3",
+      "id": "VS-H24A",
+      "start_seconds": 732,
+      "end_seconds": 747,
+      "timestamp_kind": "video_part",
+      "line_start": 334,
+      "line_end": 340,
+      "quote": "- [12:12] 避了个闪现啊\n- [12:13] 极限了\n- [12:15] 清融这两波支援对抗路都有所收获啊\n- [12:19] 第一波拿了一血\n- [12:19] 第二波是逼了个闪现\n- [12:24] 因为如果说ESTAR他们把战场往上半图去引\n- [12:27] 上半图打起来的话",
+      "context": "- [12:05] 先看一下上路坦然开了一个大招以后\n- [12:07] 撞到了子墨的身上\n- [12:08] 冻住给大招有机会必须要避闪\n- [12:12] 避了个闪现啊\n- [12:13] 极限了\n- [12:15] 清融这两波支援对抗路都有所收获啊\n- [12:19] 第一波拿了一血\n- [12:19] 第二波是逼了个闪现\n- [12:24] 因为如果说ESTAR他们把战场往上半图去引\n- [12:27] 上半图打起来的话\n- [12:28] 下半途决议才可以更好的发育\n- [12:30] 他们需要转移微博的注意力嗯\n- [12:33] ESTARAR想要靠着孙策支援快啊",
+      "type": "commentator_opinion",
+      "category": "history_2024",
+      "interpretation": "两波支援对抗路收获的解说评价。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2024夏季赛/2024-06-15_【2024KPL夏季赛】6月15日 上海RNG.M vs 武汉eStarPro_BV1LD421u7YQ/P04_第三局.md",
+      "source_sha256": "8ad8fcb6650c6cc2f8de15a7995f289b4d454f9128d770db592890039925b41a",
+      "part_id": "BV1LD421u7YQ_P04",
+      "match_id": "kpl-20240002-2024061502",
+      "game_id": "kpl-20240002-2024061502-g3",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1LD421u7YQ?p=4",
+      "id": "VS-H24B",
+      "start_seconds": 712,
+      "end_seconds": 726,
+      "timestamp_kind": "video_part",
+      "line_start": 361,
+      "line_end": 367,
+      "quote": "- [11:52] 所以他没有办法第一时间跟失去你\n- [11:55] 这个时候ESTAR在中一塔拔完之后呢\n- [11:59] 清融只要不漏子阳只要不漏\n- [12:01] 对于RNGM就是一个比较大的压力了\n- [12:03] 能秒吗\n- [12:04] 差一丝闪现拉出龙坑\n- [12:06] 差一丝丝伤害多",
+      "context": "- [11:46] 其他的点你都处理不掉\n- [11:48] 而且第一时间我看红这个红Buff坑的位置\n- [11:51] 然后那个二技能好像是在CD当中\n- [11:52] 所以他没有办法第一时间跟失去你\n- [11:55] 这个时候ESTAR在中一塔拔完之后呢\n- [11:59] 清融只要不漏子阳只要不漏\n- [12:01] 对于RNGM就是一个比较大的压力了\n- [12:03] 能秒吗\n- [12:04] 差一丝闪现拉出龙坑\n- [12:06] 差一丝丝伤害多\n- [12:08] 一本小书感觉伤害就够了\n- [12:12] 但威胁的这种压力已经给到了对啊\n- [12:15] 就说ESTAR这套阵容就是压制力很足的",
+      "type": "commentator_opinion",
+      "category": "history_2024",
+      "interpretation": "清融子阳不露头带来威胁的观点。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P01_赛前评论席.md",
+      "source_sha256": "705c98e3b428a296332491427c3facccf97d6ab22115d3ab27635242f7e77ca8",
+      "part_id": "BV1rZTMzcEo5_P01",
+      "match_id": "kpl-20250002-2025060602",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1rZTMzcEo5?p=1",
+      "id": "VS-H25A",
+      "start_seconds": 717,
+      "end_seconds": 730,
+      "timestamp_kind": "video_part",
+      "line_start": 343,
+      "line_end": 348,
+      "quote": "- [11:57] 他是非常喜欢游走到双边去做事情的\n- [12:00] 如果无畏这边在能拿到一些开团类的英雄\n- [12:04] 在和自己的老搭档清融配合到一起哦\n- [12:07] 那这个队伍的节奏应该是比较流畅的\n- [12:09] 很值得期待\n- [12:10] 能碰撞出什么样的火花",
+      "context": "- [11:49] 就是场均的前10分钟的击杀率是不是很高\n- [11:54] 对因为他还有一个河道的视野占比\n- [11:56] 因为他选到像不知火舞这样的英雄\n- [11:57] 他是非常喜欢游走到双边去做事情的\n- [12:00] 如果无畏这边在能拿到一些开团类的英雄\n- [12:04] 在和自己的老搭档清融配合到一起哦\n- [12:07] 那这个队伍的节奏应该是比较流畅的\n- [12:09] 很值得期待\n- [12:10] 能碰撞出什么样的火花\n- [12:12] 主要就是目前来说\n- [12:14] 毕竟对手是热门嘛\n- [12:16] 而且从几个比赛来看的话",
+      "type": "commentator_opinion",
+      "category": "history_2025",
+      "interpretation": "赛前期待清融无畏配合；不能视作已执行事件。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P02_第一局.md",
+      "source_sha256": "f935119f61629fb2b7a90920d0232930fe2a2bfd7bd77dc7a4e6b9115d69e07e",
+      "part_id": "BV1rZTMzcEo5_P02",
+      "match_id": "kpl-20250002-2025060602",
+      "game_id": "kpl-20250002-2025060602-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1rZTMzcEo5?p=2",
+      "id": "VS-H25B",
+      "start_seconds": 1432,
+      "end_seconds": 1444,
+      "timestamp_kind": "video_part",
+      "line_start": 603,
+      "line_end": 609,
+      "quote": "- [23:52] 逼了干将的闪\n- [23:53] 但是凯这个位置可以威胁到干将莫邪青年在一个进场\n- [23:56] 直接配合嘉兴击杀掉了清融\n- [23:59] 那这里司空震只能退而求其次\n- [24:01] 选择去做断线\n- [24:02] 打了一个掉点\n- [24:04] 那这个龙可以安稳的拿下来",
+      "context": "- [23:47] 位置已经被多利亚看到了\n- [23:49] 狂铁也在另一侧的河道处\n- [23:50] 王昭君一个闪闪现大招\n- [23:52] 逼了干将的闪\n- [23:53] 但是凯这个位置可以威胁到干将莫邪青年在一个进场\n- [23:56] 直接配合嘉兴击杀掉了清融\n- [23:59] 那这里司空震只能退而求其次\n- [24:01] 选择去做断线\n- [24:02] 打了一个掉点\n- [24:04] 那这个龙可以安稳的拿下来\n- [24:06] 对的嘉兴的这波绕后压迫感十足啊\n- [24:08] 刚刚看小地图是一个三角阵\n- [24:11] 狂铁在中右的河道草这里压过去",
+      "type": "commentary_event",
+      "category": "history_2025_counter",
+      "interpretation": "清融被击杀后的掉点，是历史负面事件，避免只选高光。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D01",
+      "start_seconds": 114,
+      "end_seconds": 130,
+      "timestamp_kind": "video_part",
+      "line_start": 66,
+      "line_end": 73,
+      "quote": "- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山\n- [02:00] 他们的BP是非常好做的\n- [02:02] 哪怕把盾山放出来\n- [02:03] 他们也有苏烈张飞去打\n- [02:07] 而且蓝色方的JDG自占鲁班大师一个ban位\n- [02:10] 你辅助是ban不完的",
+      "context": "- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的\n- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山\n- [02:00] 他们的BP是非常好做的\n- [02:02] 哪怕把盾山放出来\n- [02:03] 他们也有苏烈张飞去打\n- [02:07] 而且蓝色方的JDG自占鲁班大师一个ban位\n- [02:10] 你辅助是ban不完的\n- [02:14] 鲁班大师EDGM第一ban应该是海月\n- [02:21] 哦关羽\n- [02:25] 看京东的第2ban",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "英雄优先级预测：海月/盾山与辅助ban位压力；不要把预测当真实禁选。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D02",
+      "start_seconds": 197,
+      "end_seconds": 227,
+      "timestamp_kind": "video_part",
+      "line_start": 93,
+      "line_end": 106,
+      "quote": "- [03:17] 这个是防海月的京东最好就直接海月\n- [03:23] 感觉海月加司空震还是的直接点对点的出对宋真打对位\n- [03:27] 然后海月当一个节奏点哦\n- [03:30] 大司命大司命主\n- [03:32] 那是海月还是司空震呢\n- [03:34] 只能拿一个了\n- [03:35] 看他们的优先级\n- [03:38] 雷霆所及\n- [03:39] 司空震了\n- [03:40] 司空震一灭\n- [03:42] 也是觉得对面直接出张飞了\n- [03:44] 如果硬顶着出海月的话\n- [03:45] 可能效果也没那么好\n- [03:47] 而且留到后面还是会去骗EDGM2轮的一个ban位",
+      "context": "- [03:04] 而且他们现在得去针对一下封潇\n- [03:06] 是的夏洛特\n- [03:15] 邂逅张飞\n- [03:17] 这个是防海月的京东最好就直接海月\n- [03:23] 感觉海月加司空震还是的直接点对点的出对宋真打对位\n- [03:27] 然后海月当一个节奏点哦\n- [03:30] 大司命大司命主\n- [03:32] 那是海月还是司空震呢\n- [03:34] 只能拿一个了\n- [03:35] 看他们的优先级\n- [03:38] 雷霆所及\n- [03:39] 司空震了\n- [03:40] 司空震一灭\n- [03:42] 也是觉得对面直接出张飞了\n- [03:44] 如果硬顶着出海月的话\n- [03:45] 可能效果也没那么好\n- [03:47] 而且留到后面还是会去骗EDGM2轮的一个ban位\n- [03:51] 起码谁是敌人\n- [03:53] 哪吒直接出上一场BO\n- [03:57] 我们看到了哪吒打团对于戈娅的一个团战的限制",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "张飞影响海月优先级，解说观察司空震先出；counter解释是观点。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D03",
+      "start_seconds": 320,
+      "end_seconds": 380,
+      "timestamp_kind": "video_part",
+      "line_start": 138,
+      "line_end": 163,
+      "quote": "- [05:20] 安琪拉\n- [05:24] 想要抢前期的河道权长的路加了一个太乙\n- [05:29] 就是为了和安琪拉可以接combo练补爆发\n- [05:32] 这样整体的中野辅强度上面\n- [05:34] 前期京东的中野辅更强一点\n- [05:35] 这把感觉京东要偏刷了\n- [05:37] 就是一直保持大司命加钱\n- [05:39] 然后再转到边路去\n- [05:41] 那看一下花卷\n- [05:43] 最后的选择\n- [05:45] 要不来个姜子牙这种来了来了\n- [05:49] 因为他们确实夏季赛玩姜子牙还不错\n- [05:52] 花卷是三把全赢了\n- [05:54] 而且这把就是拖一下\n- [05:55] 给到路亚娜一个大后期\n- [05:57] 而且选姜子牙\n- [05:58] 他其实EDGM这把小控制还挺多的\n- [06:01] 烫一下之后\n- [06:01] 罗亚娜的这个一二也能把敌人勾过来\n- [06:05] 然后哪吒就可以直接飞\n- [06:06] 而是的他如果被姜子牙一技能烫完之后\n- [06:10] 他是不太敢一技能往前的\n- [06:12] 不过随着姜子牙选完之后啊\n- [06:14] 两边整体的阵容节奏上面会有一定的区别\n- [06:18] EDGM相对会更加偏发育一些\n- [06:20] 而北京JDG的话呢会偏向于前期的这种中野辅的节奏更强一些哦",
+      "context": "- [05:13] 他可以大招慢点放\n- [05:15] 然后再给个致盲\n- [05:16] 对魔法为我而存在\n- [05:20] 安琪拉\n- [05:24] 想要抢前期的河道权长的路加了一个太乙\n- [05:29] 就是为了和安琪拉可以接combo练补爆发\n- [05:32] 这样整体的中野辅强度上面\n- [05:34] 前期京东的中野辅更强一点\n- [05:35] 这把感觉京东要偏刷了\n- [05:37] 就是一直保持大司命加钱\n- [05:39] 然后再转到边路去\n- [05:41] 那看一下花卷\n- [05:43] 最后的选择\n- [05:45] 要不来个姜子牙这种来了来了\n- [05:49] 因为他们确实夏季赛玩姜子牙还不错\n- [05:52] 花卷是三把全赢了\n- [05:54] 而且这把就是拖一下\n- [05:55] 给到路亚娜一个大后期\n- [05:57] 而且选姜子牙\n- [05:58] 他其实EDGM这把小控制还挺多的\n- [06:01] 烫一下之后\n- [06:01] 罗亚娜的这个一二也能把敌人勾过来\n- [06:05] 然后哪吒就可以直接飞\n- [06:06] 而是的他如果被姜子牙一技能烫完之后\n- [06:10] 他是不太敢一技能往前的\n- [06:12] 不过随着姜子牙选完之后啊\n- [06:14] 两边整体的阵容节奏上面会有一定的区别\n- [06:18] EDGM相对会更加偏发育一些\n- [06:20] 而北京JDG的话呢会偏向于前期的这种中野辅的节奏更强一些哦\n- [06:26] 看到小费这把步行千山千山的张飞又出现了\n- [06:31] 他这把其实可以玩的稍微奔放一点\n- [06:33] 怎么说",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "安琪拉与太乙的中野辅前期节奏，对比姜子牙发育；花卷胜率仅解说所述。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-D04",
+      "start_seconds": 261,
+      "end_seconds": 294,
+      "timestamp_kind": "video_part",
+      "line_start": 131,
+      "line_end": 153,
+      "quote": "- [04:21] 当女王女王\n- [04:24] 你选女娲\n- [04:24] 反手出个嬴政对着射呗\n- [04:26] 他对着草对我\n- [04:27] 其实我是觉得嬴政打女娲挺舒服的\n- [04:30] 为什么在在于他前中期首先第一个点抢线快\n- [04:32] 第二点就是我的大招好的比你快的情况下\n- [04:34] 我手还比你长\n- [04:35] 那你女娲是需要发育的\n- [04:37] 你不能像一般的中路放线\n- [04:38] 那其实我嬴政就跟你打对位\n- [04:40] 我前中期只要拿完资源了之后\n- [04:41] 我后面每一波中线并完我就开大招清线\n- [04:44] 对我并完线我就开大超\n- [04:46] 你别管你谁来吃\n- [04:47] 你打野来就吃我大招\n- [04:48] 女娲来\n- [04:49] 女娲吃我大招\n- [04:50] 总归得有个人\n- [04:51] 要不就不吃\n- [04:52] 你不可能不吃这个线嘛\n- [04:53] 对呀\n- [04:54] 一寸长一寸强来了",
+      "context": "- [04:12] 主要出司空震了啊\n- [04:14] 而且刚刚想了一下虞姬\n- [04:16] 小雪这赛季也爱玩\n- [04:21] 当女王女王\n- [04:24] 你选女娲\n- [04:24] 反手出个嬴政对着射呗\n- [04:26] 他对着草对我\n- [04:27] 其实我是觉得嬴政打女娲挺舒服的\n- [04:30] 为什么在在于他前中期首先第一个点抢线快\n- [04:32] 第二点就是我的大招好的比你快的情况下\n- [04:34] 我手还比你长\n- [04:35] 那你女娲是需要发育的\n- [04:37] 你不能像一般的中路放线\n- [04:38] 那其实我嬴政就跟你打对位\n- [04:40] 我前中期只要拿完资源了之后\n- [04:41] 我后面每一波中线并完我就开大招清线\n- [04:44] 对我并完线我就开大超\n- [04:46] 你别管你谁来吃\n- [04:47] 你打野来就吃我大招\n- [04:48] 女娲来\n- [04:49] 女娲吃我大招\n- [04:50] 总归得有个人\n- [04:51] 要不就不吃\n- [04:52] 你不可能不吃这个线嘛\n- [04:53] 对呀\n- [04:54] 一寸长一寸强来了\n- [04:55] 嬴政加虞姬\n- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "嬴政打女娲的线权/射程解释为解说观点，不认证实际counter强度。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-D05",
+      "start_seconds": 300,
+      "end_seconds": 334,
+      "timestamp_kind": "video_part",
+      "line_start": 155,
+      "line_end": 173,
+      "quote": "- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政\n- [05:04] 京东这边估计要游走第一第一波线帮忙抢中了\n- [05:07] 但TTG的中轴还是有点强的\n- [05:09] 他少四元加嬴嬴政\n- [05:11] 他原来可能咬来中一块并线嘛厉害\n- [05:12] 那这种情况下\n- [05:13] 中线的墨子\n- [05:15] 墨子就是不让小雪在线上好好抗压\n- [05:18] 但是这样的话\n- [05:19] 邵思源可能也要到线上去帮被迫过来要打对线\n- [05:23] 这样的话\n- [05:23] 其实如果中路是一对一玩的话\n- [05:26] 而二对二二对二你得把打野算上去\n- [05:28] 打野两个弹也不算了\n- [05:29] 占视野嘛\n- [05:30] 占视野对二对二嘛\n- [05:32] 二代的话还是TTG的线权哎\n- [05:34] 现优会更优一点",
+      "context": "- [04:53] 对呀\n- [04:54] 一寸长一寸强来了\n- [04:55] 嬴政加虞姬\n- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政\n- [05:04] 京东这边估计要游走第一第一波线帮忙抢中了\n- [05:07] 但TTG的中轴还是有点强的\n- [05:09] 他少四元加嬴嬴政\n- [05:11] 他原来可能咬来中一块并线嘛厉害\n- [05:12] 那这种情况下\n- [05:13] 中线的墨子\n- [05:15] 墨子就是不让小雪在线上好好抗压\n- [05:18] 但是这样的话\n- [05:19] 邵思源可能也要到线上去帮被迫过来要打对线\n- [05:23] 这样的话\n- [05:23] 其实如果中路是一对一玩的话\n- [05:26] 而二对二二对二你得把打野算上去\n- [05:28] 打野两个弹也不算了\n- [05:29] 占视野嘛\n- [05:30] 占视野对二对二嘛\n- [05:32] 二代的话还是TTG的线权哎\n- [05:34] 现优会更优一点\n- [05:37] 但这样其实就比较考验京东\n- [05:39] 前面对线要拿点东西来boss打虞姬还是很好打的\n- [05:43] 但有个邵思源的续航的话会好很多嗯其实这把应该是稳步发育吧",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "墨子压虞姬与中线帮抢的取舍，是BP阵容预测而非赛后结果。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-D06",
+      "start_seconds": 465,
+      "end_seconds": 524,
+      "timestamp_kind": "video_part",
+      "line_start": 209,
+      "line_end": 243,
+      "quote": "- [07:45] 还有狂铁也在外面\n- [07:46] 就是这一手拿完的话\n- [07:48] 要看京东如果是少C\n- [07:49] 要看京东愿不愿意拿张良和王昭君\n- [07:51] 我觉得或者是拿个张良\n- [07:52] 把王昭君放一放\n- [07:54] 双少资源直接拿\n- [07:56] 这几天的一抢少资源的对局\n- [07:58] 我们看到挺多的\n- [07:59] 但是现在区别是因为你是蓝色方的超次元\n- [08:01] 京东有两个选择\n- [08:02] 一是张良王昭君直接打\n- [08:03] 二是直接就是这个一我不要\n- [08:05] 还有一种就是我把只拿一个三楼\n- [08:07] 放一个康特瑞\n- [08:08] 而且这几天其实拿到张良王昭君的那一方打野通常会配个马超\n- [08:13] 是的\n- [08:13] 养马流双思源\n- [08:16] 我张良\n- [08:16] 张良大概率是王昭君了\n- [08:18] 还是放到三楼\n- [08:21] 但如果拿的话\n- [08:22] 可以给三楼有个小的康特位直接拿\n- [08:24] 就昨天我们也看到在DYG轮换打野之后\n- [08:27] 他们直接张良加马超\n- [08:29] 就是为了保障自己马超的优先级\n- [08:31] 是的\n- [08:32] 但是这样的话\n- [08:32] 京东三楼毕竟是个康特位\n- [08:34] 容错率更多\n- [08:35] 操你深渊\n- [08:38] 武则天要不要拿凤\n- [08:40] 武则天现在基本上都是明牌了\n- [08:42] 在张良王昭君先出的情况下\n- [08:44] 对方来手武则天拆火",
+      "context": "- [07:33] 但也有可能都同时都放关羽\n- [07:39] 那就看京东这手跟关羽有一股\n- [07:42] 那拿邵思源的味道\n- [07:45] 还有狂铁也在外面\n- [07:46] 就是这一手拿完的话\n- [07:48] 要看京东如果是少C\n- [07:49] 要看京东愿不愿意拿张良和王昭君\n- [07:51] 我觉得或者是拿个张良\n- [07:52] 把王昭君放一放\n- [07:54] 双少资源直接拿\n- [07:56] 这几天的一抢少资源的对局\n- [07:58] 我们看到挺多的\n- [07:59] 但是现在区别是因为你是蓝色方的超次元\n- [08:01] 京东有两个选择\n- [08:02] 一是张良王昭君直接打\n- [08:03] 二是直接就是这个一我不要\n- [08:05] 还有一种就是我把只拿一个三楼\n- [08:07] 放一个康特瑞\n- [08:08] 而且这几天其实拿到张良王昭君的那一方打野通常会配个马超\n- [08:13] 是的\n- [08:13] 养马流双思源\n- [08:16] 我张良\n- [08:16] 张良大概率是王昭君了\n- [08:18] 还是放到三楼\n- [08:21] 但如果拿的话\n- [08:22] 可以给三楼有个小的康特位直接拿\n- [08:24] 就昨天我们也看到在DYG轮换打野之后\n- [08:27] 他们直接张良加马超\n- [08:29] 就是为了保障自己马超的优先级\n- [08:31] 是的\n- [08:32] 但是这样的话\n- [08:32] 京东三楼毕竟是个康特位\n- [08:34] 容错率更多\n- [08:35] 操你深渊\n- [08:38] 武则天要不要拿凤\n- [08:40] 武则天现在基本上都是明牌了\n- [08:42] 在张良王昭君先出的情况下\n- [08:44] 对方来手武则天拆火\n- [08:45] 其实之前张良王昭君配苍也是一个非常多的组合\n- [08:48] 就是一个照视野\n- [08:50] 一个开对",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "王昭君张良优先级、三楼counter与武则天拆火，区分候选和最终选择。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-D07",
+      "start_seconds": 325,
+      "end_seconds": 356,
+      "timestamp_kind": "video_part",
+      "line_start": 164,
+      "line_end": 177,
+      "quote": "- [05:25] 其实主要就是得把烧素园给拆了对\n- [05:27] 然后关键点就是在于三楼位\n- [05:29] 三楼位的话一定要选选一个\n- [05:31] 要么不怕海月的打野\n- [05:32] 要么不怕海月的边路\n- [05:35] 你得来一个能顶住的\n- [05:40] 来了京东夏洛特加海月\n- [05:42] 这个阵容出来\n- [05:43] 开局就是一手换线\n- [05:44] 这样对于浩浩很友善\n- [05:48] 第一把上来先拿了这么一个超标英雄\n- [05:51] 然后配的又是一个非常强势的体系\n- [05:53] 是的其实很友善\n- [05:56] 因为他的整体思路相对简单",
+      "context": "- [05:17] 是那个海月加寿司源\n- [05:20] 跟鬼一样\n- [05:21] 这两个点太吓人了\n- [05:25] 其实主要就是得把烧素园给拆了对\n- [05:27] 然后关键点就是在于三楼位\n- [05:29] 三楼位的话一定要选选一个\n- [05:31] 要么不怕海月的打野\n- [05:32] 要么不怕海月的边路\n- [05:35] 你得来一个能顶住的\n- [05:40] 来了京东夏洛特加海月\n- [05:42] 这个阵容出来\n- [05:43] 开局就是一手换线\n- [05:44] 这样对于浩浩很友善\n- [05:48] 第一把上来先拿了这么一个超标英雄\n- [05:51] 然后配的又是一个非常强势的体系\n- [05:53] 是的其实很友善\n- [05:56] 因为他的整体思路相对简单\n- [05:59] 狂铁\n- [06:02] 选狂铁可能不换线\n- [06:04] 就是DRG不会去追线",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "海月体系被称对新人友善；超标/思路简单仅解说评价，不能据此推导选手能力。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-D08",
+      "start_seconds": 453,
+      "end_seconds": 516,
+      "timestamp_kind": "video_part",
+      "line_start": 221,
+      "line_end": 248,
+      "quote": "- [07:33] 梦奇这硬度又增加了一些\n- [07:38] 最近DRG特别喜欢用梦奇\n- [07:41] 就是自从他们用梦奇打了一把双边打了一把\n- [07:44] 对方的双边阵容赢了之后\n- [07:46] 这个梦奇的优先级变得很高\n- [07:48] 尝到甜头了对\n- [07:50] 但他这把就是一个标准的双前排\n- [07:53] 双前排来解海月这个阵容\n- [07:58] 说实话不是很好打\n- [08:00] 怎么说\n- [08:00] 因为他这个阵容后排不容易活\n- [08:04] 就是涉及到一个问题\n- [08:05] 双前排的话\n- [08:06] 你的输出质量肯定是要受一些影响\n- [08:08] 对输出质量比较低\n- [08:09] 然后苍和安琪拉这两个点你要面临的是京东\n- [08:13] 这五个相当于是一个全突脸\n- [08:15] 全突脸\n- [08:15] 你一个狂铁加梦奇对冲后排肯定是冲不过的\n- [08:19] 你可以把他当成四切位\n- [08:21] 就是这套阵容\n- [08:22] 最好是你能把对面的输出挡住\n- [08:25] 然后你的后排去输出\n- [08:26] 但是面对这种全部是要去往你后排冲的人\n- [08:29] 真挡不住\n- [08:30] 因为京东的阵容灵活度比较高的\n- [08:33] 有一个赵云和夏洛特在就已经很灵活了\n- [08:36] 只能看前期少次元和安琪拉能不能出节奏吧",
+      "context": "- [07:29] 跟少次元安琪拉打配合\n- [07:30] 爆发上也够对\n- [07:31] 主要是能接康姆哦\n- [07:33] 梦奇这硬度又增加了一些\n- [07:38] 最近DRG特别喜欢用梦奇\n- [07:41] 就是自从他们用梦奇打了一把双边打了一把\n- [07:44] 对方的双边阵容赢了之后\n- [07:46] 这个梦奇的优先级变得很高\n- [07:48] 尝到甜头了对\n- [07:50] 但他这把就是一个标准的双前排\n- [07:53] 双前排来解海月这个阵容\n- [07:58] 说实话不是很好打\n- [08:00] 怎么说\n- [08:00] 因为他这个阵容后排不容易活\n- [08:04] 就是涉及到一个问题\n- [08:05] 双前排的话\n- [08:06] 你的输出质量肯定是要受一些影响\n- [08:08] 对输出质量比较低\n- [08:09] 然后苍和安琪拉这两个点你要面临的是京东\n- [08:13] 这五个相当于是一个全突脸\n- [08:15] 全突脸\n- [08:15] 你一个狂铁加梦奇对冲后排肯定是冲不过的\n- [08:19] 你可以把他当成四切位\n- [08:21] 就是这套阵容\n- [08:22] 最好是你能把对面的输出挡住\n- [08:25] 然后你的后排去输出\n- [08:26] 但是面对这种全部是要去往你后排冲的人\n- [08:29] 真挡不住\n- [08:30] 因为京东的阵容灵活度比较高的\n- [08:33] 有一个赵云和夏洛特在就已经很灵活了\n- [08:36] 只能看前期少次元和安琪拉能不能出节奏吧\n- [08:39] 他梦奇起到的作用最多就是增加一点留人能力\n- [08:43] 补一个大招对吧\n- [08:45] 补一个大招",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "双前排应对海月却可能难保后排：这是阵容counter观点，与最终选人交叉而非结果认证。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    }
+  ],
+  "cases": [
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-01",
+      "start_seconds": 86,
+      "end_seconds": 111,
+      "timestamp_kind": "video_part",
+      "line_start": 55,
+      "line_end": 65,
+      "quote": "- [01:26] 他其实也是一名节奏型中单\n- [01:28] 他更多的还是为去放线时候给到双边的一个支援\n- [01:31] 他的这个GANK成功率特别高\n- [01:33] 而且我觉得他是一个比较大心脏的选手啊\n- [01:36] 这一点对于目前他们是被迫进行大师轮换的情况底下\n- [01:40] 我觉得也是一个新的帮助\n- [01:41] 是因为他的心性很强\n- [01:43] 所以接下来浩浩和光明登场之后\n- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的",
+      "context": "- [01:18] 中单第二\n- [01:19] 然后同时场均的野怪数也是在中单第二\n- [01:23] 这是他没有打完全程的情况底下打出来的数据\n- [01:26] 他其实也是一名节奏型中单\n- [01:28] 他更多的还是为去放线时候给到双边的一个支援\n- [01:31] 他的这个GANK成功率特别高\n- [01:33] 而且我觉得他是一个比较大心脏的选手啊\n- [01:36] 这一点对于目前他们是被迫进行大师轮换的情况底下\n- [01:40] 我觉得也是一个新的帮助\n- [01:41] 是因为他的心性很强\n- [01:43] 所以接下来浩浩和光明登场之后\n- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的\n- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山",
+      "type": "commentator_opinion",
+      "category": "rotation_counter",
+      "interpretation": "评论称昊昊也有放线双边支援；不是纯后排刷子定论。GANK成功率为解说观点，未验证数字。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-02",
+      "start_seconds": 1482,
+      "end_seconds": 1497,
+      "timestamp_kind": "video_part",
+      "line_start": 603,
+      "line_end": 611,
+      "quote": "- [24:42] 回头再给一下控制\n- [24:43] 小安活着\n- [24:44] 中路兵线进来\n- [24:45] 团灭之后点掉\n- [24:46] 谁\n- [24:46] 让我们恭喜北京JDG\n- [24:51] 随着北京JDG扳回一局之后\n- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满",
+      "context": "- [24:39] 他这一飞飞到是对面那一手太乙真人\n- [24:41] 太乙真人闪现\n- [24:41] 拉开了身位\n- [24:42] 回头再给一下控制\n- [24:43] 小安活着\n- [24:44] 中路兵线进来\n- [24:45] 团灭之后点掉\n- [24:46] 谁\n- [24:46] 让我们恭喜北京JDG\n- [24:51] 随着北京JDG扳回一局之后\n- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满\n- [25:02] 我们将会有6分钟的时间去给到双方的选手做调整\n- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面",
+      "type": "commentary_event",
+      "category": "result",
+      "interpretation": "字幕明确恭喜JDG、扳回一局至2:2；本源G4为JDG胜，不支持G4败猜测。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-03",
+      "start_seconds": 736,
+      "end_seconds": 769,
+      "timestamp_kind": "video_part",
+      "line_start": 280,
+      "line_end": 294,
+      "quote": "- [12:16] 一条暴君直接被无双拿到比较的稳妥\n- [12:21] 然后EDGM依旧还是先以发育为主\n- [12:24] 因为夏林这边第一件直接是三级刀\n- [12:26] 而无双这边是准备第一件黄盾的\n- [12:29] 冲过来一飞\n- [12:30] 但安琪拉回头一个二技能接大招互换血量\n- [12:35] 看到时预测上面这把非常的平衡啊\n- [12:38] 17位嘉宾看好了北京JDG\n- [12:39] 16位看好了上海BGM亮眼诶\n- [12:42] 安琪拉这个二技能打到了\n- [12:43] 然后下路的一个位置\n- [12:44] 张飞大招碰到了对面的一个戈亚\n- [12:46] 戈亚交了一个闪现\n- [12:47] 但是风潇在侧面直接追上\n- [12:49] 拿到第一滴血",
+      "context": "- [12:09] 直接不来了\n- [12:10] 因为蓝区马上刷了下流星都没过来\n- [12:13] 反了一组小野抓了一个空隙\n- [12:16] 一条暴君直接被无双拿到比较的稳妥\n- [12:21] 然后EDGM依旧还是先以发育为主\n- [12:24] 因为夏林这边第一件直接是三级刀\n- [12:26] 而无双这边是准备第一件黄盾的\n- [12:29] 冲过来一飞\n- [12:30] 但安琪拉回头一个二技能接大招互换血量\n- [12:35] 看到时预测上面这把非常的平衡啊\n- [12:38] 17位嘉宾看好了北京JDG\n- [12:39] 16位看好了上海BGM亮眼诶\n- [12:42] 安琪拉这个二技能打到了\n- [12:43] 然后下路的一个位置\n- [12:44] 张飞大招碰到了对面的一个戈亚\n- [12:46] 戈亚交了一个闪现\n- [12:47] 但是风潇在侧面直接追上\n- [12:49] 拿到第一滴血\n- [12:50] 虽然说第一波小韩这边是躲掉了小飞的一个大招\n- [12:53] 但是后续封校的一个大闪直接致盲\n- [12:56] 补上控制",
+      "type": "commentary_event",
+      "category": "counter_old_quote",
+      "interpretation": "旧12:15绝活融化前排引文不存在；该时间实际有互换血量与风潇一血，不能改写成昊昊救主。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-04",
+      "start_seconds": 1507,
+      "end_seconds": 1545,
+      "timestamp_kind": "video_part",
+      "line_start": 613,
+      "line_end": 630,
+      "quote": "- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面\n- [25:09] 其实EDGM已经拿下优势之后\n- [25:11] 后续的京东的几波野区的处理非常的完美\n- [25:15] 而且他们真的是把自己中野辅的控制打的非常的不错\n- [25:19] 包括浩浩\n- [25:20] 他在面临到这样的一个压力\n- [25:23] 轮换上来之后\n- [25:24] 包括看到光明对吧\n- [25:25] 面对这样一个压力\n- [25:27] 轮换上来之后\n- [25:28] 他们很快的找到了自己下赛那种状态\n- [25:31] 然后把这个节奏给稳住了\n- [25:34] 无论是这把安琪拉前面的中期的几波213\n- [25:37] 他的二技能的一个准度\n- [25:39] 包括光明在又是回归到了夏季赛\n- [25:41] 他那个状态的对于兵线的理解再一次展现了出来\n- [25:45] 就他边线一直在做牵制",
+      "context": "- [24:54] 现在比分战成了二比二平\n- [24:57] 那这也就意味着我们将会看到的是年总开赛以来的第一次打满\n- [25:02] 我们将会有6分钟的时间去给到双方的选手做调整\n- [25:07] 这一把还是比较惊险的\n- [25:09] 在前面\n- [25:09] 其实EDGM已经拿下优势之后\n- [25:11] 后续的京东的几波野区的处理非常的完美\n- [25:15] 而且他们真的是把自己中野辅的控制打的非常的不错\n- [25:19] 包括浩浩\n- [25:20] 他在面临到这样的一个压力\n- [25:23] 轮换上来之后\n- [25:24] 包括看到光明对吧\n- [25:25] 面对这样一个压力\n- [25:27] 轮换上来之后\n- [25:28] 他们很快的找到了自己下赛那种状态\n- [25:31] 然后把这个节奏给稳住了\n- [25:34] 无论是这把安琪拉前面的中期的几波213\n- [25:37] 他的二技能的一个准度\n- [25:39] 包括光明在又是回归到了夏季赛\n- [25:41] 他那个状态的对于兵线的理解再一次展现了出来\n- [25:45] 就他边线一直在做牵制\n- [25:47] 然后包括当我觉得最关键的一波可能到后面非常焦灼的情况\n- [25:51] 底下就是他的那个额开大进去了以后一打四\n- [25:55] 然后对把卢安娜给打掉了",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "赛后解说评价中野辅控制与边线牵制；不能单归功中单。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "source_sha256": "0a3a8b9e728c0f09c54458ee784d6451159d68b711cce5fee2c31000ffc73340",
+      "part_id": "BV19FHv61Efx_P01",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=1",
+      "id": "VS-05",
+      "start_seconds": 347,
+      "end_seconds": 369,
+      "timestamp_kind": "video_part",
+      "line_start": 141,
+      "line_end": 149,
+      "quote": "- [05:47] 好消息就是浩浩和光明之前都是跟其他的选手有过配合的\n- [05:52] 有过比赛的经验\n- [05:53] 还有就是京东他们的这个大师轮换\n- [05:56] 因为他们会是光明和浩浩嘛\n- [05:58] 然后他们的中野辅在夏季赛都是一起打过的对吧\n- [06:03] 他们两套中野辅\n- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的",
+      "context": "- [05:41] 作为精英组的队伍\n- [05:42] 而今年大师组的队伍\n- [05:44] 这就可以足以证明现在京东的一个强度了\n- [05:47] 好消息就是浩浩和光明之前都是跟其他的选手有过配合的\n- [05:52] 有过比赛的经验\n- [05:53] 还有就是京东他们的这个大师轮换\n- [05:56] 因为他们会是光明和浩浩嘛\n- [05:58] 然后他们的中野辅在夏季赛都是一起打过的对吧\n- [06:03] 他们两套中野辅\n- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的\n- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚",
+      "type": "commentator_opinion",
+      "category": "rotation",
+      "interpretation": "两套中野辅是解说评价；换的是对抗路光明和中路浩浩，不是更换辅助。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+      "source_sha256": "0a3a8b9e728c0f09c54458ee784d6451159d68b711cce5fee2c31000ffc73340",
+      "part_id": "BV19FHv61Efx_P01",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=1",
+      "id": "VS-06",
+      "start_seconds": 371,
+      "end_seconds": 397,
+      "timestamp_kind": "video_part",
+      "line_start": 150,
+      "line_end": 159,
+      "quote": "- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚\n- [06:18] 毫无保留的教了他中路的很多一些东西和细节\n- [06:21] 其实这种毫无保留\n- [06:23] 我觉得是和京东整体的队内氛围有关的\n- [06:25] 因为大家会发现京东他们有非常多的新人选手\n- [06:28] 对光明浩浩小韩都是今年新出来的选手\n- [06:31] 但是他们好像都是能够在队伍当中发挥出非常好的一个作用出来\n- [06:37] 我觉得这和清融还有无畏他们队内给予到的那种氛围",
+      "context": "- [06:04] 而且都是拿到过结果的中野辅\n- [06:06] 所以在这点上可以确认就是京东他哪怕大师轮换之后\n- [06:09] 他的主体节奏框架是相对稳定的\n- [06:11] 这就想起了在之前夏季赛京东的一个纪录片\n- [06:14] 当时浩浩就说\n- [06:16] 清融在去亚运会之前那个夜晚\n- [06:18] 毫无保留的教了他中路的很多一些东西和细节\n- [06:21] 其实这种毫无保留\n- [06:23] 我觉得是和京东整体的队内氛围有关的\n- [06:25] 因为大家会发现京东他们有非常多的新人选手\n- [06:28] 对光明浩浩小韩都是今年新出来的选手\n- [06:31] 但是他们好像都是能够在队伍当中发挥出非常好的一个作用出来\n- [06:37] 我觉得这和清融还有无畏他们队内给予到的那种氛围\n- [06:41] 那种包容是离开的\n- [06:43] 就作为队伍的一个老人\n- [06:44] 去迅速的把一个信任",
+      "type": "commentator_opinion",
+      "category": "rotation_context",
+      "interpretation": "解说转述纪录片中清融教新人细节，证据层级是转述，不是队内原始语音。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+      "source_sha256": "a2322e17cfc0e6b2386ac15213d2206561215c2c291e6a350290bf3a019b9c6e",
+      "part_id": "BV19FHv61Efx_P06",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=6",
+      "id": "VS-07",
+      "start_seconds": 201,
+      "end_seconds": 228,
+      "timestamp_kind": "video_part",
+      "line_start": 97,
+      "line_end": 108,
+      "quote": "- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中\n- [03:29] 数据里面能看得出来他的支援率高且成功率又高\n- [03:33] 而浩浩呢就是偏向于大法师\n- [03:35] 你给到拿拿到一些像嬴政啊\n- [03:37] 沈梦溪之类的英雄\n- [03:38] 他总是能够把自己的分均伤害啊\n- [03:40] 或者对双C的伤害拉的非常高\n- [03:43] 所以两名选手有自己风格\n- [03:45] 我觉得所以今天可能京东在大师轮换的机制下\n- [03:48] 会启用两套完全不一样的这BP风格",
+      "context": "- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点\n- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中\n- [03:29] 数据里面能看得出来他的支援率高且成功率又高\n- [03:33] 而浩浩呢就是偏向于大法师\n- [03:35] 你给到拿拿到一些像嬴政啊\n- [03:37] 沈梦溪之类的英雄\n- [03:38] 他总是能够把自己的分均伤害啊\n- [03:40] 或者对双C的伤害拉的非常高\n- [03:43] 所以两名选手有自己风格\n- [03:45] 我觉得所以今天可能京东在大师轮换的机制下\n- [03:48] 会启用两套完全不一样的这BP风格\n- [03:51] 然后对抗路呢光明以及花园无分\n- [03:53] 你觉得他们两个分别是属于什么样风格的边路\n- [03:56] 我觉得花园他其实刚出道的时候也是站边为主",
+      "type": "commentator_opinion",
+      "category": "bp_opinion",
+      "interpretation": "赛前评论区分支援型与大法师倾向，属于预测且phase=pre_show，不能is_bp=1。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+      "source_sha256": "a2322e17cfc0e6b2386ac15213d2206561215c2c291e6a350290bf3a019b9c6e",
+      "part_id": "BV19FHv61Efx_P06",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=6",
+      "id": "VS-08",
+      "start_seconds": 185,
+      "end_seconds": 198,
+      "timestamp_kind": "video_part",
+      "line_start": 91,
+      "line_end": 96,
+      "quote": "- [03:05] 然后包括他们中单金融以及浩浩浩浩给我的印象\n- [03:09] 他一开始最初是在ESTAR的时候\n- [03:12] 就是他是一个偏向指挥型的中单\n- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点",
+      "context": "- [02:57] 两位怎么看待这个配置呢\n- [02:59] 呃我觉得应该是根据训练赛的效果来匹配\n- [03:02] 现在目前我们看到的这套首发的\n- [03:05] 然后包括他们中单金融以及浩浩浩浩给我的印象\n- [03:09] 他一开始最初是在ESTAR的时候\n- [03:12] 就是他是一个偏向指挥型的中单\n- [03:14] 这个在中单里是非常稀缺的花卷\n- [03:17] 刚好也是一位对\n- [03:18] 我觉得今天中路一定是非常有看点\n- [03:21] 首先我们看到京东的中路两名选手\n- [03:24] 第一名是清融\n- [03:25] 他在夏季赛的整体发挥就是有在打的比赛过程当中",
+      "type": "commentator_opinion",
+      "category": "haohao_background",
+      "interpretation": "评论回忆ESTAR时期指挥型中单，金融等ASR原样保留。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+      "source_sha256": "6aec04d6a7c00980af256c5522d6fa6c3831c74b903688ea9c1c28b2131e27a2",
+      "part_id": "BV1PttH6rEwH_P07",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=7",
+      "id": "VS-09",
+      "start_seconds": 652,
+      "end_seconds": 674,
+      "timestamp_kind": "video_part",
+      "line_start": 314,
+      "line_end": 325,
+      "quote": "- [10:52] 就是中单的浩浩\n- [10:53] 浩浩在第三轮的比赛得以首发了之后\n- [10:55] 因为青龙区的亚运会嘛\n- [10:56] 而这位年轻的选手\n- [10:58] 他目前在场上的个人表现\n- [11:00] 他其实给我的感觉是游刃有余嗯\n- [11:04] 他是不像是一个年轻的新人\n- [11:06] 在场上打出的这种中路贯穿三线的这种画面\n- [11:09] 因为他中单的这名选手就是浩浩\n- [11:11] 他上场了之后\n- [11:12] 他也带有一点的指挥属性\n- [11:14] 我觉得这一点是能够帮助京东提升他们整体节奏的一个衔接了",
+      "context": "- [10:47] TTGTTG再去接团\n- [10:49] 那总是会出问题对\n- [10:51] 而且还有一位年轻的选手\n- [10:52] 就是中单的浩浩\n- [10:53] 浩浩在第三轮的比赛得以首发了之后\n- [10:55] 因为青龙区的亚运会嘛\n- [10:56] 而这位年轻的选手\n- [10:58] 他目前在场上的个人表现\n- [11:00] 他其实给我的感觉是游刃有余嗯\n- [11:04] 他是不像是一个年轻的新人\n- [11:06] 在场上打出的这种中路贯穿三线的这种画面\n- [11:09] 因为他中单的这名选手就是浩浩\n- [11:11] 他上场了之后\n- [11:12] 他也带有一点的指挥属性\n- [11:14] 我觉得这一点是能够帮助京东提升他们整体节奏的一个衔接了\n- [11:19] 对这个他在ESTAR的时候\n- [11:20] 当时跟明做出轮换的时候\n- [11:22] 当时我们有放过他一次",
+      "type": "commentator_opinion",
+      "category": "rotation_context",
+      "interpretation": "评论谈第三轮首发、指挥衔接；青龙区的亚运会是ASR原文，不静默改成清融去了亚运会。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+      "source_sha256": "6aec04d6a7c00980af256c5522d6fa6c3831c74b903688ea9c1c28b2131e27a2",
+      "part_id": "BV1PttH6rEwH_P07",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=7",
+      "id": "VS-10",
+      "start_seconds": 688,
+      "end_seconds": 704,
+      "timestamp_kind": "video_part",
+      "line_start": 331,
+      "line_end": 339,
+      "quote": "- [11:28] 是的还有就是小韩了\n- [11:29] 小韩其实也算是新人\n- [11:31] 哎嗯小韩在今天的比赛还是比较期待他的发挥的\n- [11:35] 因为我看了一下他的团战输出能力上啊\n- [11:37] 他其实跟小雪\n- [11:39] 尤其是在后期的团战输出能力上有点不相上下哦\n- [11:41] 这个是后续会讲的\n- [11:43] 就是他们队伍的风格改变\n- [11:44] 让小寒整个选手在队伍当中的地位变得非常的高对好",
+      "context": "- [11:22] 当时我们有放过他一次\n- [11:23] 他听过语音啊\n- [11:24] 他确实是一个很敢去做指挥判断的一名年轻选手\n- [11:28] 是的还有就是小韩了\n- [11:29] 小韩其实也算是新人\n- [11:31] 哎嗯小韩在今天的比赛还是比较期待他的发挥的\n- [11:35] 因为我看了一下他的团战输出能力上啊\n- [11:37] 他其实跟小雪\n- [11:39] 尤其是在后期的团战输出能力上有点不相上下哦\n- [11:41] 这个是后续会讲的\n- [11:43] 就是他们队伍的风格改变\n- [11:44] 让小寒整个选手在队伍当中的地位变得非常的高对好\n- [11:48] 那么刚刚说完了两支队伍\n- [11:51] 他们在这个赛季我们说的这个第一讲和第二讲\n- [11:54] 那么还是要期待一下双方在今天的这个首发名单啊",
+      "type": "commentator_opinion",
+      "category": "adc_opinion",
+      "interpretation": "评论称风格变化提高小寒队内地位；不是昊昊导致射手均值变化的因果证明。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-11",
+      "start_seconds": 1456,
+      "end_seconds": 1485,
+      "timestamp_kind": "video_part",
+      "line_start": 703,
+      "line_end": 716,
+      "quote": "- [24:16] 无畏他的墨子\n- [24:17] 我们印象当中一直都是很准的\n- [24:19] 但这个赛季他在常规赛用的两把墨子都没有赢\n- [24:22] 不过季后赛这一把墨子命中率极高极高\n- [24:25] 而且大招的拆火也很及时\n- [24:27] 对他和浩浩的女娲两个人的话就形成了一个非常完美的combo闭环\n- [24:33] 对的中路那一波是的\n- [24:35] 直接把那个虞姬秒掉嗯\n- [24:37] 墨子先二技能泡到一闪\n- [24:39] 直接控住\n- [24:40] 然后逼出一级闪现之后\n- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制",
+      "context": "- [24:11] 这是这样的操作\n- [24:13] 永远是TTG可对\n- [24:14] 但是我们要知道的一点是\n- [24:16] 无畏他的墨子\n- [24:17] 我们印象当中一直都是很准的\n- [24:19] 但这个赛季他在常规赛用的两把墨子都没有赢\n- [24:22] 不过季后赛这一把墨子命中率极高极高\n- [24:25] 而且大招的拆火也很及时\n- [24:27] 对他和浩浩的女娲两个人的话就形成了一个非常完美的combo闭环\n- [24:33] 对的中路那一波是的\n- [24:35] 直接把那个虞姬秒掉嗯\n- [24:37] 墨子先二技能泡到一闪\n- [24:39] 直接控住\n- [24:40] 然后逼出一级闪现之后\n- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制\n- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "解说复盘女娲墨子控制闭环与拆火，保留女王/一级等ASR，不拼接另一时间段。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-12",
+      "start_seconds": 1488,
+      "end_seconds": 1512,
+      "timestamp_kind": "video_part",
+      "line_start": 717,
+      "line_end": 726,
+      "quote": "- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期\n- [24:57] 那京东他的优势就是在于我手长\n- [24:59] 我机会多啊\n- [25:00] 但你如果中期没给我压很大的压力的话\n- [25:03] 我们看到两边其实一血爆发的非常的晚\n- [25:06] 两边一直在拉扯拉扯的过程当中\n- [25:09] 运营着这个京东经济就已经优于你了\n- [25:12] 因为他光明每一波都把兵线处理完了",
+      "context": "- [24:42] 女王在落地\n- [24:42] 而且他后面的回头的那一炮又中了的\n- [24:45] 是打了两套控制\n- [24:48] 但现在的TTG压力就会比较大了\n- [24:51] 因为刚刚那局他们本身想的是拖拖的时间可能有点久\n- [24:55] 如果说你真的拖到大后期\n- [24:57] 那京东他的优势就是在于我手长\n- [24:59] 我机会多啊\n- [25:00] 但你如果中期没给我压很大的压力的话\n- [25:03] 我们看到两边其实一血爆发的非常的晚\n- [25:06] 两边一直在拉扯拉扯的过程当中\n- [25:09] 运营着这个京东经济就已经优于你了\n- [25:12] 因为他光明每一波都把兵线处理完了\n- [25:14] 哎光明这一点做的实在是太棒了\n- [25:15] 对就他总是能够把边线丢出去\n- [25:17] 是的他这把玩的我感觉更像马超",
+      "type": "commentator_opinion",
+      "category": "resources",
+      "interpretation": "评论指出手长与光明处理兵线；经济优势不应全部归中单。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-13",
+      "start_seconds": 1129,
+      "end_seconds": 1151,
+      "timestamp_kind": "video_part",
+      "line_start": 537,
+      "line_end": 544,
+      "quote": "- [18:49] 但是从京东的视角\n- [18:50] 他这把C也多\n- [18:53] 关键是光明跟浩浩两个点的经济有点超前\n- [18:57] 主要是海月太肥\n- [18:58] 大家可以看一眼海月的经济\n- [18:59] 海月的经济几乎快追上夏洛特了\n- [19:03] 只能说京东非常的照顾这边新上场的队友给的钱真不少\n- [19:11] 这5800的凯越拉人谁受得了",
+      "context": "- [18:39] 但也顶不住另一面光明残血从你当中窜了出来\n- [18:42] 打野位的互换\n- [18:46] 但无双说实话单换小羊不亏\n- [18:49] 但是从京东的视角\n- [18:50] 他这把C也多\n- [18:53] 关键是光明跟浩浩两个点的经济有点超前\n- [18:57] 主要是海月太肥\n- [18:58] 大家可以看一眼海月的经济\n- [18:59] 海月的经济几乎快追上夏洛特了\n- [19:03] 只能说京东非常的照顾这边新上场的队友给的钱真不少\n- [19:11] 这5800的凯越拉人谁受得了\n- [19:14] 来回看一下这波一脚\n- [19:15] 赵云是交一交大\n- [19:17] 然后想打梦奇当中吃到减速了",
+      "type": "commentator_opinion",
+      "category": "resources_counter",
+      "interpretation": "新上场中单海月经济高，为昊昊恒定让钱保射刻板印象提供反例，不能推断长期资源分配。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-14",
+      "start_seconds": 1185,
+      "end_seconds": 1192,
+      "timestamp_kind": "video_part",
+      "line_start": 558,
+      "line_end": 561,
+      "quote": "- [19:45] 还有一点就是小韩经济其实也挺高的\n- [19:47] 但是对他来讲\n- [19:49] 花园跟小小杨这两个点其实没有那么打的动\n- [19:52] 倒相对还好",
+      "context": "- [19:28] 然后自己全身而退\n- [19:31] 他真的是在四个人中间\n- [19:42] 还有30秒刷暗影暴君\n- [19:45] 还有一点就是小韩经济其实也挺高的\n- [19:47] 但是对他来讲\n- [19:49] 花园跟小小杨这两个点其实没有那么打的动\n- [19:52] 倒相对还好\n- [19:53] 对于第二季来说\n- [19:55] 就以前的梦奇啊\n- [19:57] 狂铁啊",
+      "type": "commentator_opinion",
+      "category": "adc_resources",
+      "interpretation": "同局小韩经济也高；不能把上一证据解释为独占资源。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-15",
+      "start_seconds": 1004,
+      "end_seconds": 1021,
+      "timestamp_kind": "video_part",
+      "line_start": 460,
+      "line_end": 468,
+      "quote": "- [16:44] 但是在无双无畏清融这个中野辅的眼里\n- [16:48] 他们肯定是不能接受的\n- [16:49] 就光明这边可以稍微拖一拖\n- [16:51] 但下路四个人前面要着急\n- [16:53] 事情要搞事情\n- [16:55] 现在就是看无畏跟清融两个点\n- [16:57] 这个政府组合被的狼魂发现了\n- [17:00] 是的\n- [17:01] 他们怎么样去开点节奏",
+      "context": "- [16:37] 梦奇刷的肥肥的\n- [16:39] 就等到梦奇中期能顶住两件套出来之后\n- [16:42] 可以硬吃对方一整套对\n- [16:44] 但是在无双无畏清融这个中野辅的眼里\n- [16:48] 他们肯定是不能接受的\n- [16:49] 就光明这边可以稍微拖一拖\n- [16:51] 但下路四个人前面要着急\n- [16:53] 事情要搞事情\n- [16:55] 现在就是看无畏跟清融两个点\n- [16:57] 这个政府组合被的狼魂发现了\n- [17:00] 是的\n- [17:01] 他们怎么样去开点节奏\n- [17:02] 这就是苍打张良的一个好处啊\n- [17:05] 在你判断你可能要经过的草丛里面放陷阱\n- [17:11] 就可以提前找到你的人的一个位置",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "清融无双无畏中野辅被解说描述为前期需做事；下路四人表述不支持总在上半区叙事。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-16",
+      "start_seconds": 1115,
+      "end_seconds": 1138,
+      "timestamp_kind": "video_part",
+      "line_start": 511,
+      "line_end": 523,
+      "quote": "- [18:35] 主要张良这波是要留大招的\n- [18:37] 留武则天的大这位置非要碰滔博也能碰碰\n- [18:40] 看他这波应该就是\n- [18:41] 如果梦奇敢用大招抢龙\n- [18:43] 他直接大招捏住\n- [18:44] 对不想放王昭君大招分割一下\n- [18:47] 这个龙要被抢了\n- [18:48] 河道卡双抢到无双\n- [18:50] 稳稳的把龙拿了下来\n- [18:52] 这确实没办法\n- [18:54] 那个大招啊\n- [18:56] 王老师一个大把整个河道盖住了\n- [18:58] 分割了",
+      "context": "- [18:28] 来了五个\n- [18:30] 但梦奇这边在叠质量\n- [18:32] 但这种正面碰撞不好预估啊\n- [18:35] 主要张良这波是要留大招的\n- [18:37] 留武则天的大这位置非要碰滔博也能碰碰\n- [18:40] 看他这波应该就是\n- [18:41] 如果梦奇敢用大招抢龙\n- [18:43] 他直接大招捏住\n- [18:44] 对不想放王昭君大招分割一下\n- [18:47] 这个龙要被抢了\n- [18:48] 河道卡双抢到无双\n- [18:50] 稳稳的把龙拿了下来\n- [18:52] 这确实没办法\n- [18:54] 那个大招啊\n- [18:56] 王老师一个大把整个河道盖住了\n- [18:58] 分割了\n- [18:58] 对你过不去\n- [18:59] 没办法趟着\n- [19:00] 导致树源只能在龙坑里面留个大招",
+      "type": "commentary_event",
+      "category": "resources_counter",
+      "interpretation": "王昭君河道分割与无双拿龙，是控区事件；不等于旧假引文中小寒随意输出。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-17",
+      "start_seconds": 1295,
+      "end_seconds": 1304,
+      "timestamp_kind": "video_part",
+      "line_start": 600,
+      "line_end": 606,
+      "quote": "- [21:35] 能留住夏洛特吗\n- [21:36] 一闪曹操过来\n- [21:38] 但是在空中被冻住\n- [21:39] 我的天哪\n- [21:41] 清融就是在留这个技能\n- [21:43] 等待着后续无望的一个进场\n- [21:44] 哎这个真没脾气啊",
+      "context": "- [21:31] 但另一边夏洛特光明绕后了\n- [21:33] 光明杀进来\n- [21:34] 跟了一套\n- [21:35] 能留住夏洛特吗\n- [21:36] 一闪曹操过来\n- [21:38] 但是在空中被冻住\n- [21:39] 我的天哪\n- [21:41] 清融就是在留这个技能\n- [21:43] 等待着后续无望的一个进场\n- [21:44] 哎这个真没脾气啊\n- [21:47] 这个纯日选手自己的反应跟放技能的位置主要是第一波\n- [21:51] 滔博这边想去挤中国视野\n- [21:53] 第一个露头的是少四元",
+      "type": "commentary_event",
+      "category": "control_counter",
+      "interpretation": "留技能冻住进场者，展示防突进事件；不足独立证明保射频率。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-18",
+      "start_seconds": 1849,
+      "end_seconds": 1869,
+      "timestamp_kind": "video_part",
+      "line_start": 862,
+      "line_end": 871,
+      "quote": "- [30:49] 本局的IQMVP也是给到了清融的王昭君\n- [30:52] 无论是和无畏的张良的配合\n- [30:54] 无双的杨戬的配合\n- [30:55] 还是他自己的预判\n- [30:57] 这一局真的是只要出手就一定能够控到人\n- [31:00] 把王昭君这个英雄的性价比拉满了\n- [31:03] 拉满了就是不吃钱\n- [31:04] 也能做很多很多的事情\n- [31:06] 对清融他在一秒钟可以做出的决定非常多\n- [31:09] 他是一个效率很高的选手",
+      "context": "- [30:43] 包括那波闪现\n- [30:44] 下路也是互换的\n- [30:45] 但是很多的小动作真的都是很精心的设计\n- [30:49] 本局的IQMVP也是给到了清融的王昭君\n- [30:52] 无论是和无畏的张良的配合\n- [30:54] 无双的杨戬的配合\n- [30:55] 还是他自己的预判\n- [30:57] 这一局真的是只要出手就一定能够控到人\n- [31:00] 把王昭君这个英雄的性价比拉满了\n- [31:03] 拉满了就是不吃钱\n- [31:04] 也能做很多很多的事情\n- [31:06] 对清融他在一秒钟可以做出的决定非常多\n- [31:09] 他是一个效率很高的选手\n- [31:11] 就是他中路那一波互相都在互相打\n- [31:14] 就是王昭君和武武则天是在互相打血量的\n- [31:17] 他马上就意识到这波抢线抢不过马上就往上走了",
+      "type": "commentator_opinion",
+      "category": "resources_counter",
+      "interpretation": "字幕称清融MVP、不吃钱做事多，缓存MVP字段可能冲突；不凭此证明整个赛季四局零死。 字段冲突：字幕称清融王昭君MVP，但raw记录is_mvp=False；仅登记冲突，不认证MVP归属。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "source_sha256": "e6fd5a1948c4b8bdaca6460604ead2bc9048d92c3f6df6c73dd68b37a27917e4",
+      "part_id": "BV1i1pw6fEvK_P02",
+      "match_id": "kpl-20260004-2026100602",
+      "game_id": "kpl-20260004-2026100602-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1i1pw6fEvK?p=2",
+      "id": "VS-19",
+      "start_seconds": 577,
+      "end_seconds": 585,
+      "timestamp_kind": "video_part",
+      "line_start": 259,
+      "line_end": 262,
+      "quote": "- [09:37] 有钩子浩浩是真不怕啊\n- [09:40] 上来卖这个感觉有点拿命留人的意思\n- [09:44] 扑上去补一下\n- [09:45] 他真感觉想拿命留人",
+      "context": "- [09:28] 这有点夸张了\n- [09:30] 假装裴擒虎已经过来了\n- [09:32] 真吓人\n- [09:37] 有钩子浩浩是真不怕啊\n- [09:40] 上来卖这个感觉有点拿命留人的意思\n- [09:44] 扑上去补一下\n- [09:45] 他真感觉想拿命留人\n- [09:47] 那这个位置坦然大招落地往里震\n- [09:50] 一杀两个两个\n- [09:51] 但另一边的老虎",
+      "type": "commentator_opinion",
+      "category": "aggression_counter",
+      "interpretation": "解说形容浩浩拿命留人，能反驳只在后排的绝对说法；不能解释平均承伤。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+      "source_sha256": "e6fd5a1948c4b8bdaca6460604ead2bc9048d92c3f6df6c73dd68b37a27917e4",
+      "part_id": "BV1i1pw6fEvK_P02",
+      "match_id": "kpl-20260004-2026100602",
+      "game_id": "kpl-20260004-2026100602-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1i1pw6fEvK?p=2",
+      "id": "VS-20",
+      "start_seconds": 520,
+      "end_seconds": 544,
+      "timestamp_kind": "video_part",
+      "line_start": 225,
+      "line_end": 243,
+      "quote": "- [08:40] 武则天过来要交闪吗\n- [08:42] 没交闪\n- [08:43] 控住再闪\n- [08:44] 这个时候推到墙上\n- [08:45] 再给球\n- [08:46] 大球跟上调角度\n- [08:47] 一血到手\n- [08:49] 哎呦真是斗智斗勇啊\n- [08:51] 你有张良计\n- [08:52] 我有过墙梯\n- [08:53] 就是第一时间\n- [08:54] 其实过来\n- [08:54] 浩浩当时直接就可以闪现推了\n- [08:56] 但是他留了一手\n- [08:58] 他对面也有技能吗\n- [09:00] 他想用自己的强化球\n- [09:01] 看看能不能中白清\n- [09:02] 也怕他怕被闪现推\n- [09:04] 所以他只能先交闪等等",
+      "context": "- [08:34] 是我的魔兵\n- [08:37] 贵神速\n- [08:38] 顶两个送到墙上推\n- [08:40] 武则天过来要交闪吗\n- [08:42] 没交闪\n- [08:43] 控住再闪\n- [08:44] 这个时候推到墙上\n- [08:45] 再给球\n- [08:46] 大球跟上调角度\n- [08:47] 一血到手\n- [08:49] 哎呦真是斗智斗勇啊\n- [08:51] 你有张良计\n- [08:52] 我有过墙梯\n- [08:53] 就是第一时间\n- [08:54] 其实过来\n- [08:54] 浩浩当时直接就可以闪现推了\n- [08:56] 但是他留了一手\n- [08:58] 他对面也有技能吗\n- [09:00] 他想用自己的强化球\n- [09:01] 看看能不能中白清\n- [09:02] 也怕他怕被闪现推\n- [09:04] 所以他只能先交闪等等\n- [09:07] 小韩黏过去打出妖刀的闪下路差点单杀\n- [09:09] 但是另外一边上路打赢了之后\n- [09:11] 直接顺势就进了赵云的野区",
+      "type": "commentary_event",
+      "category": "mid_jungle_support",
+      "interpretation": "武则天前期留技能与一血的解说事件链。",
+      "review_status": "本次文本上下文复核",
+      "phase": "game_estimated"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-21",
+      "start_seconds": 99,
+      "end_seconds": 122,
+      "timestamp_kind": "video_part",
+      "line_start": 54,
+      "line_end": 62,
+      "quote": "- [01:39] 京东四个小局前三局的一血都是跟清融有关\n- [01:42] 就是在春季赛的时候开始啊\n- [01:45] 其实10分钟前清融的击杀参与率跟伤害量就排在中路位置的第一了\n- [01:50] 其实这证明了一个点\n- [01:51] 就是其实他们的中野辅三个点\n- [01:54] 对于中路的这个线权的欲望是非常强烈的\n- [01:58] 他们会尽可能的让自己的中路快点动起来\n- [02:01] 然后能够辐射到两条边路去\n- [02:02] 尽可能帮两条边路创造优势",
+      "context": "- [01:30] 但是北京京东的这条中轴线在整个联盟当中都是相当豪华的\n- [01:34] 就是他们一直对于中轴的控制度非常高额\n- [01:37] 上一上一场的话\n- [01:39] 京东四个小局前三局的一血都是跟清融有关\n- [01:42] 就是在春季赛的时候开始啊\n- [01:45] 其实10分钟前清融的击杀参与率跟伤害量就排在中路位置的第一了\n- [01:50] 其实这证明了一个点\n- [01:51] 就是其实他们的中野辅三个点\n- [01:54] 对于中路的这个线权的欲望是非常强烈的\n- [01:58] 他们会尽可能的让自己的中路快点动起来\n- [02:01] 然后能够辐射到两条边路去\n- [02:02] 尽可能帮两条边路创造优势\n- [02:04] 因为最早的时候他们更多的是用到那种中路大核\n- [02:07] 有一段时间我记得清风用到像是甄姬之类的英雄\n- [02:09] 其实用的特别多",
+      "type": "commentator_opinion",
+      "category": "mid_jungle_support",
+      "interpretation": "赛前对清融中路线权、双边辐射的评价，BP仅为估计时段。",
+      "review_status": "本次文本上下文复核",
+      "phase": "bp_estimated"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D01",
+      "start_seconds": 114,
+      "end_seconds": 130,
+      "timestamp_kind": "video_part",
+      "line_start": 66,
+      "line_end": 73,
+      "quote": "- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山\n- [02:00] 他们的BP是非常好做的\n- [02:02] 哪怕把盾山放出来\n- [02:03] 他们也有苏烈张飞去打\n- [02:07] 而且蓝色方的JDG自占鲁班大师一个ban位\n- [02:10] 你辅助是ban不完的",
+      "context": "- [01:45] 就是京东他们这样一套在夏季赛后半程一路一起打\n- [01:49] 就经历季后赛的这样一套五人组\n- [01:51] 他们打出来的效果又究竟会是什么样子的\n- [01:54] JDG败方选蓝\n- [01:56] 主要这一把EDG在红色方只需要处理掉海月\n- [01:59] 最多再ban一个盾山\n- [02:00] 他们的BP是非常好做的\n- [02:02] 哪怕把盾山放出来\n- [02:03] 他们也有苏烈张飞去打\n- [02:07] 而且蓝色方的JDG自占鲁班大师一个ban位\n- [02:10] 你辅助是ban不完的\n- [02:14] 鲁班大师EDGM第一ban应该是海月\n- [02:21] 哦关羽\n- [02:25] 看京东的第2ban",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "英雄优先级预测：海月/盾山与辅助ban位压力；不要把预测当真实禁选。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D02",
+      "start_seconds": 197,
+      "end_seconds": 227,
+      "timestamp_kind": "video_part",
+      "line_start": 93,
+      "line_end": 106,
+      "quote": "- [03:17] 这个是防海月的京东最好就直接海月\n- [03:23] 感觉海月加司空震还是的直接点对点的出对宋真打对位\n- [03:27] 然后海月当一个节奏点哦\n- [03:30] 大司命大司命主\n- [03:32] 那是海月还是司空震呢\n- [03:34] 只能拿一个了\n- [03:35] 看他们的优先级\n- [03:38] 雷霆所及\n- [03:39] 司空震了\n- [03:40] 司空震一灭\n- [03:42] 也是觉得对面直接出张飞了\n- [03:44] 如果硬顶着出海月的话\n- [03:45] 可能效果也没那么好\n- [03:47] 而且留到后面还是会去骗EDGM2轮的一个ban位",
+      "context": "- [03:04] 而且他们现在得去针对一下封潇\n- [03:06] 是的夏洛特\n- [03:15] 邂逅张飞\n- [03:17] 这个是防海月的京东最好就直接海月\n- [03:23] 感觉海月加司空震还是的直接点对点的出对宋真打对位\n- [03:27] 然后海月当一个节奏点哦\n- [03:30] 大司命大司命主\n- [03:32] 那是海月还是司空震呢\n- [03:34] 只能拿一个了\n- [03:35] 看他们的优先级\n- [03:38] 雷霆所及\n- [03:39] 司空震了\n- [03:40] 司空震一灭\n- [03:42] 也是觉得对面直接出张飞了\n- [03:44] 如果硬顶着出海月的话\n- [03:45] 可能效果也没那么好\n- [03:47] 而且留到后面还是会去骗EDGM2轮的一个ban位\n- [03:51] 起码谁是敌人\n- [03:53] 哪吒直接出上一场BO\n- [03:57] 我们看到了哪吒打团对于戈娅的一个团战的限制",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "张飞影响海月优先级，解说观察司空震先出；counter解释是观点。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+      "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+      "part_id": "BV19FHv61Efx_P04",
+      "match_id": "kpl-20260004-2026100302",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV19FHv61Efx?p=4",
+      "id": "VS-D03",
+      "start_seconds": 320,
+      "end_seconds": 380,
+      "timestamp_kind": "video_part",
+      "line_start": 138,
+      "line_end": 163,
+      "quote": "- [05:20] 安琪拉\n- [05:24] 想要抢前期的河道权长的路加了一个太乙\n- [05:29] 就是为了和安琪拉可以接combo练补爆发\n- [05:32] 这样整体的中野辅强度上面\n- [05:34] 前期京东的中野辅更强一点\n- [05:35] 这把感觉京东要偏刷了\n- [05:37] 就是一直保持大司命加钱\n- [05:39] 然后再转到边路去\n- [05:41] 那看一下花卷\n- [05:43] 最后的选择\n- [05:45] 要不来个姜子牙这种来了来了\n- [05:49] 因为他们确实夏季赛玩姜子牙还不错\n- [05:52] 花卷是三把全赢了\n- [05:54] 而且这把就是拖一下\n- [05:55] 给到路亚娜一个大后期\n- [05:57] 而且选姜子牙\n- [05:58] 他其实EDGM这把小控制还挺多的\n- [06:01] 烫一下之后\n- [06:01] 罗亚娜的这个一二也能把敌人勾过来\n- [06:05] 然后哪吒就可以直接飞\n- [06:06] 而是的他如果被姜子牙一技能烫完之后\n- [06:10] 他是不太敢一技能往前的\n- [06:12] 不过随着姜子牙选完之后啊\n- [06:14] 两边整体的阵容节奏上面会有一定的区别\n- [06:18] EDGM相对会更加偏发育一些\n- [06:20] 而北京JDG的话呢会偏向于前期的这种中野辅的节奏更强一些哦",
+      "context": "- [05:13] 他可以大招慢点放\n- [05:15] 然后再给个致盲\n- [05:16] 对魔法为我而存在\n- [05:20] 安琪拉\n- [05:24] 想要抢前期的河道权长的路加了一个太乙\n- [05:29] 就是为了和安琪拉可以接combo练补爆发\n- [05:32] 这样整体的中野辅强度上面\n- [05:34] 前期京东的中野辅更强一点\n- [05:35] 这把感觉京东要偏刷了\n- [05:37] 就是一直保持大司命加钱\n- [05:39] 然后再转到边路去\n- [05:41] 那看一下花卷\n- [05:43] 最后的选择\n- [05:45] 要不来个姜子牙这种来了来了\n- [05:49] 因为他们确实夏季赛玩姜子牙还不错\n- [05:52] 花卷是三把全赢了\n- [05:54] 而且这把就是拖一下\n- [05:55] 给到路亚娜一个大后期\n- [05:57] 而且选姜子牙\n- [05:58] 他其实EDGM这把小控制还挺多的\n- [06:01] 烫一下之后\n- [06:01] 罗亚娜的这个一二也能把敌人勾过来\n- [06:05] 然后哪吒就可以直接飞\n- [06:06] 而是的他如果被姜子牙一技能烫完之后\n- [06:10] 他是不太敢一技能往前的\n- [06:12] 不过随着姜子牙选完之后啊\n- [06:14] 两边整体的阵容节奏上面会有一定的区别\n- [06:18] EDGM相对会更加偏发育一些\n- [06:20] 而北京JDG的话呢会偏向于前期的这种中野辅的节奏更强一些哦\n- [06:26] 看到小费这把步行千山千山的张飞又出现了\n- [06:31] 他这把其实可以玩的稍微奔放一点\n- [06:33] 怎么说",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "安琪拉与太乙的中野辅前期节奏，对比姜子牙发育；花卷胜率仅解说所述。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-D04",
+      "start_seconds": 261,
+      "end_seconds": 294,
+      "timestamp_kind": "video_part",
+      "line_start": 131,
+      "line_end": 153,
+      "quote": "- [04:21] 当女王女王\n- [04:24] 你选女娲\n- [04:24] 反手出个嬴政对着射呗\n- [04:26] 他对着草对我\n- [04:27] 其实我是觉得嬴政打女娲挺舒服的\n- [04:30] 为什么在在于他前中期首先第一个点抢线快\n- [04:32] 第二点就是我的大招好的比你快的情况下\n- [04:34] 我手还比你长\n- [04:35] 那你女娲是需要发育的\n- [04:37] 你不能像一般的中路放线\n- [04:38] 那其实我嬴政就跟你打对位\n- [04:40] 我前中期只要拿完资源了之后\n- [04:41] 我后面每一波中线并完我就开大招清线\n- [04:44] 对我并完线我就开大超\n- [04:46] 你别管你谁来吃\n- [04:47] 你打野来就吃我大招\n- [04:48] 女娲来\n- [04:49] 女娲吃我大招\n- [04:50] 总归得有个人\n- [04:51] 要不就不吃\n- [04:52] 你不可能不吃这个线嘛\n- [04:53] 对呀\n- [04:54] 一寸长一寸强来了",
+      "context": "- [04:12] 主要出司空震了啊\n- [04:14] 而且刚刚想了一下虞姬\n- [04:16] 小雪这赛季也爱玩\n- [04:21] 当女王女王\n- [04:24] 你选女娲\n- [04:24] 反手出个嬴政对着射呗\n- [04:26] 他对着草对我\n- [04:27] 其实我是觉得嬴政打女娲挺舒服的\n- [04:30] 为什么在在于他前中期首先第一个点抢线快\n- [04:32] 第二点就是我的大招好的比你快的情况下\n- [04:34] 我手还比你长\n- [04:35] 那你女娲是需要发育的\n- [04:37] 你不能像一般的中路放线\n- [04:38] 那其实我嬴政就跟你打对位\n- [04:40] 我前中期只要拿完资源了之后\n- [04:41] 我后面每一波中线并完我就开大招清线\n- [04:44] 对我并完线我就开大超\n- [04:46] 你别管你谁来吃\n- [04:47] 你打野来就吃我大招\n- [04:48] 女娲来\n- [04:49] 女娲吃我大招\n- [04:50] 总归得有个人\n- [04:51] 要不就不吃\n- [04:52] 你不可能不吃这个线嘛\n- [04:53] 对呀\n- [04:54] 一寸长一寸强来了\n- [04:55] 嬴政加虞姬\n- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "嬴政打女娲的线权/射程解释为解说观点，不认证实际counter强度。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+      "source_sha256": "abc01880d923ff1f0ca68a08e5d637ce03f338cc5a0a050010d54de557f6fee3",
+      "part_id": "BV1PttH6rEwH_P05",
+      "match_id": "kpl-20260003-2026083001",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1PttH6rEwH?p=5",
+      "id": "VS-D05",
+      "start_seconds": 300,
+      "end_seconds": 334,
+      "timestamp_kind": "video_part",
+      "line_start": 155,
+      "line_end": 173,
+      "quote": "- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政\n- [05:04] 京东这边估计要游走第一第一波线帮忙抢中了\n- [05:07] 但TTG的中轴还是有点强的\n- [05:09] 他少四元加嬴嬴政\n- [05:11] 他原来可能咬来中一块并线嘛厉害\n- [05:12] 那这种情况下\n- [05:13] 中线的墨子\n- [05:15] 墨子就是不让小雪在线上好好抗压\n- [05:18] 但是这样的话\n- [05:19] 邵思源可能也要到线上去帮被迫过来要打对线\n- [05:23] 这样的话\n- [05:23] 其实如果中路是一对一玩的话\n- [05:26] 而二对二二对二你得把打野算上去\n- [05:28] 打野两个弹也不算了\n- [05:29] 占视野嘛\n- [05:30] 占视野对二对二嘛\n- [05:32] 二代的话还是TTG的线权哎\n- [05:34] 现优会更优一点",
+      "context": "- [04:53] 对呀\n- [04:54] 一寸长一寸强来了\n- [04:55] 嬴政加虞姬\n- [05:00] 而且嬴政还有一点是在于\n- [05:03] 如果选嬴政\n- [05:04] 京东这边估计要游走第一第一波线帮忙抢中了\n- [05:07] 但TTG的中轴还是有点强的\n- [05:09] 他少四元加嬴嬴政\n- [05:11] 他原来可能咬来中一块并线嘛厉害\n- [05:12] 那这种情况下\n- [05:13] 中线的墨子\n- [05:15] 墨子就是不让小雪在线上好好抗压\n- [05:18] 但是这样的话\n- [05:19] 邵思源可能也要到线上去帮被迫过来要打对线\n- [05:23] 这样的话\n- [05:23] 其实如果中路是一对一玩的话\n- [05:26] 而二对二二对二你得把打野算上去\n- [05:28] 打野两个弹也不算了\n- [05:29] 占视野嘛\n- [05:30] 占视野对二对二嘛\n- [05:32] 二代的话还是TTG的线权哎\n- [05:34] 现优会更优一点\n- [05:37] 但这样其实就比较考验京东\n- [05:39] 前面对线要拿点东西来boss打虞姬还是很好打的\n- [05:43] 但有个邵思源的续航的话会好很多嗯其实这把应该是稳步发育吧",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "墨子压虞姬与中线帮抢的取舍，是BP阵容预测而非赛后结果。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+      "source_sha256": "b6146b122d081b01170eb9297f6904eaaa916efdb7dac5d5c5a0261baef3be2d",
+      "part_id": "BV1HGjt6oEhw_P01",
+      "match_id": "kpl-20260003-2026062102",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1HGjt6oEhw?p=1",
+      "id": "VS-D06",
+      "start_seconds": 465,
+      "end_seconds": 524,
+      "timestamp_kind": "video_part",
+      "line_start": 209,
+      "line_end": 243,
+      "quote": "- [07:45] 还有狂铁也在外面\n- [07:46] 就是这一手拿完的话\n- [07:48] 要看京东如果是少C\n- [07:49] 要看京东愿不愿意拿张良和王昭君\n- [07:51] 我觉得或者是拿个张良\n- [07:52] 把王昭君放一放\n- [07:54] 双少资源直接拿\n- [07:56] 这几天的一抢少资源的对局\n- [07:58] 我们看到挺多的\n- [07:59] 但是现在区别是因为你是蓝色方的超次元\n- [08:01] 京东有两个选择\n- [08:02] 一是张良王昭君直接打\n- [08:03] 二是直接就是这个一我不要\n- [08:05] 还有一种就是我把只拿一个三楼\n- [08:07] 放一个康特瑞\n- [08:08] 而且这几天其实拿到张良王昭君的那一方打野通常会配个马超\n- [08:13] 是的\n- [08:13] 养马流双思源\n- [08:16] 我张良\n- [08:16] 张良大概率是王昭君了\n- [08:18] 还是放到三楼\n- [08:21] 但如果拿的话\n- [08:22] 可以给三楼有个小的康特位直接拿\n- [08:24] 就昨天我们也看到在DYG轮换打野之后\n- [08:27] 他们直接张良加马超\n- [08:29] 就是为了保障自己马超的优先级\n- [08:31] 是的\n- [08:32] 但是这样的话\n- [08:32] 京东三楼毕竟是个康特位\n- [08:34] 容错率更多\n- [08:35] 操你深渊\n- [08:38] 武则天要不要拿凤\n- [08:40] 武则天现在基本上都是明牌了\n- [08:42] 在张良王昭君先出的情况下\n- [08:44] 对方来手武则天拆火",
+      "context": "- [07:33] 但也有可能都同时都放关羽\n- [07:39] 那就看京东这手跟关羽有一股\n- [07:42] 那拿邵思源的味道\n- [07:45] 还有狂铁也在外面\n- [07:46] 就是这一手拿完的话\n- [07:48] 要看京东如果是少C\n- [07:49] 要看京东愿不愿意拿张良和王昭君\n- [07:51] 我觉得或者是拿个张良\n- [07:52] 把王昭君放一放\n- [07:54] 双少资源直接拿\n- [07:56] 这几天的一抢少资源的对局\n- [07:58] 我们看到挺多的\n- [07:59] 但是现在区别是因为你是蓝色方的超次元\n- [08:01] 京东有两个选择\n- [08:02] 一是张良王昭君直接打\n- [08:03] 二是直接就是这个一我不要\n- [08:05] 还有一种就是我把只拿一个三楼\n- [08:07] 放一个康特瑞\n- [08:08] 而且这几天其实拿到张良王昭君的那一方打野通常会配个马超\n- [08:13] 是的\n- [08:13] 养马流双思源\n- [08:16] 我张良\n- [08:16] 张良大概率是王昭君了\n- [08:18] 还是放到三楼\n- [08:21] 但如果拿的话\n- [08:22] 可以给三楼有个小的康特位直接拿\n- [08:24] 就昨天我们也看到在DYG轮换打野之后\n- [08:27] 他们直接张良加马超\n- [08:29] 就是为了保障自己马超的优先级\n- [08:31] 是的\n- [08:32] 但是这样的话\n- [08:32] 京东三楼毕竟是个康特位\n- [08:34] 容错率更多\n- [08:35] 操你深渊\n- [08:38] 武则天要不要拿凤\n- [08:40] 武则天现在基本上都是明牌了\n- [08:42] 在张良王昭君先出的情况下\n- [08:44] 对方来手武则天拆火\n- [08:45] 其实之前张良王昭君配苍也是一个非常多的组合\n- [08:48] 就是一个照视野\n- [08:50] 一个开对",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "王昭君张良优先级、三楼counter与武则天拆火，区分候选和最终选择。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-D07",
+      "start_seconds": 325,
+      "end_seconds": 356,
+      "timestamp_kind": "video_part",
+      "line_start": 164,
+      "line_end": 177,
+      "quote": "- [05:25] 其实主要就是得把烧素园给拆了对\n- [05:27] 然后关键点就是在于三楼位\n- [05:29] 三楼位的话一定要选选一个\n- [05:31] 要么不怕海月的打野\n- [05:32] 要么不怕海月的边路\n- [05:35] 你得来一个能顶住的\n- [05:40] 来了京东夏洛特加海月\n- [05:42] 这个阵容出来\n- [05:43] 开局就是一手换线\n- [05:44] 这样对于浩浩很友善\n- [05:48] 第一把上来先拿了这么一个超标英雄\n- [05:51] 然后配的又是一个非常强势的体系\n- [05:53] 是的其实很友善\n- [05:56] 因为他的整体思路相对简单",
+      "context": "- [05:17] 是那个海月加寿司源\n- [05:20] 跟鬼一样\n- [05:21] 这两个点太吓人了\n- [05:25] 其实主要就是得把烧素园给拆了对\n- [05:27] 然后关键点就是在于三楼位\n- [05:29] 三楼位的话一定要选选一个\n- [05:31] 要么不怕海月的打野\n- [05:32] 要么不怕海月的边路\n- [05:35] 你得来一个能顶住的\n- [05:40] 来了京东夏洛特加海月\n- [05:42] 这个阵容出来\n- [05:43] 开局就是一手换线\n- [05:44] 这样对于浩浩很友善\n- [05:48] 第一把上来先拿了这么一个超标英雄\n- [05:51] 然后配的又是一个非常强势的体系\n- [05:53] 是的其实很友善\n- [05:56] 因为他的整体思路相对简单\n- [05:59] 狂铁\n- [06:02] 选狂铁可能不换线\n- [06:04] 就是DRG不会去追线",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "海月体系被称对新人友善；超标/思路简单仅解说评价，不能据此推导选手能力。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    },
+    {
+      "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+      "source_sha256": "0e48762fc05d8d235e9b520478ceef5b9b4dba803a728d606f82db9ae341439f",
+      "part_id": "BV1VfMP6ZEJ1_P01",
+      "match_id": "kpl-20260003-2026070403",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1VfMP6ZEJ1?p=1",
+      "id": "VS-D08",
+      "start_seconds": 453,
+      "end_seconds": 516,
+      "timestamp_kind": "video_part",
+      "line_start": 221,
+      "line_end": 248,
+      "quote": "- [07:33] 梦奇这硬度又增加了一些\n- [07:38] 最近DRG特别喜欢用梦奇\n- [07:41] 就是自从他们用梦奇打了一把双边打了一把\n- [07:44] 对方的双边阵容赢了之后\n- [07:46] 这个梦奇的优先级变得很高\n- [07:48] 尝到甜头了对\n- [07:50] 但他这把就是一个标准的双前排\n- [07:53] 双前排来解海月这个阵容\n- [07:58] 说实话不是很好打\n- [08:00] 怎么说\n- [08:00] 因为他这个阵容后排不容易活\n- [08:04] 就是涉及到一个问题\n- [08:05] 双前排的话\n- [08:06] 你的输出质量肯定是要受一些影响\n- [08:08] 对输出质量比较低\n- [08:09] 然后苍和安琪拉这两个点你要面临的是京东\n- [08:13] 这五个相当于是一个全突脸\n- [08:15] 全突脸\n- [08:15] 你一个狂铁加梦奇对冲后排肯定是冲不过的\n- [08:19] 你可以把他当成四切位\n- [08:21] 就是这套阵容\n- [08:22] 最好是你能把对面的输出挡住\n- [08:25] 然后你的后排去输出\n- [08:26] 但是面对这种全部是要去往你后排冲的人\n- [08:29] 真挡不住\n- [08:30] 因为京东的阵容灵活度比较高的\n- [08:33] 有一个赵云和夏洛特在就已经很灵活了\n- [08:36] 只能看前期少次元和安琪拉能不能出节奏吧",
+      "context": "- [07:29] 跟少次元安琪拉打配合\n- [07:30] 爆发上也够对\n- [07:31] 主要是能接康姆哦\n- [07:33] 梦奇这硬度又增加了一些\n- [07:38] 最近DRG特别喜欢用梦奇\n- [07:41] 就是自从他们用梦奇打了一把双边打了一把\n- [07:44] 对方的双边阵容赢了之后\n- [07:46] 这个梦奇的优先级变得很高\n- [07:48] 尝到甜头了对\n- [07:50] 但他这把就是一个标准的双前排\n- [07:53] 双前排来解海月这个阵容\n- [07:58] 说实话不是很好打\n- [08:00] 怎么说\n- [08:00] 因为他这个阵容后排不容易活\n- [08:04] 就是涉及到一个问题\n- [08:05] 双前排的话\n- [08:06] 你的输出质量肯定是要受一些影响\n- [08:08] 对输出质量比较低\n- [08:09] 然后苍和安琪拉这两个点你要面临的是京东\n- [08:13] 这五个相当于是一个全突脸\n- [08:15] 全突脸\n- [08:15] 你一个狂铁加梦奇对冲后排肯定是冲不过的\n- [08:19] 你可以把他当成四切位\n- [08:21] 就是这套阵容\n- [08:22] 最好是你能把对面的输出挡住\n- [08:25] 然后你的后排去输出\n- [08:26] 但是面对这种全部是要去往你后排冲的人\n- [08:29] 真挡不住\n- [08:30] 因为京东的阵容灵活度比较高的\n- [08:33] 有一个赵云和夏洛特在就已经很灵活了\n- [08:36] 只能看前期少次元和安琪拉能不能出节奏吧\n- [08:39] 他梦奇起到的作用最多就是增加一点留人能力\n- [08:43] 补一个大招对吧\n- [08:45] 补一个大招",
+      "type": "commentator_opinion",
+      "category": "draft_context",
+      "interpretation": "双前排应对海月却可能难保后排：这是阵容counter观点，与最终选人交叉而非结果认证。",
+      "review_status": "本次文本上下文复核",
+      "phase": "draft_context"
+    }
+  ],
+  "history": [
+    {
+      "path": "2026夏季赛/2026-07-03_【2026KPL夏季赛】7月3日 上海EDG.M VS 武汉eStarPro_BV16fT46AEtD/P04_赛前评论席.md",
+      "source_sha256": "7ace8ebaf88ca401211d65d9e3a35a48f0d6ab7f4cc47d7c1896fd37f847eb8f",
+      "part_id": "BV16fT46AEtD_P04",
+      "match_id": "kpl-20260003-2026070302",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV16fT46AEtD?p=4",
+      "id": "VS-22",
+      "start_seconds": 132,
+      "end_seconds": 154,
+      "timestamp_kind": "video_part",
+      "line_start": 73,
+      "line_end": 81,
+      "quote": "- [02:12] 这个点又是在做轮换上\n- [02:14] 跟上赛季ESTAR在同时期那个时候也是做轮换\n- [02:18] 那个时候我印象中是下掉了名\n- [02:19] 然后换上了浩浩然\n- [02:21] 还是说整个队伍在做更多的尝试\n- [02:24] 但跟那个时候的ESTAR也有不同\n- [02:27] 不同点在于在那个时候\n- [02:29] ESTAR他们的没有什么人能够太多的打出来很多高光的一个画面啊\n- [02:34] 也没有太多的方向和头绪",
+      "context": "- [02:06] 而且也没有能够赢下来\n- [02:07] 所以对于我们来讲是一个样本参考非常少的一个组合\n- [02:10] 是的嗯\n- [02:12] 这个点又是在做轮换上\n- [02:14] 跟上赛季ESTAR在同时期那个时候也是做轮换\n- [02:18] 那个时候我印象中是下掉了名\n- [02:19] 然后换上了浩浩然\n- [02:21] 还是说整个队伍在做更多的尝试\n- [02:24] 但跟那个时候的ESTAR也有不同\n- [02:27] 不同点在于在那个时候\n- [02:29] ESTAR他们的没有什么人能够太多的打出来很多高光的一个画面啊\n- [02:34] 也没有太多的方向和头绪\n- [02:36] 但是在这赛季有一名选手我觉得是ESTAR\n- [02:40] 我们不得不提的就是亮宇宇\n- [02:43] 亮宇在这个赛季确实展现出了非常强的射手的兜底能力",
+      "type": "commentator_opinion",
+      "category": "history_2026_haohao_estar",
+      "interpretation": "2026解说回顾上赛季ESTAR下掉名换浩浩；仅回顾来源，不当作2026昊昊代表ESTAR出场。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2022世界冠军杯/2022-12-08_【2022王者世冠】拉美ISG vs 中国武汉eStarPro 12月8日小组赛_BV1Ce411A79r/P01_第一局.md",
+      "source_sha256": "e9902a64578dc342dc1b4c16809225d36c1ad0a10d1ef5a43467243980dd6e06",
+      "part_id": "BV1Ce411A79r_P01",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1Ce411A79r?p=1",
+      "id": "VS-H22A",
+      "start_seconds": 1439,
+      "end_seconds": 1452,
+      "timestamp_kind": "video_part",
+      "line_start": 655,
+      "line_end": 660,
+      "quote": "- [23:59] 开局isg抢中抢的还不错啊\n- [24:02] 直接先把清融的火舞打残\n- [24:05] 但是易峥的公孙离已经来到了中路\n- [24:08] 所以他们estar也想好了吗\n- [24:10] 中路就让公孙离来\n- [24:12] 只要公孙离往中一站",
+      "context": "- [23:50] 双方尤其是sg在前期会如何利用这三成不变\n- [23:54] 虚传永恒荣耀不灭\n- [23:57] 虚传永恒荣耀\n- [23:59] 开局isg抢中抢的还不错啊\n- [24:02] 直接先把清融的火舞打残\n- [24:05] 但是易峥的公孙离已经来到了中路\n- [24:08] 所以他们estar也想好了吗\n- [24:10] 中路就让公孙离来\n- [24:12] 只要公孙离往中一站\n- [24:13] 你的周瑜\n- [24:14] 你的线权就是五五开\n- [24:15] 但是有一说一哦哟看看这烧的真的很舒服啊",
+      "type": "commentary_event",
+      "category": "history_2022",
+      "interpretation": "火舞被打残、公孙离中路补位事件，不支持旧世冠完美刺杀假引文。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2022世界冠军杯/2022-12-09_【2022王者世冠】武汉eStarPro vs Gen.G Esports 12月9日小组赛_BV1Te411P7rW/P02_第二局+赛后采访.md",
+      "source_sha256": "24a2255c2fa1d1cf9a6f0ad9824c27cc028b0acd9ae6651f4f923c490e1926da",
+      "part_id": "BV1Te411P7rW_P02",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1Te411P7rW?p=2",
+      "id": "VS-H22B",
+      "start_seconds": 921,
+      "end_seconds": 931,
+      "timestamp_kind": "video_part",
+      "line_start": 434,
+      "line_end": 440,
+      "quote": "- [15:21] 能够跟上vestar pro的节奏\n- [15:23] 看两个大招\n- [15:24] 喷两个坦然和清融的伤害不少\n- [15:26] 先带走了一个蓝张飞过去\n- [15:29] 然后再砸一下\n- [15:29] 被公孙离大招给推开了\n- [15:31] 沈梦溪狙击再给了这波兵线",
+      "context": "- [15:15] 你看一下这把jy的出装\n- [15:17] 他疾步之靴\n- [15:18] 为了保证支援的够快\n- [15:21] 能够跟上vestar pro的节奏\n- [15:23] 看两个大招\n- [15:24] 喷两个坦然和清融的伤害不少\n- [15:26] 先带走了一个蓝张飞过去\n- [15:29] 然后再砸一下\n- [15:29] 被公孙离大招给推开了\n- [15:31] 沈梦溪狙击再给了这波兵线\n- [15:32] 已经进去了\n- [15:33] 这个超级兵清掉了花海的状态不是很好\n- [15:36] 这波要选择往后撤一撤",
+      "type": "commentary_event",
+      "category": "history_2022",
+      "interpretation": "坦然清融伤害与沈梦溪兵线事件。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P02_第一局.md",
+      "source_sha256": "a352836cd71141f9ff16e40b9f0ae6876e9c93fe60745e921f95d911be8d355c",
+      "part_id": "BV1394y1G7RW_P02",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1394y1G7RW?p=2",
+      "id": "VS-H23A",
+      "start_seconds": 838,
+      "end_seconds": 850,
+      "timestamp_kind": "video_part",
+      "line_start": 442,
+      "line_end": 448,
+      "quote": "- [13:58] 一闪一闪给一套直接动手\n- [14:02] 抓到了乔西\n- [14:04] 清融清清的节奏还是带的比较好的\n- [14:06] 清完第三波线之后\n- [14:07] 直接来下路打了一波三包二\n- [14:09] 这下手太快了\n- [14:10] 乔西这边的话闪现都没机会交",
+      "context": "- [13:53] 他的一技能是有两段\n- [13:55] 二技能是往前位移一下\n- [13:56] 如果命中到英雄可以有一个护盾哦\n- [13:58] 一闪一闪给一套直接动手\n- [14:02] 抓到了乔西\n- [14:04] 清融清清的节奏还是带的比较好的\n- [14:06] 清完第三波线之后\n- [14:07] 直接来下路打了一波三包二\n- [14:09] 这下手太快了\n- [14:10] 乔西这边的话闪现都没机会交\n- [14:14] Stepping through\n- [14:16] 看下莫拉\n- [14:17] 直接帮洛里昂抢线镜头",
+      "type": "commentary_event",
+      "category": "history_2023",
+      "interpretation": "清完第三波中线后下路三包二，是历史双边支援实例。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P05_第四局.md",
+      "source_sha256": "3282488b07af613079c7f0e066eff9d94e66c07dc5687c484e8bf711b21e5101",
+      "part_id": "BV1394y1G7RW_P05",
+      "match_id": null,
+      "game_id": null,
+      "confidence": "unmatched",
+      "video_url": "https://www.bilibili.com/video/BV1394y1G7RW?p=5",
+      "id": "VS-H23B",
+      "start_seconds": 1268,
+      "end_seconds": 1284,
+      "timestamp_kind": "video_part",
+      "line_start": 590,
+      "line_end": 596,
+      "quote": "- [21:08] 但是像子阳这把的张飞那个关键的几波团战\n- [21:13] 包括大招交的又非常漂亮\n- [21:15] 清融的输出打的又很满\n- [21:17] 对青龙的莉莉安又有非常亮眼的发挥\n- [21:19] 总之就是这个三人组\n- [21:20] 给到正面团战的压力太大了\n- [21:24] 撑不住",
+      "context": "- [20:56] 恭喜武汉ESTARPRO扳平比分\n- [21:01] 今天第一场BO7打的就非常的焦灼\n- [21:04] 这局的这个MVP不给星葵玩的真的很好\n- [21:08] 但是像子阳这把的张飞那个关键的几波团战\n- [21:13] 包括大招交的又非常漂亮\n- [21:15] 清融的输出打的又很满\n- [21:17] 对青龙的莉莉安又有非常亮眼的发挥\n- [21:19] 总之就是这个三人组\n- [21:20] 给到正面团战的压力太大了\n- [21:24] 撑不住\n- [21:24] 真的撑不住了\n- [21:27] 我们把时间交还给评论区\n- [21:32] 我们跟解说席的看法是一样的",
+      "type": "commentator_opinion",
+      "category": "history_2023",
+      "interpretation": "子阳开团清融输出的三人组评价，不能概括全年。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2024夏季赛/2024-06-12_【2024KPL夏季赛】6月12日 北京WB vs 武汉eStarPro_BV1yn4y197mo/P03_第二局.md",
+      "source_sha256": "a41c9c671d32211721fca648e9448d7dab83d334ca19b58a5d61a8983f95dcda",
+      "part_id": "BV1yn4y197mo_P03",
+      "match_id": "kpl-20240002-2024061202",
+      "game_id": "kpl-20240002-2024061202-g2",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1yn4y197mo?p=3",
+      "id": "VS-H24A",
+      "start_seconds": 732,
+      "end_seconds": 747,
+      "timestamp_kind": "video_part",
+      "line_start": 334,
+      "line_end": 340,
+      "quote": "- [12:12] 避了个闪现啊\n- [12:13] 极限了\n- [12:15] 清融这两波支援对抗路都有所收获啊\n- [12:19] 第一波拿了一血\n- [12:19] 第二波是逼了个闪现\n- [12:24] 因为如果说ESTAR他们把战场往上半图去引\n- [12:27] 上半图打起来的话",
+      "context": "- [12:05] 先看一下上路坦然开了一个大招以后\n- [12:07] 撞到了子墨的身上\n- [12:08] 冻住给大招有机会必须要避闪\n- [12:12] 避了个闪现啊\n- [12:13] 极限了\n- [12:15] 清融这两波支援对抗路都有所收获啊\n- [12:19] 第一波拿了一血\n- [12:19] 第二波是逼了个闪现\n- [12:24] 因为如果说ESTAR他们把战场往上半图去引\n- [12:27] 上半图打起来的话\n- [12:28] 下半途决议才可以更好的发育\n- [12:30] 他们需要转移微博的注意力嗯\n- [12:33] ESTARAR想要靠着孙策支援快啊",
+      "type": "commentator_opinion",
+      "category": "history_2024",
+      "interpretation": "两波支援对抗路收获的解说评价。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2024夏季赛/2024-06-15_【2024KPL夏季赛】6月15日 上海RNG.M vs 武汉eStarPro_BV1LD421u7YQ/P04_第三局.md",
+      "source_sha256": "8ad8fcb6650c6cc2f8de15a7995f289b4d454f9128d770db592890039925b41a",
+      "part_id": "BV1LD421u7YQ_P04",
+      "match_id": "kpl-20240002-2024061502",
+      "game_id": "kpl-20240002-2024061502-g3",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1LD421u7YQ?p=4",
+      "id": "VS-H24B",
+      "start_seconds": 712,
+      "end_seconds": 726,
+      "timestamp_kind": "video_part",
+      "line_start": 361,
+      "line_end": 367,
+      "quote": "- [11:52] 所以他没有办法第一时间跟失去你\n- [11:55] 这个时候ESTAR在中一塔拔完之后呢\n- [11:59] 清融只要不漏子阳只要不漏\n- [12:01] 对于RNGM就是一个比较大的压力了\n- [12:03] 能秒吗\n- [12:04] 差一丝闪现拉出龙坑\n- [12:06] 差一丝丝伤害多",
+      "context": "- [11:46] 其他的点你都处理不掉\n- [11:48] 而且第一时间我看红这个红Buff坑的位置\n- [11:51] 然后那个二技能好像是在CD当中\n- [11:52] 所以他没有办法第一时间跟失去你\n- [11:55] 这个时候ESTAR在中一塔拔完之后呢\n- [11:59] 清融只要不漏子阳只要不漏\n- [12:01] 对于RNGM就是一个比较大的压力了\n- [12:03] 能秒吗\n- [12:04] 差一丝闪现拉出龙坑\n- [12:06] 差一丝丝伤害多\n- [12:08] 一本小书感觉伤害就够了\n- [12:12] 但威胁的这种压力已经给到了对啊\n- [12:15] 就说ESTAR这套阵容就是压制力很足的",
+      "type": "commentator_opinion",
+      "category": "history_2024",
+      "interpretation": "清融子阳不露头带来威胁的观点。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    },
+    {
+      "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P01_赛前评论席.md",
+      "source_sha256": "705c98e3b428a296332491427c3facccf97d6ab22115d3ab27635242f7e77ca8",
+      "part_id": "BV1rZTMzcEo5_P01",
+      "match_id": "kpl-20250002-2025060602",
+      "game_id": null,
+      "confidence": "high_bo",
+      "video_url": "https://www.bilibili.com/video/BV1rZTMzcEo5?p=1",
+      "id": "VS-H25A",
+      "start_seconds": 717,
+      "end_seconds": 730,
+      "timestamp_kind": "video_part",
+      "line_start": 343,
+      "line_end": 348,
+      "quote": "- [11:57] 他是非常喜欢游走到双边去做事情的\n- [12:00] 如果无畏这边在能拿到一些开团类的英雄\n- [12:04] 在和自己的老搭档清融配合到一起哦\n- [12:07] 那这个队伍的节奏应该是比较流畅的\n- [12:09] 很值得期待\n- [12:10] 能碰撞出什么样的火花",
+      "context": "- [11:49] 就是场均的前10分钟的击杀率是不是很高\n- [11:54] 对因为他还有一个河道的视野占比\n- [11:56] 因为他选到像不知火舞这样的英雄\n- [11:57] 他是非常喜欢游走到双边去做事情的\n- [12:00] 如果无畏这边在能拿到一些开团类的英雄\n- [12:04] 在和自己的老搭档清融配合到一起哦\n- [12:07] 那这个队伍的节奏应该是比较流畅的\n- [12:09] 很值得期待\n- [12:10] 能碰撞出什么样的火花\n- [12:12] 主要就是目前来说\n- [12:14] 毕竟对手是热门嘛\n- [12:16] 而且从几个比赛来看的话",
+      "type": "commentator_opinion",
+      "category": "history_2025",
+      "interpretation": "赛前期待清融无畏配合；不能视作已执行事件。",
+      "review_status": "本次文本上下文复核",
+      "phase": "pre_show"
+    },
+    {
+      "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P02_第一局.md",
+      "source_sha256": "f935119f61629fb2b7a90920d0232930fe2a2bfd7bd77dc7a4e6b9115d69e07e",
+      "part_id": "BV1rZTMzcEo5_P02",
+      "match_id": "kpl-20250002-2025060602",
+      "game_id": "kpl-20250002-2025060602-g1",
+      "confidence": "high",
+      "video_url": "https://www.bilibili.com/video/BV1rZTMzcEo5?p=2",
+      "id": "VS-H25B",
+      "start_seconds": 1432,
+      "end_seconds": 1444,
+      "timestamp_kind": "video_part",
+      "line_start": 603,
+      "line_end": 609,
+      "quote": "- [23:52] 逼了干将的闪\n- [23:53] 但是凯这个位置可以威胁到干将莫邪青年在一个进场\n- [23:56] 直接配合嘉兴击杀掉了清融\n- [23:59] 那这里司空震只能退而求其次\n- [24:01] 选择去做断线\n- [24:02] 打了一个掉点\n- [24:04] 那这个龙可以安稳的拿下来",
+      "context": "- [23:47] 位置已经被多利亚看到了\n- [23:49] 狂铁也在另一侧的河道处\n- [23:50] 王昭君一个闪闪现大招\n- [23:52] 逼了干将的闪\n- [23:53] 但是凯这个位置可以威胁到干将莫邪青年在一个进场\n- [23:56] 直接配合嘉兴击杀掉了清融\n- [23:59] 那这里司空震只能退而求其次\n- [24:01] 选择去做断线\n- [24:02] 打了一个掉点\n- [24:04] 那这个龙可以安稳的拿下来\n- [24:06] 对的嘉兴的这波绕后压迫感十足啊\n- [24:08] 刚刚看小地图是一个三角阵\n- [24:11] 狂铁在中右的河道草这里压过去",
+      "type": "commentary_event",
+      "category": "history_2025_counter",
+      "interpretation": "清融被击杀后的掉点，是历史负面事件，避免只选高光。",
+      "review_status": "本次文本上下文复核",
+      "phase": "unknown"
+    }
+  ],
+  "limitations": [
+    "源目录存在不代表赛季比赛齐全；2026春季等大量缺失，coverage仅指本地已有文件。",
+    "源ASR原样保留；浩浩/豪豪可作为昊昊检索候选，非全库身份认证；小孩不自动映射小寒。",
+    "解说观点不等于队内指令；单句不解释组均值；事件与观点分开。",
+    "没有观看音视频；全部review_status仅指字幕文本上下文。",
+    "比赛缓存winner/MVP/时长存在冲突；匹配置信度仅识别身份，不认证统计字段。",
+    "全军出击边界只是估计；无明确边界为unknown，赛前评论始终pre_show且不算BP。",
+    "实际源视频时长未知，用末首字幕秒差及verified_analysis实际小局时长校准讨论密度；game_estimated可能含赛后评论，不冒称真实比赛执行频率。"
+  ],
+  "draft_cases": [
+    {
+      "evidence_id": "VS-D01",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "英雄优先级预测：海月/盾山与辅助ban位压力；不要把预测当真实禁选。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "海月"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "关羽"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "阿古朵"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "戈娅"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张飞"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "大司命"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "哪吒"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "武则天"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "莱西奥"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "孙权"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "卢雅那"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "太乙真人"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "姜子牙"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D02",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "张飞影响海月优先级，解说观察司空震先出；counter解释是观点。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张飞"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "海月"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "关羽"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "阿古朵"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "戈娅"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张飞"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "大司命"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "哪吒"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "武则天"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "莱西奥"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "孙权"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "卢雅那"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "太乙真人"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "姜子牙"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D03",
+      "game_id": "kpl-20260004-2026100302-g4",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "安琪拉与太乙的中野辅前期节奏，对比姜子牙发育；花卷胜率仅解说所述。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "太乙真人"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "姜子牙"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "关羽"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "阿古朵"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "戈娅"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张飞"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "大司命"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "哪吒"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "武则天"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "莱西奥"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "孙权"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "卢雅那"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "太乙真人"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "姜子牙"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D04",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "嬴政打女娲的线权/射程解释为解说观点，不认证实际counter强度。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "女娲"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "嬴政"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "沈梦溪"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "裴擒虎"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "元流之子(坦克)"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "敖隐"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏侯惇"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "马超"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "后羿"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "不知火舞"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "小乔"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "公孙离"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "姜子牙"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "女娲"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "虞姬"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "嬴政"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "墨子"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D05",
+      "game_id": "kpl-20260003-2026083001-g5",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "墨子压虞姬与中线帮抢的取舍，是BP阵容预测而非赛后结果。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "女娲"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "虞姬"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "墨子"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "沈梦溪"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "裴擒虎"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "元流之子(坦克)"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "敖隐"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏侯惇"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "马超"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "司空震"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "后羿"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "不知火舞"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "小乔"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "公孙离"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "姜子牙"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "女娲"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "虞姬"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "嬴政"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "墨子"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D06",
+      "game_id": "kpl-20260003-2026062102-g1",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "王昭君张良优先级、三楼counter与武则天拆火，区分候选和最终选择。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "王昭君"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "武则天"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "沈梦溪"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "关羽"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "张良"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "王昭君"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "苍"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "武则天"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "戈娅"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "白起"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "镜"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "铠"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "蒙恬"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "赵云"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "大司命"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "杨戬"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "曹操"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "梦奇"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "夏洛特"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D07",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "海月体系被称对新人友善；超标/思路简单仅解说评价，不能据此推导选手能力。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "夏洛特"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "钟馗"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "元流之子(辅助)"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "敖隐"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "苍"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "狂铁"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "镜"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "沈梦溪"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "哪吒"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "元流之子(坦克)"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "杨戬"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "阿古朵"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "苏烈"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "赵云"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "梦奇"
+        }
+      ]
+    },
+    {
+      "evidence_id": "VS-D08",
+      "game_id": "kpl-20260003-2026070403-g1",
+      "phase": "draft_context",
+      "phase_review": "人工字幕文本核实：进入禁选后的连续语境；未看音视频",
+      "research": "双前排应对海月却可能难保后排：这是阵容counter观点，与最终选人交叉而非结果认证。",
+      "verified_analysis_actions": [
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "狂铁"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "赵云"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "梦奇"
+        }
+      ],
+      "cross_check": "相关英雄及先后顺序见结构化BP；预测与实际禁选不同不得当矛盾事实，解说counter效果/英雄池胜率未独立认证",
+      "verified_bp_full_order": [
+        {
+          "step_index": 1,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "钟馗"
+        },
+        {
+          "step_index": 2,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "盾山"
+        },
+        {
+          "step_index": 3,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "元流之子(辅助)"
+        },
+        {
+          "step_index": 4,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "鲁班大师"
+        },
+        {
+          "step_index": 5,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "敖隐"
+        },
+        {
+          "step_index": 6,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "少司缘"
+        },
+        {
+          "step_index": 7,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "苍"
+        },
+        {
+          "step_index": 8,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "海月"
+        },
+        {
+          "step_index": 9,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "夏洛特"
+        },
+        {
+          "step_index": 10,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "狂铁"
+        },
+        {
+          "step_index": 11,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "镜"
+        },
+        {
+          "step_index": 12,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "沈梦溪"
+        },
+        {
+          "step_index": 13,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "哪吒"
+        },
+        {
+          "step_index": 14,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "元流之子(坦克)"
+        },
+        {
+          "step_index": 15,
+          "action_type": "ban",
+          "side": "red",
+          "hero_name": "杨戬"
+        },
+        {
+          "step_index": 16,
+          "action_type": "ban",
+          "side": "blue",
+          "hero_name": "阿古朵"
+        },
+        {
+          "step_index": 17,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "安琪拉"
+        },
+        {
+          "step_index": 18,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "苏烈"
+        },
+        {
+          "step_index": 19,
+          "action_type": "pick",
+          "side": "blue",
+          "hero_name": "赵云"
+        },
+        {
+          "step_index": 20,
+          "action_type": "pick",
+          "side": "red",
+          "hero_name": "梦奇"
+        }
+      ]
+    }
+  ]
+}

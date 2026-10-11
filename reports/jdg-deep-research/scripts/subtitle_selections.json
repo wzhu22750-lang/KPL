@@ -1,0 +1,392 @@
+[
+  {
+    "id": "VS-01",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 55,
+    "line_end": 65,
+    "type": "commentator_opinion",
+    "category": "rotation_counter",
+    "interpretation": "评论称昊昊也有放线双边支援；不是纯后排刷子定论。GANK成功率为解说观点，未验证数字。"
+  },
+  {
+    "id": "VS-02",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 603,
+    "line_end": 611,
+    "type": "commentary_event",
+    "category": "result",
+    "interpretation": "字幕明确恭喜JDG、扳回一局至2:2；本源G4为JDG胜，不支持G4败猜测。"
+  },
+  {
+    "id": "VS-03",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 280,
+    "line_end": 294,
+    "type": "commentary_event",
+    "category": "counter_old_quote",
+    "interpretation": "旧12:15绝活融化前排引文不存在；该时间实际有互换血量与风潇一血，不能改写成昊昊救主。"
+  },
+  {
+    "id": "VS-04",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 613,
+    "line_end": 630,
+    "type": "commentator_opinion",
+    "category": "mid_jungle_support",
+    "interpretation": "赛后解说评价中野辅控制与边线牵制；不能单归功中单。"
+  },
+  {
+    "id": "VS-05",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+    "line_start": 141,
+    "line_end": 149,
+    "type": "commentator_opinion",
+    "category": "rotation",
+    "interpretation": "两套中野辅是解说评价；换的是对抗路光明和中路浩浩，不是更换辅助。"
+  },
+  {
+    "id": "VS-06",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+    "line_start": 150,
+    "line_end": 159,
+    "type": "commentator_opinion",
+    "category": "rotation_context",
+    "interpretation": "解说转述纪录片中清融教新人细节，证据层级是转述，不是队内原始语音。"
+  },
+  {
+    "id": "VS-07",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+    "line_start": 97,
+    "line_end": 108,
+    "type": "commentator_opinion",
+    "category": "bp_opinion",
+    "interpretation": "赛前评论区分支援型与大法师倾向，属于预测且phase=pre_show，不能is_bp=1。"
+  },
+  {
+    "id": "VS-08",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P06_赛前评论席.md",
+    "line_start": 91,
+    "line_end": 96,
+    "type": "commentator_opinion",
+    "category": "haohao_background",
+    "interpretation": "评论回忆ESTAR时期指挥型中单，金融等ASR原样保留。"
+  },
+  {
+    "id": "VS-09",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+    "line_start": 314,
+    "line_end": 325,
+    "type": "commentator_opinion",
+    "category": "rotation_context",
+    "interpretation": "评论谈第三轮首发、指挥衔接；青龙区的亚运会是ASR原文，不静默改成清融去了亚运会。"
+  },
+  {
+    "id": "VS-10",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P07_赛前评论席.md",
+    "line_start": 331,
+    "line_end": 339,
+    "type": "commentator_opinion",
+    "category": "adc_opinion",
+    "interpretation": "评论称风格变化提高小寒队内地位；不是昊昊导致射手均值变化的因果证明。"
+  },
+  {
+    "id": "VS-11",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+    "line_start": 703,
+    "line_end": 716,
+    "type": "commentator_opinion",
+    "category": "mid_jungle_support",
+    "interpretation": "解说复盘女娲墨子控制闭环与拆火，保留女王/一级等ASR，不拼接另一时间段。"
+  },
+  {
+    "id": "VS-12",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+    "line_start": 717,
+    "line_end": 726,
+    "type": "commentator_opinion",
+    "category": "resources",
+    "interpretation": "评论指出手长与光明处理兵线；经济优势不应全部归中单。"
+  },
+  {
+    "id": "VS-13",
+    "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+    "line_start": 537,
+    "line_end": 544,
+    "type": "commentator_opinion",
+    "category": "resources_counter",
+    "interpretation": "新上场中单海月经济高，为昊昊恒定让钱保射刻板印象提供反例，不能推断长期资源分配。"
+  },
+  {
+    "id": "VS-14",
+    "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+    "line_start": 558,
+    "line_end": 561,
+    "type": "commentator_opinion",
+    "category": "adc_resources",
+    "interpretation": "同局小韩经济也高；不能把上一证据解释为独占资源。"
+  },
+  {
+    "id": "VS-15",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 460,
+    "line_end": 468,
+    "type": "commentator_opinion",
+    "category": "mid_jungle_support",
+    "interpretation": "清融无双无畏中野辅被解说描述为前期需做事；下路四人表述不支持总在上半区叙事。"
+  },
+  {
+    "id": "VS-16",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 511,
+    "line_end": 523,
+    "type": "commentary_event",
+    "category": "resources_counter",
+    "interpretation": "王昭君河道分割与无双拿龙，是控区事件；不等于旧假引文中小寒随意输出。"
+  },
+  {
+    "id": "VS-17",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 600,
+    "line_end": 606,
+    "type": "commentary_event",
+    "category": "control_counter",
+    "interpretation": "留技能冻住进场者，展示防突进事件；不足独立证明保射频率。"
+  },
+  {
+    "id": "VS-18",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 862,
+    "line_end": 871,
+    "type": "commentator_opinion",
+    "category": "resources_counter",
+    "interpretation": "字幕称清融MVP、不吃钱做事多，缓存MVP字段可能冲突；不凭此证明整个赛季四局零死。 字段冲突：字幕称清融王昭君MVP，但raw记录is_mvp=False；仅登记冲突，不认证MVP归属。"
+  },
+  {
+    "id": "VS-19",
+    "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+    "line_start": 259,
+    "line_end": 262,
+    "type": "commentator_opinion",
+    "category": "aggression_counter",
+    "interpretation": "解说形容浩浩拿命留人，能反驳只在后排的绝对说法；不能解释平均承伤。"
+  },
+  {
+    "id": "VS-20",
+    "path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P02_第二局.md",
+    "line_start": 225,
+    "line_end": 243,
+    "type": "commentary_event",
+    "category": "mid_jungle_support",
+    "interpretation": "武则天前期留技能与一血的解说事件链。"
+  },
+  {
+    "id": "VS-21",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 54,
+    "line_end": 62,
+    "type": "commentator_opinion",
+    "category": "mid_jungle_support",
+    "interpretation": "赛前对清融中路线权、双边辐射的评价，BP仅为估计时段。"
+  },
+  {
+    "id": "VS-22",
+    "path": "2026夏季赛/2026-07-03_【2026KPL夏季赛】7月3日 上海EDG.M VS 武汉eStarPro_BV16fT46AEtD/P04_赛前评论席.md",
+    "line_start": 73,
+    "line_end": 81,
+    "type": "commentator_opinion",
+    "category": "history_2026_haohao_estar",
+    "interpretation": "2026解说回顾上赛季ESTAR下掉名换浩浩；仅回顾来源，不当作2026昊昊代表ESTAR出场。"
+  },
+  {
+    "id": "VS-H22A",
+    "path": "2022世界冠军杯/2022-12-08_【2022王者世冠】拉美ISG vs 中国武汉eStarPro 12月8日小组赛_BV1Ce411A79r/P01_第一局.md",
+    "line_start": 655,
+    "line_end": 660,
+    "type": "commentary_event",
+    "category": "history_2022",
+    "interpretation": "火舞被打残、公孙离中路补位事件，不支持旧世冠完美刺杀假引文。"
+  },
+  {
+    "id": "VS-H22B",
+    "path": "2022世界冠军杯/2022-12-09_【2022王者世冠】武汉eStarPro vs Gen.G Esports 12月9日小组赛_BV1Te411P7rW/P02_第二局+赛后采访.md",
+    "line_start": 434,
+    "line_end": 440,
+    "type": "commentary_event",
+    "category": "history_2022",
+    "interpretation": "坦然清融伤害与沈梦溪兵线事件。"
+  },
+  {
+    "id": "VS-H23A",
+    "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P02_第一局.md",
+    "line_start": 442,
+    "line_end": 448,
+    "type": "commentary_event",
+    "category": "history_2023",
+    "interpretation": "清完第三波中线后下路三包二，是历史双边支援实例。"
+  },
+  {
+    "id": "VS-H23B",
+    "path": "2023世界冠军杯/2023-11-16_【2023王者世冠KIC】11月16日 北京WB VS 武汉eStarPro_BV1394y1G7RW/P05_第四局.md",
+    "line_start": 590,
+    "line_end": 596,
+    "type": "commentator_opinion",
+    "category": "history_2023",
+    "interpretation": "子阳开团清融输出的三人组评价，不能概括全年。"
+  },
+  {
+    "id": "VS-H24A",
+    "path": "2024夏季赛/2024-06-12_【2024KPL夏季赛】6月12日 北京WB vs 武汉eStarPro_BV1yn4y197mo/P03_第二局.md",
+    "line_start": 334,
+    "line_end": 340,
+    "type": "commentator_opinion",
+    "category": "history_2024",
+    "interpretation": "两波支援对抗路收获的解说评价。"
+  },
+  {
+    "id": "VS-H24B",
+    "path": "2024夏季赛/2024-06-15_【2024KPL夏季赛】6月15日 上海RNG.M vs 武汉eStarPro_BV1LD421u7YQ/P04_第三局.md",
+    "line_start": 361,
+    "line_end": 367,
+    "type": "commentator_opinion",
+    "category": "history_2024",
+    "interpretation": "清融子阳不露头带来威胁的观点。"
+  },
+  {
+    "id": "VS-H25A",
+    "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P01_赛前评论席.md",
+    "line_start": 343,
+    "line_end": 348,
+    "type": "commentator_opinion",
+    "category": "history_2025",
+    "interpretation": "赛前期待清融无畏配合；不能视作已执行事件。"
+  },
+  {
+    "id": "VS-H25B",
+    "path": "2025夏季赛/2025-06-06_【2025KPL夏季赛】6月6日 北京JDG vs 广州TTG_BV1rZTMzcEo5/P02_第一局.md",
+    "line_start": 603,
+    "line_end": 609,
+    "type": "commentary_event",
+    "category": "history_2025_counter",
+    "interpretation": "清融被击杀后的掉点，是历史负面事件，避免只选高光。"
+  },
+  {
+    "id": "VS-D01",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 66,
+    "line_end": 73,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "英雄优先级预测：海月/盾山与辅助ban位压力；不要把预测当真实禁选。",
+    "bp_heroes": [
+      "海月",
+      "盾山",
+      "鲁班大师"
+    ]
+  },
+  {
+    "id": "VS-D02",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 93,
+    "line_end": 106,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "张飞影响海月优先级，解说观察司空震先出；counter解释是观点。",
+    "bp_heroes": [
+      "海月",
+      "张飞",
+      "司空震"
+    ]
+  },
+  {
+    "id": "VS-D03",
+    "path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "line_start": 138,
+    "line_end": 163,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "安琪拉与太乙的中野辅前期节奏，对比姜子牙发育；花卷胜率仅解说所述。",
+    "bp_heroes": [
+      "安琪拉",
+      "太乙真人",
+      "姜子牙"
+    ]
+  },
+  {
+    "id": "VS-D04",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+    "line_start": 131,
+    "line_end": 153,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "嬴政打女娲的线权/射程解释为解说观点，不认证实际counter强度。",
+    "bp_heroes": [
+      "嬴政",
+      "女娲"
+    ]
+  },
+  {
+    "id": "VS-D05",
+    "path": "2026夏季赛/2026-08-30_【2026KPL夏季赛】8月30日 广州TTG VS 北京JDG_BV1PttH6rEwH/P05_第五局.md",
+    "line_start": 155,
+    "line_end": 173,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "墨子压虞姬与中线帮抢的取舍，是BP阵容预测而非赛后结果。",
+    "bp_heroes": [
+      "墨子",
+      "虞姬",
+      "女娲"
+    ]
+  },
+  {
+    "id": "VS-D06",
+    "path": "2026夏季赛/2026-06-21_【2026KPL夏季赛】6月21日 北京JDG VS 长沙TES.A_BV1HGjt6oEhw/P01_第一局.md",
+    "line_start": 209,
+    "line_end": 243,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "王昭君张良优先级、三楼counter与武则天拆火，区分候选和最终选择。",
+    "bp_heroes": [
+      "王昭君",
+      "张良",
+      "武则天"
+    ]
+  },
+  {
+    "id": "VS-D07",
+    "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+    "line_start": 164,
+    "line_end": 177,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "海月体系被称对新人友善；超标/思路简单仅解说评价，不能据此推导选手能力。",
+    "bp_heroes": [
+      "海月",
+      "夏洛特"
+    ]
+  },
+  {
+    "id": "VS-D08",
+    "path": "2026夏季赛/2026-07-04_【2026KPL夏季赛】7月4日 北京JDG VS 佛山DRG_BV1VfMP6ZEJ1/P01_第一局.md",
+    "line_start": 221,
+    "line_end": 248,
+    "type": "commentator_opinion",
+    "category": "draft_context",
+    "phase": "draft_context",
+    "interpretation": "双前排应对海月却可能难保后排：这是阵容counter观点，与最终选人交叉而非结果认证。",
+    "bp_heroes": [
+      "海月",
+      "梦奇",
+      "狂铁",
+      "赵云",
+      "夏洛特"
+    ]
+  }
+]

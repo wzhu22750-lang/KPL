@@ -1,0 +1,107 @@
+/* Hero dossier only. Shared primitives inherit the existing semantic theme. */
+.esports-page.hero-dossier { padding-bottom: 56px; min-width: 0; }
+.esports-page.hero-dossier .hero-return {
+  display: inline-flex; align-items: center; min-height: 44px; margin: 8px 0;
+  color: var(--accent-ink); font-size: 13px; font-weight: 600;
+}
+.esports-page.hero-dossier .hero-profile {
+  display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 32px;
+  padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-sheet);
+  background: var(--surface); border-top: 3px solid var(--accent);
+}
+.esports-page.hero-dossier .hero-profile-art {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; padding: 20px; background: var(--bg-sunk); border-radius: var(--radius-panel);
+}
+.esports-page.hero-dossier .hero-profile-copy { min-width: 0; align-self: center; }
+.esports-page.hero-dossier .hero-position { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.esports-page.hero-dossier .hero-profile-meta { margin: 12px 0; color: var(--ink-3); font-size: 13px; }
+.esports-page.hero-dossier .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.esports-page.hero-dossier .hero-tags > span {
+  padding: 4px 9px; background: var(--accent-soft); color: var(--accent-ink);
+  border-radius: var(--radius-mark); font-size: 12px;
+}
+.esports-page.hero-dossier .hero-section { margin-top: 28px; min-width: 0; }
+.esports-page.hero-dossier .hero-section-heading { margin-bottom: 14px; min-width: 0; }
+.esports-page.hero-dossier .hero-section-heading h2,
+.esports-page.hero-dossier .hero-section-heading h3 { font-size: 17px; line-height: 1.4; font-weight: 750; color: var(--ink); text-wrap: balance; }
+.esports-page.hero-dossier .hero-section-heading h2 > span { color: var(--accent-ink); margin-left: 6px; font-size: 12px; }
+.esports-page.hero-dossier .hero-section-heading p { margin-top: 4px; color: var(--ink-3); font-size: 12px; text-wrap: pretty; }
+.esports-page.hero-dossier .hero-primary-metrics,
+.esports-page.hero-dossier .hero-secondary-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.esports-page.hero-dossier .hero-primary-metrics { padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--accent-softer); }
+.esports-page.hero-dossier .hero-secondary-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; }
+.esports-page.hero-dossier .hero-primary-metrics > *,
+.esports-page.hero-dossier .hero-secondary-metrics > * { min-width: 0; overflow-wrap: anywhere; }
+.esports-page.hero-dossier .hero-side-panel { margin-top: 16px; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--surface); }
+.esports-page.hero-dossier .hero-side-panel > * + * { margin-top: 14px; }
+.esports-page.hero-dossier .hero-note { font-size: 12px; line-height: 1.7; color: var(--ink-3); text-wrap: pretty; }
+.esports-page.hero-dossier .hero-analysis-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 24px; margin-top: 28px; }
+.esports-page.hero-dossier .hero-players { margin-top: 0; }
+.esports-page.hero-dossier .hero-player-list,
+.esports-page.hero-dossier .hero-relation-list,
+.esports-page.hero-dossier .hero-match-list { list-style: none; padding: 0; margin: 0; }
+.esports-page.hero-dossier .hero-player-list { display: grid; gap: 10px; }
+.esports-page.hero-dossier .hero-player-card {
+  display: block; min-height: 44px; padding: 18px; border: 1px solid var(--line);
+  border-radius: var(--radius-card); background: var(--surface); transition: border-color 150ms, background-color 150ms;
+}
+.esports-page.hero-dossier .hero-player-list li:first-child .hero-player-card { border-color: var(--accent); background: var(--accent-softer); }
+.esports-page.hero-dossier .hero-player-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.esports-page.hero-dossier .hero-player-rank { color: var(--accent-ink); font-size: 17px; font-weight: 750; font-variant-numeric: tabular-nums; }
+.esports-page.hero-dossier .hero-player-name { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+.esports-page.hero-dossier .hero-player-name h3 { color: var(--ink); font-size: 17px; line-height: 1.4; font-weight: 750; }
+.esports-page.hero-dossier .hero-player-name p { color: var(--ink-3); font-size: 12px; margin-top: 3px; }
+.esports-page.hero-dossier .hero-fmvp { display: inline-block; margin-top: 6px; padding: 3px 6px; color: var(--amber-ink); background: var(--amber-soft); border-radius: var(--radius-mark); font-size: 11px; }
+.esports-page.hero-dossier .hero-player-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+.esports-page.hero-dossier .hero-player-metrics > div { min-width: 0; }
+.esports-page.hero-dossier .hero-player-metrics dt { font-size: 11px; color: var(--ink-3); }
+.esports-page.hero-dossier .hero-player-metrics dd { margin-top: 3px; color: var(--ink); font-size: 16px; line-height: 1.4; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.esports-page.hero-dossier .hero-player-score dd { color: var(--accent-ink); }
+.esports-page.hero-dossier .hero-relations { display: grid; align-content: start; gap: 16px; min-width: 0; }
+.esports-page.hero-dossier .hero-relation-panel { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--surface); min-width: 0; }
+.esports-page.hero-dossier .hero-relation-list > li + li,
+.esports-page.hero-dossier .hero-match-list > li + li { border-top: 1px solid var(--line-soft); }
+.esports-page.hero-dossier .hero-relation-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; min-height: 44px; }
+.esports-page.hero-dossier .hero-relation-name { flex: 1; min-width: 0; font-size: 13px; font-weight: 650; color: var(--ink); overflow-wrap: anywhere; }
+.esports-page.hero-dossier .hero-relation-stat { display: flex; flex-direction: column; text-align: right; flex-shrink: 0; }
+.esports-page.hero-dossier .hero-relation-stat strong { color: var(--accent-ink); font-size: 14px; font-variant-numeric: tabular-nums; }
+.esports-page.hero-dossier .hero-relation-stat small { color: var(--ink-3); font-size: 11px; margin-top: 3px; }
+.esports-page.hero-dossier .hero-relation-panel > .hero-note { margin-top: 12px; }
+.esports-page.hero-dossier .hero-match-list { border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--surface); }
+.esports-page.hero-dossier .hero-match-list a { min-height: 44px; }
+.esports-page.hero-dossier .hero-empty { padding: 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius-card); color: var(--ink-3); font-size: 13px; }
+.esports-page.hero-dossier a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--radius-control); }
+@media (hover: hover) {
+  .esports-page.hero-dossier .hero-player-card:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .esports-page.hero-dossier .hero-relation-row:hover .hero-relation-name,
+  .esports-page.hero-dossier .hero-return:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+}
+.esports-page.hero-dossier .hero-player-card:active { background: var(--accent-soft); }
+@media (max-width: 1100px) {
+  .esports-page.hero-dossier .hero-analysis-layout { grid-template-columns: minmax(0, 1fr); }
+  .esports-page.hero-dossier .hero-relations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .esports-page.hero-dossier .hero-profile { grid-template-columns: 80px minmax(0, 1fr); padding: 16px; gap: 14px; align-items: start; }
+  .esports-page.hero-dossier .hero-profile-art { padding: 0; gap: 10px; background: transparent; }
+  .esports-page.hero-dossier .hero-profile-art .esports-portrait { width: 80px; height: 80px; }
+  .esports-page.hero-dossier .hero-profile .esports-heading { gap: 8px; }
+  .esports-page.hero-dossier .hero-profile .esports-kicker { font-size: 10px; letter-spacing: 0; }
+  .esports-page.hero-dossier .hero-tags > span { font-size: 11px; padding: 3px 6px; }
+  .esports-page.hero-dossier .hero-primary-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 10px; }
+  .esports-page.hero-dossier .hero-primary-metrics .esports-metric { padding: 12px; }
+  .esports-page.hero-dossier .hero-primary-metrics > :last-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; }
+  .esports-page.hero-dossier .hero-primary-metrics > :last-child .esports-metric-value { margin: 0; }
+  .esports-page.hero-dossier .hero-primary-metrics > :last-child .esports-metric-note { grid-column: 1 / -1; }
+  .esports-page.hero-dossier .hero-secondary-metrics { grid-template-columns: minmax(0, 1fr); }
+  .esports-page.hero-dossier .hero-side-panel { padding: 16px; }
+  .esports-page.hero-dossier .hero-relations { grid-template-columns: minmax(0, 1fr); }
+  .esports-page.hero-dossier .hero-player-card { padding: 14px; }
+  .esports-page.hero-dossier .hero-player-identity { gap: 10px; }
+  .esports-page.hero-dossier .hero-player-metrics { gap: 10px; }
+  .esports-page.hero-dossier .hero-relation-panel { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esports-page.hero-dossier .hero-player-card { transition: none; }
+}

@@ -1,0 +1,5744 @@
+{
+  "columns": [
+    {
+      "table_name": "admin_sessions",
+      "column_name": "id_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "user_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "csrf_token",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "user_agent",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "auth_method",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "auth_binding",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_sessions",
+      "column_name": "auth_claims",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "feishu_union_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "email",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "display_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "admin_users",
+      "column_name": "last_login_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "input_revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "prompt_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "receipt_ids",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "relevance",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "category",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "tags",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "subjects",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "title_zh",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "summary_zh",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "reason_zh",
+      "data_type": "text"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "score",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "selected",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "output",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "analyses",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "article_discoveries",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_discoveries",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_discoveries",
+      "column_name": "via",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_discoveries",
+      "column_name": "discovered_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "content_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "body_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "article_revisions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "identity_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "author",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "language",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "published_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "published_at_claim",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "discovered_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "source_updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "timeline_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "backfill",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "backfill_reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "content_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "excerpt",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "body_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "body_html",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "body_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "media",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "x_post",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "grouped_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_queued_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_attempts",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_retry_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "x_article",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "processing_attempt_tag",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "grouping_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "grouping_receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "grouping_error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "selection_adds_value",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "selection_value_reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "content_kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "content_quality_score",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "content_completeness",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "content_extraction_meta",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "canonical_content",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "claim_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "origin_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "articles",
+      "column_name": "origin_entity",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "actor",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "subject",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "before",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "after",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "request_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "audit_log",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "game_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "step_index",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "action_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "side",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "hero_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "raw_order",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "service",
+      "data_type": "text"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "per_minute",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "per_hour",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "per_day",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "budgets",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "source_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "ref_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "ord",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "content",
+      "data_type": "text"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "token_count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "text_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "embedding",
+      "data_type": "USER-DEFINED"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "chunks",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "target_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "subject_kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "subject_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "dedupe_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "attempts",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "payload",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "response",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "sent_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "deliveries",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "delivery_leases",
+      "column_name": "lease_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "delivery_leases",
+      "column_name": "holder",
+      "data_type": "text"
+    },
+    {
+      "table_name": "delivery_leases",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "fields",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "visibility",
+      "data_type": "text"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "version",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "updated_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "editorial_overrides",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "ref_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "text_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "vector",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "embeddings",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "platform",
+      "data_type": "text"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "observed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "method",
+      "data_type": "text"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "metrics",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "coverage",
+      "data_type": "text"
+    },
+    {
+      "table_name": "engagement_observations",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "entity_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "entity_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "entity_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "platform",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "handle",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "display_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "account_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "official_verified",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "verified_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "verified_evidence",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "active",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "discovered_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "entity_accounts",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "entity_mentions",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_mentions",
+      "column_name": "entity_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "entity_mentions",
+      "column_name": "entity_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "fact_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "role",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "evidence",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "manual",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "fact_articles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "public_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "subject",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "object",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "conditions",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "occurred_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "version",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "manual",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "claim_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "rumor_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "primary_source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "facts",
+      "column_name": "confirmed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "content",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "email",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "page_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "screenshot_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "source_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "forwarded_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "feedback",
+      "column_name": "forward_error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback_bans",
+      "column_name": "source_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback_bans",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback_bans",
+      "column_name": "created_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "feedback_bans",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "started_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "finished_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "found_count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "new_count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fetch_runs",
+      "column_name": "detail",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "as_of",
+      "data_type": "date"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "pair",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "rate",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "source_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "fx_rates",
+      "column_name": "fetched_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "games",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "match_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "game_no",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "mode",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "winner_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "duration_secs",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "mvp_player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "kills_a",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "kills_b",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "gold_a",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "games",
+      "column_name": "gold_b",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "games",
+      "column_name": "economy_curve",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "games",
+      "column_name": "key_fights",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "games",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "fact_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "verdict",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "candidates",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "grouping_decisions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "grouping_overrides",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_overrides",
+      "column_name": "mode",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_overrides",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_overrides",
+      "column_name": "actor",
+      "data_type": "text"
+    },
+    {
+      "table_name": "grouping_overrides",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "roles",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "positions",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "primary_pos",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "power_period",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "function_tags",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "version_strength",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "notes",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "release_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "portrait_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "computed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "rule_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "entries",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "evidence",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "hot_rankings",
+      "column_name": "published",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "client",
+      "data_type": "text"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "summary",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "ingest_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "job",
+      "data_type": "text"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "started_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "finished_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "detail",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "job_runs",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "alias",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "normalized_alias",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "model_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_aliases",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_calibrations",
+      "column_name": "methodology_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_calibrations",
+      "column_name": "unit",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_calibrations",
+      "column_name": "protocol",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_calibrations",
+      "column_name": "calibration",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "lb_calibrations",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "provider",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "provider_slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "released_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "release_date_source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "context_window_tokens",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "metadata_source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "metadata_updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_models",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "model_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "currency",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "input",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "output",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "cached_input",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_prices",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "run_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "board",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "model_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "rank",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "score",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "coverage",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_rankings",
+      "column_name": "detail",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "methodology_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "generated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "source_snapshot_ids",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "summary",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_runs",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "snapshot_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "model_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "configuration_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "configuration_label",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "configuration_kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "configuration_priority",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "selected_for_product",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "selection_reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "metric_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "metric_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "raw_score",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "normalized_score",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "lower_bound",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "upper_bound",
+      "data_type": "double precision"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "source_rank",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "sample_size",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "source_model_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "source_organization",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "source_published_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "metadata",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "lb_scores",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "source_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "license",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "attribution_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "content_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "published_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "fetched_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "record_count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "lb_snapshots",
+      "column_name": "metadata",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "season_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "stage",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "stage_seq",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "bo",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "team_a_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "team_b_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_a",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_b",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "winner_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "mvp_player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "scheduled_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "played_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "summary",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "cc_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "games_expected",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_observed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "event_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "post_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "stage",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_event_posts",
+      "column_name": "original_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "scope",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "schedule",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "estimate",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "presentation",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "confirmed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "occurred_on",
+      "data_type": "date"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "confirmation_basis",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "withdrawn",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "label",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_events",
+      "column_name": "display_label",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "author",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "published_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "context",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "translation",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "recognition",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "collected_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "processed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "activity",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_posts",
+      "column_name": "outage",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_state",
+      "column_name": "key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "monitor_state",
+      "column_name": "value",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "monitor_state",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "purpose",
+      "data_type": "text"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "enabled",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "enabled_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "config_ref",
+      "data_type": "text"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "notify_targets",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "pinnacle_picks",
+      "column_name": "game_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pinnacle_picks",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pinnacle_picks",
+      "column_name": "hero_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pinnacle_picks",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pinnacle_picks",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_aliases",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_aliases",
+      "column_name": "alias",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_aliases",
+      "column_name": "normalized",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_aliases",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "game_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "hero_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "side",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "kills",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "deaths",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "assists",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "gold",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "damage_to_hero",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "damage_taken",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "participation_rate",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "mvp",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "lose_mvp",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "mvp_score",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "season_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "year",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "joined_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "left_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "player_stints",
+      "column_name": "role",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "nickname",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "real_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "current_team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "jersey",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "debut_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "players",
+      "column_name": "is_active",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "players",
+      "column_name": "bio",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "portrait_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "players",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "pool_search",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pool_search",
+      "column_name": "direct",
+      "data_type": "text"
+    },
+    {
+      "table_name": "pool_search",
+      "column_name": "body",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "analysis_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "visibility",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "eligible",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "selected",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "original_title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "summary",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "category",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "tags",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "score",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "channel",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "first_party",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "published_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "discovered_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "timeline_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "backfill",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "selected_ready_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "visible_after",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "body_mode",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "syndicate",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "indexable",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "fact_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "search_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "sort_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "seo_indexed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "seo_excluded_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "seat",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "publications",
+      "column_name": "selection_candidate",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "question",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "normalized_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "intent",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "entities",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "answer_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "citations",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "data_cards",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "prompt_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "receipt_ids",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "duration_ms",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "client_ip_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_queries",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "qa_rate",
+      "column_name": "day",
+      "data_type": "date"
+    },
+    {
+      "table_name": "qa_rate",
+      "column_name": "ip_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "qa_rate",
+      "column_name": "count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "quote_translations",
+      "column_name": "tweet_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "quote_translations",
+      "column_name": "text_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "quote_translations",
+      "column_name": "text_zh",
+      "data_type": "text"
+    },
+    {
+      "table_name": "quote_translations",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "quote_translations",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "radar_failures",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_failures",
+      "column_name": "input_revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_failures",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_failures",
+      "column_name": "attempted_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "input_revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "summary",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "claim_status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "stance",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "evidence",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "judgment",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "base_score",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "official_bonus",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "noise",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "score_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "topic_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "match_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "game_no",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "association_evidence",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "radar_materials",
+      "column_name": "evaluated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "radar_topics",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "radar_topics",
+      "column_name": "topic_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_topics",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "radar_topics",
+      "column_name": "last_development_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "radar_topics",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "attempt",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "service",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "request_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "usage",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "cost",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "currency",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "cost_basis",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "latency_ms",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "started_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipt_attempts",
+      "column_name": "finished_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "logical_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "service",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "purpose",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "subject",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "request",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "response",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "request_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "usage",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "cost",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "currency",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "cost_basis",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "attempts",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "received_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "receipts",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "report_revisions",
+      "column_name": "report_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "report_revisions",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "report_revisions",
+      "column_name": "content",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "report_revisions",
+      "column_name": "generated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "report_revisions",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "window_start",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "window_end",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "content",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "generated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "reports",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "fact_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "from_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "to_state",
+      "data_type": "text"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "rumor_timeline",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "schema_migrations",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "schema_migrations",
+      "column_name": "applied_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "year",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "split",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "start_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "end_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "format_note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "run_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "case_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "stratum",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "gold",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "decision",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "score",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "relevance",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "category",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "selectbench_results",
+      "column_name": "error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "label",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "split",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "sample_size",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "seed",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "prompt_version",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "models",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "summary",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "selectbench_runs",
+      "column_name": "imported_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "seq",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "op",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "changed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "visible_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "selected_ledger",
+      "column_name": "payload",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "selected_state",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selected_state",
+      "column_name": "in_set",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "selected_state",
+      "column_name": "payload_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "selected_state",
+      "column_name": "last_seq",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "service",
+      "data_type": "text"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "model",
+      "data_type": "text"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "currency",
+      "data_type": "text"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "input_per_mtok",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "cached_per_mtok",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "output_per_mtok",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "service_prices",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "settings",
+      "column_name": "key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "settings",
+      "column_name": "value",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "settings",
+      "column_name": "updated_by",
+      "data_type": "text"
+    },
+    {
+      "table_name": "settings",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "entity_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "entity_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "entity_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "platform",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "source_discovery_queue",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "config",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "tags",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "first_party",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "owner_entity_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "tier",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "participation_mode",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "signal_group_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "interval_minutes",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "site_fulltext",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "syndicate_fulltext",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "enabled",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "health",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "fail_count",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "last_fetch_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "last_ok_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "last_error",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "cursor",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "next_fetch_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "icon_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "icon_checked_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "owner_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "sources",
+      "column_name": "claim_types",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "public_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "action",
+      "data_type": "text"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "frame",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "first_report_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "latest_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "digest",
+      "data_type": "text"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "digest_updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "latest",
+      "data_type": "text"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "merged_into",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "version",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "stories",
+      "column_name": "summary",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_aliases",
+      "column_name": "public_id",
+      "data_type": "uuid"
+    },
+    {
+      "table_name": "story_aliases",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_aliases",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "version",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "digest",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "latest",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "receipt_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "article_ids",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "story_digests",
+      "column_name": "inputs_hash",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "hour",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "heat",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "participants",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "cohort",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "story_heat_hourly",
+      "column_name": "complete",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "story_links",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_links",
+      "column_name": "other_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_links",
+      "column_name": "relation",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_links",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "story_id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "participant_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "source_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "story_signals",
+      "column_name": "observed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "team_aliases",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_aliases",
+      "column_name": "alias",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_aliases",
+      "column_name": "normalized",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_aliases",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "season_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "year",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "team_honors",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "short_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "city",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "founded_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "history_names",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "league",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "logo_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "style_notes",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "is_active",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "sort_weight",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "attempts",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "outcome",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "reason",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translation_attempts",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "article_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "lang",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "revision",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "body_html",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "body_text",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "complete",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "origin",
+      "data_type": "text"
+    },
+    {
+      "table_name": "translations",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    }
+  ],
+  "game": [
+    {
+      "id": "kpl-20260001-2026011401-g1",
+      "match_id": "kpl-20260001-2026011401",
+      "game_no": 1,
+      "mode": "standard",
+      "winner_id": "jdg",
+      "duration_secs": 944,
+      "mvp_player_id": "ming",
+      "kills_a": 2,
+      "kills_b": 16,
+      "gold_a": 43368,
+      "gold_b": 54915,
+      "economy_curve": null,
+      "key_fights": null,
+      "source": "smoba",
+      "source_key": "48251408_30_1768371100",
+      "raw": {
+        "camp1": {
+          "kda": 0.3125,
+          "gold": 43368,
+          "is_win": false,
+          "team_id": "10020",
+          "kill_num": 2,
+          "death_num": 16,
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "assist_num": 3,
+          "push_tower_num": 3,
+          "kill_tyrant_num": 1,
+          "team_abbreviation": "JDG",
+          "kill_big_dragon_num": 0,
+          "kill_dark_tyrant_num": 1,
+          "kill_shadow_dragon_num": 0,
+          "kill_prophet_dragon_num": 1,
+          "kill_storm_dragon_king_num": 0
+        },
+        "camp2": {
+          "kda": 30.5,
+          "gold": 54915,
+          "is_win": true,
+          "team_id": "10006",
+          "kill_num": 16,
+          "death_num": 2,
+          "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+          "team_name": "武汉eStarPro",
+          "assist_num": 45,
+          "push_tower_num": 6,
+          "kill_tyrant_num": 0,
+          "team_abbreviation": "ES",
+          "kill_big_dragon_num": 1,
+          "kill_dark_tyrant_num": 1,
+          "kill_shadow_dragon_num": 1,
+          "kill_prophet_dragon_num": 0,
+          "kill_storm_dragon_king_num": 0
+        },
+        "status": 2,
+        "bp_list": [
+          {
+            "camp": 1,
+            "hero_id": 133,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/133.jpg",
+            "hero_name": "狄仁杰",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 2,
+            "hero_id": 525,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/525.jpg",
+            "hero_name": "鲁班大师",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 1,
+            "hero_id": 503,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/503.jpg",
+            "hero_name": "狂铁",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 2,
+            "hero_id": 509,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/509.jpg",
+            "hero_name": "盾山",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 1,
+            "hero_id": 550,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/550.jpg",
+            "hero_name": "空空儿",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 2,
+            "hero_id": 171,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/171.jpg",
+            "hero_name": "张飞",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 2,
+            "hero_id": 199,
+            "position": 1,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/199.jpg",
+            "hero_name": "公孙离",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 1,
+            "hero_id": 106,
+            "position": 2,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/106.jpg",
+            "hero_name": "小乔",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 1,
+            "hero_id": 548,
+            "position": 1,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/548.jpg",
+            "hero_name": "戈娅",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 2,
+            "hero_id": 312,
+            "position": 2,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/312.jpg",
+            "hero_name": "沈梦溪",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 2,
+            "hero_id": 163,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/163.jpg",
+            "hero_name": "橘右京",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 1,
+            "hero_id": 180,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/180.jpg",
+            "hero_name": "哪吒",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 2,
+            "hero_id": 517,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/517.jpg",
+            "hero_name": "大司命",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 1,
+            "hero_id": 531,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/531.jpg",
+            "hero_name": "镜",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 2,
+            "hero_id": 128,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/128.jpg",
+            "hero_name": "曹操",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 1,
+            "hero_id": 140,
+            "position": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/140.jpg",
+            "hero_name": "关羽",
+            "is_ban_or_pick": 0
+          },
+          {
+            "camp": 2,
+            "hero_id": 502,
+            "position": 3,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/502.jpg",
+            "hero_name": "裴擒虎",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 1,
+            "hero_id": 134,
+            "position": 4,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/134.jpg",
+            "hero_name": "达摩",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 1,
+            "hero_id": 542,
+            "position": 3,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/542.jpg",
+            "hero_name": "暃",
+            "is_ban_or_pick": 1
+          },
+          {
+            "camp": 2,
+            "hero_id": 536,
+            "position": 4,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/536.jpg",
+            "hero_name": "夏洛特",
+            "is_ban_or_pick": 1
+          }
+        ],
+        "win_camp": 2,
+        "battle_id": "48251408_30_1768371100",
+        "battle_seq": 1,
+        "video_list": [
+          {
+            "video_id": "s31872ntaax",
+            "video_url": "https://v.qq.com/x/page/s31872ntaax.html",
+            "video_channel": "tencent_video"
+          }
+        ],
+        "game_duration": 944000,
+        "battle_player_list": [
+          {
+            "kda": 0.5,
+            "camp": 1,
+            "gold": 10491,
+            "is_mvp": 0,
+            "hero_id": 548,
+            "skin_id": 2,
+            "team_id": "10020",
+            "kill_num": 1,
+            "position": 7,
+            "death_num": 2,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/548.jpg",
+            "hero_name": "戈娅",
+            "mvp_score": 5.5,
+            "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+            "team_name": "北京JDG",
+            "assist_num": 0,
+            "hurt_total": 482152,
+            "symbol_ids": "1519+1519+1519+1519+1519+1519+1519+1519+1519+1519+2517+2517+2504+2504+2504+2504+2504+2504+2504+2504+3514+3514+3514+3514+3514+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smobatv-pic.tga.qq.com/72e40f8fe9371a608db398b7bbb95c7c.png",
+            "player_name": "绝意",
+            "be_hurt_total": 59343,
+            "position_desc": "发育路",
+            "BriefEquipList": [
+              {
+                "equip_id": 1135,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1135.jpg",
+                "equip_name": "闪电匕首",
+                "equip_desc_gain": "<p>+40物理攻击<br>+35%攻击速度<br>+7.5%移速</p>",
+                "equip_desc_function": "<p>唯一被动-电弧：普攻额外造成40~80法术伤害，每3次普攻会释放一次连锁闪电，造成160~400法术伤害，冷却时间：0.15秒</p>"
+              },
+              {
+                "equip_id": 1421,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1421.jpg",
+                "equip_name": "影忍之足",
+                "equip_desc_gain": "<p>+50法术防御<br>+120物理防御</p>",
+                "equip_desc_function": "<p>唯一被动：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>唯一被动：抵挡6%~12%物理伤害</p>"
+              },
+              {
+                "equip_id": 1126,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1126.jpg",
+                "equip_name": "末世",
+                "equip_desc_gain": "<p>+500最大生命<br>+40物理攻击<br>+20%攻击速度 <br>+20%物理吸血</p>",
+                "equip_desc_function": "<p>唯一被动-破败：普攻额外造成目标80~160（+7%目标额外最大生命）的物理伤害，冷却时间0.15秒</p>"
+              },
+              {
+                "equip_id": 1155,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1155.jpg",
+                "equip_name": "仁者破晓",
+                "equip_desc_gain": "<p>+75物理攻击<br>+30%攻击速度<br>+15%暴击率</p>",
+                "equip_desc_function": "<p>被动-破甲：+15%物理穿透（远程英雄使用时效果翻倍）<br>被动-破晓：近战普通攻击伤害提升25点（远程英雄使用时效果翻倍）</p>"
+              },
+              {
+                "equip_id": 1133,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1133.jpg",
+                "equip_name": "无尽战刃",
+                "equip_desc_gain": "<p>+120物理攻击<br>+20%暴击率</p>",
+                "equip_desc_function": "<p>唯一被动-无尽：获得20%暴击效果，每2%暴击增加1%暴击效果，最多不超过50%</p>"
+              },
+              {
+                "equip_id": 1154,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1154.jpg",
+                "equip_name": "穿云弓",
+                "equip_desc_gain": "<p>+12%暴击率<br>+15%攻击速度</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.338,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/548/54810.png",
+                "skill_name": "弹射起步"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/548/54800.png",
+                "skill_name": "漂移疾射"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/548/54820.png",
+                "skill_name": "逆转射击"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/548/54830.png",
+                "skill_name": "黑砂爆弹"
+              }
+            ],
+            "actual_player_name": "北京JDG.绝意",
+            "be_hurt_total_rate": 0.1613,
+            "hurt_to_hero_total": 100475,
+            "participation_rate": 50,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80115,
+              "summoner_ability_desc": "120秒CD：向指定方向位移一段距离",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80115.jpg",
+              "summoner_ability_name": "闪现",
+              "summoner_ability_rank": "LV.19解锁"
+            },
+            "be_hurt_by_hero_total": 46802,
+            "hurt_to_hero_total_rate": 0.3688,
+            "be_hurt_by_hero_total_rate": 0.1493
+          },
+          {
+            "kda": 2,
+            "camp": 1,
+            "gold": 6788,
+            "is_mvp": 0,
+            "hero_id": 550,
+            "skin_id": 1,
+            "team_id": "10020",
+            "kill_num": 0,
+            "position": 4,
+            "death_num": 1,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/550.jpg",
+            "hero_name": "空空儿",
+            "mvp_score": 6.6,
+            "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+            "team_name": "北京JDG",
+            "assist_num": 2,
+            "hurt_total": 62718,
+            "symbol_ids": "1520+1512+1520+1512+1512+1512+1512+1512+1512+1512+2515+2515+2515+2515+2515+2515+2515+2515+2515+2515+3509+3509+3509+3509+3509+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/b22950d418b901f7aadffc1793f6be0c.png",
+            "player_name": "无畏",
+            "be_hurt_total": 93081,
+            "position_desc": "游走",
+            "BriefEquipList": [
+              {
+                "equip_id": 1721,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1721.jpg",
+                "equip_name": "极影·救赎",
+                "equip_desc_gain": "<p>+1200生命值<br>+7.5%移速</p>",
+                "equip_desc_function": "<p>主动-救援：范围内友方英雄立即获得240~480（+10%最大生命值）护盾，持续4秒（CD:60秒）游走装主动技能队伍共享冷却<br>被动-迅捷光环：增加自身20%攻速、15%冷却和15每5秒回蓝，对800范围友方造成50%效果<br>被动-奖赏：增加400~800最大生命值，增加25~50主攻属性（1主攻击属性=1物理攻击或2法术攻击）<br>被动-游击：每3秒增加自身6经验，每隔10秒传送一枚掉落的金币到英雄附近，增加队伍中经济最低的英雄6金币(众星峡谷中的效果保持不变)</p>"
+              },
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 1341,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1341.jpg",
+                "equip_name": "冰霜冲击",
+                "equip_desc_gain": "<p>+150物理防御<br>+950最大生命<br>+7.5%冷却缩减</p>",
+                "equip_desc_function": "<p>主动-冲击：在自身450范围内生成霜冻领域（持续0.75秒）：造成30%~60%减速，随后对敌人造成100~200法术伤害和冻结（持续⅔秒）<br>被动-冰甲：新增10%韧性属性，受到除压制外的硬控后获得10%生命值的护盾，持续5秒，该效果有15秒冷却时间。</p>"
+              },
+              {
+                "equip_id": 1323,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1323.jpg",
+                "equip_name": "神隐斗篷",
+                "equip_desc_gain": "<p>+150法术防御<br>+450最大生命</p>",
+                "equip_desc_function": ""
+              },
+              {
+                "equip_id": 1323,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1323.jpg",
+                "equip_name": "神隐斗篷",
+                "equip_desc_gain": "<p>+150法术防御<br>+450最大生命</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.044,
+            "BriefHeroSkillList": [],
+            "actual_player_name": "北京JDG.无畏",
+            "be_hurt_total_rate": 0.253,
+            "hurt_to_hero_total": 45541,
+            "participation_rate": 100,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80103,
+              "summoner_ability_desc": "90秒CD：晕眩身边所有敌人0.75秒，并附带持续1秒的减速效果",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80103.jpg",
+              "summoner_ability_name": "晕眩",
+              "summoner_ability_rank": "LV.13解锁"
+            },
+            "be_hurt_by_hero_total": 87900,
+            "hurt_to_hero_total_rate": 0.1672,
+            "be_hurt_by_hero_total_rate": 0.2804
+          },
+          {
+            "kda": 4.5,
+            "camp": 2,
+            "gold": 11072,
+            "is_mvp": 0,
+            "hero_id": 199,
+            "skin_id": 9,
+            "team_id": "10006",
+            "kill_num": 2,
+            "position": 7,
+            "death_num": 2,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/199.jpg",
+            "hero_name": "公孙离",
+            "mvp_score": 7.6,
+            "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+            "team_name": "武汉eStarPro",
+            "assist_num": 7,
+            "hurt_total": 506490,
+            "symbol_ids": "1520+1520+1520+1520+1520+1520+1520+1520+1520+1520+2504+2504+2504+2520+2520+2520+2520+2520+2520+2520+3514+3514+3514+3514+3514+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/b3eda68beb371c059b88cf485fd2b985.png",
+            "player_name": "亮宇",
+            "be_hurt_total": 70029,
+            "position_desc": "发育路",
+            "BriefEquipList": [
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 1135,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1135.jpg",
+                "equip_name": "闪电匕首",
+                "equip_desc_gain": "<p>+40物理攻击<br>+35%攻击速度<br>+7.5%移速</p>",
+                "equip_desc_function": "<p>唯一被动-电弧：普攻额外造成40~80法术伤害，每3次普攻会释放一次连锁闪电，造成160~400法术伤害，冷却时间：0.15秒</p>"
+              },
+              {
+                "equip_id": 1126,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1126.jpg",
+                "equip_name": "末世",
+                "equip_desc_gain": "<p>+500最大生命<br>+40物理攻击<br>+20%攻击速度 <br>+20%物理吸血</p>",
+                "equip_desc_function": "<p>唯一被动-破败：普攻额外造成目标80~160（+7%目标额外最大生命）的物理伤害，冷却时间0.15秒</p>"
+              },
+              {
+                "equip_id": 1155,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1155.jpg",
+                "equip_name": "仁者破晓",
+                "equip_desc_gain": "<p>+75物理攻击<br>+30%攻击速度<br>+15%暴击率</p>",
+                "equip_desc_function": "<p>被动-破甲：+15%物理穿透（远程英雄使用时效果翻倍）<br>被动-破晓：近战普通攻击伤害提升25点（远程英雄使用时效果翻倍）</p>"
+              },
+              {
+                "equip_id": 1333,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1333.jpg",
+                "equip_name": "不祥征兆",
+                "equip_desc_gain": "<p>+300物理防御<br>+1200最大生命</p>",
+                "equip_desc_function": "<p>被动-寒铁：受到攻击会减少攻击者20~40%攻击速度与7.5%~15%移动速度，持续2.5秒（每个目标3秒冷却）</p>"
+              },
+              {
+                "equip_id": 1121,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1121.jpg",
+                "equip_name": "风暴巨剑",
+                "equip_desc_gain": "<p>+75物理攻击</p> ",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.2199,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/199/19930.png",
+                "skill_name": "孤鹜断霞"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/199/19910.png",
+                "skill_name": "岑中归月"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/199/19900.png",
+                "skill_name": "晚云落"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/199/19920.png",
+                "skill_name": "霜叶舞"
+              }
+            ],
+            "actual_player_name": "武汉eStar.亮宇",
+            "be_hurt_total_rate": 0.1957,
+            "hurt_to_hero_total": 71931,
+            "participation_rate": 56.25,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80110,
+              "summoner_ability_desc": "75秒CD：使用期间增加10%伤害、增加25%韧性、20%的物理吸血和30%法术吸血，持续7秒",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80110.jpg",
+              "summoner_ability_name": "狂暴",
+              "summoner_ability_rank": "LV.5解锁"
+            },
+            "be_hurt_by_hero_total": 51718,
+            "hurt_to_hero_total_rate": 0.2295,
+            "be_hurt_by_hero_total_rate": 0.1898
+          },
+          {
+            "kda": 13,
+            "camp": 2,
+            "gold": 11152,
+            "is_mvp": 0,
+            "hero_id": 536,
+            "skin_id": 2,
+            "team_id": "10006",
+            "kill_num": 1,
+            "position": 6,
+            "death_num": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/536.jpg",
+            "hero_name": "夏洛特",
+            "mvp_score": 8.7,
+            "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+            "team_name": "武汉eStarPro",
+            "assist_num": 12,
+            "hurt_total": 421007,
+            "symbol_ids": "1504+1504+1504+1504+1504+1504+1504+1504+1504+1504+2515+2515+2515+2515+2515+2515+2515+2515+2515+2520+3509+3509+3509+3509+3509+3509+3509+3509+3509+3509",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/9eb005cf3aff0df706384b6a8faa2b1a.png",
+            "player_name": "Fly",
+            "be_hurt_total": 81191,
+            "position_desc": "对抗路",
+            "BriefEquipList": [
+              {
+                "equip_id": 11311,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/11311.jpg",
+                "equip_name": "纯净苍穹",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+150物理防御</p>",
+                "equip_desc_function": "<p>唯一主动-驱散：获得30%减伤，持续3秒，冷却时间：75秒<br>被动-残废：技能对首个命中的敌方英雄造成10%~20%减速，并使其对自己的伤害降低20%，持续3秒，该效果有8秒冷却时间</p>"
+              },
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 13310,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/13310.jpg",
+                "equip_name": "冰痕之握",
+                "equip_desc_gain": "<p>+10%冷却缩减<br>+300物理防御<br>+55物理攻击</p>",
+                "equip_desc_function": "<p>唯一被动-强击：使用技能后，5秒内的下一次普攻对范围内敌人额外造成140~280（+0.4额外Ad）物理伤害，并减少15%~30%移速（远程攻击减速效果减半），持续0.5秒，该效果冷却时间1.25秒</p>"
+              },
+              {
+                "equip_id": 1137,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1137.jpg",
+                "equip_name": "暗影战斧",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+500最大生命</p>",
+                "equip_desc_function": "<p>唯一被动-切割：增加90~180点物理穿透</p>"
+              },
+              {
+                "equip_id": 1334,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1334.jpg",
+                "equip_name": "不死鸟之眼",
+                "equip_desc_gain": "<p>+90物理防御<br>+180法术防御<br>+1350最大生命</p>",
+                "equip_desc_function": "<p>唯一被动-血统：每损失10%生命值，生命恢复效果增加6.5%。</p>"
+              },
+              {
+                "equip_id": 1341,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1341.jpg",
+                "equip_name": "冰霜冲击",
+                "equip_desc_gain": "<p>+150物理防御<br>+950最大生命<br>+7.5%冷却缩减</p>",
+                "equip_desc_function": "<p>主动-冲击：在自身450范围内生成霜冻领域（持续0.75秒）：造成30%~60%减速，随后对敌人造成100~200法术伤害和冻结（持续⅔秒）<br>被动-冰甲：新增10%韧性属性，受到除压制外的硬控后获得10%生命值的护盾，持续5秒，该效果有15秒冷却时间。</p>"
+              }
+            ],
+            "hurt_total_rate": 0.1828,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/536/53600.png",
+                "skill_name": "七星光芒剑"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/536/53620.png",
+                "skill_name": "前进喷泉"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/536/53630.png",
+                "skill_name": "破空光剑"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/536/53610.png",
+                "skill_name": "迅光三角剑"
+              }
+            ],
+            "actual_player_name": "武汉eStar.Fly",
+            "be_hurt_total_rate": 0.2269,
+            "hurt_to_hero_total": 65811,
+            "participation_rate": 81.25,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80115,
+              "summoner_ability_desc": "120秒CD：向指定方向位移一段距离",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80115.jpg",
+              "summoner_ability_name": "闪现",
+              "summoner_ability_rank": "LV.19解锁"
+            },
+            "be_hurt_by_hero_total": 58858,
+            "hurt_to_hero_total_rate": 0.21,
+            "be_hurt_by_hero_total_rate": 0.216
+          },
+          {
+            "kda": 0.2,
+            "camp": 1,
+            "gold": 9301,
+            "is_mvp": 0,
+            "hero_id": 134,
+            "skin_id": 3,
+            "team_id": "10020",
+            "kill_num": 0,
+            "position": 6,
+            "death_num": 5,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/134.jpg",
+            "hero_name": "达摩",
+            "mvp_score": 3.8,
+            "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+            "team_name": "北京JDG",
+            "assist_num": 1,
+            "hurt_total": 271028,
+            "symbol_ids": "1504+1504+1504+1504+1504+1504+1504+1504+1504+1504+2517+2517+2517+2517+2517+2517+2517+2517+2517+2517+3514+3514+3514+3514+3514+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smobatv-pic.tga.qq.com/1150a61a8506d205127b079b4061922e.png",
+            "player_name": "轻语",
+            "be_hurt_total": 79336,
+            "position_desc": "对抗路",
+            "BriefEquipList": [
+              {
+                "equip_id": 13310,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/13310.jpg",
+                "equip_name": "冰痕之握",
+                "equip_desc_gain": "<p>+10%冷却缩减<br>+300物理防御<br>+55物理攻击</p>",
+                "equip_desc_function": "<p>唯一被动-强击：使用技能后，5秒内的下一次普攻对范围内敌人额外造成140~280（+0.4额外Ad）物理伤害，并减少15%~30%移速（远程攻击减速效果减半），持续0.5秒，该效果冷却时间1.25秒</p>"
+              },
+              {
+                "equip_id": 1421,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1421.jpg",
+                "equip_name": "影忍之足",
+                "equip_desc_gain": "<p>+50法术防御<br>+120物理防御</p>",
+                "equip_desc_function": "<p>唯一被动：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>唯一被动：抵挡6%~12%物理伤害</p>"
+              },
+              {
+                "equip_id": 1137,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1137.jpg",
+                "equip_name": "暗影战斧",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+500最大生命</p>",
+                "equip_desc_function": "<p>唯一被动-切割：增加90~180点物理穿透</p>"
+              },
+              {
+                "equip_id": 11311,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/11311.jpg",
+                "equip_name": "纯净苍穹",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+150物理防御</p>",
+                "equip_desc_function": "<p>唯一主动-驱散：获得30%减伤，持续3秒，冷却时间：75秒<br>被动-残废：技能对首个命中的敌方英雄造成10%~20%减速，并使其对自己的伤害降低20%，持续3秒，该效果有8秒冷却时间</p>"
+              },
+              {
+                "equip_id": 1335,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1335.jpg",
+                "equip_name": "魔女斗篷",
+                "equip_desc_gain": "<p>+300法术防御<br>+1100最大生命</p>",
+                "equip_desc_function": "<p>被动-迷雾：每15秒获得400~800(+7%额外生命值)的法术护盾<br>魔女：将额外法术防御的15%转化为物理防御</p>"
+              },
+              {
+                "equip_id": 1111,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1111.jpg",
+                "equip_name": "铁剑",
+                "equip_desc_gain": "<p>+20物理攻击</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.19,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/134/13400.png",
+                "skill_name": "真言·心经"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/134/13410.png",
+                "skill_name": "真言·无相"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/134/13420.png",
+                "skill_name": "真言·明王"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/134/13430.png",
+                "skill_name": "真言·普渡"
+              }
+            ],
+            "actual_player_name": "北京JDG.轻语",
+            "be_hurt_total_rate": 0.2157,
+            "hurt_to_hero_total": 41224,
+            "participation_rate": 50,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80115,
+              "summoner_ability_desc": "120秒CD：向指定方向位移一段距离",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80115.jpg",
+              "summoner_ability_name": "闪现",
+              "summoner_ability_rank": "LV.19解锁"
+            },
+            "be_hurt_by_hero_total": 64969,
+            "hurt_to_hero_total_rate": 0.1513,
+            "be_hurt_by_hero_total_rate": 0.2073
+          },
+          {
+            "kda": 10,
+            "camp": 2,
+            "gold": 13955,
+            "is_mvp": 0,
+            "hero_id": 502,
+            "skin_id": 8,
+            "team_id": "10006",
+            "kill_num": 7,
+            "position": 5,
+            "death_num": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/502.jpg",
+            "hero_name": "裴擒虎",
+            "mvp_score": 8.6,
+            "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+            "team_name": "武汉eStarPro",
+            "assist_num": 3,
+            "hurt_total": 858674,
+            "symbol_ids": "1505+1505+1505+1505+1505+1505+1505+1505+1505+1505+2520+2520+2520+2520+2520+2520+2520+2520+2520+2520+3514+3514+3514+3514+3514+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smobatv-pic.tga.qq.com/d07ca418f4cfb35365469409648b15c6.png",
+            "player_name": "小楼",
+            "be_hurt_total": 57736,
+            "position_desc": "打野",
+            "BriefEquipList": [
+              {
+                "equip_id": 1533,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1533.jpg",
+                "equip_name": "贪婪之噬",
+                "equip_desc_gain": "<p>+90物理攻击<br>+5%移速<br>+7.5%冷却</p>",
+                "equip_desc_function": "<p>被动-狩猎：普攻/技能命中后，野怪每0.5秒受到90~180(+0.6%目标最大生命值)的物理伤害（远程攻击减半，对英雄伤害生效25%），持续2秒。受到野怪伤害降低25%，获得来自野怪的经验提升30%、金币提升20%。<br>被动-奖赏：自己击杀或700范围内友方击杀野怪增加自身3点物理攻击和0.2%冷却缩减，最多叠加25层<br>4分钟前：不参与兵线分配，单独获得50%金币/经验<br>10分钟前：对兵线伤害降低25%</p>"
+              },
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 1137,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1137.jpg",
+                "equip_name": "暗影战斧",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+500最大生命</p>",
+                "equip_desc_function": "<p>唯一被动-切割：增加90~180点物理穿透</p>"
+              },
+              {
+                "equip_id": 11311,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/11311.jpg",
+                "equip_name": "纯净苍穹",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+150物理防御</p>",
+                "equip_desc_function": "<p>唯一主动-驱散：获得30%减伤，持续3秒，冷却时间：75秒<br>被动-残废：技能对首个命中的敌方英雄造成10%~20%减速，并使其对自己的伤害降低20%，持续3秒，该效果有8秒冷却时间</p>"
+              },
+              {
+                "equip_id": 1134,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1134.jpg",
+                "equip_name": "宗师之力",
+                "equip_desc_gain": "<p>+55物理攻击<br>+20%暴击率<br>+600最大生命<br>+15%攻击速度</p>",
+                "equip_desc_function": "<p>唯一被动-强击：使用技能后，2秒内提升自身12%移动速度，并使得下次普通攻击造成额外0.8*物理攻击的物理伤害，冷却时间：3秒</p>"
+              },
+              {
+                "equip_id": 1138,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1138.jpg",
+                "equip_name": "强者破军",
+                "equip_desc_gain": "<p>+150物理攻击<br>+5%冷却缩减 </p>",
+                "equip_desc_function": "<p>唯一被动-破军：对生命值低于50%的敌人造成额外30%的伤害</p>"
+              }
+            ],
+            "hurt_total_rate": 0.3728,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/502/50210.png",
+                "skill_name": "冲拳式"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/502/50200.png",
+                "skill_name": "寸劲"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/502/50220.png",
+                "skill_name": "气守式"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/502/50230.png",
+                "skill_name": "虎啸风生"
+              }
+            ],
+            "actual_player_name": "武汉eStar.小楼",
+            "be_hurt_total_rate": 0.1614,
+            "hurt_to_hero_total": 56138,
+            "participation_rate": 62.5,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80104,
+              "summoner_ability_desc": "30秒CD：对身边的野怪和小兵造成真1500点的实伤害并眩晕1秒",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80104.jpg",
+              "summoner_ability_name": "惩击",
+              "summoner_ability_rank": "LV.1解锁"
+            },
+            "be_hurt_by_hero_total": 29520,
+            "hurt_to_hero_total_rate": 0.1791,
+            "be_hurt_by_hero_total_rate": 0.1084
+          },
+          {
+            "kda": 14,
+            "camp": 2,
+            "gold": 8222,
+            "is_mvp": 0,
+            "hero_id": 171,
+            "skin_id": 6,
+            "team_id": "10006",
+            "kill_num": 0,
+            "position": 4,
+            "death_num": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/171.jpg",
+            "hero_name": "张飞",
+            "mvp_score": 11.7,
+            "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+            "team_name": "武汉eStarPro",
+            "assist_num": 14,
+            "hurt_total": 121853,
+            "symbol_ids": "1512+1512+1512+1512+1512+1512+1512+1512+1512+1512+2515+2515+2515+2515+2515+2515+2515+2515+2515+2515+3509+3509+3509+3509+3509+3509+3509+3509+3509+3509",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/10e54af75e7b5828c8da74a578cfb68e.png",
+            "player_name": "紫渊",
+            "be_hurt_total": 104710,
+            "position_desc": "游走",
+            "BriefEquipList": [
+              {
+                "equip_id": 1753,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1753.jpg",
+                "equip_name": "近卫·奔狼",
+                "equip_desc_gain": "<p>+1200生命值<br>+7.5%移速</p>",
+                "equip_desc_function": "<p>主动-奔腾号令：范围内友方英雄增加移动速度，最高增加100%~200%移动速度，持续5秒，途径未加速的友军时会将当前状态同步给友军，攻击或受到敌方英雄攻击时保留20%加速效果（CD:90秒）游走装主动技能队伍共享冷却<br>被动-守护光环：增加自身65~130物理和法术防御和(+0.6%目标额外生命)每5秒回血，对800范围友方造成50%效果<br>被动-奖赏：增加400~800最大生命值，增加25-50主攻属性（1主攻击属性=1物理攻击或2法术攻击）<br>被动-游击：每3秒增加自身6经验，每隔10秒传送一枚掉落的金币到英雄附近，增加队伍中经济最低的英雄6金币(众星峡谷中的效果保持不变) </p>"
+              },
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 1341,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1341.jpg",
+                "equip_name": "冰霜冲击",
+                "equip_desc_gain": "<p>+150物理防御<br>+950最大生命<br>+7.5%冷却缩减</p>",
+                "equip_desc_function": "<p>主动-冲击：在自身450范围内生成霜冻领域（持续0.75秒）：造成30%~60%减速，随后对敌人造成100~200法术伤害和冻结（持续⅔秒）<br>被动-冰甲：新增10%韧性属性，受到除压制外的硬控后获得10%生命值的护盾，持续5秒，该效果有15秒冷却时间。</p>"
+              },
+              {
+                "equip_id": 1335,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1335.jpg",
+                "equip_name": "魔女斗篷",
+                "equip_desc_gain": "<p>+300法术防御<br>+1100最大生命</p>",
+                "equip_desc_function": "<p>被动-迷雾：每15秒获得400~800(+7%额外生命值)的法术护盾<br>魔女：将额外法术防御的15%转化为物理防御</p>"
+              },
+              {
+                "equip_id": 1325,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1325.jpg",
+                "equip_name": "守护者之铠",
+                "equip_desc_gain": "<p>+150物理防御<br>+450最大生命</p>",
+                "equip_desc_function": ""
+              },
+              {
+                "equip_id": 1312,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1312.jpg",
+                "equip_name": "布甲",
+                "equip_desc_gain": "<p>+100物理防御</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.0529,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/171/17120.png",
+                "skill_name": "守护机关"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/171/17130.png",
+                "skill_name": "狂兽血性"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/171/17110.png",
+                "skill_name": "画地为牢"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/171/17100.png",
+                "skill_name": "黑暗潜能"
+              }
+            ],
+            "actual_player_name": "武汉eStar.紫渊",
+            "be_hurt_total_rate": 0.2926,
+            "hurt_to_hero_total": 26011,
+            "participation_rate": 87.5,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80102,
+              "summoner_ability_desc": "120秒CD：回复自己与附近队友15%生命值，提高附近友军移动速度15%持续2秒",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80102.jpg",
+              "summoner_ability_name": "治疗术",
+              "summoner_ability_rank": "LV.9解锁"
+            },
+            "be_hurt_by_hero_total": 93647,
+            "hurt_to_hero_total_rate": 0.083,
+            "be_hurt_by_hero_total_rate": 0.3437
+          },
+          {
+            "kda": 0,
+            "camp": 1,
+            "gold": 9640,
+            "is_mvp": 0,
+            "hero_id": 542,
+            "skin_id": 5,
+            "team_id": "10020",
+            "kill_num": 0,
+            "position": 5,
+            "death_num": 4,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/542.jpg",
+            "hero_name": "暃",
+            "mvp_score": 4.3,
+            "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+            "team_name": "北京JDG",
+            "assist_num": 0,
+            "hurt_total": 452399,
+            "symbol_ids": "1504+1504+1504+1504+1504+1504+1504+1504+1504+1520+2517+2517+2517+2517+2517+2517+2517+2517+2517+2517+3514+3514+3514+3514+3514+3514+3514+3514+3514+3514",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/e740d55cf512b63c82d92c0761666e3d.png",
+            "player_name": "无双",
+            "be_hurt_total": 91458,
+            "position_desc": "打野",
+            "BriefEquipList": [
+              {
+                "equip_id": 1533,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1533.jpg",
+                "equip_name": "贪婪之噬",
+                "equip_desc_gain": "<p>+90物理攻击<br>+5%移速<br>+7.5%冷却</p>",
+                "equip_desc_function": "<p>被动-狩猎：普攻/技能命中后，野怪每0.5秒受到90~180(+0.6%目标最大生命值)的物理伤害（远程攻击减半，对英雄伤害生效25%），持续2秒。受到野怪伤害降低25%，获得来自野怪的经验提升30%、金币提升20%。<br>被动-奖赏：自己击杀或700范围内友方击杀野怪增加自身3点物理攻击和0.2%冷却缩减，最多叠加25层<br>4分钟前：不参与兵线分配，单独获得50%金币/经验<br>10分钟前：对兵线伤害降低25%</p>"
+              },
+              {
+                "equip_id": 1422,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1422.jpg",
+                "equip_name": "抵抗之靴",
+                "equip_desc_gain": "<p>+50物理防御<br>+100法术防御</p>",
+                "equip_desc_function": "<p>被动-神速：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>被动-坚韧：+25%韧性</p>"
+              },
+              {
+                "equip_id": 1137,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1137.jpg",
+                "equip_name": "暗影战斧",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+500最大生命</p>",
+                "equip_desc_function": "<p>唯一被动-切割：增加90~180点物理穿透</p>"
+              },
+              {
+                "equip_id": 11311,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/11311.jpg",
+                "equip_name": "纯净苍穹",
+                "equip_desc_gain": "<p>+80物理攻击<br>+10%冷却缩减<br>+150物理防御</p>",
+                "equip_desc_function": "<p>唯一主动-驱散：获得30%减伤，持续3秒，冷却时间：75秒<br>被动-残废：技能对首个命中的敌方英雄造成10%~20%减速，并使其对自己的伤害降低20%，持续3秒，该效果有8秒冷却时间</p>"
+              },
+              {
+                "equip_id": 1134,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1134.jpg",
+                "equip_name": "宗师之力",
+                "equip_desc_gain": "<p>+55物理攻击<br>+20%暴击率<br>+600最大生命<br>+15%攻击速度</p>",
+                "equip_desc_function": "<p>唯一被动-强击：使用技能后，2秒内提升自身12%移动速度，并使得下次普通攻击造成额外0.8*物理攻击的物理伤害，冷却时间：3秒</p>"
+              },
+              {
+                "equip_id": 1111,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1111.jpg",
+                "equip_name": "铁剑",
+                "equip_desc_gain": "<p>+20物理攻击</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.3171,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/542/54230.png",
+                "skill_name": "凝玉之印"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/542/54200.png",
+                "skill_name": "玉息·星眸"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/542/54220.png",
+                "skill_name": "踏玉飞檐"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/542/54210.png",
+                "skill_name": "逐玉·锋回"
+              }
+            ],
+            "actual_player_name": "北京JDG.无双",
+            "be_hurt_total_rate": 0.2486,
+            "hurt_to_hero_total": 43185,
+            "participation_rate": 0,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80104,
+              "summoner_ability_desc": "30秒CD：对身边的野怪和小兵造成真1500点的实伤害并眩晕1秒",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80104.jpg",
+              "summoner_ability_name": "惩击",
+              "summoner_ability_rank": "LV.1解锁"
+            },
+            "be_hurt_by_hero_total": 69845,
+            "hurt_to_hero_total_rate": 0.1585,
+            "be_hurt_by_hero_total_rate": 0.2228
+          },
+          {
+            "kda": 0.3,
+            "camp": 1,
+            "gold": 7148,
+            "is_mvp": 0,
+            "hero_id": 106,
+            "skin_id": 2,
+            "team_id": "10020",
+            "kill_num": 1,
+            "position": 2,
+            "death_num": 4,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/106.jpg",
+            "hero_name": "小乔",
+            "mvp_score": 3.7,
+            "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+            "team_name": "北京JDG",
+            "assist_num": 0,
+            "hurt_total": 158246,
+            "symbol_ids": "1514+1514+1514+1514+1514+1514+1514+1514+1514+1514+2512+2512+2512+2512+2520+2520+2520+2520+2520+2520+3515+3515+3515+3515+3515+3515+3515+3515+3515+3515",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smhtv-pic.tga.qq.com/b27599f241e8188d063e513c47c688c2.png",
+            "player_name": "清融",
+            "be_hurt_total": 44634,
+            "position_desc": "中路",
+            "BriefEquipList": [
+              {
+                "equip_id": 1240,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1240.jpg",
+                "equip_name": "噬神之书",
+                "equip_desc_gain": "<p>+160法术攻击<br>+24%法术吸血<br>+750最大生命</p>",
+                "equip_desc_function": "<p>唯一被动法术转化：每2%法术吸血额外提供1%冷却缩减</p>"
+              },
+              {
+                "equip_id": 1424,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1424.jpg",
+                "equip_name": "秘法之靴",
+                "equip_desc_gain": "<p>+400最大法力</p>",
+                "equip_desc_function": "<p>唯一被动：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>唯一被动-法术精通：每5秒法力回复10，提升60~120法术穿透</p>"
+              },
+              {
+                "equip_id": 12211,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/12211.jpg",
+                "equip_name": "梦魇之牙",
+                "equip_desc_gain": "<p>+220法术攻击<br>+7.5%移动速度<br>+7.5%冷却缩减</p>",
+                "equip_desc_function": "<p>被动-重伤：普攻/技能命中敌人后降低其35%生命回复和吸血效果，持续2.5秒</p>"
+              },
+              {
+                "equip_id": 1232,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1232.jpg",
+                "equip_name": "博学者之怒",
+                "equip_desc_gain": "<p>+210法术攻击</p>",
+                "equip_desc_function": "<p>唯一被动-毁灭：法术攻击提升30%</p>"
+              }
+            ],
+            "hurt_total_rate": 0.1109,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/106/10630.png",
+                "skill_name": "星华缭乱"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/106/10600.png",
+                "skill_name": "治愈微笑"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/106/10620.png",
+                "skill_name": "甜蜜恋风"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/106/10610.png",
+                "skill_name": "绽放之舞"
+              }
+            ],
+            "actual_player_name": "北京JDG.清融",
+            "be_hurt_total_rate": 0.1213,
+            "hurt_to_hero_total": 42018,
+            "participation_rate": 50,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80115,
+              "summoner_ability_desc": "120秒CD：向指定方向位移一段距离",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80115.jpg",
+              "summoner_ability_name": "闪现",
+              "summoner_ability_rank": "LV.19解锁"
+            },
+            "be_hurt_by_hero_total": 43934,
+            "hurt_to_hero_total_rate": 0.1542,
+            "be_hurt_by_hero_total_rate": 0.1402
+          },
+          {
+            "kda": 15,
+            "camp": 2,
+            "gold": 10514,
+            "is_mvp": 1,
+            "hero_id": 312,
+            "skin_id": 6,
+            "team_id": "10006",
+            "kill_num": 6,
+            "position": 2,
+            "death_num": 0,
+            "hero_icon": "https://res.edata.qq.com/sgame/static/images/hero/312.jpg",
+            "hero_name": "沈梦溪",
+            "mvp_score": 14.4,
+            "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+            "team_name": "武汉eStarPro",
+            "assist_num": 9,
+            "hurt_total": 394987,
+            "symbol_ids": "1514+1514+1514+1514+1514+1514+1514+1514+1514+1514+2520+2520+2520+2520+2520+2520+2520+2515+2515+2515+3515+3515+3515+3515+3515+3515+3515+3515+3515+3515",
+            "is_lose_mvp": 0,
+            "player_icon": "https://smobatv-pic.tga.qq.com/c01abeecdc766701f6c68ddf90142139.png",
+            "player_name": "Ming",
+            "be_hurt_total": 44145,
+            "position_desc": "中路",
+            "BriefEquipList": [
+              {
+                "equip_id": 12211,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/12211.jpg",
+                "equip_name": "梦魇之牙",
+                "equip_desc_gain": "<p>+220法术攻击<br>+7.5%移动速度<br>+7.5%冷却缩减</p>",
+                "equip_desc_function": "<p>被动-重伤：普攻/技能命中敌人后降低其35%生命回复和吸血效果，持续2.5秒</p>"
+              },
+              {
+                "equip_id": 1424,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1424.jpg",
+                "equip_name": "秘法之靴",
+                "equip_desc_gain": "<p>+400最大法力</p>",
+                "equip_desc_function": "<p>唯一被动：+50移动速度（所有鞋类装备的移速加成效果不叠加）<br>唯一被动-法术精通：每5秒法力回复10，提升60~120法术穿透</p>"
+              },
+              {
+                "equip_id": 1235,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1235.jpg",
+                "equip_name": "痛苦面具",
+                "equip_desc_gain": "<p>+100法术攻击<br>+7.5%冷却缩减<br>+900最大生命</p>",
+                "equip_desc_function": "<p>被动-折磨： 技能命中后，目标在3秒内受到到4次3%当前生命的法术伤害（伤害对野怪上限为200点），持续3秒。"
+              },
+              {
+                "equip_id": 1727,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1727.jpg",
+                "equip_name": "日暮之流",
+                "equip_desc_gain": "<p>+160法术攻击<br>+500最大生命<br>+10%冷却缩减</p>",
+                "equip_desc_function": "<p>被动-净魔：对英雄造成伤害会获得20~40点法术穿透，持续4秒，该效果可叠加6层。</p>"
+              },
+              {
+                "equip_id": 1240,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1240.jpg",
+                "equip_name": "噬神之书",
+                "equip_desc_gain": "<p>+160法术攻击<br>+24%法术吸血<br>+750最大生命</p>",
+                "equip_desc_function": "<p>唯一被动法术转化：每2%法术吸血额外提供1%冷却缩减</p>"
+              },
+              {
+                "equip_id": 1221,
+                "equip_icon": "https://res.edata.qq.com/sgame/static/images/equipment/1221.jpg",
+                "equip_name": "大棒",
+                "equip_desc_gain": "<p>+120法术攻击</p>",
+                "equip_desc_function": ""
+              }
+            ],
+            "hurt_total_rate": 0.1715,
+            "BriefHeroSkillList": [
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/312/31200.png",
+                "skill_name": "暴躁节奏"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/312/31220.png",
+                "skill_name": "正常操作"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/312/31210.png",
+                "skill_name": "猫咪炸弹"
+              },
+              {
+                "skill_icon": "https://res.edata.qq.com/sgame/static/images/hero_skill/312/31230.png",
+                "skill_name": "综合爆款"
+              }
+            ],
+            "actual_player_name": "武汉eStar.Ming",
+            "be_hurt_total_rate": 0.1234,
+            "hurt_to_hero_total": 93559,
+            "participation_rate": 93.75,
+            "SummonerAbilityInfo": {
+              "summoner_ability_id": 80115,
+              "summoner_ability_desc": "120秒CD：向指定方向位移一段距离",
+              "summoner_ability_icon": "https://res.edata.qq.com/sgame/static/images/summoner_ability/80115.jpg",
+              "summoner_ability_name": "闪现",
+              "summoner_ability_rank": "LV.19解锁"
+            },
+            "be_hurt_by_hero_total": 38700,
+            "hurt_to_hero_total_rate": 0.2985,
+            "be_hurt_by_hero_total_rate": 0.142
+          }
+        ]
+      }
+    }
+  ],
+  "match": [
+    {
+      "id": "kpl-20260001-2026011401",
+      "season_id": "kpl-2026-spring",
+      "stage": "常规赛第一轮",
+      "stage_seq": null,
+      "bo": 5,
+      "team_a_id": "estar",
+      "team_b_id": "jdg",
+      "score_a": 2,
+      "score_b": 3,
+      "winner_id": "jdg",
+      "mvp_player_id": null,
+      "status": "finished",
+      "scheduled_at": "2026-01-14T06:00:00+00:00",
+      "played_at": "2026-01-14T08:44:21+00:00",
+      "summary": null,
+      "source": "smoba",
+      "source_key": "2026011401",
+      "cc_key": "KPL2026S1M1W1D1",
+      "source_url": "https://pvp.qq.com/matchdata/schedule.html?league_id=20260001",
+      "raw": {
+        "bo": 5,
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10006",
+          "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+          "team_name": "武汉eStarPro",
+          "team_abbreviation": "ES"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "status": 2,
+        "end_time": "2026-01-14 16:44:21",
+        "match_id": "2026011401",
+        "win_camp": 2,
+        "league_id": "20260001",
+        "match_desc": "",
+        "start_time": "2026-01-14 14:00:00",
+        "cc_match_id": "KPL2026S1M1W1D1",
+        "match_address": "上海",
+        "match_stage_seq": 0,
+        "match_stage_desc": "常规赛第一轮",
+        "match_stage_name": "cgs1",
+        "match_battle_video_list": [
+          {
+            "battle_id": "48251408_30_1768371100",
+            "battle_seq": 1,
+            "video_list": [
+              {
+                "video_id": "s31872ntaax",
+                "video_url": "https://v.qq.com/x/page/s31872ntaax.html",
+                "video_channel": "tencent_video"
+              }
+            ]
+          },
+          {
+            "battle_id": "48251408_31_1768373261",
+            "battle_seq": 2,
+            "video_list": [
+              {
+                "video_id": "o31877vgl8q",
+                "video_url": "https://v.qq.com/x/page/o31877vgl8q.html",
+                "video_channel": "tencent_video"
+              }
+            ]
+          },
+          {
+            "battle_id": "48251408_32_1768375305",
+            "battle_seq": 3,
+            "video_list": [
+              {
+                "video_id": "f31870xbty1",
+                "video_url": "https://v.qq.com/x/page/f31870xbty1.html",
+                "video_channel": "tencent_video"
+              }
+            ]
+          },
+          {
+            "battle_id": "48251408_33_1768377049",
+            "battle_seq": 4,
+            "video_list": [
+              {
+                "video_id": "m3187i95146",
+                "video_url": "https://v.qq.com/x/page/m3187i95146.html",
+                "video_channel": "tencent_video"
+              }
+            ]
+          },
+          {
+            "battle_id": "48251408_34_1768378907",
+            "battle_seq": 5,
+            "video_list": [
+              {
+                "video_id": "a31872p2myp",
+                "video_url": "https://v.qq.com/x/page/a31872p2myp.html",
+                "video_channel": "tencent_video"
+              }
+            ]
+          }
+        ]
+      },
+      "created_at": "2026-10-03T17:54:01.103242+00:00",
+      "updated_at": "2026-10-03T18:57:16.790070+00:00",
+      "games_expected": 5,
+      "score_observed_at": null
+    }
+  ],
+  "bp": [
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 1,
+      "action_type": "ban",
+      "side": "blue",
+      "hero_id": "133",
+      "player_id": null,
+      "position": null,
+      "raw_order": 0
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 2,
+      "action_type": "ban",
+      "side": "red",
+      "hero_id": "525",
+      "player_id": null,
+      "position": null,
+      "raw_order": 1
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 3,
+      "action_type": "ban",
+      "side": "blue",
+      "hero_id": "503",
+      "player_id": null,
+      "position": null,
+      "raw_order": 2
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 4,
+      "action_type": "ban",
+      "side": "red",
+      "hero_id": "509",
+      "player_id": null,
+      "position": null,
+      "raw_order": 3
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 5,
+      "action_type": "pick",
+      "side": "blue",
+      "hero_id": "550",
+      "player_id": "无畏",
+      "position": null,
+      "raw_order": 4
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 6,
+      "action_type": "pick",
+      "side": "red",
+      "hero_id": "171",
+      "player_id": "紫渊",
+      "position": null,
+      "raw_order": 5
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 7,
+      "action_type": "pick",
+      "side": "red",
+      "hero_id": "199",
+      "player_id": "亮宇",
+      "position": null,
+      "raw_order": 6
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 8,
+      "action_type": "pick",
+      "side": "blue",
+      "hero_id": "106",
+      "player_id": "清融",
+      "position": null,
+      "raw_order": 7
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 9,
+      "action_type": "pick",
+      "side": "blue",
+      "hero_id": "548",
+      "player_id": "绝意",
+      "position": null,
+      "raw_order": 8
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 10,
+      "action_type": "pick",
+      "side": "red",
+      "hero_id": "312",
+      "player_id": "ming",
+      "position": null,
+      "raw_order": 9
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 11,
+      "action_type": "ban",
+      "side": "red",
+      "hero_id": "163",
+      "player_id": null,
+      "position": null,
+      "raw_order": 10
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 12,
+      "action_type": "ban",
+      "side": "blue",
+      "hero_id": "180",
+      "player_id": null,
+      "position": null,
+      "raw_order": 11
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 13,
+      "action_type": "ban",
+      "side": "red",
+      "hero_id": "517",
+      "player_id": null,
+      "position": null,
+      "raw_order": 12
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 14,
+      "action_type": "ban",
+      "side": "blue",
+      "hero_id": "531",
+      "player_id": null,
+      "position": null,
+      "raw_order": 13
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 15,
+      "action_type": "ban",
+      "side": "red",
+      "hero_id": "128",
+      "player_id": null,
+      "position": null,
+      "raw_order": 14
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 16,
+      "action_type": "ban",
+      "side": "blue",
+      "hero_id": "140",
+      "player_id": null,
+      "position": null,
+      "raw_order": 15
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 17,
+      "action_type": "pick",
+      "side": "red",
+      "hero_id": "502",
+      "player_id": "小楼",
+      "position": null,
+      "raw_order": 16
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 18,
+      "action_type": "pick",
+      "side": "blue",
+      "hero_id": "134",
+      "player_id": "轻语",
+      "position": null,
+      "raw_order": 17
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 19,
+      "action_type": "pick",
+      "side": "blue",
+      "hero_id": "542",
+      "player_id": "无双",
+      "position": null,
+      "raw_order": 18
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "step_index": 20,
+      "action_type": "pick",
+      "side": "red",
+      "hero_id": "536",
+      "player_id": "fly",
+      "position": null,
+      "raw_order": 19
+    }
+  ],
+  "players": [
+    {
+      "id": "昊昊",
+      "slug": "昊昊",
+      "nickname": "昊昊",
+      "real_name": null,
+      "position": "中路",
+      "current_team_id": "jdg",
+      "jersey": null,
+      "debut_at": null,
+      "is_active": true,
+      "bio": null,
+      "portrait_url": "https://smhtv-pic.tga.qq.com/2dc24216edb52b8e5da4417f13efc783.png",
+      "external_id": null,
+      "created_at": "2026-10-03T17:54:16.172086+00:00",
+      "updated_at": "2026-10-09T15:08:43.363971+00:00"
+    },
+    {
+      "id": "清融",
+      "slug": "清融",
+      "nickname": "清融",
+      "real_name": "黄垚钦",
+      "position": "中路",
+      "current_team_id": "jdg",
+      "jersey": null,
+      "debut_at": null,
+      "is_active": true,
+      "bio": "顶级中路法王代表，西施、不知火舞FMVP皮肤拥有者，南京Hero久竞与武汉eStarPro的冠军功勋，2022年随eStar包揽四冠，2026年转会北京JDG。",
+      "portrait_url": "https://smhtv-pic.tga.qq.com/b27599f241e8188d063e513c47c688c2.png",
+      "external_id": null,
+      "created_at": "2026-10-03T17:54:01.371040+00:00",
+      "updated_at": "2026-10-09T15:08:44.527967+00:00"
+    }
+  ]
+}

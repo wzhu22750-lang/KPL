@@ -1,0 +1,9 @@
+# The full derived index is delivered locally, not intended for a Git commit.
+processed/subtitles.db
+processed/subtitles.db-*
+__pycache__/
+*.pyc
+.playwright-cli/
+output/playwright/.playwright-cli/
+output/playwright/browser_check.runtime.js
+output/playwright/server.pid

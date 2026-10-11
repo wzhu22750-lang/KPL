@@ -1,0 +1,5538 @@
+{
+  "camp_mapping_proof": [
+    {
+      "game_id": "kpl-20260001-2026011401-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10006",
+      "schedule_camp1_team": "10006",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "estar",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10006",
+      "schedule_camp1_team": "10006",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "estar",
+      "db_winner_id": "estar"
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10006",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10006",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10006",
+      "schedule_camp1_team": "10006",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "estar",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011401-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10006",
+      "schedule_camp1_team": "10006",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "estar",
+      "db_winner_id": "estar"
+    },
+    {
+      "game_id": "kpl-20260001-2026011801-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "ksg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011801-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011801-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011801-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "ksg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026011801-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "ksg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012402-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "hero",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012402-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10007",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012402-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "hero",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012402-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10007",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012402-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "hero",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012802-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012802-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026012802-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026013102-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260001-2026013102-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260001-2026013102-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026013102-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026020403-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10018",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10018",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026020403-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10018",
+      "schedule_camp1_team": "10018",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "rw",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026020403-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10018",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10018",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "rw",
+      "winner_from_wrong_schedule_mapping": "rw",
+      "db_winner_id": "rw"
+    },
+    {
+      "game_id": "kpl-20260001-2026020403-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10018",
+      "schedule_camp1_team": "10018",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "rw",
+      "db_winner_id": "rw"
+    },
+    {
+      "game_id": "kpl-20260001-2026020403-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10018",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10018",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026020702-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10010",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026020702-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260001-2026020702-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260001-2026021303-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026021303-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026021303-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026021303-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026021303-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026022502-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10028",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10028",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026022502-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10028",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260001-2026022502-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10028",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260001-2026022802-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10007",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026022802-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "hero",
+      "db_winner_id": "hero"
+    },
+    {
+      "game_id": "kpl-20260001-2026022802-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "hero",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026022802-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10007",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10007",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10903",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "qingjiu",
+      "db_winner_id": "qingjiu"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10903",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "qingjiu",
+      "winner_from_wrong_schedule_mapping": "qingjiu",
+      "db_winner_id": "qingjiu"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10903",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "qingjiu",
+      "winner_from_wrong_schedule_mapping": "qingjiu",
+      "db_winner_id": "qingjiu"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10903",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10903",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "qingjiu",
+      "db_winner_id": "qingjiu"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g6",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10903",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "qingjiu",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026030401-g7",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10903",
+      "schedule_camp1_team": "10903",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "qingjiu",
+      "db_winner_id": "qingjiu"
+    },
+    {
+      "game_id": "kpl-20260001-2026030803-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10001",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260001-2026030803-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10001",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260001-2026030803-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10001",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260001-2026030803-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10001",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260001-2026030803-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10001",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260001-2026031101-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "ksg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031101-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031101-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031101-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "ksg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031101-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031401-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260001-2026031401-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260001-2026031401-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031401-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031401-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031802-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026031802-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031802-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026031802-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026031802-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026032102-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "dyg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032102-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "dyg",
+      "db_winner_id": "dyg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032102-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032102-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032801-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032801-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032801-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026032801-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260001-2026040101-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026040101-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026040101-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260001-2026040101-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260001-2026040101-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260002-2026042802-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10010",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "we",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260002-2026042802-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "we",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026042802-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10010",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026042802-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260002-2026042802-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10010",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "dyg",
+      "winner_from_wrong_schedule_mapping": "dyg",
+      "db_winner_id": "dyg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "dyg",
+      "db_winner_id": "dyg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "dyg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050302-g6",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10008",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "dyg",
+      "db_winner_id": "dyg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050801-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10016",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "drg",
+      "db_winner_id": "drg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050801-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050801-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050801-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "drg",
+      "winner_from_wrong_schedule_mapping": "drg",
+      "db_winner_id": "drg"
+    },
+    {
+      "game_id": "kpl-20260002-2026050801-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10016",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "drg",
+      "db_winner_id": "drg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10031",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10031",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "lgd-nbw",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10031",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "lgd-nbw",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260002-2026051101-g6",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g6",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051601-g7",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260002-2026051701-g6",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026061902-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "12202",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "12202",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "t12202",
+      "db_winner_id": "t12202"
+    },
+    {
+      "game_id": "kpl-20260003-2026061902-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "12202",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "12202",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026061902-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "12202",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "12202",
+      "winner_from_battle": "t12202",
+      "winner_from_wrong_schedule_mapping": "t12202",
+      "db_winner_id": "t12202"
+    },
+    {
+      "game_id": "kpl-20260003-2026061902-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "12202",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "12202",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "t12202",
+      "db_winner_id": "t12202"
+    },
+    {
+      "game_id": "kpl-20260003-2026062102-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10028",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260003-2026062102-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "tes-a",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260003-2026062102-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10028",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260003-2026062102-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "tes-a",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260003-2026062102-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026062603-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026062603-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026062603-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026062603-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026062603-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070203-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10010",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10010",
+      "winner_from_battle": "we",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070203-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10010",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10010",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "we",
+      "db_winner_id": "we"
+    },
+    {
+      "game_id": "kpl-20260003-2026070203-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10010",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070203-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10010",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10010",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070403-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070403-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10016",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026070403-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10016",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10016",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "drg",
+      "db_winner_id": "drg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071003-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071003-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260003-2026071003-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260003-2026071003-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10027",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071201-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071201-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10005",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071201-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10005",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10005",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ksg",
+      "db_winner_id": "ksg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071603-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071603-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071603-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071902-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10031",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026071902-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10031",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "lgd-nbw",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260003-2026071902-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10031",
+      "schedule_camp1_team": "10031",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260003-2026071902-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10031",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026072501-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026072501-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026072501-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026072501-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026072501-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10003",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026073001-g1",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026073001-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ag",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260003-2026073001-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10027",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ag",
+      "db_winner_id": "ag"
+    },
+    {
+      "game_id": "kpl-20260003-2026073001-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026073001-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10027",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10027",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081502-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081502-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081502-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081502-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081502-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081602-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260003-2026081602-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260003-2026081602-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10003",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "wb",
+      "db_winner_id": "wb"
+    },
+    {
+      "game_id": "kpl-20260003-2026081602-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10003",
+      "schedule_camp1_team": "10003",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wb",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081902-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026081902-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10028",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "tes-a",
+      "db_winner_id": "tes-a"
+    },
+    {
+      "game_id": "kpl-20260003-2026081902-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10028",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10028",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026082203-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026082203-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026082203-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026082203-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026082203-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g5",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026083001-g6",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10017",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090401-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026090401-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026090401-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026090401-g4",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10001",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090401-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10001",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10001",
+      "schedule_camp2_team": "10020",
+      "winner_from_battle": "wolves",
+      "winner_from_wrong_schedule_mapping": "wolves",
+      "db_winner_id": "wolves"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10017",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g6",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260003-2026090601-g7",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10017",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10017",
+      "winner_from_battle": "ttg",
+      "winner_from_wrong_schedule_mapping": "ttg",
+      "db_winner_id": "ttg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100302-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10002",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10002",
+      "winner_from_battle": "edgm",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100302-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10002",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10002",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100302-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10002",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10002",
+      "winner_from_battle": "edgm",
+      "winner_from_wrong_schedule_mapping": "edgm",
+      "db_winner_id": "edgm"
+    },
+    {
+      "game_id": "kpl-20260004-2026100302-g4",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10002",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10002",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100302-g5",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10002",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10002",
+      "winner_from_battle": "edgm",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100502-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10031",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100502-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260004-2026100502-g3",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10031",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10031",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "lgd-nbw",
+      "db_winner_id": "lgd-nbw"
+    },
+    {
+      "game_id": "kpl-20260004-2026100602-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10007",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100602-g2",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10007",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100602-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10007",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10007",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100902-g1",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100902-g2",
+      "battle_win_camp": 2,
+      "battle_camp1_team": "10008",
+      "battle_camp2_team": "10020",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "dyg",
+      "db_winner_id": "jdg"
+    },
+    {
+      "game_id": "kpl-20260004-2026100902-g3",
+      "battle_win_camp": 1,
+      "battle_camp1_team": "10020",
+      "battle_camp2_team": "10008",
+      "schedule_camp1_team": "10020",
+      "schedule_camp2_team": "10008",
+      "winner_from_battle": "jdg",
+      "winner_from_wrong_schedule_mapping": "jdg",
+      "db_winner_id": "jdg"
+    }
+  ],
+  "swapped_but_db_already_correct_game_ids": [
+    "kpl-20260004-2026100902-g2"
+  ],
+  "schema": [
+    {
+      "table_name": "bp_actions",
+      "column_name": "game_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "step_index",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "action_type",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "side",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "hero_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "bp_actions",
+      "column_name": "raw_order",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "match_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "game_no",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "mode",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "winner_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "duration_secs",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "mvp_player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "kills_a",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "kills_b",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "games",
+      "column_name": "gold_a",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "games",
+      "column_name": "gold_b",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "games",
+      "column_name": "economy_curve",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "games",
+      "column_name": "key_fights",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "games",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "games",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "roles",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "positions",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "primary_pos",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "power_period",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "function_tags",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "version_strength",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "notes",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "release_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "portrait_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "heroes",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "season_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "stage",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "stage_seq",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "bo",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "team_a_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "team_b_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_a",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_b",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "winner_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "mvp_player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "status",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "scheduled_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "played_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "summary",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "cc_key",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "games_expected",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "matches",
+      "column_name": "score_observed_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "game_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "hero_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "side",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "kills",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "deaths",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "assists",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "gold",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "damage_to_hero",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "damage_taken",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "participation_rate",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "mvp",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "lose_mvp",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "mvp_score",
+      "data_type": "numeric"
+    },
+    {
+      "table_name": "player_games",
+      "column_name": "raw",
+      "data_type": "jsonb"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "id",
+      "data_type": "bigint"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "player_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "season_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "kind",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "year",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "title",
+      "data_type": "text"
+    },
+    {
+      "table_name": "player_honors",
+      "column_name": "source_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "nickname",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "real_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "position",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "current_team_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "jersey",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "debut_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "players",
+      "column_name": "is_active",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "players",
+      "column_name": "bio",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "portrait_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "players",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "players",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "year",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "split",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "start_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "end_date",
+      "data_type": "date"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "format_note",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "seasons",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "slug",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "short_name",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "city",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "founded_at",
+      "data_type": "date"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "history_names",
+      "data_type": "ARRAY"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "league",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "logo_url",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "style_notes",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "external_id",
+      "data_type": "text"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "is_active",
+      "data_type": "boolean"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "sort_weight",
+      "data_type": "integer"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone"
+    },
+    {
+      "table_name": "teams",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone"
+    }
+  ],
+  "database_coverage": [
+    {
+      "id": "kpl-2016-autumn",
+      "year": 2016,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2017-autumn",
+      "year": 2017,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2017-cup",
+      "year": 2017,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2017-spring",
+      "year": 2017,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2018-autumn",
+      "year": 2018,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2018-cup",
+      "year": 2018,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2018-spring",
+      "year": 2018,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2018-winter",
+      "year": 2018,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2019-annual",
+      "year": 2019,
+      "matches": 155,
+      "games": 612
+    },
+    {
+      "id": "kpl-2019-spring",
+      "year": 2019,
+      "matches": 118,
+      "games": 470
+    },
+    {
+      "id": "kpl-2019-summer",
+      "year": 2019,
+      "matches": 9,
+      "games": 50
+    },
+    {
+      "id": "kpl-2019-winter",
+      "year": 2019,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2020-annual",
+      "year": 2020,
+      "matches": 169,
+      "games": 635
+    },
+    {
+      "id": "kpl-2020-spring",
+      "year": 2020,
+      "matches": 132,
+      "games": 540
+    },
+    {
+      "id": "kpl-2020-summer",
+      "year": 2020,
+      "matches": 52,
+      "games": 71
+    },
+    {
+      "id": "kpl-2020-winter",
+      "year": 2020,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2021-challenger",
+      "year": 2021,
+      "matches": 86,
+      "games": 228
+    },
+    {
+      "id": "kpl-2021-spring",
+      "year": 2021,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2021-summer",
+      "year": 2021,
+      "matches": 136,
+      "games": 568
+    },
+    {
+      "id": "kpl-2021-winter",
+      "year": 2021,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2022-challenger",
+      "year": 2022,
+      "matches": 25,
+      "games": 80
+    },
+    {
+      "id": "kpl-2022-spring",
+      "year": 2022,
+      "matches": 136,
+      "games": 554
+    },
+    {
+      "id": "kpl-2022-summer",
+      "year": 2022,
+      "matches": 136,
+      "games": 571
+    },
+    {
+      "id": "kpl-2022-worlds",
+      "year": 2022,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2023-challenger",
+      "year": 2023,
+      "matches": 40,
+      "games": 115
+    },
+    {
+      "id": "kpl-2023-spring",
+      "year": 2023,
+      "matches": 136,
+      "games": 579
+    },
+    {
+      "id": "kpl-2023-summer",
+      "year": 2023,
+      "matches": 136,
+      "games": 561
+    },
+    {
+      "id": "kpl-2023-worlds",
+      "year": 2023,
+      "matches": 0,
+      "games": 0
+    },
+    {
+      "id": "kpl-2024-annual",
+      "year": 2024,
+      "matches": 53,
+      "games": 240
+    },
+    {
+      "id": "kpl-2024-challenger",
+      "year": 2024,
+      "matches": 75,
+      "games": 227
+    },
+    {
+      "id": "kpl-2024-spring",
+      "year": 2024,
+      "matches": 136,
+      "games": 554
+    },
+    {
+      "id": "kpl-2024-summer",
+      "year": 2024,
+      "matches": 136,
+      "games": 573
+    },
+    {
+      "id": "kpl-2025-annual",
+      "year": 2025,
+      "matches": 53,
+      "games": 237
+    },
+    {
+      "id": "kpl-2025-challenger",
+      "year": 2025,
+      "matches": 38,
+      "games": 174
+    },
+    {
+      "id": "kpl-2025-spring",
+      "year": 2025,
+      "matches": 136,
+      "games": 574
+    },
+    {
+      "id": "kpl-2025-summer",
+      "year": 2025,
+      "matches": 136,
+      "games": 562
+    },
+    {
+      "id": "kpl-2026-annual",
+      "year": 2026,
+      "matches": 36,
+      "games": 77
+    },
+    {
+      "id": "kpl-2026-challenger",
+      "year": 2026,
+      "matches": 38,
+      "games": 188
+    },
+    {
+      "id": "kpl-2026-spring",
+      "year": 2026,
+      "matches": 136,
+      "games": 573
+    },
+    {
+      "id": "kpl-2026-summer",
+      "year": 2026,
+      "matches": 136,
+      "games": 562
+    }
+  ],
+  "read_only": true,
+  "isolation": "REPEATABLE READ",
+  "series": [
+    {
+      "match_id": "kpl-20260001-2026011401",
+      "game_ids": [
+        "kpl-20260001-2026011401-g1",
+        "kpl-20260001-2026011401-g2",
+        "kpl-20260001-2026011401-g3",
+        "kpl-20260001-2026011401-g4",
+        "kpl-20260001-2026011401-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10006",
+          "team_icon": "https://smobatv-pic.tga.qq.com/ad7441d6a83f41e0efe1dbd23d9bacad.png",
+          "team_name": "武汉eStarPro",
+          "team_abbreviation": "ES"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026011801",
+      "game_ids": [
+        "kpl-20260001-2026011801-g1",
+        "kpl-20260001-2026011801-g2",
+        "kpl-20260001-2026011801-g3",
+        "kpl-20260001-2026011801-g4",
+        "kpl-20260001-2026011801-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        2,
+        3
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10005",
+          "team_icon": "https://smobatv-pic.tga.qq.com/e7f3ca48aa29a89c5cf7e04d7f83534f.png",
+          "team_name": "KSG",
+          "team_abbreviation": "KSG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026012402",
+      "game_ids": [
+        "kpl-20260001-2026012402-g1",
+        "kpl-20260001-2026012402-g2",
+        "kpl-20260001-2026012402-g3",
+        "kpl-20260001-2026012402-g4",
+        "kpl-20260001-2026012402-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        2,
+        3
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10007",
+          "team_icon": "https://smhtv-pic.tga.qq.com/85b4fe06e4a722bd5435676bd9ff1384.png",
+          "team_name": "南通Hero久竞",
+          "team_abbreviation": "Hero"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026012802",
+      "game_ids": [
+        "kpl-20260001-2026012802-g1",
+        "kpl-20260001-2026012802-g2",
+        "kpl-20260001-2026012802-g3"
+      ],
+      "mid_counts": {
+        "清融": 3
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10016",
+          "team_icon": "https://smhtv-pic.tga.qq.com/ce1bd06e864b727f98676ef12a956e9f.png",
+          "team_name": "佛山DRG",
+          "team_abbreviation": "DRG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026013102",
+      "game_ids": [
+        "kpl-20260001-2026013102-g1",
+        "kpl-20260001-2026013102-g2",
+        "kpl-20260001-2026013102-g3",
+        "kpl-20260001-2026013102-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        1,
+        3
+      ],
+      "score_a_b": [
+        1,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026020403",
+      "game_ids": [
+        "kpl-20260001-2026020403-g1",
+        "kpl-20260001-2026020403-g2",
+        "kpl-20260001-2026020403-g3",
+        "kpl-20260001-2026020403-g4",
+        "kpl-20260001-2026020403-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10018",
+          "team_icon": "https://smobatv-pic.tga.qq.com/11ba263f0d5d6fd422c4efb14df3ad62.png",
+          "team_name": "济南RW侠",
+          "team_abbreviation": "RW侠"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026020702",
+      "game_ids": [
+        "kpl-20260001-2026020702-g1",
+        "kpl-20260001-2026020702-g2",
+        "kpl-20260001-2026020702-g3"
+      ],
+      "mid_counts": {
+        "清融": 3
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        0,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10010",
+          "team_icon": "https://smhtv-pic.tga.qq.com/e4fa78585a052b912d092287814c779b.png",
+          "team_name": "西安WE",
+          "team_abbreviation": "WE"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026021303",
+      "game_ids": [
+        "kpl-20260001-2026021303-g1",
+        "kpl-20260001-2026021303-g2",
+        "kpl-20260001-2026021303-g3",
+        "kpl-20260001-2026021303-g4",
+        "kpl-20260001-2026021303-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026022502",
+      "game_ids": [
+        "kpl-20260001-2026022502-g1",
+        "kpl-20260001-2026022502-g2",
+        "kpl-20260001-2026022502-g3"
+      ],
+      "mid_counts": {
+        "清融": 3
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        0,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10028",
+          "team_icon": "https://smhtv-pic.tga.qq.com/48f18204fa257197ec49bb6345d14a33.png",
+          "team_name": "长沙TES.A",
+          "team_abbreviation": "TES.A"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026022802",
+      "game_ids": [
+        "kpl-20260001-2026022802-g1",
+        "kpl-20260001-2026022802-g2",
+        "kpl-20260001-2026022802-g3",
+        "kpl-20260001-2026022802-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        1
+      ],
+      "score_a_b": [
+        1,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10007",
+          "team_icon": "https://smhtv-pic.tga.qq.com/85b4fe06e4a722bd5435676bd9ff1384.png",
+          "team_name": "南通Hero久竞",
+          "team_abbreviation": "Hero"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026030401",
+      "game_ids": [
+        "kpl-20260001-2026030401-g1",
+        "kpl-20260001-2026030401-g2",
+        "kpl-20260001-2026030401-g3",
+        "kpl-20260001-2026030401-g4",
+        "kpl-20260001-2026030401-g5",
+        "kpl-20260001-2026030401-g6",
+        "kpl-20260001-2026030401-g7"
+      ],
+      "mid_counts": {
+        "清融": 7
+      },
+      "group": "清融",
+      "jdg_score": [
+        4,
+        3
+      ],
+      "score_a_b": [
+        3,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": false,
+          "team_id": "10903",
+          "team_icon": "https://smhtv-pic.tga.qq.com/f4fc888e840157eaa4bc7b261f71e835.png",
+          "team_name": "桐乡情久",
+          "team_abbreviation": "情久"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "卡位赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026030803",
+      "game_ids": [
+        "kpl-20260001-2026030803-g1",
+        "kpl-20260001-2026030803-g2",
+        "kpl-20260001-2026030803-g3",
+        "kpl-20260001-2026030803-g4",
+        "kpl-20260001-2026030803-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10001",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a85f1428dd1ef3eaeeb5e203f17b9b25.png",
+          "team_name": "重庆狼队",
+          "team_abbreviation": "狼队"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026031101",
+      "game_ids": [
+        "kpl-20260001-2026031101-g1",
+        "kpl-20260001-2026031101-g2",
+        "kpl-20260001-2026031101-g3",
+        "kpl-20260001-2026031101-g4",
+        "kpl-20260001-2026031101-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10005",
+          "team_icon": "https://smobatv-pic.tga.qq.com/e7f3ca48aa29a89c5cf7e04d7f83534f.png",
+          "team_name": "KSG",
+          "team_abbreviation": "KSG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026031401",
+      "game_ids": [
+        "kpl-20260001-2026031401-g1",
+        "kpl-20260001-2026031401-g2",
+        "kpl-20260001-2026031401-g3",
+        "kpl-20260001-2026031401-g4",
+        "kpl-20260001-2026031401-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10003",
+          "team_icon": "https://smhtv-pic.tga.qq.com/75b41b2357febfa17764f8bc1f423d2c.png",
+          "team_name": "北京WB",
+          "team_abbreviation": "WB"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026031802",
+      "game_ids": [
+        "kpl-20260001-2026031802-g1",
+        "kpl-20260001-2026031802-g2",
+        "kpl-20260001-2026031802-g3",
+        "kpl-20260001-2026031802-g4",
+        "kpl-20260001-2026031802-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026032102",
+      "game_ids": [
+        "kpl-20260001-2026032102-g1",
+        "kpl-20260001-2026032102-g2",
+        "kpl-20260001-2026032102-g3",
+        "kpl-20260001-2026032102-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        1
+      ],
+      "score_a_b": [
+        3,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10008",
+          "team_icon": "https://smhtv-pic.tga.qq.com/221a9ffe2de016e02e146465ed57ce73.png",
+          "team_name": "深圳DYG",
+          "team_abbreviation": "DYG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026032801",
+      "game_ids": [
+        "kpl-20260001-2026032801-g1",
+        "kpl-20260001-2026032801-g2",
+        "kpl-20260001-2026032801-g3",
+        "kpl-20260001-2026032801-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        0,
+        4
+      ],
+      "score_a_b": [
+        0,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "季后赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260001-2026040101",
+      "game_ids": [
+        "kpl-20260001-2026040101-g1",
+        "kpl-20260001-2026040101-g2",
+        "kpl-20260001-2026040101-g3",
+        "kpl-20260001-2026040101-g4",
+        "kpl-20260001-2026040101-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        1,
+        4
+      ],
+      "score_a_b": [
+        1,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10003",
+          "team_icon": "https://smhtv-pic.tga.qq.com/75b41b2357febfa17764f8bc1f423d2c.png",
+          "team_name": "北京WB",
+          "team_abbreviation": "WB"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "季后赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026042802",
+      "game_ids": [
+        "kpl-20260002-2026042802-g1",
+        "kpl-20260002-2026042802-g2",
+        "kpl-20260002-2026042802-g3",
+        "kpl-20260002-2026042802-g4",
+        "kpl-20260002-2026042802-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10010",
+          "team_icon": "https://smhtv-pic.tga.qq.com/e4fa78585a052b912d092287814c779b.png",
+          "team_name": "西安WE",
+          "team_abbreviation": "WE"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "单败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026050302",
+      "game_ids": [
+        "kpl-20260002-2026050302-g1",
+        "kpl-20260002-2026050302-g2",
+        "kpl-20260002-2026050302-g3",
+        "kpl-20260002-2026050302-g4",
+        "kpl-20260002-2026050302-g5",
+        "kpl-20260002-2026050302-g6"
+      ],
+      "mid_counts": {
+        "清融": 6
+      },
+      "group": "清融",
+      "jdg_score": [
+        4,
+        2
+      ],
+      "score_a_b": [
+        2,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10008",
+          "team_icon": "https://smhtv-pic.tga.qq.com/221a9ffe2de016e02e146465ed57ce73.png",
+          "team_name": "深圳DYG",
+          "team_abbreviation": "DYG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "单败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026050801",
+      "game_ids": [
+        "kpl-20260002-2026050801-g1",
+        "kpl-20260002-2026050801-g2",
+        "kpl-20260002-2026050801-g3",
+        "kpl-20260002-2026050801-g4",
+        "kpl-20260002-2026050801-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        4,
+        1
+      ],
+      "score_a_b": [
+        4,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10016",
+          "team_icon": "https://smhtv-pic.tga.qq.com/ce1bd06e864b727f98676ef12a956e9f.png",
+          "team_name": "佛山DRG",
+          "team_abbreviation": "DRG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "双败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026051101",
+      "game_ids": [
+        "kpl-20260002-2026051101-g1",
+        "kpl-20260002-2026051101-g2",
+        "kpl-20260002-2026051101-g3",
+        "kpl-20260002-2026051101-g4",
+        "kpl-20260002-2026051101-g5",
+        "kpl-20260002-2026051101-g6"
+      ],
+      "mid_counts": {
+        "清融": 6
+      },
+      "group": "清融",
+      "jdg_score": [
+        4,
+        2
+      ],
+      "score_a_b": [
+        4,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10031",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a29bcb1a579369888cc9a87637274822.png",
+          "team_name": "杭州LGD.NBW",
+          "team_abbreviation": "LGD"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "双败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026051601",
+      "game_ids": [
+        "kpl-20260002-2026051601-g1",
+        "kpl-20260002-2026051601-g2",
+        "kpl-20260002-2026051601-g3",
+        "kpl-20260002-2026051601-g4",
+        "kpl-20260002-2026051601-g5",
+        "kpl-20260002-2026051601-g6",
+        "kpl-20260002-2026051601-g7"
+      ],
+      "mid_counts": {
+        "清融": 7
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        4
+      ],
+      "score_a_b": [
+        3,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "双败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260002-2026051701",
+      "game_ids": [
+        "kpl-20260002-2026051701-g1",
+        "kpl-20260002-2026051701-g2",
+        "kpl-20260002-2026051701-g3",
+        "kpl-20260002-2026051701-g4",
+        "kpl-20260002-2026051701-g5",
+        "kpl-20260002-2026051701-g6"
+      ],
+      "mid_counts": {
+        "清融": 6
+      },
+      "group": "清融",
+      "jdg_score": [
+        2,
+        4
+      ],
+      "score_a_b": [
+        4,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10001",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a85f1428dd1ef3eaeeb5e203f17b9b25.png",
+          "team_name": "重庆狼队",
+          "team_abbreviation": "狼队"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "双败淘汰赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026061902",
+      "game_ids": [
+        "kpl-20260003-2026061902-g1",
+        "kpl-20260003-2026061902-g2",
+        "kpl-20260003-2026061902-g3",
+        "kpl-20260003-2026061902-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        1
+      ],
+      "score_a_b": [
+        3,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "12202",
+          "team_icon": "https://smhtv-pic.tga.qq.com/753411b495321ea83711fe63cfc8d347.png",
+          "team_name": "SYG",
+          "team_abbreviation": "SYG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026062102",
+      "game_ids": [
+        "kpl-20260003-2026062102-g1",
+        "kpl-20260003-2026062102-g2",
+        "kpl-20260003-2026062102-g3",
+        "kpl-20260003-2026062102-g4",
+        "kpl-20260003-2026062102-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10028",
+          "team_icon": "https://smhtv-pic.tga.qq.com/48f18204fa257197ec49bb6345d14a33.png",
+          "team_name": "长沙TES.A",
+          "team_abbreviation": "TES.A"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026062603",
+      "game_ids": [
+        "kpl-20260003-2026062603-g1",
+        "kpl-20260003-2026062603-g2",
+        "kpl-20260003-2026062603-g3",
+        "kpl-20260003-2026062603-g4",
+        "kpl-20260003-2026062603-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026070203",
+      "game_ids": [
+        "kpl-20260003-2026070203-g1",
+        "kpl-20260003-2026070203-g2",
+        "kpl-20260003-2026070203-g3",
+        "kpl-20260003-2026070203-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        1
+      ],
+      "score_a_b": [
+        3,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10010",
+          "team_icon": "https://smhtv-pic.tga.qq.com/e4fa78585a052b912d092287814c779b.png",
+          "team_name": "西安WE",
+          "team_abbreviation": "WE"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026070403",
+      "game_ids": [
+        "kpl-20260003-2026070403-g1",
+        "kpl-20260003-2026070403-g2",
+        "kpl-20260003-2026070403-g3"
+      ],
+      "mid_counts": {
+        "昊昊": 3
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10016",
+          "team_icon": "https://smhtv-pic.tga.qq.com/ce1bd06e864b727f98676ef12a956e9f.png",
+          "team_name": "佛山DRG",
+          "team_abbreviation": "DRG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第一轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026071003",
+      "game_ids": [
+        "kpl-20260003-2026071003-g1",
+        "kpl-20260003-2026071003-g2",
+        "kpl-20260003-2026071003-g3",
+        "kpl-20260003-2026071003-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        1,
+        3
+      ],
+      "score_a_b": [
+        1,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026071201",
+      "game_ids": [
+        "kpl-20260003-2026071201-g1",
+        "kpl-20260003-2026071201-g2",
+        "kpl-20260003-2026071201-g3"
+      ],
+      "mid_counts": {
+        "清融": 3
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10005",
+          "team_icon": "https://smobatv-pic.tga.qq.com/e7f3ca48aa29a89c5cf7e04d7f83534f.png",
+          "team_name": "KSG",
+          "team_abbreviation": "KSG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026071603",
+      "game_ids": [
+        "kpl-20260003-2026071603-g1",
+        "kpl-20260003-2026071603-g2",
+        "kpl-20260003-2026071603-g3"
+      ],
+      "mid_counts": {
+        "清融": 3
+      },
+      "group": "清融",
+      "jdg_score": [
+        0,
+        3
+      ],
+      "score_a_b": [
+        0,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026071902",
+      "game_ids": [
+        "kpl-20260003-2026071902-g1",
+        "kpl-20260003-2026071902-g2",
+        "kpl-20260003-2026071902-g3",
+        "kpl-20260003-2026071902-g4"
+      ],
+      "mid_counts": {
+        "清融": 4
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        1
+      ],
+      "score_a_b": [
+        1,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10031",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a29bcb1a579369888cc9a87637274822.png",
+          "team_name": "杭州LGD.NBW",
+          "team_abbreviation": "LGD"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026072501",
+      "game_ids": [
+        "kpl-20260003-2026072501-g1",
+        "kpl-20260003-2026072501-g2",
+        "kpl-20260003-2026072501-g3",
+        "kpl-20260003-2026072501-g4",
+        "kpl-20260003-2026072501-g5"
+      ],
+      "mid_counts": {
+        "清融": 5
+      },
+      "group": "清融",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10003",
+          "team_icon": "https://smhtv-pic.tga.qq.com/75b41b2357febfa17764f8bc1f423d2c.png",
+          "team_name": "北京WB",
+          "team_abbreviation": "WB"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第二轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026073001",
+      "game_ids": [
+        "kpl-20260003-2026073001-g1",
+        "kpl-20260003-2026073001-g2",
+        "kpl-20260003-2026073001-g3",
+        "kpl-20260003-2026073001-g4",
+        "kpl-20260003-2026073001-g5"
+      ],
+      "mid_counts": {
+        "昊昊": 5
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10027",
+          "team_icon": "https://smhtv-pic.tga.qq.com/02e0582db3b0766ad6fab97e95743e6c.png",
+          "team_name": "成都AG超玩会",
+          "team_abbreviation": "AG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026081502",
+      "game_ids": [
+        "kpl-20260003-2026081502-g1",
+        "kpl-20260003-2026081502-g2",
+        "kpl-20260003-2026081502-g3",
+        "kpl-20260003-2026081502-g4",
+        "kpl-20260003-2026081502-g5"
+      ],
+      "mid_counts": {
+        "昊昊": 5
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        3,
+        2
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026081602",
+      "game_ids": [
+        "kpl-20260003-2026081602-g1",
+        "kpl-20260003-2026081602-g2",
+        "kpl-20260003-2026081602-g3",
+        "kpl-20260003-2026081602-g4"
+      ],
+      "mid_counts": {
+        "昊昊": 4
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        1,
+        3
+      ],
+      "score_a_b": [
+        3,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10003",
+          "team_icon": "https://smhtv-pic.tga.qq.com/75b41b2357febfa17764f8bc1f423d2c.png",
+          "team_name": "北京WB",
+          "team_abbreviation": "WB"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026081902",
+      "game_ids": [
+        "kpl-20260003-2026081902-g1",
+        "kpl-20260003-2026081902-g2",
+        "kpl-20260003-2026081902-g3"
+      ],
+      "mid_counts": {
+        "昊昊": 3
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10028",
+          "team_icon": "https://smhtv-pic.tga.qq.com/48f18204fa257197ec49bb6345d14a33.png",
+          "team_name": "长沙TES.A",
+          "team_abbreviation": "TES.A"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026082203",
+      "game_ids": [
+        "kpl-20260003-2026082203-g1",
+        "kpl-20260003-2026082203-g2",
+        "kpl-20260003-2026082203-g3",
+        "kpl-20260003-2026082203-g4",
+        "kpl-20260003-2026082203-g5"
+      ],
+      "mid_counts": {
+        "昊昊": 5
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        2,
+        3
+      ],
+      "score_a_b": [
+        3,
+        2
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10001",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a85f1428dd1ef3eaeeb5e203f17b9b25.png",
+          "team_name": "重庆狼队",
+          "team_abbreviation": "狼队"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "常规赛第三轮"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026083001",
+      "game_ids": [
+        "kpl-20260003-2026083001-g1",
+        "kpl-20260003-2026083001-g2",
+        "kpl-20260003-2026083001-g3",
+        "kpl-20260003-2026083001-g4",
+        "kpl-20260003-2026083001-g5",
+        "kpl-20260003-2026083001-g6"
+      ],
+      "mid_counts": {
+        "昊昊": 6
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        4,
+        2
+      ],
+      "score_a_b": [
+        2,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "季后赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026090401",
+      "game_ids": [
+        "kpl-20260003-2026090401-g1",
+        "kpl-20260003-2026090401-g2",
+        "kpl-20260003-2026090401-g3",
+        "kpl-20260003-2026090401-g4",
+        "kpl-20260003-2026090401-g5"
+      ],
+      "mid_counts": {
+        "昊昊": 5
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        1,
+        4
+      ],
+      "score_a_b": [
+        4,
+        1
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10001",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a85f1428dd1ef3eaeeb5e203f17b9b25.png",
+          "team_name": "重庆狼队",
+          "team_abbreviation": "狼队"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 1,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "季后赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260003-2026090601",
+      "game_ids": [
+        "kpl-20260003-2026090601-g1",
+        "kpl-20260003-2026090601-g2",
+        "kpl-20260003-2026090601-g3",
+        "kpl-20260003-2026090601-g4",
+        "kpl-20260003-2026090601-g5",
+        "kpl-20260003-2026090601-g6",
+        "kpl-20260003-2026090601-g7"
+      ],
+      "mid_counts": {
+        "昊昊": 7
+      },
+      "group": "昊昊",
+      "jdg_score": [
+        3,
+        4
+      ],
+      "score_a_b": [
+        3,
+        4
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 4,
+          "is_win": true,
+          "team_id": "10017",
+          "team_icon": "https://smhtv-pic.tga.qq.com/0a05fdfba20fa3823db5c8c44fae6abe.png",
+          "team_name": "广州TTG",
+          "team_abbreviation": "TTG"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "季后赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260004-2026100302",
+      "game_ids": [
+        "kpl-20260004-2026100302-g1",
+        "kpl-20260004-2026100302-g2",
+        "kpl-20260004-2026100302-g3",
+        "kpl-20260004-2026100302-g4",
+        "kpl-20260004-2026100302-g5"
+      ],
+      "mid_counts": {
+        "清融": 3,
+        "昊昊": 2
+      },
+      "group": "mixed",
+      "jdg_score": [
+        2,
+        3
+      ],
+      "score_a_b": [
+        2,
+        3
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 2,
+          "is_win": false,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10002",
+          "team_icon": "https://smhtv-pic.tga.qq.com/7209fb2509e991052852dd872981c8f3.png",
+          "team_name": "上海EDG.M",
+          "team_abbreviation": "EDG.M"
+        },
+        "win_camp": 2,
+        "status": 2,
+        "match_stage_desc": "擂台赛"
+      },
+      "score_verified": true,
+      "jdg_win": false,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260004-2026100502",
+      "game_ids": [
+        "kpl-20260004-2026100502-g1",
+        "kpl-20260004-2026100502-g2",
+        "kpl-20260004-2026100502-g3"
+      ],
+      "mid_counts": {
+        "昊昊": 2,
+        "清融": 1
+      },
+      "group": "mixed",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10031",
+          "team_icon": "https://smhtv-pic.tga.qq.com/a29bcb1a579369888cc9a87637274822.png",
+          "team_name": "杭州LGD.NBW",
+          "team_abbreviation": "LGD"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "擂台赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260004-2026100602",
+      "game_ids": [
+        "kpl-20260004-2026100602-g1",
+        "kpl-20260004-2026100602-g2",
+        "kpl-20260004-2026100602-g3"
+      ],
+      "mid_counts": {
+        "昊昊": 2,
+        "清融": 1
+      },
+      "group": "mixed",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10007",
+          "team_icon": "https://smhtv-pic.tga.qq.com/85b4fe06e4a722bd5435676bd9ff1384.png",
+          "team_name": "南通Hero久竞",
+          "team_abbreviation": "Hero"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "擂台赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    },
+    {
+      "match_id": "kpl-20260004-2026100902",
+      "game_ids": [
+        "kpl-20260004-2026100902-g1",
+        "kpl-20260004-2026100902-g2",
+        "kpl-20260004-2026100902-g3"
+      ],
+      "mid_counts": {
+        "昊昊": 2,
+        "清融": 1
+      },
+      "group": "mixed",
+      "jdg_score": [
+        3,
+        0
+      ],
+      "score_a_b": [
+        3,
+        0
+      ],
+      "schedule_raw": {
+        "camp1": {
+          "rank": 0,
+          "score": 3,
+          "is_win": true,
+          "team_id": "10020",
+          "team_icon": "https://smhtv-pic.tga.qq.com/bc18df69dd91643409c09a3503737cb3.png",
+          "team_name": "北京JDG",
+          "team_abbreviation": "JDG"
+        },
+        "camp2": {
+          "rank": 0,
+          "score": 0,
+          "is_win": false,
+          "team_id": "10008",
+          "team_icon": "https://smhtv-pic.tga.qq.com/221a9ffe2de016e02e146465ed57ce73.png",
+          "team_name": "深圳DYG",
+          "team_abbreviation": "DYG"
+        },
+        "win_camp": 1,
+        "status": 2,
+        "match_stage_desc": "擂台赛"
+      },
+      "score_verified": true,
+      "jdg_win": true,
+      "status": "finished"
+    }
+  ],
+  "upcoming_or_unobserved_matches": [
+    {
+      "match_id": "kpl-20260004-2026101401",
+      "status": "scheduled",
+      "score_a": 0,
+      "score_b": 0
+    },
+    {
+      "match_id": "kpl-20260004-2026101802",
+      "status": "scheduled",
+      "score_a": 0,
+      "score_b": 0
+    }
+  ],
+  "flipped_game_ids": [
+    "kpl-20260001-2026011401-g1",
+    "kpl-20260001-2026011401-g2",
+    "kpl-20260001-2026011401-g4",
+    "kpl-20260001-2026011401-g5",
+    "kpl-20260001-2026011801-g2",
+    "kpl-20260001-2026011801-g3",
+    "kpl-20260001-2026011801-g4",
+    "kpl-20260001-2026012402-g1",
+    "kpl-20260001-2026012402-g3",
+    "kpl-20260001-2026012402-g5",
+    "kpl-20260001-2026013102-g1",
+    "kpl-20260001-2026013102-g3",
+    "kpl-20260001-2026013102-g4",
+    "kpl-20260001-2026020403-g2",
+    "kpl-20260001-2026020403-g4",
+    "kpl-20260001-2026020702-g2",
+    "kpl-20260001-2026020702-g3",
+    "kpl-20260001-2026021303-g1",
+    "kpl-20260001-2026021303-g3",
+    "kpl-20260001-2026021303-g4",
+    "kpl-20260001-2026021303-g5",
+    "kpl-20260001-2026022502-g2",
+    "kpl-20260001-2026022502-g3",
+    "kpl-20260001-2026022802-g2",
+    "kpl-20260001-2026022802-g3",
+    "kpl-20260001-2026030401-g1",
+    "kpl-20260001-2026030401-g5",
+    "kpl-20260001-2026030401-g6",
+    "kpl-20260001-2026030401-g7",
+    "kpl-20260001-2026030803-g2",
+    "kpl-20260001-2026030803-g4",
+    "kpl-20260001-2026030803-g5",
+    "kpl-20260001-2026031101-g1",
+    "kpl-20260001-2026031101-g2",
+    "kpl-20260001-2026031101-g5",
+    "kpl-20260001-2026031401-g1",
+    "kpl-20260001-2026031401-g4",
+    "kpl-20260001-2026031802-g2",
+    "kpl-20260001-2026031802-g4",
+    "kpl-20260001-2026031802-g5",
+    "kpl-20260001-2026032102-g1",
+    "kpl-20260001-2026032102-g2",
+    "kpl-20260001-2026032801-g1",
+    "kpl-20260001-2026032801-g2",
+    "kpl-20260001-2026032801-g3",
+    "kpl-20260001-2026040101-g1",
+    "kpl-20260001-2026040101-g4",
+    "kpl-20260002-2026042802-g2",
+    "kpl-20260002-2026042802-g4",
+    "kpl-20260002-2026042802-g5",
+    "kpl-20260002-2026050302-g3",
+    "kpl-20260002-2026050302-g4",
+    "kpl-20260002-2026050302-g6",
+    "kpl-20260002-2026050801-g1",
+    "kpl-20260002-2026050801-g5",
+    "kpl-20260002-2026051101-g2",
+    "kpl-20260002-2026051101-g4",
+    "kpl-20260002-2026051101-g6",
+    "kpl-20260002-2026051601-g1",
+    "kpl-20260002-2026051601-g3",
+    "kpl-20260002-2026051601-g4",
+    "kpl-20260002-2026051601-g5",
+    "kpl-20260002-2026051601-g7",
+    "kpl-20260002-2026051701-g4",
+    "kpl-20260002-2026051701-g6",
+    "kpl-20260003-2026061902-g1",
+    "kpl-20260003-2026061902-g4",
+    "kpl-20260003-2026062102-g1",
+    "kpl-20260003-2026062102-g3",
+    "kpl-20260003-2026062603-g1",
+    "kpl-20260003-2026062603-g3",
+    "kpl-20260003-2026062603-g5",
+    "kpl-20260003-2026070203-g1",
+    "kpl-20260003-2026070203-g2",
+    "kpl-20260003-2026070403-g3",
+    "kpl-20260003-2026071003-g1",
+    "kpl-20260003-2026071003-g2",
+    "kpl-20260003-2026071003-g4",
+    "kpl-20260003-2026071201-g3",
+    "kpl-20260003-2026071603-g2",
+    "kpl-20260003-2026071603-g3",
+    "kpl-20260003-2026071902-g3",
+    "kpl-20260003-2026072501-g1",
+    "kpl-20260003-2026072501-g2",
+    "kpl-20260003-2026073001-g1",
+    "kpl-20260003-2026073001-g3",
+    "kpl-20260003-2026081502-g3",
+    "kpl-20260003-2026081602-g1",
+    "kpl-20260003-2026081602-g4",
+    "kpl-20260003-2026081902-g2",
+    "kpl-20260003-2026082203-g2",
+    "kpl-20260003-2026082203-g3",
+    "kpl-20260003-2026083001-g1",
+    "kpl-20260003-2026083001-g4",
+    "kpl-20260003-2026090401-g2",
+    "kpl-20260003-2026090401-g4",
+    "kpl-20260003-2026090601-g2",
+    "kpl-20260003-2026090601-g3",
+    "kpl-20260003-2026090601-g4",
+    "kpl-20260003-2026090601-g5",
+    "kpl-20260004-2026100302-g1",
+    "kpl-20260004-2026100302-g5",
+    "kpl-20260004-2026100502-g2",
+    "kpl-20260004-2026100502-g3"
+  ],
+  "cache_win_differences": [],
+  "old_report_claimed_flips": 105,
+  "reproduced_flips": 104,
+  "schedule_vs_battle_camp_swapped_games": 105,
+  "db_winner_equals_schedule_camp_interpretation": 210,
+  "bp_errors": {
+    "not_20_actions": 4,
+    "not_10ban_10pick": 4,
+    "illegal_action_side_pattern": 4
+  },
+  "bp_action_count_distribution": {
+    "20": 207,
+    "8": 1,
+    "6": 1,
+    "19": 1,
+    "5": 1
+  },
+  "cache_all_records_read": 211,
+  "cache_sha256": "18dbc649c6cb60e2fa0f5155ec13dc2e96a317b71bab1fd9b889b67ede067b55"
+}

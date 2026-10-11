@@ -1,0 +1,1 @@
+<!DOCTYPE html><html><head><script>var i=location.href;var v=window.btoa?window.btoa(window.encodeURIComponent(i)):"";window.location.href="https://waf.tencent.com/501page.html?u="+location.origin+"&id=1e3805bf7ff564727e620d77c6a905db-1782964755288881-368-140240196908800-38212434141100986&st=02&v="+v;</script></head></html>

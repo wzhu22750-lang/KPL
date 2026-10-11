@@ -1,0 +1,167 @@
+/* P2: athlete archives, schedule, game details and head-to-head only.
+   Semantic aliases inherit both paper and cyan-dark shell tokens. */
+.esports-page:is(.esports-player, .esports-schedule, .esports-match, .esports-h2h) {
+  --ep-paper: var(--surface);
+  --ep-subtle: var(--bg-sunk);
+  --ep-text: var(--ink);
+  --ep-muted: var(--ink-3);
+  --ep-rule: var(--line);
+  --ep-accent: var(--accent);
+  --ep-accent-soft: var(--accent-softer);
+  --ep-blue: #286fa0;
+  --ep-red: #a74445;
+  color: var(--ep-text);
+  min-width: 0;
+}
+[data-theme="dark"] .esports-page:is(.esports-player, .esports-schedule, .esports-match, .esports-h2h) {
+  --ep-blue: #89caff;
+  --ep-red: #ff9c9d;
+}
+.esports-page .ep-panel { border: 1px solid var(--ep-rule); border-radius: var(--radius-sheet); background: var(--ep-paper); }
+.esports-page .ep-muted { color: var(--ep-muted); font-size: 12px; line-height: 1.7; }
+.esports-page .ep-kicker { color: var(--ep-accent); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.esports-page .ep-tag { display: inline-flex; align-items: center; border: 1px solid var(--ep-rule); border-radius: 5px; padding: 2px 7px; color: var(--ep-accent); font-size: 11px; font-weight: 600; }
+.esports-page .ep-section { margin-top: 32px; min-width: 0; }
+.esports-page .ep-section-heading { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.esports-page .ep-section-heading h2 { font-size: 18px; font-weight: 700; letter-spacing: -.025em; }
+.esports-page .ep-section-heading > span { color: var(--ep-muted); font-size: 11px; }
+.esports-page .ep-empty { padding: 22px 16px; color: var(--ep-muted); font-size: 13px; line-height: 1.7; }
+.esports-page .ep-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+.esports-page :is(.ep-athlete, .ep-season-card, .ep-hero-card, .ep-duel, .ep-comparison) h3 { font-size: 14px; font-weight: 650; }
+.esports-page :is(.ep-news-list, .ep-duel-team, .ep-athlete-copy, .ep-timeline) a { transition: color 140ms; }
+.esports-page :is(.ep-news-list, .ep-duel-team, .ep-athlete-copy, .ep-timeline) a:hover { color: var(--ep-accent); }
+.esports-page :is(.ep-select-field select, .ep-season-actions button, .ep-swap, .ep-game-selector button) {
+  min-height: 44px; border: 1px solid var(--ep-rule); border-radius: 10px; padding: 10px 12px;
+  background: var(--ep-paper); color: var(--ep-text); font: inherit; font-size: 13px;
+  transition: border-color 140ms, background-color 140ms;
+}
+.esports-page :is(.ep-select-field select, .ep-season-actions button, .ep-swap, .ep-game-selector button):hover { border-color: var(--ep-accent); }
+.esports-page :is(button, select, summary, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.esports-page :is(.ep-season-actions button, .ep-game-selector button)[aria-pressed="true"] { background: var(--ep-accent-soft); border-color: var(--ep-accent); color: var(--ep-accent); }
+.esports-page .ep-select-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.esports-page .ep-select-field label { color: var(--ep-muted); font-size: 12px; }
+.esports-page .ep-select-field select { width: 100%; max-width: 100%; text-overflow: ellipsis; }
+/* Athlete: identity before statistics; no synthetic ability ratings. */
+.esports-page .ep-athlete { display: flex; gap: 26px; align-items: center; padding: 28px; }
+.esports-page .ep-athlete > :first-child { flex-shrink: 0; }
+.esports-page .ep-athlete-copy { min-width: 0; }
+.esports-page .ep-affiliation { margin: 10px 0 8px; font-size: 14px; font-weight: 600; }
+.esports-page .ep-affiliation a { color: var(--ep-accent); display: inline-flex; align-items: center; min-height: 44px; }
+.esports-page .ep-bio { padding: 20px 24px; color: var(--ink-2); font-size: 14px; line-height: 1.85; }
+.esports-page .ep-career-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.esports-page .ep-timeline { border-left: 1px solid var(--ep-rule); margin-left: 6px; padding-left: 20px; }
+.esports-page .ep-timeline > li { position: relative; padding-bottom: 24px; min-width: 0; }
+.esports-page .ep-timeline > li::before { content: ""; position: absolute; left: -25px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--ep-accent); box-shadow: 0 0 0 4px var(--bg); }
+.esports-page .ep-timeline h3 { margin: 5px 0; font-size: 15px; font-weight: 650; }
+.esports-page .ep-timeline h3 a { display: inline-flex; min-height: 44px; align-items: center; }
+.esports-page .ep-honors { display: grid; gap: 12px; }
+.esports-page .ep-honors li { border-bottom: 1px solid var(--ep-rule); padding: 0 0 14px; }
+.esports-page .ep-honors h3 { margin: 5px 0; font-size: 15px; font-weight: 650; }
+.esports-page .ep-season-list { display: grid; gap: 12px; }
+.esports-page .ep-season-card { padding: 18px 20px; display: grid; grid-template-columns: minmax(140px, 1fr) minmax(0, 2fr); align-items: center; gap: 18px; }
+.esports-page .ep-stat-grid { display: grid; grid-template-columns: .65fr .8fr .65fr 1.7fr; gap: 12px; }
+.esports-page .ep-stat-grid dt { color: var(--ep-muted); font-size: 11px; }
+.esports-page .ep-stat-grid dd { margin-top: 5px; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.esports-page .ep-hero-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.esports-page .ep-hero-card { display: flex; align-items: center; gap: 12px; padding: 14px; min-width: 0; }
+.esports-page .ep-hero-card > :first-child { flex-shrink: 0; }
+.esports-page .ep-hero-card > strong { margin-left: auto; color: var(--ep-accent); font-size: 17px; font-variant-numeric: tabular-nums; }
+.esports-page .ep-news-list li + li { border-top: 1px solid var(--ep-rule); }
+.esports-page .ep-news-list a { display: block; padding: 18px 20px; min-height: 44px; }
+.esports-page .ep-news-list h3 { font-size: 15px; line-height: 1.6; font-weight: 600; margin: 6px 0; }
+.esports-page .ep-news-meta { display: flex; gap: 10px; align-items: center; font-size: 11px; color: var(--ep-muted); }
+/* Schedule & history. Shared MatchRow owns logo, score and explicit status. */
+.esports-page .ep-filter-panel { display: grid; gap: 16px; padding: 18px; }
+.esports-page .ep-season-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.esports-page .ep-schedule-days { margin-top: 30px; display: grid; gap: 26px; }
+.esports-page .ep-match-list { overflow: hidden; }
+.esports-page .ep-match-list > li + li { border-top: 1px solid var(--ep-rule); }
+/* H2H: independently measured rates leave unaccounted results unassigned. */
+.esports-page .ep-duel-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 18px; padding: 20px; margin: 20px 0; }
+.esports-page .ep-duel { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 24px; align-items: center; padding: 30px 24px; }
+.esports-page .ep-duel-team { min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.esports-page .ep-duel-team > a { display: flex; flex-direction: column; align-items: center; gap: 12px; min-height: 44px; }
+.esports-page .ep-duel-team h2 { font-size: 20px; font-weight: 700; text-wrap: balance; overflow-wrap: anywhere; }
+.esports-page .ep-win-count { font-size: 48px; line-height: 1.2; font-weight: 700; color: var(--ep-accent); font-variant-numeric: tabular-nums; margin-top: 20px; }
+.esports-page .ep-versus { text-align: center; color: var(--ep-muted); }
+.esports-page .ep-versus > span { display: block; font-size: 32px; font-weight: 800; letter-spacing: -.06em; color: var(--ep-text); }
+.esports-page .ep-versus p { font-size: 11px; margin: 8px 0; }
+.esports-page .ep-versus strong { font-size: 14px; font-variant-numeric: tabular-nums; }
+.esports-page .ep-comparison-list { display: grid; gap: 12px; }
+.esports-page .ep-comparison { padding: 20px; }
+.esports-page .ep-comparison h3 { margin-bottom: 5px; }
+.esports-page .ep-comparison-sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 18px; }
+.esports-page .ep-comparison-value { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; font-size: 13px; font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+.esports-page .ep-comparison-value strong { color: var(--ep-accent); }
+.esports-page .ep-recent-winners { margin-top: 14px; padding: 18px 20px; }
+.esports-page .ep-recent-winners h3 { font-size: 13px; font-weight: 600; }
+.esports-page .ep-recent-winners ol { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+.esports-page .ep-recent-winners li { display: flex; align-items: center; gap: 8px; border: 1px solid var(--ep-rule); padding: 6px 10px; border-radius: 7px; font-size: 12px; }
+.esports-page .ep-history { margin-top: 24px; }
+.esports-page .ep-history-date { font-size: 12px; color: var(--ep-muted); margin-bottom: 10px; line-height: 1.6; }
+/* Match archive: prominent scoreboard and readable per-game results. */
+.esports-page .ep-scoreboard { padding: 24px; }
+.esports-page .ep-status-note { margin-top: 16px; text-align: center; font-size: 11px; color: var(--ep-muted); }
+.esports-page .ep-archive-columns { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 32px; }
+.esports-page .ep-game-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 18px 0; }
+.esports-page .ep-game-selector button { display: flex; flex-direction: column; align-items: start; text-align: left; gap: 6px; padding: 14px; }
+.esports-page .ep-game-number { font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; }
+.esports-page .ep-game-result { font-weight: 600; font-size: 12px; overflow-wrap: anywhere; }
+/* No BP item is hidden at any breakpoint. Native details exposes the whole list. */
+.esports-page .ep-bp-sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0; font-size: 12px; }
+.esports-page .ep-bp [data-side="blue"] { --ep-side: var(--ep-blue); }
+.esports-page .ep-bp [data-side="red"] { --ep-side: var(--ep-red); }
+.esports-page .ep-bp-sides strong { color: var(--ep-side); }
+.esports-page .ep-bp-details summary { min-height: 44px; padding: 12px 0; font-size: 13px; font-weight: 650; cursor: pointer; }
+.esports-page .ep-bp-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.esports-page .ep-bp-steps li { border: 1px solid var(--ep-rule); border-left: 3px solid var(--ep-side); border-radius: 9px; min-width: 0; }
+.esports-page .ep-bp-steps a { display: flex; align-items: center; gap: 9px; padding: 10px; min-height: 76px; }
+.esports-page .ep-bp-steps a:hover { background: var(--ep-accent-soft); }
+.esports-page .ep-bp-order { font-size: 12px; color: var(--ep-muted); font-variant-numeric: tabular-nums; }
+.esports-page .ep-bp-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; overflow-wrap: anywhere; }
+.esports-page .ep-bp-copy strong { font-size: 13px; }
+.esports-page .ep-bp-action { font-size: 10px; font-weight: 700; color: var(--ep-side); }
+.esports-page .ep-bp-steps [data-action="ban"] .ep-bp-copy strong { text-decoration: line-through; }
+/* Keep table semantics in markup, turn each row into an explicitly labelled card. */
+.esports-page .ep-performance-table { display: block; width: 100%; font-size: 12px; }
+.esports-page .ep-performance-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.esports-page .ep-performance-table tbody { display: grid; gap: 10px; padding-top: 14px; }
+.esports-page .ep-performance-table tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; padding: 14px; border: 1px solid var(--ep-rule); border-radius: 10px; }
+.esports-page .ep-performance-table :is(th, td) { padding: 0; text-align: left; min-width: 0; overflow-wrap: anywhere; }
+.esports-page .ep-performance-table th { grid-column: 1 / -1; padding-bottom: 10px; border-bottom: 1px solid var(--ep-rule); font-size: 14px; }
+.esports-page .ep-performance-table td::before { content: attr(data-label); display: block; color: var(--ep-muted); font-size: 10px; margin-bottom: 4px; font-weight: 400; }
+.esports-page .ep-performance-table td a { min-height: 44px; }
+.esports-page .ep-performance-table td:first-of-type { grid-column: 1 / -1; }
+@media (min-width: 768px) {
+  .esports-page .ep-filter-panel { grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr); align-items: end; }
+  .esports-page .ep-filter-panel > p { grid-column: 1 / -1; }
+  .esports-page .ep-performance-table tbody { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1280px) {
+  .esports-page .ep-archive-columns { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+}
+@media (max-width: 639px) {
+  .esports-page .ep-athlete { padding: 20px 16px; gap: 18px; align-items: start; flex-direction: column; }
+  .esports-page .ep-metrics { gap: 8px; }
+  .esports-page .ep-metrics .esports-metric { padding: 12px 8px; }
+  .esports-page .ep-metrics .esports-metric-value { font-size: 20px; }
+  .esports-page .ep-metrics .esports-metric-note { font-size: 10px; }
+  .esports-page .ep-career-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .esports-page .ep-season-card { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .esports-page .ep-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .esports-page .ep-hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .esports-page .ep-duel-controls { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px; }
+  .esports-page .ep-swap { justify-self: center; min-width: 100px; }
+  .esports-page .ep-duel { padding: 24px 12px; gap: 10px; }
+  .esports-page .ep-duel-team h2 { font-size: 14px; }
+  .esports-page .ep-win-count { font-size: 36px; }
+  .esports-page .ep-versus > span { font-size: 24px; }
+  .esports-page .ep-comparison { padding: 16px; }
+  .esports-page .ep-comparison-sides { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .esports-page .ep-scoreboard { padding: 18px 12px; }
+  .esports-page .ep-bp-steps { grid-template-columns: minmax(0, 1fr); }
+  .esports-page .ep-bp-sides { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .esports-page .ep-history { padding-left: 14px; }
+  .esports-page .ep-history > li::before { left: -19px; }
+  .esports-page .ep-section-heading { align-items: start; }
+}

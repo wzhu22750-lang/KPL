@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>JDG 清融 vs 昊昊｜团队协同与 BP 战术优先级</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap');
+    :root{
+      --bg:#f3f3f0;--paper:#fff;--ink:#151515;--muted:#5e615d;--line:#d4d6d0;
+      --red:#d62d20;--red-soft:#f8e5e1;--blue:#1167b1;--blue-soft:#e2eef8;
+      --green:#246b45;--green-soft:#e5f0e8;--amber:#9b5d00;--amber-soft:#f6ebd8;
+      --wash:#eceee9;--shadow:0 14px 42px rgba(23,26,22,.08);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#101210;--paper:#191b19;--ink:#f1f3ee;--muted:#aeb3aa;--line:#363a35;
+      --red:#ff6b5e;--red-soft:#3a211f;--blue:#6fb6ef;--blue-soft:#172d40;
+      --green:#75c798;--green-soft:#1a3024;--amber:#f1b45b;--amber-soft:#372a16;
+      --wash:#242724;--shadow:0 14px 42px rgba(0,0,0,.24);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC",sans-serif;line-height:1.72}a{color:inherit}button{font:inherit}::selection{background:var(--red);color:#fff}
+    .progress{position:fixed;z-index:20;top:0;left:0;height:3px;background:var(--red);width:0}
+    .wrap{max-width:1320px;margin:auto;padding:26px 24px 80px}.mast{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(310px,.58fr);gap:14px;margin-bottom:18px}
+    .hero{background:var(--ink);color:var(--bg);padding:42px 44px 38px;min-height:430px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .hero:after{content:"MID";position:absolute;right:-30px;bottom:-64px;font-weight:900;font-size:220px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);letter-spacing:-.08em;pointer-events:none}
+    .eyebrow{font:600 12px/1.4 "Roboto Mono",monospace;letter-spacing:.11em;text-transform:uppercase;color:#ff867b}.hero h1{font-size:clamp(38px,6vw,86px);line-height:.98;letter-spacing:-.065em;margin:38px 0 24px;max-width:880px}.hero h1 em{font-style:normal;color:#ff6b5e}.dek{max-width:720px;font-size:18px;line-height:1.65;color:#d9ddd4;margin:0}.meta{display:flex;flex-wrap:wrap;gap:10px 22px;font:500 12px "Roboto Mono",monospace;color:#b8bdb4;margin-top:32px}
+    .verdict{background:var(--red);color:#fff;padding:30px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}.verdict .label{font:600 12px "Roboto Mono",monospace;letter-spacing:.1em}.verdict strong{font-size:31px;line-height:1.2;letter-spacing:-.04em}.verdict p{margin:16px 0 0;font-size:14px;color:#ffe5e1}.verdict .scoreline{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.25);margin-top:28px}.verdict .scoreline div{padding:14px 4px;background:var(--red)}.verdict b{display:block;font:600 25px "Roboto Mono",monospace}.verdict small{opacity:.78}
+    .layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:22px;align-items:start}.toc{position:sticky;top:18px;background:var(--paper);padding:18px 0;border-top:4px solid var(--ink);box-shadow:var(--shadow)}.toc b{display:block;padding:0 18px 10px;font-size:13px}.toc a{display:block;padding:8px 18px;text-decoration:none;color:var(--muted);font-size:13px;border-left:3px solid transparent}.toc a:hover,.toc a.active{color:var(--ink);background:var(--wash);border-left-color:var(--red)}
+    article{min-width:0}.section{scroll-margin-top:18px;background:var(--paper);padding:38px 42px;margin-bottom:16px;border-top:4px solid var(--ink);box-shadow:var(--shadow)}.section.red{border-color:var(--red)}.section.blue{border-color:var(--blue)}.section.green{border-color:var(--green)}
+    .section-head{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;margin-bottom:26px}.num{font:600 12px "Roboto Mono",monospace;color:var(--red);letter-spacing:.08em}.section h2{font-size:30px;line-height:1.16;letter-spacing:-.04em;margin:2px 0 0}.section h3{font-size:19px;margin:30px 0 12px;letter-spacing:-.02em}.section p{color:var(--muted);margin:10px 0}.section p strong{color:var(--ink)}
+    .status{font:600 11px "Roboto Mono",monospace;border:1px solid var(--line);padding:5px 8px;white-space:nowrap}.status.ok{color:var(--green);border-color:var(--green)}.status.open{color:var(--amber);border-color:var(--amber)}
+    .lead-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.finding{padding:20px;background:var(--wash);min-height:180px}.finding .tag{font:600 11px "Roboto Mono",monospace;color:var(--muted)}.finding strong{display:block;font-size:21px;line-height:1.28;margin:32px 0 10px}.finding p{font-size:13px;line-height:1.55;margin:0}
+    .duel{display:grid;grid-template-columns:1fr 1fr;gap:12px}.player{padding:24px;background:var(--wash)}.player.q{border-top:5px solid var(--red)}.player.h{border-top:5px solid var(--blue)}.player .name{font-size:29px;font-weight:900;letter-spacing:-.05em}.player .role{font-size:13px;color:var(--muted)}.big{font:600 clamp(34px,5vw,56px)/1 "Roboto Mono",monospace;margin:24px 0 8px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);margin-top:18px}.stat{padding:13px;background:var(--paper)}.stat b{display:block;font:600 18px "Roboto Mono",monospace}.stat span{font-size:12px;color:var(--muted)}
+    .callout{padding:18px 20px;background:var(--amber-soft);border-left:4px solid var(--amber);font-size:14px;color:var(--ink);margin:18px 0}.callout strong{color:var(--amber)}
+    .scrollhint{display:none}.table-wrap{overflow:visible}.data{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}.data th{text-align:left;padding:11px 10px;border-bottom:2px solid var(--ink);font-size:12px;color:var(--muted);vertical-align:bottom}.data td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}.data td:not(:first-child){font-variant-numeric:tabular-nums}.data tr:last-child td{border-bottom:0}.data .good{color:var(--green);font-weight:700}.data .warn{color:var(--amber);font-weight:700}
+    .confidence{display:inline-block;padding:2px 7px;border-radius:99px;background:var(--wash);font-size:11px;white-space:nowrap}.confidence.med{background:var(--green-soft);color:var(--green)}.confidence.low{background:var(--amber-soft);color:var(--amber)}
+    .metric-bars{display:grid;gap:16px}.metric{display:grid;grid-template-columns:160px 1fr 78px;gap:12px;align-items:center}.metric label{font-size:13px}.track{height:14px;background:var(--wash);position:relative}.track span{height:100%;display:block}.track .qbar{background:var(--red)}.track .hbar{background:var(--blue)}.metric output{font:600 12px "Roboto Mono",monospace}.legend{display:flex;gap:18px;font-size:12px;color:var(--muted);margin:8px 0 18px}.dot{display:inline-block;width:8px;height:8px;margin-right:6px}.dot.q{background:var(--red)}.dot.h{background:var(--blue)}
+    .flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr 26px 1fr;align-items:stretch;margin:20px 0}.flow .step{padding:18px 14px;background:var(--wash);font-size:13px}.flow .step b{display:block;margin-bottom:8px}.arrow{display:grid;place-items:center;color:var(--red);font-size:20px}
+    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.case{padding:20px;border:1px solid var(--line);background:var(--paper)}.case small{font:500 11px "Roboto Mono",monospace;color:var(--muted)}.case h3{font-size:17px;margin:12px 0 8px}.case p{font-size:13px;line-height:1.6}.case a{display:inline-block;margin-top:8px;color:var(--blue);font-weight:700;font-size:13px}.pill{display:inline-block;font-size:11px;padding:2px 7px;margin-left:5px;background:var(--wash)}
+    .position-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pos{padding:20px;background:var(--wash)}.pos h3{margin:0 0 10px}.pos strong{font-size:16px}.pos p{font-size:13px}.mini{font:500 12px "Roboto Mono",monospace;color:var(--muted)}
+    .bp-feature{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}.bp-main{padding:26px;background:var(--blue);color:#fff}.bp-main .big{margin:12px 0}.bp-main p{color:#dceeff}.bp-side{display:grid;gap:12px}.bp-tile{padding:18px;background:var(--wash)}.bp-tile strong{display:block;font:600 24px "Roboto Mono",monospace}.bp-tile span{font-size:12px;color:var(--muted)}
+    details{border-top:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"＋";color:var(--red)}details[open] summary:after{content:"−"}details p,details li{font-size:13px}
+    .evidence{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:18px}.evidence div{background:var(--paper);padding:16px}.evidence b{display:block;font:600 21px "Roboto Mono",monospace;color:var(--red)}.evidence span{font-size:12px;color:var(--muted)}
+    .missing{columns:2;column-gap:34px;padding-left:18px}.missing li{break-inside:avoid;margin:8px 0;color:var(--muted);font-size:13px}.source-note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:26px}.mono{font-family:"Roboto Mono",monospace}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:900px){.wrap{padding:12px 12px 60px}.mast{grid-template-columns:1fr}.hero{min-height:390px;padding:30px 24px}.verdict{min-height:300px}.layout{display:block}.toc{position:relative;top:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;white-space:normal;padding:8px;margin-bottom:14px}.toc b{display:none}.toc a{border-left:0;border-bottom:3px solid transparent;padding:9px 8px;text-align:center}.toc a.active{border-bottom-color:var(--red);border-left:0}.section{padding:28px 22px}.lead-grid{grid-template-columns:1fr}.finding{min-height:0}.duel,.bp-feature,.position-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{height:28px;transform:rotate(90deg)}.case-grid{grid-template-columns:1fr}.evidence{grid-template-columns:1fr 1fr}.missing{columns:1}}
+    @media(max-width:620px){.hero h1{font-size:44px}.hero:after{font-size:130px;bottom:-36px}.dek{font-size:15px}.meta{font-size:10px}.section-head{display:block}.status{display:inline-block;margin-top:12px}.section h2{font-size:25px}.stats{grid-template-columns:1fr 1fr}.metric{grid-template-columns:115px 1fr 58px;gap:8px}.table-wrap{overflow:visible}.data,.data tbody,.data tr,.data td{display:block;width:100%}.data thead{display:none}.data tr{padding:12px 0;border-bottom:1px solid var(--line)}.data td{border:0;padding:4px 0 4px 43%;position:relative;min-height:28px}.data td:before{content:attr(data-label);position:absolute;left:0;width:39%;color:var(--muted);font-size:11px}.evidence{grid-template-columns:1fr}.verdict strong{font-size:27px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.progress,.toc{display:none}.wrap{max-width:none;padding:0}.layout{display:block}.section,.hero,.verdict{box-shadow:none;break-inside:avoid}.hero{min-height:auto}.case a{text-decoration:none}}
+  </style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+  <header class="mast">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">JDG · 2026 MID LANE RESEARCH / 211 GAMES</div>
+        <h1>一场换人，<br>两种<em>胜利条件</em></h1>
+        <p class="dek">清融与昊昊不是简单的上下位替代：前者把同样经济转化成更高的中路输出，后者获得更高 BP 顺位，却把终结权交给发育路。</p>
+      </div>
+      <div class="meta"><span>46 场系列赛</span><span>211 个中单单局</span><span>207 局完整 BP</span><span>数据截至 2026-10-09</span></div>
+    </section>
+    <aside class="verdict">
+      <div><div class="label">EXECUTIVE VERDICT</div><strong>体系互补，<br>胜率无显著差异。</strong><p>清融更像高效中核；昊昊更像高顺位、射核导向的轮换。BP 地位更高不等于收益更高。</p></div>
+      <div class="scoreline"><div><b>70.6%</b><small>清融系列赛胜率<br>24 / 34</small></div><div><b>66.7%</b><small>昊昊系列赛胜率<br>8 / 12</small></div></div>
+    </aside>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="报告目录">
+      <b>报告目录</b>
+      <a href="#summary">01 执行摘要</a><a href="#identity">02 样本与身份</a><a href="#teammates">03 四位置协同</a><a href="#economy">04 经济与输出</a><a href="#bp">05 BP 优先级</a><a href="#chain">06 BP→赛果链条</a><a href="#cases">07 战术案例</a><a href="#conclusion">08 综合结论</a><a href="#methods">09 方法与缺口</a>
+    </nav>
+
+    <article>
+      <section class="section red" id="summary">
+        <div class="section-head"><div><span class="num">01 / SUMMARY</span><h2>先看结论：差异在权重，不在胜负</h2></div><span class="status ok">已完成 · 定量</span></div>
+        <div class="lead-grid">
+          <div class="finding"><span class="tag">01 / 结果</span><strong>70.6% vs 66.7%</strong><p>系列赛胜率置信区间重叠；没有证据证明谁单纯“更能带队赢”。</p></div>
+          <div class="finding"><span class="tag">02 / 资源</span><strong>18.1% vs 18.4%</strong><p>中路经济占比几乎相同，不能把昊昊体系描述为“主动让经济”。</p></div>
+          <div class="finding"><span class="tag">03 / 效率</span><strong>清融 +9.4%</strong><p>每千经济输出 11,396 对 10,421；同量资源下，清融输出转化更高。</p></div>
+          <div class="finding"><span class="tag">04 / 输出核心</span><strong>中核 → 射核</strong><p>清融体系中路输出占比 29.1% 第一；昊昊体系小寒 28.2% 反超中路。</p></div>
+          <div class="finding"><span class="tag">05 / BP 地位</span><strong>昊昊前三手 40.8%</strong><p>显著高于清融 15.2%；但高顺位胜率仅 50.0%，低顺位反而 71.4%。</p></div>
+          <div class="finding"><span class="tag">06 / 解释边界</span><strong>关联 ≠ 因果</strong><p>版本、对手、阶段与轮换高度混杂；“教练偏爱”“主动让线”均无直接证据。</p></div>
+        </div>
+        <div class="callout"><strong>口径更正：</strong>旧版曾因赛程与 battle 阵营编号错位翻转 105/211 局胜负，并误用单局字段统计系列赛。本文全部胜负已按 battle 明细实际阵营与赛程接口 <span class="mono">win_camp</span> 重建；旧的 48.1% / 54.9% 与 38.2% / 58.3% 均作废。</div>
+      </section>
+
+      <section class="section" id="identity">
+        <div class="section-head"><div><span class="num">02 / SAMPLE</span><h2>身份、样本与可比条件</h2></div><span class="status ok">官方接口核实</span></div>
+        <div class="duel">
+          <div class="player q"><div class="name">清融</div><div class="role">北京JDG · 中路 · 全年主力</div><div class="big">160</div><div class="mini">2026-01-14 — 2026-10-09</div><div class="stats"><div class="stat"><b>4.75</b><span>KDA</span></div><div class="stat"><b>28.4%</b><span>伤害占比</span></div><div class="stat"><b>6,670</b><span>分均伤害</span></div><div class="stat"><b>17</b><span>英雄池</span></div></div></div>
+          <div class="player h"><div class="name">昊昊</div><div class="role">北京JDG · 中路 · 夏季赛后轮换</div><div class="big">51</div><div class="mini">2026-07-04 — 2026-10-09</div><div class="stats"><div class="stat"><b>4.39</b><span>KDA</span></div><div class="stat"><b>26.9%</b><span>伤害占比</span></div><div class="stat"><b>6,219</b><span>分均伤害</span></div><div class="stat"><b>14</b><span>英雄池</span></div></div></div>
+        </div>
+        <h3>共同队友，才是主比较面</h3>
+        <p>打野<strong>无双</strong>、游走<strong>无畏</strong>全年固定；发育路<strong>小寒</strong>有 145/51 局配对样本；对抗路<strong>光明</strong>有 40/46 局配对样本。轻语（115 局）与绝意（15 局）仅搭档清融，列为非配对样本，不参与严格结论。</p>
+        <div class="evidence"><div><b>46</b><span>已完赛系列赛</span></div><div><b>211</b><span>中单单局</span></div><div><b>1,055</b><span>选手单局记录</span></div><div><b>4</b><span>官方赛季</span></div></div>
+      </section>
+
+      <section class="section green" id="teammates">
+        <div class="section-head"><div><span class="num">03 / TEAMMATES</span><h2>四位置协同：谁真的被“激活”了？</h2></div><span class="status ok">相同队友配对</span></div>
+        <div class="position-grid">
+          <div class="pos"><h3>打野 · 无双</h3><strong>基本盘稳定，清融侧效率略高</strong><p>胜率 57.5% vs 58.8% 无差；配清融时 KDA 4.64 vs 3.82、分均输出高 306，但置信区间重叠。</p><div class="mini">样本 160 / 51 · 可信度：中低</div></div>
+          <div class="pos"><h3>发育路 · 小寒</h3><strong>昊昊侧成为第一输出点</strong><p>KDA 4.85 → 5.23，输出占比 26.7% → 28.2%；但低表现局 22.1% → 23.5%，上限提高不等于下限变稳。</p><div class="mini">样本 145 / 51 · 可信度：中低</div></div>
+          <div class="pos"><h3>对抗路 · 光明</h3><strong>清融侧方向更好，证据不足</strong><p>配清融时 KDA 4.27 vs 2.88、参团率高 8.0pp；但胜率置信区间大幅重叠，不能归因为中单。</p><div class="mini">样本 40 / 46 · 可信度：低</div></div>
+          <div class="pos"><h3>游走 · 无畏</h3><strong>轮换前后几乎无差</strong><p>KDA 4.72 vs 4.38，中位数同为 4.00；参团率 77.8% vs 76.4%。未见职责冲突或互补变化。</p><div class="mini">样本 160 / 51 · 可信度：中</div></div>
+        </div>
+        <h3>配对指标全表</h3>
+        <div class="table-wrap"><table class="data"><thead><tr><th>队友 / 位置</th><th>清融体系</th><th>昊昊体系</th><th>差值与判断</th><th>可信度</th></tr></thead><tbody>
+          <tr><td data-label="队友 / 位置"><strong>无双 · 打野</strong><br><span class="mini">160 / 51 局</span></td><td data-label="清融体系">KDA 4.64<br>参团 70.9%<br>分均输出 4,207</td><td data-label="昊昊体系">KDA 3.82<br>参团 67.2%<br>分均输出 3,901</td><td data-label="差值与判断">−0.82 / −3.7pp / −306<br>胜率无差</td><td data-label="可信度"><span class="confidence low">中低</span></td></tr>
+          <tr><td data-label="队友 / 位置"><strong>小寒 · 发育路</strong><br><span class="mini">145 / 51 局</span></td><td data-label="清融体系">KDA 4.85<br>输出占比 26.7%<br>经济占比 23.15%</td><td data-label="昊昊体系">KDA 5.23<br>输出占比 28.2%<br>经济占比 23.56%</td><td data-label="差值与判断">+0.38 / +1.5pp / +0.4pp<br>输出角色加重</td><td data-label="可信度"><span class="confidence low">中低</span></td></tr>
+          <tr><td data-label="队友 / 位置"><strong>光明 · 对抗路</strong><br><span class="mini">40 / 46 局</span></td><td data-label="清融体系">KDA 4.27<br>参团 62.7%<br>分均输出 4,312</td><td data-label="昊昊体系">KDA 2.88<br>参团 54.7%<br>分均输出 3,718</td><td data-label="差值与判断">−1.39 / −8.0pp / −594<br>CI 重叠</td><td data-label="可信度"><span class="confidence low">低</span></td></tr>
+          <tr><td data-label="队友 / 位置"><strong>无畏 · 游走</strong><br><span class="mini">160 / 51 局</span></td><td data-label="清融体系">KDA 4.72<br>参团 77.8%</td><td data-label="昊昊体系">KDA 4.38<br>参团 76.4%</td><td data-label="差值与判断">核心指标近似<br>没有系统差异</td><td data-label="可信度"><span class="confidence med">中</span></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="section red" id="economy">
+        <div class="section-head"><div><span class="num">04 / ECONOMY</span><h2>资源没变，输出重心变了</h2></div><span class="status ok">全队经济归一化</span></div>
+        <div class="legend"><span><i class="dot q"></i>清融体系</span><span><i class="dot h"></i>昊昊体系</span></div>
+        <div class="metric-bars">
+          <div class="metric"><label>发育路经济占比</label><div class="track"><span class="qbar" style="width:92.4%"></span></div><output>23.1%</output></div>
+          <div class="metric"><label class="sr">发育路经济占比昊昊</label><div class="track"><span class="hbar" style="width:94.4%"></span></div><output>23.6%</output></div>
+          <div class="metric"><label>打野经济占比</label><div class="track"><span class="qbar" style="width:87.2%"></span></div><output>21.8%</output></div>
+          <div class="metric"><label class="sr">打野经济占比昊昊</label><div class="track"><span class="hbar" style="width:88.4%"></span></div><output>22.1%</output></div>
+          <div class="metric"><label>中路经济占比</label><div class="track"><span class="qbar" style="width:72.4%"></span></div><output>18.1%</output></div>
+          <div class="metric"><label class="sr">中路经济占比昊昊</label><div class="track"><span class="hbar" style="width:73.6%"></span></div><output>18.4%</output></div>
+        </div>
+        <div class="callout"><strong>不要把“输出权重让渡”误写成“经济让渡”。</strong> 昊昊经济占比反而略高 0.3pp。能确认的是：清融同等经济每千输出 11,396；昊昊 10,421。输出结构变化可能来自英雄、站位与阵容职责，但现有数据不能确认主动决策。</div>
+        <div class="duel">
+          <div class="player q"><div class="role">清融体系</div><div class="big">29.1%</div><p><strong>中单为第一输出点</strong><br>小寒 26.7%；中路击杀占比 17.8%。</p></div>
+          <div class="player h"><div class="role">昊昊体系</div><div class="big">28.2%</div><p><strong>小寒成为第一输出点</strong><br>中路 27.7%；中路击杀占比 16.9%。</p></div>
+        </div>
+      </section>
+
+      <section class="section blue" id="bp">
+        <div class="section-head"><div><span class="num">05 / DRAFT PRIORITY</span><h2>昊昊拿到更高顺位，但没有换来更高收益</h2></div><span class="status ok">207 局完整 BP</span></div>
+        <div class="bp-feature">
+          <div class="bp-main"><span class="eyebrow" style="color:#cde9ff">核心发现</span><div class="big">40.8%</div><p>昊昊中单英雄在全场前三手被选出的比例；清融仅 15.2%。这是明确的 BP 行为差异，但不能直接等同于教练偏爱。</p></div>
+          <div class="bp-side"><div class="bp-tile"><strong>2.92 vs 3.27</strong><span>JDG 队内平均 pick 顺位｜昊昊更早</span></div><div class="bp-tile"><strong>10.2% vs 6.3%</strong><span>一抢率｜昊昊 vs 清融</span></div><div class="bp-tile"><strong>20.4% vs 19.6%</strong><span>队内第五手 counter 位｜几乎相同</span></div></div>
+        </div>
+        <h3>BP 顺位对比</h3>
+        <div class="table-wrap"><table class="data"><thead><tr><th>指标</th><th>清融（158 局）</th><th>昊昊（49 局）</th><th>判断</th></tr></thead><tbody>
+          <tr><td data-label="指标">队内顺位均值</td><td data-label="清融">3.27</td><td data-label="昊昊">2.92</td><td data-label="判断" class="good">昊昊更早</td></tr>
+          <tr><td data-label="指标">一抢率</td><td data-label="清融">6.3%</td><td data-label="昊昊">10.2%</td><td data-label="判断">昊昊 +3.9pp</td></tr>
+          <tr><td data-label="指标">全场前三手率</td><td data-label="清融">15.2%</td><td data-label="昊昊">40.8%</td><td data-label="判断" class="good">昊昊 +25.6pp</td></tr>
+          <tr><td data-label="指标">首轮（前 6 手）</td><td data-label="清融">57.0%</td><td data-label="昊昊">57.1%</td><td data-label="判断">无差</td></tr>
+          <tr><td data-label="指标">队内第 5 手</td><td data-label="清融">19.6%</td><td data-label="昊昊">20.4%</td><td data-label="判断">无差</td></tr>
+          <tr><td data-label="指标">对手禁招牌英雄对局</td><td data-label="清融">80.4%</td><td data-label="昊昊">79.6%</td><td data-label="判断">都被重点针对</td></tr>
+        </tbody></table></div>
+        <h3>版本行为，还是选手待遇？</h3>
+        <p>JDG 参赛对局样本中，沈梦溪 BP 率 <strong>72.5%</strong>（87 ban / 63 pick），海月 <strong>62.3%</strong>（87 / 42），均为高优先级中单。因此早抢首先可能是版本行为。当前缺少同版本全联盟中单顺位基准，不能把昊昊的高顺位完全归因于个人战术地位。</p>
+        <div class="callout"><strong>解说文稿状态：</strong>当前未接入用户提到的 7,839 份解说文稿，因此“关键词/语义分类、解说观点统计、观点与 BP 行为交叉验证”尚未完成。页面没有用零星网评替代，也没有伪造解说立场；文稿到位后应按比赛 ID、局数与时间戳回填。</div>
+      </section>
+
+      <section class="section" id="chain">
+        <div class="section-head"><div><span class="num">06 / CAUSAL CHAIN</span><h2>BP 投入如何走到比赛结果</h2></div><span class="status open">解释性 · 非因果证明</span></div>
+        <div class="flow"><div class="step"><b>① BP 资源投入</b>昊昊前三手率 40.8%，获得更早选角。</div><div class="arrow">→</div><div class="step"><b>② 英雄与阵容</b>沈梦溪/海月本身是版本高优先级，早选未必围绕个人。</div><div class="arrow">→</div><div class="step"><b>③ 局内结构</b>经济占比几乎不变，但小寒成为昊昊体系第一输出点。</div><div class="arrow">→</div><div class="step"><b>④ 结果</b>高顺位胜率 50.0%，低顺位反而 71.4%。</div></div>
+        <div class="table-wrap"><table class="data"><thead><tr><th>BP 收益</th><th>高顺位（队内 1–2 手）</th><th>低顺位（队内 4–5 手）</th><th>可支持结论</th></tr></thead><tbody>
+          <tr><td data-label="BP 收益"><strong>清融</strong></td><td data-label="高顺位">58.5% · 41 局</td><td data-label="低顺位">61.8% · 68 局</td><td data-label="可支持结论">顺位不敏感；英雄池 17，适配面更宽</td></tr>
+          <tr><td data-label="BP 收益"><strong>昊昊</strong></td><td data-label="高顺位">50.0% · 24 局</td><td data-label="低顺位" class="good">71.4% · 21 局</td><td data-label="可支持结论">存在“BP 地位高、样本内收益低”的反差</td></tr>
+        </tbody></table></div>
+        <p><strong>最稳妥的解释：</strong>昊昊确实更早拿中单，但早拿的往往也是版本答案；高顺位并未在样本内转化为更高胜率。清融对顺位更不敏感。由于样本量小、版本和蓝红方未充分控制，这不能证明教练策略错误，更不能证明内部偏爱。</p>
+      </section>
+
+      <section class="section red" id="cases">
+        <div class="section-head"><div><span class="num">07 / CASE FILM</span><h2>四个可复核案例</h2></div><span class="status open">整局录像 · 时间戳待复核</span></div>
+        <div class="case-grid">
+          <div class="case"><small>SUCCESS / 清融</small><h3>甄姬 352,959 伤害</h3><p>2026 春季赛 vs 成都AG超玩会。3/0/10，个人全年单局最高伤害，支持“炮台法核输出转化”画像。</p><a href="https://v.qq.com/x/page/e31962ytgvw.html" target="_blank" rel="noopener">腾讯视频整局录像 ↗</a></div>
+          <div class="case"><small>SUCCESS / 昊昊</small><h3>海月牵制，发育路收割</h3><p>年度总决赛 vs 杭州LGD.NBW。海月 1/2/4、伤害 137,839，JDG 取胜；对“射核导向”提供案例线索。</p><a href="https://v.qq.com/x/page/s3334vtesf3.html" target="_blank" rel="noopener">腾讯视频整局录像 ↗</a></div>
+          <div class="case"><small>FAILURE / 昊昊</small><h3>沈梦溪 277,171 伤害仍落败</h3><p>vs 北京WB。0/0/3、个人全年最高伤害却未转化为击杀与赛果，是“有消耗、无终结”的典型数据案例。</p><a href="https://v.qq.com/x/page/c3294i8qiiw.html" target="_blank" rel="noopener">腾讯视频整局录像 ↗</a></div>
+          <div class="case"><small>COMEBACK / 清融</small><h3>让一追胜重庆狼队</h3><p>2026 春季赛 BO5。首局失利后逆转；末局清融沈梦溪 2/0/4。与其逆风反打率 52.9% 的低置信度统计方向一致。</p><a href="https://v.qq.com/x/page/a3194g17fzr.html" target="_blank" rel="noopener">腾讯视频末局 ↗</a></div>
+        </div>
+        <div class="callout"><strong>边界：</strong>当前只有整局链接，尚未人工逐帧标注具体时间戳。页面不把“线权创造、控制链、保护走位”等未观察行为写成事实；案例 2 的战术解释仍需录像复核。</div>
+      </section>
+
+      <section class="section green" id="conclusion">
+        <div class="section-head"><div><span class="num">08 / ANSWERS</span><h2>逐项回答最终问题</h2></div><span class="status ok">结论分级</span></div>
+        <details open><summary>谁获得了更高的中单 BP 选择优先级？</summary><p><strong>昊昊。</strong>前三手率 40.8% 对 15.2%，平均队内顺位 2.92 对 3.27。证据为直接 BP 行为，可信度中；但不等于教练偏爱。</p></details>
+        <details><summary>谁更经常获得版本强势英雄或个人招牌？</summary><p>两人都大量使用沈梦溪、海月等版本高优先级英雄；当前只有 JDG 参赛对局基准，没有全联盟同版本基准，无法可靠区分“版本资源”与“个人保障”。清融英雄池 17，昊昊 14 且为前者子集。</p></details>
+        <details><summary>谁的英雄池更容易被针对？</summary><p><strong>没有差异。</strong>对手禁掉其招牌英雄的对局占比 80.4% vs 79.6%。两人英雄池高度重叠；不能说教练组需要为其中一人额外投入更多 ban 资源。</p></details>
+        <details><summary>谁更经常成为阵容构建核心？</summary><p>若以选人顺位看，昊昊更常被提前锁定；若以局内输出结构看，清融才是第一输出点。两种“核心”含义不同：<strong>昊昊是早选中单，清融是输出中核。</strong></p></details>
+        <details><summary>BP 资源倾斜是否转化为收益？</summary><p><strong>样本内没有。</strong>昊昊高顺位胜率 50.0%，低顺位 71.4%；清融 58.5% vs 61.8%。这是描述性反差，不足以判定 BP 策略优劣。</p></details>
+        <details><summary>谁更能帮助打野、发育路与双边？</summary><p>打野无双与游走无畏没有稳定差异；小寒在昊昊体系成为第一输出点，但低表现局没有减少；光明在清融体系数据方向更好，置信区间重叠。除输出结构外，因果证据不足。</p></details>
+        <details><summary>谁对 JDG 的整体胜利条件贡献更大？</summary><p><strong>没有绝对赢家。</strong>中核炮台、逆风与决胜局情境更支持清融；射核、让发育路承担终结权的阵容更贴合昊昊。系列赛胜率无显著差异，二者是体系互补。</p></details>
+        <details><summary>解说评价有多少得到客观数据支持？</summary><p><strong>当前无法回答。</strong>解说文稿未接入，未做文本去重、语义分类与比赛级对齐。任何百分比都会是伪造，因此保留为空缺。</p></details>
+      </section>
+
+      <section class="section" id="methods">
+        <div class="section-head"><div><span class="num">09 / METHODS</span><h2>方法、证据等级与缺失项</h2></div><span class="status ok">可复核</span></div>
+        <h3>计算口径</h3>
+        <p>数据源为 KPL 官方赛事接口 <span class="mono">prod.comp.smoba.qq.com</span>，与项目 <span class="mono">scripts/import-kpl-history.ts</span> 同源。KDA =（击杀 + 助攻）/ max（死亡, 1）；分均输出 = 对英雄伤害 / 比赛分钟；经济占比 = 个人经济 / 己方五人总经济；低表现局 = KDA &lt; 2.0；胜率区间为 Wilson 95%。BP 定义：一抢 = 全场第 1 个 pick；前三手 = 全场 pick 1–3；首轮 = pick 1–6；counter 位 = JDG 队内第 5 手。</p>
+        <h3>证据等级</h3>
+        <div class="evidence"><div><b>A</b><span>直接比赛数据 / BP 记录，并有可交叉验证的说明</span></div><div><b>B</b><span>行为清晰，多个独立证据支持解释</span></div><div><b>C</b><span>只有顺位或单条评论，只能提出假设</span></div><div><b>D</b><span>关键数据缺失，仅作待验证线索</span></div></div>
+        <p>本报告的身份、胜负、数据面板、BP 顺位属于直接观察；小寒输出角色变化、清融经济转化效率属于统计关联；“主动让资源”“教练内部意图”等因果解释没有足够证据。</p>
+        <h3>仍缺什么</h3>
+        <ul class="missing">
+          <li>解说文稿原文、比赛 ID 与时间戳关联</li><li>同版本全联盟 BP 顺位基准</li><li>暴君 / 主宰归属与争夺结果</li><li>野区入侵、反野与击杀时间线</li><li>装备成型时间与兵线归属</li><li>录像逐帧行为与关键团时间戳</li><li>准确游戏版本号</li><li>选手轮换与教练组内部动机</li><li>系列赛内相关性的分层模型</li><li>按赛事阶段、对手强度与阵容结构的控制分析</li>
+        </ul>
+        <h3>可复核附件索引</h3>
+        <div class="table-wrap"><table class="data"><thead><tr><th>内容</th><th>文件 / 说明</th></tr></thead><tbody>
+          <tr><td data-label="内容">原始比赛</td><td data-label="文件 / 说明">46 场赛程 JSON + 211 个 battle 明细 JSON + 1,055 条 player_rows</td></tr>
+          <tr><td data-label="内容">最终聚合</td><td data-label="文件 / 说明"><span class="mono">raw/agg_final.json</span></td></tr>
+          <tr><td data-label="内容">分析代码</td><td data-label="文件 / 说明"><span class="mono">collect.py · analyze2.py · analyze3.py · analyze4.py · rebuild.py</span></td></tr>
+          <tr><td data-label="内容">BP 完整度</td><td data-label="文件 / 说明">211 局中 207 局有完整 20 条 BP；4 局缺失（含巅峰对决）</td></tr>
+        </tbody></table></div>
+        <p class="source-note">统计区间：2026 春季赛、挑战者杯、夏季赛、年度总决赛；数据抓取与报告日期：2026-10-09。所有外部录像链接来自研究数据中的腾讯视频整局地址。报告不展示本地文件路径或无法公开访问的数据目录。</p>
+      </section>
+    </article>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  function update(){
+    var d=document.documentElement, max=d.scrollHeight-d.clientHeight;
+    bar.style.width=(max?Math.min(100,d.scrollTop/max*100):0)+'%';
+    var current=sections[0];
+    sections.forEach(function(s){if(s.getBoundingClientRect().top<140)current=s;});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+current.id);});
+  }
+  document.addEventListener('scroll',update,{passive:true});update();
+})();
+</script>
+</body>
+</html>

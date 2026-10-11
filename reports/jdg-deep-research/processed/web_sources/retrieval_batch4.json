@@ -1,0 +1,26 @@
+[
+  {
+    "id": "exa_g4",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"2026 10月3日 EDGM JDG 2:2 风箫 卢雅娜 第四局\", numResults: 4)"
+    ],
+    "retrieved_at": "2026-10-09T17:19:18.776371+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_g4.txt",
+    "stderr": "processed/web_sources/exa_g4.stderr"
+  },
+  {
+    "id": "exa_asian",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"清融 2026 亚运会 集训 国家集训队 王者荣耀 官方\", numResults: 4)"
+    ],
+    "retrieved_at": "2026-10-09T17:19:18.777474+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_asian.txt",
+    "stderr": "processed/web_sources/exa_asian.stderr"
+  }
+]

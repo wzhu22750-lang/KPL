@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-10-10T18:10:41.814531+00:00",
+  "head": "e8a3c3e28bbe9e7f04c6b3db954d3778e78cac81",
+  "origin": "http://127.0.0.1:3123",
+  "node": "v25.9.0",
+  "sourceFingerprint": "e3e1efd57a42c45175dd2f46a31b9d08d81fa42a0c25563a2c51e6b8978693f8",
+  "sourceFiles": {
+    "kpl-intelligence/apps/web/app/app.css": "ee86fe9602af2411503d0360ed1397e93da1e5ee0d8b437eb4dd6fa9c8a405ac",
+    "kpl-intelligence/apps/web/app/esports-hero.css": "e6f2ea302d3e73fcaf356e4e35ce73981c7d77616ce9e73f786d05f308d506da",
+    "kpl-intelligence/apps/web/app/esports-matches.css": "f90151f729a51442797e8a72622fdbc7ef6a2141b5f38e35e63ab4c02d92d06c",
+    "kpl-intelligence/apps/web/app/esports-teams.css": "84d4cce66c6fa9a11fe07b6187adb89b50c20f16edfb279ba6b427913130e5ed",
+    "kpl-intelligence/apps/web/app/esports.css": "9164298b804ba580045d270c05fb83c27dae06315256f83edabe916c658b566b",
+    "kpl-intelligence/apps/web/app/components/esports/Esports.tsx": "a06cb2234a1515e68257b159c09ebb817e11e0ab3326d319ea02c01bbe840d1f",
+    "kpl-intelligence/apps/web/app/lib/esports.ts": "bda55f92e72221dbec8922c74a32fcc21f54d7e1187aaa9f74db19507402b6a1",
+    "kpl-intelligence/apps/web/tests/esports.test.ts": "500dddda2e0b0cec213c476152b7453bf5cdd6c4b7f24d3f2cc083f4f5a46ff3",
+    "kpl-intelligence/scripts/esports-interaction-check.js": "08947f88c18eb907f4d5294a57a7b95dc03e7d45784fa8474009b6bdb99ed043",
+    "kpl-intelligence/scripts/esports-visual-check.js": "e1811dd153bfc0199280ae5dbe4be9da642e36f03d97f64ed1659043563c7bdc",
+    "kpl-intelligence/apps/web/app/routes/heroes.tsx": "37f9264dfd97ef07be428423506c2082df3474c2b86cc6fa177ccc3cf0d5352e",
+    "kpl-intelligence/apps/web/app/routes/hero.tsx": "951c5497bd6b519a67e7825a4655d0ce4aaefb970e7730212fb06d3218f808a8",
+    "kpl-intelligence/apps/web/app/routes/standings.tsx": "6fc55cb28f9b79d7b21eb67d8fc253d0e1c6c5ff713b4139f055dd4b7765b0a3",
+    "kpl-intelligence/apps/web/app/routes/teams.tsx": "aed24424a05ad61ec7b3daf1cb2eada379fbf5405ba662f427677f11cfabbe62",
+    "kpl-intelligence/apps/web/app/routes/team.tsx": "0cf2dd9b8f60fd59509f92da51ad3deb38b671e1a139b375aaa96769b0c945e9",
+    "kpl-intelligence/apps/web/app/routes/player.tsx": "b30948582585f397b782ba87f344b8a1d1a115cf54a538bf602669840a2c8100",
+    "kpl-intelligence/apps/web/app/routes/matches.tsx": "11043c340da2ff6ac9af7ed160278845b46b2b142327d9ce213ac1f2d68a8fc9",
+    "kpl-intelligence/apps/web/app/routes/match.tsx": "07ac7bf103809e2207896730c3e6e637185a001327ed618fb84d64dc52bb73a3",
+    "kpl-intelligence/apps/web/app/routes/h2h.tsx": "e3c321cad2cc7629b5a8d2260093fbd29629f664e59fa383d4d4398bcd9efaf8"
+  },
+  "buildServerSHA256": "5e5b00f93690b4f03d72e4d1f5f41fa90347e275fffe4f778235ac2299c14930",
+  "buildCss": {
+    "kpl-intelligence/apps/web/build/client/assets/esports-teams-qAxD1E_I.css": "217d652ce0a44d278dbe4a87a5d39cad9aaeecd4feb2c02f6a26feb2c241f85c",
+    "kpl-intelligence/apps/web/build/client/assets/hero-AO-pn4vD.css": "e85f5be6088d5e3ab912dd39aa477ac29aa8f509ed056216f064b4263f7402c6",
+    "kpl-intelligence/apps/web/build/client/assets/home-CSBTTskM.css": "53524a66555ef94bf95a835a17edc5824bfb74d469672398f3f018b710db1da6",
+    "kpl-intelligence/apps/web/build/client/assets/root-DQ18sOtC.css": "b441c6880ad02a474a531f8c3a0f7ac590bd8c5fbbf2fb9953286df1d777c689",
+    "kpl-intelligence/apps/web/build/client/assets/shared-BADb6YWo.css": "aa5863a609a1450c8a67982a9cb51c3a17a42bef4e2c29834ab9d0f53311490a"
+  },
+  "evidenceSHA256": {
+    "visual-results.json": "41f04dbc23a18d7b8d7f39a533e5bd0db6ca366d21d06ba875888de2f6ca6de0",
+    "interaction-results.json": "0b04fc64f7606a7b44e22159831b57fb92fa4e07f79ab3a1069ddc02e752e8d4",
+    "web-tests.log": "46c6c40a6b18c6095c3f81a2e7955cffbec4575eb15f6647443eae71fe669aa6",
+    "typecheck.log": "a5d3b4ae193bbff277683ab93a3a6ced2aa67d64a6d61f25af8e76d97872234d",
+    "build.log": "c59912d2fc75a7f4acf106f0127c9d4b15e7fe29dfe647091835302f7cb7a44c",
+    "smoke.log": "9d4f233855f2fe6b37a68607e48f26e6d42e94c741b77b417473ba76ac2f6866"
+  },
+  "results": {
+    "typecheck": "passed",
+    "build": "passed",
+    "webTests": {
+      "passed": 48,
+      "failed": 0
+    },
+    "visualCases": 108,
+    "visualHttp200": 108,
+    "visualOverflow": 0,
+    "interactionPassed": 14,
+    "interactionFailed": 0,
+    "smoke": "passed",
+    "backendTests": "unable-to-start: ECONNREFUSED local PostgreSQL; no backend pass asserted"
+  },
+  "limitations": [
+    "Chromium only",
+    "No real live-match sample",
+    "No full WCAG or Lighthouse audit",
+    "API KDA/damage defaults and missing side samples remain disclosed data limitations"
+  ]
+}

@@ -1,0 +1,172 @@
+[
+  {
+    "sub_id": 6088933,
+    "part_id": "BV1i1pw6fEvK_P03",
+    "line_idx": 115,
+    "source_line": 135,
+    "time_secs": 313,
+    "time_raw": "05:13",
+    "text": "ban掉了女娲",
+    "is_bp": 1,
+    "bvid": "BV1i1pw6fEvK",
+    "part_no": 3,
+    "publish_date": "2026-10-06",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "南通Hero久竞",
+    "home_team_slug": "jdg",
+    "away_team_slug": "hero",
+    "content_type": "game",
+    "game_no": 3,
+    "part_title": "第三局",
+    "title": "【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞 - P03 第三局",
+    "match_id": "kpl-20260004-2026100602",
+    "game_id": "kpl-20260004-2026100602-g3",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P03_第三局.md",
+    "source_date": "2026-10-06",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "bp_estimated",
+    "source_sha256": "5a77b739810816764a23ef76544754b49701931b9f816740e3648899377fdc3b",
+    "source_text_verified": true,
+    "quote": "- [05:05] 但是他会在边线上让你非常难受\n- [05:07] 带线牵扯对夏特也没了\n- [05:10] 然后沈梦溪搬掉hero是ban掉了虞姬\n- [05:13] ban掉了女娲\n- [05:17] 中路的话如果想长手消耗对面不好开的话\n- [05:20] 有嬴政这种\n- [05:22] 但是现在选早了一点",
+    "context": [
+      {
+        "line_idx": 112,
+        "source_line": 132,
+        "time_raw": "05:05",
+        "time_secs": 305,
+        "text": "但是他会在边线上让你非常难受"
+      },
+      {
+        "line_idx": 113,
+        "source_line": 133,
+        "time_raw": "05:07",
+        "time_secs": 307,
+        "text": "带线牵扯对夏特也没了"
+      },
+      {
+        "line_idx": 114,
+        "source_line": 134,
+        "time_raw": "05:10",
+        "time_secs": 310,
+        "text": "然后沈梦溪搬掉hero是ban掉了虞姬"
+      },
+      {
+        "line_idx": 115,
+        "source_line": 135,
+        "time_raw": "05:13",
+        "time_secs": 313,
+        "text": "ban掉了女娲"
+      },
+      {
+        "line_idx": 116,
+        "source_line": 136,
+        "time_raw": "05:17",
+        "time_secs": 317,
+        "text": "中路的话如果想长手消耗对面不好开的话"
+      },
+      {
+        "line_idx": 117,
+        "source_line": 137,
+        "time_raw": "05:20",
+        "time_secs": 320,
+        "text": "有嬴政这种"
+      },
+      {
+        "line_idx": 118,
+        "source_line": 138,
+        "time_raw": "05:22",
+        "time_secs": 322,
+        "text": "但是现在选早了一点"
+      }
+    ]
+  },
+  {
+    "sub_id": 6089579,
+    "part_id": "BV1i1pw6fEvK_P01",
+    "line_idx": 181,
+    "source_line": 201,
+    "time_secs": 413,
+    "time_raw": "06:53",
+    "text": "就是后边出女娲都会打海月",
+    "is_bp": 0,
+    "bvid": "BV1i1pw6fEvK",
+    "part_no": 1,
+    "publish_date": "2026-10-06",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "南通Hero久竞",
+    "home_team_slug": "jdg",
+    "away_team_slug": "hero",
+    "content_type": "game",
+    "game_no": 1,
+    "part_title": "第一局",
+    "title": "【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞 - P01 第一局",
+    "match_id": "kpl-20260004-2026100602",
+    "game_id": "kpl-20260004-2026100602-g1",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P01_第一局.md",
+    "source_date": "2026-10-06",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "unknown",
+    "source_sha256": "8ff9c75e10000640861351ed164011a850b0cca368736cf128479b7f7b41edd1",
+    "source_text_verified": true,
+    "quote": "- [06:49] 那hero应该就是个张飞了\n- [06:51] 张飞沈梦溪或者是沈梦溪\n- [06:53] 不出的话\n- [06:53] 就是后边出女娲都会打海月\n- [06:57] 习惯就好\n- [06:58] 受死人\n- [06:59] 不像大海月花会枯",
+    "context": [
+      {
+        "line_idx": 178,
+        "source_line": 198,
+        "time_raw": "06:49",
+        "time_secs": 409,
+        "text": "那hero应该就是个张飞了"
+      },
+      {
+        "line_idx": 179,
+        "source_line": 199,
+        "time_raw": "06:51",
+        "time_secs": 411,
+        "text": "张飞沈梦溪或者是沈梦溪"
+      },
+      {
+        "line_idx": 180,
+        "source_line": 200,
+        "time_raw": "06:53",
+        "time_secs": 413,
+        "text": "不出的话"
+      },
+      {
+        "line_idx": 181,
+        "source_line": 201,
+        "time_raw": "06:53",
+        "time_secs": 413,
+        "text": "就是后边出女娲都会打海月"
+      },
+      {
+        "line_idx": 182,
+        "source_line": 202,
+        "time_raw": "06:57",
+        "time_secs": 417,
+        "text": "习惯就好"
+      },
+      {
+        "line_idx": 183,
+        "source_line": 203,
+        "time_raw": "06:58",
+        "time_secs": 418,
+        "text": "受死人"
+      },
+      {
+        "line_idx": 184,
+        "source_line": 204,
+        "time_raw": "06:59",
+        "time_secs": 419,
+        "text": "不像大海月花会枯"
+      }
+    ]
+  }
+]

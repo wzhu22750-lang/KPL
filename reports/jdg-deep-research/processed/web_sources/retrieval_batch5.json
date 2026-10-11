@@ -1,0 +1,16 @@
+[
+  {
+    "id": "match_scores",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "30",
+      "https://r.jina.ai/https://www.988zbw.com/dianjingzhanbaoba/446620.html"
+    ],
+    "retrieved_at": "2026-10-09T17:19:44.214150+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/match_scores.txt",
+    "stderr": "processed/web_sources/match_scores.stderr"
+  }
+]

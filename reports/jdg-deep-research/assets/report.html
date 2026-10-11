@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><link rel="icon" href="data:,">
+<meta name="description" content="清融与昊昊：211局比赛、全源字幕索引与一场不能简单归因的中单轮换。独立数据与战术研究。">
+<title>换了中单，改变了什么？｜JDG 双中单深度研究</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('jdg-theme')||'light'}catch(e){}</script>
+<style>@@CSS@@</style>
+</head>
+<body>
+<a class="skip-link" href="#story">跳至研究正文</a>
+<header class="masthead">
+<a href="#top" class="wordmark" aria-label="JDG研究专题首页">JDG<span> / FIELD NOTES</span></a>
+<div class="masthead-right"><span class="independent">独立研究 · 非俱乐部官方</span><button id="theme" class="theme-btn" aria-label="切换至深色主题" title="切换深浅主题">◐ <span>深色</span></button></div>
+</header>
+<nav class="chapter-nav" aria-label="专题章节"><a href="#results">胜负</a><a href="#structure">资源结构</a><a href="#heroes">英雄 / BP</a><a href="#relationships">联动</a><a href="#rotations">轮换</a><a href="#evidence">字幕证据</a><a href="#community">社区</a><a href="#audit">审计</a></nav>
+<main id="story">
+<section class="cover wrap" id="top">
+<div class="eyebrow"><span class="red-rule"></span> THE MIDLANE QUESTION <span class="issue">研究特辑 01 / 2026.10</span></div>
+<div class="cover-layout"><div><h1>换了中单，<br>改变了什么<span class="red-text">？</span></h1><p class="cover-deck">清融与昊昊。两种名声，一支队伍。<br>把胜负、英雄与解说拆开，重新寻找JDG的胜利条件。</p></div><aside class="cover-side"><p class="smallcap">THE EVIDENCE</p><p class="cover-number">211<span>小局</span></p><p>46个已完成BO · 207局完整BP<br>7,891份源字幕 · 6,109,608行索引</p><p class="source-caveat">截至2026年10月9日。比赛来自项目数据库镜像与其raw；文字取自本地解说字幕，未观看录像。</p><a href="jdg_mid_deep_research.md" class="text-link">完整研究稿 ↗</a></aside></div>
+<div class="player-byline"><div><span class="player-marker qr"></span><strong>清融</strong><span>QINGRONG</span></div><span class="vs">同队。不同赛历。</span><div><span class="player-marker hh"></span><strong>昊昊</strong><span>HAOHAO</span></div></div>
+</section>
+<div class="control-shell" id="controls"><form class="wrap controls" aria-label="统计样本筛选" onsubmit="return false">
+<div class="control-primary"><span class="control-label">阅读样本</span><div class="segmented" role="group" aria-label="样本范围"><button type="button" data-scope="summer" aria-pressed="true">夏季 · 同四队友</button><button type="button" data-scope="year" aria-pressed="false">全年 · 含其他阵容</button></div></div>
+<div class="control-secondary"><label>阵营<select id="side"><option value="all">蓝红全选</option><option value="blue">蓝方</option><option value="red">红方</option></select></label><label>结果<select id="outcome"><option value="all">全部小局</option><option value="win">胜局</option><option value="loss">败局</option></select></label><button type="button" id="reset" class="reset-btn">重置</button></div>
+<p id="sample-status" class="sample-status" aria-live="polite"></p></form></div>
+<noscript><p class="wrap caution">交互需要JavaScript；正文与静态摘要仍可读。完整数字表见相邻Markdown研究稿。</p></noscript>
+<section class="opening wrap"><p class="large-lead">不是一份“谁更强”的排行榜。<br>而是追问：当中路换人，<em>什么真的变了</em>？</p><div class="prose"><p>旧稿曾把10月3日的前两局写成清融连胜。实际顺序是<strong>负、胜、负、胜、负</strong>。昊昊第四局上场时，光明也一起换上。纠正这个起点，才能讨论后面的体系。</p><p>新版保留真实的资源与输出关联，撤回“同阵容就是控制实验”、个人吃Ban、永久上/下半区风格等越界结论。数据与解说都很有价值，但不能替彼此回答所有问题。</p></div></section>
+<section class="chapter wrap" id="results"><div class="section-kicker">01 / RESULTS <span>C01 · C13</span></div><div class="section-heading"><h2>相同队友，<br>不是相同比赛。</h2><p>胜率没有检出确定优势。<br>也不等于已经证明两人等效。</p></div>
+<div class="results-grid"><div><div id="win-rates" class="win-rates"></div><div id="win-ci" class="chartbox"></div><p class="chart-caption">差值均为清融−昊昊。BO成簇联合bootstrap 3,000次；混合BO保留两人相关性。区间未作多重比较校正。</p></div><aside class="stage-panel"><h3>两人的比赛环境重叠有限</h3><div id="stages"></div><p>夏季四队友固定，但仅第一轮有有限重叠，版本号缺失，对手不同。全年又存在边路与打野人员变化。不能识别“只换中单”的因果效果。</p></aside></div>
+</section>
+<section class="chapter wrap" id="structure"><div class="section-kicker">02 / RESOURCE & OUTPUT <span>C02 · C03</span></div><div class="section-heading"><h2>经济并未大幅让渡，<br>输出权重却有移动。</h2><p>夏季观察：小寒份额略高，<br>边野输出差更鲜明。</p></div>
+<div class="legend"><span><i class="dot qr"></i>清融在场</span><span><i class="dot hh"></i>昊昊在场</span><span class="legend-tail">逐局等权均值 · 共享刻度 · hover / focus查看</span></div>
+<div class="resource-charts"><figure><figcaption>谁拿到资源 <span>经济占比 / %</span></figcaption><div id="gold-chart" class="svg-chart"></div></figure><figure><figcaption>谁承担输出 <span>伤害占比 / %</span></figcaption><div id="damage-chart" class="svg-chart"></div></figure></div>
+<div class="analysis-strip"><div><span class="smallcap">描述性差值</span><p id="structure-note"></p></div><div><span class="smallcap">不可跳过的边界</span><p>份额不是金币转账。终局伤害也没有地图坐标；不能把对抗路输出自动定位为上半区侵略。</p></div></div>
+<details class="data-details"><summary>查看五人DPM、参团与资源数值表</summary><div id="team-table" class="table-scroll"></div></details>
+</section>
+<section class="chapter wrap" id="heroes"><div class="section-kicker">03 / HEROES & DRAFT <span>C04 · C05 · C06</span></div><div class="section-heading"><h2>选的英雄，<br>改变你看到的能力。</h2><p>共同沈梦溪，夏季DPM几乎相同。<br>总体数字不能替代同情境比较。</p></div>
+<div class="hero-layout"><div><div class="chart-toolbar"><h3>英雄出场与输出</h3><label>重点英雄<select id="hero-select" aria-label="选择对比英雄"></select></label></div><div id="hero-chart"></div><div id="hero-focus" class="hero-focus" aria-live="polite"></div><details class="data-details"><summary>全部英雄使用表 / 小样本提示</summary><div id="hero-table" class="table-scroll"></div></details></div><aside class="sensitivity-panel"><h3>把“英雄构成”拆出来</h3><p class="muted">此处始终使用当前赛季完整样本，<strong>不受蓝红 / 胜负子筛选影响</strong>。</p><div id="sensitivity"></div><p>先筛共同cell，再统一合并权重；不是只改权重。英雄×阵营cell很稀疏，这些不是调整后的个人能力真值。</p></aside></div>
+<div class="draft-layout"><div><h3>中单何时锁定</h3><div id="draft-chart"></div><p class="chart-caption">分母仅合法完整BP。全场前三手≠队内前三手；末手不自动意味着counter。</p></div><div class="prose"><p><strong>全年“昊昊更早锁中”，夏季却不恒定。</strong>夏季队内平均顺序清融2.97、昊昊3.05。选角随阶段、版本与全局剩余英雄变化，不自动代表教练优待。</p><p id="ban-note"></p><p>对手禁用的英雄可兼任多位置。可观察Ban组合，不能从中认证对手“害怕某人”。</p><button class="inline-action" data-evidence="VS-D01">海月 / 盾山：看预测与真实BP →</button></div></div>
+</section>
+<section class="chapter wrap" id="relationships"><div class="section-kicker">04 / CONNECTIONS <span>C07 · C09</span></div><div class="section-heading"><h2>联动是具体路径，<br>不是永久人设。</h2><p>点击关系查看文字证据。<br>连线是机制示意，不是协作次数。</p></div>
+<div class="relationship-layout"><div><div class="segmented" role="group" aria-label="关系图中单"><button data-mid="清融" aria-pressed="true">清融</button><button data-mid="昊昊" aria-pressed="false">昊昊</button></div><div id="network"></div></div><div id="relationship-notes" class="relationship-notes"></div></div>
+</section>
+<section class="chapter wrap" id="rotations"><div class="section-kicker">05 / THE SWITCH <span>C08</span></div><div class="section-heading"><h2>换了中单。<br>有时，也换了对抗路。</h2><p>年总四个混合BO单独呈现。<br>不能按多数出场把BO归给一人。</p></div>
+<p class="scope-note">轮换与案例为固定研究窗口，不随上方统计筛选改变。点击任意小局查看两队阵容和真实BP。</p><div id="rotation-timeline"></div>
+<div class="case-tabs" role="group" aria-label="重点案例"><button data-game="kpl-20260004-2026100302-g4" aria-pressed="true">10/03 安琪拉</button><button data-game="kpl-20260003-2026083001-g5" aria-pressed="false">08/30 女娲 × 墨子</button><button data-game="kpl-20260003-2026070403-g1" aria-pressed="false">07/04 海月首秀</button><button data-game="kpl-20260003-2026062102-g1" aria-pressed="false">06/21 王昭君</button></div>
+<div id="game-detail" class="game-detail" aria-live="polite"></div>
+<label class="all-games-label">查其他小局（跟随统计样本）<select id="game-select" aria-label="选择数据库小局"></select></label>
+<div class="timeline-toggle"><details><summary>查看当前样本的全部BO出场时间线</summary><div id="all-series"></div></details></div>
+</section>
+<section class="chapter wrap" id="evidence"><div class="section-kicker">06 / IN THE COMMENTARY <span>C10 · C11</span></div><div class="section-heading"><h2>保留原话。<br>也保留它的边界。</h2><p>38条连续源片段，附行号与SHA。<br>解说事件、观点和研究推断分层。</p></div>
+<div class="text-method"><p><strong>6,109,608行</strong>已建索引，不是把几条关键词包装成全集研究。110个JDG小局有高置信正赛关联；缺失小局和低置信文件不硬匹配。</p><p>“浩浩”是候选写法，不静默改成昊昊。词频是每万字讨论密度，不是动作频率：夏季保射候选清融2.52、昊昊2.95；完整BO子集2.89、2.95，差异几乎消失。</p></div>
+<div class="evidence-controls"><label class="search-label">检索证据<input id="evidence-search" type="search" placeholder="英雄、选手、比赛或证据编号" autocomplete="off"></label><label>材料类型<select id="evidence-type"><option value="all">全部类型</option><option value="commentary_event">解说事件描述</option><option value="commentator_opinion">解说观点</option><option value="draft">BP文字</option><option value="history">历史材料</option></select></label><span id="evidence-count" aria-live="polite"></span></div>
+<div id="evidence-list"></div><div class="pagination"><button id="evidence-prev">← 上一组</button><span id="evidence-page"></span><button id="evidence-next">下一组 →</button></div>
+<details class="data-details"><summary>字幕讨论密度：完整BO、赛期与分母敏感性</summary><div id="text-table" class="table-scroll"></div><p>含关键词的字幕行，可能描述对手或解说评价。未控制解说风格 / 精确版本，分母字符含BP和赛后文本，详见subtitle_analysis.md。</p></details>
+</section>
+<section class="chapter wrap" id="history"><div class="section-kicker">07 / THE LONG VIEW <span>C11</span></div><div class="section-heading"><h2>历史扩展工具箱，<br>不会替现在得分。</h2><p>2022—2025同时保留协同与失误。<br>不以荣誉作当前能力的先验答案。</p></div>
+<div class="history-rail"><article><span>2022</span><h3>支援，也需要队友补位</h3><p>清融火舞被打残后，公孙离补中线；另有沈梦溪输出片段。不是一个人承担所有环节。</p><button data-evidence="VS-H22A">源片段 →</button></article><article><span>2023</span><h3>清线到边路，辅助到输出</h3><p>下路三包二及子阳开团配合。世界赛规则与英雄不同，不能直接混入当前KPL统计。</p><button data-evidence="VS-H23A">源片段 →</button></article><article><span>2024</span><h3>露头和不露头的威胁</h3><p>支援对抗路，与辅助一起隐藏视野的威慑。单例不是全赛年风格计数。</p><button data-evidence="VS-H24B">源片段 →</button></article><article><span>2025</span><h3>JDG起点，不只有期待</h3><p>赛前期待清融无畏控制协同，也有中路掉点后对手拿龙。反证没有被裁掉。</p><button data-evidence="VS-H25B">负面片段 →</button></article></div>
+<p class="scope-note">昊昊历史覆盖更薄：镜像有eStar8局，但本地字幕未取得可靠小局匹配。2026回忆指挥与早期轮换仅属转述，不伪造对等历史全集。</p>
+</section>
+<section class="chapter wrap" id="community"><div class="section-kicker">08 / OFF THE RIFT <span>C12</span></div><div class="section-heading"><h2>社区讨论公平。<br>数据不能代判动机。</h2><p>独立的小样本舆情观察，<br>不合并进比赛结论。</p></div>
+<div id="community-quotes" class="community-quotes"></div>
+<details class="data-details"><summary>六条来源、互动验证与采证限制</summary><div id="community-sources"></div></details>
+<p class="scope-note">五条正文、一条B站仅标题。没有B站评论 / 弹幕，也没有全平台支持率。官方轮换规则正文未取得；评论席“被迫轮换”不是独立规则认证。没有证据认定偏心、薪资或合同打压。</p>
+</section>
+<section class="chapter wrap" id="audit"><div class="section-kicker">09 / WHAT SURVIVES THE AUDIT <span>C13</span></div><div class="section-heading"><h2>可以确定的，<br>与仍然不知道的。</h2><p>镜像raw一致≠独立官方认证。<br>未解决冲突不会被藏掉。</p></div>
+<div class="audit-columns"><div><h3>确认 / 描述</h3><ul><li>46BO比分重建一致；104个DB winner错误在加工层纠正，原库不改。</li><li>207局完整BP，来自真实bp_list，不用阵容名单造顺位。</li><li>2110条参团率 / 队伍加总与raw一致；全文索引逐源校验。</li></ul></div><div><h3>撤回 / 不作结论</h3><ul><li>同四队友=因果控制实验。</li><li>“清融只侵略、昊昊只保射”、禁用代表个人恐惧。</li><li>此前加工草稿12条不合格引文；当前MVP次数排名。</li></ul></div><div><h3>仍待验证</h3><ul><li>精确版本、局内金币与伤害时间线、视野和击杀坐标。</li><li>6/21 G1 MVP：raw无双、字幕清融，矛盾未解决。</li><li>轮换指令和教练动机；个人能力的独立贡献。</li></ul></div></div>
+<div class="downloads"><a href="jdg_mid_deep_research.md">完整研究 .md ↗</a><a href="data_audit.md">数据审计 ↗</a><a href="subtitle_analysis.md">字幕分析 ↗</a><a href="evidence_registry.json">证据注册 .json ↗</a><button id="export">导出当前样本 CSV ↓</button><button id="print">打印 / 保存PDF ↗</button></div>
+</section>
+<section class="verdict"><div class="wrap"><div class="section-kicker">THE ANSWER</div><h2>换的是组合与权重，<br>不是一条确定的胜利公式。</h2><div class="verdict-grid"><p>昊昊样本射手份额更高，清融样本边野输出更活跃。英雄与BP能解释一部分变化；同英雄对比和反例，否定了永久风格标签。</p><p>剩余差异仍然值得研究，但版本、轮次和对手无法剥离。当前不能把它命名为个人能力差，也不能宣判首发最优。更换中单的收益，必须放回具体阵容与比赛情境。</p></div><a class="verdict-link" href="jdg_mid_deep_research.md">读完整论证与全部数值表 →</a></div></section>
+</main>
+<footer class="wrap footer"><div><strong>JDG / FIELD NOTES</strong><p>独立研究，非俱乐部 / KPL官方。原始资料不改，缺失不补造。<br>研究核验：2026.10.10 · 自包含HTML，无外部脚本、字体或追踪。</p></div><a href="#top">回到开篇 ↑</a></footer>
+<script id="research-data" type="application/json">@@DATA@@</script>
+<script>@@JS@@</script>
+</body></html>

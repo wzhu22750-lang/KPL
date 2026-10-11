@@ -1,0 +1,64 @@
+{
+  "origin": "http://127.0.0.1:3123",
+  "apiOrigin": "http://127.0.0.1:3001",
+  "startedAt": "2026-10-10T18:09:20.638Z",
+  "completedAt": "2026-10-10T18:09:40.794Z",
+  "checks": [
+    {
+      "name": "all six hero lanes match real API data and preserve URL selection",
+      "status": "passed"
+    },
+    {
+      "name": "all four hero sort orders remain unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "hero search, URL persistence, no-results and reset",
+      "status": "passed"
+    },
+    {
+      "name": "real low and zero hero samples never imply absolute strength",
+      "status": "passed"
+    },
+    {
+      "name": "hero detail return restores lane, sort, search and scroll position",
+      "status": "passed"
+    },
+    {
+      "name": "independent red/blue meters retain their own 0–100 scale",
+      "status": "passed"
+    },
+    {
+      "name": "standings season and stage selectors work on mobile",
+      "status": "passed"
+    },
+    {
+      "name": "team roster links open real player profiles",
+      "status": "passed"
+    },
+    {
+      "name": "schedule season selection, scheduled VS and archive navigation",
+      "status": "passed"
+    },
+    {
+      "name": "all small games retain every ordered BP step at 320px",
+      "status": "passed"
+    },
+    {
+      "name": "H2H swap and selection preserve factual wins and other URL parameters",
+      "status": "passed"
+    },
+    {
+      "name": "keyboard focus survives navigation from match styles to heroes",
+      "status": "passed"
+    },
+    {
+      "name": "missing official images degrade without broken icons or layout shifts",
+      "status": "passed"
+    },
+    {
+      "name": "reduced motion preference disables competition transitions",
+      "status": "passed"
+    }
+  ]
+}

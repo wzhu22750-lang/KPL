@@ -9,7 +9,9 @@ import { edgeTtl, loadOr404, apiGet } from '../lib/api.server';
 import { pageMeta } from '../lib/seo';
 import { PhoneBar } from '../components/shell/PhoneBar';
 import { IntentLink } from '../components/ui/IntentLink';
-import { TeamLogo } from '../components/ui/TeamLogo';
+import { EsportsNav, PageHeader, Portrait } from '../components/esports/Esports';
+import { formatNumber } from '../lib/esports';
+import '../esports-matches.css';
 import { IconArrowLeft, IconArrowUpRight, IconChevronDown } from '../components/icons';
 import type { Screen } from '../components/shell/screens';
 
@@ -34,47 +36,43 @@ export function meta({ loaderData, params }: Route.MetaArgs) {
 
 export function headers() { return edgeTtl(30); }
 
-const fmt = (secs: number | null) => secs == null ? '待补充' : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
-const fmtGold = (n: number | null) => n == null ? '待补充' : n >= 10000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+const fmt = (secs: number | null) => typeof secs !== 'number' || !Number.isFinite(secs) || secs < 0 ? '待补充' : `${Math.floor(secs / 60)}:${String(Math.floor(secs % 60)).padStart(2, '0')}`;
+const fmtGold = (n: number | null) => typeof n !== 'number' || !Number.isFinite(n) || n < 0 ? '待补充' : n >= 10000 ? `${(n / 1000).toFixed(1)}k` : formatNumber(n);
 const STATUS = { scheduled: '未开始', live: '进行中', finished: '已结束', cancelled: '已取消', postponed: '已延期' };
 
 function BpLane({ game }: { game: GameDetail }) {
-  return <div className="grid gap-5 sm:grid-cols-2">
-    {(['blue', 'red'] as const).map(side => {
-      const steps = game.bp.filter(b => b.side === side);
-      const team = game.players.find(p => p.side === side && p.team)?.team;
-      return <section key={side} className="min-w-0">
-        <h4 className="mb-3 flex flex-wrap items-center gap-2 text-[12px] text-ink-3"><span className="rounded-mark bg-bg-sunk px-2 py-1">{side === 'blue' ? '蓝方' : '红方'}</span>{team ?? '队伍待确认'}</h4>
-        <div className="grid grid-cols-5 gap-1.5">
-          {steps.filter(b => b.type === 'pick').map(b => <IntentLink key={b.step} to={`/heroes/${b.hero.id || encodeURIComponent(b.hero.name)}`} title={`第 ${b.step} 步选用 ${b.hero.name}${b.player ? ` · ${b.player}` : ''}`} className="min-w-0 rounded-control text-center hover:text-accent">
-            {b.hero.icon ? <img src={b.hero.icon} alt="" width={48} height={48} loading="lazy" className="mx-auto aspect-square w-full max-w-12 rounded-control object-cover" /> : <span className="mx-auto flex aspect-square w-full max-w-12 items-center justify-center rounded-control bg-bg-sunk text-[12px]">{b.hero.name.slice(0, 2)}</span>}
-            <span className="mt-1 block break-words text-[11px] font-medium">{b.hero.name}</span>
-            {b.player && <span className="mt-0.5 block break-words text-[10px] text-ink-3">{b.player}</span>}
-          </IntentLink>)}
-        </div>
-        <div className="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-ink-3"><span className="mr-1">禁用</span>{steps.filter(b => b.type === 'ban').map(b => <IntentLink key={b.step} to={`/heroes/${b.hero.id || encodeURIComponent(b.hero.name)}`} title={`第 ${b.step} 步禁用`} className="inline-flex min-h-8 items-center rounded-mark bg-bg-sunk px-1.5 line-through hover:text-accent">{b.hero.name}</IntentLink>)}</div>
-        {!steps.length && <p className="mt-2 text-[12px] text-ink-3">{game.mode === 'pinnacle' ? '巅峰对决阵容见下方选手数据。' : '暂无 BP 数据。'}</p>}
-      </section>;
-    })}
+  const steps = [...game.bp].sort((a, b) => a.step - b.step);
+  return <div className="ep-bp">
+    <div className="ep-bp-sides">{(['blue', 'red'] as const).map(side => <p key={side} data-side={side}><strong>{side === 'blue' ? '蓝方' : '红方'}</strong> · {game.players.find(p => p.side === side && p.team)?.team ?? '队伍待确认'}</p>)}</div>
+    {steps.length ? <details className="ep-bp-details" open>
+      <summary>完整 BP 顺序 · {steps.length} 步{game.mode === 'standard' && steps.length !== 20 ? '（记录未齐）' : ''}</summary>
+      <ol className="ep-bp-steps">{steps.map((b, i) => <li key={`${b.step}-${i}`} data-side={b.side} data-action={b.type}>
+        <IntentLink to={`/heroes/${b.hero.id || encodeURIComponent(b.hero.name)}`}>
+          <span className="ep-bp-order">{String(b.step).padStart(2, '0')}</span>
+          <Portrait src={b.hero.icon} name={b.hero.name} size={40} kind="hero" />
+          <span className="ep-bp-copy"><span className="ep-bp-action">{b.side === 'blue' ? '蓝方' : '红方'} · {b.type === 'ban' ? '禁用 BAN' : '选用 PICK'}</span><strong>{b.hero.name}</strong><span className="ep-muted">{b.type === 'pick' ? `${b.player ?? '选手待确认'}${b.position ? ` · ${b.position}` : ''}` : '禁用英雄'}</span></span>
+        </IntentLink>
+      </li>)}</ol>
+    </details> : <p className="ep-empty">{game.mode === 'pinnacle' ? '巅峰对决：阵容见下方选手表现，不补造常规 BP。' : '暂无 BP 数据。'}</p>}
   </div>;
 }
 
 function PlayersTable({ game }: { game: GameDetail }) {
   const rows = [...game.players].sort((a, b) => (b.mvpScore ?? 0) - (a.mvpScore ?? 0));
   if (!rows.length) return <p className="py-4 text-[13px] text-ink-3">选手数据待补充。</p>;
-  return <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`第 ${game.gameNo} 局选手统计，可横向滚动`}>
-    <table className="w-full min-w-[440px] text-[12px]">
+  return <div className="ep-performance" role="region" aria-label={`第 ${game.gameNo} 局选手统计`}>
+    <table className="ep-performance-table" role="table">
       <caption className="sr-only">第 {game.gameNo} 局选手数据，按评分排列</caption>
-      <thead><tr className="border-b border-line text-left text-ink-3">
-        {['选手 / 队伍', '英雄', 'K/D/A', '经济', '输出', '评分'].map((label, i) => <th key={label} scope="col" className={`py-3 pr-2 font-medium last:pr-0 ${i > 1 ? 'text-right' : ''}`}>{label}</th>)}
+      <thead role="rowgroup"><tr role="row" className="border-b border-line text-left text-ink-3">
+        {['选手 / 队伍', '英雄', 'K/D/A', '经济', '输出', '评分'].map((label, i) => <th key={label} role="columnheader" scope="col" className={`py-3 pr-2 font-medium last:pr-0 ${i > 1 ? 'text-right' : ''}`}>{label}</th>)}
       </tr></thead>
-      <tbody>{rows.map((p, i) => <tr key={`${p.nickname}-${i}`} className={`border-b border-line-soft last:border-0 ${p.mvp ? 'bg-accent-softer' : ''}`}>
-        <th scope="row" className="py-3 pr-2 text-left font-medium text-ink"><span>{p.nickname}{p.mvp && <span className="ml-1 rounded-mark bg-accent-soft px-1 text-[10px] text-accent">MVP</span>}</span><span className="mt-1 block text-[10px] font-normal text-ink-3">{p.team ?? '队伍待确认'}</span></th>
-        <td className="py-3 pr-2 text-ink-3">{p.hero ? <IntentLink to={`/heroes/${game.bp.find(b => b.hero.name === p.hero)?.hero.id ?? encodeURIComponent(p.hero)}`} className="inline-flex items-center gap-1.5 hover:text-accent">{p.heroIcon && <img src={p.heroIcon} alt="" width={22} height={22} loading="lazy" className="size-5 rounded object-cover" />}<span>{p.hero}</span></IntentLink> : '待补充'}</td>
-        <td className="num py-3 pr-2 text-right text-ink-2">{p.kills ?? '?'}/{p.deaths ?? '?'}/{p.assists ?? '?'}</td>
-        <td className="num py-3 pr-2 text-right text-ink-3">{fmtGold(p.gold)}</td>
-        <td className="num py-3 pr-2 text-right text-ink-3">{fmtGold(p.damage)}</td>
-        <td className="num py-3 text-right font-semibold text-ink-2">{p.mvpScore ?? '待补充'}</td>
+      <tbody role="rowgroup">{rows.map((p, i) => <tr role="row" key={`${p.nickname}-${i}`} className={`border-b border-line-soft last:border-0 ${p.mvp ? 'bg-accent-softer' : ''}`}>
+        <th scope="row" role="rowheader" className="ep-player-cell py-3 pr-2 text-left font-medium text-ink"><span>{p.nickname}{p.mvp && <span className="ml-1 rounded-mark bg-accent-soft px-1 text-[10px] text-accent">MVP</span>}</span><span className="mt-1 block text-[10px] font-normal text-ink-3">{p.side === 'blue' ? '蓝方 · ' : p.side === 'red' ? '红方 · ' : ''}{p.team ?? '队伍待确认'}{p.position ? ` · ${p.position}` : ''}</span></th>
+        <td role="cell" data-label="英雄" className="py-3 pr-2 text-ink-3">{p.hero ? <IntentLink to={`/heroes/${game.bp.find(b => b.hero.name === p.hero)?.hero.id ?? encodeURIComponent(p.hero)}`} className="inline-flex items-center gap-1.5 hover:text-accent"><Portrait src={p.heroIcon} name={p.hero} size={22} kind="hero" /><span>{p.hero}</span></IntentLink> : '待补充'}</td>
+        <td role="cell" data-label="K / D / A" className="num py-3 pr-2 text-right text-ink-2">{formatNumber(p.kills)}/{formatNumber(p.deaths)}/{formatNumber(p.assists)}</td>
+        <td role="cell" data-label="经济" className="num py-3 pr-2 text-right text-ink-3">{fmtGold(p.gold)}</td>
+        <td role="cell" data-label="输出" className="num py-3 pr-2 text-right text-ink-3">{fmtGold(p.damage)}</td>
+        <td role="cell" data-label="官方评分" className="num py-3 text-right font-semibold text-ink-2">{formatNumber(p.mvpScore, 1)}</td>
       </tr>)}</tbody>
     </table>
   </div>;
@@ -106,21 +104,24 @@ function MatchArchive({ data }: { data: ReturnType<typeof useLoaderData<typeof l
   const game = games.find(g => g.gameNo === selectedGame) ?? games[0];
   const materials = radar?.matches.find(m => m.id === match.id)?.materials ?? [];
   const scored = match.status === 'live' || match.status === 'finished';
-  const date = match.scheduledAt ?? match.playedAt;
+  const date = match.playedAt ?? match.scheduledAt;
+  const winnerName = (winner: string | null) => winner === match.home.slug ? match.home.name : winner === match.away.slug ? match.away.name : winner;
   const gameVideos = game ? videos.filter(v => v.battleSeq === game.gameNo) : [];
-  return <div className="pb-10">
+  return <div className="esports-page esports-match pb-10">
     <PhoneBar back={{ to: '/matches', label: '赛程' }} title="比赛档案" />
+    <EsportsNav />
     <IntentLink to="/matches" className="mb-3 hidden min-h-11 w-fit items-center gap-2 text-[13px] text-ink-3 hover:text-accent lg:flex"><IconArrowLeft size={15} />全部赛程</IntentLink>
-    <header className="rounded-panel border border-line bg-surface px-4 py-5 sm:px-8 sm:py-7">
+    <section className="ep-scoreboard ep-panel" aria-label="比赛比分与服务端状态">
       <div className="flex flex-wrap items-center justify-between gap-2 text-[12px] text-ink-3"><p>{match.seasonName}{match.stage ? ` · ${match.stage}` : ''} · BO{match.bo ?? '?'}</p>{date && <time dateTime={date}>{new Date(date).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })}</time>}</div>
-      <h1 className="sr-only">{match.home.name} 对阵 {match.away.name} · 比赛档案</h1>
+      <PageHeader kicker="MATCH ARCHIVE / 比赛档案" title={`${match.home.name} vs ${match.away.name}`} />
       <div className="mx-auto mt-6 grid max-w-[700px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-8">
-        <IntentLink to={`/teams/${match.home.slug}`} className="flex min-w-0 flex-col items-center gap-3 text-center"><TeamLogo name={match.home.shortName ?? match.home.name} logo={match.home.logo} size={56} /><span className="text-[14px] font-semibold text-ink sm:text-[18px]">{match.home.name}</span></IntentLink>
-        <div className="text-center"><span className="num block whitespace-nowrap text-[36px] font-semibold leading-none tracking-tight text-ink sm:text-[48px]">{scored ? `${match.home.score} : ${match.away.score}` : 'VS'}</span><span className={`mt-3 inline-block rounded-mark px-2 py-1 text-[12px] ${match.status === 'live' ? 'bg-accent-soft text-accent' : 'bg-bg-sunk text-ink-3'}`}>{STATUS[match.status]}</span></div>
-        <IntentLink to={`/teams/${match.away.slug}`} className="flex min-w-0 flex-col items-center gap-3 text-center"><TeamLogo name={match.away.shortName ?? match.away.name} logo={match.away.logo} size={56} /><span className="text-[14px] font-semibold text-ink sm:text-[18px]">{match.away.name}</span></IntentLink>
+        <IntentLink to={`/teams/${match.home.slug}`} className="flex min-w-0 flex-col items-center gap-3 text-center"><Portrait name={match.home.name} src={match.home.logo} kind="team" size={72} eager /><span className="text-[14px] font-semibold text-ink sm:text-[18px]">{match.home.name}</span></IntentLink>
+        <div className="text-center"><span className="num block whitespace-nowrap text-[36px] font-semibold leading-none tracking-tight text-ink sm:text-[48px]">{scored ? `${formatNumber(match.home.score)} : ${formatNumber(match.away.score)}` : 'VS'}</span><span className={`mt-3 inline-block rounded-mark px-2 py-1 text-[12px] ${match.status === 'live' ? 'bg-accent-soft text-accent' : 'bg-bg-sunk text-ink-3'}`}>{STATUS[match.status]}</span></div>
+        <IntentLink to={`/teams/${match.away.slug}`} className="flex min-w-0 flex-col items-center gap-3 text-center"><Portrait name={match.away.name} src={match.away.logo} kind="team" size={72} eager /><span className="text-[14px] font-semibold text-ink sm:text-[18px]">{match.away.name}</span></IntentLink>
       </div>
-      {match.winner && <p className="mt-5 text-center text-[13px] text-ink-3">{match.winner === match.home.slug ? match.home.name : match.away.name} 获胜</p>}
-    </header>
+      {match.winner && <p className="mt-5 text-center text-[13px] text-ink-3">{winnerName(match.winner)} 获胜</p>}
+      <p className="ep-status-note">状态由服务端提供 · 不按时间或比分推断直播</p>
+    </section>
 
     <nav aria-label="比赛档案导航" className="my-5 flex flex-wrap items-center gap-x-6 border-b border-line text-[13px] text-ink-3">
       <a href="#game-data" className="inline-flex min-h-12 items-center font-medium text-accent">对局数据 · {games.length} 局</a>
@@ -128,15 +129,18 @@ function MatchArchive({ data }: { data: ReturnType<typeof useLoaderData<typeof l
       {videos.length > 0 && <a href="#match-replays" className="inline-flex min-h-12 items-center hover:text-accent">官方回放 · {videos.length}</a>}
     </nav>
 
-    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
+    <div className="ep-archive-columns">
       <div className="min-w-0">
         <section id="game-data" className="scroll-mt-24">
           <h2 className="text-[18px] font-semibold text-ink">对局数据</h2>
-          <nav aria-label="选择小局" className="my-4 flex flex-wrap gap-2">{games.map(g => <button key={g.id} type="button" aria-pressed={game?.gameNo === g.gameNo} onClick={() => setSelectedGame(g.gameNo)} className={`num min-h-11 min-w-12 rounded-control border px-3 text-[13px] font-medium ${game?.gameNo === g.gameNo ? 'border-accent bg-accent text-accent-contrast' : 'border-line bg-surface text-ink-3 hover:border-accent'}`}>G{g.gameNo}</button>)}</nav>
+          <nav aria-label="选择小局，查看赛果与数据" className="ep-game-selector">{games.map(g => <button key={g.id} type="button" aria-pressed={game?.gameNo === g.gameNo} onClick={() => setSelectedGame(g.gameNo)}>
+            <span className="ep-game-number">G{g.gameNo}</span><span className="ep-game-result">{g.winner ? `${winnerName(g.winner)} 胜` : '胜方待确认'}</span><span className="ep-muted">{fmt(g.durationSecs)}{g.mode === 'pinnacle' ? ' · 巅峰对决' : ''}</span>
+          </button>)}</nav>
           {game ? <article key={game.id} className="rounded-card border border-line bg-surface p-4 sm:p-5" aria-label={`第 ${game.gameNo} 局数据`}>
-            <div className="flex flex-wrap items-start justify-between gap-3"><div><h3 className="text-[17px] font-semibold text-ink">第 {game.gameNo} 局{game.mode === 'pinnacle' && <span className="ml-2 text-[12px] text-accent">巅峰对决</span>}</h3><p className="mt-1.5 text-[13px] font-medium text-accent">{game.winner ? `${game.winner} 胜` : '胜方待确认'}</p></div><div className="text-right text-[12px] text-ink-3"><p>时长 {fmt(game.durationSecs)}</p><p className="mt-1.5">MVP <span className="font-semibold text-ink">{game.mvp ?? '待确认'}</span></p></div></div>
-            <div className="my-5 border-y border-line-soft py-3"><p className="text-[11px] text-ink-3">统计顺序：{match.home.shortName ?? match.home.name} / {match.away.shortName ?? match.away.name}</p><div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-3"><p>击杀 <span className="num ml-2 font-semibold text-ink">{game.killsBlue ?? '?'} : {game.killsRed ?? '?'}</span></p><p>经济 <span className="num ml-2 font-semibold text-ink">{fmtGold(game.goldBlue)} : {fmtGold(game.goldRed)}</span></p></div></div>
-            <h4 className="mb-4 text-[13px] font-semibold text-ink">英雄 BP</h4>
+            <div className="flex flex-wrap items-start justify-between gap-3"><div><h3 className="text-[17px] font-semibold text-ink">第 {game.gameNo} 局{game.mode === 'pinnacle' && <span className="ml-2 text-[12px] text-accent">巅峰对决</span>}</h3><p className="mt-1.5 text-[13px] font-medium text-accent">{game.winner ? `${winnerName(game.winner)} 胜` : '胜方待确认'}</p></div><div className="text-right text-[12px] text-ink-3"><p>时长 {fmt(game.durationSecs)}</p><p className="mt-1.5">MVP <span className="font-semibold text-ink">{game.mvp ?? '待确认'}</span></p></div></div>
+            <div className="my-5 border-y border-line-soft py-3"><p className="text-[11px] text-ink-3">统计顺序：{match.home.shortName ?? match.home.name} / {match.away.shortName ?? match.away.name}（不代表蓝方 / 红方）</p><div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-3"><p>击杀 <span className="num ml-2 font-semibold text-ink">{formatNumber(game.killsBlue)} : {formatNumber(game.killsRed)}</span></p><p>经济 <span className="num ml-2 font-semibold text-ink">{fmtGold(game.goldBlue)} : {fmtGold(game.goldRed)}</span></p></div></div>
+            <h4 className="mb-2 text-[15px] font-semibold text-ink">英雄 BP · 按原始步骤排序</h4>
+            <p className="ep-muted mb-3">禁用与选用分别标注；选手、位置及阵营以该局记录为准。</p>
             <BpLane game={game} />
             <div className="mt-6 border-t border-line pt-4"><h4 className="text-[13px] font-semibold text-ink">选手表现</h4><PlayersTable game={game} /></div>
             <div className="mt-4 flex flex-wrap items-center gap-x-5 border-t border-line-soft pt-2 text-[12px] text-accent"><a href="#match-news" className="inline-flex min-h-11 items-center" onClick={() => setNewsFilter(game.gameNo)}>查看本局报道（{materials.filter(m => m.gameNo === game.gameNo).length}）</a>{gameVideos.map((v, i) => <a key={`${v.url}-${i}`} href={v.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1">本局官方回放<IconArrowUpRight size={14} /></a>)}</div>

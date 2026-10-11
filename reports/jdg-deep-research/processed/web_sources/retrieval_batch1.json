@@ -1,0 +1,96 @@
+[
+  {
+    "id": "exa_rotation",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"JDG 清融 昊昊 2026 10月 轮换 site:bbs.hupu.com\", numResults: 5)"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.634806+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_rotation.txt",
+    "stderr": "processed/web_sources/exa_rotation.stderr"
+  },
+  {
+    "id": "exa_official",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"2026 KPL 年度总决赛 大师轮换 规则 清融 亚运 10月3日 EDGM 2 3\", numResults: 6)"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.635146+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_official.txt",
+    "stderr": "processed/web_sources/exa_official.stderr"
+  },
+  {
+    "id": "hupu_preview",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "45",
+      "https://r.jina.ai/https://bbs.hupu.com/642839424.html"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.636298+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/hupu_preview.txt",
+    "stderr": "processed/web_sources/hupu_preview.stderr"
+  },
+  {
+    "id": "hupu_discussion",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "45",
+      "https://r.jina.ai/https://bbs.hupu.com/642824518.html"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.637254+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/hupu_discussion.txt",
+    "stderr": "processed/web_sources/hupu_discussion.stderr"
+  },
+  {
+    "id": "weibo_statement",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "45",
+      "https://r.jina.ai/https://weibo.com/a/hot/39256900f2e4fb40_0.html?type=grab"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.637966+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/weibo_statement.txt",
+    "stderr": "processed/web_sources/weibo_statement.stderr"
+  },
+  {
+    "id": "bili_video",
+    "command": [
+      "bili",
+      "video",
+      "BV1tDpt6pERR"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.639760+00:00",
+    "exit_code": -1,
+    "artifact": "processed/web_sources/bili_video.txt",
+    "stderr": "processed/web_sources/bili_video.stderr"
+  },
+  {
+    "id": "bili_search",
+    "command": [
+      "bili",
+      "search",
+      "JDG 清融 昊昊 轮换",
+      "--type",
+      "video",
+      "-n",
+      "5"
+    ],
+    "retrieved_at": "2026-10-09T17:17:30.640078+00:00",
+    "exit_code": -1,
+    "artifact": "processed/web_sources/bili_search.txt",
+    "stderr": "processed/web_sources/bili_search.stderr"
+  }
+]

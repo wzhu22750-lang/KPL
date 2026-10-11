@@ -1,0 +1,96 @@
+[
+  {
+    "id": "rules_official",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "40",
+      "https://r.jina.ai/https://news.qq.com/rain/a/20261001A0ASAJ00"
+    ],
+    "retrieved_at": "2026-10-09T17:18:16.993172+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/rules_official.txt",
+    "stderr": "processed/web_sources/rules_official.stderr"
+  },
+  {
+    "id": "weibo_coaches",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "40",
+      "https://r.jina.ai/https://www.sina.cn/news/detail/5350017357317094.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:16.993454+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/weibo_coaches.txt",
+    "stderr": "processed/web_sources/weibo_coaches.stderr"
+  },
+  {
+    "id": "weibo_rotation",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "40",
+      "https://r.jina.ai/https://www.sina.cn/news/detail/5350016793185805.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:16.994636+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/weibo_rotation.txt",
+    "stderr": "processed/web_sources/weibo_rotation.stderr"
+  },
+  {
+    "id": "summer_club",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "40",
+      "https://r.jina.ai/https://bbs.hupu.com/642306823.html"
+    ],
+    "retrieved_at": "2026-10-09T17:18:16.998229+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/summer_club.txt",
+    "stderr": "processed/web_sources/summer_club.stderr"
+  },
+  {
+    "id": "bili_jina",
+    "command": [
+      "curl",
+      "-sS",
+      "--max-time",
+      "40",
+      "https://r.jina.ai/https://www.bilibili.com/video/BV1tDpt6pERR"
+    ],
+    "retrieved_at": "2026-10-09T17:18:17.000487+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/bili_jina.txt",
+    "stderr": "processed/web_sources/bili_jina.stderr"
+  },
+  {
+    "id": "exa_match",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"2026年10月3日 北京JDG 上海EDGM 第四局 2-2 2-3 安琪拉\", numResults: 5)"
+    ],
+    "retrieved_at": "2026-10-09T17:18:17.000779+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_match.txt",
+    "stderr": "processed/web_sources/exa_match.stderr"
+  },
+  {
+    "id": "exa_renata",
+    "command": [
+      "mcporter",
+      "call",
+      "exa.web_search_exa(query: \"Renata 清融 粉丝后援会 忘本俱乐部 2026 10月6日\", numResults: 3)"
+    ],
+    "retrieved_at": "2026-10-09T17:18:17.002499+00:00",
+    "exit_code": 0,
+    "artifact": "processed/web_sources/exa_renata.txt",
+    "stderr": "processed/web_sources/exa_renata.stderr"
+  }
+]

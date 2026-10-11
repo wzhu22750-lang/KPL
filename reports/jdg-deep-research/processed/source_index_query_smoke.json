@@ -1,0 +1,427 @@
+[
+  {
+    "sub_id": 6088933,
+    "part_id": "BV1i1pw6fEvK_P03",
+    "line_idx": 115,
+    "source_line": 135,
+    "time_secs": 313,
+    "time_raw": "05:13",
+    "text": "ban掉了女娲",
+    "is_bp": 1,
+    "bvid": "BV1i1pw6fEvK",
+    "part_no": 3,
+    "publish_date": "2026-10-06",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "南通Hero久竞",
+    "home_team_slug": "jdg",
+    "away_team_slug": "hero",
+    "content_type": "game",
+    "game_no": 3,
+    "part_title": "第三局",
+    "title": "【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞 - P03 第三局",
+    "match_id": "kpl-20260004-2026100602",
+    "game_id": "kpl-20260004-2026100602-g3",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P03_第三局.md",
+    "source_date": "2026-10-06",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "bp_estimated",
+    "source_sha256": "5a77b739810816764a23ef76544754b49701931b9f816740e3648899377fdc3b",
+    "source_text_verified": true,
+    "quote": "- [05:05] 但是他会在边线上让你非常难受\n- [05:07] 带线牵扯对夏特也没了\n- [05:10] 然后沈梦溪搬掉hero是ban掉了虞姬\n- [05:13] ban掉了女娲\n- [05:17] 中路的话如果想长手消耗对面不好开的话\n- [05:20] 有嬴政这种\n- [05:22] 但是现在选早了一点",
+    "context": [
+      {
+        "line_idx": 112,
+        "source_line": 132,
+        "time_raw": "05:05",
+        "time_secs": 305,
+        "text": "但是他会在边线上让你非常难受"
+      },
+      {
+        "line_idx": 113,
+        "source_line": 133,
+        "time_raw": "05:07",
+        "time_secs": 307,
+        "text": "带线牵扯对夏特也没了"
+      },
+      {
+        "line_idx": 114,
+        "source_line": 134,
+        "time_raw": "05:10",
+        "time_secs": 310,
+        "text": "然后沈梦溪搬掉hero是ban掉了虞姬"
+      },
+      {
+        "line_idx": 115,
+        "source_line": 135,
+        "time_raw": "05:13",
+        "time_secs": 313,
+        "text": "ban掉了女娲"
+      },
+      {
+        "line_idx": 116,
+        "source_line": 136,
+        "time_raw": "05:17",
+        "time_secs": 317,
+        "text": "中路的话如果想长手消耗对面不好开的话"
+      },
+      {
+        "line_idx": 117,
+        "source_line": 137,
+        "time_raw": "05:20",
+        "time_secs": 320,
+        "text": "有嬴政这种"
+      },
+      {
+        "line_idx": 118,
+        "source_line": 138,
+        "time_raw": "05:22",
+        "time_secs": 322,
+        "text": "但是现在选早了一点"
+      }
+    ]
+  },
+  {
+    "sub_id": 6089579,
+    "part_id": "BV1i1pw6fEvK_P01",
+    "line_idx": 181,
+    "source_line": 201,
+    "time_secs": 413,
+    "time_raw": "06:53",
+    "text": "就是后边出女娲都会打海月",
+    "is_bp": 0,
+    "bvid": "BV1i1pw6fEvK",
+    "part_no": 1,
+    "publish_date": "2026-10-06",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "南通Hero久竞",
+    "home_team_slug": "jdg",
+    "away_team_slug": "hero",
+    "content_type": "game",
+    "game_no": 1,
+    "part_title": "第一局",
+    "title": "【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞 - P01 第一局",
+    "match_id": "kpl-20260004-2026100602",
+    "game_id": "kpl-20260004-2026100602-g1",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-06_【2026KPL年度总决赛】10月6日 北京JDG VS 南通Hero久竞_BV1i1pw6fEvK/P01_第一局.md",
+    "source_date": "2026-10-06",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "unknown",
+    "source_sha256": "8ff9c75e10000640861351ed164011a850b0cca368736cf128479b7f7b41edd1",
+    "source_text_verified": true,
+    "quote": "- [06:49] 那hero应该就是个张飞了\n- [06:51] 张飞沈梦溪或者是沈梦溪\n- [06:53] 不出的话\n- [06:53] 就是后边出女娲都会打海月\n- [06:57] 习惯就好\n- [06:58] 受死人\n- [06:59] 不像大海月花会枯",
+    "context": [
+      {
+        "line_idx": 178,
+        "source_line": 198,
+        "time_raw": "06:49",
+        "time_secs": 409,
+        "text": "那hero应该就是个张飞了"
+      },
+      {
+        "line_idx": 179,
+        "source_line": 199,
+        "time_raw": "06:51",
+        "time_secs": 411,
+        "text": "张飞沈梦溪或者是沈梦溪"
+      },
+      {
+        "line_idx": 180,
+        "source_line": 200,
+        "time_raw": "06:53",
+        "time_secs": 413,
+        "text": "不出的话"
+      },
+      {
+        "line_idx": 181,
+        "source_line": 201,
+        "time_raw": "06:53",
+        "time_secs": 413,
+        "text": "就是后边出女娲都会打海月"
+      },
+      {
+        "line_idx": 182,
+        "source_line": 202,
+        "time_raw": "06:57",
+        "time_secs": 417,
+        "text": "习惯就好"
+      },
+      {
+        "line_idx": 183,
+        "source_line": 203,
+        "time_raw": "06:58",
+        "time_secs": 418,
+        "text": "受死人"
+      },
+      {
+        "line_idx": 184,
+        "source_line": 204,
+        "time_raw": "06:59",
+        "time_secs": 419,
+        "text": "不像大海月花会枯"
+      }
+    ]
+  },
+  {
+    "sub_id": 5849083,
+    "part_id": "BV19FHv61Efx_P01",
+    "line_idx": 237,
+    "source_line": 257,
+    "time_secs": 662,
+    "time_raw": "11:02",
+    "text": "大司命还有女娲ban不完",
+    "is_bp": 0,
+    "bvid": "BV19FHv61Efx",
+    "part_no": 1,
+    "publish_date": "2026-10-03",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "上海EDG.M",
+    "home_team_slug": "jdg",
+    "away_team_slug": "edgm",
+    "content_type": "game",
+    "game_no": 1,
+    "part_title": "第一局",
+    "title": "【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M - P01 第一局",
+    "match_id": "kpl-20260004-2026100302",
+    "game_id": "kpl-20260004-2026100302-g1",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P01_第一局.md",
+    "source_date": "2026-10-03",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "unknown",
+    "source_sha256": "0a3a8b9e728c0f09c54458ee784d6451159d68b711cce5fee2c31000ffc73340",
+    "source_text_verified": true,
+    "quote": "- [10:54] 武则天\n- [10:56] 如果EDGM还要搬冲的话\n- [10:58] 还有个安琪拉\n- [11:02] 大司命还有女娲ban不完\n- [11:08] 戈娅这样的话\n- [11:10] 苍和奥运都在\n- [11:16] 那苍好像也是有对位关系的",
+    "context": [
+      {
+        "line_idx": 234,
+        "source_line": 254,
+        "time_raw": "10:54",
+        "time_secs": 654,
+        "text": "武则天"
+      },
+      {
+        "line_idx": 235,
+        "source_line": 255,
+        "time_raw": "10:56",
+        "time_secs": 656,
+        "text": "如果EDGM还要搬冲的话"
+      },
+      {
+        "line_idx": 236,
+        "source_line": 256,
+        "time_raw": "10:58",
+        "time_secs": 658,
+        "text": "还有个安琪拉"
+      },
+      {
+        "line_idx": 237,
+        "source_line": 257,
+        "time_raw": "11:02",
+        "time_secs": 662,
+        "text": "大司命还有女娲ban不完"
+      },
+      {
+        "line_idx": 238,
+        "source_line": 258,
+        "time_raw": "11:08",
+        "time_secs": 668,
+        "text": "戈娅这样的话"
+      },
+      {
+        "line_idx": 239,
+        "source_line": 259,
+        "time_raw": "11:10",
+        "time_secs": 670,
+        "text": "苍和奥运都在"
+      },
+      {
+        "line_idx": 240,
+        "source_line": 260,
+        "time_raw": "11:16",
+        "time_secs": 676,
+        "text": "那苍好像也是有对位关系的"
+      }
+    ]
+  },
+  {
+    "sub_id": 5850872,
+    "part_id": "BV19FHv61Efx_P03",
+    "line_idx": 144,
+    "source_line": 164,
+    "time_secs": 366,
+    "time_raw": "06:06",
+    "text": "对你如果拿嬴政或者女娲的话",
+    "is_bp": 0,
+    "bvid": "BV19FHv61Efx",
+    "part_no": 3,
+    "publish_date": "2026-10-03",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "上海EDG.M",
+    "home_team_slug": "jdg",
+    "away_team_slug": "edgm",
+    "content_type": "game",
+    "game_no": 3,
+    "part_title": "第三局",
+    "title": "【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M - P03 第三局",
+    "match_id": "kpl-20260004-2026100302",
+    "game_id": "kpl-20260004-2026100302-g3",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P03_第三局.md",
+    "source_date": "2026-10-03",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "unknown",
+    "source_sha256": "82535e8375319c2a76fc2a5159fda1e16e9b37ee62c0f0504110f7289aa4fcb1",
+    "source_text_verified": true,
+    "quote": "- [05:59] 接下来有可能会吃到的大哥都不错\n- [06:01] 中路刚才说到的嫦娥火舞没了\n- [06:04] 就是一个嫦娥打到沈梦溪的对位了\n- [06:06] 对你如果拿嬴政或者女娲的话\n- [06:08] 容易直接被切看EDGM的射手康特位\n- [06:16] 得拿一个大核心\n- [06:19] 不好意思",
+    "context": [
+      {
+        "line_idx": 141,
+        "source_line": 161,
+        "time_raw": "05:59",
+        "time_secs": 359,
+        "text": "接下来有可能会吃到的大哥都不错"
+      },
+      {
+        "line_idx": 142,
+        "source_line": 162,
+        "time_raw": "06:01",
+        "time_secs": 361,
+        "text": "中路刚才说到的嫦娥火舞没了"
+      },
+      {
+        "line_idx": 143,
+        "source_line": 163,
+        "time_raw": "06:04",
+        "time_secs": 364,
+        "text": "就是一个嫦娥打到沈梦溪的对位了"
+      },
+      {
+        "line_idx": 144,
+        "source_line": 164,
+        "time_raw": "06:06",
+        "time_secs": 366,
+        "text": "对你如果拿嬴政或者女娲的话"
+      },
+      {
+        "line_idx": 145,
+        "source_line": 165,
+        "time_raw": "06:08",
+        "time_secs": 368,
+        "text": "容易直接被切看EDGM的射手康特位"
+      },
+      {
+        "line_idx": 146,
+        "source_line": 166,
+        "time_raw": "06:16",
+        "time_secs": 376,
+        "text": "得拿一个大核心"
+      },
+      {
+        "line_idx": 147,
+        "source_line": 167,
+        "time_raw": "06:19",
+        "time_secs": 379,
+        "text": "不好意思"
+      }
+    ]
+  },
+  {
+    "sub_id": 5851735,
+    "part_id": "BV19FHv61Efx_P04",
+    "line_idx": 96,
+    "source_line": 116,
+    "time_secs": 262,
+    "time_raw": "04:22",
+    "text": "还有个小乔女娲",
+    "is_bp": 0,
+    "bvid": "BV19FHv61Efx",
+    "part_no": 4,
+    "publish_date": "2026-10-03",
+    "season_id": "kpl-2026-annual",
+    "year": 2026,
+    "match_dir": "2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx",
+    "home_team_raw": "北京JDG",
+    "away_team_raw": "上海EDG.M",
+    "home_team_slug": "jdg",
+    "away_team_slug": "edgm",
+    "content_type": "game",
+    "game_no": 4,
+    "part_title": "第四局",
+    "title": "【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M - P04 第四局",
+    "match_id": "kpl-20260004-2026100302",
+    "game_id": "kpl-20260004-2026100302-g4",
+    "match_confidence": "high",
+    "source_path": "2026年度总决赛/2026-10-03_【2026KPL年度总决赛】10月3日 北京JDG VS 上海EDG.M_BV19FHv61Efx/P04_第四局.md",
+    "source_date": "2026-10-03",
+    "match_reason": "unique source calendar date + season + both teams; no upload-date fallback + unique game number",
+    "phase": "unknown",
+    "source_sha256": "bd35848538d2a595be7ce7e3446fba2a69b430ab9a94edb77c5dfb5699f20af3",
+    "source_text_verified": true,
+    "quote": "- [04:05] 凯越ban掉\n- [04:14] 武则天要ban这种大控EDGM\n- [04:17] 拿安琪拉也用过了\n- [04:22] 还有个小乔女娲\n- [04:24] 小乔女娲包\n- [04:25] 还有嬴政\n- [04:26] 嬴政是京东非常喜欢的一个英雄",
+    "context": [
+      {
+        "line_idx": 93,
+        "source_line": 113,
+        "time_raw": "04:05",
+        "time_secs": 245,
+        "text": "凯越ban掉"
+      },
+      {
+        "line_idx": 94,
+        "source_line": 114,
+        "time_raw": "04:14",
+        "time_secs": 254,
+        "text": "武则天要ban这种大控EDGM"
+      },
+      {
+        "line_idx": 95,
+        "source_line": 115,
+        "time_raw": "04:17",
+        "time_secs": 257,
+        "text": "拿安琪拉也用过了"
+      },
+      {
+        "line_idx": 96,
+        "source_line": 116,
+        "time_raw": "04:22",
+        "time_secs": 262,
+        "text": "还有个小乔女娲"
+      },
+      {
+        "line_idx": 97,
+        "source_line": 117,
+        "time_raw": "04:24",
+        "time_secs": 264,
+        "text": "小乔女娲包"
+      },
+      {
+        "line_idx": 98,
+        "source_line": 118,
+        "time_raw": "04:25",
+        "time_secs": 265,
+        "text": "还有嬴政"
+      },
+      {
+        "line_idx": 99,
+        "source_line": 119,
+        "time_raw": "04:26",
+        "time_secs": 266,
+        "text": "嬴政是京东非常喜欢的一个英雄"
+      }
+    ]
+  }
+]
