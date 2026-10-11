@@ -1,5 +1,5 @@
 import type { SourceGroupKey } from '@aihot/contracts/taxonomy';
-import { SOURCE_GROUPS, CASTER_SOURCE_TAGS } from '@aihot/industry/source-groups';
+import { SOURCE_GROUPS, CASTER_SOURCE_TAGS, STREAMER_SOURCE_TAGS } from '@aihot/industry/source-groups';
 import { sql } from '../db.ts';
 
 /** One identity rule for filtering and display. Alias s always denotes the source, never article tags. */
@@ -8,6 +8,7 @@ export const sourceGroupExpression = sql`CASE
   WHEN s.owner_type = ANY(${[...SOURCE_GROUPS[1].owners]}::text[]) THEN 'club'
   WHEN s.owner_type = ANY(${[...SOURCE_GROUPS[2].owners]}::text[]) THEN 'participant'
   WHEN s.owner_type = 'media' AND s.tags && ${[...CASTER_SOURCE_TAGS]}::text[] THEN 'caster'
+  WHEN s.owner_type = 'media' AND s.tags && ${[...STREAMER_SOURCE_TAGS]}::text[] THEN 'streamer'
   WHEN s.owner_type = 'media' THEN 'media'
   WHEN s.owner_type = 'community' THEN 'community'
   ELSE NULL END`;

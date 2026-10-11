@@ -13,28 +13,37 @@ after(closeDb);
 const now = new Date('2020-10-10T00:00:00Z');
 const filters = {channel:'all' as const,category:null,tag:null,now};
 const sources = [
-  {id:'official',owner:'league',tags:['联盟'],group:'official'},
-  {id:'club',owner:'club',tags:['战队'],group:'club'},
-  {id:'player',owner:'player',tags:[],group:'participant'},
-  {id:'coach',owner:'coach',tags:[],group:'participant'},
-  {id:'staff',owner:'staff',tags:[],group:'participant'},
-  {id:'caster',owner:'media',tags:['解说'],group:'caster'},
-  {id:'media',owner:'media',tags:['战术'],group:'media'},
-  {id:'community',owner:'community',tags:['社区'],group:'community'},
-  {id:'unknown',owner:null,tags:['官方'],group:null},
+  {id:'official',kind:'weibo',owner:'league',tags:['联盟','二路','主播'],group:'official'},
+  {id:'club',kind:'json_list',owner:'club',tags:['战队','二路','主播'],group:'club'},
+  {id:'player',kind:'weibo',owner:'player',tags:['二路','主播'],group:'participant'},
+  {id:'coach',kind:'rss',owner:'coach',tags:['主播'],group:'participant'},
+  {id:'staff',kind:'json_list',owner:'staff',tags:['解说','主播'],group:'participant'},
+  {id:'caster',kind:'rss',owner:'media',tags:['解说'],group:'caster'},
+  {id:'gemini',kind:'weibo',owner:'media',tags:['二路','主播'],group:'caster'},
+  {id:'casterjson',kind:'json_list',owner:'media',tags:['评论员','主播'],group:'caster'},
+  {id:'casterrss',kind:'rss',owner:'media',tags:['二路','主播'],group:'caster'},
+  {id:'streamerweibo',kind:'weibo',owner:'media',tags:['主播'],group:'streamer'},
+  {id:'streamerjson',kind:'json_list',owner:'media',tags:['主播','战术'],group:'streamer'},
+  {id:'streamerrss',kind:'rss',owner:'media',tags:['主播'],group:'streamer'},
+  {id:'media',kind:'rss',owner:'media',tags:['战术'],group:'media'},
+  {id:'mediaweibo',kind:'weibo',owner:'media',tags:[],group:'media'},
+  {id:'community',kind:'rss',owner:'community',tags:['社区'],group:'community'},
+  {id:'communitystreamer',kind:'json_list',owner:'community',tags:['二路','主播'],group:'community'},
+  {id:'communityweibo',kind:'weibo',owner:'community',tags:['主播'],group:'community'},
+  {id:'unknown',kind:'weibo',owner:null,tags:['官方','主播'],group:null},
 ] as const;
 const factPublicId = 'source-group-shared-fact';
 before(async () => {
   const [fact] = await sql<{id:number}[]>`INSERT INTO facts(public_id,title) VALUES (${factPublicId},'同一赛果多方报道') RETURNING id`;
   for (const [index,source] of sources.entries()) {
-    await sql`INSERT INTO sources(id,name,kind,tier,owner_type,tags) VALUES (${source.id},${source.id},'rss','T1',${source.owner},${[...source.tags]})`;
+    await sql`INSERT INTO sources(id,name,kind,tier,owner_type,tags) VALUES (${source.id},${source.id},${source.kind},'T1',${source.owner},${[...source.tags]})`;
     for (let n=0;n<2;n++) {
       const id=`${source.id}-${n}`;
       const at=new Date(now.getTime()-3600_000-index*1000-n*100_000);
       await sql`INSERT INTO articles(id,source_id,identity_key,url,title,discovered_at,timeline_at) VALUES (${id},${source.id},${id},${`https://example.test/${id}`},${id},${at},${at})`;
       // Every article deliberately has the same misleading identity words. Only source metadata counts.
       await sql`INSERT INTO publications(article_id,source_id,title,channel,url,discovered_at,timeline_at,sort_at,visible_after,visibility,eligible,selected,category,tags,fact_id)
-        VALUES (${id},${source.id},${`赛果 ${id}`},'news',${`https://example.test/${id}`},${at},${at},${at},${at},'public',true,true,'match-result',${['官方','战队官方','二路','赛果战报']},${n===0?fact!.id:null})`;
+        VALUES (${id},${source.id},${`官方二路主播赛果 ${id}`},'news',${`https://example.test/${id}`},${at},${at},${at},${at},'public',true,true,'match-result',${['官方','战队官方','二路','主播','赛果战报']},${n===0?fact!.id:null})`;
       if(n===0) await sql`INSERT INTO fact_articles(fact_id,article_id,role) VALUES (${fact!.id},${id},'report')`;
     }
   }
@@ -79,7 +88,8 @@ test('cache scopes and pagination cursors do not cross publisher groups',async (
   assert.ok(tail.cards.every(card=>card.item.source.group==='official'));
 });
 
-test('API accepts only the six public groups and keeps legacy topic/category inputs separate',()=>{
+test('API accepts the seven public groups and keeps legacy topic/category inputs separate',()=>{
+  assert.deepEqual(SOURCE_GROUP_KEYS,['official','club','participant','caster','streamer','media','community']);
   for(const sourceGroup of SOURCE_GROUP_KEYS) assert.equal(parseFilters({sourceGroup}).sourceGroup,sourceGroup);
   assert.equal(parseFilters({}).sourceGroup,null);
   assert.throws(()=>parseFilters({sourceGroup:'赛果'}),/invalid source group/);
