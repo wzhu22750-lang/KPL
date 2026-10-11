@@ -87,6 +87,11 @@ test('fully empty radar has only one focus empty state, not the legacy duplicate
   assert.ok(!$('body').text().includes('近期暂无通过评估的话题或动态'));
 });
 
+test('published radar items use same-origin routes even if canonical SITE_URL is misconfigured', () => {
+  const $ = render({ ...radar, standalone: [{ ...report, itemUrl: 'http://localhost:3000/items/report' }] });
+  assert.equal($('section[aria-labelledby="radar-factual"] a').attr('href'), '/items/report');
+});
+
 test('approved lead and additional topics retain their titles, sources and details', () => {
   const topic = { id: 1, title: '阵容调整讨论', updatedAt: '2026-10-07T12:00:00Z', score: 80,
     materials: [{ ...report, id: 'discussion', title: '阵容调整讨论', kind: 'analysis' as const, claimStatus: 'opinion' as const, summary: '已评估讨论摘要' }] };

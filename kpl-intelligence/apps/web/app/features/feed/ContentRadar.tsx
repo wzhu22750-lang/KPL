@@ -8,6 +8,17 @@ const CLAIM = { fact: '事实陈述', opinion: '观点', rumor: '未证实传闻
 const STATUS: Record<string, string> = { scheduled: '未开始', live: '进行中', finished: '已结束', postponed: '延期', cancelled: '取消' };
 const timeOf = (date: string) => new Date(date).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
 
+// Radar item links are same-site by contract (`/items/*`, `/story/*`, `/daily/*`). Keep navigation
+// in-app even when the API echoes an absolute URL built from a misconfigured SITE_URL.
+const INTERNAL_PATH_PREFIXES = ['/items/', '/story/', '/daily/'];
+function internalPath(url: string): string {
+  try {
+    const parsed = new URL(url, 'http://internal');
+    return INTERNAL_PATH_PREFIXES.some(prefix => parsed.pathname.startsWith(prefix))
+      ? `${parsed.pathname}${parsed.search}${parsed.hash}` : url;
+  } catch { return url; }
+}
+
 function ClaimLabel({ item }: { item: RadarMaterial }) {
   return <span className={item.claimStatus === 'rumor' ? 'font-medium text-hot' : 'text-ink-3'}>{CLAIM[item.claimStatus]}</span>;
 }
@@ -41,7 +52,7 @@ export function RadarMaterialArticle({ item, omitTitle = false, omitSummary = fa
     </div>
     {!omitTitle && (
       item.itemUrl ? (
-        <IntentLink to={item.itemUrl} className="mt-2 block text-[15px] font-semibold leading-relaxed text-ink hover:text-accent break-words [overflow-wrap:anywhere]">
+        <IntentLink to={internalPath(item.itemUrl)} className="mt-2 block text-[15px] font-semibold leading-relaxed text-ink hover:text-accent break-words [overflow-wrap:anywhere]">
           {item.title} <IconArrowUpRight size={14} className="inline align-baseline text-ink-3" />
         </IntentLink>
       ) : (
@@ -53,7 +64,7 @@ export function RadarMaterialArticle({ item, omitTitle = false, omitSummary = fa
     {!omitSummary && <p className="mt-2 max-w-[72ch] text-[14px] leading-[1.85] text-ink-2 break-words [overflow-wrap:anywhere]">{item.summary}</p>}
     {omitTitle && (
       item.itemUrl ? (
-        <IntentLink to={item.itemUrl} className="inline-flex min-h-11 items-center gap-1 text-[12px] text-accent">
+        <IntentLink to={internalPath(item.itemUrl)} className="inline-flex min-h-11 items-center gap-1 text-[12px] text-accent">
           查看详情 <IconArrowUpRight size={14} />
         </IntentLink>
       ) : (
